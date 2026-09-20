@@ -1,0 +1,94 @@
+# NAME: Adobe
+# AUTHOR: Horatio
+# FORMAT: Egern Remote Rule Set
+# UPDATED: 2026-09-20
+# TOTAL: 73
+#
+# Covers Adobe Creative Cloud, Acrobat, Firefly, Adobe Express, Behance,
+# Adobe Fonts/Typekit, Adobe Stock, Adobe Sign, Experience Cloud,
+# Marketo, Magento/Adobe Commerce and related Adobe infrastructure.
+#
+# Based primarily on Adobe's official network endpoint documentation,
+# updated 2026-09-03. Broad third-party roots such as certificate vendors,
+# social platforms and generic cloud providers are intentionally excluded
+# to avoid routing unrelated traffic through the Adobe policy.
+#
+# Use this URL as an Egern rule_set match and select the desired policy
+# in your main Egern configuration. All conditions in this file are OR-matched.
+
+domain_set:
+  - cc-ext-prod-pkgs.s3.amazonaws.com
+  - pre-signed-firefly-prod.s3-accelerate.amazonaws.com
+  - pre-signed-firefly-prod.s3.amazonaws.com
+  - aep-cs-blobstore-prod-va6-data.s3.amazonaws.com
+  - dnzuu5synxxfk.cloudfront.net
+
+domain_suffix_set:
+  - 2o7.net
+  - acrobat.com
+  - adbecrsl.com
+  - adbephotos.com
+  - adobe.com
+  - adobe.io
+  - adobe.ly
+  - adobe-aemassets-value.com
+  - adobe-audience-finder.com
+  - adobe-identity.com
+  - adobe-services.com
+  - adobe-video-partner-finder.com
+  - adobeaemcloud.com
+  - adobeaemcloud.net
+  - adobecc.com
+  - adobecce.com
+  - adobecces.com
+  - adobeccstatic.com
+  - adobecontent.io
+  - adobedc.cn
+  - adobedc.net
+  - adobedtm.com
+  - adobeexchange.com
+  - adobegenuine.com
+  - adobegov.com
+  - adobejanus.com
+  - adobelogin.com
+  - adobeoobe.com
+  - adobeprojectm.com
+  - adobesc.com
+  - adobesensei.io
+  - adobesign.com
+  - adobesigncdn.com
+  - adobespark.com
+  - adobess.com
+  - adobestock.com
+  - adobesunbreak.com
+  - adobetag.com
+  - adobetarget.com
+  - assetsadobe.com
+  - behance.net
+  - businesscatalyst.com
+  - creativecloud.com
+  - creativesdk.com
+  - demdex.net
+  - echosign.com
+  - edgefonts.net
+  - ftcdn.net
+  - macromedia.com
+  - magento.com
+  - magento.net
+  - magentocommerce.com
+  - marketing-cloud.com
+  - marketo.co.uk
+  - marketo.com
+  - marketo.net
+  - marketo.tv
+  - mktdns.com
+  - mktorest.com
+  - mktroute.com
+  - myportfolio.com
+  - omniture.com
+  - omtrdc.net
+  - photoshop.com
+  - prosite.com
+  - scene7.com
+  - typekit.com
+  - typekit.net
