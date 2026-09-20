@@ -2,7 +2,7 @@
 # AUTHOR: Horatio
 # FORMAT: Egern Remote Rule Set
 # UPDATED: 2026-09-20
-# TOTAL: 11
+# TOTAL: 12
 #
 # Mainland Xiaohongshu / 小红书 rule set.
 # Covers the main website/API domain, media CDN, official share/short-link
@@ -14,11 +14,10 @@
 # - Current Xiaohongshu short-link formats observed in 2026
 # - Public MIIT filing records for Xiaohongshu-operated domains
 #
-# RedNote international (rednote.com) is intentionally NOT included here,
-# because it uses a separate international backend and may need a different
-# routing policy.
+# Includes RedNote international (rednote.com) and its subdomains as well.
 domain_suffix_set:
   - fengkongcloud.com
+  - rednote.com
   - xhscdn.com
   - xhscdn.net
   - xhs.cn
