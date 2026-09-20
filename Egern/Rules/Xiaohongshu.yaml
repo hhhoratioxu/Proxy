@@ -1,0 +1,31 @@
+# NAME: Xiaohongshu
+# AUTHOR: Horatio
+# FORMAT: Egern Remote Rule Set
+# UPDATED: 2026-09-20
+# TOTAL: 11
+#
+# Mainland Xiaohongshu / 小红书 rule set.
+# Covers the main website/API domain, media CDN, official share/short-link
+# domains, legacy/official Xiaohongshu domains, and the risk-control domain
+# carried by the widely used blackmatrix7 XiaoHongShu rules.
+#
+# Sources:
+# - blackmatrix7/ios_rule_script XiaoHongShu
+# - Current Xiaohongshu short-link formats observed in 2026
+# - Public MIIT filing records for Xiaohongshu-operated domains
+#
+# RedNote international (rednote.com) is intentionally NOT included here,
+# because it uses a separate international backend and may need a different
+# routing policy.
+domain_suffix_set:
+  - fengkongcloud.com
+  - xhscdn.com
+  - xhscdn.net
+  - xhs.cn
+  - xhslink.cn
+  - xhslink.com
+  - xhsurl.cn
+  - xhsurl.com
+  - xiaohongshu.com
+  - xiaohongshu.net
+  - xingin.net
