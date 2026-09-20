@@ -1,0 +1,14 @@
+# NAME: NTP
+# AUTHOR: Horatio
+# FORMAT: Egern Remote Rule Set
+# UPDATED: 2026-09-20
+#
+# Common network time synchronization domains.
+# Recommended policy: DIRECT
+domain_suffix_set:
+  - pool.ntp.org
+  - time.apple.com
+  - time.google.com
+  - time.cloudflare.com
+  - time.windows.com
+  - ntp.org
