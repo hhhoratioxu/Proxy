@@ -1,0 +1,27 @@
+# NAME: Meituan
+# AUTHOR: Horatio
+# FORMAT: Egern Remote Rule Set
+# UPDATED: 2026-09-20
+# TOTAL: 14
+#
+# Complete Meituan / 美团 ecosystem rule set for Egern.
+# Covers Meituan, Dianping, Maoyan, internal/cloud domains and Keeta international.
+#
+# Base source: blackmatrix7/ios_rule_script MeiTuan
+# Additional ecosystem domains: dpfile.com, 51ping.com, dper.com,
+# mykeeta.com, keeta-global.com, keetainc.com.
+domain_suffix_set:
+  - 51ping.com
+  - dianping.com
+  - dpfile.com
+  - dper.com
+  - keeta-global.com
+  - keetainc.com
+  - maoyan.com
+  - meituan.com
+  - meituan.net
+  - mtyun.com
+  - mykeeta.com
+  - neixin.cn
+  - sankuai.com
+  - zhenguo.com
