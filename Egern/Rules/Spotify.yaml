@@ -1,0 +1,56 @@
+# NAME: Spotify
+# AUTHOR: Horatio
+# FORMAT: Egern Remote Rule Set
+# UPDATED: 2026-09-21
+# TOTAL: 32
+#
+# Covers Spotify app/web, APIs, audio/media CDN, short links,
+# marketing/corporate domains and known Spotify delivery endpoints.
+#
+# Sources cross-checked against blackmatrix7/ios_rule_script,
+# Repcz/Tool and v2fly/domain-list-community.
+#
+# Use this URL as an Egern rule_set match and select the desired policy
+# in your main Egern configuration. All conditions in this file are OR-matched.
+#
+# no_resolve prevents IP rules from forcing extra DNS resolution.
+
+no_resolve: true
+
+domain_set:
+  - cdn-spotify-experiments.conductrics.com
+  - spotify.com.edgesuite.net
+  - spotify.map.fastly.net
+  - spotify.map.fastlylb.net
+
+domain_keyword_set:
+  - spotify
+
+domain_suffix_set:
+  - byspotify.com
+  - lifeatspotify.com
+  - pscdn.co
+  - scdn.co
+  - spoti.fi
+  - spotify-com.akamaized.net
+  - spotify-everywhere.com
+  - spotify.app.link
+  - spotify.com
+  - spotify.design
+  - spotify.link
+  - spotifycdn.com
+  - spotifycdn.net
+  - spotifycharts.com
+  - spotifycodes.com
+  - spotifyforbrands.com
+  - spotifyforvendors.com
+  - spotifyjobs.com
+  - spotifynewsroom.jp
+  - spotilocal.com
+  - tospotify.com
+
+ip_cidr_set:
+  - 35.186.224.47/32
+
+user_agent_set:
+  - 'Spotify*'
