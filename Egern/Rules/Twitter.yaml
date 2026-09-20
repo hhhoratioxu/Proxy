@@ -1,0 +1,61 @@
+# NAME: Twitter
+# AUTHOR: Horatio
+# FORMAT: Egern Remote Rule Set
+# UPDATED: 2026-09-20
+# TOTAL: 34
+#
+# Covers X / Twitter main services, APIs, media CDN, short links,
+# TweetDeck, Periscope legacy infrastructure and related first-party domains.
+#
+# Domain/IP coverage is based on the comprehensive Twitter rule set maintained
+# by blackmatrix7/Repcz. AS13414 is additionally included for Twitter/X's
+# first-party global network so direct Twitter infrastructure is also covered.
+#
+# Use this URL as an Egern rule_set match and select the desired policy
+# in your main Egern configuration. All conditions in this file are OR-matched.
+#
+# no_resolve prevents IP rules from forcing extra DNS resolution.
+
+no_resolve: true
+
+domain_keyword_set:
+  - twitter
+
+domain_suffix_set:
+  - ads-twitter.com
+  - cms-twdigitalassets.com
+  - grok.com
+  - periscope.tv
+  - pscp.tv
+  - t.co
+  - tellapart.com
+  - tweetdeck.com
+  - twimg.co
+  - twimg.com
+  - twimg.org
+  - twitpic.com
+  - twitter.biz
+  - twitter.com
+  - twitter.jp
+  - twittercommunity.com
+  - twitterflightschool.com
+  - twitterinc.com
+  - twitteroauth.com
+  - twitterstat.us
+  - twtrdns.net
+  - twttr.com
+  - twttr.net
+  - twvid.com
+  - vine.co
+  - x.com
+
+asn_set:
+  - "AS13414"
+
+ip_cidr_set:
+  - 69.195.160.0/19
+  - 192.133.76.0/22
+  - 199.59.148.0/22
+  - 199.96.56.0/21
+  - 202.160.128.0/22
+  - 209.237.192.0/19
