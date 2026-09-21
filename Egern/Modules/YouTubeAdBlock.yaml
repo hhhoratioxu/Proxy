@@ -1,7 +1,7 @@
-name: "YouTube AdBlock for Egern"
-description: "YouTube / YouTube Music 去广告 + 隐藏发布按钮 + 隐藏 Shorts。采用 Egern 原生 env 参数传递，并覆盖 ctier=L、oad、pagead、ptracking、广告统计接口。与独立 DualSubs 翻译模块配合使用。"
-author: "Aioneas / Qmxn / Horatio"
-homepage: "https://github.com/Qmxn/Tool"
+name: "YouTube AdBlock 2026 for Egern"
+description: "基于 Maasea 2026-07 新版 Onesie/UMP 链路：config/log_event 获取加密密钥，initplayback 经 Worker 处理，response 清理广告并隐藏上传/Shorts。请保持 Egern Block QUIC 开启。"
+author: "Maasea / Horatio"
+homepage: "https://github.com/Maasea/sgmodule"
 category: "YouTube"
 
 rules:
@@ -20,43 +20,40 @@ rules:
             match: "UDP"
       policy: "REJECT"
 
-url_rewrites:
-  - match: "(^https?:\\/\\/[\\w-]+\\.googlevideo\\.com\\/(?!dclk_video_ads).+?)&ctier=L(&.+?),ctier,(.+)"
-    location: "$1$2$3"
-    status_code: 302
-
-map_locals:
-  - match: "^https?:\\/\\/[\\w-]+\\.googlevideo\\.com\\/(?!(dclk_video_ads|videoplayback\\?)).+&oad"
-    status_code: 200
-    body: " "
-  - match: "^https?:\\/\\/(www|s)\\.youtube\\.com\\/api\\/stats\\/ads"
-    status_code: 200
-    body: " "
-  - match: "^https?:\\/\\/(www|s)\\.youtube\\.com\\/(pagead|ptracking)"
-    status_code: 200
-    body: " "
-  - match: "^https?:\\/\\/s\\.youtube\\.com\\/api\\/stats\\/qoe\\?adcontext"
-    status_code: 200
-    body: " "
-
 scriptings:
   - http_response:
-      name: "youtube.response"
-      match: "^https?:\\/\\/youtubei\\.googleapis\\.com\\/youtubei\\/v1\\/(browse|next|player|search|reel\\/reel_watch_sequence|guide|account\\/get_setting|get_watch)"
-      script_url: "https://raw.githubusercontent.com/Aioneas/Surge/main/Script/youtube.response.js"
+      name: "YouTube 2026 Response"
+      match: "^https:\\/\\/youtubei\\.googleapis\\.com\\/youtubei\\/v1\\/(browse|next|player|search|reel\\/reel_watch_sequence|guide|account\\/get_setting|get_watch|log_event|config)(\\?.*)?$"
+      script_url: "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js"
       env:
-        _compat.$argument: '{"lyricLang":"off","captionLang":"off","blockUpload":true,"blockImmersive":false,"blockShorts":true,"debug":false}'
-      max_size: -1
-      timeout: 60
+        _compat.$argument: '{"captionLang":"off","blockUpload":true,"blockImmersive":true,"blockShorts":true,"debug":false}'
       body_required: true
       binary_body: true
+      max_size: -1
+      timeout: 60
+
+  - http_request:
+      name: "YouTube 2026 InitPlayback"
+      match: "^https?:\\/\\/[\\w-]+\\.googlevideo\\.com\\/initplayback.+&ack.*$"
+      script_url: "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.request.js"
+      env:
+        _compat.$argument: '{"captionLang":"off","blockUpload":true,"blockImmersive":true,"blockShorts":true}'
+      body_required: true
+      binary_body: true
+      max_size: -1
+      timeout: 60
+
+  - http_request:
+      name: "YouTube 2026 LogEvent"
+      match: "^https:\\/\\/youtubei\\.googleapis\\.com\\/youtubei\\/v1\\/log_event(\\?.*)?$"
+      script_url: "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.request.js"
+      body_required: true
+      binary_body: true
+      max_size: -1
+      timeout: 60
 
 mitm:
   hostnames:
     includes:
       - "*.googlevideo.com"
-      - "www.youtube.com"
-      - "s.youtube.com"
       - "youtubei.googleapis.com"
-    excludes:
-      - "redirector*.googlevideo.com"
