@@ -1,7 +1,7 @@
 name: "YouTube AdBlock for Egern"
-description: "YouTube / YouTube Music 去广告。覆盖 ctier=L、oad、pagead、ptracking、广告统计接口，并清理 player/get_watch 等响应中的广告结构。与独立 DualSubs 翻译模块配合使用。"
-author: "Aioneas / Maasea / Horatio"
-homepage: "https://github.com/Aioneas/Surge"
+description: "YouTube / YouTube Music 去广告 + 隐藏发布按钮 + 隐藏 Shorts。采用 Egern 原生 env 参数传递，并覆盖 ctier=L、oad、pagead、ptracking、广告统计接口。与独立 DualSubs 翻译模块配合使用。"
+author: "Aioneas / Qmxn / Horatio"
+homepage: "https://github.com/Qmxn/Tool"
 category: "YouTube"
 
 rules:
@@ -10,14 +10,14 @@ rules:
         - domain_suffix:
             match: "googlevideo.com"
         - protocol:
-            match: "udp"
+            match: "UDP"
       policy: "REJECT"
   - and:
       match:
         - domain:
             match: "youtubei.googleapis.com"
         - protocol:
-            match: "udp"
+            match: "UDP"
       policy: "REJECT"
 
 url_rewrites:
@@ -41,11 +41,11 @@ map_locals:
 
 scriptings:
   - http_response:
-      name: "YouTube AdBlock Response"
+      name: "youtube.response"
       match: "^https?:\\/\\/youtubei\\.googleapis\\.com\\/youtubei\\/v1\\/(browse|next|player|search|reel\\/reel_watch_sequence|guide|account\\/get_setting|get_watch)"
       script_url: "https://raw.githubusercontent.com/Aioneas/Surge/main/Script/youtube.response.js"
-      arguments:
-        _compat.$argument: '{"lyricLang":"off","captionLang":"off","blockUpload":true,"blockImmersive":false,"blockShorts":false,"debug":false}'
+      env:
+        _compat.$argument: '{"lyricLang":"off","captionLang":"off","blockUpload":true,"blockImmersive":false,"blockShorts":true,"debug":false}'
       max_size: -1
       timeout: 60
       body_required: true
