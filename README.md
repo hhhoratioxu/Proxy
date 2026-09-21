@@ -14,13 +14,10 @@ Egern/
 ├── Rules/
 │   └── Apple.yaml
 └── Modules/
-    ├── YouTubeAdBlock.sgmodule
-    └── YouTubeTranslate.sgmodule
+    └── YouTube.sgmodule
 ```
 
 Future Loon `.lpx` files belong in `Loon/Script/`, and Loon configuration files belong in `Loon/Config/`. Only the repository root contains a README.
-
-> Egern officially supports importing Surge modules from **Tools → Modules**, so the YouTube modules under `Egern/Modules/` intentionally use the `.sgmodule` format for compatibility with their upstream scripts.
 
 ## Rules
 
@@ -30,14 +27,10 @@ Future Loon `.lpx` files belong in `Loon/Script/`, and Loon configuration files 
 
 ## Egern Modules
 
-- `Egern/Modules/YouTubeAdBlock.sgmodule` — YouTube ad blocking, PiP and background playback. Subtitle translation is disabled by default so it can be paired with the standalone translation module.
-- `Egern/Modules/YouTubeTranslate.sgmodule` — YouTube bilingual subtitle translation. Default: auto-detect source language → Simplified Chinese, Google Translate, auto captions enabled.
-
-### Notes
-
-- The ad-block module uses Maasea's YouTube enhancement scripts pinned to a reviewed 2026-compatible revision.
-- The subtitle module uses DualSubs YouTube v1.5.11 and DualSubs Universal v1.7.5 release assets.
-- Both modules MITM YouTube traffic. If simultaneous use causes playback or subtitle issues after a YouTube protocol change, disable one module first to isolate the conflict.
+- `Egern/Modules/YouTube.sgmodule` — YouTube / YouTube Music ad blocking, PiP, background playback and subtitle translation in one module.
+- The module is based on Maasea's official YouTube Enhance implementation and uses the same single response script for enhancement + subtitle translation. It does **not** stack a second DualSubs `player` protobuf response script on top.
+- Default subtitle target: `zh-Hans`. Change the module argument to `zh-Hant`, `en`, `ja`, `ko` or `off` as needed.
+- Upstream source: `Maasea/sgmodule` → `YouTube.Enhance.sgmodule`.
 
 ## Raw subscription links
 
@@ -57,6 +50,5 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Rules/Apple.yaml
 ### Egern Modules
 
 ```text
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeAdBlock.sgmodule
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeTranslate.sgmodule
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTube.sgmodule
 ```
