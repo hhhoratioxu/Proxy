@@ -1,0 +1,81 @@
+name: "YouTube Translate for Egern"
+description: "DualSubs 原生 Egern 字幕模块。强制 Type=Translate，避开 2026 年 YouTube 原生自动翻译 tlang/429 问题。默认 Google 翻译、自动开启字幕。"
+author: "DualSubs / Horatio"
+homepage: "https://github.com/DualSubs/YouTube"
+manual: "https://dualsubs.github.io/guide/youtube"
+category: "YouTube"
+
+rules:
+  - url_regex:
+      match: "^https?:\\/\\/([\\w-]+)\\.googlevideo\\.com\\/initplayback(\\?.*oad=.+)$"
+      policy: "REJECT"
+
+scriptings:
+  - http_request:
+      name: "DualSubs YouTube Player Request JSON"
+      match: "^https?:\\/\\/(www|m|tv)\\.youtube\\.com\\/youtubei\\/v1\\/player(\\?.+)?$"
+      script_url: "https://github.com/DualSubs/YouTube/releases/download/v1.5.11/request.bundle.js"
+      arguments:
+        _compat.$argument: "Type=Translate&Types=Translate&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
+      body_required: true
+  - http_response:
+      name: "DualSubs YouTube Player Response JSON"
+      match: "^https?:\\/\\/(www|m|tv)\\.youtube\\.com\\/youtubei\\/v1\\/player(\\?.+)?$"
+      script_url: "https://github.com/DualSubs/YouTube/releases/download/v1.5.11/response.bundle.js"
+      arguments:
+        _compat.$argument: "Type=Translate&Types=Translate&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
+      body_required: true
+  - http_request:
+      name: "DualSubs YouTube Player Request Proto"
+      match: "^https?:\\/\\/youtubei\\.googleapis\\.com\\/youtubei\\/v1\\/player(\\?.+)?$"
+      script_url: "https://github.com/DualSubs/YouTube/releases/download/v1.5.11/request.bundle.js"
+      arguments:
+        _compat.$argument: "Type=Translate&Types=Translate&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
+      body_required: true
+      binary_body: true
+  - http_response:
+      name: "DualSubs YouTube Player Response Proto"
+      match: "^https?:\\/\\/youtubei\\.googleapis\\.com\\/youtubei\\/v1\\/player(\\?.+)?$"
+      script_url: "https://github.com/DualSubs/YouTube/releases/download/v1.5.11/response.bundle.js"
+      arguments:
+        _compat.$argument: "Type=Translate&Types=Translate&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
+      body_required: true
+      binary_body: true
+  - http_response:
+      name: "DualSubs YouTube GetWatch Response Proto"
+      match: "^https?:\\/\\/youtubei\\.googleapis\\.com\\/youtubei\\/v1\\/get_watch(\\?.+)?$"
+      script_url: "https://github.com/DualSubs/YouTube/releases/download/v1.5.11/response.bundle.js"
+      arguments:
+        _compat.$argument: "Type=Translate&Types=Translate&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
+      body_required: true
+      binary_body: true
+  - http_request:
+      name: "DualSubs YouTube TimedText Request"
+      match: "^https?:\\/\\/(www|m)\\.youtube\\.com\\/api\\/timedtext(\\?.+)?$"
+      script_url: "https://github.com/DualSubs/YouTube/releases/download/v1.5.11/request.bundle.js"
+      arguments:
+        _compat.$argument: "Type=Translate&Types=Translate&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
+  - http_response:
+      name: "DualSubs Composite TimedText"
+      match: "^https?:\\/\\/(www|m)\\.youtube\\.com\\/api\\/timedtext\\?(.*)subtype=(Official|External)"
+      script_url: "https://github.com/DualSubs/Universal/releases/download/v1.7.5/Composite.Subtitles.response.bundle.js"
+      arguments:
+        _compat.$argument: "Type=Translate&Types=Translate&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
+      body_required: true
+  - http_response:
+      name: "DualSubs Translate TimedText"
+      match: "^https?:\\/\\/(www|m)\\.youtube\\.com\\/api\\/timedtext\\?(.*)subtype=Translate"
+      script_url: "https://github.com/DualSubs/Universal/releases/download/v1.7.5/Translate.response.bundle.js"
+      arguments:
+        _compat.$argument: "Type=Translate&Types=Translate&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
+      body_required: true
+
+mitm:
+  hostnames:
+    includes:
+      - "www.youtube.com"
+      - "m.youtube.com"
+      - "tv.youtube.com"
+      - "youtubei.googleapis.com"
+      - "-redirector*.googlevideo.com"
+      - "*.googlevideo.com"
