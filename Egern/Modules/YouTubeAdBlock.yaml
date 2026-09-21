@@ -1,0 +1,51 @@
+name: "YouTube AdBlock for Egern"
+description: "YouTube / YouTube Music 去广告、PiP、后台播放。使用 Maasea 当前 2026 播放链路脚本，并在 Egern 内拒绝 YouTube QUIC/UDP。字幕翻译交给独立 DualSubs 模块。"
+author: "Maasea / Horatio"
+homepage: "https://github.com/Maasea/sgmodule"
+category: "YouTube"
+
+rules:
+  - and:
+      match:
+        - domain_suffix:
+            match: "googlevideo.com"
+        - protocol:
+            match: "udp"
+      policy: "REJECT"
+  - and:
+      match:
+        - domain:
+            match: "youtubei.googleapis.com"
+        - protocol:
+            match: "udp"
+      policy: "REJECT"
+
+scriptings:
+  - http_response:
+      name: "YouTube AdBlock Response"
+      match: "^https:\\/\\/youtubei\\.googleapis\\.com\\/youtubei\\/v1\\/(browse|next|player|search|reel\\/reel_watch_sequence|guide|account\\/get_setting|get_watch|log_event|config)(\\?.*)?$"
+      script_url: "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js"
+      arguments:
+        _compat.$argument: '{"captionLang":"off","blockUpload":true,"blockImmersive":true,"blockShorts":false,"debug":false}'
+      body_required: true
+      binary_body: true
+  - http_request:
+      name: "YouTube InitPlayback"
+      match: "^https?:\\/\\/[\\w-]+\\.googlevideo\\.com\\/initplayback.+&ack.*$"
+      script_url: "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.request.js"
+      arguments:
+        _compat.$argument: '{"captionLang":"off"}'
+      body_required: true
+      binary_body: true
+  - http_request:
+      name: "YouTube LogEvent"
+      match: "^https:\\/\\/youtubei\\.googleapis\\.com\\/youtubei\\/v1\\/log_event(\\?.*)?$"
+      script_url: "https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.request.js"
+      body_required: true
+      binary_body: true
+
+mitm:
+  hostnames:
+    includes:
+      - "*.googlevideo.com"
+      - "youtubei.googleapis.com"
