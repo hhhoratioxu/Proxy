@@ -1,5 +1,5 @@
 name: "YouTube Translate for Egern"
-description: "DualSubs 原生 Egern 字幕模块。强制 Type=Translate，AUTO 自动识别源语言 → ZH-HANS 简体中文，并使用 Storage=Argument 强制模块参数覆盖旧持久化设置。默认 Google Translate、自动开启字幕。"
+description: "DualSubs 原生 Egern 字幕模块。强制 Type=Translate，AUTO 自动识别源语言 → ZH-HANS 简体中文，。默认 Google Translate、自动开启字幕。"
 author: "DualSubs / Horatio"
 homepage: "https://github.com/DualSubs/YouTube"
 manual: "https://dualsubs.github.io/guide/youtube"
@@ -16,21 +16,21 @@ scriptings:
       match: "^https?:\\/\\/(www|m|tv)\\.youtube\\.com\\/youtubei\\/v1\\/player(\\?.+)?$"
       script_url: "https://github.com/DualSubs/YouTube/releases/download/v1.5.11/request.bundle.js"
       arguments:
-        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR&Storage=Argument"
+        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
       body_required: true
   - http_response:
       name: "DualSubs YouTube Player Response JSON"
       match: "^https?:\\/\\/(www|m|tv)\\.youtube\\.com\\/youtubei\\/v1\\/player(\\?.+)?$"
       script_url: "https://github.com/DualSubs/YouTube/releases/download/v1.5.11/response.bundle.js"
       arguments:
-        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR&Storage=Argument"
+        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
       body_required: true
   - http_request:
       name: "DualSubs YouTube Player Request Proto"
       match: "^https?:\\/\\/youtubei\\.googleapis\\.com\\/youtubei\\/v1\\/player(\\?.+)?$"
       script_url: "https://github.com/DualSubs/YouTube/releases/download/v1.5.11/request.bundle.js"
       arguments:
-        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR&Storage=Argument"
+        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
       body_required: true
       binary_body: true
   - http_response:
@@ -38,7 +38,7 @@ scriptings:
       match: "^https?:\\/\\/youtubei\\.googleapis\\.com\\/youtubei\\/v1\\/player(\\?.+)?$"
       script_url: "https://github.com/DualSubs/YouTube/releases/download/v1.5.11/response.bundle.js"
       arguments:
-        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR&Storage=Argument"
+        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
       body_required: true
       binary_body: true
   - http_response:
@@ -46,7 +46,7 @@ scriptings:
       match: "^https?:\\/\\/youtubei\\.googleapis\\.com\\/youtubei\\/v1\\/get_watch(\\?.+)?$"
       script_url: "https://github.com/DualSubs/YouTube/releases/download/v1.5.11/response.bundle.js"
       arguments:
-        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR&Storage=Argument"
+        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
       body_required: true
       binary_body: true
   - http_request:
@@ -54,20 +54,20 @@ scriptings:
       match: "^https?:\\/\\/(www|m)\\.youtube\\.com\\/api\\/timedtext(\\?.+)?$"
       script_url: "https://github.com/DualSubs/YouTube/releases/download/v1.5.11/request.bundle.js"
       arguments:
-        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR&Storage=Argument"
+        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
   - http_response:
       name: "DualSubs Composite TimedText"
       match: "^https?:\\/\\/(www|m)\\.youtube\\.com\\/api\\/timedtext\\?(.*)subtype=(Official|External)"
       script_url: "https://github.com/DualSubs/Universal/releases/download/v1.7.5/Composite.Subtitles.response.bundle.js"
       arguments:
-        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR&Storage=Argument"
+        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
       body_required: true
   - http_response:
       name: "DualSubs Translate TimedText"
       match: "^https?:\\/\\/(www|m)\\.youtube\\.com\\/api\\/timedtext\\?(.*)subtype=Translate"
       script_url: "https://github.com/DualSubs/Universal/releases/download/v1.7.5/Translate.response.bundle.js"
       arguments:
-        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR&Storage=Argument"
+        _compat.$argument: "Type=Translate&Types=Translate&Languages[0]=AUTO&Languages[1]=ZH-HANS&AutoCC=true&Position=Forward&Vendor=Google&ShowOnly=false&LogLevel=ERROR"
       body_required: true
 
 mitm:
