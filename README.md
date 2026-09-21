@@ -6,77 +6,73 @@ A personal collection of proxy-client rules and configurations maintained by Hor
 
 ```text
 Loon/
-├── Rules/
-│   ├── Apple.lsr
-│   └── Weverse.lsr
-└── Plugins/
-    ├── YouTubeAdBlock.lpx
-    └── YouTubeTranslate.lpx
+└── Rules/
+    ├── Apple.lsr
+    └── Weverse.lsr
 
 Egern/
 ├── Rules/
 │   └── Apple.yaml
 └── Modules/
+    ├── YouTubeAdBlock.sgmodule
     └── YouTubeTranslate.yaml
 ```
 
-## YouTube — current recommended setup
+## Egern YouTube
 
-### Loon: ad blocking + translation
+This repository now keeps YouTube functionality for **Egern only**.
 
-This is the recommended path for YouTube ad blocking because the current Loon community plugin is still actively used and updated in 2026.
+### 1. YouTubeAdBlock.sgmodule
 
-Requirements:
+Uses Maasea's current YouTube Enhance core without rewriting the underlying JavaScript.
 
-- Loon 3.1.7 (677) or newer.
-- Enable **MitM over HTTP/2**.
-- Enable **QUIC fallback protection**.
-- Install and trust the MitM certificate.
+Defaults:
 
-Install plugins in this order:
+- Hide Upload button: true
+- Hide Shorts button: true
+- Hide Immersive button: true
+- Built-in caption translation: off
+- Debug: false
 
-1. `YouTubeAdBlock.lpx`
-2. `YouTubeTranslate.lpx`
+The current upstream flow includes:
 
-The ad-block plugin keeps its own subtitle translation **OFF** by default. The separate DualSubs plugin handles subtitles to avoid two scripts competing for the same YouTube protobuf responses.
+- YouTube API response handling for `browse`, `next`, `player`, `search`, `reel`, `guide`, `get_watch`, `log_event`, and `config`
+- `googlevideo.com/initplayback` request handling
+- `log_event` request handling
 
-`YouTubeAdBlock.lpx` uses the current Kelee/Maasea chain:
+### 2. YouTubeTranslate.yaml
 
-- YouTube API response processing including `config` and `log_event`;
-- `googlevideo.com/initplayback` request processing;
-- `log_event` request processing;
-- Upload and Shorts UI removal enabled by default.
+Uses DualSubs YouTube v1.5.11 with DualSubs Universal v1.7.5.
 
-`YouTubeTranslate.lpx` uses:
+Defaults:
 
-- DualSubs YouTube v1.5.11;
-- DualSubs Universal v1.7.5;
-- `Type=Translate`;
-- source language `AUTO`;
-- target language `ZH-HANS`;
-- Google Translate;
-- automatic subtitles enabled.
+- Type: Translate
+- Source language: AUTO
+- Target language: ZH-HANS
+- Translator: Google
+- AutoCC: true
 
-### Egern: translation only
+This avoids relying on YouTube's native `tlang` auto-translation path.
 
-`YouTubeTranslate.yaml` is retained because DualSubs has an official Egern output and there is recent Egern user confirmation that the YouTube subtitle fix works.
+### Required Egern settings
 
-The previous Egern YouTube ad-block module was removed. Multiple local tests failed, and no sufficiently recent independent evidence was found to justify calling current Egern YouTube ad blocking verified.
+- Enable MITM and trust the Egern certificate.
+- Enable global `block_quic: true` so YouTube QUIC/HTTP3 falls back to TCP/HTTPS and can be inspected.
+
+### Recommended module order
+
+1. `YouTubeTranslate.yaml`
+2. `YouTubeAdBlock.sgmodule`
+
+The ad-block module should have higher processing priority than the subtitle module.
 
 ## Raw subscription links
 
-### Loon Rules
+### Egern YouTube
 
 ```text
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Rules/Apple.lsr
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Rules/Weverse.lsr
-```
-
-### Loon YouTube Plugins
-
-```text
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Plugins/YouTubeAdBlock.lpx
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Plugins/YouTubeTranslate.lpx
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeTranslate.yaml
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeAdBlock.sgmodule
 ```
 
 ### Egern Rules
@@ -85,8 +81,9 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Plugins/YouTubeTra
 https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Rules/Apple.yaml
 ```
 
-### Egern YouTube Translation
+### Loon Rules
 
 ```text
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeTranslate.yaml
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Rules/Apple.lsr
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Rules/Weverse.lsr
 ```
