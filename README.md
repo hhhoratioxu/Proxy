@@ -14,35 +14,37 @@ Egern/
 ├── Rules/
 │   └── Apple.yaml
 └── Modules/
-    ├── YouTubeAdBlock.yaml
+    ├── YouTubeAdBlock.sgmodule
     └── YouTubeTranslate.yaml
 ```
 
 ## Egern YouTube
 
-For reliability, YouTube ad blocking and subtitle translation are kept as two Egern modules.
+YouTube ad blocking and subtitle translation are kept as two modules.
 
 ### Required Egern setting
 
-Enable **Block QUIC** globally in Egern (`block_quic: true`). This forces YouTube HTTP/3/QUIC traffic back to TCP/HTTPS so MITM scripts can inspect the requests.
+Enable **Block QUIC** globally in Egern (`block_quic: true`).
 
 ### Module order
 
 Keep the modules in this order:
 
 1. `YouTubeTranslate.yaml`
-2. `YouTubeAdBlock.yaml`
-
-Both modules touch the YouTube `player` response. Putting AdBlock after Translate makes the 2026 ad-cleanup stage run last while preserving the subtitle data injected earlier.
+2. `YouTubeAdBlock.sgmodule`
 
 ### AdBlock implementation
 
-`YouTubeAdBlock.yaml` follows Maasea's 2026 Onesie/UMP flow:
+`YouTubeAdBlock.sgmodule` is intentionally kept in Surge-module format and should be imported directly by Egern, which supports Surge modules.
 
-- `config` / `log_event` responses provide the encryption keys.
-- `initplayback` requests are handled by the current request script.
-- `player`, `browse`, `next`, `guide`, `get_watch` and related responses are cleaned afterward.
-- Upload and Shorts UI blocking are enabled.
+It follows the 2026-09-05 iOS HAR-verified approach from Feng-Feng1:
+
+- return an empty valid response for `rr*.googlevideo.com/initplayback`;
+- run the pinned `YouTube-AdFilter-V2` protobuf cleaner on YouTube API responses;
+- hide Upload and Shorts via module arguments;
+- reject YouTube QUIC/UDP so HTTPS MITM can see the relevant traffic.
+
+The previous hand-converted native YAML adblock module was removed because it did not execute the Surge-compatible YouTube core reliably in Egern.
 
 ### Translation implementation
 
@@ -67,5 +69,5 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Rules/Apple.yaml
 
 ```text
 https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeTranslate.yaml
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeAdBlock.yaml
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeAdBlock.sgmodule
 ```
