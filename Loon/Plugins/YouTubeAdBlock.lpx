@@ -1,0 +1,24 @@
+#!name=YouTube AdBlock
+#!desc=基于当前 Loon 社区维护链路：移除 YouTube 视频/瀑布流/搜索/Shorts 广告，并隐藏底栏上传与 Shorts。内置字幕翻译默认关闭，交给独立 DualSubs 插件处理。
+#!author=Maasea / Kelee / Qmxn / Horatio
+#!homepage=https://kelee.one
+#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/YouTube.png
+#!tag=YouTube
+#!system=iOS,iPadOS,macOS
+#!system_version=15
+#!loon_version=3.1.7(677)
+
+[Argument]
+blockUpload=switch,true,tag=隐藏上传按钮,desc=隐藏 YouTube 底栏的发布/上传按钮
+blockShorts=switch,true,tag=隐藏 Shorts,desc=隐藏 YouTube 底栏 Shorts 按钮
+blockImmersive=switch,true,tag=隐藏选段按钮,desc=隐藏 YouTube Music 选段按钮
+captionLang=select,"off","zh-Hans","zh-Hant","ja","ko","en",tag=内置字幕翻译,desc=默认关闭；请使用独立 DualSubs 翻译插件
+debug=switch,false,tag=调试模式,desc=仅排障时开启
+
+[Script]
+http-response ^https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch|log_event|config))(\?(.*))?$ script-path=https://kelee.one/Resource/JavaScript/YouTube/YouTube_remove_ads/YouTube_remove_ads_response.js, requires-body=true, binary-body-mode=true, argument=[{blockUpload},{blockShorts},{blockImmersive},{captionLang},{debug}], tag=YouTube去广告
+http-request ^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&ack.* script-path=https://kelee.one/Resource/JavaScript/YouTube/YouTube_remove_ads/YouTube_remove_ads_request.js, requires-body=true, binary-body-mode=true, argument=[{captionLang}], tag=YouTube播放初始化
+http-request ^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/log_event script-path=https://kelee.one/Resource/JavaScript/YouTube/YouTube_remove_ads/YouTube_remove_ads_request.js, requires-body=true, binary-body-mode=true, argument=[{blockUpload},{blockShorts},{blockImmersive},{captionLang},{debug}], tag=YouTube日志事件
+
+[MitM]
+hostname=*.googlevideo.com, youtubei.googleapis.com
