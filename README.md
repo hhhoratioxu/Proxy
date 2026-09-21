@@ -14,23 +14,28 @@ Egern/
 ├── Rules/
 │   └── Apple.yaml
 └── Modules/
-    └── YouTube.sgmodule
+    ├── YouTubeAdBlock.yaml
+    └── YouTubeTranslate.yaml
 ```
 
-Future Loon `.lpx` files belong in `Loon/Script/`, and Loon configuration files belong in `Loon/Config/`. Only the repository root contains a README.
+## Egern YouTube
 
-## Rules
+For reliability, YouTube ad blocking and subtitle translation are kept as two Egern modules instead of stacking both protobuf response chains in one file.
 
-- `Loon/Rules/Apple.lsr` — Apple full routing rules for Loon.
-- `Loon/Rules/Weverse.lsr` — Weverse routing rules for Loon.
-- `Egern/Rules/Apple.yaml` — the corresponding Apple remote rule set for Egern.
+### Required Egern setting
 
-## Egern Modules
+Enable **Block QUIC** globally in Egern (`block_quic: true`). This forces YouTube HTTP/3/QUIC traffic back to TCP/HTTPS so MITM scripts can see it.
 
-- `Egern/Modules/YouTube.sgmodule` — YouTube / YouTube Music ad blocking, PiP, background playback and subtitle translation in one module.
-- The module is based on Maasea's official YouTube Enhance implementation and uses the same single response script for enhancement + subtitle translation. It does **not** stack a second DualSubs `player` protobuf response script on top.
-- Default subtitle target: `zh-Hans`. Change the module argument to `zh-Hant`, `en`, `ja`, `ko` or `off` as needed.
-- Upstream source: `Maasea/sgmodule` → `YouTube.Enhance.sgmodule`.
+### Module order
+
+Keep the modules in this order:
+
+1. `YouTubeAdBlock.yaml`
+2. `YouTubeTranslate.yaml`
+
+The ad-block module uses Maasea's current YouTube request/response scripts and also rejects YouTube UDP/QUIC traffic.
+
+The translation module follows DualSubs' native Egern structure and forces `Type=Translate`, which avoids relying on YouTube's native `tlang` translation path.
 
 ## Raw subscription links
 
@@ -47,8 +52,9 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Rules/Weverse.lsr
 https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Rules/Apple.yaml
 ```
 
-### Egern Modules
+### Egern YouTube Modules
 
 ```text
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTube.sgmodule
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeAdBlock.yaml
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeTranslate.yaml
 ```
