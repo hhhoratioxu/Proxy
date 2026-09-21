@@ -1,0 +1,30 @@
+# NAME: Infuse
+# AUTHOR: Horatio
+# FORMAT: Egern Remote Rule Set
+# UPDATED: 2026-09-21
+# TOTAL: 12
+#
+# Infuse / Firecore services, metadata, Trakt, OpenSubtitles,
+# plus custom media routing domains.
+#
+# Use this URL as an Egern rule_set match and select the desired policy
+# in your main Egern configuration. All conditions in this file are OR-matched.
+
+domain_suffix_set:
+  # Infuse / Firecore
+  - firecore.com
+  - infuse.im
+
+  # Metadata / sync / subtitles
+  - themoviedb.org
+  - tmdb.org
+  - trakt.tv
+  - opensubtitles.com
+  - opensubtitles.org
+
+  # Custom media domains
+  - ncdn1.sntp.uk
+  - sub1.sntp.me
+  - post.cn2gias.uk
+  - precdns.cn2gias.uk
+  - pre.cn2gias.uk
