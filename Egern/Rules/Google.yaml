@@ -2,15 +2,12 @@
 # AUTHOR: Horatio
 # FORMAT: Egern Remote Rule Set
 # UPDATED: 2026-09-22
-# TOTAL: 706
+# TOTAL: 698
+# SOURCE: blackmatrix7/ios_rule_script - Google
 #
-# Comprehensive Google rule set for Egern.
-# Sources merged:
-# - blackmatrix7/ios_rule_script
-# - Repcz/Tool Egern rules
-#
+# Comprehensive Google ecosystem rules for Egern.
+# Covers Google web/services, Android, Firebase, Google APIs/CDNs and related infrastructure.
 # Use as an Egern rule_set and bind it to your Google policy.
-# All conditions are OR-matched.
 
 no_resolve: true
 
@@ -252,7 +249,6 @@ domain_suffix_set:
   - getmdl.io
   - getoutline.org
   - ggoogle.com
-  - ggpht.com
   - gipscorp.com
   - gkecnapps.cn
   - globaledu.org
@@ -537,9 +533,7 @@ domain_suffix_set:
   - gv.com
   - gvt0.com
   - gvt1-cn.com
-  - gvt1.com
   - gvt2-cn.com
-  - gvt2.com
   - gvt3.com
   - gvt5.com
   - gvt6.com
@@ -710,11 +704,6 @@ domain_suffix_set:
   - xn--ngstr-lra8j.com
   - xn--p8j9a0d9c9a.xn--q9jyb4c
   - xplr.co
-  - youtu.be
-  - youtube-nocookie.com
-  - youtube.com
-  - yt.be
-  - ytimg.com
   - zukunftswerkstatt.de
   - zynamics.com
 
@@ -728,6 +717,7 @@ ip_cidr6_set:
   - 2620:120:e000::/40
 
 user_agent_set:
-  - '*com.google.Drive*'
   - '%E4%BA%91%E7%AB%AF%E7%A1%AC%E7%9B%98*'
+  - '*com.google.Drive*'
   - 'Google.Drive*'
+
