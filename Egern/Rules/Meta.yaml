@@ -1,0 +1,21 @@
+# NAME: Meta
+# AUTHOR: Horatio
+# FORMAT: Egern Remote Rule Set
+# UPDATED: 2026-09-22
+# TOTAL: 2
+#
+# Focused Meta AI rule set.
+# Covers Meta AI and the legacy Imagine endpoint without broadly matching
+# Facebook / Instagram / Threads / WhatsApp traffic.
+#
+# meta.ai also covers its current subdomains such as gateway.meta.ai
+# and edge-chat*.meta.ai.
+#
+# Use this URL as an Egern rule_set match and select the desired policy
+# in your main Egern configuration. All conditions in this file are OR-matched.
+
+domain_set:
+  - imagine.meta.com
+
+domain_suffix_set:
+  - meta.ai
