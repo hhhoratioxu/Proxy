@@ -3,14 +3,10 @@
 # FORMAT: Egern Remote Rule Set
 # UPDATED: 2026-09-22
 # TOTAL: 49
+# SOURCE: blackmatrix7/ios_rule_script - HBO
 #
-# Comprehensive HBO Max / Max rule set for Egern.
-# Sources merged:
-# - blackmatrix7/ios_rule_script
-# - Repcz/Tool Egern rules
-#
+# Covers HBO, HBO Max, Max, HBO GO and related Warner streaming infrastructure.
 # Use as an Egern rule_set and bind it to your HBO Max / Max policy.
-# All conditions are OR-matched.
 
 domain_suffix_set:
   - bcbolthboa-a.akamaihd.net
@@ -64,3 +60,4 @@ domain_suffix_set:
 user_agent_set:
   - 'HBO%20NOW*'
   - 'HBOMAX*'
+
