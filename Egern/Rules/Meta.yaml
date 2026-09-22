@@ -2,20 +2,115 @@
 # AUTHOR: Horatio
 # FORMAT: Egern Remote Rule Set
 # UPDATED: 2026-09-22
-# TOTAL: 2
+# TOTAL: 75
 #
-# Focused Meta AI rule set.
-# Covers Meta AI and the legacy Imagine endpoint without broadly matching
-# Facebook / Instagram / Threads / WhatsApp traffic.
+# Meta family all-in-one rule set.
+# Covers Meta core services and first-party infrastructure, including:
+# Facebook, Messenger, Instagram, Threads, WhatsApp, Meta AI,
+# Meta Horizon / Quest / Oculus, Meta Pay, Free Basics and legacy Workplace.
 #
-# meta.ai also covers its current subdomains such as gateway.meta.ai
-# and edge-chat*.meta.ai.
+# The list intentionally excludes obvious typo/squatted third-party domains
+# found in some legacy community lists to avoid accidental over-matching.
+# AS32934 is included to cover Meta-owned network infrastructure and direct-IP traffic.
+#
+# Sources cross-checked against Meta's current technologies pages,
+# v2fly/domain-list-community and Repcz Egern rules.
 #
 # Use this URL as an Egern rule_set match and select the desired policy
 # in your main Egern configuration. All conditions in this file are OR-matched.
 
-domain_set:
-  - imagine.meta.com
+no_resolve: true
 
 domain_suffix_set:
+  # Meta / Meta AI / Llama
+  - atmeta.com
+  - llama.com
   - meta.ai
+  - meta.com
+  - metacareers.com
+
+  # Facebook / core infrastructure
+  - facebook-corp.com
+  - facebook-hardware.com
+  - facebook-inc.com
+  - facebook.com
+  - facebook.net
+  - facebook.org
+  - facebook.design
+  - facebook.shop
+  - facebook.tv
+  - fb.careers
+  - fb.com
+  - fb.gg
+  - fb.me
+  - fb.watch
+  - fbcdn.com
+  - fbcdn.net
+  - fbinc.com
+  - fbidb.io
+  - fbinfer.com
+  - fbinnovation.com
+  - fbmarketing.com
+  - fbreg.com
+  - fbrell.com
+  - fbrpms.com
+  - fbsbx.com
+  - fbsbx.net
+  - fburl.com
+  - fbwat.ch
+  - fbworkmail.com
+  - tfbnw.net
+
+  # Messenger
+  - m.me
+  - messenger.com
+  - fbmessenger.com
+  - messengerdevelopers.com
+
+  # Instagram
+  - cdninstagram.com
+  - ig.me
+  - igcdn.com
+  - igsonar.com
+  - igtv.com
+  - instagr.am
+  - instagram.com
+  - instagram-engineering.com
+  - instagram-press.com
+  - instagram-press.net
+  - oninstagram.com
+
+  # Threads
+  - threads.com
+  - threads.net
+
+  # WhatsApp
+  - wa.me
+  - whatsapp.biz
+  - whatsapp.com
+  - whatsapp.net
+  - whatsappbrand.com
+
+  # Meta Quest / Oculus / Horizon
+  - ocul.us
+  - oculus.com
+  - oculuscdn.com
+  - oculusconnect.com
+  - oculusforbusiness.com
+  - oculusrift.com
+  - oculusvr.com
+
+  # Meta services / legacy
+  - facebookpay.com
+  - freebasics.com
+  - freebasics.net
+  - internet.org
+  - workplace.com
+  - workplaceusecases.com
+  - facebookwork.com
+  - crowdtangle.com
+  - expresswifi.com
+  - terragraph.com
+
+asn_set:
+  - '32934'
