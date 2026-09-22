@@ -3,14 +3,10 @@
 # FORMAT: Egern Remote Rule Set
 # UPDATED: 2026-09-22
 # TOTAL: 173
+# SOURCE: blackmatrix7/ios_rule_script - Disney
 #
-# Comprehensive Disney+ rule set for Egern.
-# Sources merged:
-# - blackmatrix7/ios_rule_script
-# - Repcz/Tool Egern rules
-#
-# Use as an Egern rule_set and bind it to your Disney+ policy.
-# All conditions are OR-matched.
+# Comprehensive Disney / Disney+ streaming rules for Egern.
+# Use as an Egern rule_set and bind it to your Disney policy.
 
 domain_suffix_set:
   - 20thcenturystudios.com.au
@@ -188,3 +184,4 @@ domain_suffix_set:
 
 user_agent_set:
   - 'Disney+*'
+
