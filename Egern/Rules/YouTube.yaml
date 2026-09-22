@@ -2,21 +2,11 @@
 # AUTHOR: Horatio
 # FORMAT: Egern Remote Rule Set
 # UPDATED: 2026-09-22
-# TOTAL: 192
+# TOTAL: 190
+# SOURCE: blackmatrix7/ios_rule_script - YouTube
 #
-# Comprehensive YouTube rule set for Egern.
-# Sources merged:
-# - blackmatrix7/ios_rule_script
-# - Repcz/Tool Egern rules
-#
+# Comprehensive YouTube rules for Egern.
 # Use as an Egern rule_set and bind it to your YouTube policy.
-# All conditions are OR-matched.
-
-no_resolve: true
-
-domain_set:
-  - youtubei.googleapis.com
-  - yt3.ggpht.com
 
 domain_keyword_set:
   - youtube
@@ -210,10 +200,11 @@ ip_cidr6_set:
   - 2620:120:e000::/40
 
 user_agent_set:
+  - '*YouTubeMusic*'
   - '*com.google.ios.youtubemusic*'
   - '*youtube*'
-  - '*YouTubeMusic*'
-  - 'com.google.ios.youtube*'
-  - 'com.google.ios.youtubemusic*'
   - 'YouTube*'
   - 'YouTubeMusic*'
+  - 'com.google.ios.youtube*'
+  - 'com.google.ios.youtubemusic*'
+
