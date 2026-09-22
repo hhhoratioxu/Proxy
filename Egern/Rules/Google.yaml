@@ -2,16 +2,17 @@
 # AUTHOR: Horatio
 # FORMAT: Egern Remote Rule Set
 # UPDATED: 2026-09-22
-# TOTAL: 885
+# TOTAL: 887
 #
-# Combined Google and YouTube rule set for Egern.
-# Covers Google services, Android, Firebase, Google APIs/CDNs, YouTube and related infrastructure.
-# Use as an Egern rule_set and bind it to your Google policy.
+# Combined Google + YouTube rule set.
+# YouTube domains are intentionally included in this Google policy.
+# Place AI rules before this file if Gemini/Google AI should use a separate AI policy.
 
 no_resolve: true
 
 domain_set:
   - voice.telephony.goog
+  - yt3.googleusercontent.com
 
 domain_keyword_set:
   - appspot
@@ -34,6 +35,7 @@ domain_suffix_set:
   - admeld.com
   - admob-cn.com
   - admob.com
+  - ads.youtube.com
   - adsense.com
   - adsensecustomsearchads.com
   - adsenseformobileapps.com
@@ -896,14 +898,13 @@ ip_cidr6_set:
   - 2620:120:e000::/40
 
 user_agent_set:
+  - '%E4%BA%91%E7%AB%AF%E7%A1%AC%E7%9B%98*'
+  - '*YouTubeMusic*'
   - '*com.google.Drive*'
   - '*com.google.ios.youtubemusic*'
   - '*youtube*'
-  - '*YouTubeMusic*'
-  - '%E4%BA%91%E7%AB%AF%E7%A1%AC%E7%9B%98*'
-  - 'com.google.ios.youtube*'
-  - 'com.google.ios.youtubemusic*'
   - 'Google.Drive*'
   - 'YouTube*'
   - 'YouTubeMusic*'
-
+  - 'com.google.ios.youtube*'
+  - 'com.google.ios.youtubemusic*'
