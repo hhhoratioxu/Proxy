@@ -14,57 +14,71 @@ Egern/
 ├── Rules/
 │   └── Apple.yaml
 └── Modules/
-    ├── YouTubeAdBlock.sgmodule
+    ├── YouTubeAdBlock.lpx
     └── YouTubeTranslate.yaml
 ```
 
 ## Egern YouTube
 
-This repository now keeps YouTube functionality for **Egern only**.
+The YouTube setup is Egern-only.
 
-### 1. YouTubeAdBlock.sgmodule
+### Requirements
 
-Uses Maasea's current YouTube Enhance core without rewriting the underlying JavaScript.
+Use Egern **2.19.0 or newer**.
 
-Defaults:
+Egern 2.19 added direct import support for Loon configs/plugins, so the ad-block plugin is intentionally kept in native Loon plugin format and imported directly by Egern instead of being converted to YAML/sgmodule.
 
-- Hide Upload button: true
-- Hide Shorts button: true
-- Hide Immersive button: true
+Also enable:
+
+- MITM
+- trusted Egern CA certificate
+- global `block_quic: true`
+
+### Module order
+
+1. `YouTubeTranslate.yaml`
+2. `YouTubeAdBlock.lpx`
+
+This follows DualSubs' compatibility guidance: keep the YouTube ad-block module below the subtitle module so the ad-block module has higher processing priority.
+
+### YouTubeAdBlock.lpx
+
+Source chain: Kelee / Maasea current YouTube plugin.
+
+The core script URLs are left unchanged. Only default arguments are adjusted for this repository:
+
+- Hide Upload: true
+- Hide Shorts: true
+- Hide Immersive: true
 - Built-in caption translation: off
 - Debug: false
 
-The current upstream flow includes:
+The current chain handles:
 
-- YouTube API response handling for `browse`, `next`, `player`, `search`, `reel`, `guide`, `get_watch`, `log_event`, and `config`
-- `googlevideo.com/initplayback` request handling
-- `log_event` request handling
+- `browse`
+- `next`
+- `player`
+- `search`
+- `reel/reel_watch_sequence`
+- `guide`
+- `get_watch`
+- `log_event`
+- `config`
+- `googlevideo.com/initplayback`
 
-### 2. YouTubeTranslate.yaml
+### YouTubeTranslate.yaml
 
-Uses DualSubs YouTube v1.5.11 with DualSubs Universal v1.7.5.
+Uses DualSubs YouTube v1.5.11 + DualSubs Universal v1.7.5.
 
 Defaults:
 
-- Type: Translate
-- Source language: AUTO
-- Target language: ZH-HANS
-- Translator: Google
-- AutoCC: true
+- `Type=Translate`
+- `Languages[0]=AUTO`
+- `Languages[1]=ZH-HANS`
+- `Vendor=Google`
+- `AutoCC=true`
 
-This avoids relying on YouTube's native `tlang` auto-translation path.
-
-### Required Egern settings
-
-- Enable MITM and trust the Egern certificate.
-- Enable global `block_quic: true` so YouTube QUIC/HTTP3 falls back to TCP/HTTPS and can be inspected.
-
-### Recommended module order
-
-1. `YouTubeTranslate.yaml`
-2. `YouTubeAdBlock.sgmodule`
-
-The ad-block module should have higher processing priority than the subtitle module.
+This means any available source subtitle language is auto-detected and translated to Simplified Chinese.
 
 ## Raw subscription links
 
@@ -72,7 +86,7 @@ The ad-block module should have higher processing priority than the subtitle mod
 
 ```text
 https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeTranslate.yaml
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeAdBlock.sgmodule
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeAdBlock.lpx
 ```
 
 ### Egern Rules
