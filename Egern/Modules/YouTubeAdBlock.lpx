@@ -1,0 +1,29 @@
+#!name=YouTube去广告（Egern直导Loon插件）
+# 上游来源: https://kelee.one/Tool/Loon/Lpx/YouTube_remove_ads.lpx
+#!desc=供 Egern 2.19+ 直接导入的 Loon 插件。移除 YouTube 视频/瀑布流/搜索/Shorts 广告并隐藏底栏上传与 Shorts；内置字幕翻译默认关闭，交给独立 DualSubs Egern 模块处理。
+#!openUrl=https://apps.apple.com/app/id544007664
+#!author=Maasea / VirgilClyne / Choler / DivineEngine / app2smile / Kelee
+#!tag=YouTube
+#!system=iOS,iPadOS,macOS
+#!system_version=15
+#!loon_version=3.4.0(962)
+#!homepage=https://hub.kelee.one
+#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/YouTube.png
+#!date=2026-07-23 03:47:41
+
+[Argument]
+blockUpload=switch,true,tag=隐藏上传按钮,desc=隐藏 YouTube 底栏的发布/上传按钮
+blockShorts=switch,true,tag=隐藏Shorts按钮,desc=隐藏 YouTube 底栏 Shorts 按钮
+blockImmersive=switch,true,tag=隐藏选段按钮,desc=隐藏 YouTube Music 底栏选段按钮
+captionLang=select,"off","zh-Hans","zh-Hant","ja","ko","en",tag=内置字幕翻译语言,desc=默认关闭；请使用独立 DualSubs Egern 翻译模块
+debug=switch,false,tag=启用调试模式,desc=排障时开启
+
+[Script]
+http-response ^https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch|log_event|config))(\?(.*))?$ script-path=https://kelee.one/Resource/JavaScript/YouTube/YouTube_remove_ads/YouTube_remove_ads_response.js, requires-body=true, binary-body-mode=true, argument=[{blockUpload},{blockShorts},{blockImmersive},{captionLang},{debug}], tag=YouTube去广告
+
+http-request ^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&ack.* script-path=https://kelee.one/Resource/JavaScript/YouTube/YouTube_remove_ads/YouTube_remove_ads_request.js, requires-body=true, binary-body-mode=true, argument=[{captionLang}], tag=请求初始化
+
+http-request ^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/log_event script-path=https://kelee.one/Resource/JavaScript/YouTube/YouTube_remove_ads/YouTube_remove_ads_request.js, requires-body=true, binary-body-mode=true, argument=[{blockUpload},{blockShorts},{blockImmersive},{captionLang},{debug}], tag=请求日志事件
+
+[MitM]
+hostname=*.googlevideo.com, youtubei.googleapis.com
