@@ -1,0 +1,28 @@
+# NAME: Infuse
+# AUTHOR: Horatio
+# FORMAT: Loon Rule Set
+# UPDATED: 2026-09-22
+# TOTAL: 12
+#
+# Infuse / Firecore services, metadata, Trakt, OpenSubtitles,
+# plus custom SNTP / media routing domains.
+#
+# Keep aligned with Egern/Rules/Infuse.yaml.
+
+# Infuse / Firecore
+DOMAIN-SUFFIX,firecore.com
+DOMAIN-SUFFIX,infuse.im
+
+# Metadata / sync / subtitles
+DOMAIN-SUFFIX,themoviedb.org
+DOMAIN-SUFFIX,tmdb.org
+DOMAIN-SUFFIX,trakt.tv
+DOMAIN-SUFFIX,opensubtitles.com
+DOMAIN-SUFFIX,opensubtitles.org
+
+# Custom SNTP / media domains
+DOMAIN-SUFFIX,ncdn1.sntp.uk
+DOMAIN-SUFFIX,sub1.sntp.me
+DOMAIN-SUFFIX,post.cn2gias.uk
+DOMAIN-SUFFIX,precdns.cn2gias.uk
+DOMAIN-SUFFIX,pre.cn2gias.uk
