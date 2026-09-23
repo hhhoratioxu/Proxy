@@ -1,0 +1,22 @@
+# NAME: Weverse
+# AUTHOR: Horatio
+# FORMAT: Egern Remote Rule Set
+# SOURCE: Loon/Rules/Weverse.lsr
+# UPDATED: 2026-09-23
+# TOTAL: 12
+
+domain_set:
+  - global.apis.naver.com
+  - jp.apis.naver.com
+  - apis.naver.com
+  - weverse-rmcnmv.akamaized.net
+  - resources-rmcnmv.akamaized.net
+  - g-aegis-naver.akamaized.net
+  - weverse-live.pstatic.net
+  - ssl.pstatic.net
+  - nelo2-col.navercorp.com
+
+domain_suffix_set:
+  - weverse.io
+  - weverseshop.io
+  - wevpstatic.net
