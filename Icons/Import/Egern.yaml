@@ -1,0 +1,424 @@
+---
+# Horatio App Icons - Egern Preview Profile
+# GENERATED: 2026-09-24
+# This is an icon preview profile. It does not merge icons into another active profile.
+
+vif_only: false
+policy_groups:
+  - select:
+      name: "Icon - AI"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/AI.png"
+      hidden: false
+  - select:
+      name: "Icon - Adobe"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Adobe.png"
+      hidden: false
+  - select:
+      name: "Icon - Apple"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Apple.png"
+      hidden: false
+  - select:
+      name: "Icon - Bilibili"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Bilibili.png"
+      hidden: false
+  - select:
+      name: "Icon - Disney"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Disney.png"
+      hidden: false
+  - select:
+      name: "Icon - GitHub"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/GitHub.png"
+      hidden: false
+  - select:
+      name: "Icon - Google"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Google.png"
+      hidden: false
+  - select:
+      name: "Icon - HBOMAX"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/HBOMAX.png"
+      hidden: false
+  - select:
+      name: "Icon - Infuse"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Infuse.png"
+      hidden: false
+  - select:
+      name: "Icon - LAN"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/LAN.png"
+      hidden: false
+  - select:
+      name: "Icon - Meituan"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Meituan.png"
+      hidden: false
+  - select:
+      name: "Icon - Meta"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Meta.png"
+      hidden: false
+  - select:
+      name: "Icon - Microsoft"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Microsoft.png"
+      hidden: false
+  - select:
+      name: "Icon - NTP"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/NTP.png"
+      hidden: false
+  - select:
+      name: "Icon - Netflix"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Netflix.png"
+      hidden: false
+  - select:
+      name: "Icon - Spotify"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Spotify.png"
+      hidden: false
+  - select:
+      name: "Icon - Telegram"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Telegram.png"
+      hidden: false
+  - select:
+      name: "Icon - TikTok"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/TikTok.png"
+      hidden: false
+  - select:
+      name: "Icon - Twitter"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Twitter.png"
+      hidden: false
+  - select:
+      name: "Icon - WeChat"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/WeChat.png"
+      hidden: false
+  - select:
+      name: "Icon - Weverse"
+      policies:
+        - DIRECT
+      icon: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Weverse_logo.svg/500px-Weverse_logo.svg.png"
+      hidden: false
+  - select:
+      name: "Icon - Wikimedia"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Wikimedia.png"
+      hidden: false
+  - select:
+      name: "Icon - Xiaohongshu"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Xiaohongshu.png"
+      hidden: false
+  - select:
+      name: "Icon - AI Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/AI/AI_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - AI Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/AI/AI_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Adobe Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Adobe/Adobe_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Adobe Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Adobe/Adobe_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Apple Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Apple/Apple_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Apple Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Apple/Apple_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Bilibili Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Bilibili/Bilibili_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Bilibili Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Bilibili/Bilibili_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Disney Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Disney/Disney_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Disney Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Disney/Disney_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - GitHub Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/GitHub/GitHub_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - GitHub Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/GitHub/GitHub_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Google Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Google/Google_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Google Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Google/Google_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - HBOMAX Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/HBOMAX/HBOMAX_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - HBOMAX Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/HBOMAX/HBOMAX_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Infuse Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Infuse/Infuse_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Infuse Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Infuse/Infuse_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - LAN Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/LAN/LAN_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - LAN Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/LAN/LAN_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Meituan Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Meituan/Meituan_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Meituan Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Meituan/Meituan_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Meta Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Meta/Meta_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Meta Facebook"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Meta/Meta_Facebook.png"
+      hidden: false
+  - select:
+      name: "Icon - Meta Instagram"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Meta/Meta_Instagram.png"
+      hidden: false
+  - select:
+      name: "Icon - Microsoft Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Microsoft/Microsoft_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Microsoft Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Microsoft/Microsoft_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - NTP Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/NTP/NTP_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - NTP Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/NTP/NTP_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Netflix Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Netflix/Netflix_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Netflix Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Netflix/Netflix_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Spotify Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Spotify/Spotify_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Spotify Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Spotify/Spotify_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Telegram Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Telegram/Telegram_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Telegram Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Telegram/Telegram_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - TikTok Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/TikTok/TikTok_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - TikTok Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/TikTok/TikTok_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Twitter Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Twitter/Twitter_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Twitter Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Twitter/Twitter_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - WeChat Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/WeChat/WeChat_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - WeChat Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/WeChat/WeChat_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Wikimedia Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Wikimedia/Wikimedia_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Wikimedia Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Wikimedia/Wikimedia_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Xiaohongshu Full"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Xiaohongshu/Xiaohongshu_Full.png"
+      hidden: false
+  - select:
+      name: "Icon - Xiaohongshu Alt"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Xiaohongshu/Xiaohongshu_Alt.png"
+      hidden: false
+  - select:
+      name: "Icon - Weverse Classic"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Weverse/Weverse_Classic.png"
+      hidden: false
+rules:
+  - default:
+      policy: DIRECT
