@@ -29,6 +29,8 @@ Batch 1 includes: AI, Adobe, Apple, Bilibili, Disney, GitHub, Google, HBOMAX, In
 
 Batch 2 includes: Meituan, Meta, Microsoft, NTP, Netflix, Spotify, Telegram, TikTok, Twitter, WeChat.
 
+Batch 2 includes: Meituan, Meta, Microsoft, NTP, Netflix, Spotify, Telegram, TikTok, Twitter, WeChat.
+
 ## Layout
 
 - `App/*.png` — default local icons
