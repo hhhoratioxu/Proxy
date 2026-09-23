@@ -29,6 +29,10 @@ Batch 1 includes: AI, Adobe, Apple, Bilibili, Disney, GitHub, Google, HBOMAX, In
 
 Batch 2 includes: Meituan, Meta, Microsoft, NTP, Netflix, Spotify, Telegram, TikTok, Twitter, WeChat.
 
+Batch 3 includes: Weverse, Wikimedia, Xiaohongshu.
+
+All 23 rule groups now have transparent logo-only PNG variants.
+
 ## Layout
 
 - `App/*.png` — default local icons

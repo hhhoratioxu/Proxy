@@ -356,7 +356,19 @@
     {
       "name": "WeChat_Logo.png",
       "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/WeChat.png"
+    },
+    {
+      "name": "Weverse_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Weverse.png"
+    },
+    {
+      "name": "Wikimedia_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Wikimedia.png"
+    },
+    {
+      "name": "Xiaohongshu_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Xiaohongshu.png"
     }
   ],
-  "description": "Multi-variant PNG app/service icon library aligned with the 23 Horatio Proxy rule sets, including transparent logo-only PNG variants."
+  "description": "Multi-variant PNG app/service icon library aligned with the 23 Horatio Proxy rule sets, including transparent logo-only PNG variants for all 23 rule groups."
 }

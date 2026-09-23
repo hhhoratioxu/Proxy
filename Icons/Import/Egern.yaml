@@ -539,6 +539,24 @@ policy_groups:
         - DIRECT
       icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/WeChat.png"
       hidden: false
+  - select:
+      name: "Icon - Weverse Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Weverse.png"
+      hidden: false
+  - select:
+      name: "Icon - Wikimedia Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Wikimedia.png"
+      hidden: false
+  - select:
+      name: "Icon - Xiaohongshu Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Xiaohongshu.png"
+      hidden: false
 rules:
   - default:
       policy: DIRECT
