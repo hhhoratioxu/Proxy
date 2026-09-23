@@ -1,0 +1,98 @@
+{
+  "name": "Horatio App Icons",
+  "icons": [
+    {
+      "name": "AI.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/AI.png"
+    },
+    {
+      "name": "Adobe.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Adobe.png"
+    },
+    {
+      "name": "Apple.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Apple.png"
+    },
+    {
+      "name": "Bilibili.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Bilibili.png"
+    },
+    {
+      "name": "Disney.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Disney.png"
+    },
+    {
+      "name": "GitHub.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/GitHub.png"
+    },
+    {
+      "name": "Google.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Google.png"
+    },
+    {
+      "name": "HBOMAX.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/HBOMAX.png"
+    },
+    {
+      "name": "Infuse.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Infuse.png"
+    },
+    {
+      "name": "LAN.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/LAN.png"
+    },
+    {
+      "name": "Meituan.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Meituan.png"
+    },
+    {
+      "name": "Meta.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Meta.png"
+    },
+    {
+      "name": "Microsoft.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Microsoft.png"
+    },
+    {
+      "name": "NTP.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/NTP.png"
+    },
+    {
+      "name": "Netflix.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Netflix.png"
+    },
+    {
+      "name": "Spotify.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Spotify.png"
+    },
+    {
+      "name": "Telegram.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Telegram.png"
+    },
+    {
+      "name": "TikTok.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/TikTok.png"
+    },
+    {
+      "name": "Twitter.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Twitter.png"
+    },
+    {
+      "name": "WeChat.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/WeChat.png"
+    },
+    {
+      "name": "Weverse.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Weverse.png"
+    },
+    {
+      "name": "Wikimedia.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Wikimedia.png"
+    },
+    {
+      "name": "Xiaohongshu.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Xiaohongshu.png"
+    }
+  ],
+  "description": "PNG app/service icons aligned with the 23 Horatio Proxy rule sets for Loon, Egern, Shadowrocket and Quantumult X."
+}
