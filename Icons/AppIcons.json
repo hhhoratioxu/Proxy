@@ -276,7 +276,47 @@
     {
       "name": "Weverse_Classic.png",
       "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Weverse/Weverse_Classic.png"
+    },
+    {
+      "name": "AI_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/AI.png"
+    },
+    {
+      "name": "Adobe_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Adobe.png"
+    },
+    {
+      "name": "Apple_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Apple.png"
+    },
+    {
+      "name": "Bilibili_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Bilibili.png"
+    },
+    {
+      "name": "Disney_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Disney.png"
+    },
+    {
+      "name": "GitHub_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/GitHub.png"
+    },
+    {
+      "name": "Google_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Google.png"
+    },
+    {
+      "name": "HBOMAX_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/HBOMAX.png"
+    },
+    {
+      "name": "Infuse_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Infuse.png"
+    },
+    {
+      "name": "LAN_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/LAN.png"
     }
   ],
-  "description": "Multi-variant PNG app/service icon library aligned with the 23 Horatio Proxy rule sets. 69 indexed icons; Weverse default uses the current official 2024+ app logo."
+  "description": "Multi-variant PNG app/service icon library aligned with the 23 Horatio Proxy rule sets, including transparent logo-only PNG variants."
 }

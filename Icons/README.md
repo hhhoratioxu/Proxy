@@ -21,6 +21,12 @@ Full import details and native schemes:
 Icons/Import/README.md
 ```
 
+## Transparent logo-only PNGs
+
+Logo-only assets with transparent backgrounds are stored under `App/Transparent/` and indexed as `<Name>_Logo.png` in `AppIcons.json`.
+
+Batch 1 includes: AI, Adobe, Apple, Bilibili, Disney, GitHub, Google, HBOMAX, Infuse, LAN.
+
 ## Layout
 
 - `App/*.png` — default local icons
