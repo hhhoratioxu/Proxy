@@ -1,0 +1,22 @@
+# NAME: Meituan
+# AUTHOR: Horatio
+# FORMAT: Quantumult X Remote Filter
+# SOURCE: Egern/Rules/Meituan.yaml
+# UPDATED: 2026-09-23
+# TOTAL: 14
+# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+
+HOST-SUFFIX,51ping.com
+HOST-SUFFIX,dianping.com
+HOST-SUFFIX,dpfile.com
+HOST-SUFFIX,dper.com
+HOST-SUFFIX,keeta-global.com
+HOST-SUFFIX,keetainc.com
+HOST-SUFFIX,maoyan.com
+HOST-SUFFIX,meituan.com
+HOST-SUFFIX,meituan.net
+HOST-SUFFIX,mtyun.com
+HOST-SUFFIX,mykeeta.com
+HOST-SUFFIX,neixin.cn
+HOST-SUFFIX,sankuai.com
+HOST-SUFFIX,zhenguo.com

@@ -1,0 +1,20 @@
+# NAME: Weverse
+# AUTHOR: Horatio
+# FORMAT: Shadowrocket Rule Set
+# SOURCE: Loon/Rules/Weverse.lsr
+# UPDATED: 2026-09-23
+# TOTAL: 12
+# NOTE: Import with RULE-SET and assign the desired policy in Shadowrocket.
+
+DOMAIN-SUFFIX,weverse.io
+DOMAIN-SUFFIX,weverseshop.io
+DOMAIN-SUFFIX,wevpstatic.net
+DOMAIN,global.apis.naver.com
+DOMAIN,jp.apis.naver.com
+DOMAIN,apis.naver.com
+DOMAIN,weverse-rmcnmv.akamaized.net
+DOMAIN,resources-rmcnmv.akamaized.net
+DOMAIN,g-aegis-naver.akamaized.net
+DOMAIN,weverse-live.pstatic.net
+DOMAIN,ssl.pstatic.net
+DOMAIN,nelo2-col.navercorp.com

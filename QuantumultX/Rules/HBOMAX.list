@@ -1,0 +1,57 @@
+# NAME: HBOMAX
+# AUTHOR: Horatio
+# FORMAT: Quantumult X Remote Filter
+# SOURCE: Loon/Rules/HBOMAX.lsr
+# UPDATED: 2026-09-23
+# TOTAL: 49
+# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+
+HOST-SUFFIX,bcbolthboa-a.akamaihd.net
+HOST-SUFFIX,cf-images.ap-southeast-1.prod.boltdns.net
+HOST-SUFFIX,cinemax.com
+HOST-SUFFIX,dai3fd1oh325y.cloudfront.net
+HOST-SUFFIX,execute-api.ap-southeast-1.amazonaws.com
+HOST-SUFFIX,execute-api.us-east-1.amazonaws.com
+HOST-SUFFIX,forthethrone.com
+HOST-SUFFIX,hbo.com
+HOST-SUFFIX,hbo.com.c.footprint.net
+HOST-SUFFIX,hbo.com.edgesuite.net
+HOST-SUFFIX,hbo.map.fastly.net
+HOST-SUFFIX,hboasia.com
+HOST-SUFFIX,hboasia1-i.akamaihd.net
+HOST-SUFFIX,hboasia2-i.akamaihd.net
+HOST-SUFFIX,hboasia3-i.akamaihd.net
+HOST-SUFFIX,hboasia4-i.akamaihd.net
+HOST-SUFFIX,hboasia5-i.akamaihd.net
+HOST-SUFFIX,hboasialive.akamaized.net
+HOST-SUFFIX,hbogeo.cust.footprint.net
+HOST-SUFFIX,hbogo.co.th
+HOST-SUFFIX,hbogo.com
+HOST-SUFFIX,hbogo.eu
+HOST-SUFFIX,hbogoasia.com
+HOST-SUFFIX,hbogoasia.hk
+HOST-SUFFIX,hbogoasia.id
+HOST-SUFFIX,hbogoasia.ph
+HOST-SUFFIX,hbogoasia.sg
+HOST-SUFFIX,hbogoasia.tw
+HOST-SUFFIX,hbogoprod-vod.akamaized.net
+HOST-SUFFIX,hbolb.onwardsmg.com
+HOST-SUFFIX,hbomax.com
+HOST-SUFFIX,hbomaxcdn.com
+HOST-SUFFIX,hbomaxdash.s.llnwi.net
+HOST-SUFFIX,hbonow.com
+HOST-SUFFIX,hbounify-prod.evergent.com
+HOST-SUFFIX,manifest.prod.boltdns.net
+HOST-SUFFIX,max.com
+HOST-SUFFIX,maxgo.com
+HOST-SUFFIX,now-ashare.com
+HOST-SUFFIX,now-tv.com
+HOST-SUFFIX,now.com
+HOST-SUFFIX,now.com.hk
+HOST-SUFFIX,nowe.com
+HOST-SUFFIX,nowe.hk
+HOST-SUFFIX,players.brightcove.net
+HOST-SUFFIX,warnermediacdn.com
+HOST-SUFFIX,youboranqs01.com
+USER-AGENT,HBO%20NOW*
+USER-AGENT,HBOMAX*

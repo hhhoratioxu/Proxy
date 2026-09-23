@@ -1,0 +1,30 @@
+# NAME: Wikimedia
+# AUTHOR: Horatio
+# FORMAT: Quantumult X Remote Filter
+# SOURCE: Loon/Rules/Wikimedia.lsr
+# UPDATED: 2026-09-23
+# TOTAL: 22
+# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+
+HOST-SUFFIX,mediawiki.org
+HOST-SUFFIX,toolforge.org
+HOST-SUFFIX,w.wiki
+HOST-SUFFIX,wikibooks.org
+HOST-SUFFIX,wikidata.org
+HOST-SUFFIX,wikifunctions.org
+HOST-SUFFIX,wikimedia.com
+HOST-SUFFIX,wikimedia.org
+HOST-SUFFIX,wikimediacloud.org
+HOST-SUFFIX,wikimediafoundation.org
+HOST-SUFFIX,wikinews.org
+HOST-SUFFIX,wikipedia.com
+HOST-SUFFIX,wikipedia.org
+HOST-SUFFIX,wikiquote.org
+HOST-SUFFIX,wikisource.org
+HOST-SUFFIX,wikispecies.org
+HOST-SUFFIX,wikiversity.org
+HOST-SUFFIX,wikivoyage.org
+HOST-SUFFIX,wiktionary.org
+HOST-SUFFIX,wmcloud.org
+HOST-SUFFIX,wmflabs.org
+HOST-SUFFIX,wmfusercontent.org

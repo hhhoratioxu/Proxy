@@ -1,0 +1,22 @@
+# NAME: Meituan
+# AUTHOR: Horatio
+# FORMAT: Shadowrocket Rule Set
+# SOURCE: Egern/Rules/Meituan.yaml
+# UPDATED: 2026-09-23
+# TOTAL: 14
+# NOTE: Import with RULE-SET and assign the desired policy in Shadowrocket.
+
+DOMAIN-SUFFIX,51ping.com
+DOMAIN-SUFFIX,dianping.com
+DOMAIN-SUFFIX,dpfile.com
+DOMAIN-SUFFIX,dper.com
+DOMAIN-SUFFIX,keeta-global.com
+DOMAIN-SUFFIX,keetainc.com
+DOMAIN-SUFFIX,maoyan.com
+DOMAIN-SUFFIX,meituan.com
+DOMAIN-SUFFIX,meituan.net
+DOMAIN-SUFFIX,mtyun.com
+DOMAIN-SUFFIX,mykeeta.com
+DOMAIN-SUFFIX,neixin.cn
+DOMAIN-SUFFIX,sankuai.com
+DOMAIN-SUFFIX,zhenguo.com

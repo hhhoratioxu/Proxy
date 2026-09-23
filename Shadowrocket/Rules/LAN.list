@@ -1,0 +1,24 @@
+# NAME: LAN
+# AUTHOR: Horatio
+# FORMAT: Shadowrocket Rule Set
+# SOURCE: Egern/Rules/LAN.yaml
+# UPDATED: 2026-09-23
+# TOTAL: 16
+# NOTE: Import with RULE-SET and assign the desired policy in Shadowrocket.
+
+DOMAIN,localhost
+DOMAIN-SUFFIX,local
+DOMAIN-SUFFIX,lan
+IP-CIDR,10.0.0.0/8,no-resolve
+IP-CIDR,100.64.0.0/10,no-resolve
+IP-CIDR,127.0.0.0/8,no-resolve
+IP-CIDR,169.254.0.0/16,no-resolve
+IP-CIDR,172.16.0.0/12,no-resolve
+IP-CIDR,192.0.0.0/24,no-resolve
+IP-CIDR,192.0.2.0/24,no-resolve
+IP-CIDR,192.88.99.0/24,no-resolve
+IP-CIDR,192.168.0.0/16,no-resolve
+IP-CIDR,198.51.100.0/24,no-resolve
+IP-CIDR,203.0.113.0/24,no-resolve
+IP-CIDR,224.0.0.0/4,no-resolve
+IP-CIDR,255.255.255.255/32,no-resolve

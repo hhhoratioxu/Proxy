@@ -1,0 +1,81 @@
+# NAME: Adobe
+# AUTHOR: Horatio
+# FORMAT: Quantumult X Remote Filter
+# SOURCE: Loon/Rules/Adobe.lsr
+# UPDATED: 2026-09-23
+# TOTAL: 73
+# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+
+HOST,cc-ext-prod-pkgs.s3.amazonaws.com
+HOST,pre-signed-firefly-prod.s3-accelerate.amazonaws.com
+HOST,pre-signed-firefly-prod.s3.amazonaws.com
+HOST,aep-cs-blobstore-prod-va6-data.s3.amazonaws.com
+HOST,dnzuu5synxxfk.cloudfront.net
+HOST-SUFFIX,2o7.net
+HOST-SUFFIX,acrobat.com
+HOST-SUFFIX,adbecrsl.com
+HOST-SUFFIX,adbephotos.com
+HOST-SUFFIX,adobe.com
+HOST-SUFFIX,adobe.io
+HOST-SUFFIX,adobe.ly
+HOST-SUFFIX,adobe-aemassets-value.com
+HOST-SUFFIX,adobe-audience-finder.com
+HOST-SUFFIX,adobe-identity.com
+HOST-SUFFIX,adobe-services.com
+HOST-SUFFIX,adobe-video-partner-finder.com
+HOST-SUFFIX,adobeaemcloud.com
+HOST-SUFFIX,adobeaemcloud.net
+HOST-SUFFIX,adobecc.com
+HOST-SUFFIX,adobecce.com
+HOST-SUFFIX,adobecces.com
+HOST-SUFFIX,adobeccstatic.com
+HOST-SUFFIX,adobecontent.io
+HOST-SUFFIX,adobedc.cn
+HOST-SUFFIX,adobedc.net
+HOST-SUFFIX,adobedtm.com
+HOST-SUFFIX,adobeexchange.com
+HOST-SUFFIX,adobegenuine.com
+HOST-SUFFIX,adobegov.com
+HOST-SUFFIX,adobejanus.com
+HOST-SUFFIX,adobelogin.com
+HOST-SUFFIX,adobeoobe.com
+HOST-SUFFIX,adobeprojectm.com
+HOST-SUFFIX,adobesc.com
+HOST-SUFFIX,adobesensei.io
+HOST-SUFFIX,adobesign.com
+HOST-SUFFIX,adobesigncdn.com
+HOST-SUFFIX,adobespark.com
+HOST-SUFFIX,adobess.com
+HOST-SUFFIX,adobestock.com
+HOST-SUFFIX,adobesunbreak.com
+HOST-SUFFIX,adobetag.com
+HOST-SUFFIX,adobetarget.com
+HOST-SUFFIX,assetsadobe.com
+HOST-SUFFIX,behance.net
+HOST-SUFFIX,businesscatalyst.com
+HOST-SUFFIX,creativecloud.com
+HOST-SUFFIX,creativesdk.com
+HOST-SUFFIX,demdex.net
+HOST-SUFFIX,echosign.com
+HOST-SUFFIX,edgefonts.net
+HOST-SUFFIX,ftcdn.net
+HOST-SUFFIX,macromedia.com
+HOST-SUFFIX,magento.com
+HOST-SUFFIX,magento.net
+HOST-SUFFIX,magentocommerce.com
+HOST-SUFFIX,marketing-cloud.com
+HOST-SUFFIX,marketo.co.uk
+HOST-SUFFIX,marketo.com
+HOST-SUFFIX,marketo.net
+HOST-SUFFIX,marketo.tv
+HOST-SUFFIX,mktdns.com
+HOST-SUFFIX,mktorest.com
+HOST-SUFFIX,mktroute.com
+HOST-SUFFIX,myportfolio.com
+HOST-SUFFIX,omniture.com
+HOST-SUFFIX,omtrdc.net
+HOST-SUFFIX,photoshop.com
+HOST-SUFFIX,prosite.com
+HOST-SUFFIX,scene7.com
+HOST-SUFFIX,typekit.com
+HOST-SUFFIX,typekit.net
