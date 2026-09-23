@@ -1,6 +1,6 @@
 # Horatio App Icons
 
-PNG icons for the rule sets in this repository.
+A multi-variant icon library for the 23 rule sets in this repository.
 
 ## Subscription
 
@@ -8,7 +8,7 @@ PNG icons for the rule sets in this repository.
 https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/AppIcons.json
 ```
 
-Loon import:
+Loon one-tap import:
 
 ```text
 https://www.nsloon.com/openloon/import?iconset=https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/AppIcons.json
@@ -16,11 +16,20 @@ https://www.nsloon.com/openloon/import?iconset=https://raw.githubusercontent.com
 
 ## Layout
 
-- `AppIcons.json` — icon subscription index
-- `App/*.png` — individual PNG icons
+- `App/*.png` — default local icons
+- `App/Variants/<App>/*.png` — Full / Alt / service variants
+- `AppIcons.json` — complete icon subscription index
+
+## Weverse
+
+The default Weverse entry now uses the current dark-navy/white-W app logo introduced in October 2024 and still used by the current app. The previous icon is preserved as:
+
+```text
+Icons/App/Variants/Weverse/Weverse_Classic.png
+```
 
 ## Sources
 
-Icons are curated from community/open-source icon repositories and public project assets, including Koolson/Qure, fmz200/wool_scripts, homarr-labs/dashboard-icons, Wikimedia project assets, and a public Weverse sample asset.
+Curated from public/open-source icon assets including Koolson/Qure, fmz200/wool_scripts, homarr-labs/dashboard-icons, official project assets, Wikimedia Commons, R-Store and Toperlock/Quantumult.
 
-Trademarks and brand assets belong to their respective owners. Upstream repositories retain their own licenses.
+Brand names and trademarks belong to their respective owners. Upstream assets retain their own licences.

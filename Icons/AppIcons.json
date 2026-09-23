@@ -83,7 +83,7 @@
     },
     {
       "name": "Weverse.png",
-      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Weverse.png"
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Weverse_logo.svg/500px-Weverse_logo.svg.png"
     },
     {
       "name": "Wikimedia.png",
@@ -92,7 +92,191 @@
     {
       "name": "Xiaohongshu.png",
       "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Xiaohongshu.png"
+    },
+    {
+      "name": "AI_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/AI/AI_Full.png"
+    },
+    {
+      "name": "AI_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/AI/AI_Alt.png"
+    },
+    {
+      "name": "Adobe_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Adobe/Adobe_Full.png"
+    },
+    {
+      "name": "Adobe_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Adobe/Adobe_Alt.png"
+    },
+    {
+      "name": "Apple_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Apple/Apple_Full.png"
+    },
+    {
+      "name": "Apple_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Apple/Apple_Alt.png"
+    },
+    {
+      "name": "Bilibili_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Bilibili/Bilibili_Full.png"
+    },
+    {
+      "name": "Bilibili_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Bilibili/Bilibili_Alt.png"
+    },
+    {
+      "name": "Disney_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Disney/Disney_Full.png"
+    },
+    {
+      "name": "Disney_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Disney/Disney_Alt.png"
+    },
+    {
+      "name": "GitHub_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/GitHub/GitHub_Full.png"
+    },
+    {
+      "name": "GitHub_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/GitHub/GitHub_Alt.png"
+    },
+    {
+      "name": "Google_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Google/Google_Full.png"
+    },
+    {
+      "name": "Google_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Google/Google_Alt.png"
+    },
+    {
+      "name": "HBOMAX_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/HBOMAX/HBOMAX_Full.png"
+    },
+    {
+      "name": "HBOMAX_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/HBOMAX/HBOMAX_Alt.png"
+    },
+    {
+      "name": "Infuse_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Infuse/Infuse_Full.png"
+    },
+    {
+      "name": "Infuse_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Infuse/Infuse_Alt.png"
+    },
+    {
+      "name": "LAN_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/LAN/LAN_Full.png"
+    },
+    {
+      "name": "LAN_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/LAN/LAN_Alt.png"
+    },
+    {
+      "name": "Meituan_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Meituan/Meituan_Full.png"
+    },
+    {
+      "name": "Meituan_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Meituan/Meituan_Alt.png"
+    },
+    {
+      "name": "Meta_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Meta/Meta_Full.png"
+    },
+    {
+      "name": "Meta_Facebook.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Meta/Meta_Facebook.png"
+    },
+    {
+      "name": "Meta_Instagram.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Meta/Meta_Instagram.png"
+    },
+    {
+      "name": "Microsoft_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Microsoft/Microsoft_Full.png"
+    },
+    {
+      "name": "Microsoft_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Microsoft/Microsoft_Alt.png"
+    },
+    {
+      "name": "NTP_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/NTP/NTP_Full.png"
+    },
+    {
+      "name": "NTP_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/NTP/NTP_Alt.png"
+    },
+    {
+      "name": "Netflix_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Netflix/Netflix_Full.png"
+    },
+    {
+      "name": "Netflix_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Netflix/Netflix_Alt.png"
+    },
+    {
+      "name": "Spotify_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Spotify/Spotify_Full.png"
+    },
+    {
+      "name": "Spotify_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Spotify/Spotify_Alt.png"
+    },
+    {
+      "name": "Telegram_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Telegram/Telegram_Full.png"
+    },
+    {
+      "name": "Telegram_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Telegram/Telegram_Alt.png"
+    },
+    {
+      "name": "TikTok_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/TikTok/TikTok_Full.png"
+    },
+    {
+      "name": "TikTok_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/TikTok/TikTok_Alt.png"
+    },
+    {
+      "name": "Twitter_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Twitter/Twitter_Full.png"
+    },
+    {
+      "name": "Twitter_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Twitter/Twitter_Alt.png"
+    },
+    {
+      "name": "WeChat_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/WeChat/WeChat_Full.png"
+    },
+    {
+      "name": "WeChat_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/WeChat/WeChat_Alt.png"
+    },
+    {
+      "name": "Wikimedia_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Wikimedia/Wikimedia_Full.png"
+    },
+    {
+      "name": "Wikimedia_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Wikimedia/Wikimedia_Alt.png"
+    },
+    {
+      "name": "Xiaohongshu_Full.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Xiaohongshu/Xiaohongshu_Full.png"
+    },
+    {
+      "name": "Xiaohongshu_Alt.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Xiaohongshu/Xiaohongshu_Alt.png"
+    },
+    {
+      "name": "Weverse_Classic.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Weverse/Weverse_Classic.png"
     }
   ],
-  "description": "PNG app/service icons aligned with the 23 Horatio Proxy rule sets for Loon, Egern, Shadowrocket and Quantumult X."
+  "description": "Multi-variant PNG app/service icon library aligned with the 23 Horatio Proxy rule sets. 69 indexed icons; Weverse default uses the current official 2024+ app logo."
 }

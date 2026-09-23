@@ -74,7 +74,7 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Rules/Weverse.lsr
 
 ## App Icon Library
 
-The repository includes a 23-item PNG icon library aligned with the current rule sets.
+The repository includes a multi-variant PNG icon library aligned with all 23 current rule sets.
 
 Icon subscription JSON:
 
@@ -88,4 +88,4 @@ Loon one-tap import:
 https://www.nsloon.com/openloon/import?iconset=https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/AppIcons.json
 ```
 
-Individual images are stored under `Icons/App/`.
+Default images are stored under `Icons/App/`, with additional Full/Alt variants under `Icons/App/Variants/`.
