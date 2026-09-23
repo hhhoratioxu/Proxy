@@ -316,6 +316,46 @@
     {
       "name": "LAN_Logo.png",
       "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/LAN.png"
+    },
+    {
+      "name": "Meituan_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Meituan.png"
+    },
+    {
+      "name": "Meta_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Meta.png"
+    },
+    {
+      "name": "Microsoft_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Microsoft.png"
+    },
+    {
+      "name": "NTP_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/NTP.png"
+    },
+    {
+      "name": "Netflix_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Netflix.png"
+    },
+    {
+      "name": "Spotify_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Spotify.png"
+    },
+    {
+      "name": "Telegram_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Telegram.png"
+    },
+    {
+      "name": "TikTok_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/TikTok.png"
+    },
+    {
+      "name": "Twitter_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Twitter.png"
+    },
+    {
+      "name": "WeChat_Logo.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/WeChat.png"
     }
   ],
   "description": "Multi-variant PNG app/service icon library aligned with the 23 Horatio Proxy rule sets, including transparent logo-only PNG variants."

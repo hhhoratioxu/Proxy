@@ -419,6 +419,126 @@ policy_groups:
         - DIRECT
       icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Variants/Weverse/Weverse_Classic.png"
       hidden: false
+  - select:
+      name: "Icon - AI Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/AI.png"
+      hidden: false
+  - select:
+      name: "Icon - Adobe Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Adobe.png"
+      hidden: false
+  - select:
+      name: "Icon - Apple Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Apple.png"
+      hidden: false
+  - select:
+      name: "Icon - Bilibili Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Bilibili.png"
+      hidden: false
+  - select:
+      name: "Icon - Disney Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Disney.png"
+      hidden: false
+  - select:
+      name: "Icon - GitHub Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/GitHub.png"
+      hidden: false
+  - select:
+      name: "Icon - Google Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Google.png"
+      hidden: false
+  - select:
+      name: "Icon - HBOMAX Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/HBOMAX.png"
+      hidden: false
+  - select:
+      name: "Icon - Infuse Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Infuse.png"
+      hidden: false
+  - select:
+      name: "Icon - LAN Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/LAN.png"
+      hidden: false
+  - select:
+      name: "Icon - Meituan Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Meituan.png"
+      hidden: false
+  - select:
+      name: "Icon - Meta Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Meta.png"
+      hidden: false
+  - select:
+      name: "Icon - Microsoft Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Microsoft.png"
+      hidden: false
+  - select:
+      name: "Icon - NTP Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/NTP.png"
+      hidden: false
+  - select:
+      name: "Icon - Netflix Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Netflix.png"
+      hidden: false
+  - select:
+      name: "Icon - Spotify Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Spotify.png"
+      hidden: false
+  - select:
+      name: "Icon - Telegram Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Telegram.png"
+      hidden: false
+  - select:
+      name: "Icon - TikTok Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/TikTok.png"
+      hidden: false
+  - select:
+      name: "Icon - Twitter Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/Twitter.png"
+      hidden: false
+  - select:
+      name: "Icon - WeChat Logo"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/App/Transparent/WeChat.png"
+      hidden: false
 rules:
   - default:
       policy: DIRECT
