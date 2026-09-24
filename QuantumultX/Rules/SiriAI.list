@@ -1,0 +1,14 @@
+# NAME: SiriAI
+# AUTHOR: Horatio
+# FORMAT: Quantumult X Remote Filter
+# SOURCE: Loon/Rules/SiriAI.lsr
+# UPDATED: 2026-09-24
+# TOTAL: 6
+# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+
+HOST,guzzoni.apple.com
+HOST-SUFFIX,smoot.apple.com
+HOST,apple-relay.cloudflare.com
+HOST,apple-relay.fastly-edge.com
+HOST,cp4.cloudflare.com
+HOST,apple-relay.apple.com
