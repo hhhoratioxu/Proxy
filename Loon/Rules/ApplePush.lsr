@@ -1,0 +1,11 @@
+# NAME: ApplePush
+# AUTHOR: Horatio
+# FORMAT: Loon Rule Set
+# UPDATED: 2026-09-24
+# TOTAL: 1
+#
+# Apple Push Notification service (APNs).
+# Apple's official requirement is *.push.apple.com.
+# APNs commonly uses TCP 5223, with TCP 443 as fallback.
+
+DOMAIN-SUFFIX,push.apple.com
