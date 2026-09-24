@@ -1,0 +1,9 @@
+# NAME: ApplePush
+# AUTHOR: Horatio
+# FORMAT: Quantumult X Remote Filter
+# SOURCE: Loon/Rules/ApplePush.lsr
+# UPDATED: 2026-09-24
+# TOTAL: 1
+# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+
+HOST-SUFFIX,push.apple.com
