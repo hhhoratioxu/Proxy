@@ -1,79 +1,125 @@
 # NAME: AI
 # AUTHOR: Horatio
 # FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-22
-# TOTAL: 290
+# UPDATED: 2026-09-24
+# TOTAL: 476
 #
-# Combined AI routing rules for major global and mainland-China AI services.
-# Coverage includes ChatGPT/OpenAI/Sora, Claude/Anthropic, Gemini/DeepMind,
-# NotebookLM, Copilot, GitHub Copilot, Meta AI, Grok/xAI, Perplexity, Poe,
-# Mistral, Midjourney, OpenRouter, Hugging Face, Cursor, Windsurf, Devin,
-# Kiro, Manus, DeepSeek, Qwen/Tongyi, Doubao/Coze, Kimi/Moonshot, Zhipu,
-# Hunyuan/Yuanbao, MiniMax/Hailuo, Kling, Xiaomi AI and many others.
-#
-# Sources cross-checked against v2fly/domain-list-community and Repcz/Tool.
-# Place this AI rule before generic Google/Microsoft/GitHub/Meta rules.
+# Combined AI routing rules for global and mainland-China AI services.
+# Coverage: assistants/search, foundation-model APIs, coding/agents, image/video/audio,
+# productivity/writing/meeting AI, model hosting/inference and major China AI platforms.
+# Sources: existing Horatio rules + v2fly/domain-list-community + VPSDance/ai-proxy-rules
+# + Repcz/Tool + selected official service domains.
+# Shared third-party/CDN/analytics domains are intentionally excluded when they would
+# over-match unrelated traffic. Place this AI rule before generic Google/Microsoft/GitHub/Meta rules.
 # All conditions in this file are OR-matched.
 
 domain_set:
-  - ai.google.dev
+  - ai.developer.meta.com
+  - ai.meta.com
   - ai.zhaomi.cn
-  - aisandbox-pa.googleapis.com
+  - aidemos.meta.com
   - alkalicore-pa.clients6.google.com
   - alkalimakersuite-pa.clients6.google.com
+  - anthropic-com.ghost.io
+  - anthropic.auth0.com
+  - anthropic.com.cdn.cloudflare.net
   - antigravity-pa.googleapis.com
   - antigravity.googleapis.com
+  - api.hunyuan.cloud.tencent.com
   - api.jetbrains.ai
+  - api.minimax.io
+  - api.minimaxi.com
+  - ark.cn-beijing.volces.com
+  - aws-language-servers.us-east-1.amazonaws.com
+  - aws-toolkit-language-servers.amazonaws.com
+  - bailian.console.aliyun.com
   - cloudaicompanion.googleapis.com
   - cloudcode-pa.googleapis.com
+  - codewhisperer.us-east-1.amazonaws.com
   - copilot-proxy.githubusercontent.com
   - copilot-workspace.githubnext.com
   - copilotprodattachments.blob.core.windows.net
   - cueme-api.quark.cn
   - daily-cloudcode-pa.googleapis.com
-  - host.livekit.cloud
+  - dashscope.aliyuncs.com
+  - ernie.baidu.com
+  - gateway.bingviz.microsoft.net
+  - gateway.bingviz.microsoftapp.net
+  - hunyuan.tencentcloudapi.com
+  - idetoolkits-hostedfiles.amazonaws.com
+  - idetoolkits.amazonwebservices.com
+  - llama.developer.meta.com
   - notebooklm-pa.googleapis.com
   - notebooklm.googleapis.com
-  - openaiapi-site.azureedge.net
+  - openai-api.arkoselabs.com
   - openaiassets.blob.core.windows.net
   - openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net
-  - openaicom.imgix.net
   - openaicomproductionae4b.blob.core.windows.net
   - ppl-ai-file-upload.s3.amazonaws.com
   - pplx-res.cloudinary.com
   - production-openaicom-storage.azureedge.net
+  - q-developer-integration.us-east-1.api.aws
+  - qianfan.baidubce.com
+  - qodercn-jb.oss-cn-hangzhou.aliyuncs.com
   - servd-anthropic-website.b-cdn.net
-  - turn.livekit.cloud
+  - sydney.bing.com
   - webchannel-alkalimakersuite-pa.clients6.google.com
 
 domain_keyword_set:
   - chatgpt-async-webps-prod-
 
 domain_suffix_set:
+  - 01.ai
+  - abtestvm-sg.bytedance.com
   - agentclientprotocol.com
+  - ai.cloudflare.com
+  - ai.com
+  - ai.google.dev
   - ai.studio
+  - ai21.com
   - aicode.googleapis.com
   - aida.googleapis.com
+  - aider.chat
+  - aisandbox-pa.googleapis.com
   - aispeech.com
   - aistudio.google.com
+  - aleph-alpha.com
+  - all-hands.dev
+  - ampcode.com
+  - ampworkers.com
+  - andisearch.com
   - antafu.com
   - antaq.com
   - anthropic.com
+  - anthropic.com.cn
+  - anthropic.team
   - antigravity-unleash.goog
   - antigravity.google
+  - antigravity.google.com
+  - antspace.dev
   - anythingllm.com
   - aorizon.cn
   - api-building.fun
   - arena.ai
   - askdiandian.com
+  - augmentcode.com
   - baichuan-ai.com
   - bard.google.com
+  - baseten.co
+  - beautiful.ai
+  - bfl.ai
   - bigmodel.cn
+  - blackbox.ai
+  - bolt.new
   - building.fun
   - butterfly-static.cn
   - butterflyai.cn
+  - bytegate-sg.byteintlapi.com
+  - byteoversea.com
   - cerebras.ai
+  - character.ai
   - chat.com
+  - chatbotclaude.com
   - chatglm.cn
   - chatgpt.com
   - chatgpt.livekit.cloud
@@ -82,28 +128,40 @@ domain_suffix_set:
   - cici.com
   - ciciai.com
   - ciciaicdn.com
+  - civitai.com
   - clau.de
   - claude.ai
+  - claude.app
   - claude.com
+  - claude.new
+  - claude.site
   - claudemcpclient.com
   - claudemcpcontent.com
+  - claudepages.dev
+  - claudestudio.com
   - claudeusercontent.com
   - clawhub-mirror.com
   - clawhub.ai
+  - cline.bot
   - clipdrop.co
   - codebuddy.cn
+  - codegeex.cn
   - codeium.com
   - codeiumdata.com
   - coderabbit.ai
+  - cody.dev
   - cohere.ai
   - cohere.com
   - comfy.org
   - comfyci.org
   - comfyregistry.org
+  - commandcode.ai
+  - continue.dev
   - copilot-stg.com
   - copilot.cloud.microsoft
   - copilot.com
   - copilot.microsoft.com
+  - copy.ai
   - coze-dns-01.com
   - coze.cn
   - coze.com
@@ -128,12 +186,14 @@ domain_suffix_set:
   - cursor.sh
   - cursorapi.com
   - dbbuilding.fun
+  - deepinfra.com
   - deepmind.com
   - deepmind.google
   - deepseek.com
   - deepseeksvc.com
   - deepwiki.com
   - deepwiki.org
+  - descript.com
   - devin.ai
   - diabrowser.com
   - diabrowser.engineering
@@ -145,18 +205,29 @@ domain_suffix_set:
   - doubaocdn.com
   - doudou.com
   - dreamgen.com
+  - dreamstudio.ai
   - duck.ai
   - dui.ai
   - duiopen.com
   - dumate.cn
+  - eigent.ai
   - elevenlabs.com
   - elevenlabs.io
   - envato-static.com
   - envato.com
   - envatousercontent.com
+  - factory.ai
+  - fal.ai
   - faxingbao.com
+  - fireflies.ai
+  - firefly.adobe.com
+  - firefly.adobe.io
+  - fireworks.ai
+  - fish.audio
   - flow.google
   - flow.google.com
+  - g.ai
+  - gamma.app
   - gateway.ai.cloudflare.com
   - geller-pa.googleapis.com
   - gemini.google
@@ -164,7 +235,11 @@ domain_suffix_set:
   - gemini.gstatic.com
   - generativeai.google
   - generativelanguage.googleapis.com
+  - genmo.ai
+  - genspark.ai
   - githubcopilot.com
+  - grammarly.com
+  - granola.ai
   - grazie.ai
   - grazie.aws.intellij.net
   - grok.com
@@ -173,35 +248,63 @@ domain_suffix_set:
   - groq.com
   - h2o.ai
   - hailuoai.com
+  - haiper.ai
   - happyhorse.cn
   - happyshrimp.cn
+  - hermes-agent.nousresearch.com
+  - heygen.com
   - hf.co
   - hf.space
   - hi-butterfly.cn
+  - higgsfield.ai
+  - host.livekit.cloud
   - huggingface.co
   - hunyuan.tencent.com
+  - hyperwriteai.com
+  - ideogram.ai
+  - inceptionai.ai
+  - inflection.ai
   - instreet.com
+  - janitorai.com
   - jasper.ai
   - jetbrains.ai
   - jules.google
   - jules.google.com
   - kechuangai.com
+  - kilo.ai
+  - kilo.codes
+  - kilocode.ai
+  - kilocode.app
   - kimi.ai
   - kimi.com
+  - kindroid.ai
   - kiro.dev
   - kling-ai.com
   - klingai.com
+  - komo.ai
+  - krea.ai
   - labs.google
   - labs.google.com
   - langchain.com
+  - leonardo.ai
+  - lepton.ai
+  - lf3-static.bytednsdoc.com
   - liblib.art
   - liblib.cloud
   - liblib.tv
+  - lingyiwanwu.com
   - linka2a.net
   - liveperson.net
+  - llama.com
+  - llamameta.net
+  - lmarena.ai
   - lmstudio.ai
+  - lovable.dev
   - lovart.ai
   - lpsnmedia.net
+  - ltx.studio
+  - lumalabs.ai
+  - mage.space
   - makersuite.google.com
   - manus.im
   - manuscdn.com
@@ -224,18 +327,29 @@ domain_suffix_set:
   - minimax.io
   - minimaxi.com
   - mistral.ai
+  - modal.com
+  - modelcontextprotocol.com
+  - modelcontextprotocol.io
+  - modelcontextprotocol.net
+  - modelcontextprotocol.org
+  - modelscope.cn
+  - modelscope.com
   - moonshot.ai
   - moonshot.cn
   - mozilla.ai
+  - murf.ai
   - myparallelstory.com
   - n.cn
   - namiso.com
+  - nightcafe.studio
+  - nomi.ai
   - notebook.google
   - notebook.google.com
   - notebooklm.google
   - notebooklm.google.com
   - notegpt.io
   - novelai.net
+  - novita.ai
   - oaistatic.com
   - oaistatsig.com
   - oaiusercontent.com
@@ -246,52 +360,120 @@ domain_suffix_set:
   - opal.google
   - opal.google.com
   - openai.com
+  - openai.com.cdn.cloudflare.net
+  - openaiapi-site.azureedge.net
+  - openaicom.imgix.net
   - openart.ai
   - openclaw.ai
+  - opencode.ai
+  - openhands.dev
   - openrouter.ai
   - openspec.dev
+  - otter.ai
   - perplexity.ai
   - perplexity.com
+  - phind.com
+  - pi.ai
   - picpic-ai.cn
+  - pika.art
   - pixeldance.com
+  - pixverse.ai
   - plannotator.ai
+  - play.ht
   - poe.com
   - poecdn.net
+  - pollo.ai
+  - ppio.cn
+  - ppio.com
   - pplx.ai
   - proactivebackend-pa.googleapis.com
+  - q.eu-central-1.amazonaws.com
+  - q.us-east-1.amazonaws.com
   - qianwen.aliyun.com
   - qianwen.com
   - qianwenai.com
+  - qoder.cn
   - qoder.com
+  - qoder.com.cn
+  - qodo.ai
+  - quillbot.com
   - qwen.ai
   - qwenlm.ai
+  - read.ai
+  - recraft.ai
+  - repl.co
+  - repl.it
+  - replicate.com
+  - replicate.delivery
+  - replika.com
+  - replit.app
+  - replit.com
+  - replit.dev
+  - resemble.ai
   - robinfrontend-pa.googleapis.com
+  - roocode.com
+  - runpod.io
+  - runway.com
+  - runwayml.com
   - rwkv.cn
   - rwkv.com
+  - rytr.me
   - safeskill.cn
+  - sakana.ai
+  - sarvam.ai
+  - seaart.ai
+  - sensechat.cn
+  - sensenova.cn
+  - sf16-short-sg.bytedapm.com
   - shunjing.xin
   - sider.ai
+  - siliconflow.cn
+  - siliconflow.com
   - skillhub.cn
   - sleeplesshorizon.cn
   - sora.com
+  - sourcegraph.com
+  - speechify.com
   - spicywriter.com
+  - stability.ai
+  - starling.zijieapi.com
+  - stepfun.ai
+  - stepfun.com
   - stitch.withgoogle.com
+  - suno.ai
+  - suno.com
+  - supermaven.com
+  - synthesia.io
+  - tabnine.com
   - talkai.info
   - tapnow.ai
   - tapnow.top
   - tcwqqdy.guru
+  - tensor.art
   - themeforest.net
   - tiangong.cn
+  - tldv.io
+  - together.ai
+  - together.xyz
   - tongyi.aliyun.com
   - tongyi.com
+  - trae-api-sg.mchost.guru
   - trae.ai
   - trae.cn
   - trae.com.cn
   - trae.guru
   - tripo3d.ai
+  - tron-sg.bytelemon.com
+  - turn.livekit.cloud
+  - udio.com
+  - v0.app
+  - v0.dev
   - windsurf.build
   - windsurf.com
+  - wordtune.com
   - workbuddy.cn
+  - writesonic.com
+  - wrtn.ai
   - x.ai
   - xiaoaiassist.com
   - xiaomimimo.com
@@ -300,6 +482,7 @@ domain_suffix_set:
   - xingyeai.com
   - yiyan.baidu.com
   - yoma.cn
+  - you.com
   - youmind.ai
   - youmind.com
   - youmind.site
@@ -307,6 +490,7 @@ domain_suffix_set:
   - yuanqi.tencent.com
   - yzsgo.com
   - z.ai
+  - zed.dev
   - zhiexa.com
   - zhipuai.cn
   - zhipucn.com
