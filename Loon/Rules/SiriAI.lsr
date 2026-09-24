@@ -1,0 +1,20 @@
+# NAME: SiriAI
+# AUTHOR: Horatio
+# FORMAT: Loon Rule Set
+# UPDATED: 2026-09-24
+# TOTAL: 6
+#
+# Apple Siri / Apple Intelligence core routing.
+# Based on Apple's current enterprise network requirements.
+
+# Siri / Dictation
+DOMAIN,guzzoni.apple.com
+
+# Siri / Spotlight / Search services
+DOMAIN-SUFFIX,smoot.apple.com
+
+# Apple Intelligence / Private Cloud Compute
+DOMAIN,apple-relay.cloudflare.com
+DOMAIN,apple-relay.fastly-edge.com
+DOMAIN,cp4.cloudflare.com
+DOMAIN,apple-relay.apple.com
