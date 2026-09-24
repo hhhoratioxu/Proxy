@@ -1,0 +1,25 @@
+# NAME: SiriAI
+# AUTHOR: Horatio
+# FORMAT: Egern Remote Rule Set
+# UPDATED: 2026-09-24
+# TOTAL: 6
+#
+# Apple Siri / Apple Intelligence core routing.
+# Based on Apple's current enterprise network requirements.
+#
+# Use this URL as an Egern rule_set match and select the desired policy
+# in your main Egern configuration. All conditions in this file are OR-matched.
+
+domain_set:
+  # Siri / Dictation
+  - guzzoni.apple.com
+
+  # Apple Intelligence / Private Cloud Compute
+  - apple-relay.cloudflare.com
+  - apple-relay.fastly-edge.com
+  - cp4.cloudflare.com
+  - apple-relay.apple.com
+
+domain_suffix_set:
+  # Siri / Spotlight / Search services
+  - smoot.apple.com
