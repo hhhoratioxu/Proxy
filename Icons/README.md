@@ -1,6 +1,14 @@
-# Horatio App Icons
+# Horatio Icon Libraries
 
 A multi-variant icon library for the 23 rule sets in this repository.
+
+## Country and region flags
+
+The repository also includes 249 ISO country and region flags as 512 × 512 transparent-background PNG icons.
+
+- [Flag PNG directory](./Flags/)
+- [CountryFlags.json](./CountryFlags.json)
+- Includes `CN`, `HK`, `MO`, and `TW`
 
 ## Icon index
 
@@ -38,8 +46,12 @@ All 23 rule groups now have transparent logo-only PNG variants.
 - `App/*.png` — default local icons
 - `App/Variants/<App>/*.png` — Full / Alt / service variants
 - `AppIcons.json` — complete icon subscription index
+- `Flags/*.png` — 249 transparent country and region flag icons
+- `CountryFlags.json` — flag icon subscription index
 - `Import/Shadowrocket.conf` — Shadowrocket icon preview configuration
 - `Import/Egern.yaml` — Egern icon preview profile
+- `Import/ShadowrocketFlags.conf` — Shadowrocket flag preview configuration
+- `Import/EgernFlags.yaml` — Egern flag preview profile
 - `Import/README.md` — one-tap links for all four clients
 
 ## Weverse
