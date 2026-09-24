@@ -1,0 +1,15 @@
+# NAME: ApplePush
+# AUTHOR: Horatio
+# FORMAT: Egern Remote Rule Set
+# UPDATED: 2026-09-24
+# TOTAL: 1
+#
+# Apple Push Notification service (APNs).
+# Apple's official requirement is *.push.apple.com.
+# APNs commonly uses TCP 5223, with TCP 443 as fallback.
+#
+# Use this URL as an Egern rule_set match and select the desired policy
+# in your main Egern configuration. All conditions in this file are OR-matched.
+
+domain_suffix_set:
+  - push.apple.com
