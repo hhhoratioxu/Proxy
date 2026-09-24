@@ -1,96 +1,32 @@
 # Horatio Proxy
 
-A personal collection of proxy-client rules and configurations maintained by Horatio.
+<p align="center">
+  <strong>简体中文</strong> · <a href="./README_EN.md">English</a>
+</p>
 
-## Structure
+适用于 Loon、Egern、Quantumult X 和 Shadowrocket 的个人规则、模块与 App 图标库。
 
-```text
-Loon/
-└── Rules/
-    ├── Apple.lsr
-    └── Weverse.lsr
+## 快速入口
 
-Egern/
-├── Rules/
-│   └── Apple.yaml
-└── Modules/
-    └── YouTubeTranslate.yaml
-```
+| 内容 | 链接 |
+| --- | --- |
+| Loon | [规则](./Loon/Rules/) |
+| Egern | [规则](./Egern/Rules/) · [模块](./Egern/Modules/) |
+| Quantumult X | [打开目录](./QuantumultX/) |
+| Shadowrocket | [打开目录](./Shadowrocket/) |
+| App 图标 | [图标库](./Icons/) · [订阅文件](./Icons/AppIcons.json) |
 
-## Egern YouTube
-
-The YouTube setup is Egern-only.
-
-### Requirements
-
-Use Egern **2.19.0 or newer**.
-
-Egern 2.19 added direct import support for Loon configs/plugins, so the ad-block plugin is intentionally kept in native Loon plugin format and imported directly by Egern instead of being converted to YAML/sgmodule.
-
-Also enable:
-
-- MITM
-- trusted Egern CA certificate
-- global `block_quic: true`
-
-### Module order
-
-1. `YouTubeTranslate.yaml`
-
-### YouTubeTranslate.yaml
-
-Uses DualSubs YouTube v1.5.11 + DualSubs Universal v1.7.5.
-
-Defaults:
-
-- `Type=Translate`
-- `Languages[0]=AUTO`
-- `Languages[1]=ZH-HANS`
-- `Vendor=Google`
-- `AutoCC=true`
-
-This means any available source subtitle language is auto-detected and translated to Simplified Chinese.
-
-## Raw subscription links
-
-### Egern YouTube
-
-```text
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/YouTubeTranslate.yaml
-```
-
-### Egern Rules
-
-```text
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Rules/Apple.yaml
-```
-
-### Loon Rules
-
-```text
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Rules/Apple.lsr
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Rules/Weverse.lsr
-```
-
-## App Icon Library
-
-The repository includes a multi-variant PNG icon library aligned with all 23 current rule sets.
-
-Icon index:
-
-```text
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/AppIcons.json
-```
-
-### One-tap import
+## App 图标一键导入
 
 - [Loon](https://www.nsloon.com/openloon/import?iconset=https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FAppIcons.json)
 - [Quantumult X](https://quantumult.app/x/open-app/ui?module=gallery&type=icon&action=add&content=%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FAppIcons.json%22%5D)
 - [Shadowrocket](https://lowertop.github.io/Shadowrocket-First/redirect.html?url=shadowrocket%3A%2F%2Fconfig%2Fadd%2Fhttps%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FImport%2FShadowrocket.conf)
 - [Egern](https://egernapp.com/profiles/new?name=Horatio%20App%20Icons&url=https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FImport%2FEgern.yaml)
 
-Loon and Quantumult X use native icon-library/gallery import. Shadowrocket and Egern use dedicated icon-preview configurations because they do not expose a standalone icon-gallery importer.
+图标库覆盖当前 23 个分流规则，并提供默认、备选和透明 Logo 版本。
 
-See `Icons/README.md` and `Icons/Import/README.md` for details.
+## 说明
 
-Default images are stored under `Icons/App/`, with additional Full/Alt variants under `Icons/App/Variants/`.
+- 配置仅供个人使用，请根据客户端版本和实际网络环境调整。
+- 图标及品牌名称归各自权利人所有。
+
