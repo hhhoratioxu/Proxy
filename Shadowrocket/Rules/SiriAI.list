@@ -1,0 +1,14 @@
+# NAME: SiriAI
+# AUTHOR: Horatio
+# FORMAT: Shadowrocket Rule Set
+# SOURCE: Loon/Rules/SiriAI.lsr
+# UPDATED: 2026-09-24
+# TOTAL: 6
+# NOTE: Import with RULE-SET and assign the desired policy in Shadowrocket.
+
+DOMAIN,guzzoni.apple.com
+DOMAIN-SUFFIX,smoot.apple.com
+DOMAIN,apple-relay.cloudflare.com
+DOMAIN,apple-relay.fastly-edge.com
+DOMAIN,cp4.cloudflare.com
+DOMAIN,apple-relay.apple.com
