@@ -1,11 +1,20 @@
 # NAME: Disney
 # AUTHOR: Horatio
 # FORMAT: Quantumult X Remote Filter
-# SOURCE: Egern/Rules/Disney.yaml
-# UPDATED: 2026-09-23
-# TOTAL: 173
-# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+# UPDATED: 2026-09-25
+# TOTAL: 245
+# SOURCE: Horatio existing + v2fly/domain-list-community Disney ecosystem (Disney/BAMTech/ESPN/Hotstar/Hulu/Marvel/NatGeo/Star)
+# NOTE: Comprehensive Disney streaming and first-party ecosystem routing set.
+# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
+HOST,disney.my.sentry.io
+HOST,disneyplus.com.ssl.sc.omtrdc.net
+HOST,espn.api.edge.bamgrid.com
+HOST,espn.hb.omtrdc.net
+HOST,espndotcom.tt.omtrdc.net
+HOST,hulu.playback.edge.bamgrid.com
+HOST-SUFFIX,112263.com
+HOST-SUFFIX,20thcenturystudios.com
 HOST-SUFFIX,20thcenturystudios.com.au
 HOST-SUFFIX,20thcenturystudios.com.br
 HOST-SUFFIX,20thcenturystudios.jp
@@ -19,11 +28,14 @@ HOST-SUFFIX,babble.com
 HOST-SUFFIX,babyzone.com
 HOST-SUFFIX,bam.nr-data.net
 HOST-SUFFIX,bamgrid.com
+HOST-SUFFIX,bamtech.net
 HOST-SUFFIX,beautyandthebeastmusical.co.uk
 HOST-SUFFIX,braze.com
+HOST-SUFFIX,callhulu.com
 HOST-SUFFIX,cdn.optimizely.com
 HOST-SUFFIX,conviva.com
 HOST-SUFFIX,d9.flashtalking.com
+HOST-SUFFIX,detpress.com
 HOST-SUFFIX,dilcdn.com
 HOST-SUFFIX,disney-asia.com
 HOST-SUFFIX,disney-discount.com
@@ -71,7 +83,9 @@ HOST-SUFFIX,disney.ro
 HOST-SUFFIX,disney.ru
 HOST-SUFFIX,disney.se
 HOST-SUFFIX,disney.sg
+HOST-SUFFIX,disneyaccount.com
 HOST-SUFFIX,disneyadsales.com
+HOST-SUFFIX,disneyanimation.com
 HOST-SUFFIX,disneyarena.com
 HOST-SUFFIX,disneyaulani.com
 HOST-SUFFIX,disneybaby.com
@@ -135,14 +149,57 @@ HOST-SUFFIX,espncdn.com
 HOST-SUFFIX,espndotcom.tt.omtrdc.net
 HOST-SUFFIX,espnqa.com
 HOST-SUFFIX,execute-api.us-east-1.amazonaws.com
+HOST-SUFFIX,findyourlimits.com
+HOST-SUFFIX,freeform.com
+HOST-SUFFIX,freehulu.com
+HOST-SUFFIX,fxnetwork.com
+HOST-SUFFIX,fxnetworks.com
 HOST-SUFFIX,go-disneyworldgo.com
 HOST-SUFFIX,go.com
+HOST-SUFFIX,hongkongdisneyland.com
+HOST-SUFFIX,hooloo.tv
+HOST-SUFFIX,hoolu.com
+HOST-SUFFIX,hoolu.tv
 HOST-SUFFIX,hotstar-cdn.net
 HOST-SUFFIX,hotstar-labs.com
 HOST-SUFFIX,hotstar.com
 HOST-SUFFIX,hotstarext.com
 HOST-SUFFIX,hsprepack.akamaized.net
+HOST-SUFFIX,hu1u.com
+HOST-SUFFIX,huloo.cc
+HOST-SUFFIX,huloo.tv
+HOST-SUFFIX,hulu.com
+HOST-SUFFIX,hulu.jp
+HOST-SUFFIX,hulu.tv
+HOST-SUFFIX,hulu.us
+HOST-SUFFIX,huluaction.com
+HOST-SUFFIX,huluad.com
+HOST-SUFFIX,huluapp.com
+HOST-SUFFIX,huluasks.com
+HOST-SUFFIX,hulucall.com
+HOST-SUFFIX,hulufree.com
+HOST-SUFFIX,hulugans.com
+HOST-SUFFIX,hulugermany.com
+HOST-SUFFIX,hulugo.com
+HOST-SUFFIX,huluim.com
+HOST-SUFFIX,huluinstantmessenger.com
+HOST-SUFFIX,huluitaly.com
+HOST-SUFFIX,hulunet.com
+HOST-SUFFIX,hulunetwork.com
+HOST-SUFFIX,huluplus.com
+HOST-SUFFIX,hulupremium.com
+HOST-SUFFIX,hulupurchase.com
+HOST-SUFFIX,huluqa.com
+HOST-SUFFIX,hulurussia.com
+HOST-SUFFIX,huluspain.com
+HOST-SUFFIX,hulusports.com
+HOST-SUFFIX,hulustream.com
+HOST-SUFFIX,huluteam.com
+HOST-SUFFIX,hulutv.com
+HOST-SUFFIX,huluusa.com
+HOST-SUFFIX,joinmaidez.com
 HOST-SUFFIX,js-agent.newrelic.com
+HOST-SUFFIX,lucasfilm.com
 HOST-SUFFIX,marvel.com
 HOST-SUFFIX,marvel10thanniversary.com
 HOST-SUFFIX,marveldimensionofheroes.com
@@ -154,28 +211,44 @@ HOST-SUFFIX,marvelsuperheroseptember.com
 HOST-SUFFIX,marvelsuperwar.com
 HOST-SUFFIX,mickey.tv
 HOST-SUFFIX,moviesanywhere.com
+HOST-SUFFIX,mushymush.tv
+HOST-SUFFIX,myhulu.com
 HOST-SUFFIX,natgeomaps.com
 HOST-SUFFIX,nationalgeographic.com
 HOST-SUFFIX,nationalgeographicpartners.com
 HOST-SUFFIX,ngeo.com
 HOST-SUFFIX,nomadlandmovie.ch
+HOST-SUFFIX,originalhulu.com
+HOST-SUFFIX,payhulu.com
+HOST-SUFFIX,pixar.com
 HOST-SUFFIX,playmation.com
+HOST-SUFFIX,registerhulu.com
+HOST-SUFFIX,searchlightpictures.com
+HOST-SUFFIX,shanghaidisneyresort.com
 HOST-SUFFIX,shopdisney.com
 HOST-SUFFIX,shops-disney.com
 HOST-SUFFIX,sorcerersarena.com
 HOST-SUFFIX,spaindisney.com
 HOST-SUFFIX,star-brasil.com
 HOST-SUFFIX,star-latam.com
+HOST-SUFFIX,star.api.edge.bamgrid.com
+HOST-SUFFIX,star.connections.edge.bamgrid.com
+HOST-SUFFIX,star.content.edge.bamgrid.com
+HOST-SUFFIX,star.playback.edge.bamgrid.com
 HOST-SUFFIX,starott.com
 HOST-SUFFIX,starplus.com
 HOST-SUFFIX,starwars.com
 HOST-SUFFIX,starwarsgalacticstarcruiser.com
 HOST-SUFFIX,starwarskids.com
 HOST-SUFFIX,streamingdisney.net
+HOST-SUFFIX,thehulubraintrust.com
 HOST-SUFFIX,themarvelexperiencetour.com
 HOST-SUFFIX,thestationbymaker.com
 HOST-SUFFIX,thewaltdisneycompany.com
 HOST-SUFFIX,thisispolaris.com
+HOST-SUFFIX,tokyodisneyresort.jp
+HOST-SUFFIX,waltdisneystudios.com
 HOST-SUFFIX,watchdisneyfe.com
 HOST-SUFFIX,watchespn.com
+HOST-SUFFIX,wwwhuluplus.com
 USER-AGENT,Disney+*
