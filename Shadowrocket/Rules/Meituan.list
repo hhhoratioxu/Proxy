@@ -1,15 +1,25 @@
 # NAME: Meituan
 # AUTHOR: Horatio
 # FORMAT: Shadowrocket Rule Set
-# SOURCE: Egern/Rules/Meituan.yaml
-# UPDATED: 2026-09-23
-# TOTAL: 14
-# NOTE: Import with RULE-SET and assign the desired policy in Shadowrocket.
+# UPDATED: 2026-09-25
+# TOTAL: 24
+# SOURCE: Horatio existing + v2fly/domain-list-community Meituan/DDMaicai
+# NOTE: Covers Meituan, Dianping, Keeta, Maoyan and Dingdong grocery ecosystem domains.
 
+DOMAIN-SUFFIX,100.me
 DOMAIN-SUFFIX,51ping.com
+DOMAIN-SUFFIX,baobaoaichi.cn
+DOMAIN-SUFFIX,ddcorp.net
+DOMAIN-SUFFIX,ddfresh.net
+DOMAIN-SUFFIX,ddimg.mobi
+DOMAIN-SUFFIX,ddmaicai.net
+DOMAIN-SUFFIX,ddmc.mobi
+DOMAIN-SUFFIX,dduser.mobi
+DOMAIN-SUFFIX,ddxq.mobi
 DOMAIN-SUFFIX,dianping.com
-DOMAIN-SUFFIX,dpfile.com
 DOMAIN-SUFFIX,dper.com
+DOMAIN-SUFFIX,dpfile.com
+DOMAIN-SUFFIX,imaicai.mobi
 DOMAIN-SUFFIX,keeta-global.com
 DOMAIN-SUFFIX,keetainc.com
 DOMAIN-SUFFIX,maoyan.com
