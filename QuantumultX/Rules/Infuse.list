@@ -1,20 +1,22 @@
 # NAME: Infuse
 # AUTHOR: Horatio
 # FORMAT: Quantumult X Remote Filter
-# SOURCE: Loon/Rules/Infuse.lsr
-# UPDATED: 2026-09-23
-# TOTAL: 12
-# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+# UPDATED: 2026-09-25
+# TOTAL: 13
+# SOURCE: Firecore/Infuse services + TMDB + Trakt + OpenSubtitles + observed Infuse sync endpoint + Horatio custom media domains
+# NOTE: TMDB is Infuse's current primary online metadata source.
+# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
+HOST,infuse-sync.s3-accelerate.amazonaws.com
 HOST-SUFFIX,firecore.com
 HOST-SUFFIX,infuse.im
+HOST-SUFFIX,ncdn1.sntp.uk
+HOST-SUFFIX,opensubtitles.com
+HOST-SUFFIX,opensubtitles.org
+HOST-SUFFIX,post.cn2gias.uk
+HOST-SUFFIX,pre.cn2gias.uk
+HOST-SUFFIX,precdns.cn2gias.uk
+HOST-SUFFIX,sub1.sntp.me
 HOST-SUFFIX,themoviedb.org
 HOST-SUFFIX,tmdb.org
 HOST-SUFFIX,trakt.tv
-HOST-SUFFIX,opensubtitles.com
-HOST-SUFFIX,opensubtitles.org
-HOST-SUFFIX,ncdn1.sntp.uk
-HOST-SUFFIX,sub1.sntp.me
-HOST-SUFFIX,post.cn2gias.uk
-HOST-SUFFIX,precdns.cn2gias.uk
-HOST-SUFFIX,pre.cn2gias.uk
