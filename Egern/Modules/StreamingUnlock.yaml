@@ -1,11 +1,10 @@
 name: "Streaming Unlock"
-description: "Egern 原生流媒体解锁查询：检测当前分流或指定策略的 Netflix、Disney+、YouTube Premium、Prime Video、Spotify、Max、Paramount+、Peacock、BBC iPlayer、Abema、Bahamut Anime 与 KKTV。"
+description: "Egern 原生流媒体解锁查询：每项检测自动遵循你现有的 Egern Rules / Rule Set / Policy，不使用统一代理策略。支持 Netflix、Disney+、YouTube Premium、Prime Video、Spotify、Max、Paramount+、Peacock、BBC iPlayer、Abema、Bahamut Anime 与 KKTV，并显示 Apple / AI / Spotify 分流地区自检。"
 author: "Horatio Xu"
 homepage: "https://github.com/hhhoratioxu/Proxy"
 manual: "https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Modules/StreamingUnlock.md"
 
 compat_arguments:
-  POLICY: ""
   TIMEOUT: "8000"
 
 scriptings:
@@ -13,7 +12,6 @@ scriptings:
       name: "Streaming Unlock"
       script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Scripts/StreamingUnlock.js"
       env:
-        POLICY: "{{{POLICY}}}"
         TIMEOUT: "{{{TIMEOUT}}}"
       update_interval: 3600
       timeout: 60
