@@ -1,20 +1,38 @@
-# NAME: Xiaohongshu
+# NAME: Xiaohongshu / REDnote
 # AUTHOR: Horatio
 # FORMAT: Shadowrocket Rule Set
-# SOURCE: Egern/Rules/Xiaohongshu.yaml
-# UPDATED: 2026-09-23
-# TOTAL: 12
-# NOTE: Import with RULE-SET and assign the desired policy in Shadowrocket.
+# UPDATED: 2026-09-25
+# TOTAL: 29
+# SOURCE: Horatio existing + v2fly current REDnote domains + Xiaohongshu/行吟备案域名 cross-check
+# NOTE: Covers Xiaohongshu/REDnote app/web/CDN/short-link/legacy and related first-party domains.
+# NOTE: AskDiandian AI domains stay in the separate AI rule to avoid policy overlap.
 
+DOMAIN-SUFFIX,cdnxhs.com
 DOMAIN-SUFFIX,fengkongcloud.com
+DOMAIN-SUFFIX,iselect.red
+DOMAIN-SUFFIX,redelight.biz
+DOMAIN-SUFFIX,redelight.cn
+DOMAIN-SUFFIX,redelight.com.cn
+DOMAIN-SUFFIX,redelight.info
 DOMAIN-SUFFIX,rednote.com
+DOMAIN-SUFFIX,rednote.com.my
+DOMAIN-SUFFIX,rednotecdn.com
+DOMAIN-SUFFIX,redselect.com.cn
+DOMAIN-SUFFIX,rl.ink
+DOMAIN-SUFFIX,rnote.com
+DOMAIN-SUFFIX,xhs.cn
 DOMAIN-SUFFIX,xhscdn.com
 DOMAIN-SUFFIX,xhscdn.net
-DOMAIN-SUFFIX,xhs.cn
 DOMAIN-SUFFIX,xhslink.cn
 DOMAIN-SUFFIX,xhslink.com
+DOMAIN-SUFFIX,xhsrcdn.com
 DOMAIN-SUFFIX,xhsurl.cn
 DOMAIN-SUFFIX,xhsurl.com
 DOMAIN-SUFFIX,xiaohongshu.com
 DOMAIN-SUFFIX,xiaohongshu.net
 DOMAIN-SUFFIX,xingin.net
+DOMAIN-SUFFIX,xingludalogistics.com
+DOMAIN-SUFFIX,yuukoo.biz
+DOMAIN-SUFFIX,yuukoo.com.cn
+DOMAIN-SUFFIX,yuukoo.net
+DOMAIN-SUFFIX,yuukoo.red
