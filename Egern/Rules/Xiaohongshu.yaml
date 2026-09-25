@@ -1,30 +1,40 @@
-# NAME: Xiaohongshu
+# NAME: Xiaohongshu / REDnote
 # AUTHOR: Horatio
 # FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-20
-# TOTAL: 12
-#
-# Mainland Xiaohongshu / 小红书 rule set.
-# Covers the main website/API domain, media CDN, official share/short-link
-# domains, legacy/official Xiaohongshu domains, and the risk-control domain
-# carried by the widely used blackmatrix7 XiaoHongShu rules.
-#
-# Sources:
-# - blackmatrix7/ios_rule_script XiaoHongShu
-# - Current Xiaohongshu short-link formats observed in 2026
-# - Public MIIT filing records for Xiaohongshu-operated domains
-#
-# Includes RedNote international (rednote.com) and its subdomains as well.
+# UPDATED: 2026-09-25
+# TOTAL: 29
+# SOURCE: Horatio existing + v2fly current REDnote domains + Xiaohongshu/行吟备案域名 cross-check
+# NOTE: Covers Xiaohongshu/REDnote app/web/CDN/short-link/legacy and related first-party domains.
+# NOTE: AskDiandian AI domains stay in the separate AI rule to avoid policy overlap.
+
 domain_suffix_set:
-  - fengkongcloud.com
-  - rednote.com
-  - xhscdn.com
-  - xhscdn.net
-  - xhs.cn
-  - xhslink.cn
-  - xhslink.com
-  - xhsurl.cn
-  - xhsurl.com
-  - xiaohongshu.com
-  - xiaohongshu.net
-  - xingin.net
+  - "cdnxhs.com"
+  - "fengkongcloud.com"
+  - "iselect.red"
+  - "redelight.biz"
+  - "redelight.cn"
+  - "redelight.com.cn"
+  - "redelight.info"
+  - "rednote.com"
+  - "rednote.com.my"
+  - "rednotecdn.com"
+  - "redselect.com.cn"
+  - "rl.ink"
+  - "rnote.com"
+  - "xhs.cn"
+  - "xhscdn.com"
+  - "xhscdn.net"
+  - "xhslink.cn"
+  - "xhslink.com"
+  - "xhsrcdn.com"
+  - "xhsurl.cn"
+  - "xhsurl.com"
+  - "xiaohongshu.com"
+  - "xiaohongshu.net"
+  - "xingin.net"
+  - "xingludalogistics.com"
+  - "yuukoo.biz"
+  - "yuukoo.com.cn"
+  - "yuukoo.net"
+  - "yuukoo.red"
+
