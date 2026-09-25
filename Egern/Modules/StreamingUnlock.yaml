@@ -1,18 +1,33 @@
 name: "Streaming Unlock"
-description: "Egern 原生流媒体解锁查询：每项检测自动遵循你现有的 Egern Rules / Rule Set / Policy，不使用统一代理策略。支持 Netflix、Disney+、YouTube Premium、Prime Video、Spotify、Max、Paramount+、Peacock、BBC iPlayer、Abema、Bahamut Anime 与 KKTV，并显示 Apple / AI / Spotify 分流地区自检。"
+description: "iOS 原生风格 Egern 流媒体解锁小组件，仅检测 Netflix、Max、YouTube Premium、ChatGPT；自动遵循现有分流规则，并显示策略、地区与节点/出口信息。"
 author: "Horatio Xu"
 homepage: "https://github.com/hhhoratioxu/Proxy"
 manual: "https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Modules/StreamingUnlock.md"
+icon: "play.tv.fill"
+open_url: "egern:/connections"
 
-compat_arguments:
-  TIMEOUT: "8000"
+env_schema:
+  TIMEOUT:
+    name: "检测超时（毫秒）"
+    description: "默认 8000；网络较慢可填写 10000 或 12000。"
+    default_value: "8000"
+  NETFLIX_NODE:
+    name: "Netflix 节点名称"
+    description: "可选，仅用于小组件显示，不会改变你的 Egern 分流。留空时显示 Netflix 策略与实际识别地区。"
+  MAX_NODE:
+    name: "Max 节点名称"
+    description: "可选，仅用于显示，不改变 HBOMAX 分流。"
+  YOUTUBE_NODE:
+    name: "YouTube 节点名称"
+    description: "可选，仅用于显示，不改变 Google / YouTube 分流。"
+  CHATGPT_NODE:
+    name: "ChatGPT 节点名称"
+    description: "可选，仅用于显示，不改变 AI 分流。ChatGPT 可自动显示实际出口 IP。"
 
 scriptings:
   - generic:
       name: "Streaming Unlock"
       script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Scripts/StreamingUnlock.js"
-      env:
-        TIMEOUT: "{{{TIMEOUT}}}"
       update_interval: 3600
       timeout: 60
       disabled: false
