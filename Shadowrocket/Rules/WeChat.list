@@ -1,13 +1,13 @@
-# NAME: WeChat
+# NAME: Weixin + WeChat
 # AUTHOR: Horatio
 # FORMAT: Shadowrocket Rule Set
-# SOURCE: Loon/Rules/WeChat.lsr
-# UPDATED: 2026-09-23
-# TOTAL: 333
-# NOTE: Import with RULE-SET and assign the desired policy in Shadowrocket.
+# UPDATED: 2026-09-25
+# TOTAL: 334
+# SOURCE: Horatio comprehensive rules + blackmatrix7 WeChat cross-check
+# NOTE: Mainland Weixin and international WeChat domains, direct-IP patterns, IPv4/IPv6, ASN and user agents.
 
-DOMAIN,btrace.qq.com
 DOMAIN,apd-pcdnwxlogin.teg.tencent-cloud.net
+DOMAIN,btrace.qq.com
 DOMAIN,dldir1.qq.com
 DOMAIN,slife.xy-asia.com
 DOMAIN,soup.v.qq.com
@@ -269,6 +269,8 @@ DOMAIN-SUFFIX,wx.qq.com
 DOMAIN-SUFFIX,wxapp.tc.qq.com
 DOMAIN-SUFFIX,wxs.qq.com
 DOMAIN-SUFFIX,yun-hl.3g.qq.com
+USER-AGENT,MicroMessenger*
+USER-AGENT,WeChat*
 IP-CIDR,111.30.160.0/20,no-resolve
 IP-CIDR,112.53.11.0/24,no-resolve
 IP-CIDR,112.53.20.0/24,no-resolve
@@ -305,8 +307,8 @@ IP-CIDR6,2409:8c34:d00:200::/60,no-resolve
 IP-CIDR6,2409:8c38:80:150::/72,no-resolve
 IP-CIDR6,2409:8c50:2400::/60,no-resolve
 IP-CIDR6,2409:8c50:a00:2122::/72,no-resolve
-IP-CIDR6,2409:8c54:1003:1019::/112,no-resolve
 IP-CIDR6,2409:8c54:1003:10::/112,no-resolve
+IP-CIDR6,2409:8c54:1003:1019::/112,no-resolve
 IP-CIDR6,2409:8c54:1050:10::/112,no-resolve
 IP-CIDR6,2409:8c54:1801:10::/60,no-resolve
 IP-CIDR6,2409:8c54:1821:70::/60,no-resolve
@@ -337,5 +339,4 @@ IP-CIDR6,240e:f7:a070:100::/60,no-resolve
 IP-CIDR6,240e:ff:9018:100::/60,no-resolve
 IP-CIDR6,240e:ff:f100::/44,no-resolve
 IP-ASN,132203
-USER-AGENT,MicroMessenger*
-USER-AGENT,WeChat*
+IP-ASN,132203
