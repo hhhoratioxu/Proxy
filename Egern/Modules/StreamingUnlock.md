@@ -1,52 +1,43 @@
-# Egern 流媒体解锁查询
+# Streaming Unlock for Egern
 
-Egern 原生 `generic` 脚本 + Widget 模块。
+一个只保留 **Netflix / Max / YouTube Premium / ChatGPT** 的 Egern 原生流媒体解锁查询小组件。
 
-**这一版不会给所有检测指定同一个代理策略。每一个请求都交给 Egern 当前 Rules 按顺序匹配，因此会自动继承你给不同服务配置的不同 policy。**
+## 设计
 
-例如你的实际配置可以是：
+- iOS 原生风格动态浅色 / 深色
+- 2×2 圆角卡片布局
+- SF Symbols + iOS 系统色
+- 每项显示：
+  - 解锁状态
+  - 服务识别地区
+  - 对应 Egern 策略组
+  - 节点 / 出口信息
+- 点击任意服务卡片会打开 Egern **Connections**，可直接查看该请求实际使用的连接和节点
 
-- Apple → 台湾
-- Spotify → 美国
-- AI → 美国
-- Netflix → 另一个流媒体策略
-- Disney+ → 另一个策略
-- YouTube → Google / YouTube 策略
+## 分流逻辑
 
-插件会按这些分流分别检测，而不是拿 Final 或某个统一节点代表全部服务。
+脚本不会指定统一 `policy`，所有请求都交给你当前的 Egern Rules 继续匹配：
 
-## 支持项目
+| 服务 | 对应规则 / 策略提示 |
+| --- | --- |
+| Netflix | Netflix |
+| Max | HBOMAX |
+| YouTube Premium | Google / YouTube |
+| ChatGPT | AI |
 
-### 分流地区自检
+因此你给这四类服务设置不同国家或不同策略时，检测也会分别走自己的线路。
 
-- Apple：请求 `gspe1-ssl.ls.apple.com/pep/gcc`，因此命中 Apple Rule Set
-- AI：请求 `chatgpt.com/cdn-cgi/trace`，因此命中 AI Rule Set
-- Spotify：使用 Spotify 自身接口返回地区，因此命中 Spotify Rule Set
+## 关于“节点名称”
 
-Widget 顶部会类似显示：
+Egern 当前公开的 JavaScript API 支持给请求指定 `policy`，但没有提供 API 让 generic/widget 脚本读取“某个策略组最终选中的具体代理节点名称”。
 
-```text
-Apple TW · AI US · Spotify US
-```
+因此本模块不会伪造节点名：
 
-这三个结果是实际请求得到的地区，不是写死。
-
-### 流媒体解锁
-
-- Netflix（完整解锁 / 仅自制剧或受限）
-- Disney+
-- YouTube Premium
-- Amazon Prime Video
-- Spotify
-- Max
-- Paramount+
-- Peacock
-- BBC iPlayer
-- Abema
-- Bahamut Anime（巴哈姆特动画疯）
-- KKTV
-
-每一个检测请求都使用该服务自己的域名，所以会继续经过你现有的对应规则。如果没有对应 Rule Set，则按你的规则顺序继续匹配，最终才会落到 Final。
+- ChatGPT：可自动显示通过 AI 规则后的真实出口 IP + 地区
+- Netflix / Max / YouTube：显示各服务自己识别到的地区 + 对应策略
+- 点击卡片：直接进入 `egern:/connections` 查看真实节点
+- 如果你希望 Widget 固定显示你的节点名字，可以在模块设置里填写 `NETFLIX_NODE` / `MAX_NODE` / `YOUTUBE_NODE` / `CHATGPT_NODE`
+- 这些字段**只负责显示，不会改变路由**
 
 ## 一键订阅
 
@@ -54,53 +45,22 @@ Apple TW · AI US · Spotify US
 https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/StreamingUnlock.yaml
 ```
 
-在 Egern 中把上面的 URL 添加为远程 Module 并启用即可。
+也可以使用 Egern URL Scheme：
 
-## 重要变化
-
-旧版提供了 `POLICY` 参数，可以强制所有检测走同一个节点。
-
-**新版已移除这个参数。**
-
-原因是你的使用方式本身就是精细分流：Apple、Spotify、AI、Netflix、Disney+ 等服务可能使用完全不同的策略。统一 `POLICY` 会绕开你的 Rules，导致检测结果和真实 App 使用路径不一致。
-
-现在脚本的 HTTP 请求不传 `policy`，由 Egern Rules 决定实际代理路径。
-
-## TIMEOUT
-
-默认：
-
-```yaml
-TIMEOUT: "8000"
+```text
+egern:/modules/new?name=Streaming%20Unlock&url=https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FEgern%2FModules%2FStreamingUnlock.yaml
 ```
-
-单位为毫秒。网络较慢时可以改成 10000 或 12000。
-
-## Widget
-
-- Small：显示分流摘要 + 前 3 个流媒体项目
-- Medium：显示分流摘要 + 前 5 个项目
-- Large / Extra Large：显示全部流媒体项目
-- Lock Screen：显示精简的分流摘要
-
-默认约 30 分钟请求刷新一次。
 
 ## 状态
 
-- ✅：确认解锁 / 可访问
-- ⚠️：部分解锁、受限或只确认到地区
-- ❌：明确地区限制
-- ❓：接口异常、超时、服务风控或检测接口变化
-
-## 关于“地区”和“账号区”
-
-这里显示的是**该请求经过 Egern 分流后的网络出口 / 服务识别地区**，不是 Apple ID、Spotify 账号或其他账号本身注册的国家/地区。
-
-例如 Apple 检测显示 `TW`，代表 Apple 的这个网络请求通过你的规则后被 Apple 识别为台湾地区。
+- 绿色：已解锁
+- 橙色：部分可用
+- 红色：不可用
+- 灰色：检测失败
 
 ## 文件
 
 - `Egern/Modules/StreamingUnlock.yaml`
 - `Egern/Scripts/StreamingUnlock.js`
 
-流媒体服务可能修改页面、API 或风控逻辑，因此个别项目未来可能需要更新检测方式。
+流媒体网站会修改页面和接口，因此未来个别检测项可能需要随服务更新。
