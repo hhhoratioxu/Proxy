@@ -1,17 +1,22 @@
 # NAME: Spotify
 # AUTHOR: Horatio
 # FORMAT: Quantumult X Remote Filter
-# SOURCE: Loon/Rules/Spotify.lsr
-# UPDATED: 2026-09-23
-# TOTAL: 28
-# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+# UPDATED: 2026-09-25
+# TOTAL: 33
+# SOURCE: Horatio existing + blackmatrix7 Spotify + v2fly cross-check
+# NOTE: App/web/API/media/CDN and known Spotify endpoint coverage.
+# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
+HOST,audio4-ak-spotify-com.akamaized.net
 HOST,cdn-spotify-experiments.conductrics.com
+HOST,heads-ak-spotify-com.akamaized.net
 HOST,spotify.com.edgesuite.net
 HOST,spotify.map.fastly.net
 HOST,spotify.map.fastlylb.net
 HOST-KEYWORD,spotify
+HOST-SUFFIX,audio-ak-spotify-com.akamaized.net
 HOST-SUFFIX,byspotify.com
+HOST-SUFFIX,heads4-ak-spotify-com.akamaized.net
 HOST-SUFFIX,lifeatspotify.com
 HOST-SUFFIX,pscdn.co
 HOST-SUFFIX,scdn.co
@@ -33,4 +38,5 @@ HOST-SUFFIX,spotifynewsroom.jp
 HOST-SUFFIX,spotilocal.com
 HOST-SUFFIX,tospotify.com
 USER-AGENT,Spotify*
+IP-CIDR,104.154.127.126/32
 IP-CIDR,35.186.224.47/32
