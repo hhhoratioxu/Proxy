@@ -1,27 +1,34 @@
 # NAME: Meituan
 # AUTHOR: Horatio
 # FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-20
-# TOTAL: 14
-#
-# Complete Meituan / 美团 ecosystem rule set for Egern.
-# Covers Meituan, Dianping, Maoyan, internal/cloud domains and Keeta international.
-#
-# Base source: blackmatrix7/ios_rule_script MeiTuan
-# Additional ecosystem domains: dpfile.com, 51ping.com, dper.com,
-# mykeeta.com, keeta-global.com, keetainc.com.
+# UPDATED: 2026-09-25
+# TOTAL: 24
+# SOURCE: Horatio existing + v2fly/domain-list-community Meituan/DDMaicai
+# NOTE: Covers Meituan, Dianping, Keeta, Maoyan and Dingdong grocery ecosystem domains.
+
 domain_suffix_set:
-  - 51ping.com
-  - dianping.com
-  - dpfile.com
-  - dper.com
-  - keeta-global.com
-  - keetainc.com
-  - maoyan.com
-  - meituan.com
-  - meituan.net
-  - mtyun.com
-  - mykeeta.com
-  - neixin.cn
-  - sankuai.com
-  - zhenguo.com
+  - "100.me"
+  - "51ping.com"
+  - "baobaoaichi.cn"
+  - "ddcorp.net"
+  - "ddfresh.net"
+  - "ddimg.mobi"
+  - "ddmaicai.net"
+  - "ddmc.mobi"
+  - "dduser.mobi"
+  - "ddxq.mobi"
+  - "dianping.com"
+  - "dper.com"
+  - "dpfile.com"
+  - "imaicai.mobi"
+  - "keeta-global.com"
+  - "keetainc.com"
+  - "maoyan.com"
+  - "meituan.com"
+  - "meituan.net"
+  - "mtyun.com"
+  - "mykeeta.com"
+  - "neixin.cn"
+  - "sankuai.com"
+  - "zhenguo.com"
+
