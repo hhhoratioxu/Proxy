@@ -1,20 +1,23 @@
 # NAME: Weverse
 # AUTHOR: Horatio
 # FORMAT: Quantumult X Remote Filter
-# SOURCE: Loon/Rules/Weverse.lsr
-# UPDATED: 2026-09-23
-# TOTAL: 12
-# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+# UPDATED: 2026-09-25
+# TOTAL: 14
+# SOURCE: Horatio observed Weverse/NAVER endpoints + current public Weverse media host cross-checks
+# NOTE: Weverse, Weverse Shop, static/media CDN, NAVER APIs and live/resource delivery hosts.
+# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
-HOST-SUFFIX,weverse.io
-HOST-SUFFIX,weverseshop.io
-HOST-SUFFIX,wevpstatic.net
+HOST,apis.naver.com
+HOST,g-aegis-naver.akamaized.net
 HOST,global.apis.naver.com
 HOST,jp.apis.naver.com
-HOST,apis.naver.com
-HOST,weverse-rmcnmv.akamaized.net
-HOST,resources-rmcnmv.akamaized.net
-HOST,g-aegis-naver.akamaized.net
-HOST,weverse-live.pstatic.net
-HOST,ssl.pstatic.net
 HOST,nelo2-col.navercorp.com
+HOST,resources-rmcnmv.akamaized.net
+HOST,ssl.pstatic.net
+HOST,weverse-live.pstatic.net
+HOST,weverse-phinf.pstatic.net
+HOST,weverse-rmcnmv.akamaized.net
+HOST-SUFFIX,weverse.io
+HOST-SUFFIX,weversecdn.com
+HOST-SUFFIX,weverseshop.io
+HOST-SUFFIX,wevpstatic.net
