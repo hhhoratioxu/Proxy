@@ -220,16 +220,16 @@ async function chatgpt(ctx) {
   }
 }
 
-function routeLabel(ctx, item) {
+function endpointInfo(ctx, item) {
   const info = serviceInfo(item.name);
   const manualNode = env(ctx, info.nodeEnv, "");
-  if (manualNode) return manualNode;
+  if (manualNode) return { kind: "节点", value: manualNode };
   if (item.ip) {
     const suffix = item.ip.length > 21 ? `${item.ip.slice(0, 18)}…` : item.ip;
-    return `${item.region || "--"} · ${suffix}`;
+    return { kind: "出口", value: `${item.region || "--"} · ${suffix}` };
   }
-  if (item.region) return `${info.policy} · ${item.region}`;
-  return `${info.policy} · 按规则`;
+  if (item.region) return { kind: "出口", value: item.region };
+  return { kind: "出口", value: "按规则" };
 }
 
 function policyLabel(item) {
@@ -268,24 +268,25 @@ function statusBadge(item) {
     type: "stack",
     direction: "row",
     alignItems: "center",
-    gap: 4,
-    padding: [4, 7],
+    gap: 3,
+    padding: [3, 6],
     borderRadius: 999,
     backgroundColor: { light: "#F2F2F7", dark: "#2C2C2E" },
     children: [
-      { type: "image", src: `sf-symbol:${m.symbol}`, width: 11, height: 11, color: m.color },
-      { type: "text", text: m.label, font: { size: 10, weight: "semibold" }, textColor: m.color }
+      { type: "image", src: `sf-symbol:${m.symbol}`, width: 10, height: 10, color: m.color },
+      { type: "text", text: m.label, font: { size: 9.5, weight: "semibold" }, textColor: m.color }
     ]
   };
 }
 
 function card(ctx, item) {
   const info = serviceInfo(item.name);
+  const ep = endpointInfo(ctx, item);
   return {
     type: "stack",
     direction: "column",
     flex: 1,
-    gap: 8,
+    gap: 7,
     padding: 11,
     borderRadius: 17,
     backgroundColor: C.card,
@@ -306,39 +307,47 @@ function card(ctx, item) {
             font: { size: 14, weight: "bold" },
             textColor: C.label,
             flex: 1,
+            maxLines: 1
+          }
+        ]
+      },
+      {
+        type: "stack",
+        direction: "row",
+        alignItems: "center",
+        gap: 6,
+        children: [
+          {
+            type: "text",
+            text: `${item.region || "--"} · ${item.detail || meta(item.state).label}`,
+            font: { size: 10.5, weight: "medium" },
+            textColor: C.secondary,
+            flex: 1,
             maxLines: 1,
-            minScale: 0.7
+            minScale: 0.62
           },
           statusBadge(item)
         ]
       },
       {
-        type: "text",
-        text: `${item.region || "--"} · ${item.detail || meta(item.state).label}`,
-        font: { size: 11, weight: "medium" },
-        textColor: C.secondary,
-        maxLines: 1,
-        minScale: 0.65
-      },
-      {
         type: "stack",
         direction: "row",
         alignItems: "center",
-        gap: 4,
+        gap: 5,
         children: [
-          { type: "image", src: "sf-symbol:point.3.connected.trianglepath.dotted", width: 11, height: 11, color: C.blue },
-          { type: "text", text: `策略 ${policyLabel(item)}`, font: { size: 10, weight: "medium" }, textColor: C.secondary, maxLines: 1, minScale: 0.65 }
+          { type: "image", src: "sf-symbol:point.3.connected.trianglepath.dotted", width: 10, height: 10, color: C.blue },
+          { type: "text", text: `策略  ${policyLabel(item)}`, font: { size: 10, weight: "medium" }, textColor: C.secondary, maxLines: 1, minScale: 0.65 }
         ]
       },
       {
         type: "stack",
         direction: "row",
         alignItems: "center",
-        gap: 4,
+        gap: 5,
         children: [
-          { type: "image", src: "sf-symbol:network", width: 11, height: 11, color: C.blue },
-          { type: "text", text: `节点 ${routeLabel(ctx, item)}`, font: { size: 10, weight: "medium" }, textColor: C.label, flex: 1, maxLines: 1, minScale: 0.55 },
-          { type: "image", src: "sf-symbol:chevron.right", width: 8, height: 8, color: C.tertiary }
+          { type: "image", src: "sf-symbol:network", width: 10, height: 10, color: C.blue },
+          { type: "text", text: `${ep.kind}  ${ep.value}`, font: { size: 10, weight: "medium" }, textColor: C.label, flex: 1, maxLines: 1, minScale: 0.55 },
+          { type: "image", src: "sf-symbol:chevron.right", width: 7, height: 7, color: C.tertiary }
         ]
       }
     ]
@@ -348,6 +357,7 @@ function card(ctx, item) {
 function compactRow(ctx, item) {
   const info = serviceInfo(item.name);
   const m = meta(item.state);
+  const ep = endpointInfo(ctx, item);
   return {
     type: "stack",
     direction: "row",
@@ -363,7 +373,7 @@ function compactRow(ctx, item) {
         gap: 1,
         children: [
           { type: "text", text: info.title, font: { size: 11, weight: "semibold" }, textColor: C.label, maxLines: 1 },
-          { type: "text", text: `${item.region || "--"} · ${routeLabel(ctx, item)}`, font: { size: 8.5, weight: "medium" }, textColor: C.secondary, maxLines: 1, minScale: 0.55 }
+          { type: "text", text: `${item.region || "--"} · ${policyLabel(item)} · ${ep.value}`, font: { size: 8.5, weight: "medium" }, textColor: C.secondary, maxLines: 1, minScale: 0.5 }
         ]
       },
       { type: "image", src: `sf-symbol:${m.symbol}`, width: 13, height: 13, color: m.color }
@@ -373,8 +383,14 @@ function compactRow(ctx, item) {
 
 function summary(items) {
   const ok = items.filter(x => x.state === "ok").length;
-  const blocked = items.filter(x => x.state === "blocked").length;
-  return blocked ? `${ok}/4 可用` : `${ok}/4 已解锁`;
+  return `${ok} / 4 已解锁`;
+}
+
+function clockText() {
+  const d = new Date();
+  const h = String(d.getHours()).padStart(2, "0");
+  const m = String(d.getMinutes()).padStart(2, "0");
+  return `更新 ${h}:${m}`;
 }
 
 function widget(ctx, items) {
@@ -417,7 +433,7 @@ function widget(ctx, items) {
         gap: 1,
         children: [
           { type: "text", text: "Streaming", font: { size: 18, weight: "bold" }, textColor: C.label },
-          { type: "text", text: "按 Egern Rules 实际检测", font: { size: 10, weight: "medium" }, textColor: C.secondary }
+          { type: "text", text: "Netflix · Max · YouTube · ChatGPT", font: { size: 9.5, weight: "medium" }, textColor: C.secondary, maxLines: 1, minScale: 0.7 }
         ]
       },
       {
@@ -427,7 +443,7 @@ function widget(ctx, items) {
         gap: 1,
         children: [
           { type: "text", text: summary(items), font: { size: 11, weight: "semibold" }, textColor: C.blue },
-          { type: "date", date: new Date().toISOString(), format: "relative", font: { size: 9 }, textColor: C.tertiary }
+          { type: "text", text: clockText(), font: { size: 9 }, textColor: C.tertiary }
         ]
       }
     ]
@@ -470,7 +486,7 @@ export default async function(ctx) {
       subtitle: summary(items),
       body: items.map(x => {
         const m = meta(x.state);
-        return `${m.label} · ${serviceInfo(x.name).title} · ${x.region || "--"} · ${routeLabel(ctx, x)}`;
+        const ep = endpointInfo(ctx, x); return `${m.label} · ${serviceInfo(x.name).title} · ${x.region || "--"} · ${ep.kind} ${ep.value}`;
       }).join("\n"),
       action: { type: "openUrl", url: "egern:/connections" }
     });
