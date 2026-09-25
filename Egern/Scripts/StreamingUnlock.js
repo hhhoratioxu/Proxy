@@ -1,31 +1,477 @@
-const UA='Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1';
-const DISNEY='ZGlzbmV5JmJyb3dzZXImMS4wLjA.Cu56AgSfBTDag5NiRA81oLHkDZfu5L3CKadnefEAY84';
-const S={ok:['✅','解锁','#34C759'],partial:['⚠️','部分','#FF9F0A'],blocked:['❌','不可用','#FF453A'],error:['❓','失败','#8E8E93']};
-const N=['Netflix','Disney+','YouTube Premium','Prime Video','Spotify','Max','Paramount+','Peacock','BBC iPlayer','Abema','Bahamut Anime','KKTV'];
-function env(c,k,d=''){return String(c.env?.[k]??d).trim()}
-function opt(c,x={}){const o={...x,headers:{...(x.headers||{})}},t=parseInt(env(c,'TIMEOUT','8000'));o.timeout=o.timeout||(!isNaN(t)?t:8000);return o}
-function out(name,status,detail='',region=''){return{name,status,detail,region}}
-async function txt(r){try{return await r.text()}catch{return''}}
-function find(o,k){if(!o||typeof o!=='object')return; if(Object.prototype.hasOwnProperty.call(o,k))return o[k];for(const v of Object.values(o)){const x=find(v,k);if(x!==undefined)return x}}
-async function get(c,u,x={}){return c.http.get(u,opt(c,{headers:{'User-Agent':UA,...(x.headers||{})},credentials:'omit',...x}))}
-async function post(c,u,x={}){return c.http.post(u,opt(c,{headers:{'User-Agent':UA,...(x.headers||{})},credentials:'omit',...x}))}
-async function cfTrace(c,u){try{const r=await get(c,u),t=await txt(r),d={};t.split('\n').forEach(l=>{const i=l.indexOf('=');if(i>0)d[l.slice(0,i)]=l.slice(i+1).trim()});return{ip:d.ip||'',region:d.loc||''}}catch{return{ip:'',region:''}}}
-async function appleRoute(c){try{const r=await get(c,'https://gspe1-ssl.ls.apple.com/pep/gcc'),t=(await txt(r)).trim().toUpperCase(),reg=/^[A-Z]{2}$/.test(t)?t:'';return out('Apple',reg?'ok':'error',reg?'按 Apple 规则':'地区识别失败',reg)}catch{return out('Apple','error','请求失败')}}
-async function aiRoute(c){const x=await cfTrace(c,'https://chatgpt.com/cdn-cgi/trace');return out('AI',x.region?'ok':'error',x.ip||'地区识别失败',x.region)}
-async function netflix(c){try{const ids=['81280792','70143836'],a=await Promise.all(ids.map(async id=>{const r=await get(c,`https://www.netflix.com/title/${id}`,{redirect:'follow','headers':{'Accept-Language':'en-US,en;q=.9'}});const t=await txt(r);return{r,t,b:r.status===403||r.status===404||/Oh no!|not available in your (?:country|region)|unavailable/i.test(t)}}));const all=a.map(x=>x.t).join('\n'),m=all.match(/"countryCode":"([A-Z]{2})"/)||all.match(/"id":"([A-Z]{2})"[^\n]{0,200}?"countryName"/),reg=m?.[1]||'';if(a.every(x=>x.b))return out('Netflix','partial','仅自制剧 / 受限',reg);if(a.some(x=>x.r.status<400&&!x.b))return out('Netflix','ok','完整解锁',reg);return out('Netflix','blocked','测试片源不可用',reg)}catch{return out('Netflix','error','请求失败')}}
-async function disney(c){try{const h={'authorization':`Bearer ${DISNEY}`,'content-type':'application/json; charset=UTF-8'};let r=await post(c,'https://disney.api.edge.bamgrid.com/devices',{headers:h,body:JSON.stringify({deviceFamily:'browser',applicationRuntime:'chrome',deviceProfile:'windows',attributes:{}})}),t=await txt(r);if(r.status===403)return out('Disney+','blocked','IP 被拒绝');let j={};try{j=JSON.parse(t)}catch{}const a=find(j,'assertion')||(t.match(/"assertion"\s*:\s*"([^"]+)"/)||[])[1];if(!a)return out('Disney+','error','无设备令牌');const b=`grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange&latitude=0&longitude=0&platform=browser&subject_token=${encodeURIComponent(a)}&subject_token_type=urn%3Abamtech%3Aparams%3Aoauth%3Atoken-type%3Adevice`;r=await post(c,'https://disney.api.edge.bamgrid.com/token',{headers:{authorization:`Bearer ${DISNEY}`,'content-type':'application/x-www-form-urlencoded'},body:b});t=await txt(r);if(r.status===403||/forbidden-location/i.test(t))return out('Disney+','blocked','地区不可用');try{j=JSON.parse(t)}catch{j={}}const rt=find(j,'refresh_token');if(!rt)return out('Disney+','error','无刷新令牌');r=await post(c,'https://disney.api.edge.bamgrid.com/graph/v1/device/graphql',{headers:{authorization:DISNEY,'content-type':'application/json'},body:JSON.stringify({query:'mutation refreshToken($input: RefreshTokenInput!) { refreshToken(refreshToken: $input) { activeSession { sessionId } } }',variables:{input:{refreshToken:rt}}})});t=await txt(r);try{j=JSON.parse(t)}catch{j={}}const reg=find(j,'countryCode')||(t.match(/"countryCode"\s*:\s*"([A-Z]{2})"/)||[])[1]||'',ok=find(j,'inSupportedLocation');if(ok===true||ok==='true'||reg==='JP')return out('Disney+','ok','可用',reg);if(reg)return out('Disney+','partial','地区已识别',reg);return out('Disney+','error','无法识别地区')}catch{return out('Disney+','error','请求失败')}}
-async function youtube(c){try{const r=await get(c,'https://www.youtube.com/premium',{redirect:'follow',headers:{'Accept-Language':'en-US,en;q=.9'}}),t=await txt(r),reg=(t.match(/"INNERTUBE_CONTEXT_GL"\s*:\s*"([A-Z]{2})"/)||[])[1]||'';if(/google\.cn|Premium is not available in your country/i.test(t))return out('YouTube Premium','blocked','Premium 不可用',reg||'CN');if(r.status===200&&/YouTube Premium|ad-free/i.test(t))return out('YouTube Premium','ok','可订阅',reg);return out('YouTube Premium','error',`页面异常 ${r.status}`,reg)}catch{return out('YouTube Premium','error','请求失败')}}
-async function prime(c){try{const r=await get(c,'https://www.primevideo.com/',{redirect:'follow'}),t=await txt(r),reg=(t.match(/"currentTerritory"\s*:\s*"([A-Z]{2,3})"/)||[])[1]||'';if(/"isServiceRestricted"\s*:\s*true|not available in your location/i.test(t))return out('Prime Video','blocked','地区限制',reg);return reg?out('Prime Video','ok','可用',reg):out('Prime Video','error','无法识别地区')}catch{return out('Prime Video','error','请求失败')}}
-async function spotify(c){try{const b='birth_day=11&birth_month=11&birth_year=2000&collect_personal_info=undefined&displayname=EgernCheck&gender=male&iagree=1&key=a1e486e2729f46d6bb368d6b2bcda326&platform=www&send-email=0&thirdpartyemail=0',r=await post(c,'https://spclient.wg.spotify.com/signup/public/v1/account',{headers:{'content-type':'application/x-www-form-urlencoded','Accept-Language':'en'},body:b}),t=await txt(r);let j={};try{j=JSON.parse(t)}catch{}const reg=j.country||(t.match(/"country"\s*:\s*"([A-Z]{2})"/)||[])[1]||'';if(j.is_country_launched===false)return out('Spotify','blocked','未开放',reg);return reg?out('Spotify','ok','可用',reg):out('Spotify','error','无法识别地区')}catch{return out('Spotify','error','请求失败')}}
-async function max(c){try{const r=await get(c,'https://www.max.com/',{redirect:'follow'}),t=await txt(r),reg=(t.match(/"countryCode"\s*:\s*"([A-Z]{2})"/)||t.match(/countryCode%22%3A%22([A-Z]{2})/i)||[])[1]||'';if(/not available in your region|unavailable in your country/i.test(t))return out('Max','blocked','地区不可用',reg);return reg?out('Max','ok','可用',reg):r.status===200?out('Max','partial','页面可访问'):out('Max','error',`HTTP ${r.status}`)}catch{return out('Max','error','请求失败')}}
-async function redirects(c,u){for(let i=0;i<6;i++){const r=await get(c,u,{redirect:'manual'});if(![301,302,303,307,308].includes(r.status))return[r,u];const l=r.headers?.get?.('location');if(!l)return[r,u];u=new URL(l,u).href}throw Error('redirect')}
-async function paramount(c){try{const[r,u]=await redirects(c,'https://www.paramountplus.com/'),p=new URL(u),x=p.pathname.split('/').filter(Boolean)[0]||'',reg=x.length<=3?x.toUpperCase():'US';if(reg==='INTL'||/\/intl(?:\/|$)/i.test(p.pathname))return out('Paramount+','blocked','当前地区不可用');return r.status<400?out('Paramount+','ok','可用',reg):out('Paramount+','error',`HTTP ${r.status}`,reg)}catch{return out('Paramount+','error','请求失败')}}
-async function peacock(c){try{const[r,u]=await redirects(c,'https://www.peacocktv.com/'),t=await txt(r);if(/unavailable|not-available/i.test(u)||/not available in your (country|region)/i.test(t))return out('Peacock','blocked','仅美国可用');return r.status===200?out('Peacock','ok','可用','US'):out('Peacock','error',`HTTP ${r.status}`)}catch{return out('Peacock','error','请求失败')}}
-async function bbc(c){try{const r=await get(c,'https://open.live.bbc.co.uk/mediaselector/6/select/version/2.0/mediaset/pc/vpid/bbc_one_london/format/json/jsfunc/JS_callbacks0'),t=await txt(r);if(/geolocation/i.test(t))return out('BBC iPlayer','blocked','仅英国可用');if(/vs-hls-push-uk/i.test(t))return out('BBC iPlayer','ok','可播放','GB');return out('BBC iPlayer','error',`接口异常 ${r.status}`)}catch{return out('BBC iPlayer','error','请求失败')}}
-async function abema(c){try{const r=await get(c,'https://api.abema.io/v1/ip/check?device=android'),t=await txt(r),reg=(t.match(/"isoCountryCode"\s*:\s*"([A-Z]{2})"/)||[])[1]||'';return reg==='JP'?out('Abema','ok','日本完整内容','JP'):reg?out('Abema','partial','仅海外内容',reg):out('Abema','blocked','不可用')}catch{return out('Abema','error','请求失败')}}
-async function bahamut(c){try{let r=await get(c,'https://ani.gamer.com.tw/ajax/getdeviceid.php',{credentials:'include'}),t=await txt(r),j={};try{j=JSON.parse(t)}catch{}const d=j.deviceid||(t.match(/"deviceid"\s*:\s*"([^"]+)"/)||[])[1];if(!d)return out('Bahamut Anime','error','无 device id');r=await get(c,`https://ani.gamer.com.tw/ajax/token.php?adID=89422&sn=37783&device=${encodeURIComponent(d)}`,{credentials:'include'});t=await txt(r);return /animeSn/i.test(t)?out('Bahamut Anime','ok','可播放','TW'):out('Bahamut Anime','blocked','动画疯地区限制')}catch{return out('Bahamut Anime','error','请求失败')}}
-async function kktv(c){try{const r=await get(c,'https://api.kktv.me/v3/ipcheck'),t=await txt(r),reg=(t.match(/"country"\s*:\s*"([A-Z]{2})"/)||[])[1]||'';return reg==='TW'?out('KKTV','ok','台湾区可用','TW'):reg?out('KKTV','blocked','仅台湾可用',reg):out('KKTV','error',`接口异常 ${r.status}`)}catch{return out('KKTV','error','请求失败')}}
-function row(x,small=false){const s=S[x.status]||S.error,d=[x.detail,x.region?`(${x.region})`:''].filter(Boolean).join(' ');return{type:'stack',direction:'row',alignItems:'center',gap:5,children:[{type:'text',text:s[0],font:{size:small?10:12}},{type:'text',text:x.name,font:{size:small?10:12,weight:'semibold'},textColor:'#FFFFFF',flex:1,maxLines:1,minScale:.6},{type:'text',text:d||s[1],font:{size:small?9:11,weight:'medium'},textColor:s[2],textAlign:'right',flex:1,maxLines:1,minScale:.5}]}}
-function routeSummary(routes){return routes.map(x=>`${x.name} ${x.region||'?'}`).join(' · ')}
-function widget(c,routes,a){const f=c.widgetFamily||'systemLarge',n=a.reduce((z,x)=>(z[x.status]=(z[x.status]||0)+1,z),{}),sum=`✅ ${n.ok||0}  ⚠️ ${n.partial||0}  ❌ ${n.blocked||0}  ❓ ${n.error||0}`,rs=routeSummary(routes);if(f==='accessoryInline')return{type:'widget',children:[{type:'text',text:`流媒体 ${n.ok||0}/${a.length}`}]};if(f==='accessoryCircular')return{type:'widget',children:[{type:'text',text:`${n.ok||0}/${a.length}`,font:{size:'headline',weight:'bold'}}]};if(f==='accessoryRectangular')return{type:'widget',children:[{type:'text',text:'按 Egern 分流',font:{size:'headline',weight:'semibold'}},{type:'text',text:rs,font:{size:'caption1'}}]};const m=f==='systemSmall'?3:f==='systemMedium'?5:a.length,ch=[{type:'stack',direction:'row',children:[{type:'text',text:'流媒体解锁',font:{size:'headline',weight:'bold'},textColor:'#FFFFFF',flex:1},{type:'text',text:'Rules',font:{size:'caption1',weight:'semibold'},textColor:'#64D2FF'}]},{type:'text',text:rs,font:{size:'caption2',weight:'medium'},textColor:'#64D2FF',maxLines:1,minScale:.55},{type:'text',text:sum,font:{size:'caption2'},textColor:'#D1D1D6'},...a.slice(0,m).map(x=>row(x,f!=='systemLarge'&&f!=='systemExtraLarge'))];return{type:'widget',refreshAfter:new Date(Date.now()+1800000).toISOString(),backgroundGradient:{type:'linear',colors:['#0B1020','#111827','#0F172A'],startPoint:{x:0,y:0},endPoint:{x:1,y:1}},padding:f==='systemSmall'?12:14,gap:5,children:ch}}
-export default async function(ctx){const routeP=Promise.allSettled([appleRoute(ctx),aiRoute(ctx)]),jobs=[netflix(ctx),disney(ctx),youtube(ctx),prime(ctx),spotify(ctx),max(ctx),paramount(ctx),peacock(ctx),bbc(ctx),abema(ctx),bahamut(ctx),kktv(ctx)],r=await Promise.allSettled(jobs),a=r.map((x,i)=>x.status==='fulfilled'?x.value:out(N[i],'error','脚本异常')),rr=await routeP,routes=rr.map((x,i)=>x.status==='fulfilled'?x.value:out(i===0?'Apple':'AI','error','脚本异常')),sp=a.find(x=>x.name==='Spotify');routes.push(out('Spotify',sp?.region?'ok':'error','按 Spotify 规则',sp?.region||''));if(!ctx.widgetFamily&&ctx.notify){ctx.notify({title:'Egern 流媒体解锁查询',body:[`分流: ${routeSummary(routes)}`,...a.map(x=>`${S[x.status][0]} ${x.name}: ${x.detail}${x.region?` (${x.region})`:''}`)].join('\n')})}return widget(ctx,routes,a)}
+const UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1";
+
+const C = {
+  label: { light: "#000000", dark: "#FFFFFF" },
+  secondary: { light: "#6E6E73", dark: "#98989D" },
+  tertiary: { light: "#8E8E93", dark: "#8E8E93" },
+  bg: { light: "#F2F2F7", dark: "#000000" },
+  card: { light: "#FFFFFF", dark: "#1C1C1E" },
+  border: { light: "#D1D1D6", dark: "#38383A" },
+  green: "#34C759",
+  orange: "#FF9F0A",
+  red: "#FF453A",
+  blue: "#0A84FF",
+  gray: "#8E8E93",
+  netflix: "#E50914",
+  max: "#6C4BFF",
+  youtube: "#FF0000",
+  chatgpt: "#10A37F"
+};
+
+const SERVICE_ORDER = ["Netflix", "Max", "YouTube Premium", "ChatGPT"];
+
+function env(ctx, key, fallback = "") {
+  const v = ctx.env?.[key];
+  return String(v == null ? fallback : v).trim();
+}
+
+function timeout(ctx) {
+  const n = Number(env(ctx, "TIMEOUT", "8000"));
+  return Number.isFinite(n) && n > 0 ? n : 8000;
+}
+
+function req(ctx, extra = {}) {
+  return {
+    credentials: "omit",
+    timeout: timeout(ctx),
+    ...extra,
+    headers: {
+      "User-Agent": UA,
+      ...(extra.headers || {})
+    }
+  };
+}
+
+async function text(resp) {
+  try { return await resp.text(); } catch { return ""; }
+}
+
+async function get(ctx, url, extra = {}) {
+  return ctx.http.get(url, req(ctx, extra));
+}
+
+function result(name, state, detail = "", region = "", extra = {}) {
+  return { name, state, detail, region, ...extra };
+}
+
+function meta(state) {
+  if (state === "ok") return { label: "已解锁", color: C.green, symbol: "checkmark.circle.fill" };
+  if (state === "partial") return { label: "部分可用", color: C.orange, symbol: "exclamationmark.circle.fill" };
+  if (state === "blocked") return { label: "不可用", color: C.red, symbol: "xmark.circle.fill" };
+  return { label: "检测失败", color: C.gray, symbol: "questionmark.circle.fill" };
+}
+
+function serviceInfo(name) {
+  if (name === "Netflix") return {
+    title: "Netflix",
+    policy: "Netflix",
+    nodeEnv: "NETFLIX_NODE",
+    iconText: "N",
+    iconColor: C.netflix
+  };
+  if (name === "Max") return {
+    title: "Max",
+    policy: "HBOMAX",
+    nodeEnv: "MAX_NODE",
+    iconText: "max",
+    iconColor: C.max
+  };
+  if (name === "YouTube Premium") return {
+    title: "YouTube",
+    policy: "Google",
+    nodeEnv: "YOUTUBE_NODE",
+    iconText: "▶",
+    iconColor: C.youtube
+  };
+  return {
+    title: "ChatGPT",
+    policy: "AI",
+    nodeEnv: "CHATGPT_NODE",
+    iconText: "✦",
+    iconColor: C.chatgpt
+  };
+}
+
+async function cloudflareTrace(ctx, url) {
+  try {
+    const r = await get(ctx, url);
+    const t = await text(r);
+    const d = {};
+    t.split("\n").forEach(line => {
+      const i = line.indexOf("=");
+      if (i > 0) d[line.slice(0, i)] = line.slice(i + 1).trim();
+    });
+    const ip = d.ip || "";
+    let org = "";
+    if (ip && typeof ctx.lookupIP === "function") {
+      try { org = ctx.lookupIP(ip)?.organization || ""; } catch {}
+    }
+    return { ip, region: d.loc || "", org };
+  } catch {
+    return { ip: "", region: "", org: "" };
+  }
+}
+
+async function netflix(ctx) {
+  try {
+    const ids = ["81280792", "70143836"];
+    const checks = await Promise.all(ids.map(async id => {
+      const r = await get(ctx, `https://www.netflix.com/title/${id}`, {
+        redirect: "follow",
+        headers: { "Accept-Language": "en-US,en;q=0.9" }
+      });
+      const t = await text(r);
+      const blocked =
+        r.status === 403 ||
+        r.status === 404 ||
+        /Oh no!|not available in your (?:country|region)|unavailable/i.test(t);
+      return { r, t, blocked };
+    }));
+
+    const body = checks.map(x => x.t).join("\n");
+    const region =
+      (body.match(/"countryCode":"([A-Z]{2})"/) || [])[1] ||
+      (body.match(/"id":"([A-Z]{2})"[^\n]{0,200}?"countryName"/) || [])[1] ||
+      "";
+
+    if (checks.every(x => x.blocked)) {
+      return result("Netflix", "partial", "仅自制剧 / 受限", region);
+    }
+    if (checks.some(x => x.r.status < 400 && !x.blocked)) {
+      return result("Netflix", "ok", "完整片库", region);
+    }
+    return result("Netflix", "blocked", "测试片源不可用", region);
+  } catch {
+    return result("Netflix", "error", "请求失败");
+  }
+}
+
+async function maxCheck(ctx) {
+  try {
+    const r = await get(ctx, "https://www.max.com/", {
+      redirect: "follow",
+      headers: { "Accept-Language": "en-US,en;q=0.9" }
+    });
+    const t = await text(r);
+    const finalUrl = r.url || "https://www.max.com/";
+    const region =
+      (t.match(/"countryCode"\s*:\s*"([A-Z]{2})"/) || [])[1] ||
+      (t.match(/"currentTerritory"\s*:\s*"([A-Z]{2,3})"/) || [])[1] ||
+      (finalUrl.match(/\/([a-z]{2})(?:\/|$)/i) || [])[1]?.toUpperCase() ||
+      "";
+
+    if (/not available in your region|unavailable in your country|not available in your country/i.test(t)) {
+      return result("Max", "blocked", "地区不可用", region);
+    }
+    if (r.status >= 200 && r.status < 400) {
+      return result("Max", "ok", "可访问", region);
+    }
+    return result("Max", "error", `HTTP ${r.status}`, region);
+  } catch {
+    return result("Max", "error", "请求失败");
+  }
+}
+
+async function youtube(ctx) {
+  try {
+    const r = await get(ctx, "https://www.youtube.com/premium", {
+      redirect: "follow",
+      headers: { "Accept-Language": "en-US,en;q=0.9" }
+    });
+    const t = await text(r);
+    const region =
+      (t.match(/"INNERTUBE_CONTEXT_GL"\s*:\s*"([A-Z]{2})"/) || [])[1] ||
+      (t.match(/"gl"\s*:\s*"([A-Z]{2})"/) || [])[1] ||
+      "";
+
+    if (/google\.cn|Premium is not available in your country/i.test(t)) {
+      return result("YouTube Premium", "blocked", "Premium 不可用", region || "CN");
+    }
+    if (r.status === 200 && /YouTube Premium|ad-free/i.test(t)) {
+      return result("YouTube Premium", "ok", "Premium 可用", region);
+    }
+    return result("YouTube Premium", "partial", "页面可访问", region);
+  } catch {
+    return result("YouTube Premium", "error", "请求失败");
+  }
+}
+
+async function chatgpt(ctx) {
+  const trace = await cloudflareTrace(ctx, "https://chatgpt.com/cdn-cgi/trace");
+  try {
+    const r = await get(ctx, "https://chatgpt.com/", {
+      redirect: "follow",
+      headers: { "Accept-Language": "en-US,en;q=0.9" }
+    });
+    const t = await text(r);
+
+    if (/unsupported_country|not available in your country|country, territory, or region/i.test(t)) {
+      return result("ChatGPT", "blocked", "地区不可用", trace.region, trace);
+    }
+    if (r.status >= 200 && r.status < 400 && /ChatGPT|OpenAI/i.test(t)) {
+      return result("ChatGPT", "ok", "服务可用", trace.region, trace);
+    }
+    if (trace.region) {
+      return result("ChatGPT", "partial", "网络可达", trace.region, trace);
+    }
+    return result("ChatGPT", "error", "检测失败", "", trace);
+  } catch {
+    return result("ChatGPT", trace.region ? "partial" : "error", trace.region ? "网络可达" : "请求失败", trace.region, trace);
+  }
+}
+
+function routeLabel(ctx, item) {
+  const info = serviceInfo(item.name);
+  const manualNode = env(ctx, info.nodeEnv, "");
+  if (manualNode) return manualNode;
+  if (item.ip) {
+    const suffix = item.ip.length > 21 ? `${item.ip.slice(0, 18)}…` : item.ip;
+    return `${item.region || "--"} · ${suffix}`;
+  }
+  if (item.region) return `${info.policy} · ${item.region}`;
+  return `${info.policy} · 按规则`;
+}
+
+function policyLabel(item) {
+  return serviceInfo(item.name).policy;
+}
+
+function iconTile(item, compact = false) {
+  const info = serviceInfo(item.name);
+  return {
+    type: "stack",
+    direction: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: compact ? 28 : 34,
+    height: compact ? 28 : 34,
+    borderRadius: compact ? 7 : 9,
+    backgroundColor: info.iconColor,
+    children: [{
+      type: "text",
+      text: info.iconText,
+      font: { size: compact ? 14 : (item.name === "Max" ? 11 : 17), weight: "bold" },
+      textColor: "#FFFFFF",
+      textAlign: "center",
+      minScale: 0.6,
+      maxLines: 1
+    }]
+  };
+}
+
+function statusBadge(item) {
+  const m = meta(item.state);
+  return {
+    type: "stack",
+    direction: "row",
+    alignItems: "center",
+    gap: 4,
+    padding: [4, 7],
+    borderRadius: 999,
+    backgroundColor: { light: "#F2F2F7", dark: "#2C2C2E" },
+    children: [
+      { type: "image", src: `sf-symbol:${m.symbol}`, width: 11, height: 11, color: m.color },
+      { type: "text", text: m.label, font: { size: 10, weight: "semibold" }, textColor: m.color }
+    ]
+  };
+}
+
+function card(ctx, item) {
+  const info = serviceInfo(item.name);
+  return {
+    type: "stack",
+    direction: "vertical",
+    flex: 1,
+    gap: 8,
+    padding: 11,
+    borderRadius: 17,
+    backgroundColor: C.card,
+    borderWidth: 0.5,
+    borderColor: C.border,
+    url: "egern:/connections",
+    children: [
+      {
+        type: "stack",
+        direction: "row",
+        alignItems: "center",
+        gap: 8,
+        children: [
+          iconTile(item),
+          {
+            type: "text",
+            text: info.title,
+            font: { size: 14, weight: "bold" },
+            textColor: C.label,
+            flex: 1,
+            maxLines: 1,
+            minScale: 0.7
+          },
+          statusBadge(item)
+        ]
+      },
+      {
+        type: "text",
+        text: `${item.region || "--"} · ${item.detail || meta(item.state).label}`,
+        font: { size: 11, weight: "medium" },
+        textColor: C.secondary,
+        maxLines: 1,
+        minScale: 0.65
+      },
+      {
+        type: "stack",
+        direction: "row",
+        alignItems: "center",
+        gap: 4,
+        children: [
+          { type: "image", src: "sf-symbol:point.3.connected.trianglepath.dotted", width: 11, height: 11, color: C.blue },
+          { type: "text", text: `策略 ${policyLabel(item)}`, font: { size: 10, weight: "medium" }, textColor: C.secondary, maxLines: 1, minScale: 0.65 }
+        ]
+      },
+      {
+        type: "stack",
+        direction: "row",
+        alignItems: "center",
+        gap: 4,
+        children: [
+          { type: "image", src: "sf-symbol:network", width: 11, height: 11, color: C.blue },
+          { type: "text", text: `节点 ${routeLabel(ctx, item)}`, font: { size: 10, weight: "medium" }, textColor: C.label, flex: 1, maxLines: 1, minScale: 0.55 },
+          { type: "image", src: "sf-symbol:chevron.right", width: 8, height: 8, color: C.tertiary }
+        ]
+      }
+    ]
+  };
+}
+
+function compactRow(ctx, item) {
+  const info = serviceInfo(item.name);
+  const m = meta(item.state);
+  return {
+    type: "stack",
+    direction: "row",
+    alignItems: "center",
+    gap: 7,
+    url: "egern:/connections",
+    children: [
+      iconTile(item, true),
+      {
+        type: "stack",
+        direction: "vertical",
+        flex: 1,
+        gap: 1,
+        children: [
+          { type: "text", text: info.title, font: { size: 11, weight: "semibold" }, textColor: C.label, maxLines: 1 },
+          { type: "text", text: `${item.region || "--"} · ${routeLabel(ctx, item)}`, font: { size: 8.5, weight: "medium" }, textColor: C.secondary, maxLines: 1, minScale: 0.55 }
+        ]
+      },
+      { type: "image", src: `sf-symbol:${m.symbol}`, width: 13, height: 13, color: m.color }
+    ]
+  };
+}
+
+function summary(items) {
+  const ok = items.filter(x => x.state === "ok").length;
+  const blocked = items.filter(x => x.state === "blocked").length;
+  return blocked ? `${ok}/4 可用` : `${ok}/4 已解锁`;
+}
+
+function widget(ctx, items) {
+  const family = ctx.widgetFamily || "systemMedium";
+
+  if (family === "accessoryInline") {
+    return { type: "widget", children: [{ type: "text", text: `Streaming · ${summary(items)}` }] };
+  }
+
+  if (family === "accessoryCircular") {
+    const ok = items.filter(x => x.state === "ok").length;
+    return {
+      type: "widget",
+      children: [
+        { type: "image", src: "sf-symbol:play.tv.fill", width: 14, height: 14 },
+        { type: "text", text: `${ok}/4`, font: { size: "caption1", weight: "bold" } }
+      ]
+    };
+  }
+
+  if (family === "accessoryRectangular") {
+    return {
+      type: "widget",
+      children: [
+        { type: "text", text: "Streaming", font: { size: "headline", weight: "semibold" } },
+        { type: "text", text: items.map(x => `${serviceInfo(x.name).title} ${x.region || "--"}`).join(" · "), font: { size: "caption2" }, maxLines: 2 }
+      ]
+    };
+  }
+
+  const header = {
+    type: "stack",
+    direction: "row",
+    alignItems: "center",
+    children: [
+      {
+        type: "stack",
+        direction: "vertical",
+        flex: 1,
+        gap: 1,
+        children: [
+          { type: "text", text: "Streaming", font: { size: 18, weight: "bold" }, textColor: C.label },
+          { type: "text", text: "按 Egern Rules 实际检测", font: { size: 10, weight: "medium" }, textColor: C.secondary }
+        ]
+      },
+      {
+        type: "stack",
+        direction: "vertical",
+        alignItems: "end",
+        gap: 1,
+        children: [
+          { type: "text", text: summary(items), font: { size: 11, weight: "semibold" }, textColor: C.blue },
+          { type: "date", date: new Date().toISOString(), format: "relative", font: { size: 9 }, textColor: C.tertiary }
+        ]
+      }
+    ]
+  };
+
+  if (family === "systemSmall") {
+    return {
+      type: "widget",
+      backgroundColor: C.bg,
+      padding: 12,
+      gap: 8,
+      url: "egern:/connections",
+      children: [
+        header,
+        ...items.map(x => compactRow(ctx, x))
+      ]
+    };
+  }
+
+  const row1 = { type: "stack", direction: "row", gap: 8, children: [card(ctx, items[0]), card(ctx, items[1])] };
+  const row2 = { type: "stack", direction: "row", gap: 8, children: [card(ctx, items[2]), card(ctx, items[3])] };
+
+  return {
+    type: "widget",
+    backgroundColor: C.bg,
+    padding: 13,
+    gap: 9,
+    children: [header, row1, row2]
+  };
+}
+
+export default async function(ctx) {
+  const tasks = [netflix(ctx), maxCheck(ctx), youtube(ctx), chatgpt(ctx)];
+  const settled = await Promise.allSettled(tasks);
+  const items = settled.map((x, i) => x.status === "fulfilled" ? x.value : result(SERVICE_ORDER[i], "error", "脚本异常"));
+
+  if (!ctx.widgetFamily && typeof ctx.notify === "function") {
+    ctx.notify({
+      title: "Streaming Unlock",
+      subtitle: summary(items),
+      body: items.map(x => {
+        const m = meta(x.state);
+        return `${m.label} · ${serviceInfo(x.name).title} · ${x.region || "--"} · ${routeLabel(ctx, x)}`;
+      }).join("\n"),
+      action: { type: "openUrl", url: "egern:/connections" }
+    });
+  }
+
+  return widget(ctx, items);
+}
