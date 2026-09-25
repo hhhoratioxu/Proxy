@@ -11,7 +11,7 @@
   - 解锁状态
   - 服务识别地区
   - 对应 Egern 策略组
-  - 节点 / 出口信息
+  - 策略与出口信息（手动填写节点名时显示节点）
 - 点击任意服务卡片会打开 Egern **Connections**，可直接查看该请求实际使用的连接和节点
 
 ## 分流逻辑
@@ -34,8 +34,8 @@ Egern 当前公开的 JavaScript API 支持给请求指定 `policy`，但没有�
 因此本模块不会伪造节点名：
 
 - ChatGPT：可自动显示通过 AI 规则后的真实出口 IP + 地区
-- Netflix / Max / YouTube：显示各服务自己识别到的地区 + 对应策略
-- 点击卡片：直接进入 `egern:/connections` 查看真实节点
+- Netflix / Max / YouTube：显示各服务自己识别到的地区 + 对应策略；未手动填写节点名时，界面明确标为“出口”，不会把策略名冒充节点名
+- 点击卡片：直接进入 `egern:/connections` 查看真实节点；Widget 内无法从公开脚本 API 自动读取策略组最终选中的节点名称
 - 如果你希望 Widget 固定显示你的节点名字，可以在模块设置里填写 `NETFLIX_NODE` / `MAX_NODE` / `YOUTUBE_NODE` / `CHATGPT_NODE`
 - 这些字段**只负责显示，不会改变路由**
 
