@@ -1,14 +1,94 @@
 # NAME: NTP
 # AUTHOR: Horatio
 # FORMAT: Quantumult X Remote Filter
-# SOURCE: Egern/Rules/NTP.yaml
-# UPDATED: 2026-09-23
-# TOTAL: 6
-# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+# UPDATED: 2026-09-25
+# TOTAL: 85
+# SOURCE: Horatio existing + blackmatrix7 NTPService
+# NOTE: Comprehensive NTP/time-service routing set including Apple, Google, Microsoft, Cloudflare, Aliyun, Tencent and public pools.
+# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
-HOST-SUFFIX,pool.ntp.org
-HOST-SUFFIX,time.apple.com
-HOST-SUFFIX,time.google.com
-HOST-SUFFIX,time.cloudflare.com
-HOST-SUFFIX,time.windows.com
+HOST-SUFFIX,cn.ntp.org.cn
+HOST-SUFFIX,de.ntp.org.cn
+HOST-SUFFIX,edu.ntp.org.cn
+HOST-SUFFIX,hk.ntp.org.cn
+HOST-SUFFIX,ina.ntp.org.cn
+HOST-SUFFIX,jp.ntp.org.cn
+HOST-SUFFIX,kr.ntp.org.cn
+HOST-SUFFIX,ntp.aliyun.com
+HOST-SUFFIX,ntp.cloud.aliyuncs.com
 HOST-SUFFIX,ntp.org
+HOST-SUFFIX,ntp.sjtu.edu.cn
+HOST-SUFFIX,ntp.tencent.com
+HOST-SUFFIX,ntp1.aliyun.com
+HOST-SUFFIX,ntp1.cloud.aliyuncs.com
+HOST-SUFFIX,ntp10.cloud.aliyuncs.com
+HOST-SUFFIX,ntp11.cloud.aliyuncs.com
+HOST-SUFFIX,ntp12.cloud.aliyuncs.com
+HOST-SUFFIX,ntp2.aliyun.com
+HOST-SUFFIX,ntp2.cloud.aliyuncs.com
+HOST-SUFFIX,ntp3.aliyun.com
+HOST-SUFFIX,ntp3.cloud.aliyuncs.com
+HOST-SUFFIX,ntp4.aliyun.com
+HOST-SUFFIX,ntp4.cloud.aliyuncs.com
+HOST-SUFFIX,ntp5.aliyun.com
+HOST-SUFFIX,ntp5.cloud.aliyuncs.com
+HOST-SUFFIX,ntp6.aliyun.com
+HOST-SUFFIX,ntp6.cloud.aliyuncs.com
+HOST-SUFFIX,ntp7.aliyun.com
+HOST-SUFFIX,ntp7.cloud.aliyuncs.com
+HOST-SUFFIX,ntp8.cloud.aliyuncs.com
+HOST-SUFFIX,ntp9.cloud.aliyuncs.com
+HOST-SUFFIX,pool.ntp.org
+HOST-SUFFIX,s1a.time.edu.cn
+HOST-SUFFIX,s1b.time.edu.cn
+HOST-SUFFIX,s1c.time.edu.cn
+HOST-SUFFIX,s1d.time.edu.cn
+HOST-SUFFIX,s1e.time.edu.cn
+HOST-SUFFIX,s2a.time.edu.cn
+HOST-SUFFIX,s2b.time.edu.cn
+HOST-SUFFIX,s2c.time.edu.cn
+HOST-SUFFIX,s2d.time.edu.cn
+HOST-SUFFIX,s2e.time.edu.cn
+HOST-SUFFIX,s2f.time.edu.cn
+HOST-SUFFIX,s2g.time.edu.cn
+HOST-SUFFIX,s2h.time.edu.cn
+HOST-SUFFIX,s2k.time.edu.cn
+HOST-SUFFIX,s2m.time.edu.cn
+HOST-SUFFIX,sgp.ntp.org.cn
+HOST-SUFFIX,time.apple.com
+HOST-SUFFIX,time.asia.apple.com
+HOST-SUFFIX,time.cloudflare.com
+HOST-SUFFIX,time.google.com
+HOST-SUFFIX,time.nist.gov
+HOST-SUFFIX,time.pool.aliyun.com
+HOST-SUFFIX,time.windows.com
+HOST-SUFFIX,time1.aliyun.com
+HOST-SUFFIX,time1.apple.com
+HOST-SUFFIX,time1.cloud.tencent.com
+HOST-SUFFIX,time1.google.com
+HOST-SUFFIX,time1.tencentyun.com
+HOST-SUFFIX,time2.aliyun.com
+HOST-SUFFIX,time2.apple.com
+HOST-SUFFIX,time2.cloud.tencent.com
+HOST-SUFFIX,time2.google.com
+HOST-SUFFIX,time2.tencentyun.com
+HOST-SUFFIX,time3.aliyun.com
+HOST-SUFFIX,time3.apple.com
+HOST-SUFFIX,time3.cloud.tencent.com
+HOST-SUFFIX,time3.google.com
+HOST-SUFFIX,time3.tencentyun.com
+HOST-SUFFIX,time4.aliyun.com
+HOST-SUFFIX,time4.apple.com
+HOST-SUFFIX,time4.cloud.tencent.com
+HOST-SUFFIX,time4.google.com
+HOST-SUFFIX,time4.tencentyun.com
+HOST-SUFFIX,time5.aliyun.com
+HOST-SUFFIX,time5.apple.com
+HOST-SUFFIX,time5.cloud.tencent.com
+HOST-SUFFIX,time5.tencentyun.com
+HOST-SUFFIX,time6.aliyun.com
+HOST-SUFFIX,time6.apple.com
+HOST-SUFFIX,time7.aliyun.com
+HOST-SUFFIX,time7.apple.com
+HOST-SUFFIX,tw.ntp.org.cn
+HOST-SUFFIX,us.ntp.org.cn
