@@ -1,11 +1,17 @@
 # NAME: GitHub
 # AUTHOR: Horatio
 # FORMAT: Quantumult X Remote Filter
-# SOURCE: Loon/Rules/GitHub.lsr
-# UPDATED: 2026-09-23
-# TOTAL: 58
-# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+# UPDATED: 2026-09-25
+# TOTAL: 64
+# SOURCE: Horatio existing + v2fly/domain-list-community (GitHub, Copilot, npm)
+# NOTE: Covers GitHub web/API/assets/releases/Actions/Container Registry/Copilot and GitHub-owned npm services.
+# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
+HOST,copilot-proxy.githubusercontent.com
+HOST,copilot-telemetry-service.githubusercontent.com
+HOST,copilot-telemetry.githubusercontent.com
+HOST,copilot-workspace.githubnext.com
+HOST,copilotprodattachments.blob.core.windows.net
 HOST,github-api.arkoselabs.com
 HOST,github-cloud.s3.amazonaws.com
 HOST,github-production-release-asset-2e65be.s3.amazonaws.com
@@ -15,14 +21,6 @@ HOST,github-production-upload-manifest-file-7fdce7.s3.amazonaws.com
 HOST,github-production-user-asset-6210df.s3.amazonaws.com
 HOST,productionresultssa0.blob.core.windows.net
 HOST,productionresultssa1.blob.core.windows.net
-HOST,productionresultssa2.blob.core.windows.net
-HOST,productionresultssa3.blob.core.windows.net
-HOST,productionresultssa4.blob.core.windows.net
-HOST,productionresultssa5.blob.core.windows.net
-HOST,productionresultssa6.blob.core.windows.net
-HOST,productionresultssa7.blob.core.windows.net
-HOST,productionresultssa8.blob.core.windows.net
-HOST,productionresultssa9.blob.core.windows.net
 HOST,productionresultssa10.blob.core.windows.net
 HOST,productionresultssa11.blob.core.windows.net
 HOST,productionresultssa12.blob.core.windows.net
@@ -33,10 +31,16 @@ HOST,productionresultssa16.blob.core.windows.net
 HOST,productionresultssa17.blob.core.windows.net
 HOST,productionresultssa18.blob.core.windows.net
 HOST,productionresultssa19.blob.core.windows.net
-HOST,copilot-proxy.githubusercontent.com
-HOST,copilot-workspace.githubnext.com
-HOST,copilotprodattachments.blob.core.windows.net
+HOST,productionresultssa2.blob.core.windows.net
+HOST,productionresultssa3.blob.core.windows.net
+HOST,productionresultssa4.blob.core.windows.net
+HOST,productionresultssa5.blob.core.windows.net
+HOST,productionresultssa6.blob.core.windows.net
+HOST,productionresultssa7.blob.core.windows.net
+HOST,productionresultssa8.blob.core.windows.net
+HOST,productionresultssa9.blob.core.windows.net
 HOST-SUFFIX,atom.io
+HOST-SUFFIX,collector.github.com
 HOST-SUFFIX,dependabot.com
 HOST-SUFFIX,gh.io
 HOST-SUFFIX,ghcr.io
@@ -60,6 +64,9 @@ HOST-SUFFIX,githubsupport.com
 HOST-SUFFIX,githubuniverse.com
 HOST-SUFFIX,githubusercontent.com
 HOST-SUFFIX,myoctocat.com
+HOST-SUFFIX,npm.community
+HOST-SUFFIX,npmjs.com
+HOST-SUFFIX,npmjs.org
 HOST-SUFFIX,octocaptcha.com
 HOST-SUFFIX,opensource.guide
 HOST-SUFFIX,repo.new
