@@ -1,10 +1,10 @@
 # NAME: Bilibili
 # AUTHOR: Horatio
 # FORMAT: Quantumult X Remote Filter
-# SOURCE: Egern/Rules/Bilibili.yaml
-# UPDATED: 2026-09-23
-# TOTAL: 127
-# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+# UPDATED: 2026-09-25
+# TOTAL: 133
+# SOURCE: Horatio existing + v2fly/domain-list-community (Bilibili/CDN/Game)
+# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
 HOST,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com
 HOST,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com
@@ -59,6 +59,7 @@ HOST,p-bstarstatic.akamaized.net
 HOST,p.bstarstatic.com
 HOST,upos-bstar-mirrorakam.akamaized.net
 HOST,upos-bstar1-mirrorakam.akamaized.net
+HOST,upos-hz-mirrorakam.akamaized.net
 HOST-SUFFIX,acg.tv
 HOST-SUFFIX,acgvideo.com
 HOST-SUFFIX,animetamashi.cn
@@ -91,6 +92,7 @@ HOST-SUFFIX,bilicdn2.com
 HOST-SUFFIX,bilicdn3.com
 HOST-SUFFIX,bilicdn4.com
 HOST-SUFFIX,bilicdn5.com
+HOST-SUFFIX,bilicomic.com
 HOST-SUFFIX,bilicomics.com
 HOST-SUFFIX,biligame.cn
 HOST-SUFFIX,biligame.co
@@ -112,15 +114,23 @@ HOST-SUFFIX,hdslb.com.w.kunlunhuf.com
 HOST-SUFFIX,hdslb.com.w.kunlunpi.com
 HOST-SUFFIX,hdslb.net
 HOST-SUFFIX,hdslb.org
+HOST-SUFFIX,huasheng.cn
 HOST-SUFFIX,im9.com
+HOST-SUFFIX,maoer.com
 HOST-SUFFIX,maoercdn.com
 HOST-SUFFIX,mcbbs.net
 HOST-SUFFIX,mincdn.com
+HOST-SUFFIX,missevan.com
 HOST-SUFFIX,sharejoytech.com
 HOST-SUFFIX,smtcdns.net
+HOST-SUFFIX,updream.cn
 HOST-SUFFIX,upos-hz-mirrorakam.akamaized.net
 HOST-SUFFIX,uposdash-302-bilivideo.yfcdn.net
 HOST-SUFFIX,yo9.com
+USER-AGENT,*bili*
+USER-AGENT,bili-inter*
+USER-AGENT,bili*
+USER-AGENT,Bilibili*
 IP-CIDR,106.75.74.76/32
 IP-CIDR,111.206.25.147/32
 IP-CIDR,119.3.238.64/32
@@ -129,7 +139,3 @@ IP-CIDR,120.92.113.99/32
 IP-CIDR,120.92.153.217/32
 IP-CIDR,134.175.207.130/32
 IP-CIDR,203.107.1.0/24
-USER-AGENT,*bili*
-USER-AGENT,Bilibili*
-USER-AGENT,bili*
-USER-AGENT,bili-inter*
