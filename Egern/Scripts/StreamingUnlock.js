@@ -1,4 +1,4 @@
-const UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1";
+const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36";
 
 const C = {
   label: { light: "#000000", dark: "#FFFFFF" },
@@ -44,6 +44,16 @@ function req(ctx, extra = {}) {
 
 async function text(resp) {
   try { return await resp.text(); } catch { return ""; }
+}
+
+function header(resp, name) {
+  try {
+    if (resp?.headers?.get) return resp.headers.get(name) || "";
+    const h = resp?.headers || {};
+    return h[name] || h[name.toLowerCase()] || h[name.toUpperCase()] || "";
+  } catch {
+    return "";
+  }
 }
 
 async function get(ctx, url, extra = {}) {
@@ -118,29 +128,37 @@ async function netflix(ctx) {
     const checks = await Promise.all(ids.map(async id => {
       const r = await get(ctx, `https://www.netflix.com/title/${id}`, {
         redirect: "follow",
-        headers: { "Accept-Language": "en-US,en;q=0.9" }
+        headers: {
+          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+          "Accept-Language": "en-US,en;q=0.9",
+          "Upgrade-Insecure-Requests": "1"
+        }
       });
       const t = await text(r);
-      const blocked =
-        r.status === 403 ||
-        r.status === 404 ||
-        /Oh no!|not available in your (?:country|region)|unavailable/i.test(t);
-      return { r, t, blocked };
+      if (!t) return { networkError: true, blocked: false, t: "", status: r.status };
+      const blocked = /Oh no!/i.test(t);
+      return { networkError: false, blocked, t, status: r.status };
     }));
+
+    if (checks.some(x => x.networkError)) {
+      return result("Netflix", "error", "网络请求失败");
+    }
 
     const body = checks.map(x => x.t).join("\n");
     const region =
+      (body.match(/"countryCode"\s*:\s*"([A-Z]{2})"/) || [])[1] ||
       (body.match(/"countryCode":"([A-Z]{2})"/) || [])[1] ||
-      (body.match(/"id":"([A-Z]{2})"[^\n]{0,200}?"countryName"/) || [])[1] ||
       "";
 
     if (checks.every(x => x.blocked)) {
-      return result("Netflix", "partial", "仅自制剧 / 受限", region);
+      return result("Netflix", "partial", "仅自制剧", region);
     }
-    if (checks.some(x => x.r.status < 400 && !x.blocked)) {
+
+    if (checks.some(x => !x.blocked && x.status >= 200 && x.status < 400)) {
       return result("Netflix", "ok", "完整片库", region);
     }
-    return result("Netflix", "blocked", "测试片源不可用", region);
+
+    return result("Netflix", "error", "页面状态异常", region);
   } catch {
     return result("Netflix", "error", "请求失败");
   }
@@ -150,23 +168,38 @@ async function maxCheck(ctx) {
   try {
     const r = await get(ctx, "https://www.max.com/", {
       redirect: "follow",
-      headers: { "Accept-Language": "en-US,en;q=0.9" }
+      headers: {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9"
+      }
     });
+
     const t = await text(r);
-    const finalUrl = r.url || "https://www.max.com/";
+    if (!t) return result("Max", "error", "网络请求失败");
+
+    const cookie = header(r, "set-cookie");
+    const location = header(r, "location");
+    const raw = `${cookie}\n${location}\n${t}`;
+
     const region =
-      (t.match(/"countryCode"\s*:\s*"([A-Z]{2})"/) || [])[1] ||
-      (t.match(/"currentTerritory"\s*:\s*"([A-Z]{2,3})"/) || [])[1] ||
-      (finalUrl.match(/\/([a-z]{2})(?:\/|$)/i) || [])[1]?.toUpperCase() ||
+      (raw.match(/countryCode=([A-Z]{2})/) || [])[1] ||
+      (raw.match(/"countryCode"\s*:\s*"([A-Z]{2})"/) || [])[1] ||
       "";
 
-    if (/not available in your region|unavailable in your country|not available in your country/i.test(t)) {
-      return result("Max", "blocked", "地区不可用", region);
+    if (!region) {
+      return result("Max", "error", "未识别地区");
     }
-    if (r.status >= 200 && r.status < 400) {
-      return result("Max", "ok", "可访问", region);
+
+    const available = new Set(["US"]);
+    const re = /"url"\s*:\s*"\/([a-z]{2})\/[a-z]{2}"/g;
+    let m;
+    while ((m = re.exec(t)) !== null) available.add(m[1].toUpperCase());
+
+    if (available.has(region)) {
+      return result("Max", "ok", "完整解锁", region);
     }
-    return result("Max", "error", `HTTP ${r.status}`, region);
+
+    return result("Max", "blocked", "地区不支持", region);
   } catch {
     return result("Max", "error", "请求失败");
   }
@@ -174,23 +207,35 @@ async function maxCheck(ctx) {
 
 async function youtube(ctx) {
   try {
+    const ytCookie = "VISITOR_PRIVACY_METADATA=CgJERRIEEgAgYQ%3D%3D; PREF=f7=4000";
     const r = await get(ctx, "https://www.youtube.com/premium", {
       redirect: "follow",
-      headers: { "Accept-Language": "en-US,en;q=0.9" }
+      headers: {
+        "Accept-Language": "en-US,en;q=0.9",
+        "Cookie": ytCookie
+      }
     });
     const t = await text(r);
+
+    if (!t) return result("YouTube Premium", "error", "网络请求失败");
+
+    if (/www\.google\.cn/i.test(t)) {
+      return result("YouTube Premium", "blocked", "Premium 不可用", "CN");
+    }
+
     const region =
-      (t.match(/"INNERTUBE_CONTEXT_GL"\s*:\s*"([A-Z]{2})"/) || [])[1] ||
-      (t.match(/"gl"\s*:\s*"([A-Z]{2})"/) || [])[1] ||
+      (t.match(/"INNERTUBE_CONTEXT_GL"\s*:\s*"([^"]+)"/) || [])[1] ||
       "";
 
-    if (/google\.cn|Premium is not available in your country/i.test(t)) {
-      return result("YouTube Premium", "blocked", "Premium 不可用", region || "CN");
+    if (/Premium is not available in your country/i.test(t)) {
+      return result("YouTube Premium", "blocked", "Premium 不可用", region);
     }
-    if (r.status === 200 && /YouTube Premium|ad-free/i.test(t)) {
-      return result("YouTube Premium", "ok", "Premium 可用", region);
+
+    if (/ad-free/i.test(t)) {
+      return result("YouTube Premium", "ok", "Premium 可用", region || "UNKNOWN");
     }
-    return result("YouTube Premium", "partial", "页面可访问", region);
+
+    return result("YouTube Premium", "error", "页面特征异常", region);
   } catch {
     return result("YouTube Premium", "error", "请求失败");
   }
@@ -198,25 +243,54 @@ async function youtube(ctx) {
 
 async function chatgpt(ctx) {
   const trace = await cloudflareTrace(ctx, "https://chatgpt.com/cdn-cgi/trace");
-  try {
-    const r = await get(ctx, "https://chatgpt.com/", {
-      redirect: "follow",
-      headers: { "Accept-Language": "en-US,en;q=0.9" }
-    });
-    const t = await text(r);
 
-    if (/unsupported_country|not available in your country|country, territory, or region/i.test(t)) {
-      return result("ChatGPT", "blocked", "地区不可用", trace.region, trace);
+  try {
+    const [apiResp, iosResp] = await Promise.all([
+      get(ctx, "https://api.openai.com/compliance/cookie_requirements", {
+        headers: {
+          "Accept": "*/*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "Authorization": "Bearer null",
+          "Content-Type": "application/json",
+          "Origin": "https://platform.openai.com",
+          "Referer": "https://platform.openai.com/"
+        }
+      }),
+      get(ctx, "https://ios.chat.openai.com/", {
+        redirect: "follow",
+        headers: {
+          "Accept": "*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+          "Accept-Language": "en-US,en;q=0.9",
+          "Upgrade-Insecure-Requests": "1"
+        }
+      })
+    ]);
+
+    const apiText = await text(apiResp);
+    const iosText = await text(iosResp);
+
+    if (!apiText || !iosText) {
+      return result("ChatGPT", "error", "检测接口无响应", trace.region, trace);
     }
-    if (r.status >= 200 && r.status < 400 && /ChatGPT|OpenAI/i.test(t)) {
-      return result("ChatGPT", "ok", "服务可用", trace.region, trace);
+
+    const webBlocked = /unsupported_country/i.test(apiText);
+    const appBlocked = /VPN/i.test(iosText);
+
+    if (!webBlocked && !appBlocked) {
+      return result("ChatGPT", "ok", "Web + App 可用", trace.region, trace);
     }
-    if (trace.region) {
-      return result("ChatGPT", "partial", "网络可达", trace.region, trace);
+
+    if (!webBlocked && appBlocked) {
+      return result("ChatGPT", "partial", "仅 Web 可用", trace.region, trace);
     }
-    return result("ChatGPT", "error", "检测失败", "", trace);
+
+    if (webBlocked && !appBlocked) {
+      return result("ChatGPT", "partial", "仅 App 可用", trace.region, trace);
+    }
+
+    return result("ChatGPT", "blocked", "Web + App 不可用", trace.region, trace);
   } catch {
-    return result("ChatGPT", trace.region ? "partial" : "error", trace.region ? "网络可达" : "请求失败", trace.region, trace);
+    return result("ChatGPT", "error", "请求失败", trace.region, trace);
   }
 }
 
