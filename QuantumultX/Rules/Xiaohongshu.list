@@ -1,20 +1,39 @@
-# NAME: Xiaohongshu
+# NAME: Xiaohongshu / REDnote
 # AUTHOR: Horatio
 # FORMAT: Quantumult X Remote Filter
-# SOURCE: Egern/Rules/Xiaohongshu.yaml
-# UPDATED: 2026-09-23
-# TOTAL: 12
-# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+# UPDATED: 2026-09-25
+# TOTAL: 29
+# SOURCE: Horatio existing + v2fly current REDnote domains + Xiaohongshu/行吟备案域名 cross-check
+# NOTE: Covers Xiaohongshu/REDnote app/web/CDN/short-link/legacy and related first-party domains.
+# NOTE: AskDiandian AI domains stay in the separate AI rule to avoid policy overlap.
+# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
+HOST-SUFFIX,cdnxhs.com
 HOST-SUFFIX,fengkongcloud.com
+HOST-SUFFIX,iselect.red
+HOST-SUFFIX,redelight.biz
+HOST-SUFFIX,redelight.cn
+HOST-SUFFIX,redelight.com.cn
+HOST-SUFFIX,redelight.info
 HOST-SUFFIX,rednote.com
+HOST-SUFFIX,rednote.com.my
+HOST-SUFFIX,rednotecdn.com
+HOST-SUFFIX,redselect.com.cn
+HOST-SUFFIX,rl.ink
+HOST-SUFFIX,rnote.com
+HOST-SUFFIX,xhs.cn
 HOST-SUFFIX,xhscdn.com
 HOST-SUFFIX,xhscdn.net
-HOST-SUFFIX,xhs.cn
 HOST-SUFFIX,xhslink.cn
 HOST-SUFFIX,xhslink.com
+HOST-SUFFIX,xhsrcdn.com
 HOST-SUFFIX,xhsurl.cn
 HOST-SUFFIX,xhsurl.com
 HOST-SUFFIX,xiaohongshu.com
 HOST-SUFFIX,xiaohongshu.net
 HOST-SUFFIX,xingin.net
+HOST-SUFFIX,xingludalogistics.com
+HOST-SUFFIX,yuukoo.biz
+HOST-SUFFIX,yuukoo.com.cn
+HOST-SUFFIX,yuukoo.net
+HOST-SUFFIX,yuukoo.red
