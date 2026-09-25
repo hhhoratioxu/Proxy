@@ -1,5 +1,5 @@
 name: "Streaming Unlock"
-description: "iOS 原生风格 Egern 流媒体解锁小组件，仅检测 Netflix、Max、YouTube Premium、ChatGPT；自动遵循现有分流规则，并显示策略、地区与节点/出口信息。"
+description: "iOS 原生风格 Egern 严格流媒体解锁检测：Netflix、Max、YouTube Premium、ChatGPT。自动遵循现有分流规则；无法确认时不会误报已解锁。"
 author: "Horatio Xu"
 homepage: "https://github.com/hhhoratioxu/Proxy"
 manual: "https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Modules/StreamingUnlock.md"
