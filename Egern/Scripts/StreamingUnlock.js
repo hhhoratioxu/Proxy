@@ -242,20 +242,23 @@ function iconTile(item, compact = false) {
     type: "stack",
     direction: "row",
     alignItems: "center",
-    justifyContent: "center",
     width: compact ? 28 : 34,
     height: compact ? 28 : 34,
     borderRadius: compact ? 7 : 9,
     backgroundColor: info.iconColor,
-    children: [{
-      type: "text",
-      text: info.iconText,
-      font: { size: compact ? 14 : (item.name === "Max" ? 11 : 17), weight: "bold" },
-      textColor: "#FFFFFF",
-      textAlign: "center",
-      minScale: 0.6,
-      maxLines: 1
-    }]
+    children: [
+      { type: "spacer" },
+      {
+        type: "text",
+        text: info.iconText,
+        font: { size: compact ? 14 : (item.name === "Max" ? 11 : 17), weight: "bold" },
+        textColor: "#FFFFFF",
+        textAlign: "center",
+        minScale: 0.6,
+        maxLines: 1
+      },
+      { type: "spacer" }
+    ]
   };
 }
 
@@ -280,7 +283,7 @@ function card(ctx, item) {
   const info = serviceInfo(item.name);
   return {
     type: "stack",
-    direction: "vertical",
+    direction: "column",
     flex: 1,
     gap: 8,
     padding: 11,
@@ -355,7 +358,7 @@ function compactRow(ctx, item) {
       iconTile(item, true),
       {
         type: "stack",
-        direction: "vertical",
+        direction: "column",
         flex: 1,
         gap: 1,
         children: [
@@ -409,7 +412,7 @@ function widget(ctx, items) {
     children: [
       {
         type: "stack",
-        direction: "vertical",
+        direction: "column",
         flex: 1,
         gap: 1,
         children: [
@@ -419,7 +422,7 @@ function widget(ctx, items) {
       },
       {
         type: "stack",
-        direction: "vertical",
+        direction: "column",
         alignItems: "end",
         gap: 1,
         children: [
