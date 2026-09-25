@@ -1,26 +1,21 @@
 # NAME: Spotify
 # AUTHOR: Horatio
 # FORMAT: Loon Rule Set
-# UPDATED: 2026-09-21
-# TOTAL: 28
-#
-# Covers Spotify app/web, APIs, audio/media CDN, short links,
-# marketing/corporate domains and known Spotify delivery endpoints.
-#
-# Sources cross-checked against blackmatrix7/ios_rule_script,
-# Repcz/Tool and v2fly/domain-list-community.
+# UPDATED: 2026-09-25
+# TOTAL: 33
+# SOURCE: Horatio existing + blackmatrix7 Spotify + v2fly cross-check
+# NOTE: App/web/API/media/CDN and known Spotify endpoint coverage.
 
-# Exact Spotify delivery endpoints
+DOMAIN,audio4-ak-spotify-com.akamaized.net
 DOMAIN,cdn-spotify-experiments.conductrics.com
+DOMAIN,heads-ak-spotify-com.akamaized.net
 DOMAIN,spotify.com.edgesuite.net
 DOMAIN,spotify.map.fastly.net
 DOMAIN,spotify.map.fastlylb.net
-
-# Spotify keyword coverage
 DOMAIN-KEYWORD,spotify
-
-# Spotify first-party / CDN domains
+DOMAIN-SUFFIX,audio-ak-spotify-com.akamaized.net
 DOMAIN-SUFFIX,byspotify.com
+DOMAIN-SUFFIX,heads4-ak-spotify-com.akamaized.net
 DOMAIN-SUFFIX,lifeatspotify.com
 DOMAIN-SUFFIX,pscdn.co
 DOMAIN-SUFFIX,scdn.co
@@ -41,9 +36,6 @@ DOMAIN-SUFFIX,spotifyjobs.com
 DOMAIN-SUFFIX,spotifynewsroom.jp
 DOMAIN-SUFFIX,spotilocal.com
 DOMAIN-SUFFIX,tospotify.com
-
-# Spotify app user agent
 USER-AGENT,Spotify*
-
-# Known Spotify endpoint
+IP-CIDR,104.154.127.126/32,no-resolve
 IP-CIDR,35.186.224.47/32,no-resolve
