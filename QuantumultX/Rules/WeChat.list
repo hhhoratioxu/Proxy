@@ -1,13 +1,14 @@
-# NAME: WeChat
+# NAME: Weixin + WeChat
 # AUTHOR: Horatio
 # FORMAT: Quantumult X Remote Filter
-# SOURCE: Loon/Rules/WeChat.lsr
-# UPDATED: 2026-09-23
-# TOTAL: 333
-# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+# UPDATED: 2026-09-25
+# TOTAL: 334
+# SOURCE: Horatio comprehensive rules + blackmatrix7 WeChat cross-check
+# NOTE: Mainland Weixin and international WeChat domains, direct-IP patterns, IPv4/IPv6, ASN and user agents.
+# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
-HOST,btrace.qq.com
 HOST,apd-pcdnwxlogin.teg.tencent-cloud.net
+HOST,btrace.qq.com
 HOST,dldir1.qq.com
 HOST,slife.xy-asia.com
 HOST,soup.v.qq.com
@@ -269,6 +270,8 @@ HOST-SUFFIX,wx.qq.com
 HOST-SUFFIX,wxapp.tc.qq.com
 HOST-SUFFIX,wxs.qq.com
 HOST-SUFFIX,yun-hl.3g.qq.com
+USER-AGENT,MicroMessenger*
+USER-AGENT,WeChat*
 IP-CIDR,111.30.160.0/20
 IP-CIDR,112.53.11.0/24
 IP-CIDR,112.53.20.0/24
@@ -305,8 +308,8 @@ IP6-CIDR,2409:8c34:d00:200::/60
 IP6-CIDR,2409:8c38:80:150::/72
 IP6-CIDR,2409:8c50:2400::/60
 IP6-CIDR,2409:8c50:a00:2122::/72
-IP6-CIDR,2409:8c54:1003:1019::/112
 IP6-CIDR,2409:8c54:1003:10::/112
+IP6-CIDR,2409:8c54:1003:1019::/112
 IP6-CIDR,2409:8c54:1050:10::/112
 IP6-CIDR,2409:8c54:1801:10::/60
 IP6-CIDR,2409:8c54:1821:70::/60
@@ -337,5 +340,4 @@ IP6-CIDR,240e:f7:a070:100::/60
 IP6-CIDR,240e:ff:9018:100::/60
 IP6-CIDR,240e:ff:f100::/44
 IP-ASN,132203
-USER-AGENT,MicroMessenger*
-USER-AGENT,WeChat*
+IP-ASN,132203
