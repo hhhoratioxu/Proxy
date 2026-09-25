@@ -1,25 +1,22 @@
-# Weverse Rules for Loon
-# Maintained by Horatio
-# Last updated: 2026-08-27
-#
-# Core Weverse domains
-DOMAIN-SUFFIX,weverse.io
-DOMAIN-SUFFIX,weverseshop.io
-DOMAIN-SUFFIX,wevpstatic.net
+# NAME: Weverse
+# AUTHOR: Horatio
+# FORMAT: Loon Rule Set
+# UPDATED: 2026-09-25
+# TOTAL: 14
+# SOURCE: Horatio observed Weverse/NAVER endpoints + current public Weverse media host cross-checks
+# NOTE: Weverse, Weverse Shop, static/media CDN, NAVER APIs and live/resource delivery hosts.
 
-# Weverse / NAVER API hosts observed in the Weverse app
+DOMAIN,apis.naver.com
+DOMAIN,g-aegis-naver.akamaized.net
 DOMAIN,global.apis.naver.com
 DOMAIN,jp.apis.naver.com
-DOMAIN,apis.naver.com
-
-# Weverse / NAVER Akamai media and resource CDN hosts
-DOMAIN,weverse-rmcnmv.akamaized.net
-DOMAIN,resources-rmcnmv.akamaized.net
-DOMAIN,g-aegis-naver.akamaized.net
-
-# Additional Weverse / NAVER media infrastructure
-DOMAIN,weverse-live.pstatic.net
-DOMAIN,ssl.pstatic.net
-
-# NAVER logging endpoint used by Weverse
 DOMAIN,nelo2-col.navercorp.com
+DOMAIN,resources-rmcnmv.akamaized.net
+DOMAIN,ssl.pstatic.net
+DOMAIN,weverse-live.pstatic.net
+DOMAIN,weverse-phinf.pstatic.net
+DOMAIN,weverse-rmcnmv.akamaized.net
+DOMAIN-SUFFIX,weverse.io
+DOMAIN-SUFFIX,weversecdn.com
+DOMAIN-SUFFIX,weverseshop.io
+DOMAIN-SUFFIX,wevpstatic.net
