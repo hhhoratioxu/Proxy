@@ -18,6 +18,51 @@ const C = {
   chatgpt: "#10A37F"
 };
 
+const GLASS = {
+  shell: {
+    type: "linear",
+    colors: [
+      { light: "#FFFFFFD9", dark: "#FFFFFF24" },
+      { light: "#EAF3FFB8", dark: "#789BFF20" },
+      { light: "#FFFFFFA8", dark: "#0A0D14CC" }
+    ],
+    stops: [0, 0.52, 1],
+    startPoint: { x: 0, y: 0 },
+    endPoint: { x: 1, y: 1 }
+  },
+  card: {
+    type: "linear",
+    colors: [
+      { light: "#FFFFFFE8", dark: "#FFFFFF26" },
+      { light: "#F7FBFFB8", dark: "#BFD4FF14" },
+      { light: "#FFFFFF8C", dark: "#FFFFFF0D" }
+    ],
+    stops: [0, 0.58, 1],
+    startPoint: { x: 0, y: 0 },
+    endPoint: { x: 1, y: 1 }
+  },
+  badge: {
+    type: "linear",
+    colors: [
+      { light: "#FFFFFFD9", dark: "#FFFFFF2A" },
+      { light: "#FFFFFF8A", dark: "#FFFFFF12" }
+    ],
+    startPoint: { x: 0, y: 0 },
+    endPoint: { x: 1, y: 1 }
+  },
+  edge: { light: "#FFFFFFE8", dark: "#FFFFFF52" },
+  innerEdge: { light: "#FFFFFFB8", dark: "#FFFFFF33" },
+  shadow: { light: "#56729A2E", dark: "#000000A0" },
+  softShadow: { light: "#5C7DA522", dark: "#00000070" },
+  shine: {
+    type: "linear",
+    colors: ["#FFFFFF00", "#FFFFFFB8", "#FFFFFF00"],
+    stops: [0, 0.48, 1],
+    startPoint: { x: 0, y: 0 },
+    endPoint: { x: 1, y: 0 }
+  }
+};
+
 const SERVICE_ORDER = ["Netflix", "Max", "YouTube Premium", "ChatGPT"];
 
 function env(ctx, key, fallback = "") {
@@ -310,6 +355,16 @@ function policyLabel(item) {
   return serviceInfo(item.name).policy;
 }
 
+function glassShine() {
+  return {
+    type: "stack",
+    height: 1,
+    borderRadius: 999,
+    backgroundGradient: GLASS.shine,
+    children: []
+  };
+}
+
 function iconTile(item, compact = false) {
   const info = serviceInfo(item.name);
   return {
@@ -318,8 +373,13 @@ function iconTile(item, compact = false) {
     alignItems: "center",
     width: compact ? 28 : 34,
     height: compact ? 28 : 34,
-    borderRadius: compact ? 7 : 9,
+    borderRadius: compact ? 8 : 10,
     backgroundColor: info.iconColor,
+    borderWidth: 0.7,
+    borderColor: "#FFFFFF88",
+    shadowColor: GLASS.softShadow,
+    shadowRadius: 5,
+    shadowOffset: { x: 0, y: 2 },
     children: [
       { type: "spacer" },
       {
@@ -329,7 +389,10 @@ function iconTile(item, compact = false) {
         textColor: "#FFFFFF",
         textAlign: "center",
         minScale: 0.6,
-        maxLines: 1
+        maxLines: 1,
+        shadowColor: "#00000030",
+        shadowRadius: 2,
+        shadowOffset: { x: 0, y: 1 }
       },
       { type: "spacer" }
     ]
@@ -343,9 +406,14 @@ function statusBadge(item) {
     direction: "row",
     alignItems: "center",
     gap: 3,
-    padding: [3, 6],
+    padding: [3, 7],
     borderRadius: 999,
-    backgroundColor: { light: "#F2F2F7", dark: "#2C2C2E" },
+    backgroundGradient: GLASS.badge,
+    borderWidth: 0.6,
+    borderColor: GLASS.innerEdge,
+    shadowColor: GLASS.softShadow,
+    shadowRadius: 4,
+    shadowOffset: { x: 0, y: 1 },
     children: [
       { type: "image", src: `sf-symbol:${m.symbol}`, width: 10, height: 10, color: m.color },
       { type: "text", text: m.label, font: { size: 9.5, weight: "semibold" }, textColor: m.color }
@@ -360,14 +428,18 @@ function card(ctx, item) {
     type: "stack",
     direction: "column",
     flex: 1,
-    gap: 7,
-    padding: 11,
-    borderRadius: 17,
-    backgroundColor: C.card,
-    borderWidth: 0.5,
-    borderColor: C.border,
+    gap: 6,
+    padding: [8, 10, 10, 10],
+    borderRadius: 18,
+    backgroundGradient: GLASS.card,
+    borderWidth: 0.8,
+    borderColor: GLASS.edge,
+    shadowColor: GLASS.shadow,
+    shadowRadius: 8,
+    shadowOffset: { x: 0, y: 4 },
     url: "egern:/connections",
     children: [
+      glassShine(),
       {
         type: "stack",
         direction: "row",
@@ -381,7 +453,10 @@ function card(ctx, item) {
             font: { size: 14, weight: "bold" },
             textColor: C.label,
             flex: 1,
-            maxLines: 1
+            maxLines: 1,
+            shadowColor: { light: "#FFFFFF66", dark: "#00000066" },
+            shadowRadius: 1,
+            shadowOffset: { x: 0, y: 1 }
           }
         ]
       },
@@ -420,7 +495,7 @@ function card(ctx, item) {
         gap: 5,
         children: [
           { type: "image", src: "sf-symbol:network", width: 10, height: 10, color: C.blue },
-          { type: "text", text: `${ep.kind}  ${ep.value}`, font: { size: 10, weight: "medium" }, textColor: C.label, flex: 1, maxLines: 1, minScale: 0.55 },
+          { type: "text", text: `${ep.kind}  ${ep.value}`, font: { size: 10, weight: "semibold" }, textColor: C.label, flex: 1, maxLines: 1, minScale: 0.55 },
           { type: "image", src: "sf-symbol:chevron.right", width: 7, height: 7, color: C.tertiary }
         ]
       }
@@ -437,6 +512,14 @@ function compactRow(ctx, item) {
     direction: "row",
     alignItems: "center",
     gap: 7,
+    padding: [6, 8],
+    borderRadius: 13,
+    backgroundGradient: GLASS.card,
+    borderWidth: 0.6,
+    borderColor: GLASS.innerEdge,
+    shadowColor: GLASS.softShadow,
+    shadowRadius: 4,
+    shadowOffset: { x: 0, y: 2 },
     url: "egern:/connections",
     children: [
       iconTile(item, true),
@@ -465,6 +548,24 @@ function clockText() {
   const h = String(d.getHours()).padStart(2, "0");
   const m = String(d.getMinutes()).padStart(2, "0");
   return `更新 ${h}:${m}`;
+}
+
+function glassShell(children, compact = false) {
+  return {
+    type: "stack",
+    direction: "column",
+    flex: 1,
+    gap: compact ? 7 : 9,
+    padding: compact ? 10 : 12,
+    borderRadius: "auto",
+    backgroundGradient: GLASS.shell,
+    borderWidth: 1,
+    borderColor: GLASS.edge,
+    shadowColor: GLASS.shadow,
+    shadowRadius: 10,
+    shadowOffset: { x: 0, y: 5 },
+    children
+  };
 }
 
 function widget(ctx, items) {
@@ -506,7 +607,15 @@ function widget(ctx, items) {
         flex: 1,
         gap: 1,
         children: [
-          { type: "text", text: "Streaming", font: { size: 18, weight: "bold" }, textColor: C.label },
+          {
+            type: "text",
+            text: "Streaming",
+            font: { size: 18, weight: "bold" },
+            textColor: C.label,
+            shadowColor: { light: "#FFFFFFB0", dark: "#00000080" },
+            shadowRadius: 2,
+            shadowOffset: { x: 0, y: 1 }
+          },
           { type: "text", text: "Netflix · Max · YouTube · ChatGPT", font: { size: 9.5, weight: "medium" }, textColor: C.secondary, maxLines: 1, minScale: 0.7 }
         ]
       },
@@ -526,13 +635,12 @@ function widget(ctx, items) {
   if (family === "systemSmall") {
     return {
       type: "widget",
-      backgroundColor: C.bg,
-      padding: 12,
-      gap: 8,
+      backgroundColor: "#00000000",
+      padding: 2,
+      refreshAfter: new Date(Date.now() + 1800000).toISOString(),
       url: "egern:/connections",
       children: [
-        header,
-        ...items.map(x => compactRow(ctx, x))
+        glassShell([header, ...items.map(x => compactRow(ctx, x))], true)
       ]
     };
   }
@@ -542,10 +650,12 @@ function widget(ctx, items) {
 
   return {
     type: "widget",
-    backgroundColor: C.bg,
-    padding: 13,
-    gap: 9,
-    children: [header, row1, row2]
+    backgroundColor: "#00000000",
+    padding: 2,
+    refreshAfter: new Date(Date.now() + 1800000).toISOString(),
+    children: [
+      glassShell([header, row1, row2], false)
+    ]
   };
 }
 
