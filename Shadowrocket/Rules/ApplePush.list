@@ -1,9 +1,0 @@
-# NAME: ApplePush
-# AUTHOR: Horatio
-# FORMAT: Shadowrocket Rule Set
-# SOURCE: Loon/Rules/ApplePush.lsr
-# UPDATED: 2026-09-24
-# TOTAL: 1
-# NOTE: Import with RULE-SET and assign the desired policy in Shadowrocket.
-
-DOMAIN-SUFFIX,push.apple.com
