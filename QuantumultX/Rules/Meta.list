@@ -3,7 +3,7 @@
 # FORMAT: Quantumult X Remote Filter
 # SOURCE: Loon/Rules/Meta.lsr
 # UPDATED: 2026-09-27
-# TOTAL: 621
+# TOTAL: 622
 # NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
 
 HOST,developers.facebook.com
@@ -498,6 +498,7 @@ HOST-SUFFIX,messenger.com
 HOST-SUFFIX,messengerdevelopers.com
 HOST-SUFFIX,meta.ai
 HOST-SUFFIX,meta.com
+HOST-SUFFIX,metaaivm.com
 HOST-SUFFIX,midentsolutions.com
 HOST-SUFFIX,mobilefacebook.com
 HOST-SUFFIX,moneywithfacebook.com
