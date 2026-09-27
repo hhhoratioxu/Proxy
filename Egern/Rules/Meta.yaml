@@ -2,7 +2,7 @@
 # AUTHOR: Horatio
 # FORMAT: Egern Remote Rule Set
 # UPDATED: 2026-09-27
-# TOTAL: 621
+# TOTAL: 622
 #
 # Meta ecosystem comprehensive rule set.
 # Covers Meta / Facebook / Messenger / Instagram / Threads / WhatsApp /
@@ -519,6 +519,7 @@ domain_suffix_set:
   - messengerdevelopers.com
   - meta.ai
   - meta.com
+  - metaaivm.com
   - midentsolutions.com
   - mobilefacebook.com
   - moneywithfacebook.com
