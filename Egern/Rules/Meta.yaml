@@ -1,12 +1,12 @@
 # NAME: Meta
 # AUTHOR: Horatio
 # FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-22
-# TOTAL: 620
+# UPDATED: 2026-09-27
+# TOTAL: 621
 #
 # Meta ecosystem comprehensive rule set.
 # Covers Meta / Facebook / Messenger / Instagram / Threads / WhatsApp /
-# Meta AI / Llama / Oculus / Quest / Workplace and related infrastructure.
+# Meta AI / Muse / Llama / Oculus / Quest / Workplace and related infrastructure.
 #
 # Sources merged:
 # - Repcz/Tool Egern Facebook rules
@@ -522,6 +522,7 @@ domain_suffix_set:
   - midentsolutions.com
   - mobilefacebook.com
   - moneywithfacebook.com
+  - muse.ai
   - myfbfans.com
   - nbabot.net
   - newsfeed.com
