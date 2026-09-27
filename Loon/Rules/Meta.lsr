@@ -1,7 +1,7 @@
 # NAME: Meta
 # AUTHOR: Horatio
 # FORMAT: Loon Rule Set
-# UPDATED: 2026-09-22
+# UPDATED: 2026-09-27
 #
 # Converted from the matching comprehensive Egern Meta rule set.
 # Keep this file aligned with Egern/Rules for dual-client use.
@@ -501,6 +501,7 @@ DOMAIN-SUFFIX,meta.com
 DOMAIN-SUFFIX,midentsolutions.com
 DOMAIN-SUFFIX,mobilefacebook.com
 DOMAIN-SUFFIX,moneywithfacebook.com
+DOMAIN-SUFFIX,muse.ai
 DOMAIN-SUFFIX,myfbfans.com
 DOMAIN-SUFFIX,nbabot.net
 DOMAIN-SUFFIX,newsfeed.com
