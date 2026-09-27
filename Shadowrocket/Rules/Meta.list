@@ -3,7 +3,7 @@
 # FORMAT: Shadowrocket Rule Set
 # SOURCE: Loon/Rules/Meta.lsr
 # UPDATED: 2026-09-27
-# TOTAL: 621
+# TOTAL: 622
 # NOTE: Import with RULE-SET and assign the desired policy in Shadowrocket.
 
 DOMAIN,developers.facebook.com
@@ -498,6 +498,7 @@ DOMAIN-SUFFIX,messenger.com
 DOMAIN-SUFFIX,messengerdevelopers.com
 DOMAIN-SUFFIX,meta.ai
 DOMAIN-SUFFIX,meta.com
+DOMAIN-SUFFIX,metaaivm.com
 DOMAIN-SUFFIX,midentsolutions.com
 DOMAIN-SUFFIX,mobilefacebook.com
 DOMAIN-SUFFIX,moneywithfacebook.com
