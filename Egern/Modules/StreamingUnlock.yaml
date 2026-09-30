@@ -1,5 +1,5 @@
 name: "Streaming Unlock"
-description: "Liquid Glass 风格 Egern 严格流媒体解锁小组件：Netflix、Max、YouTube Premium、ChatGPT。保留严格检测逻辑，并使用半透明渐变、玻璃描边、高光与阴影模拟 iOS Liquid Glass。"
+description: "Liquid Glass 风格 Egern 严格流媒体解锁小组件：Netflix、Max、YouTube Premium、Instagram Licensed Audio、ChatGPT。保留严格检测逻辑，并使用半透明渐变、玻璃描边、高光与阴影模拟 iOS Liquid Glass。"
 author: "Horatio Xu"
 homepage: "https://github.com/hhhoratioxu/Proxy"
 manual: "https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Modules/StreamingUnlock.md"
@@ -20,6 +20,9 @@ env_schema:
   YOUTUBE_NODE:
     name: "YouTube 节点名称"
     description: "可选，仅用于显示，不改变 Google / YouTube 分流。"
+  INSTAGRAM_NODE:
+    name: "Instagram 节点名称"
+    description: "可选，仅用于显示，不改变 Instagram 分流。检测会区分 Licensed Audio 可用、不可用与 HTTP 429 限流。"
   CHATGPT_NODE:
     name: "ChatGPT 节点名称"
     description: "可选，仅用于显示，不改变 AI 分流。ChatGPT 可自动显示实际出口 IP。"
