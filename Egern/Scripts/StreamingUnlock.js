@@ -15,7 +15,8 @@ const C = {
   netflix: "#E50914",
   max: "#6C4BFF",
   youtube: "#FF0000",
-  chatgpt: "#10A37F"
+  chatgpt: "#10A37F",
+  instagram: "#E1306C"
 };
 
 const GLASS = {
@@ -63,7 +64,7 @@ const GLASS = {
   }
 };
 
-const SERVICE_ORDER = ["Netflix", "Max", "YouTube Premium", "ChatGPT"];
+const SERVICE_ORDER = ["Netflix", "Max", "YouTube Premium", "Instagram Licensed Audio", "ChatGPT"];
 
 function env(ctx, key, fallback = "") {
   const v = ctx.env?.[key];
@@ -105,6 +106,17 @@ async function get(ctx, url, extra = {}) {
   return ctx.http.get(url, req(ctx, extra));
 }
 
+async function post(ctx, url, body, extra = {}) {
+  if (typeof ctx.http?.post !== "function") throw new Error("HTTP POST is unavailable");
+  return ctx.http.post(url, req(ctx, { ...extra, body }));
+}
+
+function formEncode(data) {
+  return Object.entries(data)
+    .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+    .join("&");
+}
+
 function result(name, state, detail = "", region = "", extra = {}) {
   return { name, state, detail, region, ...extra };
 }
@@ -112,6 +124,7 @@ function result(name, state, detail = "", region = "", extra = {}) {
 function meta(state) {
   if (state === "ok") return { label: "已解锁", color: C.green, symbol: "checkmark.circle.fill" };
   if (state === "partial") return { label: "部分可用", color: C.orange, symbol: "exclamationmark.circle.fill" };
+  if (state === "limited") return { label: "限流", color: C.orange, symbol: "exclamationmark.triangle.fill" };
   if (state === "blocked") return { label: "不可用", color: C.red, symbol: "xmark.circle.fill" };
   return { label: "检测失败", color: C.gray, symbol: "questionmark.circle.fill" };
 }
@@ -137,6 +150,13 @@ function serviceInfo(name) {
     nodeEnv: "YOUTUBE_NODE",
     iconText: "▶",
     iconColor: C.youtube
+  };
+  if (name === "Instagram Licensed Audio") return {
+    title: "Instagram",
+    policy: "Instagram",
+    nodeEnv: "INSTAGRAM_NODE",
+    iconText: "♪",
+    iconColor: C.instagram
   };
   return {
     title: "ChatGPT",
@@ -283,6 +303,93 @@ async function youtube(ctx) {
     return result("YouTube Premium", "error", "页面特征异常", region);
   } catch {
     return result("YouTube Premium", "error", "请求失败");
+  }
+}
+
+
+async function instagram(ctx) {
+  const name = "Instagram Licensed Audio";
+  const shortcode = "C2YEAdOh9AB";
+  const variables = {
+    shortcode,
+    fetch_comment_count: 40,
+    fetch_related_profile_media_count: 3,
+    parent_comment_count: 24,
+    child_comment_count: 3,
+    fetch_like_count: 10,
+    fetch_tagged_user_count: null,
+    fetch_preview_comment_count: 2,
+    has_threaded_comments: true,
+    hoisted_comment_id: null,
+    hoisted_reply_id: null
+  };
+
+  const payload = formEncode({
+    av: "0",
+    __d: "www",
+    __user: "0",
+    __a: "1",
+    __req: "3",
+    __hs: "19750.HYP:instagram_web_pkg.2.1..0.0",
+    dpr: "1",
+    __ccg: "UNKNOWN",
+    __rev: "1011068636",
+    __s: "drshru:gu4p3s:0d8tzk",
+    __hsi: "7328972521009111950",
+    __dyn: "7xeUjG1mxu1syUbFp60DU98nwgU29zEdEc8co2qwJw5ux609vCwjE1xoswIwuo2awlU-cw5Mx62G3i1ywOwv89k2C1Fwc60AEC7U2czXwae4UaEW2G1NwwwNwKwHw8Xxm16wUwtEvw4JwJCwLyES1Twoob82ZwrUdUbGwmk1xwmo6O1FwlE6PhA6bxy4UjK5V8",
+    __csr: "gtneJ9lGF4HlRX-VHjmipBDGAhGuWV4uEyXyp22u6pU-mcx3BCGjHS-yabGq4rhoWBAAAKamtnBy8PJeUgUymlVF48AGGWxCiUC4E9HG78og01bZqx106Ag0clE0kVwdy0Nx4w2TU0iGDgChwmUrw2wVFQ9Bg3fw4uxfo2ow0asW",
+    __comet_req: "7",
+    lsd: "AVrkL73GMdk",
+    jazoest: "2909",
+    __spin_r: "1011068636",
+    __spin_b: "trunk",
+    __spin_t: "1706409389",
+    fb_api_caller_class: "RelayModern",
+    fb_api_req_friendly_name: "PolarisPostActionLoadPostQueryQuery",
+    variables: JSON.stringify(variables),
+    server_timestamps: "true",
+    doc_id: "10015901848480474"
+  });
+
+  try {
+    const r = await post(ctx, "https://www.instagram.com/api/graphql", payload, {
+      redirect: "follow",
+      headers: {
+        "Accept": "*/*",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Origin": "https://www.instagram.com",
+        "Referer": `https://www.instagram.com/p/${shortcode}/`,
+        "X-ASBD-ID": "129477",
+        "X-FB-Friendly-Name": "PolarisPostActionLoadPostQueryQuery",
+        "X-FB-LSD": "AVrkL73GMdk",
+        "X-IG-App-ID": "936619743392459",
+        "dpr": "1.75"
+      }
+    });
+
+    const t = await text(r);
+
+    if (r.status === 429) {
+      return result(name, "limited", "HTTP 429 限流");
+    }
+
+    if (r.status !== 200 || !t) {
+      return result(name, "error", `HTTP ${r.status || "--"}`);
+    }
+
+    if (/"should_mute_audio"\s*:\s*false/i.test(t)) {
+      return result(name, "ok", "Licensed Audio 可用");
+    }
+
+    if (/"should_mute_audio"\s*:\s*true/i.test(t)) {
+      const reason = (t.match(/"should_mute_audio_reason"\s*:\s*"([^"]*)"/i) || [])[1] || "";
+      return result(name, "blocked", reason ? `音频受限 · ${reason}` : "Licensed Audio 不可用");
+    }
+
+    return result(name, "error", "未返回音频授权状态");
+  } catch {
+    return result(name, "error", "请求失败");
   }
 }
 
@@ -540,7 +647,7 @@ function compactRow(ctx, item) {
 
 function summary(items) {
   const ok = items.filter(x => x.state === "ok").length;
-  return `${ok} / 4 已解锁`;
+  return `${ok} / ${items.length} 已解锁`;
 }
 
 function clockText() {
@@ -581,7 +688,7 @@ function widget(ctx, items) {
       type: "widget",
       children: [
         { type: "image", src: "sf-symbol:play.tv.fill", width: 14, height: 14 },
-        { type: "text", text: `${ok}/4`, font: { size: "caption1", weight: "bold" } }
+        { type: "text", text: `${ok}/${items.length}`, font: { size: "caption1", weight: "bold" } }
       ]
     };
   }
@@ -616,7 +723,7 @@ function widget(ctx, items) {
             shadowRadius: 2,
             shadowOffset: { x: 0, y: 1 }
           },
-          { type: "text", text: "Netflix · Max · YouTube · ChatGPT", font: { size: 9.5, weight: "medium" }, textColor: C.secondary, maxLines: 1, minScale: 0.7 }
+          { type: "text", text: "Netflix · Max · YouTube · Instagram · ChatGPT", font: { size: 9.5, weight: "medium" }, textColor: C.secondary, maxLines: 1, minScale: 0.58 }
         ]
       },
       {
@@ -646,7 +753,7 @@ function widget(ctx, items) {
   }
 
   const row1 = { type: "stack", direction: "row", gap: 8, children: [card(ctx, items[0]), card(ctx, items[1])] };
-  const row2 = { type: "stack", direction: "row", gap: 8, children: [card(ctx, items[2]), card(ctx, items[3])] };
+  const row2 = { type: "stack", direction: "row", gap: 8, children: [card(ctx, items[2]), card(ctx, items[3]), card(ctx, items[4])] };
 
   return {
     type: "widget",
@@ -660,7 +767,7 @@ function widget(ctx, items) {
 }
 
 export default async function(ctx) {
-  const tasks = [netflix(ctx), maxCheck(ctx), youtube(ctx), chatgpt(ctx)];
+  const tasks = [netflix(ctx), maxCheck(ctx), youtube(ctx), instagram(ctx), chatgpt(ctx)];
   const settled = await Promise.allSettled(tasks);
   const items = settled.map((x, i) => x.status === "fulfilled" ? x.value : result(SERVICE_ORDER[i], "error", "脚本异常"));
 
