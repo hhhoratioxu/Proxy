@@ -1,11 +1,11 @@
 # Streaming Unlock for Egern
 
-一个只保留 **Netflix / Max / YouTube Premium / ChatGPT** 的 Egern 原生流媒体解锁查询小组件。
+一个只保留 **Netflix / Max / YouTube Premium / Instagram Licensed Audio / ChatGPT** 的 Egern 原生流媒体解锁查询小组件。
 
 ## 设计
 
 - iOS 原生风格动态浅色 / 深色
-- 2×2 圆角卡片布局
+- 两行圆角卡片布局（2 + 3）
 - SF Symbols + iOS 系统色
 - 每项显示：
   - 解锁状态
@@ -36,6 +36,7 @@ Egern Widget DSL 目前公开支持透明/半透明颜色、渐变、描边和�
 - **Netflix**：检测两个非 Originals 测试片源。两个都返回 `Oh no!` 才判“仅自制剧”；至少一个测试片源正常返回才判“完整片库”。网络或页面异常不会冒充解锁。
 - **Max**：读取 Max 返回的 `countryCode`，再与页面公布的可用国家列表比对。**拿不到地区直接显示检测失败**，不会因为首页返回 200 就判解锁。
 - **YouTube Premium**：同时检查 `www.google.cn`、`Premium is not available in your country`、`INNERTUBE_CONTEXT_GL` 和 `ad-free`。只有出现 Premium 的 `ad-free` 页面特征才判“Premium 可用”；页面结构异常显示检测失败。
+- **Instagram Licensed Audio**：请求 Instagram Web GraphQL，读取 `should_mute_audio`。只有明确返回 `false` 才判“可用”；返回 `true` 判“不可用”；HTTP `429` 单独显示“限流”，不会误报成“不支持音乐”。
 - **ChatGPT**：同时请求 OpenAI 的 `compliance/cookie_requirements` 与 `ios.chat.openai.com`，分别判断 `unsupported_country` 和 `VPN` 限制，可区分：
   - Web + App 可用
   - 仅 Web 可用
@@ -53,9 +54,10 @@ ChatGPT 的地区与出口 IP 另外通过 `chatgpt.com/cdn-cgi/trace` 获取，
 | Netflix | Netflix |
 | Max | HBOMAX |
 | YouTube Premium | Google / YouTube |
+| Instagram Licensed Audio | Instagram |
 | ChatGPT | AI |
 
-因此你给这四类服务设置不同国家或不同策略时，检测也会分别走自己的线路。
+因此你给这五类服务设置不同国家或不同策略时，检测也会分别走自己的线路。
 
 ## 关于“节点名称”
 
@@ -64,9 +66,9 @@ Egern 当前公开的 JavaScript API 支持给请求指定 `policy`，但没有�
 因此本模块不会伪造节点名：
 
 - ChatGPT：可自动显示通过 AI 规则后的真实出口 IP + 地区
-- Netflix / Max / YouTube：显示各服务自己识别到的地区 + 对应策略；未手动填写节点名时，界面明确标为“出口”，不会把策略名冒充节点名
+- Netflix / Max / YouTube / Instagram：显示各服务检测结果 + 对应策略；能识别地区时同时显示地区。未手动填写节点名时，界面明确标为“出口”，不会把策略名冒充节点名
 - 点击卡片：直接进入 `egern:/connections` 查看真实节点；Widget 内无法从公开脚本 API 自动读取策略组最终选中的节点名称
-- 如果你希望 Widget 固定显示你的节点名字，可以在模块设置里填写 `NETFLIX_NODE` / `MAX_NODE` / `YOUTUBE_NODE` / `CHATGPT_NODE`
+- 如果你希望 Widget 固定显示你的节点名字，可以在模块设置里填写 `NETFLIX_NODE` / `MAX_NODE` / `YOUTUBE_NODE` / `INSTAGRAM_NODE` / `CHATGPT_NODE`
 - 这些字段**只负责显示，不会改变路由**
 
 ## 一键订阅
@@ -84,7 +86,7 @@ egern:/modules/new?name=Streaming%20Unlock&url=https%3A%2F%2Fraw.githubuserconte
 ## 状态
 
 - 绿色：已解锁
-- 橙色：部分可用
+- 橙色：部分可用 / Instagram HTTP 429 限流
 - 红色：不可用
 - 灰色：检测失败
 
