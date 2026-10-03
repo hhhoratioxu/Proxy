@@ -1,7 +1,7 @@
 #!name = 流媒体解锁查询
 #!desc = Loon 节点流媒体 / AI 解锁检测：Netflix、Disney+、Max、Prime Video、YouTube Premium、Spotify、TikTok、ChatGPT、Gemini、Instagram Licensed Audio 等。
 #!author = Horatio Xu
-#!version = 1.0.0
+#!version = 1.1.0
 #!homepage = https://github.com/hhhoratioxu/Proxy
 
 [Script]
