@@ -3,7 +3,7 @@
  * Loon generic script for per-node streaming / AI unlock checks.
  * Every HTTP request is explicitly bound to the node selected in Loon.
  * Author: Horatio Xu
- * Version: 1.3.0
+ * Version: 1.3.1
  */
 
 const PARAMS = (typeof $environment !== 'undefined' && $environment.params) ? $environment.params : {};
@@ -514,41 +514,41 @@ function esc(s) {
     <style>
       :root{
         --bg:#f2f2f7;
-        --panel:#ffffff;
-        --card:#f8f8fa;
+        --panel:transparent;
+        --card:transparent;
         --line:rgba(60,60,67,.10);
         --text:#111111;
         --sub:#6e6e73;
         --green:#34c759;
-        --green-bg:rgba(52,199,89,.14);
+        --green-bg:transparent;
         --orange:#ff9f0a;
-        --orange-bg:rgba(255,159,10,.14);
+        --orange-bg:transparent;
         --red:#ff3b30;
-        --red-bg:rgba(255,59,48,.14);
+        --red-bg:transparent;
         --gray:#8e8e93;
-        --gray-bg:rgba(142,142,147,.14);
+        --gray-bg:transparent;
         --blue:#0a84ff;
-        --blue-bg:rgba(10,132,255,.14);
+        --blue-bg:transparent;
       }
 
       @media (prefers-color-scheme: dark) {
         :root{
           --bg:#000000;
-          --panel:#1c1c1e;
-          --card:#2c2c2e;
+          --panel:transparent;
+          --card:transparent;
           --line:rgba(255,255,255,.08);
           --text:#ffffff;
           --sub:#a1a1a6;
           --green:#30d158;
-          --green-bg:rgba(48,209,88,.16);
+          --green-bg:transparent;
           --orange:#ff9f0a;
-          --orange-bg:rgba(255,159,10,.16);
+          --orange-bg:transparent;
           --red:#ff453a;
-          --red-bg:rgba(255,69,58,.16);
+          --red-bg:transparent;
           --gray:#98989d;
-          --gray-bg:rgba(152,152,157,.16);
+          --gray-bg:transparent;
           --blue:#64d2ff;
-          --blue-bg:rgba(100,210,255,.16);
+          --blue-bg:transparent;
         }
       }
 
@@ -563,10 +563,10 @@ function esc(s) {
       }
 
       .panel{
-        background:var(--panel);
-        border-radius:24px;
-        padding:18px;
-        box-shadow:0 10px 28px rgba(0,0,0,.10);
+        background:transparent;
+        border-radius:0;
+        padding:8px 2px 4px;
+        box-shadow:none;
       }
 
       .title{
@@ -591,10 +591,10 @@ function esc(s) {
       }
 
       .meta-card{
-        background:var(--card);
-        border:1px solid var(--line);
-        border-radius:16px;
-        padding:10px 12px;
+        background:transparent;
+        border:0;
+        border-radius:0;
+        padding:4px 0;
       }
 
       .meta-label{
@@ -624,10 +624,11 @@ function esc(s) {
       }
 
       .svc{
-        background:var(--card);
-        border:1px solid var(--line);
-        border-radius:18px;
-        padding:12px 13px;
+        background:transparent;
+        border:0;
+        border-bottom:1px solid var(--line);
+        border-radius:0;
+        padding:12px 0 13px;
       }
 
       .svc-name{
@@ -648,14 +649,15 @@ function esc(s) {
       .badge{
         display:inline-flex;
         align-items:center;
-        gap:8px;
-        padding:8px 12px;
-        border-radius:999px;
+        gap:7px;
+        padding:0;
+        border-radius:0;
         font-size:13px;
         font-weight:700;
-        line-height:1.25;
+        line-height:1.35;
         max-width:100%;
         word-break:break-word;
+        background:transparent !important;
       }
 
       .dot{
@@ -681,12 +683,17 @@ function esc(s) {
         color:var(--sub);
         line-height:1.55;
       }
+
+      .title,.sub,.meta-label,.meta-value,.section-title,.svc-name,.badge,.note{
+        background:transparent !important;
+        box-shadow:none !important;
+      }
     </style>
   </head>
   <body>
     <div class="panel">
       <div class="title">📺 流媒体解锁查询</div>
-      <div class="sub">当前节点检测结果</div>
+      <div class="sub">当前节点 · 解锁状态</div>
 
       <div class="meta-grid">
         <div class="meta-card">
