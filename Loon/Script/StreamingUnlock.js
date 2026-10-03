@@ -3,14 +3,14 @@
  * Loon generic script for per-node streaming / AI unlock checks.
  * Every HTTP request is explicitly bound to the node selected in Loon.
  * Author: Horatio Xu
- * Version: 1.5.0
+ * Version: 1.5.1
  */
 
 const PARAMS = (typeof $environment !== 'undefined' && $environment.params) ? $environment.params : {};
 const NODE = PARAMS.node || (PARAMS.nodeInfo && (PARAMS.nodeInfo.name || PARAMS.nodeInfo.tag)) || 'DIRECT';
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 const TIMEOUT = 8000;
-const VERSION = '1.5.0';
+const VERSION = '1.5.1';
 
 function flag(code) {
   if (!code) return '';
@@ -85,6 +85,7 @@ async function safe(name, fn) {
   }
 }
 
+
 async function checkExit() {
   const parseIpify = body => {
     const raw = String(body || '').trim();
@@ -106,28 +107,88 @@ async function checkExit() {
     return out;
   };
 
-  const fetchGeo = async ip => {
+  const normalizeGeo = raw => {
+    if (!raw || typeof raw !== 'object') return null;
+    const conn = raw.connection || {};
+    const asnRaw = raw.asn || conn.asn || '';
+    const asn = asnRaw ? ('AS' + String(asnRaw).replace(/^AS/i, '')) : '';
+    const isp = String(raw.isp || conn.isp || raw.asn_organization || '').trim();
+    const org = String(raw.organization || raw.org || conn.org || raw.asn_organization || '').trim();
+    const cc = String(raw.country_code || raw.country || '').trim().toUpperCase();
+    const countryName = String(raw.country_name || (raw.country && String(raw.country).length > 2 ? raw.country : '') || '').trim();
+    const region = String(raw.region || raw.region_name || '').trim();
+    const city = String(raw.city || '').trim();
+
+    if (!asn && !isp && !org && !cc && !countryName && !region && !city) return null;
+    return {
+      asn,
+      isp,
+      org,
+      countryCode: /^[A-Z]{2}$/.test(cc) ? cc : '',
+      country: countryName,
+      region,
+      city
+    };
+  };
+
+  const mergeGeo = (a, b) => {
+    if (!a) return b || null;
+    if (!b) return a;
+    return {
+      asn: a.asn || b.asn || '',
+      isp: a.isp || b.isp || '',
+      org: a.org || b.org || '',
+      countryCode: a.countryCode || b.countryCode || '',
+      country: a.country || b.country || '',
+      region: a.region || b.region || '',
+      city: a.city || b.city || ''
+    };
+  };
+
+  const geoFromIpSb = async ip => {
     if (!ip) return null;
     try {
-      const r = await req('get', 'https://ipwho.is/' + ip, { 'User-Agent': UA }, null, 6500);
+      const r = await req('get', 'https://api.ip.sb/geoip/' + ip, {
+        'User-Agent': UA,
+        'Accept': 'application/json'
+      }, null, 7000);
       if (r.status < 200 || r.status >= 300) return null;
-      const j = JSON.parse(r.body);
-      if (!j || j.success === false) return null;
-      const c = j.connection || {};
-      return {
-        ip: String(j.ip || ip),
-        type: String(j.type || ''),
-        country: String(j.country || ''),
-        countryCode: String(j.country_code || '').toUpperCase(),
-        region: String(j.region || ''),
-        city: String(j.city || ''),
-        asn: c.asn ? 'AS' + String(c.asn).replace(/^AS/i, '') : '',
-        isp: String(c.isp || ''),
-        org: String(c.org || '')
-      };
+      return normalizeGeo(JSON.parse(r.body));
     } catch (_) {
       return null;
     }
+  };
+
+  const geoFromIpApiCo = async ip => {
+    if (!ip) return null;
+    try {
+      const r = await req('get', 'https://ipapi.co/' + ip + '/json/', {
+        'User-Agent': UA,
+        'Accept': 'application/json'
+      }, null, 7000);
+      if (r.status < 200 || r.status >= 300) return null;
+      const j = JSON.parse(r.body);
+      if (j && (j.error === true || j.reason)) return null;
+      return normalizeGeo(j);
+    } catch (_) {
+      return null;
+    }
+  };
+
+  const fetchGeo = async ip => {
+    if (!ip) return null;
+
+    // First try IP.SB. If fields are incomplete, supplement from ipapi.co.
+    const primary = await geoFromIpSb(ip);
+    const complete = primary &&
+      primary.asn &&
+      (primary.isp || primary.org) &&
+      primary.countryCode;
+
+    if (complete) return primary;
+
+    const fallback = await geoFromIpApiCo(ip);
+    return mergeGeo(primary, fallback);
   };
 
   const [cfR, v4R, v6R] = await Promise.all([
@@ -149,15 +210,13 @@ async function checkExit() {
     fetchGeo(ipv6)
   ]);
 
-  const preferred = geo4 || geo6 || null;
   return {
     ipv4: ipv4 || '',
     ipv6: ipv6 || '',
     colo: String(trace.colo || ''),
     cfLoc: String(trace.loc || ''),
     geo4,
-    geo6,
-    preferred
+    geo6
   };
 }
 
@@ -586,7 +645,7 @@ function esc(s) {
     const a4 = g4 && g4.asn ? g4.asn : '';
     const a6 = g6 && g6.asn ? g6.asn : '';
     if (a4 && a6 && a4 !== a6) return `v4 ${a4} · v6 ${a6}`;
-    return a4 || a6 || '未知';
+    return a4 || a6 || '查询失败';
   };
 
   const ispLabel = (g4, g6) => {
@@ -597,7 +656,7 @@ function esc(s) {
     };
     const i4 = one(g4), i6 = one(g6);
     if (i4 && i6 && i4 !== i6) return `v4 ${i4} / v6 ${i6}`;
-    return i4 || i6 || '未知';
+    return i4 || i6 || '查询失败';
   };
 
   const geoLine = (() => {
@@ -605,7 +664,7 @@ function esc(s) {
     const a = g4 ? geoLabel(g4) : '';
     const b = g6 ? geoLabel(g6) : '';
     if (a && b && a !== b) return `v4 ${a} / v6 ${b}`;
-    return a || b || '未知';
+    return a || b || '查询失败';
   })();
 
   const html = `
@@ -704,7 +763,7 @@ function esc(s) {
       </div>
       ${rows}
       <div class="foot">
-        IPv4 / IPv6 通过独立出口查询获取；ASN、ISP、GeoIP 来自公网 IP 元数据。CF POP 仅表示 Cloudflare 接入点，不代表节点运营商。流媒体结果仍采用保守判定。
+        IPv4 / IPv6 独立检测；ASN、ISP、GeoIP 优先使用 IP.SB，失败时自动回退 ipapi.co。CF POP 仅表示 Cloudflare 接入点，不代表节点运营商。
       </div>
     </div>
   </body>
