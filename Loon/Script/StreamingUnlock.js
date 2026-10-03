@@ -3,7 +3,7 @@
  * Loon generic script for per-node streaming / AI unlock checks.
  * Every HTTP request is explicitly bound to the node selected in Loon.
  * Author: Horatio Xu
- * Version: 1.0.0
+ * Version: 1.1.0
  */
 
 const PARAMS = (typeof $environment !== 'undefined' && $environment.params) ? $environment.params : {};
@@ -367,31 +367,7 @@ function esc(s) {
     Promise.all(tasks.map(([name, fn]) => safe(name, fn)))
   ]);
 
-  const rows = results.map(r => `
-    <div class="row">
-      <div class="name">${esc(r.name)}</div>
-      <div class="status" style="color:${colorFor(r.state)}">${iconFor(r.state)} ${esc(r.text)}</div>
-    </div>`).join('');
-
-  const loc = exitInfo.loc ? `${flag(exitInfo.loc)}${exitInfo.loc}` : '未知';
-  const html = `
-  <html><head><meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-    body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;margin:0;padding:16px;background:#f2f2f7;color:#111}
-    .card{background:#fff;border-radius:18px;padding:16px;box-shadow:0 2px 14px rgba(0,0,0,.06)}
-    .title{font-size:21px;font-weight:750;margin-bottom:4px}.sub{font-size:12px;color:#8e8e93;line-height:1.45;margin-bottom:13px;word-break:break-all}
-    .row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:.5px solid #e5e5ea;align-items:flex-start}
-    .name{font-size:14px;font-weight:650;min-width:112px}.status{font-size:13px;text-align:right;font-weight:600;line-height:1.35}
-    .foot{font-size:11px;color:#8e8e93;margin-top:12px;line-height:1.5}
-    @media (prefers-color-scheme:dark){body{background:#000;color:#fff}.card{background:#1c1c1e}.row{border-color:#38383a}}
-  </style></head><body><div class="card">
-    <div class="title">📺 流媒体解锁查询</div>
-    <div class="sub">节点：${esc(NODE)}<br>出口：${esc(exitInfo.ip)} · ${esc(loc)}${exitInfo.colo ? ` · CF ${esc(exitInfo.colo)}` : ''}</div>
-    ${rows}
-    <div class="foot">所有检测请求均强制通过当前所选节点。检测接口可能受平台限流、WAF、登录状态或接口更新影响；“检测失败”不等于明确不可用。</div>
-  </div></body></html>`;
-
-  console.log(html);
+  const rows = results.map(r => `\n    <div class="item">\n      <div class="item-left">\n        <div class="app-name">${esc(r.name)}</div>\n      </div>\n      <div class="item-right">\n        <span class="badge badge-${esc(r.state)}">\n          <span class="badge-dot"></span>\n          ${esc(r.text)}\n        </span>\n      </div>\n    </div>`).join('');\n\n  const loc = exitInfo.loc ? `${flag(exitInfo.loc)} ${exitInfo.loc}` : '未知';\n  const html = `\n  <html>\n  <head>\n    <meta charset="utf-8">\n    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n    <style>\n      :root{\n        --bg:#f2f2f7;\n        --card:rgba(255,255,255,.88);\n        --card-border:rgba(255,255,255,.68);\n        --text:#111111;\n        --sub:#6e6e73;\n        --line:rgba(60,60,67,.10);\n        --green:#34c759;\n        --green-bg:rgba(52,199,89,.14);\n        --orange:#ff9f0a;\n        --orange-bg:rgba(255,159,10,.14);\n        --red:#ff3b30;\n        --red-bg:rgba(255,59,48,.14);\n        --gray:#8e8e93;\n        --gray-bg:rgba(142,142,147,.14);\n        --blue:#0a84ff;\n        --blue-bg:rgba(10,132,255,.14);\n      }\n\n      @media (prefers-color-scheme: dark) {\n        :root{\n          --bg:#000000;\n          --card:rgba(28,28,30,.86);\n          --card-border:rgba(255,255,255,.08);\n          --text:#ffffff;\n          --sub:#a1a1a6;\n          --line:rgba(255,255,255,.08);\n          --green:#30d158;\n          --green-bg:rgba(48,209,88,.16);\n          --orange:#ff9f0a;\n          --orange-bg:rgba(255,159,10,.16);\n          --red:#ff453a;\n          --red-bg:rgba(255,69,58,.16);\n          --gray:#98989d;\n          --gray-bg:rgba(152,152,157,.16);\n          --blue:#64d2ff;\n          --blue-bg:rgba(100,210,255,.16);\n        }\n      }\n\n      *{box-sizing:border-box}\n      body{\n        margin:0;\n        padding:16px;\n        background:var(--bg);\n        color:var(--text);\n        font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Helvetica Neue",sans-serif;\n      }\n\n      .wrap{\n        background:var(--card);\n        border:1px solid var(--card-border);\n        border-radius:24px;\n        padding:18px;\n        box-shadow:0 12px 32px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.24);\n        backdrop-filter:blur(24px) saturate(150%);\n        -webkit-backdrop-filter:blur(24px) saturate(150%);\n      }\n\n      .header{margin-bottom:14px}\n      .title{font-size:24px;font-weight:800;letter-spacing:-.5px;line-height:1.15;margin-bottom:5px}\n      .subtitle{font-size:12px;color:var(--sub);line-height:1.4}\n\n      .meta{\n        display:flex;\n        flex-wrap:wrap;\n        gap:8px;\n        margin:14px 0 16px;\n      }\n\n      .chip{\n        display:inline-flex;\n        align-items:center;\n        gap:6px;\n        padding:8px 11px;\n        border-radius:999px;\n        font-size:11.5px;\n        font-weight:650;\n        color:var(--text);\n        background:rgba(127,127,127,.10);\n        border:1px solid var(--line);\n        white-space:nowrap;\n      }\n\n      .list{display:flex;flex-direction:column;gap:9px}\n\n      .item{\n        display:flex;\n        align-items:center;\n        justify-content:space-between;\n        gap:12px;\n        padding:13px 13px;\n        border-radius:17px;\n        background:rgba(127,127,127,.075);\n        border:1px solid var(--line);\n      }\n\n      .item-left{min-width:0;flex:1}\n      .app-name{font-size:15px;font-weight:720;letter-spacing:-.2px;line-height:1.2}\n      .item-right{display:flex;justify-content:flex-end;align-items:center;max-width:67%}\n\n      .badge{\n        display:inline-flex;\n        align-items:center;\n        gap:7px;\n        padding:7px 10px;\n        border-radius:999px;\n        font-size:12.5px;\n        font-weight:700;\n        line-height:1.25;\n        text-align:right;\n        word-break:break-word;\n      }\n\n      .badge-dot{\n        width:7px;\n        height:7px;\n        border-radius:50%;\n        flex:0 0 auto;\n        background:currentColor;\n      }\n\n      .badge-ok{color:var(--green);background:var(--green-bg)}\n      .badge-partial{color:var(--orange);background:var(--orange-bg)}\n      .badge-blocked{color:var(--red);background:var(--red-bg)}\n      .badge-rate{color:var(--orange);background:var(--orange-bg)}\n      .badge-fail{color:var(--gray);background:var(--gray-bg)}\n      .badge-info{color:var(--blue);background:var(--blue-bg)}\n\n      .footer{\n        margin-top:14px;\n        padding-top:11px;\n        border-top:1px solid var(--line);\n        font-size:10.5px;\n        color:var(--sub);\n        line-height:1.55;\n      }\n    </style>\n  </head>\n  <body>\n    <div class="wrap">\n      <div class="header">\n        <div class="title">📺 流媒体解锁查询</div>\n        <div class="subtitle">Streaming & AI Unlock Checker</div>\n      </div>\n\n      <div class="meta">\n        <span class="chip">📍 ${esc(NODE)}</span>\n        <span class="chip">🌐 ${esc(exitInfo.ip)}</span>\n        <span class="chip">🗺️ ${esc(loc)}</span>\n        ${exitInfo.colo ? `<span class="chip">☁️ CF ${esc(exitInfo.colo)}</span>` : ''}\n      </div>\n\n      <div class="list">\n        ${rows}\n      </div>\n\n      <div class="footer">\n        所有检测请求均强制通过当前所选节点。检测结果可能受平台限流、WAF、登录状态或接口更新影响；“检测失败”不等于明确不可用。\n      </div>\n    </div>\n  </body>\n  </html>`;\n  console.log(html);
   $done({ title:'📺 流媒体解锁查询', htmlMessage:html });
 })().catch(e => {
   console.log(`[StreamingUnlock Fatal] ${e && e.message ? e.message : e}`);
