@@ -3,14 +3,14 @@
  * Loon generic script for per-node streaming / AI unlock checks.
  * Every HTTP request is explicitly bound to the node selected in Loon.
  * Author: Horatio Xu
- * Version: 1.5.1
+ * Version: 1.5.2
  */
 
 const PARAMS = (typeof $environment !== 'undefined' && $environment.params) ? $environment.params : {};
 const NODE = PARAMS.node || (PARAMS.nodeInfo && (PARAMS.nodeInfo.name || PARAMS.nodeInfo.tag)) || 'DIRECT';
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 const TIMEOUT = 8000;
-const VERSION = '1.5.1';
+const VERSION = '1.5.2';
 
 function flag(code) {
   if (!code) return '';
