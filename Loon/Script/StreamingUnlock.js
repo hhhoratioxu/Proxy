@@ -3,7 +3,7 @@
  * Loon generic script for per-node streaming / AI unlock checks.
  * Every HTTP request is explicitly bound to the node selected in Loon.
  * Author: Horatio Xu
- * Version: 1.1.0
+ * Version: 1.2.0
  */
 
 const PARAMS = (typeof $environment !== 'undefined' && $environment.params) ? $environment.params : {};
@@ -368,19 +368,19 @@ function esc(s) {
   ]);
 
   const rows = results.map(r => `
-    <div class="item">
-      <div class="item-left">
-        <div class="app-name">${esc(r.name)}</div>
-      </div>
-      <div class="item-right">
+    <div class="svc">
+      <div class="svc-name">${esc(r.name)}</div>
+      <div class="svc-status">
         <span class="badge badge-${esc(r.state)}">
-          <span class="badge-dot"></span>
+          <span class="dot"></span>
           ${esc(r.text)}
         </span>
       </div>
-    </div>`).join('');
+    </div>
+  `).join('');
 
   const loc = exitInfo.loc ? `${flag(exitInfo.loc)} ${exitInfo.loc}` : '未知';
+
   const html = `
   <html>
   <head>
@@ -389,11 +389,11 @@ function esc(s) {
     <style>
       :root{
         --bg:#f2f2f7;
-        --card:rgba(255,255,255,.88);
-        --card-border:rgba(255,255,255,.68);
+        --panel:#ffffff;
+        --card:#f8f8fa;
+        --line:rgba(60,60,67,.10);
         --text:#111111;
         --sub:#6e6e73;
-        --line:rgba(60,60,67,.10);
         --green:#34c759;
         --green-bg:rgba(52,199,89,.14);
         --orange:#ff9f0a;
@@ -409,11 +409,11 @@ function esc(s) {
       @media (prefers-color-scheme: dark) {
         :root{
           --bg:#000000;
-          --card:rgba(28,28,30,.86);
-          --card-border:rgba(255,255,255,.08);
+          --panel:#1c1c1e;
+          --card:#2c2c2e;
+          --line:rgba(255,255,255,.08);
           --text:#ffffff;
           --sub:#a1a1a6;
-          --line:rgba(255,255,255,.08);
           --green:#30d158;
           --green-bg:rgba(48,209,88,.16);
           --orange:#ff9f0a;
@@ -428,6 +428,7 @@ function esc(s) {
       }
 
       *{box-sizing:border-box}
+
       body{
         margin:0;
         padding:16px;
@@ -436,77 +437,108 @@ function esc(s) {
         font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Helvetica Neue",sans-serif;
       }
 
-      .wrap{
-        background:var(--card);
-        border:1px solid var(--card-border);
+      .panel{
+        background:var(--panel);
         border-radius:24px;
         padding:18px;
-        box-shadow:0 12px 32px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.24);
-        backdrop-filter:blur(24px) saturate(150%);
-        -webkit-backdrop-filter:blur(24px) saturate(150%);
+        box-shadow:0 10px 28px rgba(0,0,0,.10);
       }
 
-      .header{margin-bottom:14px}
-      .title{font-size:24px;font-weight:800;letter-spacing:-.5px;line-height:1.15;margin-bottom:5px}
-      .subtitle{font-size:12px;color:var(--sub);line-height:1.4}
+      .title{
+        font-size:22px;
+        font-weight:800;
+        letter-spacing:-0.4px;
+        line-height:1.15;
+        margin-bottom:4px;
+      }
 
-      .meta{
+      .sub{
+        font-size:12px;
+        color:var(--sub);
+        margin-bottom:14px;
+      }
+
+      .meta-grid{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+        margin-bottom:16px;
+      }
+
+      .meta-card{
+        background:var(--card);
+        border:1px solid var(--line);
+        border-radius:16px;
+        padding:10px 12px;
+      }
+
+      .meta-label{
+        font-size:11px;
+        color:var(--sub);
+        margin-bottom:5px;
+      }
+
+      .meta-value{
+        font-size:13px;
+        font-weight:700;
+        line-height:1.35;
+        word-break:break-all;
+      }
+
+      .section-title{
+        font-size:13px;
+        font-weight:700;
+        color:var(--sub);
+        margin:2px 0 10px;
+      }
+
+      .svc-list{
         display:flex;
+        flex-direction:column;
+        gap:10px;
+      }
+
+      .svc{
+        background:var(--card);
+        border:1px solid var(--line);
+        border-radius:18px;
+        padding:12px 13px;
+      }
+
+      .svc-name{
+        font-size:16px;
+        font-weight:750;
+        letter-spacing:-0.2px;
+        line-height:1.2;
+        margin-bottom:9px;
+      }
+
+      .svc-status{
+        display:flex;
+        align-items:center;
         flex-wrap:wrap;
         gap:8px;
-        margin:14px 0 16px;
       }
-
-      .chip{
-        display:inline-flex;
-        align-items:center;
-        gap:6px;
-        padding:8px 11px;
-        border-radius:999px;
-        font-size:11.5px;
-        font-weight:650;
-        color:var(--text);
-        background:rgba(127,127,127,.10);
-        border:1px solid var(--line);
-        white-space:nowrap;
-      }
-
-      .list{display:flex;flex-direction:column;gap:9px}
-
-      .item{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap:12px;
-        padding:13px 13px;
-        border-radius:17px;
-        background:rgba(127,127,127,.075);
-        border:1px solid var(--line);
-      }
-
-      .item-left{min-width:0;flex:1}
-      .app-name{font-size:15px;font-weight:720;letter-spacing:-.2px;line-height:1.2}
-      .item-right{display:flex;justify-content:flex-end;align-items:center;max-width:67%}
 
       .badge{
         display:inline-flex;
         align-items:center;
-        gap:7px;
-        padding:7px 10px;
+        gap:8px;
+        padding:8px 12px;
         border-radius:999px;
-        font-size:12.5px;
+        font-size:13px;
         font-weight:700;
         line-height:1.25;
-        text-align:right;
+        max-width:100%;
         word-break:break-word;
       }
 
-      .badge-dot{
-        width:7px;
-        height:7px;
+      .dot{
+        width:8px;
+        height:8px;
         border-radius:50%;
-        flex:0 0 auto;
         background:currentColor;
+        flex:0 0 auto;
       }
 
       .badge-ok{color:var(--green);background:var(--green-bg)}
@@ -516,34 +548,50 @@ function esc(s) {
       .badge-fail{color:var(--gray);background:var(--gray-bg)}
       .badge-info{color:var(--blue);background:var(--blue-bg)}
 
-      .footer{
+      .note{
         margin-top:14px;
-        padding-top:11px;
+        padding:12px 0 0;
         border-top:1px solid var(--line);
-        font-size:10.5px;
+        font-size:11px;
         color:var(--sub);
         line-height:1.55;
       }
     </style>
   </head>
   <body>
-    <div class="wrap">
-      <div class="header">
-        <div class="subtitle">STREAMING & AI UNLOCK CHECKER</div>
+    <div class="panel">
+      <div class="title">📺 流媒体解锁查询</div>
+      <div class="sub">当前节点检测结果</div>
+
+      <div class="meta-grid">
+        <div class="meta-card">
+          <div class="meta-label">节点</div>
+          <div class="meta-value">${esc(NODE)}</div>
+        </div>
+
+        <div class="meta-card">
+          <div class="meta-label">出口 IP</div>
+          <div class="meta-value">${esc(exitInfo.ip)}</div>
+        </div>
+
+        <div class="meta-card">
+          <div class="meta-label">地区</div>
+          <div class="meta-value">${esc(loc)}</div>
+        </div>
+
+        <div class="meta-card">
+          <div class="meta-label">Cloudflare POP</div>
+          <div class="meta-value">${esc(exitInfo.colo || '未知')}</div>
+        </div>
       </div>
 
-      <div class="meta">
-        <span class="chip">📍 ${esc(NODE)}</span>
-        <span class="chip">🌐 ${esc(exitInfo.ip)}</span>
-        <span class="chip">🗺️ ${esc(loc)}</span>
-        ${exitInfo.colo ? `<span class="chip">☁️ CF ${esc(exitInfo.colo)}</span>` : ''}
-      </div>
+      <div class="section-title">检测结果</div>
 
-      <div class="list">
+      <div class="svc-list">
         ${rows}
       </div>
 
-      <div class="footer">
+      <div class="note">
         所有检测请求均强制通过当前所选节点。检测结果可能受平台限流、WAF、登录状态或接口更新影响；“检测失败”不等于明确不可用。
       </div>
     </div>
