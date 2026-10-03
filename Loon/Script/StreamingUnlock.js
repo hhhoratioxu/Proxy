@@ -215,7 +215,7 @@ async function checkYouTube() {
   const ok = r.status >= 200 && r.status < 300 && (lower.includes('youtube premium') || lower.includes('ad-free') || lower.includes('"browseid":"spunlimited"'));
   if (!ok) return { state:'fail', text:'无法确认 Premium' };
   const pats = [
-    /id=[#']country-code["'][^>]*>\s*([A-Za-z]{2,3})\s*</,
+    /id=["']country-code["'][^>]*>\s*([A-Za-z]{2,3})\s*</,
     /"GL"\s*:\s*"([A-Za-z]{2})"/,
     /"countryCode"\s*:\s*"([A-Za-z]{2})"/,
     /"country_code"\s*:\s*"([A-Za-z]{2})"/
