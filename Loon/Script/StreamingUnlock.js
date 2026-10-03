@@ -3,13 +3,14 @@
  * Loon generic script for per-node streaming / AI unlock checks.
  * Every HTTP request is explicitly bound to the node selected in Loon.
  * Author: Horatio Xu
- * Version: 1.3.1
+ * Version: 1.5.0
  */
 
 const PARAMS = (typeof $environment !== 'undefined' && $environment.params) ? $environment.params : {};
 const NODE = PARAMS.node || (PARAMS.nodeInfo && (PARAMS.nodeInfo.name || PARAMS.nodeInfo.tag)) || 'DIRECT';
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 const TIMEOUT = 8000;
+const VERSION = '1.5.0';
 
 function flag(code) {
   if (!code) return '';
@@ -85,13 +86,79 @@ async function safe(name, fn) {
 }
 
 async function checkExit() {
-  const r = await req('get', 'https://www.cloudflare.com/cdn-cgi/trace', { 'User-Agent': UA });
-  const kv = {};
-  r.body.split('\n').forEach(line => {
-    const i = line.indexOf('=');
-    if (i > 0) kv[line.slice(0, i)] = line.slice(i + 1).trim();
-  });
-  return { ip: kv.ip || '未知', loc: kv.loc || '', colo: kv.colo || '' };
+  const parseIpify = body => {
+    const raw = String(body || '').trim();
+    if (!raw) return '';
+    try {
+      const j = JSON.parse(raw);
+      return String(j.ip || '').trim();
+    } catch (_) {
+      return raw.replace(/["'\s]/g, '');
+    }
+  };
+
+  const parseTrace = body => {
+    const out = {};
+    String(body || '').split('\n').forEach(line => {
+      const i = line.indexOf('=');
+      if (i > 0) out[line.slice(0, i)] = line.slice(i + 1).trim();
+    });
+    return out;
+  };
+
+  const fetchGeo = async ip => {
+    if (!ip) return null;
+    try {
+      const r = await req('get', 'https://ipwho.is/' + ip, { 'User-Agent': UA }, null, 6500);
+      if (r.status < 200 || r.status >= 300) return null;
+      const j = JSON.parse(r.body);
+      if (!j || j.success === false) return null;
+      const c = j.connection || {};
+      return {
+        ip: String(j.ip || ip),
+        type: String(j.type || ''),
+        country: String(j.country || ''),
+        countryCode: String(j.country_code || '').toUpperCase(),
+        region: String(j.region || ''),
+        city: String(j.city || ''),
+        asn: c.asn ? 'AS' + String(c.asn).replace(/^AS/i, '') : '',
+        isp: String(c.isp || ''),
+        org: String(c.org || '')
+      };
+    } catch (_) {
+      return null;
+    }
+  };
+
+  const [cfR, v4R, v6R] = await Promise.all([
+    req('get', 'https://www.cloudflare.com/cdn-cgi/trace', { 'User-Agent': UA }).catch(() => null),
+    req('get', 'https://api.ipify.org?format=json', { 'User-Agent': UA }, null, 6500).catch(() => null),
+    req('get', 'https://api6.ipify.org?format=json', { 'User-Agent': UA }, null, 6500).catch(() => null)
+  ]);
+
+  const trace = cfR ? parseTrace(cfR.body) : {};
+  let ipv4 = v4R ? parseIpify(v4R.body) : '';
+  let ipv6 = v6R ? parseIpify(v6R.body) : '';
+
+  const cfIp = String(trace.ip || '');
+  if (!ipv4 && /^\d{1,3}(?:\.\d{1,3}){3}$/.test(cfIp)) ipv4 = cfIp;
+  if (!ipv6 && cfIp.includes(':')) ipv6 = cfIp;
+
+  const [geo4, geo6] = await Promise.all([
+    fetchGeo(ipv4),
+    fetchGeo(ipv6)
+  ]);
+
+  const preferred = geo4 || geo6 || null;
+  return {
+    ipv4: ipv4 || '',
+    ipv6: ipv6 || '',
+    colo: String(trace.colo || ''),
+    cfLoc: String(trace.loc || ''),
+    geo4,
+    geo6,
+    preferred
+  };
 }
 
 async function checkApple() {
@@ -166,7 +233,7 @@ async function checkDisney() {
     'User-Agent':UA
   },JSON.stringify({deviceFamily:'browser',applicationRuntime:'chrome',deviceProfile:'windows',attributes:{}}));
   if(device.status===429) return {state:'rate',text:'Rate Limited · HTTP 429'};
-  if(device.status===403 || /403 ERROR/i.test(device.body)) return {state:'blocked',text:'无法获取设备授权'};
+  if(device.status===403 || /403 ERROR/i.test(device.body)) return {state:'fail',text:'设备授权失败 · HTTP 403'};
   let assertion='';
   try{ assertion=JSON.parse(device.body).assertion || ''; }catch(_){}
   if(!assertion) return {state:'fail',text:'设备授权响应异常'};
@@ -226,7 +293,7 @@ async function checkMax() {
   if(tokenR.status===429) return {state:'rate',text:'Rate Limited · HTTP 429'};
   let token='';
   try{ token=JSON.parse(tokenR.body).data.attributes.token || ''; }catch(_){}
-  if(!token) return {state:'blocked',text:'不可用 / 无法获取 Token'};
+  if(!token) return {state:'fail',text:'检测失败 · 无法获取 Token'};
 
   const sessionR=await req('post','https://default.any-any.prd.api.max.com/session-context/headwaiter/v1/bootstrap',{
     'User-Agent':UA,'Cookie':`st=${token}`,'Content-Type':'application/json'
@@ -255,8 +322,10 @@ async function checkMax() {
   },`st=${encodeURIComponent(VPN_TOKEN)}`);
   if(playback.status===429) return {state:'rate',text:'Rate Limited · HTTP 429'};
   if(/vpn/i.test(playback.body)) return {state:'blocked',text:`VPN Blocked · ${regionLabel(cc)}`};
+  if(playback.status < 200 || playback.status >= 300)
+    return {state:'fail',text:`播放校验失败 · HTTP ${playback.status || 'N/A'}`};
 
-  return {state:'ok',text:`已解锁 · ${regionLabel(cc)}`};
+  return {state:'ok',text:`播放校验通过 · ${regionLabel(cc)}`};
 }
 
 
@@ -310,13 +379,13 @@ async function checkYouTube() {
   if(body.includes('Premium is not available in your country')) return {state:'blocked',text:'Premium 不可用'};
 
   const cm=body.match(/"countryCode":\s*"([A-Za-z]{2})"/);
-  if(cm) return {state:'ok',text:`Premium 已解锁 · ${regionLabel(cm[1])}`};
+  if(cm) return {state:'ok',text:`Premium 可用 · ${regionLabel(cm[1])}`};
 
   if(body.includes('premiumPurchaseButton') ||
      body.includes('manageSubscriptionButton') ||
      body.includes('/月') ||
      body.includes('/month')){
-    return {state:'ok',text:'Premium 已解锁'};
+    return {state:'ok',text:'Premium 可用'};
   }
 
   if(r.status===403 || r.status===451) return {state:'blocked',text:`不可用 · HTTP ${r.status}`};
@@ -338,8 +407,8 @@ async function checkSpotify() {
   let cfg;
   try{ cfg=JSON.parse(decodeBase64Ascii(m[1].trim())); }catch(_){ return {state:'fail',text:'Spotify 市场信息解析失败'}; }
   const cc=String(cfg && cfg.market || '').toUpperCase();
-  if(!cc) return {state:'blocked',text:'注册 / 市场不可用'};
-  return {state:'ok',text:`市场可用 · ${regionLabel(cc)}`};
+  if(!cc) return {state:'fail',text:'无法确认 Spotify 市场'};
+  return {state:'ok',text:`市场识别 · ${regionLabel(cc)}`};
 }
 
 
@@ -352,7 +421,7 @@ async function checkTikTok() {
     const body=String(r.body || '');
     if(body.includes('https://www.tiktok.com/hk/notfound')) return {terminal:true,result:{state:'blocked',text:'不可用 · 🇭🇰HK'}};
     const m=body.match(/"region":"(\w+)"/);
-    if(m) return {terminal:true,result:{state:'ok',text:`已解锁 · ${regionLabel(m[1])}`}};
+    if(m) return {terminal:true,result:{state:'ok',text:`地区可用 · ${regionLabel(m[1])}`}};
     return {terminal:false};
   };
   const a=await test('https://www.tiktok.com/explore');
@@ -399,7 +468,7 @@ async function checkChatGPT() {
   const wr=!!w, ir=!!i, tr=!!t;
 
   if(!vpn && !unsupported && wr && ir && tr)
-    return {state:'ok',text:`Web + iOS 可用${cc ? ` · ${regionLabel(cc)}` : ''}`};
+    return {state:'ok',text:`Web + iOS 可访问${cc ? ` · ${regionLabel(cc)}` : ''}`};
   if(!unsupported && vpn && wr)
     return {state:'partial',text:`仅 Web 可用${cc ? ` · ${regionLabel(cc)}` : ''}`};
   if(unsupported && !vpn && ir)
@@ -452,10 +521,11 @@ async function checkInstagramMusic() {
     if(/"should_mute_audio"\s*:\s*true/i.test(r.body))
       return {state:'blocked',text:'Licensed Audio 不可用'};
     if(/"should_mute_audio"\s*:\s*false/i.test(r.body))
-      return {state:'ok',text:'Licensed Audio 可用'};
+      return {state:'ok',text:'Licensed Audio 测试通过'};
     return {state:'fail',text:'接口返回 200，但缺少音频授权字段'};
   }
-  if(r.status===403 || r.status===451) return {state:'blocked',text:`不可用 · HTTP ${r.status}`};
+  if(r.status===451) return {state:'blocked',text:'地区限制 · HTTP 451'};
+  if(r.status===403) return {state:'fail',text:'请求被拒绝 · HTTP 403'};
   return {state:'fail',text:`检测异常 · HTTP ${r.status || 'N/A'}`};
 }
 
@@ -492,19 +562,51 @@ function esc(s) {
     Promise.all(tasks.map(([name, fn]) => safe(name, fn)))
   ]);
 
-  const rows = results.map(r => `
-    <div class="svc">
-      <div class="svc-name">${esc(r.name)}</div>
-      <div class="svc-status">
-        <span class="badge badge-${esc(r.state)}">
-          <span class="dot"></span>
-          ${esc(r.text)}
-        </span>
-      </div>
-    </div>
-  `).join('');
 
-  const loc = exitInfo.loc ? `${flag(exitInfo.loc)} ${exitInfo.loc}` : '未知';
+  const rows = results.map(r => {
+    const color = colorFor(r.state);
+    return `
+      <div class="row">
+        <div class="service">${esc(r.name)}</div>
+        <div class="result" style="color:${color}">● ${esc(r.text)}</div>
+      </div>`;
+  }).join('');
+
+  const geoLabel = g => {
+    if (!g) return '未知';
+    const cc = g.countryCode || '';
+    const parts = [];
+    if (cc) parts.push(`${flag(cc)} ${cc}`);
+    if (g.city) parts.push(g.city);
+    else if (g.region) parts.push(g.region);
+    return parts.length ? parts.join(' · ') : (g.country || '未知');
+  };
+
+  const asnLabel = (g4, g6) => {
+    const a4 = g4 && g4.asn ? g4.asn : '';
+    const a6 = g6 && g6.asn ? g6.asn : '';
+    if (a4 && a6 && a4 !== a6) return `v4 ${a4} · v6 ${a6}`;
+    return a4 || a6 || '未知';
+  };
+
+  const ispLabel = (g4, g6) => {
+    const one = g => {
+      if (!g) return '';
+      if (g.isp && g.org && g.isp !== g.org) return `${g.isp} · ${g.org}`;
+      return g.isp || g.org || '';
+    };
+    const i4 = one(g4), i6 = one(g6);
+    if (i4 && i6 && i4 !== i6) return `v4 ${i4} / v6 ${i6}`;
+    return i4 || i6 || '未知';
+  };
+
+  const geoLine = (() => {
+    const g4 = exitInfo.geo4, g6 = exitInfo.geo6;
+    const a = g4 ? geoLabel(g4) : '';
+    const b = g6 ? geoLabel(g6) : '';
+    if (a && b && a !== b) return `v4 ${a} / v6 ${b}`;
+    return a || b || '未知';
+  })();
 
   const html = `
   <html>
@@ -512,223 +614,102 @@ function esc(s) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <style>
-      :root{
-        --bg:#f2f2f7;
-        --panel:transparent;
-        --card:transparent;
-        --line:rgba(60,60,67,.10);
-        --text:#111111;
-        --sub:#6e6e73;
-        --green:#34c759;
-        --green-bg:transparent;
-        --orange:#ff9f0a;
-        --orange-bg:transparent;
-        --red:#ff3b30;
-        --red-bg:transparent;
-        --gray:#8e8e93;
-        --gray-bg:transparent;
-        --blue:#0a84ff;
-        --blue-bg:transparent;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root{
-          --bg:#000000;
-          --panel:transparent;
-          --card:transparent;
-          --line:rgba(255,255,255,.08);
-          --text:#ffffff;
-          --sub:#a1a1a6;
-          --green:#30d158;
-          --green-bg:transparent;
-          --orange:#ff9f0a;
-          --orange-bg:transparent;
-          --red:#ff453a;
-          --red-bg:transparent;
-          --gray:#98989d;
-          --gray-bg:transparent;
-          --blue:#64d2ff;
-          --blue-bg:transparent;
-        }
-      }
-
-      *{box-sizing:border-box}
-
-      body{
+      html,body{
         margin:0;
-        padding:16px;
-        background:var(--bg);
-        color:var(--text);
+        padding:0;
+        background:transparent!important;
+        color-scheme:dark;
+      }
+      body{
+        color:#F5F5F7;
         font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Helvetica Neue",sans-serif;
+        font-size:14px;
+        -webkit-font-smoothing:antialiased;
+        text-rendering:optimizeLegibility;
       }
-
-      .panel{
-        background:transparent;
-        border-radius:0;
-        padding:8px 2px 4px;
-        box-shadow:none;
+      .wrap{
+        padding:2px 4px 0;
+        background:transparent!important;
       }
-
-      .title{
-        font-size:22px;
-        font-weight:800;
-        letter-spacing:-0.4px;
-        line-height:1.15;
-        margin-bottom:4px;
-      }
-
-      .sub{
-        font-size:12px;
-        color:var(--sub);
-        margin-bottom:14px;
-      }
-
-      .meta-grid{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:10px;
-        margin-bottom:16px;
-      }
-
-      .meta-card{
-        background:transparent;
-        border:0;
-        border-radius:0;
-        padding:4px 0;
-      }
-
-      .meta-label{
+      .version{
+        color:#A1A1A6;
         font-size:11px;
-        color:var(--sub);
-        margin-bottom:5px;
-      }
-
-      .meta-value{
-        font-size:13px;
-        font-weight:700;
-        line-height:1.35;
-        word-break:break-all;
-      }
-
-      .section-title{
-        font-size:13px;
-        font-weight:700;
-        color:var(--sub);
-        margin:2px 0 10px;
-      }
-
-      .svc-list{
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-      }
-
-      .svc{
-        background:transparent;
-        border:0;
-        border-bottom:1px solid var(--line);
-        border-radius:0;
-        padding:12px 0 13px;
-      }
-
-      .svc-name{
-        font-size:16px;
-        font-weight:750;
-        letter-spacing:-0.2px;
-        line-height:1.2;
+        font-weight:650;
+        letter-spacing:.2px;
         margin-bottom:9px;
       }
-
-      .svc-status{
-        display:flex;
-        align-items:center;
-        flex-wrap:wrap;
-        gap:8px;
-      }
-
-      .badge{
-        display:inline-flex;
-        align-items:center;
-        gap:7px;
-        padding:0;
-        border-radius:0;
-        font-size:13px;
-        font-weight:700;
-        line-height:1.35;
-        max-width:100%;
+      .summary{
+        color:#D1D1D6;
+        font-size:12.5px;
+        font-weight:500;
+        line-height:1.6;
+        padding-bottom:12px;
+        border-bottom:1px solid rgba(255,255,255,.14);
         word-break:break-word;
-        background:transparent !important;
       }
-
-      .dot{
-        width:8px;
-        height:8px;
-        border-radius:50%;
-        background:currentColor;
-        flex:0 0 auto;
+      .summary b{
+        display:inline-block;
+        min-width:52px;
+        color:#FFFFFF;
+        font-weight:700;
       }
-
-      .badge-ok{color:var(--green);background:var(--green-bg)}
-      .badge-partial{color:var(--orange);background:var(--orange-bg)}
-      .badge-blocked{color:var(--red);background:var(--red-bg)}
-      .badge-rate{color:var(--orange);background:var(--orange-bg)}
-      .badge-fail{color:var(--gray);background:var(--gray-bg)}
-      .badge-info{color:var(--blue);background:var(--blue-bg)}
-
-      .note{
-        margin-top:14px;
-        padding:12px 0 0;
-        border-top:1px solid var(--line);
-        font-size:11px;
-        color:var(--sub);
+      .row{
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+        gap:14px;
+        padding:12px 0;
+        border-bottom:1px solid rgba(255,255,255,.10);
+        background:transparent!important;
+      }
+      .service{
+        flex:0 0 34%;
+        color:#F5F5F7;
+        font-size:14px;
+        font-weight:700;
+        letter-spacing:-.1px;
+        line-height:1.4;
+        background:transparent!important;
+      }
+      .result{
+        flex:1;
+        text-align:right;
+        font-size:12.5px;
+        font-weight:700;
+        line-height:1.45;
+        background:transparent!important;
+        word-break:break-word;
+      }
+      .foot{
+        color:#A1A1A6;
+        font-size:10.5px;
+        font-weight:500;
         line-height:1.55;
-      }
-
-      .title,.sub,.meta-label,.meta-value,.section-title,.svc-name,.badge,.note{
-        background:transparent !important;
-        box-shadow:none !important;
+        padding-top:11px;
+        background:transparent!important;
       }
     </style>
   </head>
   <body>
-    <div class="panel">
-      <div class="title">📺 流媒体解锁查询</div>
-      <div class="sub">当前节点 · 解锁状态</div>
-
-      <div class="meta-grid">
-        <div class="meta-card">
-          <div class="meta-label">节点</div>
-          <div class="meta-value">${esc(NODE)}</div>
-        </div>
-
-        <div class="meta-card">
-          <div class="meta-label">出口 IP</div>
-          <div class="meta-value">${esc(exitInfo.ip)}</div>
-        </div>
-
-        <div class="meta-card">
-          <div class="meta-label">地区</div>
-          <div class="meta-value">${esc(loc)}</div>
-        </div>
-
-        <div class="meta-card">
-          <div class="meta-label">Cloudflare POP</div>
-          <div class="meta-value">${esc(exitInfo.colo || '未知')}</div>
-        </div>
+    <div class="wrap">
+      <div class="version">v${VERSION}</div>
+      <div class="summary">
+        <div><b>节点</b>　${esc(NODE)}</div>
+        <div><b>IPv4</b>　${esc(exitInfo.ipv4 || '不可用')}</div>
+        <div><b>IPv6</b>　${esc(exitInfo.ipv6 || '不可用')}</div>
+        <div><b>ASN</b>　${esc(asnLabel(exitInfo.geo4, exitInfo.geo6))}</div>
+        <div><b>ISP</b>　${esc(ispLabel(exitInfo.geo4, exitInfo.geo6))}</div>
+        <div><b>GeoIP</b>　${esc(geoLine)}</div>
+        <div><b>CF POP</b>　${esc(exitInfo.colo || '未知')}${exitInfo.cfLoc ? ` · ${flag(exitInfo.cfLoc)} ${esc(exitInfo.cfLoc)}` : ''}</div>
       </div>
-
-      <div class="section-title">检测结果</div>
-
-      <div class="svc-list">
-        ${rows}
-      </div>
-
-      <div class="note">
-        所有检测请求均强制通过当前所选节点。检测结果可能受平台限流、WAF、登录状态或接口更新影响；“检测失败”不等于明确不可用。
+      ${rows}
+      <div class="foot">
+        IPv4 / IPv6 通过独立出口查询获取；ASN、ISP、GeoIP 来自公网 IP 元数据。CF POP 仅表示 Cloudflare 接入点，不代表节点运营商。流媒体结果仍采用保守判定。
       </div>
     </div>
   </body>
   </html>`;
+
   console.log(html);
   $done({ title:'📺 流媒体解锁查询', htmlMessage:html });
 })().catch(e => {
