@@ -1,10 +1,11 @@
 #!name = 流媒体解锁查询
 #!desc = 节点流媒体 / AI 可用性与地区检测。结果采用保守判定，接口异常不直接视为不可用。
 #!author = @Horatio Xu
-#!version = 1.5.1
-#!date = 2026-10-03 23:01:00
+#!version = 1.5.2
+#!date = 2026-10-03 23:03:00
 #!loon_version = 3.5.1(998)
 #!homepage = https://github.com/hhhoratioxu/Proxy
+#!raw-url = https://github.com/hhhoratioxu/Proxy/raw/refs/heads/main/Loon/Plugin/StreamingUnlock.plugin
 
 [Script]
-generic script-path=https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Script/StreamingUnlock.js?v=1.5.1, tag=流媒体解锁查询, timeout=60, img-url=play.tv.fill.system
+generic script-path=https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Script/StreamingUnlock.js?v=1.5.2, tag=流媒体解锁查询, timeout=60, img-url=play.tv.fill.system
