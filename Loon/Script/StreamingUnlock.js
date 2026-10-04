@@ -3,14 +3,14 @@
  * Loon generic script for per-node streaming / AI unlock checks.
  * Every HTTP request is explicitly bound to the node selected in Loon.
  * Author: Horatio Xu
- * Version: 1.5.2
+ * Version: 1.5.3
  */
 
 const PARAMS = (typeof $environment !== 'undefined' && $environment.params) ? $environment.params : {};
 const NODE = PARAMS.node || (PARAMS.nodeInfo && (PARAMS.nodeInfo.name || PARAMS.nodeInfo.tag)) || 'DIRECT';
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 const TIMEOUT = 8000;
-const VERSION = '1.5.2';
+const VERSION = '1.5.3';
 
 function flag(code) {
   if (!code) return '';
@@ -677,10 +677,10 @@ function esc(s) {
         margin:0;
         padding:0;
         background:transparent!important;
-        color-scheme:dark;
+        color-scheme:light dark;
       }
       body{
-        color:#F5F5F7;
+        color:CanvasText;
         font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Helvetica Neue",sans-serif;
         font-size:14px;
         -webkit-font-smoothing:antialiased;
@@ -691,25 +691,25 @@ function esc(s) {
         background:transparent!important;
       }
       .version{
-        color:#A1A1A6;
+        color:GrayText;
         font-size:11px;
         font-weight:650;
         letter-spacing:.2px;
         margin-bottom:9px;
       }
       .summary{
-        color:#D1D1D6;
+        color:GrayText;
         font-size:12.5px;
         font-weight:500;
         line-height:1.6;
         padding-bottom:12px;
-        border-bottom:1px solid rgba(255,255,255,.14);
+        border-bottom:1px solid color-mix(in srgb, CanvasText 16%, transparent);
         word-break:break-word;
       }
       .summary b{
         display:inline-block;
         min-width:52px;
-        color:#FFFFFF;
+        color:CanvasText;
         font-weight:700;
       }
       .row{
@@ -718,12 +718,12 @@ function esc(s) {
         align-items:flex-start;
         gap:14px;
         padding:12px 0;
-        border-bottom:1px solid rgba(255,255,255,.10);
+        border-bottom:1px solid color-mix(in srgb, CanvasText 12%, transparent);
         background:transparent!important;
       }
       .service{
         flex:0 0 34%;
-        color:#F5F5F7;
+        color:CanvasText;
         font-size:14px;
         font-weight:700;
         letter-spacing:-.1px;
@@ -739,8 +739,11 @@ function esc(s) {
         background:transparent!important;
         word-break:break-word;
       }
+      .version,.summary,.service,.foot{
+        text-shadow:0 0 .35px rgba(127,127,127,.35);
+      }
       .foot{
-        color:#A1A1A6;
+        color:GrayText;
         font-size:10.5px;
         font-weight:500;
         line-height:1.55;
