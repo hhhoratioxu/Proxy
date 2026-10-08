@@ -1,0 +1,17 @@
+# NAME: Parsec P2P
+# AUTHOR: Horatio Xu
+# FORMAT: Loon Remote Rule Set
+# VERSION: 1.0.0
+# UPDATED: 2026-10-08
+# POLICY: Choose DIRECT when subscribing.
+# PURPOSE: Parsec STUN/NAT traversal and direct UDP P2P streaming.
+# IMPORTANT: Place BEFORE Parsec.lsr in Loon rule-set priority.
+# REQUIREMENT: On Parsec for Mac, set Network > Client Port to 9000 and restart.
+# CAUTION: This matches ALL UDP traffic with local source port 9000, not only Parsec.
+# CAUTION: This cannot guarantee a direct P2P path through CGNAT/firewalls.
+# NOTE: If Loon is only on an iPhone, its rules do not manage Mac traffic unless
+#       the Mac's traffic is actually routed through that Loon instance.
+
+DOMAIN,stun.parsec.app
+DOMAIN,stun6.parsec.app
+AND,((PROTOCOL,UDP),(SRC-PORT,9000))
