@@ -1,0 +1,13 @@
+# NAME: Parsec
+# AUTHOR: Horatio Xu
+# FORMAT: Egern Rule Set
+# VERSION: 1.0.0
+# UPDATED: 2026-10-08
+# ASSIGN POLICY: your proxy policy / TAG
+# API, WebSocket and other Parsec-owned domains.
+# Do not route generic AWS S3 / CloudFront domains here.
+
+domain_suffix_set:
+  - parsec.app
+  - parsecgaming.com
+  - parsecusercontent.com
