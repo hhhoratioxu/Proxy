@@ -1,0 +1,11 @@
+# NAME: Parsec P2P
+# AUTHOR: Horatio Xu
+# FORMAT: Shadowrocket Rule Set
+# VERSION: 1.0.0
+# UPDATED: 2026-10-08
+# ASSIGN POLICY: DIRECT
+# STUN hostnames only; no supported selective Parsec UDP source-port rule.
+# Unknown peer IP UDP packets may still follow the default policy.
+
+DOMAIN,stun.parsec.app
+DOMAIN,stun6.parsec.app
