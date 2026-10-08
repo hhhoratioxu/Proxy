@@ -1,0 +1,16 @@
+# NAME: Parsec P2P
+# AUTHOR: Horatio Xu
+# FORMAT: Mihomo/Clash.Meta classical rule-provider YAML
+# VERSION: 1.0.0
+# UPDATED: 2026-10-08
+# ASSIGN POLICY: RULE-SET -> DIRECT
+# Put before Parsec proxy rule provider.
+# Process matching requires process detection to work on the client platform.
+# For 9000 fallback, set Parsec Client Port=9000. Does not guarantee NAT success.
+
+payload:
+  - 'DOMAIN,stun.parsec.app'
+  - 'DOMAIN,stun6.parsec.app'
+  - 'AND,((PROCESS-NAME,parsecd),(NETWORK,UDP))'
+  - 'AND,((PROCESS-NAME,parsecd.exe),(NETWORK,UDP))'
+  - 'AND,((SRC-PORT,9000),(NETWORK,UDP))'
