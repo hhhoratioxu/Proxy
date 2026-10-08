@@ -1,0 +1,14 @@
+# NAME: Parsec P2P
+# AUTHOR: Horatio Xu
+# FORMAT: Surge Remote Rule Set
+# VERSION: 1.0.0
+# UPDATED: 2026-10-08
+# ASSIGN POLICY: DIRECT
+# Put before Parsec proxy rule set.
+# PROCESS-NAME parsecd works for Surge Mac; SRC-PORT 9000 fallback requires Mac client port 9000.
+# Rule matching does not guarantee P2P can traverse NAT/firewalls.
+
+DOMAIN,stun.parsec.app
+DOMAIN,stun6.parsec.app
+AND,((PROCESS-NAME,parsecd),(PROTOCOL,UDP))
+AND,((SRC-PORT,9000),(PROTOCOL,UDP))
