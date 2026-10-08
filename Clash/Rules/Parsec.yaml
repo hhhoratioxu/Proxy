@@ -1,0 +1,12 @@
+# NAME: Parsec
+# AUTHOR: Horatio Xu
+# FORMAT: Mihomo/Clash.Meta classical rule-provider YAML
+# VERSION: 1.0.0
+# UPDATED: 2026-10-08
+# ASSIGN POLICY: RULE-SET -> your proxy policy / TAG
+# behavior: classical; path/url config lives in main Mihomo config.
+
+payload:
+  - 'DOMAIN-SUFFIX,parsec.app'
+  - 'DOMAIN-SUFFIX,parsecgaming.com'
+  - 'DOMAIN-SUFFIX,parsecusercontent.com'
