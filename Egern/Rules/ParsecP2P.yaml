@@ -1,0 +1,12 @@
+# NAME: Parsec P2P
+# AUTHOR: Horatio Xu
+# FORMAT: Egern Rule Set
+# VERSION: 1.0.0
+# UPDATED: 2026-10-08
+# ASSIGN POLICY: DIRECT
+# STUN domains only. Egern's documented rule set lacks source-port match.
+# Peer-to-peer UDP by IP may still follow the overall policy.
+
+domain_set:
+  - stun.parsec.app
+  - stun6.parsec.app
