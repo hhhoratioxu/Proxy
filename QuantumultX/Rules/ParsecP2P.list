@@ -1,0 +1,13 @@
+# NAME: Parsec P2P
+# AUTHOR: Horatio Xu
+# FORMAT: Quantumult X Remote Filter
+# VERSION: 1.0.0
+# UPDATED: 2026-10-08
+# ASSIGN POLICY: force-policy=direct
+# STUN hostnames + local client source port 9000 if supported by your version.
+# SRC-PORT can also match unrelated traffic using port 9000.
+# It does not uniquely identify the Parsec process or guarantee P2P.
+
+HOST,stun.parsec.app
+HOST,stun6.parsec.app
+SRC-PORT,9000
