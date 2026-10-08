@@ -1,0 +1,11 @@
+# NAME: Parsec
+# AUTHOR: Horatio Xu
+# FORMAT: Quantumult X Remote Filter
+# VERSION: 1.0.0
+# UPDATED: 2026-10-08
+# ASSIGN POLICY: force-policy=your proxy / TAG
+# API/WebSocket and owned domains.
+
+HOST-SUFFIX,parsec.app
+HOST-SUFFIX,parsecgaming.com
+HOST-SUFFIX,parsecusercontent.com
