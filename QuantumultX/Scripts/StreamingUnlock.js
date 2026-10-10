@@ -347,9 +347,13 @@ function render(node, exit, checks) {
   out.push('');
   checks.forEach(function(x) {
     var m=map[x.state]||map.error;
-    out.push(m[0]+' '+x.name+'｜'+m[1]);
-    var info=(x.region?flag(x.region)+' '+x.region+' · ':'')+(x.detail||'无检测信息');
-    out.push('  '+clean(info,84));
+    var country=x.region?' · '+flag(x.region)+' '+x.region:'';
+    out.push(m[0]+' '+x.name+'｜'+m[1]+country);
+    // Compact mode: no repeated descriptions for simple website reachability.
+    if(['likely','partial','limited','blocked','error'].includes(x.state)) {
+      var detail=String(x.detail||'').replace(/网页可达/g,'页面可达');
+      if(detail)out.push('   ↳ '+clean(detail,58));
+    }
   });
   out.push('','──────────────');
   out.push('ℹ️ 网页可达不代表已解锁；Instagram 音乐须在 App 内实际验证。');
