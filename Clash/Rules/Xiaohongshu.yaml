@@ -1,0 +1,38 @@
+# NAME: Xiaohongshu
+# AUTHOR: Horatio
+# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
+# SOURCE: Loon/Rules/Xiaohongshu.lsr (hhhoratioxu/Proxy)
+# UPDATED: 2026-10-10
+# RULES: 29
+# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,Xiaohongshu,POLICY
+
+payload:
+  - 'DOMAIN-SUFFIX,cdnxhs.com'
+  - 'DOMAIN-SUFFIX,fengkongcloud.com'
+  - 'DOMAIN-SUFFIX,iselect.red'
+  - 'DOMAIN-SUFFIX,redelight.biz'
+  - 'DOMAIN-SUFFIX,redelight.cn'
+  - 'DOMAIN-SUFFIX,redelight.com.cn'
+  - 'DOMAIN-SUFFIX,redelight.info'
+  - 'DOMAIN-SUFFIX,rednote.com'
+  - 'DOMAIN-SUFFIX,rednote.com.my'
+  - 'DOMAIN-SUFFIX,rednotecdn.com'
+  - 'DOMAIN-SUFFIX,redselect.com.cn'
+  - 'DOMAIN-SUFFIX,rl.ink'
+  - 'DOMAIN-SUFFIX,rnote.com'
+  - 'DOMAIN-SUFFIX,xhs.cn'
+  - 'DOMAIN-SUFFIX,xhscdn.com'
+  - 'DOMAIN-SUFFIX,xhscdn.net'
+  - 'DOMAIN-SUFFIX,xhslink.cn'
+  - 'DOMAIN-SUFFIX,xhslink.com'
+  - 'DOMAIN-SUFFIX,xhsrcdn.com'
+  - 'DOMAIN-SUFFIX,xhsurl.cn'
+  - 'DOMAIN-SUFFIX,xhsurl.com'
+  - 'DOMAIN-SUFFIX,xiaohongshu.com'
+  - 'DOMAIN-SUFFIX,xiaohongshu.net'
+  - 'DOMAIN-SUFFIX,xingin.net'
+  - 'DOMAIN-SUFFIX,xingludalogistics.com'
+  - 'DOMAIN-SUFFIX,yuukoo.biz'
+  - 'DOMAIN-SUFFIX,yuukoo.com.cn'
+  - 'DOMAIN-SUFFIX,yuukoo.net'
+  - 'DOMAIN-SUFFIX,yuukoo.red'

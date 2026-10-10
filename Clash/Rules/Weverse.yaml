@@ -1,0 +1,23 @@
+# NAME: Weverse
+# AUTHOR: Horatio
+# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
+# SOURCE: Loon/Rules/Weverse.lsr (hhhoratioxu/Proxy)
+# UPDATED: 2026-10-10
+# RULES: 14
+# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,Weverse,POLICY
+
+payload:
+  - 'DOMAIN,apis.naver.com'
+  - 'DOMAIN,g-aegis-naver.akamaized.net'
+  - 'DOMAIN,global.apis.naver.com'
+  - 'DOMAIN,jp.apis.naver.com'
+  - 'DOMAIN,nelo2-col.navercorp.com'
+  - 'DOMAIN,resources-rmcnmv.akamaized.net'
+  - 'DOMAIN,ssl.pstatic.net'
+  - 'DOMAIN,weverse-live.pstatic.net'
+  - 'DOMAIN,weverse-phinf.pstatic.net'
+  - 'DOMAIN,weverse-rmcnmv.akamaized.net'
+  - 'DOMAIN-SUFFIX,weverse.io'
+  - 'DOMAIN-SUFFIX,weversecdn.com'
+  - 'DOMAIN-SUFFIX,weverseshop.io'
+  - 'DOMAIN-SUFFIX,wevpstatic.net'
