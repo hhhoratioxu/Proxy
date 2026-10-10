@@ -1,12 +1,12 @@
 /*
- * Streaming Unlock · Quantumult X 1.2.0 (2026-10-10)
+ * Streaming Unlock · Quantumult X 1.3.0 (2026-10-10)
  * Author: Horatio Xu | https://github.com/hhhoratioxu/Proxy
  * Task type: event-interaction (UIAction). No MitM required.
  * Each HTTP request is pinned to the selected policy or node.
  * These probes never sign in and cannot guarantee playback in an account.
  */
 'use strict';
-var VERSION = '1.2.0';
+var VERSION = '1.3.0';
 var PARAMS = typeof $environment !== 'undefined' ? $environment.params : '';
 var POLICY = (typeof PARAMS === 'string' ? PARAMS.trim() : String((PARAMS || {}).node || (PARAMS || {}).name || (PARAMS || {}).tag || '').trim()) || 'proxy';
 var ACTIVE = 0, WAITING = [], MAX_ACTIVE = 4;
@@ -297,83 +297,124 @@ function joinInfo(a,b,key) {
   return x || y || '未知';
 }
 function render(node, exit, checks) {
+  // Quantumult X htmlMessage uses a constrained HTML renderer on iOS.
+  // Render layout with HTML table rows + per-element inline styling/attributes.
+  // CSS classes, <style> and flex/grid must NOT be necessary for the layout.
   var positive=checks.filter(function(x){return x.state==='ok'||x.state==='likely';}).length;
   var reachable=checks.filter(function(x){return x.state==='reach';}).length;
   var other=checks.length-positive-reachable;
   var g4=exit.geo4,g6=exit.geo6,cf=exit.cf||{};
   var isp=joinInfo(g4,g6,'isp');
   if(isp==='未知')isp=joinInfo(g4,g6,'org');
-  var brands={
-    'Apple':['','#64748b'],'Netflix':['N','#e50914'],
-    'Disney+':['D+','#243d82'],'Max':['max','#6540c8'],
-    'Prime Video':['▶','#1599d6'],'YouTube Premium':['▶','#ed1d44'],
-    'Spotify':['≋','#16a765'],'TikTok':['♪','#17212f'],
-    'ChatGPT':['✳','#16856b'],'Gemini':['✧','#5175e9'],
-    'Instagram Music':['◎','#d74b82']
+  var colors={
+    ok:'#168356',likely:'#168356',reach:'#2775d5',info:'#2775d5',
+    partial:'#c17a18',limited:'#c17a18',blocked:'#d64b52',error:'#8390a1'
   };
-  var states={
-    ok:'检测通过',likely:'疑似可用',reach:'网页可达',info:'地区信息',
-    partial:'部分受限',limited:'接口限流',blocked:'不可用',error:'无法确认'
+  var statuses={
+    ok:'通过',likely:'疑似可用',reach:'网页可达',info:'地区信息',
+    partial:'受限',limited:'限流',blocked:'不可用',error:'未确认'
   };
-  function kv(key,value) {
-    return '<div class="kv"><span class="key">'+escapeHTML(key)+'</span><strong>'+escapeHTML(value||'未知')+'</strong></div>';
+  var services={
+    'Apple':['A','#707d92'],
+    'Netflix':['N','#db2838'],
+    'Disney+':['D+','#244f9e'],
+    'Max':['M','#7845cb'],
+    'Prime Video':['▶','#1599ca'],
+    'YouTube Premium':['▶','#ec2e40'],
+    'Spotify':['♫','#15aa69'],
+    'TikTok':['♪','#263348'],
+    'ChatGPT':['✳','#159a81'],
+    'Gemini':['✦','#477cec'],
+    'Instagram Music':['◎','#d95992']
+  };
+  var s='font-family:-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;';
+  var wrap='width:100%;border-collapse:collapse;border-spacing:0;table-layout:fixed;';
+  var light='#f6f8fb',dark='#15243b',muted='#6d7b90',line='#e9edf4';
+  function separator(colspan){
+    return '<tr><td colspan="'+colspan+'" height="1" bgcolor="'+line+'" style="padding:0;height:1px;background-color:'+line+';font-size:1px;line-height:1px"></td></tr>';
   }
-  var network=kv('IPv4',exit.ipv4||'未探测到')+
-    kv('IPv6',exit.ipv6||'未探测到 / 可能未启用')+
-    kv('ASN',joinInfo(g4,g6,'asn'))+
-    kv('ISP',isp)+
-    kv('GeoIP v4',geoString(g4)||'未识别')+
-    (exit.ipv6?kv('GeoIP v6',geoString(g6)||'未识别'):'')+
-    kv('CF POP',(cf.colo||'未知')+(cf.loc?' · '+flag(cf.loc)+' '+cf.loc:''))+
-    kv('CF 出口 IP',cf.ip||'未返回');
-  if(exit.cfError)network+=kv('CF 诊断',exit.cfError);
-  if(!exit.ipv4&&!exit.ipv6)network+=kv('IP 诊断',REQUEST_ERRORS.slice(0,2).join(' / ')||'IP 查询接口没有返回结果');
-  var rows=checks.map(function(x){
-    var b=brands[x.name]||['•','#64748b'];
-    var st=states[x.state]||states.error;
-    var region=x.region?flag(x.region)+' '+x.region+' · ':'';
-    var cssState='s-'+String(x.state||'error');
-    return '<div class="service">'+
-      '<span class="app-icon" style="background:'+b[1]+'">'+escapeHTML(b[0])+'</span>'+
-      '<div class="service-content"><div class="service-head">'+
-        '<span class="service-name">'+escapeHTML(x.name)+'</span>'+
-        '<span class="status '+cssState+'"><i class="dot"></i>'+escapeHTML(st)+'</span>'+
-      '</div><div class="service-detail">'+escapeHTML(region+(x.detail||'未返回检测结果'))+'</div></div></div>';
-  }).join('');
-  // Avoid CanvasText/GrayText and transparent body: they produce illegible
-  // selection-like white rectangles in the Quantumult X result sheet.
-  var css='<style>'+
-  ':root{color-scheme:light;--page:#f2f5fb;--card:#fff;--ink:#17243a;--muted:#69788e;--line:#e4eaf3;--accent:#3a75dd;--shadow:rgba(29,58,110,.08)}'+
-  '*{box-sizing:border-box}html{background:#f2f5fb!important}body{margin:0!important;padding:0!important;background:var(--page)!important;color:var(--ink)!important;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",Arial,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}body *{text-shadow:none!important}'+
-  '.screen{width:100%;max-width:560px;padding:13px 11px 18px;margin:0 auto;background:var(--page)!important}'+
-  '.hero{border-radius:19px;border:1px solid #e1eafb;padding:15px 13px;background:linear-gradient(125deg,#eaf3ff 0%,#fff 65%,#eef8fc 100%)!important;box-shadow:0 3px 14px var(--shadow)}'+
-  '.eyebrow{font-size:9px;letter-spacing:1.25px;font-weight:800;color:var(--accent)}.hero-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:6px 0 10px}.hero-title h1{margin:0;font-size:21px;line-height:1.15;letter-spacing:-.6px;font-weight:800;color:var(--ink)}.version{font-size:10px;font-weight:800;white-space:nowrap;color:#356dcf;background:#dceaff;padding:5px 8px;border-radius:20px}'+
-  '.node{background:#fff!important;border:1px solid #e1eafb;border-radius:12px;padding:9px 10px;margin-bottom:10px}.node-label{display:block;color:var(--muted);font-size:9px;font-weight:750;letter-spacing:.75px;margin-bottom:3px}.node-name{font-size:12px;font-weight:750;line-height:1.48;overflow-wrap:anywhere;color:var(--ink)}'+
-  '.stats{display:flex;flex-wrap:wrap;gap:6px}.stat{border-radius:20px;padding:6px 9px;font-weight:800;font-size:10px;white-space:nowrap}.stat-green{background:#daf5e7!important;color:#168050!important}.stat-blue{background:#dfedff!important;color:#2868c5!important}.stat-gray{background:#ebeff5!important;color:#687688!important}'+
-  '.section-line{display:flex;align-items:center;justify-content:space-between;margin:19px 2px 8px;gap:10px}.section-title{font-size:14px;font-weight:800;letter-spacing:-.15px;color:var(--ink)}.section-meta{font-size:10px;font-weight:650;color:var(--muted)}'+
-  '.panel{background:var(--card)!important;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 2px 8px var(--shadow)}'+
-  '.kv{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--card)!important}.kv:last-child{border-bottom:0}.key{flex:0 0 73px;color:var(--muted);font-weight:650;font-size:11px;padding-top:1px}.kv strong{min-width:0;flex:1;text-align:right;font-size:11px;font-weight:720;line-height:1.45;color:var(--ink);overflow-wrap:anywhere;word-break:break-word;font-variant-numeric:tabular-nums}'+
-  '.service{display:flex;align-items:center;gap:9px;padding:11px 11px;border-bottom:1px solid var(--line);background:var(--card)!important}.service:last-child{border-bottom:0}.app-icon{width:35px;height:35px;flex:0 0 35px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:#fff!important;font-weight:800;font-size:16px;line-height:1;letter-spacing:-.5px}'+
-  '.service-content{flex:1;min-width:0}.service-head{display:flex;align-items:center;justify-content:space-between;gap:5px;margin-bottom:4px}.service-name{min-width:0;font-size:12px;line-height:1.25;font-weight:800;color:var(--ink);overflow-wrap:anywhere}.service-detail{font-size:10px;line-height:1.5;font-weight:500;color:var(--muted);overflow-wrap:anywhere}.status{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;border-radius:15px;padding:5px 7px;font-size:9px;font-weight:800;line-height:1}.dot{width:5px;height:5px;flex:0 0 5px;border-radius:50%;background:currentColor}'+
-  '.s-ok,.s-likely{background:#ddf6e8!important;color:#147c4e!important}.s-reach,.s-info{background:#e2eeff!important;color:#2269ce!important}.s-partial,.s-limited{background:#fff1d8!important;color:#ae6909!important}.s-blocked{background:#ffe8e9!important;color:#bd3d47!important}.s-error{background:#ebeff4!important;color:#697686!important}'+
-  '.foot{font-size:10px;color:var(--muted);line-height:1.6;margin:12px 3px 0}'+
-  '@media(prefers-color-scheme:dark){:root{color-scheme:dark;--page:#111822;--card:#1b2635;--ink:#f2f6fc;--muted:#adb9c9;--line:#303e50;--accent:#85b7ff;--shadow:rgba(0,0,0,.18)}html{background:#111822!important}.hero{background:linear-gradient(125deg,#20395b 0%,#1b283a 68%,#1c3642 100%)!important;border-color:#304662}.node{background:#233249!important;border-color:#344863}.version{background:#274269!important;color:#a9d1ff!important}.stat-green{background:#1d4937!important;color:#9af1c3!important}.stat-blue{background:#233f65!important;color:#9bc7ff!important}.stat-gray{background:#303b49!important;color:#c4cfdd!important}.s-ok,.s-likely{background:#1a4734!important;color:#9af1c3!important}.s-reach,.s-info{background:#234366!important;color:#a2caff!important}.s-partial,.s-limited{background:#49391f!important;color:#ffd38b!important}.s-blocked{background:#4b2c34!important;color:#ffa8b2!important}.s-error{background:#343d4a!important;color:#c5d0de!important}}'+
-  '@media(max-width:345px){.screen{padding:9px 8px 16px}.hero{padding:13px 11px}.service{padding:10px 9px;gap:7px}.app-icon{width:31px;height:31px;flex-basis:31px;font-size:14px}.service-name{font-size:11px}.status{font-size:8px;padding:4px 5px}.key{flex-basis:62px}}'+
-  '</style>';
-  return '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'+css+'</head>'+
-    '<body><main class="screen">'+
-    '<header class="hero"><div class="eyebrow">HORATIO / QUANTUMULT X</div>'+
-    '<div class="hero-title"><h1>Streaming Unlock</h1><span class="version">v'+escapeHTML(VERSION)+'</span></div>'+
-    '<div class="node"><span class="node-label">CURRENT NODE</span><div class="node-name">'+escapeHTML(node)+'</div></div>'+
-    '<div class="stats"><span class="stat stat-green">'+positive+' 项疑似可用</span>'+
-    '<span class="stat stat-blue">'+reachable+' 项网页可达</span>'+
-    '<span class="stat stat-gray">'+other+' 项其他</span></div></header>'+
-    '<div class="section-line"><span class="section-title">网络信息</span><span class="section-meta">IP / ISP / GEO</span></div>'+
-    '<section class="panel">'+network+'</section>'+
-    '<div class="section-line"><span class="section-title">服务检测</span><span class="section-meta">'+checks.length+' SERVICES</span></div>'+
-    '<section class="panel">'+rows+'</section>'+
-    '<p class="foot">当前节点/策略强制检测。网页可达或疑似可用不等于账号已解锁；Instagram 音乐须以 App 实测为准。Cloudflare POP 为接入点，非节点所在地。</p>'+
-    '</main></body></html>';
+  function keyRow(key,v){
+    return '<tr>'+
+      '<td width="81" valign="top" align="left" style="padding:8px 8px 8px 11px;color:'+muted+';font-size:11px;font-weight:500;'+s+'">'+escapeHTML(key)+'</td>'+
+      '<td valign="top" align="right" style="padding:8px 11px 8px 0;text-align:right;color:'+dark+';font-size:11px;font-weight:650;word-break:break-all;overflow-wrap:anywhere;'+s+'"><b>'+escapeHTML(v||'未知')+'</b></td>'+
+    '</tr>';
+  }
+  // A full-width value row for long IPs: does not squeeze them into 50% column.
+  function wideRow(key,v){
+    return '<tr><td colspan="2" align="left" style="padding:9px 11px;'+s+'">'+
+      '<font color="'+muted+'" style="font-size:10px;color:'+muted+'">'+escapeHTML(key)+'</font>'+
+      '<div style="margin-top:3px;line-height:1.35;word-break:break-all;overflow-wrap:anywhere;color:'+dark+';font-size:11px;'+s+'"><b>'+escapeHTML(v||'未知')+'</b></div>'+
+    '</td></tr>';
+  }
+  function networkRow(key,v){
+    return keyRow(key,v)+separator(2);
+  }
+  var nt=wideRow('IPv4',exit.ipv4||'未探测到')+separator(2)+
+    wideRow('IPv6',exit.ipv6||'未探测到 / 可能未启用')+separator(2)+
+    networkRow('ASN',joinInfo(g4,g6,'asn'))+
+    networkRow('ISP',isp)+
+    wideRow('GeoIP v4',geoString(g4)||'未识别')+separator(2)+
+    (exit.ipv6?wideRow('GeoIP v6',geoString(g6)||'未识别')+separator(2):'')+
+    networkRow('CF POP',(cf.colo||'未知')+(cf.loc?' · '+flag(cf.loc)+' '+cf.loc:''))+
+    wideRow('CF 出口 IP',cf.ip||'未返回');
+  if(exit.cfError)nt+=separator(2)+wideRow('CF 诊断',exit.cfError);
+  if(!exit.ipv4&&!exit.ipv6)nt+=separator(2)+wideRow('IP 诊断',REQUEST_ERRORS.slice(0,2).join(' / ')||'多个地址查询接口无响应');
+  var rows='';
+  for(var i=0;i<checks.length;i++){
+    var x=checks[i],b=services[x.name]||['•','#64748b'];
+    var status=statuses[x.state]||'未确认',clr=colors[x.state]||colors.error;
+    var detail=(x.region?flag(x.region)+' '+x.region+' · ':'')+(x.detail||'无检测信息');
+    rows+='<tr>'+
+      '<td width="37" valign="middle" align="center" style="padding:11px 4px 10px 10px;'+s+'">'+
+        '<table width="29" height="29" border="0" cellpadding="0" cellspacing="0" bgcolor="'+b[1]+'" style="width:29px;height:29px;border-collapse:collapse;border-radius:6px;background-color:'+b[1]+'"><tr>'+
+        '<td align="center" valign="middle" bgcolor="'+b[1]+'" style="text-align:center;color:#ffffff;background-color:'+b[1]+';font-size:13px;font-weight:bold;line-height:29px;'+s+'"><font color="#ffffff"><b>'+escapeHTML(b[0])+'</b></font></td></tr></table></td>'+
+      '<td valign="middle" align="left" style="padding:9px 5px 9px 6px;color:'+dark+';'+s+'">'+
+        '<div style="font-size:12px;line-height:1.3;color:'+dark+';font-weight:bold;'+s+'"><b>'+escapeHTML(x.name)+'</b></div>'+
+        '<div style="font-size:10px;line-height:1.4;padding-top:3px;color:'+muted+';'+s+'"><font color="'+muted+'">'+escapeHTML(detail)+'</font></div>'+
+      '</td>'+
+      '<td width="82" valign="middle" align="right" style="padding:10px 11px 10px 0;text-align:right;font-size:11px;font-weight:bold;'+s+'">'+
+        '<font color="'+clr+'"><b>'+escapeHTML(status)+'</b></font>'+
+      '</td></tr>';
+    if(i<checks.length-1)rows+=separator(3);
+  }
+  var heading='<table width="100%" border="0" cellspacing="0" cellpadding="0" style="'+wrap+'">'+
+    '<tr><td valign="middle" align="left" style="padding:13px 10px 4px 12px;'+s+'">'+
+      '<font color="#447ed1" style="font-size:10px;color:#447ed1"><b>HORATIO  /  QUANTUMULT X</b></font>'+
+      '<div style="font-size:20px;font-weight:bold;line-height:1.2;color:'+dark+';margin-top:4px;'+s+'"><b>Streaming Unlock</b></div>'+
+    '</td><td width="54" valign="top" align="right" style="padding:16px 11px 0 0;font-size:11px;'+s+'">'+
+      '<font color="#447ed1"><b>v'+escapeHTML(VERSION)+'</b></font>'+
+    '</td></tr>'+
+    '<tr><td colspan="2" align="left" style="padding:7px 12px 0;'+s+'">'+
+      '<font color="'+muted+'" style="font-size:10px;color:'+muted+'">CURRENT NODE</font>'+
+      '<div style="font-size:12px;line-height:1.45;color:'+dark+';padding-top:3px;overflow-wrap:anywhere;'+s+'"><b>'+escapeHTML(node)+'</b></div>'+
+    '</td></tr>'+
+    '<tr><td colspan="2" align="left" style="padding:10px 12px 13px;font-size:10px;line-height:1.4;'+s+'">'+
+      '<font color="#168356"><b>'+positive+' 疑似可用</b></font>'+
+      '&nbsp;&nbsp; <font color="#2775d5"><b>'+reachable+' 网页可达</b></font>'+
+      '&nbsp;&nbsp; <font color="'+muted+'">'+other+' 其他</font>'+
+    '</td></tr></table>';
+  var labelStyle='padding:13px 2px 6px;color:'+dark+';font-size:13px;font-weight:bold;'+s;
+  var blockHead=function(title,extra){
+    return '<table width="100%" cellpadding="0" cellspacing="0" border="0" style="'+wrap+'"><tr>'+
+      '<td align="left" style="'+labelStyle+'"><b>'+escapeHTML(title)+'</b></td>'+
+      '<td align="right" valign="bottom" style="padding:13px 2px 6px;color:'+muted+';font-size:10px;'+s+'">'+escapeHTML(extra)+'</td>'+
+      '</tr></table>';
+  };
+  var html='<html><head><meta charset="utf-8"></head>'+
+    '<body bgcolor="'+light+'" style="margin:0;padding:0;background-color:'+light+';color:'+dark+';'+s+'">'+
+    '<table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="'+light+'" style="'+wrap+'background-color:'+light+'">'+
+    '<tr><td bgcolor="'+light+'" style="padding:5px 9px 11px;background-color:'+light+';'+s+'">'+
+    '<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#eaf2ff" style="'+wrap+'background-color:#eaf2ff;border-radius:13px">'+
+      '<tr><td bgcolor="#eaf2ff" style="background-color:#eaf2ff">'+heading+'</td></tr></table>'+
+    blockHead('网络信息','IPv4 / IPv6 / ISP')+
+    '<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="'+wrap+'background-color:#ffffff">'+nt+'</table>'+
+    blockHead('服务检测',checks.length+' SERVICES')+
+    '<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="'+wrap+'background-color:#ffffff">'+rows+'</table>'+
+    '<table width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td style="padding:11px 3px 5px;font-size:10px;line-height:1.5;'+s+'">'+
+    '<font color="'+muted+'">检测固定使用所选节点。网页可达或疑似可用不代表账号已解锁；Instagram 音乐须以 App 实测为准。CF POP 为 Cloudflare 接入点。</font>'+
+    '</td></tr></table>'+
+    '</td></tr></table></body></html>';
+  return html;
 }
 (async function() {
   var tasks=[
