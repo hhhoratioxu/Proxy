@@ -2,6 +2,6 @@
   "name": "Horatio · Streaming Unlock",
   "description": "Quantumult X 流媒体与 AI 节点解锁检测 · 11 项 · IPv4/IPv6 · ASN/ISP/GeoIP/CF POP · @Horatio Xu",
   "task": [
-    "event-interaction https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Scripts/StreamingUnlock.js?v=1.1.1, tag=流媒体解锁查询, img-url=checkmark.seal.system, enabled=true"
+    "event-interaction https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Scripts/StreamingUnlock.js?v=1.2.0, tag=流媒体解锁查询, img-url=checkmark.seal.system, enabled=true"
   ]
 }
