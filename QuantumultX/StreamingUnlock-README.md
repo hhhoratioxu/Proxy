@@ -1,41 +1,29 @@
-# Streaming Unlock for Quantumult X
+# Streaming Unlock · Quantumult X
 
-- Version: **1.3.0** (2026-10-10)
-- Author: **Horatio Xu**
-- Source: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Scripts/StreamingUnlock.js?v=1.3.0
-- Gallery (single, fixed link): https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Tasks/StreamingUnlock.json
-- Manual config snippet: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Tasks/StreamingUnlock.conf
+**Version: 1.4.0 (Native UIAction)**
 
-## Import
+The output is now a native Quantumult X `$done({title,message})` modal, **not** `htmlMessage`. This deliberately avoids HTML/CSS parsing, which caused screenshots with white background highlighting and vertically stacked rows in QuanX on iOS 27.
 
-Recommended: add the Gallery URL in Quantumult X > Tasks > Task Gallery, then add the "流媒体解锁查询" task from the gallery.
+### Import
 
-Alternative: paste this one line under the **existing** [task_local] section in your configuration (do not add a second [task_local] header):
+Add the [Task Gallery](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Tasks/StreamingUnlock.json) to QuanX and select **流媒体解锁查询-原生版**. Remove or disable the old **流媒体解锁查询** task first.
+
+Or paste only this line under the existing `[task_local]` section:
 
 ```ini
-event-interaction https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Scripts/StreamingUnlock.js?v=1.3.0, tag=流媒体解锁查询, img-url=checkmark.seal.system, enabled=true
+event-interaction https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Scripts/StreamingUnlockNative.js?v=1.4.0, tag=流媒体解锁查询-原生版, img-url=checkmark.seal.system, enabled=true
 ```
-
-Enable the QuanX tunnel. Long-press the **specific node or policy group** on the home screen and tap "流媒体解锁查询". The resulting native action sheet displays an HTML report. If you run the script without a selected node, it uses built-in **proxy** policy.
 
 ### Checks
 
-Apple region, Netflix, Disney+, Max, Prime Video, YouTube Premium, Spotify, TikTok, ChatGPT, Gemini and Instagram Music. The network section shows selected policy path, IPv4/IPv6, ASN, ISP / Organisation, GeoIP and Cloudflare POP.
+Uses explicit `$task.fetch({opts:{policy: selectedNode}})` requests for the selected node. IPv4/IPv6, ASN, ISP, GeoIP, CF POP, Apple region, Netflix, Disney+, Max, Prime Video, YouTube Premium, Spotify, TikTok, ChatGPT, Gemini and Instagram Music.
 
-### Accuracy and security notes
+Native report groups network fields and concise service status rows (a single line for website reachability, extra diagnostics for failures/limits).
 
-Every probe sends its HTTP request with `$task.fetch` and `opts.policy` set to the selected node or policy. Therefore it measures **that node**, not all of your applications' rule-selected nodes at once.
+**Accuracy**: A website responding is not proof of playback/account authorization. Netflix `疑似可用` indicates a heuristic movie page marker and still needs real-world playback verification. Instagram authorization depends on the account and the unauthenticated probe may be inconclusive. CF POP is an edge location, not the proxy location.
 
-Service homepages are explicitly marked **网页可达**. Only title-specific playback indicators count as **疑似可用**; neither proves account playback. An HTTP 200 without Instagram audio-licensing information is **无法确认**, never "已解锁". Login, content playback and account-specific availability must be confirmed inside the service app. A request error/timeout does not mean the service is blocked.
+### Compatibility
 
-This is a detection tool only; no MITM, account login, URL rewrite or rule changes. Cloudflare POP identifies the Cloudflare edge handling the request, not the proxy's data-centre location. IP.SB GeoIP data falls back to ipapi.co.
+QuanX UIAction `message` is documented in [the official policy request example](https://raw.githubusercontent.com/crossutility/Quantumult-X/master/sample-fetch-opts-policy.js). The native modal owns font, colors, and layout; it does **not** support a full Liquid Glass custom dashboard. The result is expected to be readable rather than richly styled.
 
-To update: replace or refresh the existing Quantumult X task and reload its script. The stable gallery URL remains unchanged; versioned script URLs avoid stale client-side caches.
-
-## Visual layout (v1.3.0)
-
-The QuanX result sheet now uses an opaque, explicitly styled light/dark background to avoid white text highlight artifacts over the native blur. It has a node header, compact status summary, aligned network detail rows, and grouped brand-colored service result cards. All detection logic is unchanged from v1.1.1.
-
-## QuanX modal compatibility (v1.3.0)
-
-Replaced the v1.2.0 `<style>`/CSS-class/flex design with native HTML tables (`td width`, `align`, `bgcolor`) plus inline styling only. Quantumult X's `htmlMessage` window may ignore embedded stylesheets, so v1.2.0 could appear as vertically stacked unstyled text. v1.3.0 preserves three columns for service rows even if inline CSS is ignored. Note that the popup remains native and cannot guarantee modern WebView-like cards or rounded corners.
+The JS code passes syntax and mocked-network result checks. Real-device appearance cannot be guaranteed before an iPhone test.
