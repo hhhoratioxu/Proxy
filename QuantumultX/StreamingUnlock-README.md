@@ -1,8 +1,8 @@
 # Streaming Unlock for Quantumult X
 
-- Version: **1.2.0** (2026-10-10)
+- Version: **1.3.0** (2026-10-10)
 - Author: **Horatio Xu**
-- Source: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Scripts/StreamingUnlock.js?v=1.2.0
+- Source: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Scripts/StreamingUnlock.js?v=1.3.0
 - Gallery (single, fixed link): https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Tasks/StreamingUnlock.json
 - Manual config snippet: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Tasks/StreamingUnlock.conf
 
@@ -13,7 +13,7 @@ Recommended: add the Gallery URL in Quantumult X > Tasks > Task Gallery, then ad
 Alternative: paste this one line under the **existing** [task_local] section in your configuration (do not add a second [task_local] header):
 
 ```ini
-event-interaction https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Scripts/StreamingUnlock.js?v=1.2.0, tag=流媒体解锁查询, img-url=checkmark.seal.system, enabled=true
+event-interaction https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Scripts/StreamingUnlock.js?v=1.3.0, tag=流媒体解锁查询, img-url=checkmark.seal.system, enabled=true
 ```
 
 Enable the QuanX tunnel. Long-press the **specific node or policy group** on the home screen and tap "流媒体解锁查询". The resulting native action sheet displays an HTML report. If you run the script without a selected node, it uses built-in **proxy** policy.
@@ -32,6 +32,10 @@ This is a detection tool only; no MITM, account login, URL rewrite or rule chang
 
 To update: replace or refresh the existing Quantumult X task and reload its script. The stable gallery URL remains unchanged; versioned script URLs avoid stale client-side caches.
 
-## Visual layout (v1.2.0)
+## Visual layout (v1.3.0)
 
 The QuanX result sheet now uses an opaque, explicitly styled light/dark background to avoid white text highlight artifacts over the native blur. It has a node header, compact status summary, aligned network detail rows, and grouped brand-colored service result cards. All detection logic is unchanged from v1.1.1.
+
+## QuanX modal compatibility (v1.3.0)
+
+Replaced the v1.2.0 `<style>`/CSS-class/flex design with native HTML tables (`td width`, `align`, `bgcolor`) plus inline styling only. Quantumult X's `htmlMessage` window may ignore embedded stylesheets, so v1.2.0 could appear as vertically stacked unstyled text. v1.3.0 preserves three columns for service rows even if inline CSS is ignored. Note that the popup remains native and cannot guarantee modern WebView-like cards or rounded corners.
