@@ -5,12 +5,13 @@
 <details open>
 <summary><strong>🇨🇳 简体中文</strong></summary>
 
-适用于 Loon、Egern、Quantumult X 和 Shadowrocket 的个人规则、模块与 App 图标库。
+适用于 Clash Verge Rev、Loon、Egern、Quantumult X 和 Shadowrocket 的个人规则、模块与 App 图标库。
 
 ## 快速入口
 
 | 内容 | 链接 |
 | --- | --- |
+| Clash Verge Rev | [分流规则](./Clash/Rules/) · [一键配置说明](./Clash/README.md) |
 | Loon | [规则](./Loon/Rules/) |
 | Egern | [规则](./Egern/Rules/) · [模块](./Egern/Modules/) |
 | Quantumult X | [打开目录](./QuantumultX/) |
@@ -43,12 +44,13 @@
 <details>
 <summary><strong>🇺🇸 English</strong></summary>
 
-A personal collection of rules, modules, and app icons for Loon, Egern, Quantumult X, and Shadowrocket.
+A personal collection of rules, modules, and app icons for Clash Verge Rev, Loon, Egern, Quantumult X, and Shadowrocket.
 
 ## Quick links
 
 | Content | Link |
 | --- | --- |
+| Clash Verge Rev | [Rules](./Clash/Rules/) · [Setup](./Clash/README.md) |
 | Loon | [Rules](./Loon/Rules/) |
 | Egern | [Rules](./Egern/Rules/) · [Modules](./Egern/Modules/) |
 | Quantumult X | [Open directory](./QuantumultX/) |
