@@ -1,12 +1,12 @@
 /*
- * Streaming Unlock · Quantumult X 1.1.1 (2026-10-10)
+ * Streaming Unlock · Quantumult X 1.2.0 (2026-10-10)
  * Author: Horatio Xu | https://github.com/hhhoratioxu/Proxy
  * Task type: event-interaction (UIAction). No MitM required.
  * Each HTTP request is pinned to the selected policy or node.
  * These probes never sign in and cannot guarantee playback in an account.
  */
 'use strict';
-var VERSION = '1.1.1';
+var VERSION = '1.2.0';
 var PARAMS = typeof $environment !== 'undefined' ? $environment.params : '';
 var POLICY = (typeof PARAMS === 'string' ? PARAMS.trim() : String((PARAMS || {}).node || (PARAMS || {}).name || (PARAMS || {}).tag || '').trim()) || 'proxy';
 var ACTIVE = 0, WAITING = [], MAX_ACTIVE = 4;
@@ -297,39 +297,83 @@ function joinInfo(a,b,key) {
   return x || y || '未知';
 }
 function render(node, exit, checks) {
-  var positive=checks.filter(function(x){return x.state==='ok' || x.state==='likely';}).length;
+  var positive=checks.filter(function(x){return x.state==='ok'||x.state==='likely';}).length;
   var reachable=checks.filter(function(x){return x.state==='reach';}).length;
+  var other=checks.length-positive-reachable;
+  var g4=exit.geo4,g6=exit.geo6,cf=exit.cf||{};
+  var isp=joinInfo(g4,g6,'isp');
+  if(isp==='未知')isp=joinInfo(g4,g6,'org');
+  var brands={
+    'Apple':['','#64748b'],'Netflix':['N','#e50914'],
+    'Disney+':['D+','#243d82'],'Max':['max','#6540c8'],
+    'Prime Video':['▶','#1599d6'],'YouTube Premium':['▶','#ed1d44'],
+    'Spotify':['≋','#16a765'],'TikTok':['♪','#17212f'],
+    'ChatGPT':['✳','#16856b'],'Gemini':['✧','#5175e9'],
+    'Instagram Music':['◎','#d74b82']
+  };
+  var states={
+    ok:'检测通过',likely:'疑似可用',reach:'网页可达',info:'地区信息',
+    partial:'部分受限',limited:'接口限流',blocked:'不可用',error:'无法确认'
+  };
+  function kv(key,value) {
+    return '<div class="kv"><span class="key">'+escapeHTML(key)+'</span><strong>'+escapeHTML(value||'未知')+'</strong></div>';
+  }
+  var network=kv('IPv4',exit.ipv4||'未探测到')+
+    kv('IPv6',exit.ipv6||'未探测到 / 可能未启用')+
+    kv('ASN',joinInfo(g4,g6,'asn'))+
+    kv('ISP',isp)+
+    kv('GeoIP v4',geoString(g4)||'未识别')+
+    (exit.ipv6?kv('GeoIP v6',geoString(g6)||'未识别'):'')+
+    kv('CF POP',(cf.colo||'未知')+(cf.loc?' · '+flag(cf.loc)+' '+cf.loc:''))+
+    kv('CF 出口 IP',cf.ip||'未返回');
+  if(exit.cfError)network+=kv('CF 诊断',exit.cfError);
+  if(!exit.ipv4&&!exit.ipv6)network+=kv('IP 诊断',REQUEST_ERRORS.slice(0,2).join(' / ')||'IP 查询接口没有返回结果');
   var rows=checks.map(function(x){
-    var m=indicator(x.state);
-    return '<div class="service"><div class="service-name">'+escapeHTML(x.name)+'</div>'+
-      '<div class="service-result"><span class="pill" style="color:'+m[1]+'">'+escapeHTML(m[0])+'</span>'+
-      '<div class="detail">'+escapeHTML((x.region?flag(x.region)+' '+x.region+' · ':'')+x.detail)+'</div></div></div>';
+    var b=brands[x.name]||['•','#64748b'];
+    var st=states[x.state]||states.error;
+    var region=x.region?flag(x.region)+' '+x.region+' · ':'';
+    var cssState='s-'+String(x.state||'error');
+    return '<div class="service">'+
+      '<span class="app-icon" style="background:'+b[1]+'">'+escapeHTML(b[0])+'</span>'+
+      '<div class="service-content"><div class="service-head">'+
+        '<span class="service-name">'+escapeHTML(x.name)+'</span>'+
+        '<span class="status '+cssState+'"><i class="dot"></i>'+escapeHTML(st)+'</span>'+
+      '</div><div class="service-detail">'+escapeHTML(region+(x.detail||'未返回检测结果'))+'</div></div></div>';
   }).join('');
-  var g4=exit.geo4, g6=exit.geo6, cf=exit.cf || {};
-  var asn=joinInfo(g4,g6,'asn'), isp=joinInfo(g4,g6,'isp'), org=joinInfo(g4,g6,'org');
-  if (isp==='未知') isp=org;
-  var geos=geoString(g4), geos6=geoString(g6);
-  var geo=geos && geos6 && geos!==geos6 ? 'v4 '+geos+' / v6 '+geos6 : geos || geos6 || '未知';
-  var summary=[
-    ['节点',node], ['IPv4',exit.ipv4 || '未探测到'], ['IPv6',exit.ipv6 || '未探测到（可能未开启）'],
-    ['ASN',asn], ['ISP / Org',isp], ['GeoIP',geo],
-    ['CF 出口 IP',cf.ip || '未返回'],
-    ['Cloudflare POP',(cf.colo || '未知')+(cf.loc?' · '+flag(cf.loc)+' '+cf.loc:'')]
-  ].map(function(v){return '<div class="kv"><span>'+escapeHTML(v[0])+'</span><strong>'+escapeHTML(v[1])+'</strong></div>';}).join('');
-  if(exit.cfError) summary+='<div class="kv"><span>网络诊断</span><strong>'+escapeHTML(exit.cfError)+'</strong></div>';
-  if(!exit.ipv4 && !exit.ipv6) summary+='<div class="kv"><span>IP 诊断</span><strong>'+escapeHTML(REQUEST_ERRORS.slice(0,2).join(' / ') || '多个 IP 接口未返回公网地址')+'</strong></div>';
-  var style='<style>'+
-    ':root{color-scheme:light dark}*{box-sizing:border-box}html,body{margin:0;padding:0;background:transparent!important;color:CanvasText;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",sans-serif;-webkit-font-smoothing:antialiased}'+
-    '.wrap{padding:6px 3px 10px}.top{margin:0 0 14px;padding:14px;border-radius:20px;border:1px solid rgba(130,130,140,.2);background:rgba(255,255,255,.72)}'+
-    '.eyebrow{font-size:11px;font-weight:700;color:GrayText;letter-spacing:.4px}.heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:7px 0 13px}.heading strong{font-size:20px;letter-spacing:-.45px}.count{font-size:12px;color:#0A84FF;font-weight:700}'+
-    '.kv{display:grid;grid-template-columns:90px minmax(0,1fr);gap:7px;padding:6px 0;border-bottom:1px solid rgba(130,130,140,.12)}.kv:last-child{border:0}.kv span{font-size:12px;color:GrayText}.kv strong{font-size:12px;font-weight:600;overflow-wrap:anywhere;text-align:right}'+
-    '.service{display:grid;grid-template-columns:36% 64%;align-items:center;gap:0;padding:12px 3px;border-bottom:1px solid rgba(130,130,140,.15)}.service-name{font-size:13px;font-weight:700}.service-result{text-align:right;padding-left:8px}.pill{font-size:12px;font-weight:750}.detail{font-size:11px;color:GrayText;margin-top:3px;line-height:1.35;overflow-wrap:anywhere}'+
-    '.foot{font-size:10px;color:GrayText;line-height:1.6;margin:14px 4px 0}'+
-    '@media(prefers-color-scheme:dark){.top{background:rgba(28,28,30,.72)}}'+
-    '</style>';
-  return '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'+style+'</head><body><main class="wrap"><section class="top">'+
-    '<div class="eyebrow">HORATIO · QUANTUMULT X · v'+VERSION+'</div><div class="heading"><strong>Streaming Unlock</strong><span class="count">'+positive+' 项疑似 · '+reachable+' 项网页可达</span></div>'+summary+'</section>'+
-    rows+'<div class="foot">对所选节点/策略强制发起请求；网页可达、疑似可用均不等于账号完成解锁。IPv4 / IPv6 独立检测；ASN/ISP/GeoIP 来自 IP.SB，失败时回退 ipapi.co。Cloudflare POP 是接入点而非节点所在地。Instagram 音乐必须以 App 实测为准。IPv6 未探测到不等于节点故障。</div></main></body></html>';
+  // Avoid CanvasText/GrayText and transparent body: they produce illegible
+  // selection-like white rectangles in the Quantumult X result sheet.
+  var css='<style>'+
+  ':root{color-scheme:light;--page:#f2f5fb;--card:#fff;--ink:#17243a;--muted:#69788e;--line:#e4eaf3;--accent:#3a75dd;--shadow:rgba(29,58,110,.08)}'+
+  '*{box-sizing:border-box}html{background:#f2f5fb!important}body{margin:0!important;padding:0!important;background:var(--page)!important;color:var(--ink)!important;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",Arial,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}body *{text-shadow:none!important}'+
+  '.screen{width:100%;max-width:560px;padding:13px 11px 18px;margin:0 auto;background:var(--page)!important}'+
+  '.hero{border-radius:19px;border:1px solid #e1eafb;padding:15px 13px;background:linear-gradient(125deg,#eaf3ff 0%,#fff 65%,#eef8fc 100%)!important;box-shadow:0 3px 14px var(--shadow)}'+
+  '.eyebrow{font-size:9px;letter-spacing:1.25px;font-weight:800;color:var(--accent)}.hero-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:6px 0 10px}.hero-title h1{margin:0;font-size:21px;line-height:1.15;letter-spacing:-.6px;font-weight:800;color:var(--ink)}.version{font-size:10px;font-weight:800;white-space:nowrap;color:#356dcf;background:#dceaff;padding:5px 8px;border-radius:20px}'+
+  '.node{background:#fff!important;border:1px solid #e1eafb;border-radius:12px;padding:9px 10px;margin-bottom:10px}.node-label{display:block;color:var(--muted);font-size:9px;font-weight:750;letter-spacing:.75px;margin-bottom:3px}.node-name{font-size:12px;font-weight:750;line-height:1.48;overflow-wrap:anywhere;color:var(--ink)}'+
+  '.stats{display:flex;flex-wrap:wrap;gap:6px}.stat{border-radius:20px;padding:6px 9px;font-weight:800;font-size:10px;white-space:nowrap}.stat-green{background:#daf5e7!important;color:#168050!important}.stat-blue{background:#dfedff!important;color:#2868c5!important}.stat-gray{background:#ebeff5!important;color:#687688!important}'+
+  '.section-line{display:flex;align-items:center;justify-content:space-between;margin:19px 2px 8px;gap:10px}.section-title{font-size:14px;font-weight:800;letter-spacing:-.15px;color:var(--ink)}.section-meta{font-size:10px;font-weight:650;color:var(--muted)}'+
+  '.panel{background:var(--card)!important;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 2px 8px var(--shadow)}'+
+  '.kv{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--card)!important}.kv:last-child{border-bottom:0}.key{flex:0 0 73px;color:var(--muted);font-weight:650;font-size:11px;padding-top:1px}.kv strong{min-width:0;flex:1;text-align:right;font-size:11px;font-weight:720;line-height:1.45;color:var(--ink);overflow-wrap:anywhere;word-break:break-word;font-variant-numeric:tabular-nums}'+
+  '.service{display:flex;align-items:center;gap:9px;padding:11px 11px;border-bottom:1px solid var(--line);background:var(--card)!important}.service:last-child{border-bottom:0}.app-icon{width:35px;height:35px;flex:0 0 35px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:#fff!important;font-weight:800;font-size:16px;line-height:1;letter-spacing:-.5px}'+
+  '.service-content{flex:1;min-width:0}.service-head{display:flex;align-items:center;justify-content:space-between;gap:5px;margin-bottom:4px}.service-name{min-width:0;font-size:12px;line-height:1.25;font-weight:800;color:var(--ink);overflow-wrap:anywhere}.service-detail{font-size:10px;line-height:1.5;font-weight:500;color:var(--muted);overflow-wrap:anywhere}.status{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;border-radius:15px;padding:5px 7px;font-size:9px;font-weight:800;line-height:1}.dot{width:5px;height:5px;flex:0 0 5px;border-radius:50%;background:currentColor}'+
+  '.s-ok,.s-likely{background:#ddf6e8!important;color:#147c4e!important}.s-reach,.s-info{background:#e2eeff!important;color:#2269ce!important}.s-partial,.s-limited{background:#fff1d8!important;color:#ae6909!important}.s-blocked{background:#ffe8e9!important;color:#bd3d47!important}.s-error{background:#ebeff4!important;color:#697686!important}'+
+  '.foot{font-size:10px;color:var(--muted);line-height:1.6;margin:12px 3px 0}'+
+  '@media(prefers-color-scheme:dark){:root{color-scheme:dark;--page:#111822;--card:#1b2635;--ink:#f2f6fc;--muted:#adb9c9;--line:#303e50;--accent:#85b7ff;--shadow:rgba(0,0,0,.18)}html{background:#111822!important}.hero{background:linear-gradient(125deg,#20395b 0%,#1b283a 68%,#1c3642 100%)!important;border-color:#304662}.node{background:#233249!important;border-color:#344863}.version{background:#274269!important;color:#a9d1ff!important}.stat-green{background:#1d4937!important;color:#9af1c3!important}.stat-blue{background:#233f65!important;color:#9bc7ff!important}.stat-gray{background:#303b49!important;color:#c4cfdd!important}.s-ok,.s-likely{background:#1a4734!important;color:#9af1c3!important}.s-reach,.s-info{background:#234366!important;color:#a2caff!important}.s-partial,.s-limited{background:#49391f!important;color:#ffd38b!important}.s-blocked{background:#4b2c34!important;color:#ffa8b2!important}.s-error{background:#343d4a!important;color:#c5d0de!important}}'+
+  '@media(max-width:345px){.screen{padding:9px 8px 16px}.hero{padding:13px 11px}.service{padding:10px 9px;gap:7px}.app-icon{width:31px;height:31px;flex-basis:31px;font-size:14px}.service-name{font-size:11px}.status{font-size:8px;padding:4px 5px}.key{flex-basis:62px}}'+
+  '</style>';
+  return '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'+css+'</head>'+
+    '<body><main class="screen">'+
+    '<header class="hero"><div class="eyebrow">HORATIO / QUANTUMULT X</div>'+
+    '<div class="hero-title"><h1>Streaming Unlock</h1><span class="version">v'+escapeHTML(VERSION)+'</span></div>'+
+    '<div class="node"><span class="node-label">CURRENT NODE</span><div class="node-name">'+escapeHTML(node)+'</div></div>'+
+    '<div class="stats"><span class="stat stat-green">'+positive+' 项疑似可用</span>'+
+    '<span class="stat stat-blue">'+reachable+' 项网页可达</span>'+
+    '<span class="stat stat-gray">'+other+' 项其他</span></div></header>'+
+    '<div class="section-line"><span class="section-title">网络信息</span><span class="section-meta">IP / ISP / GEO</span></div>'+
+    '<section class="panel">'+network+'</section>'+
+    '<div class="section-line"><span class="section-title">服务检测</span><span class="section-meta">'+checks.length+' SERVICES</span></div>'+
+    '<section class="panel">'+rows+'</section>'+
+    '<p class="foot">当前节点/策略强制检测。网页可达或疑似可用不等于账号已解锁；Instagram 音乐须以 App 实测为准。Cloudflare POP 为接入点，非节点所在地。</p>'+
+    '</main></body></html>';
 }
 (async function() {
   var tasks=[
