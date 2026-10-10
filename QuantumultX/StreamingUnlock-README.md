@@ -1,8 +1,8 @@
 # Streaming Unlock for Quantumult X
 
-- Version: **1.1.1** (2026-10-10)
+- Version: **1.2.0** (2026-10-10)
 - Author: **Horatio Xu**
-- Source: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Scripts/StreamingUnlock.js?v=1.1.1
+- Source: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Scripts/StreamingUnlock.js?v=1.2.0
 - Gallery (single, fixed link): https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Tasks/StreamingUnlock.json
 - Manual config snippet: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Tasks/StreamingUnlock.conf
 
@@ -13,7 +13,7 @@ Recommended: add the Gallery URL in Quantumult X > Tasks > Task Gallery, then ad
 Alternative: paste this one line under the **existing** [task_local] section in your configuration (do not add a second [task_local] header):
 
 ```ini
-event-interaction https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Scripts/StreamingUnlock.js?v=1.1.1, tag=流媒体解锁查询, img-url=checkmark.seal.system, enabled=true
+event-interaction https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Scripts/StreamingUnlock.js?v=1.2.0, tag=流媒体解锁查询, img-url=checkmark.seal.system, enabled=true
 ```
 
 Enable the QuanX tunnel. Long-press the **specific node or policy group** on the home screen and tap "流媒体解锁查询". The resulting native action sheet displays an HTML report. If you run the script without a selected node, it uses built-in **proxy** policy.
@@ -31,3 +31,7 @@ Service homepages are explicitly marked **网页可达**. Only title-specific pl
 This is a detection tool only; no MITM, account login, URL rewrite or rule changes. Cloudflare POP identifies the Cloudflare edge handling the request, not the proxy's data-centre location. IP.SB GeoIP data falls back to ipapi.co.
 
 To update: replace or refresh the existing Quantumult X task and reload its script. The stable gallery URL remains unchanged; versioned script URLs avoid stale client-side caches.
+
+## Visual layout (v1.2.0)
+
+The QuanX result sheet now uses an opaque, explicitly styled light/dark background to avoid white text highlight artifacts over the native blur. It has a node header, compact status summary, aligned network detail rows, and grouped brand-colored service result cards. All detection logic is unchanged from v1.1.1.
