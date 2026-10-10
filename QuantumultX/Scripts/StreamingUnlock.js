@@ -1,12 +1,12 @@
 /*
- * Streaming Unlock · Quantumult X 1.3.0 (2026-10-10)
+ * Streaming Unlock · Quantumult X 1.4.0 (2026-10-10)
  * Author: Horatio Xu | https://github.com/hhhoratioxu/Proxy
  * Task type: event-interaction (UIAction). No MitM required.
  * Each HTTP request is pinned to the selected policy or node.
  * These probes never sign in and cannot guarantee playback in an account.
  */
 'use strict';
-var VERSION = '1.3.0';
+var VERSION = '1.4.0';
 var PARAMS = typeof $environment !== 'undefined' ? $environment.params : '';
 var POLICY = (typeof PARAMS === 'string' ? PARAMS.trim() : String((PARAMS || {}).node || (PARAMS || {}).name || (PARAMS || {}).tag || '').trim()) || 'proxy';
 var ACTIVE = 0, WAITING = [], MAX_ACTIVE = 4;
@@ -297,124 +297,63 @@ function joinInfo(a,b,key) {
   return x || y || '未知';
 }
 function render(node, exit, checks) {
-  // Quantumult X htmlMessage uses a constrained HTML renderer on iOS.
-  // Render layout with HTML table rows + per-element inline styling/attributes.
-  // CSS classes, <style> and flex/grid must NOT be necessary for the layout.
-  var positive=checks.filter(function(x){return x.state==='ok'||x.state==='likely';}).length;
-  var reachable=checks.filter(function(x){return x.state==='reach';}).length;
-  var other=checks.length-positive-reachable;
-  var g4=exit.geo4,g6=exit.geo6,cf=exit.cf||{};
+  // QuanX UIAction $done({message}) is a native text modal (official sample API).
+  // Deliberately use NO htmlMessage, HTML/CSS, tables, fixed spaces or remote UI.
+  var g4=exit.geo4||null,g6=exit.geo6||null,cf=exit.cf||{};
+  var asn=joinInfo(g4,g6,'asn');
   var isp=joinInfo(g4,g6,'isp');
   if(isp==='未知')isp=joinInfo(g4,g6,'org');
-  var colors={
-    ok:'#168356',likely:'#168356',reach:'#2775d5',info:'#2775d5',
-    partial:'#c17a18',limited:'#c17a18',blocked:'#d64b52',error:'#8390a1'
+  var map={
+    ok:['✅','通过'],
+    likely:['🟢','疑似可用'],
+    reach:['🔵','网页可达'],
+    info:['🔹','地区信息'],
+    partial:['🟠','部分受限'],
+    limited:['🟠','接口限流'],
+    blocked:['🔴','不可用'],
+    error:['⚪','无法确认']
   };
-  var statuses={
-    ok:'通过',likely:'疑似可用',reach:'网页可达',info:'地区信息',
-    partial:'受限',limited:'限流',blocked:'不可用',error:'未确认'
-  };
-  var services={
-    'Apple':['A','#707d92'],
-    'Netflix':['N','#db2838'],
-    'Disney+':['D+','#244f9e'],
-    'Max':['M','#7845cb'],
-    'Prime Video':['▶','#1599ca'],
-    'YouTube Premium':['▶','#ec2e40'],
-    'Spotify':['♫','#15aa69'],
-    'TikTok':['♪','#263348'],
-    'ChatGPT':['✳','#159a81'],
-    'Gemini':['✦','#477cec'],
-    'Instagram Music':['◎','#d95992']
-  };
-  var s='font-family:-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;';
-  var wrap='width:100%;border-collapse:collapse;border-spacing:0;table-layout:fixed;';
-  var light='#f6f8fb',dark='#15243b',muted='#6d7b90',line='#e9edf4';
-  function separator(colspan){
-    return '<tr><td colspan="'+colspan+'" height="1" bgcolor="'+line+'" style="padding:0;height:1px;background-color:'+line+';font-size:1px;line-height:1px"></td></tr>';
+  function clean(s,maxLen) {
+    // Strip control chars, preserve CJK/emoji; native modal wraps at real text width.
+    var t=String(s==null?'':s).replace(/[\r\n\t]+/g,' ').replace(/\s{2,}/g,' ').trim();
+    return maxLen&&t.length>maxLen?t.slice(0,maxLen-1)+'…':t;
   }
-  function keyRow(key,v){
-    return '<tr>'+
-      '<td width="81" valign="top" align="left" style="padding:8px 8px 8px 11px;color:'+muted+';font-size:11px;font-weight:500;'+s+'">'+escapeHTML(key)+'</td>'+
-      '<td valign="top" align="right" style="padding:8px 11px 8px 0;text-align:right;color:'+dark+';font-size:11px;font-weight:650;word-break:break-all;overflow-wrap:anywhere;'+s+'"><b>'+escapeHTML(v||'未知')+'</b></td>'+
-    '</tr>';
+  function shortGeo(g) {
+    if(!g)return '未识别';
+    var parts=[g.country?flag(g.country)+' '+g.country:'',g.region,g.city].filter(Boolean);
+    return clean(parts.join(' · '),72)||'未识别';
   }
-  // A full-width value row for long IPs: does not squeeze them into 50% column.
-  function wideRow(key,v){
-    return '<tr><td colspan="2" align="left" style="padding:9px 11px;'+s+'">'+
-      '<font color="'+muted+'" style="font-size:10px;color:'+muted+'">'+escapeHTML(key)+'</font>'+
-      '<div style="margin-top:3px;line-height:1.35;word-break:break-all;overflow-wrap:anywhere;color:'+dark+';font-size:11px;'+s+'"><b>'+escapeHTML(v||'未知')+'</b></div>'+
-    '</td></tr>';
-  }
-  function networkRow(key,v){
-    return keyRow(key,v)+separator(2);
-  }
-  var nt=wideRow('IPv4',exit.ipv4||'未探测到')+separator(2)+
-    wideRow('IPv6',exit.ipv6||'未探测到 / 可能未启用')+separator(2)+
-    networkRow('ASN',joinInfo(g4,g6,'asn'))+
-    networkRow('ISP',isp)+
-    wideRow('GeoIP v4',geoString(g4)||'未识别')+separator(2)+
-    (exit.ipv6?wideRow('GeoIP v6',geoString(g6)||'未识别')+separator(2):'')+
-    networkRow('CF POP',(cf.colo||'未知')+(cf.loc?' · '+flag(cf.loc)+' '+cf.loc:''))+
-    wideRow('CF 出口 IP',cf.ip||'未返回');
-  if(exit.cfError)nt+=separator(2)+wideRow('CF 诊断',exit.cfError);
-  if(!exit.ipv4&&!exit.ipv6)nt+=separator(2)+wideRow('IP 诊断',REQUEST_ERRORS.slice(0,2).join(' / ')||'多个地址查询接口无响应');
-  var rows='';
-  for(var i=0;i<checks.length;i++){
-    var x=checks[i],b=services[x.name]||['•','#64748b'];
-    var status=statuses[x.state]||'未确认',clr=colors[x.state]||colors.error;
-    var detail=(x.region?flag(x.region)+' '+x.region+' · ':'')+(x.detail||'无检测信息');
-    rows+='<tr>'+
-      '<td width="37" valign="middle" align="center" style="padding:11px 4px 10px 10px;'+s+'">'+
-        '<table width="29" height="29" border="0" cellpadding="0" cellspacing="0" bgcolor="'+b[1]+'" style="width:29px;height:29px;border-collapse:collapse;border-radius:6px;background-color:'+b[1]+'"><tr>'+
-        '<td align="center" valign="middle" bgcolor="'+b[1]+'" style="text-align:center;color:#ffffff;background-color:'+b[1]+';font-size:13px;font-weight:bold;line-height:29px;'+s+'"><font color="#ffffff"><b>'+escapeHTML(b[0])+'</b></font></td></tr></table></td>'+
-      '<td valign="middle" align="left" style="padding:9px 5px 9px 6px;color:'+dark+';'+s+'">'+
-        '<div style="font-size:12px;line-height:1.3;color:'+dark+';font-weight:bold;'+s+'"><b>'+escapeHTML(x.name)+'</b></div>'+
-        '<div style="font-size:10px;line-height:1.4;padding-top:3px;color:'+muted+';'+s+'"><font color="'+muted+'">'+escapeHTML(detail)+'</font></div>'+
-      '</td>'+
-      '<td width="82" valign="middle" align="right" style="padding:10px 11px 10px 0;text-align:right;font-size:11px;font-weight:bold;'+s+'">'+
-        '<font color="'+clr+'"><b>'+escapeHTML(status)+'</b></font>'+
-      '</td></tr>';
-    if(i<checks.length-1)rows+=separator(3);
-  }
-  var heading='<table width="100%" border="0" cellspacing="0" cellpadding="0" style="'+wrap+'">'+
-    '<tr><td valign="middle" align="left" style="padding:13px 10px 4px 12px;'+s+'">'+
-      '<font color="#447ed1" style="font-size:10px;color:#447ed1"><b>HORATIO  /  QUANTUMULT X</b></font>'+
-      '<div style="font-size:20px;font-weight:bold;line-height:1.2;color:'+dark+';margin-top:4px;'+s+'"><b>Streaming Unlock</b></div>'+
-    '</td><td width="54" valign="top" align="right" style="padding:16px 11px 0 0;font-size:11px;'+s+'">'+
-      '<font color="#447ed1"><b>v'+escapeHTML(VERSION)+'</b></font>'+
-    '</td></tr>'+
-    '<tr><td colspan="2" align="left" style="padding:7px 12px 0;'+s+'">'+
-      '<font color="'+muted+'" style="font-size:10px;color:'+muted+'">CURRENT NODE</font>'+
-      '<div style="font-size:12px;line-height:1.45;color:'+dark+';padding-top:3px;overflow-wrap:anywhere;'+s+'"><b>'+escapeHTML(node)+'</b></div>'+
-    '</td></tr>'+
-    '<tr><td colspan="2" align="left" style="padding:10px 12px 13px;font-size:10px;line-height:1.4;'+s+'">'+
-      '<font color="#168356"><b>'+positive+' 疑似可用</b></font>'+
-      '&nbsp;&nbsp; <font color="#2775d5"><b>'+reachable+' 网页可达</b></font>'+
-      '&nbsp;&nbsp; <font color="'+muted+'">'+other+' 其他</font>'+
-    '</td></tr></table>';
-  var labelStyle='padding:13px 2px 6px;color:'+dark+';font-size:13px;font-weight:bold;'+s;
-  var blockHead=function(title,extra){
-    return '<table width="100%" cellpadding="0" cellspacing="0" border="0" style="'+wrap+'"><tr>'+
-      '<td align="left" style="'+labelStyle+'"><b>'+escapeHTML(title)+'</b></td>'+
-      '<td align="right" valign="bottom" style="padding:13px 2px 6px;color:'+muted+';font-size:10px;'+s+'">'+escapeHTML(extra)+'</td>'+
-      '</tr></table>';
-  };
-  var html='<html><head><meta charset="utf-8"></head>'+
-    '<body bgcolor="'+light+'" style="margin:0;padding:0;background-color:'+light+';color:'+dark+';'+s+'">'+
-    '<table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="'+light+'" style="'+wrap+'background-color:'+light+'">'+
-    '<tr><td bgcolor="'+light+'" style="padding:5px 9px 11px;background-color:'+light+';'+s+'">'+
-    '<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#eaf2ff" style="'+wrap+'background-color:#eaf2ff;border-radius:13px">'+
-      '<tr><td bgcolor="#eaf2ff" style="background-color:#eaf2ff">'+heading+'</td></tr></table>'+
-    blockHead('网络信息','IPv4 / IPv6 / ISP')+
-    '<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="'+wrap+'background-color:#ffffff">'+nt+'</table>'+
-    blockHead('服务检测',checks.length+' SERVICES')+
-    '<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="'+wrap+'background-color:#ffffff">'+rows+'</table>'+
-    '<table width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td style="padding:11px 3px 5px;font-size:10px;line-height:1.5;'+s+'">'+
-    '<font color="'+muted+'">检测固定使用所选节点。网页可达或疑似可用不代表账号已解锁；Instagram 音乐须以 App 实测为准。CF POP 为 Cloudflare 接入点。</font>'+
-    '</td></tr></table>'+
-    '</td></tr></table></body></html>';
-  return html;
+  var ok=checks.filter(function(x){return x.state==='ok'||x.state==='likely';}).length;
+  var web=checks.filter(function(x){return x.state==='reach';}).length;
+  var other=checks.length-ok-web;
+  var out=[
+    '📡 当前节点',
+    clean(node,120),
+    '',
+    '🌐 网络信息',
+    'IPv4  ·  '+clean(exit.ipv4||'未探测到'),
+    'IPv6  ·  '+clean(exit.ipv6||'未探测到（可能未开启）'),
+    'ASN  ·  '+clean(asn),
+    'ISP  ·  '+clean(isp,85),
+    'Geo v4  ·  '+shortGeo(g4)
+  ];
+  if(exit.ipv6)out.push('Geo v6  ·  '+shortGeo(g6));
+  out.push('CF POP  ·  '+clean(cf.colo||'未知')+(cf.loc?' · '+flag(cf.loc)+' '+clean(cf.loc):''));
+  if(cf.ip)out.push('CF IP  ·  '+clean(cf.ip));
+  if(exit.cfError)out.push('CF 诊断  ·  '+clean(exit.cfError,90));
+  if(!exit.ipv4&&!exit.ipv6)out.push('IP 诊断  ·  '+clean(REQUEST_ERRORS.slice(0,2).join(' / ')||'接口未返回 IP',90));
+  out.push('','📺 服务检测 · '+checks.length+' 项');
+  out.push('🟢 '+ok+' 疑似  ·  🔵 '+web+' 网页  ·  ⚪ '+other+' 其他');
+  out.push('');
+  checks.forEach(function(x) {
+    var m=map[x.state]||map.error;
+    out.push(m[0]+' '+x.name+'｜'+m[1]);
+    var info=(x.region?flag(x.region)+' '+x.region+' · ':'')+(x.detail||'无检测信息');
+    out.push('  '+clean(info,84));
+  });
+  out.push('','──────────────');
+  out.push('ℹ️ 网页可达不代表已解锁；Instagram 音乐须在 App 内实际验证。');
+  return out.join('\n');
 }
 (async function() {
   var tasks=[
@@ -427,7 +366,7 @@ function render(node, exit, checks) {
     Promise.all(tasks.map(function(t){return safely(t[0],t[1]);})),
     pathLabel()
   ]);
-  $done({title:'📺 流媒体解锁查询',htmlMessage:render(output[2],output[0],output[1])});
+  $done({title:'📺 Streaming Unlock · v'+VERSION,message:render(output[2],output[0],output[1])});
 })().catch(function(e) {
   console.log('[StreamingUnlock fatal] '+e);
   $done({title:'流媒体解锁查询',message:'检测出错：'+String(e)});
