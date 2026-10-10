@@ -1,12 +1,12 @@
 /*
- * Streaming Unlock · Quantumult X 1.0.0 (2026-10-10)
+ * Streaming Unlock · Quantumult X 1.1.1 (2026-10-10)
  * Author: Horatio Xu | https://github.com/hhhoratioxu/Proxy
  * Task type: event-interaction (UIAction). No MitM required.
  * Each HTTP request is pinned to the selected policy or node.
  * These probes never sign in and cannot guarantee playback in an account.
  */
 'use strict';
-var VERSION = '1.1.0';
+var VERSION = '1.1.1';
 var PARAMS = typeof $environment !== 'undefined' ? $environment.params : '';
 var POLICY = (typeof PARAMS === 'string' ? PARAMS.trim() : String((PARAMS || {}).node || (PARAMS || {}).name || (PARAMS || {}).tag || '').trim()) || 'proxy';
 var ACTIVE = 0, WAITING = [], MAX_ACTIVE = 4;
@@ -83,21 +83,19 @@ function normalizeGeo(o) {
   return x.asn || x.isp || x.org || x.country ? x : null;
 }
 async function geo(ip) {
-  if (!ip) return null;
+  if(!ip) return null;
   var encoded=encodeURIComponent(ip);
   var urls=[
     'https://api.ip.sb/geoip/'+encoded,
     'https://ipwho.is/'+encoded,
     'https://ipapi.co/'+encoded+'/json/'
   ];
-  for (var i=0;i<urls.length;i++) {
-    try {
-      var r=await req(urls[i],{timeout:7000});
-      if (good(r)) {
-        var obj=normalizeGeo(json(r.body));
-        if (obj) return obj;
-      }
-    } catch(e) {}
+  var replies=await Promise.allSettled(urls.map(function(u){return req(u,{timeout:6000});}));
+  for(var i=0;i<replies.length;i++){
+    if(replies[i].status==='fulfilled' && good(replies[i].value)){
+      var obj=normalizeGeo(json(replies[i].value.body));
+      if(obj) return obj;
+    }
   }
   return null;
 }
@@ -113,13 +111,17 @@ function responseIp(r) {
   return String(obj.ip || obj.query || obj.address || body).trim().split(/\s/)[0];
 }
 async function fallbackIp(urls, kind) {
-  for (var i=0;i<urls.length;i++) {
-    try {
-      var r=await req(urls[i],{timeout:6000});
-      var ip=responseIp(r);
-      if (good(r) && ipFamily(ip)===kind) return ip;
-      if (r.status>=400) REQUEST_ERRORS.push('IP '+urls[i]+' HTTP '+r.status);
-    } catch(e){}
+  // Run independent providers concurrently; do not wait 6s for each dead host.
+  var replies=await Promise.allSettled(urls.map(function(url){
+    return req(url,{timeout:5500}).then(function(r){
+      if(r.status>=400 && REQUEST_ERRORS.length<30) REQUEST_ERRORS.push('IP '+url+' HTTP '+r.status);
+      return r;
+    });
+  }));
+  for(var i=0;i<replies.length;i++){
+    if(replies[i].status!=='fulfilled') continue;
+    var r=replies[i].value, ip=responseIp(r);
+    if(good(r) && ipFamily(ip)===kind) return ip;
   }
   return '';
 }
@@ -160,16 +162,28 @@ async function netflix() {
     req('https://www.netflix.com/title/70143836')
   ]);
   var rs=items.map(function(x){return x.status==='fulfilled'?x.value:null;});
-  if (rs.some(function(x){return x&&x.status===429;})) return result('limited','HTTP 429');
-  if (rs.some(function(x){return !x || !x.body;})) return result('error','Netflix 请求失败');
-  var both=rs.map(function(x){return x.body;}).join('\n');
-  var cc=value(both,/"countryCode"\s*:\s*"([A-Z]{2})"/);
-  var blocked=rs.filter(function(x){return /Oh no!|not available in your country|not available in your region/i.test(x.body);}).length;
-  if (blocked===2) return result('partial','仅自制剧／地区片库受限',cc);
-  if (rs.some(function(x){return x.status===403 || x.status===451;})) return result('blocked','访问受限',cc);
-  if (rs.some(function(x){return good(x) && /netflix/i.test(x.body) && !/Oh no!/i.test(x.body);}))
-    return result('likely','片库页面可达（实际播放未验证）',cc);
-  return result('error','未确认片库可用性',cc);
+  if(rs.some(function(x){return x&&x.status===429;})) return result('limited','HTTP 429');
+  if(rs.some(function(x){return !x;})) return result('error','Netflix 请求失败');
+  var cc=value(rs.map(function(x){return x.body;}).join('\n'),/"countryCode"\s*:\s*"([A-Z]{2})"/);
+  if(rs[0].status===404 && rs[1].status===404)
+    return result('partial','测试影片均返回 404 · 疑似片库受限',cc);
+  if(rs[0].status===403 && rs[1].status===403) return result('blocked','Netflix 拒绝访问',cc);
+  if(rs.every(function(x){return /Oh no!|not available in your country/i.test(x.body);}))
+    return result('partial','地区片库受限',cc);
+  // A generic Netflix homepage is NOT enough to claim a title is unlocked.
+  var playable=rs.some(function(x){
+    return good(x) && (
+      x.body.includes('property="og:video"') ||
+      x.body.includes('data-uia="episodes"') ||
+      x.body.includes('playableVideo')
+    );
+  });
+  if(playable) return result('likely','检测影片可观看迹象（需 App 复核）',cc);
+  if(rs.some(function(x){return x.status===403 || x.status===451;}))
+    return result('partial','部分测试影片受限',cc);
+  if(rs.some(function(x){return good(x)&&x.body;}))
+    return result('reach','Netflix 页面可达 · 片库未验证',cc);
+  return result('error','Netflix 片库无法确认',cc);
 }
 async function disney() {
   var r=await req('https://www.disneyplus.com/');
