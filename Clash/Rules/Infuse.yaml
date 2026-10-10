@@ -1,0 +1,22 @@
+# NAME: Infuse
+# AUTHOR: Horatio
+# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
+# SOURCE: Loon/Rules/Infuse.lsr (hhhoratioxu/Proxy)
+# UPDATED: 2026-10-10
+# RULES: 13
+# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,Infuse,POLICY
+
+payload:
+  - 'DOMAIN,infuse-sync.s3-accelerate.amazonaws.com'
+  - 'DOMAIN-SUFFIX,firecore.com'
+  - 'DOMAIN-SUFFIX,infuse.im'
+  - 'DOMAIN-SUFFIX,ncdn1.sntp.uk'
+  - 'DOMAIN-SUFFIX,opensubtitles.com'
+  - 'DOMAIN-SUFFIX,opensubtitles.org'
+  - 'DOMAIN-SUFFIX,post.cn2gias.uk'
+  - 'DOMAIN-SUFFIX,pre.cn2gias.uk'
+  - 'DOMAIN-SUFFIX,precdns.cn2gias.uk'
+  - 'DOMAIN-SUFFIX,sub1.sntp.me'
+  - 'DOMAIN-SUFFIX,themoviedb.org'
+  - 'DOMAIN-SUFFIX,tmdb.org'
+  - 'DOMAIN-SUFFIX,trakt.tv'
