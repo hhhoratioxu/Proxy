@@ -1,0 +1,15 @@
+# NAME: SiriAI
+# AUTHOR: Horatio
+# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
+# SOURCE: Loon/Rules/SiriAI.lsr (hhhoratioxu/Proxy)
+# UPDATED: 2026-10-10
+# RULES: 6
+# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,SiriAI,POLICY
+
+payload:
+  - 'DOMAIN,guzzoni.apple.com'
+  - 'DOMAIN-SUFFIX,smoot.apple.com'
+  - 'DOMAIN,apple-relay.cloudflare.com'
+  - 'DOMAIN,apple-relay.fastly-edge.com'
+  - 'DOMAIN,cp4.cloudflare.com'
+  - 'DOMAIN,apple-relay.apple.com'
