@@ -1,6 +1,14 @@
 # Network Info · Liquid Glass
 
-Egern 网络信息与流媒体解锁模块，版本 **1.1.0**。一个订阅链接提供原生小组件及 Safari 详细面板。无需 API Key、额外服务器或安装 MITM 证书。
+Egern 网络信息与流媒体解锁模块，版本 **1.1.1**。一个订阅链接提供原生小组件及 Safari 详细面板。无需 API Key、额外服务器或安装 MITM 证书。
+
+1.1.1 清除了脚本绘制的所有小组件容器填充、渐变与投影；根容器和所有 stack 显式使用 0% 不透明度，仅留极淡细边框。脚本链接增加版本参数，更新模块后可避开旧脚本地址的缓存。**这是无填充布局，不能称为已实现 Apple 原生 Liquid Glass More Clear 材质。**
+
+### 系统 More Clear 与桌面 Clear
+
+- iOS 27 的系统外观：**Settings → Appearance → Liquid Glass**，滑块向左可让系统材质更清透；“Reduce Transparency / Increase Contrast”会影响可调整性。参见 [Apple 设置说明](https://support.apple.com/en-ae/guide/iphone/iphd6804774e/27/ios/27)。
+- 主屏幕：长按空白处 → **Edit → Customize → Clear**，可切换系统提供的清透外观。参见 [Apple 主屏幕说明](https://support.apple.com/en-ke/guide/iphone/iph385473442/27/ios/27)。这属于全局系统设置，插件不能代替你修改。
+- Egern [公开 DSL](https://egernapp.com/zh-CN/docs/configuration/widgets/) 提供背景颜色/图片/渐变，没有公开 `glassEffect(.clear)`、系统 Liquid Glass 材质选择或 `containerBackground` 移除开关。如果 1.1.1 仍显示大块系统底色，插件绘制层已清空；剩余宿主底色无法通过当前已公开脚本接口控制。不要把降低 Alpha 当成成功开启了系统 More Clear。
 
 1.1.0 增加 Netflix 与 YouTube Premium 检测；小组件移除原有不透明浅色背景，卡片使用更低透明度的渐变、描边和阴影，在大尺寸中间加入两张流媒体卡片。最终是否透出墙纸仍取决于 iOS / Egern 小组件宿主的背景处理。
 
@@ -60,9 +68,9 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/NetworkIn
 
 ## Liquid Glass
 
-详细面板使用系统字体、背景色晕、透明圆角卡片、CSS `backdrop-filter` 模糊、玻璃边缘高光和浅色/深色自动切换，布局适配 iPhone。它是网页实现的 Liquid Glass 视觉，不调用 Apple 私有 API。
+详细面板使用系统字体、背景色晕、无填充圆角容器、低强度 CSS `backdrop-filter` 模糊、细边缘高光和浅色/深色自动切换，布局适配 iPhone。它是网页实现的清透视觉，不调用 Apple 原生 Liquid Glass 材质或私有 API。
 
-原生小组件使用 Egern 公开 DSL 中的透明渐变、描边、高光和柔和阴影。DSL 没有公开的系统 `material/blur` 属性，因此小组件模拟玻璃效果；不是系统原生 Liquid Glass 材质。桌面透明/着色模式的最终效果受 iOS 和 Egern 渲染影响。
+1.1.1 原生小组件只保留透明容器和细描边，已移除透明渐变与投影。DSL 没有公开的系统 `material/blur` 属性；桌面背景和材质由 iOS 与 Egern 宿主渲染，脚本无法保证墙纸透出。
 
 ## 流媒体检测
 
@@ -90,7 +98,7 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Modules/NetworkIn
 node --test Egern/Tests/NetworkInfo*.test.mjs
 ```
 
-已做 JavaScript/页面脚本语法、YAML 引用、模拟 Egern ctx 行为及模拟 DOM 页面交互检查，共 23 项。检查包含不同策略、IPv6 失败、GeoIP 限流、离线、隐私开关、HTTP 入口、文本安全渲染、刷新错误、复制回退、Netflix 片源证据和 YouTube Premium 地区证据。用户的 1.0.0 截图已确认大尺寸小组件在其设备上成功显示。浏览器运行包受当前环境限制，**1.1.0 尚未完成浏览器截图与 iPhone 真机解锁/布局验收**；最终透明度受 iOS 和 Egern 宿主背景影响。
+已做 JavaScript/页面脚本语法、YAML 引用、模拟 Egern ctx 行为及模拟 DOM 页面交互检查，共 23 项。检查包含不同策略、IPv6 失败、GeoIP 限流、离线、隐私开关、HTTP 入口、文本安全渲染、刷新错误、复制回退、Netflix 片源证据和 YouTube Premium 地区证据。用户的 1.0.0 截图已确认大尺寸小组件在其设备上成功显示。浏览器运行包受当前环境限制，**1.1.1 尚未完成浏览器截图与 iPhone 真机解锁/布局验收**；最终透明度受 iOS 和 Egern 宿主背景影响。
 
 ## 官方接口参考
 

@@ -1,5 +1,5 @@
 name: "Network Info · Liquid Glass"
-description: "v1.1.0 · 更透明的 Liquid Glass 网络信息小组件，加入 Netflix 非自制片源与 YouTube Premium 地区检测；显示出口 IP、ASN/ISP/GeoIP、DNS 和 CF POP。"
+description: "v1.1.1 · 无填充 Clear 布局：根容器及全部卡片透明，去除渐变与投影。保留网络信息、Netflix 和 YouTube 检测。系统 Liquid Glass 材质需由 iOS/Egern 宿主支持。"
 author: "Horatio Xu"
 homepage: "https://github.com/hhhoratioxu/Proxy"
 manual: "https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Modules/NetworkInfo.md"
@@ -34,13 +34,13 @@ env_schema:
 scriptings:
   - generic:
       name: "Horatio Network Info"
-      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Scripts/NetworkInfo.js"
+      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Scripts/NetworkInfo.js?v=1.1.1"
       update_interval: 3600
       timeout: 25
   - http_request:
       name: "Horatio Network Info Panel"
       match: '^http://network\.horatio\.test(?:/|$)'
-      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Scripts/NetworkInfo.js"
+      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Scripts/NetworkInfo.js?v=1.1.1"
       update_interval: 3600
       timeout: 25
 

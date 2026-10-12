@@ -90,6 +90,16 @@ test('offline/missing device and storage APIs still produce all widget sizes', a
     const w = await run({ ...f.ctx, widgetFamily });
     assert.equal(w.type, 'widget'); assert.ok(w.children.length); assert.equal(w.url, 'http://network.horatio.test/');
     assert.ok(!texts(w).join('').includes('undefined'));
+    const verifyClear = node => {
+      if (node.type === 'widget' || node.type === 'stack') {
+        assert.equal(node.backgroundColor, '#00000000');
+        assert.equal(node.backgroundGradient, undefined);
+        assert.equal(node.backgroundImage, undefined);
+        assert.equal(node.shadowRadius, undefined);
+      }
+      (node.children || []).forEach(verifyClear);
+    };
+    verifyClear(w);
   }
 });
 test('captive portal is not a valid trace', async () => {
