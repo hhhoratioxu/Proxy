@@ -1,0 +1,43 @@
+name: "Network Info · Liquid Glass"
+description: "v1.0.0 · 网络信息：直连/规则出口 IPv4 与 IPv6、ASN/ISP/GeoIP、Wi-Fi/蜂窝、DNS、Cloudflare POP 和 HTTP 耗时。原生小组件 + Liquid Glass 详细面板。"
+author: "Horatio Xu"
+homepage: "https://github.com/hhhoratioxu/Proxy"
+manual: "https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Modules/NetworkInfo.md"
+icon: "network"
+open_url: "http://network.horatio.test/"
+
+env_schema:
+  PROBE_POLICY:
+    name: "出口检测策略"
+    description: "选填 Egern 中现有策略组或节点的完整名称，例如 TAG 或 bwg。留空按当前规则访问检测域名，可能直连，不代表所有 App 的出口。"
+  TIMEOUT:
+    name: "请求超时（毫秒）"
+    description: "默认 4000；允许 1500–7000。只在打开面板/刷新小组件时请求。"
+    default_value: "4000"
+  GEO_LOOKUP:
+    name: "在线 GeoIP 查询"
+    description: "开启时将检测到的 IPv4 提交到 ipwho.is 获取城市和 ISP；关闭后仅使用 Egern 本地 GeoIP，城市留空。"
+    default_value: "true"
+    options: ["true", "false"]
+  SHOW_LOCAL:
+    name: "显示本地网络详情"
+    description: "显示 SSID、BSSID、局域网地址及设备 DNS；这些信息不会提交给在线查询服务。"
+    default_value: "true"
+    options: ["true", "false"]
+
+scriptings:
+  - generic:
+      name: "Horatio Network Info"
+      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Scripts/NetworkInfo.js"
+      update_interval: 3600
+      timeout: 25
+  - http_request:
+      name: "Horatio Network Info Panel"
+      match: '^http://network\.horatio\.test(?:/|$)'
+      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Scripts/NetworkInfo.js"
+      update_interval: 3600
+      timeout: 25
+
+widgets:
+  - name: "Network Info"
+    script_name: "Horatio Network Info"

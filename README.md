@@ -13,7 +13,7 @@
 | --- | --- |
 | Clash Verge Rev | [分流规则](./Clash/Rules/) · [一键配置说明](./Clash/README.md) |
 | Loon | [规则](./Loon/Rules/) |
-| Egern | [规则](./Egern/Rules/) · [模块](./Egern/Modules/) |
+| Egern | [规则](./Egern/Rules/) · [模块](./Egern/Modules/) · [网络信息 · Liquid Glass](./Egern/Modules/NetworkInfo.md) |
 | Quantumult X | [打开目录](./QuantumultX/) |
 | Shadowrocket | [打开目录](./Shadowrocket/) |
 | App 图标 | [图标库](./Icons/) · [订阅文件](./Icons/AppIcons.json) |
@@ -52,7 +52,7 @@ A personal collection of rules, modules, and app icons for Clash Verge Rev, Loon
 | --- | --- |
 | Clash Verge Rev | [Rules](./Clash/Rules/) · [Setup](./Clash/README.md) |
 | Loon | [Rules](./Loon/Rules/) |
-| Egern | [Rules](./Egern/Rules/) · [Modules](./Egern/Modules/) |
+| Egern | [Rules](./Egern/Rules/) · [Modules](./Egern/Modules/) · [Network Info · Liquid Glass](./Egern/Modules/NetworkInfo.md) |
 | Quantumult X | [Open directory](./QuantumultX/) |
 | Shadowrocket | [Open directory](./Shadowrocket/) |
 | App icons | [Icon library](./Icons/) · [Subscription file](./Icons/AppIcons.json) |
