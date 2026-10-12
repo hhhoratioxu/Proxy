@@ -1,5 +1,5 @@
 name: "Network Info · Liquid Glass"
-description: "v1.0.0 · 网络信息：直连/规则出口 IPv4 与 IPv6、ASN/ISP/GeoIP、Wi-Fi/蜂窝、DNS、Cloudflare POP 和 HTTP 耗时。原生小组件 + Liquid Glass 详细面板。"
+description: "v1.1.0 · 更透明的 Liquid Glass 网络信息小组件，加入 Netflix 非自制片源与 YouTube Premium 地区检测；显示出口 IP、ASN/ISP/GeoIP、DNS 和 CF POP。"
 author: "Horatio Xu"
 homepage: "https://github.com/hhhoratioxu/Proxy"
 manual: "https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Modules/NetworkInfo.md"
@@ -7,6 +7,12 @@ icon: "network"
 open_url: "http://network.horatio.test/"
 
 env_schema:
+  NETFLIX_POLICY:
+    name: "Netflix 检测策略"
+    description: "留空按 Netflix 域名现有分流；选填已有策略组/节点完整名称。独立于出口检测策略。"
+  YOUTUBE_POLICY:
+    name: "YouTube 检测策略"
+    description: "留空按 YouTube 域名现有分流；选填已有策略组/节点完整名称。检测 Premium 地区可用性，不代表已开通会员。"
   PROBE_POLICY:
     name: "出口检测策略"
     description: "选填 Egern 中现有策略组或节点的完整名称，例如 TAG 或 bwg。留空按当前规则访问检测域名，可能直连，不代表所有 App 的出口。"

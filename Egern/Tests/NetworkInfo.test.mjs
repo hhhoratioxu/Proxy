@@ -44,7 +44,7 @@ test('isolates DIRECT and specified policy requests and reports real addresses',
   const f = fixture(); const d = await data(f);
   assert.equal(d.routes[0].v4.ip, '203.0.113.10'); assert.equal(d.routes[1].v4.ip, '198.51.100.20');
   assert.equal(d.routes[1].v6.ip, '2001:db8::20'); assert.equal(d.routes[1].geo.city, 'Los Angeles');
-  assert.ok(f.requests.every(r => ['DIRECT', 'TAG 香港'].includes(r.init.policy)));
+  assert.ok(f.requests.filter(r => !/netflix|youtube/.test(r.url)).every(r => ['DIRECT', 'TAG 香港'].includes(r.init.policy)));
   assert.ok(f.requests.every(r => r.init.credentials === 'omit'));
   assert.equal(d.device.kind, 'Wi-Fi / 有线');
 });
@@ -81,7 +81,7 @@ test('GeoIP caching is bounded and merged between concurrent lookups', async () 
 test('privacy toggles hide local identifiers and disable online GeoIP', async () => {
   const f = fixture({ env: { GEO_LOOKUP: 'false', SHOW_LOCAL: 'false' } }); const d = await data(f);
   assert.equal(d.device.ssid, ''); assert.equal(d.device.bssid, ''); assert.equal(d.device.ipv4, '');
-  assert.deepEqual(d.device.dns, []); assert.equal(f.requests.length, 6);
+  assert.deepEqual(d.device.dns, []); assert.equal(f.requests.length, 10);
   assert.ok(!f.requests.some(r => r.url.includes('ipwho.is')));
 });
 test('offline/missing device and storage APIs still produce all widget sizes', async () => {

@@ -9,7 +9,7 @@ const page = await run({ request: { method: 'GET', url: 'http://network.horatio.
 const script = page.body.match(/<script>([\s\S]*?)<\/script>/)[1];
 new vm.Script(script);
 const route = id => ({ id, title: id === 'direct' ? '直连出口' : '规则出口', policy: id === 'direct' ? 'DIRECT' : '按当前规则', v4: { ok: true, ip: '203.0.113.10', source: 'ipify' }, v6: { ok: false, ip: '', detail: '请求失败' }, trace: { ok: true, ip: '203.0.113.10', countryCode: 'CN', colo: 'SHA', ms: 38, http: 'h2' }, geo: { country: 'China', countryCode: 'CN', city: 'Shanghai', isp: 'Example ISP', asn: '64500', source: 'ipwho.is' } });
-const sample = () => ({ version: '1.0.0', updatedAt: new Date().toISOString(), device: { kind: 'Wi-Fi / 有线', ssid: 'Example Wi-Fi', carrier: 'China Telecom', dns: ['223.5.5.5'] }, routes: [route('direct'), route('probe')] });
+const sample = () => ({ version: '1.1.0', updatedAt: new Date().toISOString(), device: { kind: 'Wi-Fi / 有线', ssid: 'Example Wi-Fi', carrier: 'China Telecom', dns: ['223.5.5.5'] }, routes: [route('direct'), route('probe')], streaming: [{ name: 'Netflix', state: 'partial', detail: '仅自制剧（抽样）', region: 'US', policy: '按当前规则' }, { name: 'YouTube Premium', state: 'ok', detail: 'Premium 地区可用', region: 'JP', policy: 'Google' }] });
 class Element {
   constructor(tag) { this.tag = tag; this.children = []; this.style = {}; this.hidden = false; this.disabled = false; this.listeners = {}; this.textContent = ''; }
   appendChild(child) { this.children.push(child); return child; }
@@ -30,6 +30,8 @@ function allText(e) { return [e.textContent, ...e.children.flatMap(allText)].joi
 test('page JS renders both routes and details without polling', async () => {
   const h = harness(); await flush();
   assert.equal(h.calls, 1); assert.equal(h.ids.get('routes').children.length, 2);
+  assert.equal(h.ids.get('streaming').children.length, 2);
+  assert.match(allText(h.ids.get('streaming')), /Netflix.*仅自制剧.*YouTube Premium.*可用/);
   assert.match(allText(h.ids.get('routes')), /公网 IPv6.*未确认/);
   assert.match(h.ids.get('status').textContent, /更新于/);
   assert.equal(h.ids.get('refresh').disabled, false);
