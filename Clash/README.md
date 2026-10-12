@@ -80,3 +80,8 @@ rules:
 - 实际路由效果还取决于 DNS、TUN、进程匹配和节点 UDP 支持；建议用 Clash Verge Rev 的连接与日志页面确认。
 
 更新时间：2026-10-10。
+
+## 相关说明
+
+- [Parsec 跨客户端分流](./Docs/Parsec.md)
+- [返回仓库首页](../README.md)

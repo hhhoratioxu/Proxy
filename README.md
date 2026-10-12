@@ -5,37 +5,22 @@
 <details open>
 <summary><strong>🇨🇳 简体中文</strong></summary>
 
-适用于 Clash Verge Rev、Loon、Egern、Quantumult X 和 Shadowrocket 的个人规则、模块与 App 图标库。
+按 Clash、Loon、Egern、Surge、Shadowrocket、QuanX 六个客户端分类的个人规则、模块、脚本与图标配置。
 
-## 快速入口
+## 客户端入口
 
-| 内容 | 链接 |
+| 客户端 | 内容 |
 | --- | --- |
-| Clash Verge Rev | [分流规则](./Clash/Rules/) · [一键配置说明](./Clash/README.md) |
-| Loon | [规则](./Loon/Rules/) |
-| Egern | [规则](./Egern/Rules/) · [模块](./Egern/Modules/) · [网络信息 · Liquid Glass](./Egern/Modules/NetworkInfo.md) |
-| Quantumult X | [打开目录](./QuantumultX/) |
-| Shadowrocket | [打开目录](./Shadowrocket/) |
-| App 图标 | [图标库](./Icons/) · [订阅文件](./Icons/AppIcons.json) |
-| 国家与地区旗帜 | [PNG 目录](./Icons/Flags/) · [订阅文件](./Icons/CountryFlags.json) |
+| Clash | [分流规则](./Clash/Rules/) · [配置说明](./Clash/README.md) |
+| Loon | [规则、插件与图标](./Loon/) · [使用说明](./Loon/README.md) |
+| Egern | [规则、模块与脚本](./Egern/) · [使用说明](./Egern/README.md) |
+| Surge | [分流规则](./Surge/Rules/) · [使用说明](./Surge/README.md) |
+| Shadowrocket | [规则与图标配置](./Shadowrocket/) · [使用说明](./Shadowrocket/README.md) |
+| QuanX / Quantumult X | [规则、脚本与任务](./QuantumultX/) · [使用说明](./QuantumultX/README.md) |
 
-## App 图标一键导入
+图标导入入口见各客户端的 README。共用 PNG 图库保存在 `Loon/Icons/`，Parsec 分流文档保存在 `Clash/Docs/`。
 
-- [Loon](https://www.nsloon.com/openloon/import?iconset=https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FAppIcons.json)
-- [Quantumult X](https://quantumult.app/x/open-app/ui?module=gallery&type=icon&action=add&content=%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FAppIcons.json%22%5D)
-- [Shadowrocket](https://lowertop.github.io/Shadowrocket-First/redirect.html?url=shadowrocket%3A%2F%2Fconfig%2Fadd%2Fhttps%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FImport%2FShadowrocket.conf)
-- [Egern](https://egernapp.com/profiles/new?name=Horatio%20App%20Icons&url=https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FImport%2FEgern.yaml)
-
-图标库覆盖当前 23 个分流规则，并提供默认、备选和透明 Logo 版本。
-
-## 国旗图标一键导入
-
-- [Loon](https://www.nsloon.com/openloon/import?iconset=https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FCountryFlags.json)
-- [Quantumult X](https://quantumult.app/x/open-app/ui?module=gallery&type=icon&action=add&content=%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FCountryFlags.json%22%5D)
-- [Shadowrocket](https://lowertop.github.io/Shadowrocket-First/redirect.html?url=shadowrocket%3A%2F%2Fconfig%2Fadd%2Fhttps%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FImport%2FShadowrocketFlags.conf)
-- [Egern](https://egernapp.com/profiles/new?name=Horatio%20Country%20Flags&url=https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FImport%2FEgernFlags.yaml)
-
-包含 249 个 ISO 国家与地区旗帜透明 PNG，包括 `CN`、`HK`、`MO` 和 `TW`。
+目录整理后，旧 `Icons/` 图标订阅地址和旧 `Docs/Parsec.md` 文档地址已迁移，请从各客户端入口重新导入图标；规则、模块和脚本地址保持不变。
 
 > 配置仅供个人使用，请根据客户端版本和实际网络环境调整。图标及品牌名称归各自权利人所有。
 
@@ -44,37 +29,22 @@
 <details>
 <summary><strong>🇺🇸 English</strong></summary>
 
-A personal collection of rules, modules, and app icons for Clash Verge Rev, Loon, Egern, Quantumult X, and Shadowrocket.
+A personal collection of rules, modules, scripts and icon configurations organized by six clients.
 
-## Quick links
+## Client directories
 
-| Content | Link |
+| Client | Content |
 | --- | --- |
-| Clash Verge Rev | [Rules](./Clash/Rules/) · [Setup](./Clash/README.md) |
-| Loon | [Rules](./Loon/Rules/) |
-| Egern | [Rules](./Egern/Rules/) · [Modules](./Egern/Modules/) · [Network Info · Liquid Glass](./Egern/Modules/NetworkInfo.md) |
-| Quantumult X | [Open directory](./QuantumultX/) |
-| Shadowrocket | [Open directory](./Shadowrocket/) |
-| App icons | [Icon library](./Icons/) · [Subscription file](./Icons/AppIcons.json) |
-| Country and region flags | [PNG directory](./Icons/Flags/) · [Subscription file](./Icons/CountryFlags.json) |
+| Clash | [Rules](./Clash/Rules/) · [Setup](./Clash/README.md) |
+| Loon | [Rules, plugins and icons](./Loon/) · [Guide](./Loon/README.md) |
+| Egern | [Rules, modules and scripts](./Egern/) · [Guide](./Egern/README.md) |
+| Surge | [Rules](./Surge/Rules/) · [Guide](./Surge/README.md) |
+| Shadowrocket | [Rules and icon profiles](./Shadowrocket/) · [Guide](./Shadowrocket/README.md) |
+| QuanX / Quantumult X | [Rules, scripts and tasks](./QuantumultX/) · [Guide](./QuantumultX/README.md) |
 
-## One-tap app icon import
+Each client README provides its icon import links. Shared PNG assets are stored in `Loon/Icons/`; the Parsec routing guide is in `Clash/Docs/`.
 
-- [Loon](https://www.nsloon.com/openloon/import?iconset=https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FAppIcons.json)
-- [Quantumult X](https://quantumult.app/x/open-app/ui?module=gallery&type=icon&action=add&content=%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FAppIcons.json%22%5D)
-- [Shadowrocket](https://lowertop.github.io/Shadowrocket-First/redirect.html?url=shadowrocket%3A%2F%2Fconfig%2Fadd%2Fhttps%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FImport%2FShadowrocket.conf)
-- [Egern](https://egernapp.com/profiles/new?name=Horatio%20App%20Icons&url=https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FImport%2FEgern.yaml)
-
-The icon library covers all 23 current rule groups and includes default, alternative, and transparent logo variants.
-
-## One-tap flag icon import
-
-- [Loon](https://www.nsloon.com/openloon/import?iconset=https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FCountryFlags.json)
-- [Quantumult X](https://quantumult.app/x/open-app/ui?module=gallery&type=icon&action=add&content=%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FCountryFlags.json%22%5D)
-- [Shadowrocket](https://lowertop.github.io/Shadowrocket-First/redirect.html?url=shadowrocket%3A%2F%2Fconfig%2Fadd%2Fhttps%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FImport%2FShadowrocketFlags.conf)
-- [Egern](https://egernapp.com/profiles/new?name=Horatio%20Country%20Flags&url=https%3A%2F%2Fraw.githubusercontent.com%2Fhhhoratioxu%2FProxy%2Fmain%2FIcons%2FImport%2FEgernFlags.yaml)
-
-Includes 249 transparent PNG flags for ISO countries and regions, including `CN`, `HK`, `MO`, and `TW`.
+The old `Icons/` subscription URLs and `Docs/Parsec.md` guide have moved. Re-import icons from the client guides. Rule, module and script URLs remain unchanged.
 
 > These configurations are for personal use. Adjust them for your client version and network environment. All icons and brand names belong to their respective owners.
 

@@ -1,0 +1,1002 @@
+{
+  "name": "Horatio Country and Region Flags",
+  "icons": [
+    {
+      "name": "AD.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AD.png"
+    },
+    {
+      "name": "AE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AE.png"
+    },
+    {
+      "name": "AF.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AF.png"
+    },
+    {
+      "name": "AG.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AG.png"
+    },
+    {
+      "name": "AI.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AI.png"
+    },
+    {
+      "name": "AL.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AL.png"
+    },
+    {
+      "name": "AM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AM.png"
+    },
+    {
+      "name": "AO.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AO.png"
+    },
+    {
+      "name": "AQ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AQ.png"
+    },
+    {
+      "name": "AR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AR.png"
+    },
+    {
+      "name": "AS.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AS.png"
+    },
+    {
+      "name": "AT.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AT.png"
+    },
+    {
+      "name": "AU.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AU.png"
+    },
+    {
+      "name": "AW.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AW.png"
+    },
+    {
+      "name": "AX.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AX.png"
+    },
+    {
+      "name": "AZ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/AZ.png"
+    },
+    {
+      "name": "BA.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BA.png"
+    },
+    {
+      "name": "BB.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BB.png"
+    },
+    {
+      "name": "BD.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BD.png"
+    },
+    {
+      "name": "BE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BE.png"
+    },
+    {
+      "name": "BF.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BF.png"
+    },
+    {
+      "name": "BG.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BG.png"
+    },
+    {
+      "name": "BH.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BH.png"
+    },
+    {
+      "name": "BI.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BI.png"
+    },
+    {
+      "name": "BJ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BJ.png"
+    },
+    {
+      "name": "BL.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BL.png"
+    },
+    {
+      "name": "BM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BM.png"
+    },
+    {
+      "name": "BN.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BN.png"
+    },
+    {
+      "name": "BO.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BO.png"
+    },
+    {
+      "name": "BQ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BQ.png"
+    },
+    {
+      "name": "BR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BR.png"
+    },
+    {
+      "name": "BS.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BS.png"
+    },
+    {
+      "name": "BT.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BT.png"
+    },
+    {
+      "name": "BV.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BV.png"
+    },
+    {
+      "name": "BW.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BW.png"
+    },
+    {
+      "name": "BY.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BY.png"
+    },
+    {
+      "name": "BZ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/BZ.png"
+    },
+    {
+      "name": "CA.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CA.png"
+    },
+    {
+      "name": "CC.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CC.png"
+    },
+    {
+      "name": "CD.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CD.png"
+    },
+    {
+      "name": "CF.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CF.png"
+    },
+    {
+      "name": "CG.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CG.png"
+    },
+    {
+      "name": "CH.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CH.png"
+    },
+    {
+      "name": "CI.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CI.png"
+    },
+    {
+      "name": "CK.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CK.png"
+    },
+    {
+      "name": "CL.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CL.png"
+    },
+    {
+      "name": "CM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CM.png"
+    },
+    {
+      "name": "CN.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CN.png"
+    },
+    {
+      "name": "CO.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CO.png"
+    },
+    {
+      "name": "CR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CR.png"
+    },
+    {
+      "name": "CU.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CU.png"
+    },
+    {
+      "name": "CV.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CV.png"
+    },
+    {
+      "name": "CW.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CW.png"
+    },
+    {
+      "name": "CX.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CX.png"
+    },
+    {
+      "name": "CY.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CY.png"
+    },
+    {
+      "name": "CZ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/CZ.png"
+    },
+    {
+      "name": "DE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/DE.png"
+    },
+    {
+      "name": "DJ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/DJ.png"
+    },
+    {
+      "name": "DK.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/DK.png"
+    },
+    {
+      "name": "DM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/DM.png"
+    },
+    {
+      "name": "DO.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/DO.png"
+    },
+    {
+      "name": "DZ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/DZ.png"
+    },
+    {
+      "name": "EC.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/EC.png"
+    },
+    {
+      "name": "EE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/EE.png"
+    },
+    {
+      "name": "EG.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/EG.png"
+    },
+    {
+      "name": "EH.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/EH.png"
+    },
+    {
+      "name": "ER.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/ER.png"
+    },
+    {
+      "name": "ES.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/ES.png"
+    },
+    {
+      "name": "ET.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/ET.png"
+    },
+    {
+      "name": "FI.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/FI.png"
+    },
+    {
+      "name": "FJ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/FJ.png"
+    },
+    {
+      "name": "FK.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/FK.png"
+    },
+    {
+      "name": "FM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/FM.png"
+    },
+    {
+      "name": "FO.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/FO.png"
+    },
+    {
+      "name": "FR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/FR.png"
+    },
+    {
+      "name": "GA.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GA.png"
+    },
+    {
+      "name": "GB.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GB.png"
+    },
+    {
+      "name": "GD.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GD.png"
+    },
+    {
+      "name": "GE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GE.png"
+    },
+    {
+      "name": "GF.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GF.png"
+    },
+    {
+      "name": "GG.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GG.png"
+    },
+    {
+      "name": "GH.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GH.png"
+    },
+    {
+      "name": "GI.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GI.png"
+    },
+    {
+      "name": "GL.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GL.png"
+    },
+    {
+      "name": "GM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GM.png"
+    },
+    {
+      "name": "GN.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GN.png"
+    },
+    {
+      "name": "GP.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GP.png"
+    },
+    {
+      "name": "GQ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GQ.png"
+    },
+    {
+      "name": "GR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GR.png"
+    },
+    {
+      "name": "GS.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GS.png"
+    },
+    {
+      "name": "GT.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GT.png"
+    },
+    {
+      "name": "GU.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GU.png"
+    },
+    {
+      "name": "GW.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GW.png"
+    },
+    {
+      "name": "GY.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/GY.png"
+    },
+    {
+      "name": "HK.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/HK.png"
+    },
+    {
+      "name": "HM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/HM.png"
+    },
+    {
+      "name": "HN.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/HN.png"
+    },
+    {
+      "name": "HR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/HR.png"
+    },
+    {
+      "name": "HT.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/HT.png"
+    },
+    {
+      "name": "HU.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/HU.png"
+    },
+    {
+      "name": "ID.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/ID.png"
+    },
+    {
+      "name": "IE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/IE.png"
+    },
+    {
+      "name": "IL.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/IL.png"
+    },
+    {
+      "name": "IM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/IM.png"
+    },
+    {
+      "name": "IN.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/IN.png"
+    },
+    {
+      "name": "IO.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/IO.png"
+    },
+    {
+      "name": "IQ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/IQ.png"
+    },
+    {
+      "name": "IR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/IR.png"
+    },
+    {
+      "name": "IS.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/IS.png"
+    },
+    {
+      "name": "IT.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/IT.png"
+    },
+    {
+      "name": "JE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/JE.png"
+    },
+    {
+      "name": "JM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/JM.png"
+    },
+    {
+      "name": "JO.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/JO.png"
+    },
+    {
+      "name": "JP.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/JP.png"
+    },
+    {
+      "name": "KE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/KE.png"
+    },
+    {
+      "name": "KG.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/KG.png"
+    },
+    {
+      "name": "KH.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/KH.png"
+    },
+    {
+      "name": "KI.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/KI.png"
+    },
+    {
+      "name": "KM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/KM.png"
+    },
+    {
+      "name": "KN.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/KN.png"
+    },
+    {
+      "name": "KP.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/KP.png"
+    },
+    {
+      "name": "KR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/KR.png"
+    },
+    {
+      "name": "KW.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/KW.png"
+    },
+    {
+      "name": "KY.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/KY.png"
+    },
+    {
+      "name": "KZ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/KZ.png"
+    },
+    {
+      "name": "LA.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/LA.png"
+    },
+    {
+      "name": "LB.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/LB.png"
+    },
+    {
+      "name": "LC.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/LC.png"
+    },
+    {
+      "name": "LI.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/LI.png"
+    },
+    {
+      "name": "LK.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/LK.png"
+    },
+    {
+      "name": "LR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/LR.png"
+    },
+    {
+      "name": "LS.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/LS.png"
+    },
+    {
+      "name": "LT.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/LT.png"
+    },
+    {
+      "name": "LU.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/LU.png"
+    },
+    {
+      "name": "LV.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/LV.png"
+    },
+    {
+      "name": "LY.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/LY.png"
+    },
+    {
+      "name": "MA.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MA.png"
+    },
+    {
+      "name": "MC.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MC.png"
+    },
+    {
+      "name": "MD.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MD.png"
+    },
+    {
+      "name": "ME.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/ME.png"
+    },
+    {
+      "name": "MF.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MF.png"
+    },
+    {
+      "name": "MG.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MG.png"
+    },
+    {
+      "name": "MH.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MH.png"
+    },
+    {
+      "name": "MK.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MK.png"
+    },
+    {
+      "name": "ML.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/ML.png"
+    },
+    {
+      "name": "MM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MM.png"
+    },
+    {
+      "name": "MN.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MN.png"
+    },
+    {
+      "name": "MO.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MO.png"
+    },
+    {
+      "name": "MP.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MP.png"
+    },
+    {
+      "name": "MQ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MQ.png"
+    },
+    {
+      "name": "MR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MR.png"
+    },
+    {
+      "name": "MS.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MS.png"
+    },
+    {
+      "name": "MT.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MT.png"
+    },
+    {
+      "name": "MU.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MU.png"
+    },
+    {
+      "name": "MV.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MV.png"
+    },
+    {
+      "name": "MW.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MW.png"
+    },
+    {
+      "name": "MX.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MX.png"
+    },
+    {
+      "name": "MY.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MY.png"
+    },
+    {
+      "name": "MZ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/MZ.png"
+    },
+    {
+      "name": "NA.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/NA.png"
+    },
+    {
+      "name": "NC.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/NC.png"
+    },
+    {
+      "name": "NE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/NE.png"
+    },
+    {
+      "name": "NF.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/NF.png"
+    },
+    {
+      "name": "NG.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/NG.png"
+    },
+    {
+      "name": "NI.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/NI.png"
+    },
+    {
+      "name": "NL.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/NL.png"
+    },
+    {
+      "name": "NO.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/NO.png"
+    },
+    {
+      "name": "NP.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/NP.png"
+    },
+    {
+      "name": "NR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/NR.png"
+    },
+    {
+      "name": "NU.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/NU.png"
+    },
+    {
+      "name": "NZ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/NZ.png"
+    },
+    {
+      "name": "OM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/OM.png"
+    },
+    {
+      "name": "PA.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PA.png"
+    },
+    {
+      "name": "PE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PE.png"
+    },
+    {
+      "name": "PF.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PF.png"
+    },
+    {
+      "name": "PG.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PG.png"
+    },
+    {
+      "name": "PH.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PH.png"
+    },
+    {
+      "name": "PK.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PK.png"
+    },
+    {
+      "name": "PL.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PL.png"
+    },
+    {
+      "name": "PM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PM.png"
+    },
+    {
+      "name": "PN.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PN.png"
+    },
+    {
+      "name": "PR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PR.png"
+    },
+    {
+      "name": "PS.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PS.png"
+    },
+    {
+      "name": "PT.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PT.png"
+    },
+    {
+      "name": "PW.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PW.png"
+    },
+    {
+      "name": "PY.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/PY.png"
+    },
+    {
+      "name": "QA.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/QA.png"
+    },
+    {
+      "name": "RE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/RE.png"
+    },
+    {
+      "name": "RO.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/RO.png"
+    },
+    {
+      "name": "RS.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/RS.png"
+    },
+    {
+      "name": "RU.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/RU.png"
+    },
+    {
+      "name": "RW.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/RW.png"
+    },
+    {
+      "name": "SA.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SA.png"
+    },
+    {
+      "name": "SB.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SB.png"
+    },
+    {
+      "name": "SC.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SC.png"
+    },
+    {
+      "name": "SD.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SD.png"
+    },
+    {
+      "name": "SE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SE.png"
+    },
+    {
+      "name": "SG.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SG.png"
+    },
+    {
+      "name": "SH.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SH.png"
+    },
+    {
+      "name": "SI.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SI.png"
+    },
+    {
+      "name": "SJ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SJ.png"
+    },
+    {
+      "name": "SK.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SK.png"
+    },
+    {
+      "name": "SL.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SL.png"
+    },
+    {
+      "name": "SM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SM.png"
+    },
+    {
+      "name": "SN.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SN.png"
+    },
+    {
+      "name": "SO.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SO.png"
+    },
+    {
+      "name": "SR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SR.png"
+    },
+    {
+      "name": "SS.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SS.png"
+    },
+    {
+      "name": "ST.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/ST.png"
+    },
+    {
+      "name": "SV.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SV.png"
+    },
+    {
+      "name": "SX.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SX.png"
+    },
+    {
+      "name": "SY.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SY.png"
+    },
+    {
+      "name": "SZ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/SZ.png"
+    },
+    {
+      "name": "TC.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TC.png"
+    },
+    {
+      "name": "TD.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TD.png"
+    },
+    {
+      "name": "TF.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TF.png"
+    },
+    {
+      "name": "TG.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TG.png"
+    },
+    {
+      "name": "TH.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TH.png"
+    },
+    {
+      "name": "TJ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TJ.png"
+    },
+    {
+      "name": "TK.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TK.png"
+    },
+    {
+      "name": "TL.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TL.png"
+    },
+    {
+      "name": "TM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TM.png"
+    },
+    {
+      "name": "TN.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TN.png"
+    },
+    {
+      "name": "TO.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TO.png"
+    },
+    {
+      "name": "TR.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TR.png"
+    },
+    {
+      "name": "TT.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TT.png"
+    },
+    {
+      "name": "TV.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TV.png"
+    },
+    {
+      "name": "TW.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TW.png"
+    },
+    {
+      "name": "TZ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/TZ.png"
+    },
+    {
+      "name": "UA.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/UA.png"
+    },
+    {
+      "name": "UG.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/UG.png"
+    },
+    {
+      "name": "UM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/UM.png"
+    },
+    {
+      "name": "US.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/US.png"
+    },
+    {
+      "name": "UY.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/UY.png"
+    },
+    {
+      "name": "UZ.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/UZ.png"
+    },
+    {
+      "name": "VA.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/VA.png"
+    },
+    {
+      "name": "VC.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/VC.png"
+    },
+    {
+      "name": "VE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/VE.png"
+    },
+    {
+      "name": "VG.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/VG.png"
+    },
+    {
+      "name": "VI.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/VI.png"
+    },
+    {
+      "name": "VN.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/VN.png"
+    },
+    {
+      "name": "VU.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/VU.png"
+    },
+    {
+      "name": "WF.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/WF.png"
+    },
+    {
+      "name": "WS.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/WS.png"
+    },
+    {
+      "name": "YE.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/YE.png"
+    },
+    {
+      "name": "YT.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/YT.png"
+    },
+    {
+      "name": "ZA.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/ZA.png"
+    },
+    {
+      "name": "ZM.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/ZM.png"
+    },
+    {
+      "name": "ZW.png",
+      "url": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Icons/Flags/ZW.png"
+    }
+  ],
+  "description": "249 ISO country and region flags as transparent-background PNG icons, including CN, HK, MO and TW."
+}
