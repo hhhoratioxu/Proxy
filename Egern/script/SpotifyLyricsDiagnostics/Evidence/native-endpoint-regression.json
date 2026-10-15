@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-15",
+  "kind": "complete-native-endpoint-dispatch-regression",
+  "source": "https://github.com/app2smile/rules/blob/df6366a7024e0b3f0aa3510c5b791eea6f3cba89/module/spotify.module",
+  "sourceUse": "Only the literal endpoint path facts; no script implementation or regular expression copied.",
+  "results": [
+    {
+      "path": "/user-customization-service/v1/customize",
+      "before": {
+        "version": "0.3.3-diag.2",
+        "matched": false,
+        "route": "other-spotify"
+      },
+      "after": {
+        "version": "0.3.3-diag.3",
+        "matched": true,
+        "route": "lyrics-gate"
+      }
+    },
+    {
+      "path": "/bootstrap/v1/bootstrap",
+      "before": {
+        "version": "0.3.3-diag.2",
+        "matched": false,
+        "route": "bootstrap-other"
+      },
+      "after": {
+        "version": "0.3.3-diag.3",
+        "matched": true,
+        "route": "lyrics-gate"
+      }
+    }
+  ],
+  "bootstrapEnvelope": {
+    "source": "https://github.com/zbzxbg/EeveeSpotifyEvolved/blob/292b93c78ba1770cb6e96f8bee719e9e6b2d0275/Sources/EeveeSpotify/Premium/Models/Protobuf/Account.pb.swift",
+    "sourceUse": "Only generated Protobuf field names, numbers and message relationships.",
+    "path": [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "nonTargetBytesPreservedInTests": true
+  },
+  "userScreenshots": {
+    "observedDate": "2026-10-15",
+    "facts": [
+      "Egern interface diagnostic notifications are visible.",
+      "At least one extended-metadata notification reports caching four tracks and changing two missing-lyrics flags.",
+      "Player-cards entry insertion notification is visible.",
+      "User reports no lyrics or lyrics-gate notifications."
+    ],
+    "diagnosticVersionVisible": false,
+    "rawImagesRedistributed": false
+  },
+  "nativeDeviceVerified": false,
+  "limitations": [
+    "This proves a deterministic URL dispatch error in diag.2 and covers the known native bootstrap wire structure.",
+    "The screenshots do not reveal the running diagnostic version or the complete request paths.",
+    "No claim that the user device has issued either configuration request, honored the flag or displayed lyrics."
+  ]
+}

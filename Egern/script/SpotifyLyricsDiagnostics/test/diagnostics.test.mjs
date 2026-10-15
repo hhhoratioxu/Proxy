@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import diagnose, {parseDocument, diagnosticError} from '../spotify-lyrics-diagnostics-2.js';
+import diagnose, {parseDocument, diagnosticError} from '../spotify-lyrics-diagnostics-3.js';
 import original from '../../SpotifyLyrics/spotify-lyrics.js';
 const fixtures = new URL('../../SpotifyLyrics/test/fixtures/', import.meta.url);
 const song = JSON.parse(readFileSync(new URL('target-song.json', fixtures), 'utf8'));
@@ -27,7 +27,8 @@ test('a real public scroll sample sends a copyable notification and preserves th
   const x=context(),r=await diagnose(x.ctx),baseline=await original(context().ctx);
   assert.deepEqual(Buffer.from(r.body),Buffer.from(baseline.body));assert.equal(x.calls.length,0);
   assert.equal(x.notifications.length,1);const n=x.notifications[0];assert.equal(n.action.type,'clipboard');assert.equal(n.sound,false);
-  assert.match(n.title,/player-cards/);assert.match(copied(x),/0\.3\.3-diag\.2/);assert.match(copied(x),/Egern 2\.20\.0/);assert.match(copied(x),/Spotify 9\.1\.92\.3058/);assert.ok(copied(x).includes(song.track_id));
+  assert.match(n.title,/player-cards/);assert.match(copied(x),/0\.3\.3-diag\.3/);assert.match(copied(x),/Egern 2\.20\.0/);assert.match(copied(x),/Spotify 9\.1\.92\.3058/);assert.ok(copied(x).includes(song.track_id));
+  assert.ok(n.body.startsWith('0.3.3-diag.3 · '));assert.ok(n.subtitle.startsWith('0.3.3-diag.3'));
 });
 test('metadata and actual lyric 404 produce direct current-invocation records and timed fallback rows',async()=>{
   const store=new Map(),meta=context({store,url:metadataURL,body:Buffer.from(song.metadata_base64,'base64')});await diagnose(meta.ctx);assert.match(copied(meta),/metadata/);assert.equal(meta.calls.length,0);
@@ -120,5 +121,6 @@ test('the delivered bundle is self-contained and hashes match its original proce
   assert.equal(info.sourceSha256,hash(new URL('../../SpotifyLyrics/spotify-lyrics.js',import.meta.url)));
   assert.equal(info.adapterSha256,hash(new URL('notification-layer.js',root)));assert.equal(info.gateSha256,hash(new URL('lyrics-entry-gate.js',root)));assert.equal(info.bundleSha256,hash(new URL(info.bundleFile,root)));
   assert.equal(hash(new URL('spotify-lyrics-diagnostics.js',root)),'fbcb85d42b60d7fad733a4ecfbd7a7d3314eaad2bd673f2c0611cc383badeb35');
+  assert.equal(hash(new URL('spotify-lyrics-diagnostics-2.js',root)),'7e796de3e00505bbbcaf4a540dd4b81171a1f5277f38a6d2c04c4fc4a65bf347');
   assert.doesNotMatch(readFileSync(new URL(info.bundleFile,root),'utf8'),/^\s*import\s/m);
 });

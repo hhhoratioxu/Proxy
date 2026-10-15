@@ -1,14 +1,14 @@
 // Original notification adapter. Appended to the original VerseLyrics source
 // by build.mjs; it does not need runtime imports or a separately run script.
-const DIAGNOSTIC_VERSION = "0.3.3-diag.2";
+const DIAGNOSTIC_VERSION = "0.3.3-diag.3";
 const DIAGNOSTIC_KEY = "VerseLyrics.diagnostics.1";
-const DIAGNOSTIC_HEARTBEAT = "VerseLyrics.diagnostics.2.heartbeat";
+const DIAGNOSTIC_HEARTBEAT = "VerseLyrics.diagnostics.3.heartbeat";
 const DIAGNOSTIC_HOST = new RegExp("^https://" + HOST + "(?::443)?/");
 const DIAGNOSTIC_FAMILIES = new Set([
   "color-lyrics", "lyrics", "metadata", "extended-metadata", "scrollsita",
   "context-resolve", "connect-state", "now-playing-view", "nowplaying-view",
   "gander", "pathfinder", "social-connect", "player", "spclient-metadata",
-  "ucs", "bootstrap", "remote-config-resolver"
+  "ucs", "bootstrap", "remote-config-resolver", "user-customization-service"
 ]);
 const DIAGNOSTIC_ERRORS = new Set([
   "body-limit", "unknown-format", "json-shape", "line-shape", "line-limit",
@@ -82,8 +82,8 @@ function diagnosticNotify(ctx, event, category, force = false) {
       try {
         ctx.notify({
           title: event.route === "heartbeat" ? "Spotify 歌词诊断已运行" : "Spotify 歌词诊断 · " + event.route,
-          subtitle: "点此复制记录，粘贴回对话",
-          body: event.message.slice(0, 260), sound: false,
+          subtitle: DIAGNOSTIC_VERSION + " · 点此复制记录，粘贴回对话",
+          body: (DIAGNOSTIC_VERSION + " · " + (Array.isArray(event.extensionKinds) && event.extensionKinds.length ? "扩展类型 " + event.extensionKinds.join(",") + " · " : "") + event.message).slice(0, 300), sound: false,
           action: { type: "clipboard", text: diagnosticReport(ctx, data.events) }
         });
         data.sent[category] = { at: now, signature };

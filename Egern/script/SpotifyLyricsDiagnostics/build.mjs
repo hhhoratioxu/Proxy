@@ -15,12 +15,12 @@ const gate = readFileSync(new URL('lyrics-entry-gate.js', root), 'utf8');
 const hash = text => createHash('sha256').update(text).digest('hex');
 const bundle = '// Generated from the original VerseLyrics 0.3.3 and its original diagnostic adapter.\n' +
   '// Main source SHA-256: ' + hash(source) + '\n' + processor + '\n' + gate + '\n' + layer;
-const bundleFile = 'spotify-lyrics-diagnostics-2.js';
+const bundleFile = 'spotify-lyrics-diagnostics-3.js';
 writeFileSync(new URL(bundleFile, root), bundle);
 writeFileSync(new URL('build-info.json', root), JSON.stringify({
-  version: '0.3.3-diag.2', processorVersion: '0.3.3', bundleFile, sourceSha256: hash(source),
+  version: '0.3.3-diag.3', processorVersion: '0.3.3', bundleFile, sourceSha256: hash(source),
   adapterSha256: hash(layer), gateSha256: hash(gate), bundleSha256: hash(bundle),
   changesToProcessor: ['rename entry point for wrapper', 'report a safe processing-error code before the existing pass-through'],
   scope: 'Self-contained original source and a narrow iOS lyric-entry flag candidate; no external runtime imports. Diagnostic notifications do not assert that missing native lyrics are fixed.'
 }, null, 2) + '\n');
-console.log(JSON.stringify({version:'0.3.3-diag.2', bundleFile, bundleBytes:Buffer.byteLength(bundle), bundleSha256:hash(bundle)}));
+console.log(JSON.stringify({version:'0.3.3-diag.3', bundleFile, bundleBytes:Buffer.byteLength(bundle), bundleSha256:hash(bundle)}));

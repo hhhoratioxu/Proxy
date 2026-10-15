@@ -1,10 +1,10 @@
-# 0.3.3-diag.2 — narrow iOS lyric-entry candidate; device acceptance remains pending.
+# 0.3.3-diag.3 — narrow iOS lyric-entry candidate; device acceptance remains pending.
 name: Spotify 歌词 · 通知诊断版
 author: Horatio Xu
 icon: waveform.badge.magnifyingglass
 homepage: https://github.com/hhhoratioxu/Proxy/tree/main/Egern/script/SpotifyLyricsDiagnostics
 manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/SpotifyLyricsDiagnostics/README.md
-description: diag.2 加入 iOS 客户端歌词检查开关的候选修复，并自动通知命中情况和实际歌词请求。请临时只启用这一份诊断模块；保留原词与插件译文策略。
+description: diag.3 修正完整 customize 路径和 bootstrap 配置封装；通知正文显示版本及批量扩展类型。请临时只启用这一份诊断模块；保留原词与插件译文策略。
 env_schema:
   TRANSLATION_ENABLED:
     name: 开启歌词翻译
@@ -67,7 +67,7 @@ mitm:
   - "*-spclient.spotify.com"
 scriptings:
 - http_request:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics-2.js?v=0.3.3-diag.2
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics-3.js?v=0.3.3-diag.3
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
@@ -75,11 +75,11 @@ scriptings:
       DISCOVER_MISSING: 'true'
     update_interval: 3600
     name: VerseLyrics 诊断 · 请求处理
-    match: "^(?:https://(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com(?::443)?/(?:color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\\s]+)?/?|metadata/4/track/[0-9a-f]{32}|extended-metadata/v0/extended-metadata/?|scrollsita/v1/scroll/spotify(?::|%3[aA])track(?::|%3[aA])[0-9A-Za-z]{22}/?)(?:\\?.*)?|https://(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com(?::443)?/v1/customize/?(?:\\?.*)?)$"
+    match: "^(?:https://(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com(?::443)?/(?:color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\\s]+)?/?|metadata/4/track/[0-9a-f]{32}|extended-metadata/v0/extended-metadata/?|scrollsita/v1/scroll/spotify(?::|%3[aA])track(?::|%3[aA])[0-9A-Za-z]{22}/?)(?:\\?.*)?|https://(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com(?::443)?/(?:user-customization-service/v1/customize|bootstrap/v1/bootstrap|v1/customize)/?(?:\\?.*)?)$"
     body_required: false
     timeout: 3
 - http_response:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics-2.js?v=0.3.3-diag.2
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics-3.js?v=0.3.3-diag.3
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
@@ -93,7 +93,7 @@ scriptings:
     max_size: 2097152
     timeout: 25
 - schedule:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics-2.js?v=0.3.3-diag.2
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics-3.js?v=0.3.3-diag.3
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
@@ -104,7 +104,7 @@ scriptings:
     cron: "* * * * *"
     timeout: 3
 - generic:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics-2.js?v=0.3.3-diag.2
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics-3.js?v=0.3.3-diag.3
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN

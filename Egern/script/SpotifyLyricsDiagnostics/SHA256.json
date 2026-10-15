@@ -1,19 +1,23 @@
 {
   "Evidence/core-regression.txt": {
-    "bytes": 10592,
-    "sha256": "7ec01d6ec927fc19e494fcc7a11268713ef06a1b004c2c5af08a79329b08f002"
+    "bytes": 10579,
+    "sha256": "8647768229170892b147bae0b210544b5ec0363e201c0519c541532fe4384011"
   },
   "Evidence/diagnostic-tests.txt": {
-    "bytes": 4789,
-    "sha256": "ab30ad723f75555ef18b15445ba365d817ca807776dad11ca2318817d88eb0e5"
+    "bytes": 6047,
+    "sha256": "f6350a5f230488f25e18724714426e016328fd6410b74b00217134d9acf4aacc"
   },
   "Evidence/module-validation.json": {
     "bytes": 506,
     "sha256": "25e52e99b725227781a9c16702eb8837b91a909ae5ae3848aaaab974b6725a13"
   },
+  "Evidence/native-endpoint-regression.json": {
+    "bytes": 2199,
+    "sha256": "f9383738e921668c048d3560c7deaaf141849efb3bccaf8001e92bd8ba13eb6e"
+  },
   "Evidence/public-ios-configuration-validation.json": {
-    "bytes": 1248,
-    "sha256": "028cee1be9021a455ba1365cb4f225b9006e43cf15e5e1ecb119923529c15abe"
+    "bytes": 1913,
+    "sha256": "45ec2899cea037f826da2212c700a6bdea3a0e43bda1dc6bf614f8a272d30af5"
   },
   "Evidence/target-batch-validation.json": {
     "bytes": 2025,
@@ -24,63 +28,67 @@
     "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
   },
   "README.md": {
-    "bytes": 8745,
-    "sha256": "31ee444d8bce5c27bba54d53babaf4c22da5a3e17315caddc156ea6426fa006c"
+    "bytes": 9928,
+    "sha256": "20c8152786ba89d607c349dc2b3f758df3e52bc4f03ab071778aec6a48f425ac"
   },
   "SpotifyLyrics.Diagnostics.local.yaml": {
-    "bytes": 3812,
-    "sha256": "f7fd16510773ea068e8e4056bf173581bf312f84f49bfb94fc1a7637e1998748"
+    "bytes": 3878,
+    "sha256": "5359ed60ca0e6c3b03093c85d874923e2ea87a05f10c25f8dd5281e85058d6d1"
   },
   "SpotifyLyrics.Diagnostics.yaml": {
-    "bytes": 4356,
-    "sha256": "ab3cc4186b45e42864955e146e996af5f11525d3af71de11ab2f65723ff17bbd"
+    "bytes": 4422,
+    "sha256": "a8d90daf2d8e5398e66bd4ac19c188b32912c360636782bb0fd18264a6703f60"
   },
   "build-info.json": {
     "bytes": 797,
-    "sha256": "93096f1248f732db69abb11c7c9003f225ac8eca116c04caa424e6160fa5b286"
+    "sha256": "d8591aa8211738390934e26d7eac2b847304546a7ac29605c925b52970cbfa8f"
   },
   "build-module.rb": {
-    "bytes": 2877,
-    "sha256": "82d54cc6b48d2e9830816fbae0eef21aedfdacf5e250fc3f43451438b24ca878"
+    "bytes": 2943,
+    "sha256": "d1e8a19bf19b9516c19d934224254803d23fca9d7ffe67ff2de34073bdeef325"
   },
   "build.mjs": {
     "bytes": 2107,
-    "sha256": "cd7881eabf94461f75bf57c623d9c1da2e8bb9c6f44552e7a328c3a3f4b41474"
+    "sha256": "f33e7ece9cbb08d39cbfb0a58c66e920c90e0ade579cc000ef6ae066280696fa"
   },
   "lyrics-entry-gate.js": {
-    "bytes": 6522,
-    "sha256": "be25fd2bb1736e032cf824798567a8b63fd4e02c0ece5eb7a6074e4c5d418f2c"
+    "bytes": 7912,
+    "sha256": "ee0efc9990b5da73866cb835a025b038084dc369ba21ef64a2fb21effaddbd5c"
   },
   "notification-layer.js": {
-    "bytes": 11119,
-    "sha256": "d98975780bee7a1ac4e60a081f2c721cc28544c6cd05e9635038afc0190af777"
+    "bytes": 11342,
+    "sha256": "47c938f48e8036c0211195ee77b7ea54d677090d7c664829ac184f556f5029bd"
   },
   "package.json": {
     "bytes": 243,
-    "sha256": "b96571fc96271c4349eca45fe03310fd8ffeeccf87645acd6dd6e98c2814dc6d"
+    "sha256": "5e19effadd68042aba9aa227f5fcac57f76239fb04633326a41ca33f037c0670"
   },
   "spotify-lyrics-diagnostics-2.js": {
     "bytes": 103008,
     "sha256": "7e796de3e00505bbbcaf4a540dd4b81171a1f5277f38a6d2c04c4fc4a65bf347"
+  },
+  "spotify-lyrics-diagnostics-3.js": {
+    "bytes": 104621,
+    "sha256": "a6c03a1ffcc98a9f076dac06a3fa407d1f6d350562308fafe3b0a49c1ecb71c8"
   },
   "spotify-lyrics-diagnostics.js": {
     "bytes": 95732,
     "sha256": "fbcb85d42b60d7fad733a4ecfbd7a7d3314eaad2bd673f2c0611cc383badeb35"
   },
   "test/diagnostics.test.mjs": {
-    "bytes": 12698,
-    "sha256": "40644f05a5637db84dbd0dd66363b112ec8224eeaf3ebd64cc2b547cfa80c84d"
+    "bytes": 12937,
+    "sha256": "5d5bb99ddde06c596e14186c0a0bd22e4e105069a2b01ceafc4eec02ec9c7e44"
   },
   "test/lyrics-gate.test.mjs": {
-    "bytes": 9802,
-    "sha256": "923c018c377182ae687b382784594e51a5df165592cc955c2ddc90e6dcbadf1d"
+    "bytes": 14258,
+    "sha256": "56c3133e909613b38ec684ca470726ea4dbebc4f46f707c4499be20aaa1fc3c4"
   },
   "test/run-core-regression.mjs": {
     "bytes": 891,
-    "sha256": "6c885191f537c3ea6e7661eb192e5729dbf73eea64769aacb598f80ff1c8079b"
+    "sha256": "09f761804f4c99ecda6c3ec25824df11e54111b907e28e53475b4016047cc349"
   },
   "test/validate-module.rb": {
-    "bytes": 2408,
-    "sha256": "be3fcb16f9c2b241804de623d64efed24184565fd9ee9b89c9b600a87897c514"
+    "bytes": 2475,
+    "sha256": "363378d97ab7e6455c35b2d6162f8f831b50d9b5800afeaea9d7da20541c7334"
   }
 }

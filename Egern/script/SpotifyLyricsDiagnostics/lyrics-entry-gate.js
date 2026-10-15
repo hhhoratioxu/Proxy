@@ -1,7 +1,7 @@
 // Original, narrowly scoped iOS lyric-entry configuration adapter.
 // Uses public Protobuf field facts; never changes account attributes or other
 // feature assignments. Appended to the self-contained diagnostic bundle.
-const LYRICS_GATE_URL = new RegExp("^https://(" + HOST + ")(?::443)?/v1/customize/?(?:\\?.*)?$");
+const LYRICS_GATE_URL = new RegExp("^https://(" + HOST + ")(?::443)?/(?:user-customization-service/v1/customize|bootstrap/v1/bootstrap|v1/customize)/?(?:\\?.*)?$");
 const LYRICS_GATE_SCOPE = "ios-feature-lyrics";
 const LYRICS_GATE_NAME = "enable_has_lyrics_check_bypass";
 function lyricGateConfiguration(bytes) {
@@ -34,8 +34,27 @@ function lyricGateConfiguration(bytes) {
   if (!iosLyrics) return null;
   return { fs, entries, targets };
 }
-function nativeLyricGate(bytes) {
+function nativeLyricGate(bytes, envelope = "customize") {
   if (bytes.length > LIMIT) throw new Error("body-limit");
+  if (envelope === "bootstrap") {
+    // Native BootstrapMessage.wrapper(2) -> oneMoreWrapper(1) ->
+    // message(1) -> CustomizeMessage. These are protocol field facts,
+    // not a recursive scan of arbitrary embedded messages.
+    let current = bytes; const wrappers = [];
+    for (const number of [2, 1, 1]) {
+      let fs; try { fs = fields(current); } catch { return { changed: false, body: bytes, unsupported: true }; }
+      const target = fs.filter(f => f.number === number);
+      if (target.length !== 1 || target[0].wire !== 2) return { changed: false, body: bytes, unsupported: true };
+      wrappers.push({ fs, number }); current = target[0].payload;
+    }
+    const result = nativeLyricGate(current);
+    if (!result.changed) return { ...result, body: bytes, ...(result.depth !== undefined ? { depth: result.depth + 3 } : {}) };
+    let body = result.body;
+    for (let i = wrappers.length - 1; i >= 0; i--) {
+      const { fs, number } = wrappers[i]; body = replaceField(fs, number, dataField(number, body));
+    }
+    return { ...result, body, depth: result.depth + 3 };
+  }
   // Known configurations can be direct Configuration, ResolveResponse,
   // UcsResponse, or UcsResponseWrapper. Only descend their unique field 1;
   // arbitrary byte searches and unknown container rewrites are not used.
@@ -91,10 +110,11 @@ async function handleLyricGate(ctx) {
     if (/json/i.test(header(ctx.response.headers, "Content-Type"))) {
       status(ctx, "客户端配置返回 JSON，当前候选适配仅支持已核对的原生二进制结构；保留原响应。"); return { body: bytes };
     }
-    const result = nativeLyricGate(bytes);
+    const envelope = /\/bootstrap\/v1\/bootstrap\/?(?:\?|$)/.test(str(ctx.request.url)) ? "bootstrap" : "customize";
+    const result = nativeLyricGate(bytes, envelope);
     if (result.unsupported) { status(ctx, "客户端配置已命中，但没有识别到 iOS 歌词配置容器；保留原响应。"); return { body: bytes }; }
     if (!result.changed) { status(ctx, "客户端歌词检查跳过标记已经开启；配置无需改写，等待后续 lyrics 请求。"); return { body: bytes }; }
-    status(ctx, "客户端歌词配置：已写入无词检查跳过标记（新增 " + result.added + "，修改 " + result.updated + "）；其他配置保持原字节，等待后续 lyrics 请求。");
+    status(ctx, "客户端歌词配置 " + envelope + "：已写入无词检查跳过标记（新增 " + result.added + "，修改 " + result.updated + "）；其他配置保持原字节，等待后续 lyrics 请求。");
     return { headers: responseHeaders(ctx, "protobuf"), body: result.body };
   } catch (error) {
     try { ctx.diagnosticError?.(error); } catch { }
@@ -102,7 +122,7 @@ async function handleLyricGate(ctx) {
   }
 }
 function batchKinds(bytes) {
-  try { return [...new Set(fields(bytes).filter(f => f.number === 2 && f.wire === 2).map(f => last(fields(f.payload), 2, 0)?.value ?? 0))].slice(0, 12); }
+  try { return [...new Set(fields(bytes).filter(f => f.number === 2 && f.wire === 2).map(f => last(fields(f.payload), 2, 0)?.value ?? 0).filter(n => Number.isInteger(n) && n >= 0 && n <= 2147483647))].slice(0, 12); }
   catch { return []; }
 }
 export { LYRICS_GATE_URL, nativeLyricGate, batchKinds };

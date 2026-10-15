@@ -1,6 +1,6 @@
 {
   "name": "verselyrics-egern-diagnostics",
-  "version": "0.3.3-diag.2",
+  "version": "0.3.3-diag.3",
   "private": true,
   "type": "module",
   "scripts": {

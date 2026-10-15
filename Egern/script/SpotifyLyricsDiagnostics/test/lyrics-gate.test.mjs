@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import diagnose,{nativeLyricGate,LYRICS_GATE_URL,batchKinds} from '../spotify-lyrics-diagnostics-2.js';
+import diagnose,{nativeLyricGate,LYRICS_GATE_URL,batchKinds,diagnosticRoute} from '../spotify-lyrics-diagnostics-3.js';
+import {LYRICS_GATE_URL as priorURL,diagnosticRoute as priorRoute} from '../spotify-lyrics-diagnostics-2.js';
 const gate='enable_has_lyrics_check_bypass',scope='ios-feature-lyrics';
 const cat=(...xs)=>Buffer.concat(xs);
 // Independent test encoder and reader; do not generate inputs with production helpers.
@@ -16,6 +17,7 @@ function configuration({targets=[assignment(gate)],namespace=scope}={}){
   return cat(str(1,'self-written-assignment-id'),num(2,1000),assignment('enable_lyrics',1,namespace),assignment('keep_other_flag',0,'some-other-scope'),...targets,str(91,'keep-configuration-unknown'));
 }
 function wrap(bytes,depth){let b=bytes;for(let i=0;i<depth;i++)b=cat(bin(1,b),...(i===1?[bin(3,cat(str(1,'opaque-account-attributes'),str(2,'keep-existing-values')))]:[]),str(90+i,'keep-wrapper-'+i));return b;}
+function bootstrap(bytes){let b=bytes;for(const no of [1,1,2])b=cat(bin(no,b),str(90+no,'opaque-bootstrap-unknown-'+no));return b;}
 function unwrap(bytes,depth){let b=bytes;for(let i=0;i<depth;i++)b=read(b).find(f=>f.no===1).payload;return b;}
 function targetEntries(bytes){return read(bytes).filter(f=>f.no===3).filter(f=>{const id=read(read(f.payload).find(v=>v.no===1).payload);return id.find(v=>v.no===1).payload.toString()===scope&&id.find(v=>v.no===2).payload.toString()===gate;});}
 function value(entry){const b=read(entry.payload).find(f=>f.no===3);return read(b.payload).find(f=>f.no===1)?.value??0;}
@@ -82,4 +84,40 @@ test('zero track records can describe non-track extension kinds, and diagnostics
   const input=cat(bin(2,cat(num(2,5),bin(3,str(99,'opaque-audio-data')))),bin(2,num(2,23)));assert.deepEqual(batchKinds(input),[5,23]);
   const c=ctx(input,{url:'https://spclient.wg.spotify.com/extended-metadata/v0/extended-metadata'}),readOnce=c.response.arrayBuffer.bind(c.response);let reads=0;c.response.arrayBuffer=()=>{reads++;return readOnce();};
   const r=await diagnose(c);assert.deepEqual(Buffer.from(r.body),input);assert.equal(reads,1);assert.match(c.notifications[0].action.text,/扩展类型 5,23/);assert.match(c.notifications[0].action.text,/缓存 0/);assert.doesNotMatch(c.notifications[0].action.text,/opaque-audio-data/);
+  assert.match(c.notifications[0].body,/^0\.3\.3-diag\.3 · 扩展类型 5,23 ·/);
+});
+
+// Complete public endpoint names are regression cases: diag.2 wrongly used
+// only the suffix /v1/customize. These do not require user credentials.
+for(const path of ['user-customization-service/v1/customize','bootstrap/v1/bootstrap'])test('complete native endpoint is dispatched instead of classified as unrelated: '+path,()=>{
+  for(const prefix of ['https://spclient.wg.spotify.com/','https://gae2-spclient.spotify.com:443/']){
+    const url=prefix+path+'?opaque=PRIVATE_QUERY';assert.equal(priorURL.test(url),false);assert.notEqual(priorRoute(url).route,'lyrics-gate');
+    assert.equal(LYRICS_GATE_URL.test(url),true);assert.deepEqual(diagnosticRoute(url),{route:'lyrics-gate',known:true});
+  }
+  for(const suffix of ['/different','-extra'])assert.equal(LYRICS_GATE_URL.test('https://spclient.wg.spotify.com/'+path+suffix),false);
+});
+for(const path of ['user-customization-service/v1/customize','bootstrap/v1/bootstrap'])test('cache validators are cleared on the complete native configuration request: '+path,async()=>{
+  const c=ctx(null,{url:'https://spclient.wg.spotify.com/'+path,headers:{Authorization:'Bearer TEST_ONLY','If-None-Match':'old','If-Modified-Since':'old','Accept-Encoding':'br'}});delete c.response;
+  const r=await diagnose(c);assert.equal(r.headers.get('If-None-Match'),null);assert.equal(r.headers.get('If-Modified-Since'),null);assert.equal(r.headers.get('Accept-Encoding'),'identity');assert.equal(r.headers.get('Authorization'),'Bearer TEST_ONLY');assert.equal(c.notifications.length,0);
+});
+test('native bootstrap field path 2,1,1 then UCS 1,1,1 changes only the lyric boolean and its ancestor lengths',()=>{
+  const input=bootstrap(wrap(configuration(),3)),result=nativeLyricGate(input,'bootstrap');assert.equal(result.changed,true);assert.equal(result.depth,6);assert.equal(result.updated,1);
+  let a=input,b=Buffer.from(result.body);
+  for(const number of [2,1,1,1,1,1]){
+    const aa=read(a),bb=read(b);assert.deepEqual(aa.filter(f=>f.no!==number).map(f=>f.raw),bb.filter(f=>f.no!==number).map(f=>f.raw));a=aa.find(f=>f.no===number).payload;b=bb.find(f=>f.no===number).payload;
+  }
+  assert.equal(value(targetEntries(b)[0]),1);const old=targetEntries(a)[0],fresh=targetEntries(b)[0];
+  assert.deepEqual(read(a).filter(f=>!f.raw.equals(old.raw)).map(f=>f.raw),read(b).filter(f=>!f.raw.equals(fresh.raw)).map(f=>f.raw));
+  const repeated=nativeLyricGate(result.body,'bootstrap');assert.equal(repeated.changed,false);assert.deepEqual(Buffer.from(repeated.body),Buffer.from(result.body));
+});
+test('an already enabled native bootstrap stays byte identical',()=>{
+  const input=bootstrap(wrap(configuration({targets:[assignment(gate,1)]}),3)),result=nativeLyricGate(input,'bootstrap');assert.equal(result.changed,false);assert.deepEqual(Buffer.from(result.body),input);
+});
+for(const input of [str(1,'unrecognized-bootstrap'),cat(bin(2,bin(1,bin(1,wrap(configuration(),3)))),bin(2,str(1,'duplicate-wrapper'))),bootstrap(bin(2,cat(num(1,403),str(2,'PRIVATE_PAYLOAD'))))])test('unsupported or error bootstrap containers keep the entire response: '+input.toString('hex').slice(0,24),()=>{
+  const result=nativeLyricGate(input,'bootstrap');assert.equal(result.changed,false);assert.equal(result.unsupported,true);assert.deepEqual(Buffer.from(result.body),input);
+});
+for(const path of ['user-customization-service/v1/customize','bootstrap/v1/bootstrap'])test('the full native response endpoint generates a copyable gate notification: '+path,async()=>{
+  const body=wrap(configuration({targets:[]}),3),isBootstrap=path.startsWith('bootstrap/'),c=ctx(isBootstrap?bootstrap(body):body,{url:'https://spclient.wg.spotify.com/'+path});
+  const result=await diagnose(c);assert.ok(result.headers);assert.equal(c.notifications.length,1);assert.match(c.notifications[0].title,/lyrics-gate/);assert.match(c.notifications[0].body,/0\.3\.3-diag\.3/);assert.match(c.notifications[0].body,/新增 1/);assert.ok(c.notifications[0].body.includes(isBootstrap?'bootstrap':'customize'));
+  assert.doesNotMatch(c.notifications[0].action.text,/opaque-bootstrap|opaque-account|self-written-assignment/);
 });

@@ -5,22 +5,41 @@
   "sourceSnapshotVersion": "iOS 9.1.88",
   "sourceBytes": 100278,
   "sourceSha256": "b9dbd29908a8c41c19587af7e38b69a822e67fd5cd3aba0c9cef53653c060ce7",
-  "processorVersion": "0.3.3-diag.2",
-  "observedConfigurationDepth": 0,
-  "existingAssignments": 1096,
-  "outputAssignments": 1097,
+  "processorVersion": "0.3.3-diag.3",
   "targetScope": "ios-feature-lyrics",
   "targetProperty": "enable_has_lyrics_check_bypass",
   "originalTargetPresent": false,
-  "addedTargetValue": true,
-  "existingFieldsBytePreserved": true,
-  "secondRunByteIdentical": true,
+  "results": [
+    {
+      "kind": "configuration",
+      "observedConfigurationDepth": 0,
+      "existingAssignments": 1096,
+      "outputAssignments": 1097,
+      "addedTargetValue": true,
+      "existingFieldsBytePreserved": true,
+      "outerUnknownFieldsBytePreserved": true,
+      "secondRunByteIdentical": true,
+      "outerEnvelopeSynthetic": false
+    },
+    {
+      "kind": "bootstrap-schema-envelope",
+      "observedConfigurationDepth": 6,
+      "existingAssignments": 1096,
+      "outputAssignments": 1097,
+      "addedTargetValue": true,
+      "existingFieldsBytePreserved": true,
+      "outerUnknownFieldsBytePreserved": true,
+      "secondRunByteIdentical": true,
+      "outerEnvelopeSynthetic": true
+    }
+  ],
   "configurationSaved": false,
   "deviceSpotifyVersion": "9.1.92.3058",
   "nativeDeviceVerified": false,
   "limitations": [
     "Public configuration data is from iOS 9.1.88, not the user device.",
-    "This validates recognition, field insertion and byte preservation; it does not prove that native Spotify reads the new value or requests/displays lyrics.",
+    "The bootstrap outer envelope was independently constructed from public field facts; it is not a captured native bootstrap response.",
+    "This validates recognition, insertion and byte preservation; it does not prove that native Spotify reads the new value or requests/displays lyrics.",
     "No third-party implementation code or full configuration is redistributed."
   ]
 }
