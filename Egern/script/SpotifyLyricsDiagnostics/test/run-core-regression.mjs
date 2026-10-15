@@ -4,7 +4,7 @@ import {join} from 'node:path';
 import {spawnSync} from 'node:child_process';
 const root=new URL('../',import.meta.url),base=new URL('../SpotifyLyrics/test/',root);
 const source=readFileSync(new URL('spotify-lyrics.test.mjs',base),'utf8');
-const bundle=new URL('spotify-lyrics-diagnostics.js',root).href,fixtures=new URL('fixtures/',base).href;
+const bundle=new URL('spotify-lyrics-diagnostics-2.js',root).href,fixtures=new URL('fixtures/',base).href;
 const generated=source.replace("'../spotify-lyrics.js'",JSON.stringify(bundle)).replaceAll("'./fixtures/","'"+fixtures);
 const temp=mkdtempSync(join(tmpdir(),'verselyrics-diag-regression-'));
 try {

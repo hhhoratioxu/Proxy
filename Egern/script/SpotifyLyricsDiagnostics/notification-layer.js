@@ -1,13 +1,14 @@
 // Original notification adapter. Appended to the original VerseLyrics source
 // by build.mjs; it does not need runtime imports or a separately run script.
-const DIAGNOSTIC_VERSION = "0.3.3-diag.1";
+const DIAGNOSTIC_VERSION = "0.3.3-diag.2";
 const DIAGNOSTIC_KEY = "VerseLyrics.diagnostics.1";
-const DIAGNOSTIC_HEARTBEAT = "VerseLyrics.diagnostics.1.heartbeat";
+const DIAGNOSTIC_HEARTBEAT = "VerseLyrics.diagnostics.2.heartbeat";
 const DIAGNOSTIC_HOST = new RegExp("^https://" + HOST + "(?::443)?/");
 const DIAGNOSTIC_FAMILIES = new Set([
   "color-lyrics", "lyrics", "metadata", "extended-metadata", "scrollsita",
   "context-resolve", "connect-state", "now-playing-view", "nowplaying-view",
-  "gander", "pathfinder", "social-connect", "player", "spclient-metadata"
+  "gander", "pathfinder", "social-connect", "player", "spclient-metadata",
+  "ucs", "bootstrap", "remote-config-resolver"
 ]);
 const DIAGNOSTIC_ERRORS = new Set([
   "body-limit", "unknown-format", "json-shape", "line-shape", "line-limit",
@@ -15,7 +16,8 @@ const DIAGNOSTIC_ERRORS = new Set([
   "scroll-sections", "metadata-id", "metadata-incomplete", "metadata-lyrics-flag",
   "extended-track-limit", "integer", "truncated-varint", "overflow-varint",
   "long-varint", "field-limit", "bad-tag", "bad-field-number", "bad-length",
-  "unsupported-wire", "truncated-field", "native-line-count", "settings-invalid"
+  "unsupported-wire", "truncated-field", "native-line-count", "settings-invalid",
+  "lyrics-gate-type", "lyrics-gate-value"
 ]);
 function diagnosticVersion(value) {
   return typeof value === "string" && /^\d[\d.]{0,31}$/.test(value) ? value : "未知";
@@ -25,6 +27,7 @@ function diagnosticError(error) {
   return ["SyntaxError", "URIError", "TypeError", "RangeError"].includes(error?.name) ? error.name : "processing-error";
 }
 function diagnosticRoute(url) {
+  if (LYRICS_GATE_URL.test(url)) return { route: "lyrics-gate", known: true };
   const lyric = LYRIC_URL.exec(url), meta = META_URL.exec(url), card = SCROLL_URL.exec(url);
   if (lyric) return { route: "lyrics", trackId: lyric[2], known: true };
   if (card) return { route: "player-cards", trackId: card[2], known: true };
@@ -59,6 +62,7 @@ function diagnosticReport(ctx, events) {
       typeof e.hasAuth === "boolean" ? "请求鉴权 " + (e.hasAuth ? "有" : "无") : "",
       typeof e.metaCached === "boolean" ? "歌曲信息缓存 " + (e.metaCached ? "有" : "无") : "",
       e.encoding ? "响应编码 " + e.encoding : "",
+      Array.isArray(e.extensionKinds) && e.extensionKinds.length ? "扩展类型 " + e.extensionKinds.join(",") : "",
       Array.isArray(e.services) && e.services.length ? e.services.map(s => s.service + " " + s.status).join("；") : ""].filter(Boolean).join(" · "));
   }
   if (!events.some(e => e.route !== "heartbeat")) rows.push("定时诊断已运行，尚未读取到接口记录；请同时查看播放时是否出现其他诊断通知。");
@@ -109,7 +113,8 @@ export default async function diagnoseLyrics(ctx) {
   const url = str(ctx.request.url);
   if (!DIAGNOSTIC_HOST.test(url) || header(ctx.request.headers, INTERNAL)) return;
   const route = diagnosticRoute(url);
-  if (!ctx.response) return route.known ? handleLyrics(ctx) : undefined;
+  const handler = route.route === "lyrics-gate" ? handleLyricGate : handleLyrics;
+  if (!ctx.response) return route.known ? handler(ctx) : undefined;
   const upstream = ctx.response.status;
   if (!route.known) {
     diagnosticNotify(ctx, diagnosticEvent(ctx, route, "已看到 Spotify 接口响应；这一条不是当前适配的歌词或入口请求。", { upstream, output: upstream }), "other");
@@ -153,9 +158,12 @@ export default async function diagnoseLyrics(ctx) {
       throw error;
     }
   }
-  const working = { request: ctx.request, response: ctx.response, http: { get: (u, o) => request("get", u, o), post: (u, o) => request("post", u, o) }, env: ctx.env, storage,
+  let responseBytes;
+  const response = { status: ctx.response.status, headers: ctx.response.headers,
+    async arrayBuffer() { if (!responseBytes) responseBytes = await ctx.response.arrayBuffer(); return responseBytes; } };
+  const working = { request: ctx.request, response, http: { get: (u, o) => request("get", u, o), post: (u, o) => request("post", u, o) }, env: ctx.env, storage,
     diagnosticError(error) { failure = diagnosticError(error); } };
-  const result = await handleLyrics(working);
+  const result = await handler(working);
   const message = wasMarked ? "响应已被另一份 VerseLyrics 处理。请临时关闭普通版，仅启用诊断版。" :
     typeof freshStatus?.message === "string" ? freshStatus.message : "已命中适配接口；本次未产生新的处理状态。";
   const output = Number.isInteger(result?.status) ? result.status : upstream;
@@ -163,7 +171,8 @@ export default async function diagnoseLyrics(ctx) {
   if (route.route === "lyrics" && result?.body instanceof Uint8Array) {
     try { rows = parseDocument(result.body, header(result.headers || ctx.response.headers, "Content-Type")).words.length; } catch { }
   }
-  diagnosticNotify(ctx, diagnosticEvent(ctx, route, message, { upstream, output, ...requestInfo, encoding, services, ...(failure ? { error: failure } : {}), ...(Number.isInteger(rows) ? { rows } : {}) }), route.route);
+  const extensionKinds = route.route === "extended-metadata" && responseBytes ? batchKinds(new Uint8Array(responseBytes)) : [];
+  diagnosticNotify(ctx, diagnosticEvent(ctx, route, message, { upstream, output, ...requestInfo, encoding, services, ...(extensionKinds.length ? { extensionKinds } : {}), ...(failure ? { error: failure } : {}), ...(Number.isInteger(rows) ? { rows } : {}) }), route.route);
   return result;
 }
 export { diagnosticRoute, diagnosticReport, diagnosticError };

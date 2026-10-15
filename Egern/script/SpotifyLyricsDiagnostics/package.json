@@ -1,10 +1,10 @@
 {
   "name": "verselyrics-egern-diagnostics",
-  "version": "0.3.3-diag.1",
+  "version": "0.3.3-diag.2",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "test": "node --test test/diagnostics.test.mjs"
+    "test": "node --test test/diagnostics.test.mjs test/lyrics-gate.test.mjs"
   }
 }

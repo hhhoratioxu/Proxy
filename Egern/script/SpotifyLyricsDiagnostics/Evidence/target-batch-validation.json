@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-15",
+  "endpoint": "https://spclient.wg.spotify.com/extended-metadata/v0/extended-metadata",
+  "method": "POST",
+  "appPlatform": "iOS",
+  "spotifyAppVersionHeader": "9.1.92.3058",
+  "authorization": "Fresh anonymous public embed session, held only in process memory; no user credentials used.",
+  "trackId": "76XUZSb13QUuj1HECY4Hvo",
+  "results": [
+    {
+      "requestedExtensionKinds": [
+        10
+      ],
+      "httpStatus": 200,
+      "contentType": "application/protobuf",
+      "responseBytes": 824,
+      "responseSha256": "171d3756e6ba9be9606a4ead8fbab39fb023855e617ac405286dfab8c9c1e13e",
+      "responseKinds": [
+        10
+      ],
+      "trackRecords": 1,
+      "track": {
+        "id": "76XUZSb13QUuj1HECY4Hvo",
+        "title": "那页夏天",
+        "album": "WJK",
+        "artists": [
+          "王俊凱"
+        ],
+        "duration": 246.099
+      },
+      "hasLyrics": false,
+      "hasLyricsField": false
+    },
+    {
+      "requestedExtensionKinds": [
+        6,
+        10,
+        19,
+        94,
+        128
+      ],
+      "httpStatus": 200,
+      "contentType": "application/protobuf",
+      "responseBytes": 1100,
+      "responseSha256": "aa811b27987a0eb8b51475da81b47fff2319b6bda88af58eace22b4059fad3b2",
+      "responseKinds": [
+        6,
+        10,
+        19,
+        94,
+        128
+      ],
+      "trackRecords": 1,
+      "track": {
+        "id": "76XUZSb13QUuj1HECY4Hvo",
+        "title": "那页夏天",
+        "album": "WJK",
+        "artists": [
+          "王俊凱"
+        ],
+        "duration": 246.099
+      },
+      "hasLyrics": false,
+      "hasLyricsField": false
+    }
+  ],
+  "deviceVerified": false,
+  "limitations": [
+    "Live public backend responses do not establish the content of the user device responses.",
+    "A response without TRACK_V4 (kind 10) can legitimately yield zero cached track records.",
+    "Metadata parsing does not prove native lyrics requests or display."
+  ],
+  "savedResponseBody": false,
+  "savedCredentials": false
+}

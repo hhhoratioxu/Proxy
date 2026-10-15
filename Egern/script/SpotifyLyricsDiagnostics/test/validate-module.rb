@@ -11,13 +11,13 @@ results=[]
   raise 'timeout' unless response['timeout']==25 && schedule['timeout']==3
   raise 'schedule' unless schedule['cron']=='* * * * *'
   raise 'widget entry' unless c['widgets'][0]['script_name']==scripts[3]['generic']['name']
-  expected=name.end_with?('.local.yaml') ? 'spotify-lyrics-diagnostics.js' : 'https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics.js?v=0.3.3-diag.1'
+  expected=name.end_with?('.local.yaml') ? 'spotify-lyrics-diagnostics-2.js' : 'https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics-2.js?v=0.3.3-diag.2'
   scripts.each do |item|
     s=item.values.first;raise 'wrong source' unless s['script_url']==expected
     raise 'translation behavior' unless s['env']['TRANSLATION_ENABLED']=='true'
     raise 'source setting' unless s['env']['FALLBACK_PROVIDER']=='auto' && s['env']['DISCOVER_MISSING']=='true'
   end
-  ['color-lyrics/v2/track/0000000000000000000001','metadata/4/track/00000000000000000000000000000001','extended-metadata/v0/extended-metadata','scrollsita/v1/scroll/spotify:track:0000000000000000000001'].each do |path|
+  ['color-lyrics/v2/track/0000000000000000000001','metadata/4/track/00000000000000000000000000000001','extended-metadata/v0/extended-metadata','scrollsita/v1/scroll/spotify:track:0000000000000000000001','v1/customize'].each do |path|
     url='https://gae2-spclient.spotify.com:443/'+path+'?private=example'
     raise 'missing request' unless Regexp.new(request['match']).match?(url)
     raise 'missing response' unless Regexp.new(response['match']).match?(url)

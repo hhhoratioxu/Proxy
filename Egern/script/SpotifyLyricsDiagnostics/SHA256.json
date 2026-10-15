@@ -1,66 +1,86 @@
 {
   "Evidence/core-regression.txt": {
-    "bytes": 10580,
-    "sha256": "f434dd4088d626c834165a293693e0d3d8f0d2a3cd8d762515ed63a4f5775dc0"
+    "bytes": 10592,
+    "sha256": "7ec01d6ec927fc19e494fcc7a11268713ef06a1b004c2c5af08a79329b08f002"
   },
   "Evidence/diagnostic-tests.txt": {
-    "bytes": 2678,
-    "sha256": "44b3bd659e2e24e05fa4de8ebabc1f4b290d8eac8d7112c24bbd33496b0eefe1"
+    "bytes": 4789,
+    "sha256": "ab30ad723f75555ef18b15445ba365d817ca807776dad11ca2318817d88eb0e5"
   },
   "Evidence/module-validation.json": {
     "bytes": 506,
     "sha256": "25e52e99b725227781a9c16702eb8837b91a909ae5ae3848aaaab974b6725a13"
+  },
+  "Evidence/public-ios-configuration-validation.json": {
+    "bytes": 1248,
+    "sha256": "028cee1be9021a455ba1365cb4f225b9006e43cf15e5e1ecb119923529c15abe"
+  },
+  "Evidence/target-batch-validation.json": {
+    "bytes": 2025,
+    "sha256": "1c33d654e1bb8be69e7035f684218c7baa743933ad84c3a2140ec771fb7c708c"
   },
   "NOTICE-UNICODE.txt": {
     "bytes": 1995,
     "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
   },
   "README.md": {
-    "bytes": 5167,
-    "sha256": "3de743af1f3d20cc6657d4b7da1c096b3d5d2a646c72aeccbe288f27f822eec8"
+    "bytes": 8745,
+    "sha256": "31ee444d8bce5c27bba54d53babaf4c22da5a3e17315caddc156ea6426fa006c"
   },
   "SpotifyLyrics.Diagnostics.local.yaml": {
-    "bytes": 3703,
-    "sha256": "51cd7ce279bf5901a220c9e16ca9057125fa1dda03e2f61deba5cd19fdd7d6e7"
+    "bytes": 3812,
+    "sha256": "f7fd16510773ea068e8e4056bf173581bf312f84f49bfb94fc1a7637e1998748"
   },
   "SpotifyLyrics.Diagnostics.yaml": {
-    "bytes": 4247,
-    "sha256": "eb9a74afa8e7ad609854a763977e77a855e946ba7ff96294c2e78890ca98a768"
+    "bytes": 4356,
+    "sha256": "ab3cc4186b45e42864955e146e996af5f11525d3af71de11ab2f65723ff17bbd"
   },
   "build-info.json": {
-    "bytes": 618,
-    "sha256": "2581e826363ba5ae8c38ed6ec89b7125c3d2e7d2c23e1d885a41cd19c0098cbd"
+    "bytes": 797,
+    "sha256": "93096f1248f732db69abb11c7c9003f225ac8eca116c04caa424e6160fa5b286"
   },
   "build-module.rb": {
-    "bytes": 2710,
-    "sha256": "0562bffd533548ced749275faa7da05d2492c453ac87bd19f102da7d88408ffa"
+    "bytes": 2877,
+    "sha256": "82d54cc6b48d2e9830816fbae0eef21aedfdacf5e250fc3f43451438b24ca878"
   },
   "build.mjs": {
-    "bytes": 1894,
-    "sha256": "f4e4c8ad2d9251d91cc5b1e721150314f784864f98c3e5733ebb26e58ec9ac08"
+    "bytes": 2107,
+    "sha256": "cd7881eabf94461f75bf57c623d9c1da2e8bb9c6f44552e7a328c3a3f4b41474"
+  },
+  "lyrics-entry-gate.js": {
+    "bytes": 6522,
+    "sha256": "be25fd2bb1736e032cf824798567a8b63fd4e02c0ece5eb7a6074e4c5d418f2c"
   },
   "notification-layer.js": {
-    "bytes": 10366,
-    "sha256": "380a775bbab99d342441e32db311731fb5a29a3d9e86891dc102b625fb2f46c1"
+    "bytes": 11119,
+    "sha256": "d98975780bee7a1ac4e60a081f2c721cc28544c6cd05e9635038afc0190af777"
   },
   "package.json": {
-    "bytes": 217,
-    "sha256": "f7344777de9de062e629f18e9f56fda4aa49be7504d72425e15379ab82cee5fb"
+    "bytes": 243,
+    "sha256": "b96571fc96271c4349eca45fe03310fd8ffeeccf87645acd6dd6e98c2814dc6d"
+  },
+  "spotify-lyrics-diagnostics-2.js": {
+    "bytes": 103008,
+    "sha256": "7e796de3e00505bbbcaf4a540dd4b81171a1f5277f38a6d2c04c4fc4a65bf347"
   },
   "spotify-lyrics-diagnostics.js": {
     "bytes": 95732,
     "sha256": "fbcb85d42b60d7fad733a4ecfbd7a7d3314eaad2bd673f2c0611cc383badeb35"
   },
   "test/diagnostics.test.mjs": {
-    "bytes": 12519,
-    "sha256": "56ec51ab0fa19eae47c03d6338a4d0cc050d639a422632af39c029a4651b1d2b"
+    "bytes": 12698,
+    "sha256": "40644f05a5637db84dbd0dd66363b112ec8224eeaf3ebd64cc2b547cfa80c84d"
+  },
+  "test/lyrics-gate.test.mjs": {
+    "bytes": 9802,
+    "sha256": "923c018c377182ae687b382784594e51a5df165592cc955c2ddc90e6dcbadf1d"
   },
   "test/run-core-regression.mjs": {
-    "bytes": 889,
-    "sha256": "4634c07d179d9f6e50720de91231cbc84e1a586fefd64798dd113939530632ed"
+    "bytes": 891,
+    "sha256": "6c885191f537c3ea6e7661eb192e5729dbf73eea64769aacb598f80ff1c8079b"
   },
   "test/validate-module.rb": {
-    "bytes": 2389,
-    "sha256": "5dad359a04d2c0a0b451c4cb484f4fb606fe976f1478f7a6f2ecd79569e088d4"
+    "bytes": 2408,
+    "sha256": "be3fcb16f9c2b241804de623d64efed24184565fd9ee9b89c9b600a87897c514"
   }
 }
