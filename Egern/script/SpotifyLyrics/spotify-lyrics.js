@@ -1,9 +1,9 @@
-/* VerseLyrics 0.1.0 — original Egern native script, 2026-10-15.
+/* VerseLyrics 0.2.0 — original Egern native script, 2026-10-15.
  * Rewrites Spotify color-lyrics JSON and protobuf; no third-party script runtime.
  * Public protocol field numbers and service endpoints are documented in README.md.
  * Egern API: export default async function(ctx), ctx.http, ctx.storage.
  */
-const VERSION = "0.1.0";
+const VERSION = "0.2.0";
 const KEY = "VerseLyrics.v1.cache";
 const STATUS = "VerseLyrics.v1.status";
 const LIMIT = 2 * 1024 * 1024;
@@ -11,7 +11,7 @@ const MAX_LINES = 600;
 const INTERNAL = "x-verselyrics-internal";
 const MARKER = "x-verselyrics";
 const HOST = "(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com";
-const LYRIC_URL = new RegExp("^https://(" + HOST + ")/color-lyrics/v2/track/([0-9A-Za-z]{22})(?:/)?(?:\\?.*)?$");
+const LYRIC_URL = new RegExp("^https://(" + HOST + ")/color-lyrics/v2/track/([0-9A-Za-z]{22})(?:/image/[^?#\\s]+)?/?(?:\\?.*)?$");
 const META_URL = new RegExp("^https://(" + HOST + ")/metadata/4/track/([0-9a-f]{32})(?:\\?.*)?$");
 const LANGUAGES = ["zh-CN", "zh-TW", "en", "ja", "ko", "fr", "de", "es", "pt", "it", "ru", "ar", "hi", "id", "vi", "th", "tr", "nl", "pl", "sv", "uk", "he", "fa", "ms", "el"];
 const SOURCES = { lrclib: "LRCLIB", qq: "QQ 音乐", netease: "网易云音乐" };
@@ -124,6 +124,17 @@ function hexBase62(hex) {
   }
   return out.padStart(22, "0");
 }
+function languageFamily(value) { return clean(value).toLowerCase().replace(/_/g, "-").split("-")[0]; }
+function nativeTranslationState(alternatives, language, count) {
+  if (!Array.isArray(alternatives) || alternatives.some(a => !goodObject(a) || !clean(a.language) ||
+      !Array.isArray(a.lines) || a.lines.some(line => typeof line !== "string" || /[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(line)))) return "unsupported";
+  const existing = alternatives.find(a => languageFamily(a.language) === languageFamily(language));
+  if (!existing) return "missing";
+  return existing.lines.length === count && existing.lines.some(line => clean(line)) ? "present" : "unsupported";
+}
+function checkTranslationRows(rows, count) {
+  if (!Array.isArray(rows) || rows.length !== count || rows.some(row => typeof row !== "string")) throw new Error("native-line-count");
+}
 function parseDocument(bytes, contentType) {
   if (bytes.length > LIMIT) throw new Error("body-limit");
   let at = 0; while (at < bytes.length && [9, 10, 13, 32].includes(bytes[at])) at++;
@@ -134,28 +145,44 @@ function parseDocument(bytes, contentType) {
     if (lyrics && !Array.isArray(lyrics.lines)) throw new Error("line-shape");
     if ((lyrics?.lines.length || 0) > MAX_LINES) throw new Error("line-limit");
     if (lyrics?.lines.some(l => !goodObject(l) || typeof l.words !== "string")) throw new Error("line-shape");
-    const words = (lyrics?.lines || []).map(l => l.words);
+    const words = (lyrics?.lines || []).map(l => l.words), alternatives = lyrics?.alternatives ?? [];
     return { format: "json", words, obj, lyrics, language: clean(lyrics?.language), blocked: lyrics?.showUpsell === true,
-      write(next) { obj.lyrics.lines.forEach((l, i) => { l.words = next[i]; }); return utf8(JSON.stringify(obj)); } };
+      nativeState(language) { return nativeTranslationState(alternatives, language, words.length); },
+      writeNative(language, rows) {
+        checkTranslationRows(rows, words.length);
+        if (nativeTranslationState(alternatives, language, words.length) !== "missing") throw new Error("native-alternative-conflict");
+        // Keep original rows, timestamps, syllables, preview rows and typography.
+        // Spotify's existing translation renderer consumes this separate string list.
+        obj.lyrics.alternatives = [...alternatives, { language, lines: rows }];
+        return utf8(JSON.stringify(obj));
+      } };
   }
   if (!/protobuf|octet-stream/i.test(contentType)) throw new Error("unknown-format");
   const outer = fields(bytes), containers = outer.filter(f => f.number === 1);
-  if (containers.length > 1 || containers.some(f => f.wire !== 2)) throw new Error("duplicate-lyrics");
-  if (!containers.length) throw new Error("missing-lyrics");
-  const inner = fields(containers[0].payload);
-  const lineFields = inner.filter(f => f.number === 2);
+  if (containers.length !== 1 || containers[0].wire !== 2) throw new Error("lyrics-container");
+  const inner = fields(containers[0].payload), lineFields = inner.filter(f => f.number === 2);
   if (lineFields.length > MAX_LINES || lineFields.some(f => f.wire !== 2)) throw new Error("line-shape");
   const parsed = lineFields.map(f => fields(f.payload));
   if (parsed.some(fs => fs.filter(f => f.number === 2).length > 1 || fs.some(f => f.number === 2 && f.wire !== 2))) throw new Error("line-shape");
-  const words = parsed.map(fs => word(fs, 2));
+  const words = parsed.map(fs => word(fs, 2)), alternativeFields = inner.filter(f => f.number === 9);
+  let alternatives;
+  try {
+    alternatives = alternativeFields.map(f => {
+      if (f.wire !== 2) throw new Error("alternative-wire");
+      const fs = fields(f.payload), languageFields = fs.filter(f => f.number === 1), rows = fs.filter(f => f.number === 2);
+      if (languageFields.length !== 1 || languageFields[0].wire !== 2 || rows.some(f => f.wire !== 2)) throw new Error("alternative-schema");
+      return { language: word(fs, 1), lines: rows.map(f => text(f.payload)) };
+    });
+  } catch { alternatives = null; }
   return { format: "protobuf", words, language: word(inner, 10), blocked: last(inner, 13, 0)?.value === 1,
-    write(next) {
-      let i = 0;
-      const body = join(inner.map(f => {
-        if (f.number !== 2) return f.raw;
-        const index = i++;
-        return next[index] === words[index] ? f.raw : dataField(2, replaceField(parsed[index], 2, stringField(2, next[index])));
-      }));
+    nativeState(language) { return nativeTranslationState(alternatives, language, words.length); },
+    writeNative(language, rows) {
+      checkTranslationRows(rows, words.length);
+      if (nativeTranslationState(alternatives, language, words.length) !== "missing") throw new Error("native-alternative-conflict");
+      // LyricsResponse.alternatives = field 9; Alternative.language = field 1;
+      // Alternative.lines = repeated UTF-8 strings in field 2, NOT lyric messages.
+      const alternative = join([stringField(1, language), ...rows.map(row => stringField(2, row))]);
+      const body = join([...inner.map(f => f.raw), dataField(9, alternative)]);
       return replaceField(outer, 1, dataField(1, body));
     } };
 }
@@ -390,19 +417,21 @@ async function translate(ctx, original, state) {
     }));
   }
   let changed = 0;
-  const words = original.map(s => {
+  const translations = original.map(s => {
     const t = translated.get(s);
-    if (!t || normal(t) === normal(s)) return s;
-    changed++; return s + "\n" + t;
+    if (!t || normal(t) === normal(s)) return "";
+    changed++; return t;
   });
-  return { words, changed };
+  return { translations, changed };
 }
 function responseHeaders(ctx, format) {
   // Use only Egern's documented Headers get/set/delete API. Preserve all other
   // fields and multiple Set-Cookie headers without enumerating bridge objects.
   const out = ctx.response.headers;
+  const originalType = header(out, "Content-Type");
+  const requestedType = header(ctx.request?.headers, "Accept").split(",").map(v => v.trim()).find(v => /^application\/[a-z0-9.+-]*protobuf$/i.test(v));
   for (const name of ["Content-Length", "Content-Encoding", "ETag", "Content-MD5", "Digest", "Last-Modified", "Cache-Control", "Content-Type", MARKER]) out.delete(name);
-  out.set("Content-Type", format === "json" ? "application/json; charset=utf-8" : "application/x-protobuf");
+  out.set("Content-Type", format === "json" ? "application/json; charset=utf-8" : /protobuf|octet-stream/i.test(originalType) ? originalType : requestedType || "application/vnd.google.protobuf");
   out.set("Cache-Control", "no-store");
   out.set(MARKER, VERSION);
   return out;
@@ -468,16 +497,21 @@ export default async function(ctx) {
       doc = parseDocument(encodeDocument(generated, wantsJSON ? "json" : "protobuf"), wantsJSON ? "application/json" : "application/x-protobuf");
     }
     if (!doc || !doc.words.length) return unchanged();
-    const result = config.translate ? await translate(ctx, doc.words, state) : { words: doc.words, changed: 0 };
+    const nativeState = doc.nativeState(config.language);
+    if (config.translate && nativeState !== "missing") {
+      status(ctx, nativeState === "present" ? "已保留 Spotify 自带的同语种翻译；请使用 Spotify 原生翻译按钮。" : "译文结构无法安全适配，已保留原生歌词；不会改为拼接双语文本。");
+      if (!generated) return unchanged();
+    }
+    const result = config.translate && nativeState === "missing" ? await translate(ctx, doc.words, state) : { translations: [], changed: 0 };
     if (!generated && !result.changed) {
-      status(ctx, "保留 Spotify 原词；翻译未返回新译文、原词已双语或与目标语言相同。");
+      status(ctx, "保留 Spotify 原词；未取得可添加的原生译文。");
       return unchanged();
     }
-    const body = result.changed ? doc.write(result.words) : encodeDocument(generated, doc.format);
-    status(ctx, (generated ? "备用来源：" + generated.lyrics.providerDisplayName : "Spotify 原词") + "；已追加 " + result.changed + " 句译文（" + config.language + "）。");
+    const body = result.changed ? doc.writeNative(config.language, result.translations) : encodeDocument(generated, doc.format);
+    status(ctx, (generated ? "备用来源：" + generated.lyrics.providerDisplayName : "Spotify 原词") + "；已提供 " + result.changed + " 句独立译文（" + config.language + "），显示由 Spotify 原生翻译界面决定。");
     return { ...(generated ? { status: 200 } : {}), headers: responseHeaders(ctx, doc.format), body };
   } catch { status(ctx, "响应结构不支持或处理失败，已保留原响应。"); return unchanged(); }
   finally { state.cache.save(); }
 }
 export { fields, uint, dataField, stringField, numberField, join, utf8, text, base62Hex, hexBase62,
-  parseDocument, encodeDocument, parseMetadata, settings, matches, lrc, translate, sourceLyrics, loadCache, LANGUAGES, LYRIC_URL, META_URL };
+  parseDocument, encodeDocument, parseMetadata, nativeTranslationState, languageFamily, settings, matches, lrc, translate, sourceLyrics, loadCache, LANGUAGES, LYRIC_URL, META_URL };

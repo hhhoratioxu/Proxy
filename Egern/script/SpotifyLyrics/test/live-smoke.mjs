@@ -28,11 +28,13 @@ for(const target of ['zh-CN','ja','ar','fr'])await check('handler-live-translati
   const body=JSON.stringify({lyrics:{lines:words.map((words,i)=>({words,startTimeMs:String(i*2000),endTimeMs:'0',syllables:[]})),language:'en',syncType:'LINE_SYNCED',provider:'Self-written test text'},colors:{background:-1}});
   const ctx={env:{TRANSLATION_ENABLED:'true',TARGET_LANGUAGE:target},request:{url:'https://spclient.wg.spotify.com/color-lyrics/v2/track/0000000000000000000001',headers:new Headers({Accept:'application/json'})},response:new Response(body,{headers:{'Content-Type':'application/json'}}),http,storage:storage()};
   const result=await run(ctx),out=JSON.parse(Buffer.from(result.body).toString());
-  assert.equal(out.lyrics.lines.length,2);out.lyrics.lines.forEach((l,i)=>{assert.ok(l.words.startsWith(words[i]+'\n'));assert.equal(l.startTimeMs,String(i*2000));});
-  return{translatedRows:out.lyrics.lines.length,originalTimingsPreserved:true};
+  assert.equal(out.lyrics.lines.length,2);out.lyrics.lines.forEach((l,i)=>{assert.equal(l.words,words[i]);assert.equal(l.startTimeMs,String(i*2000));});
+  const alternative=out.lyrics.alternatives.find(a=>a.language===target);assert.equal(alternative.lines.length,words.length);assert.ok(alternative.lines.every(s=>typeof s==='string'&&s.length>0));
+  return{translatedRows:alternative.lines.length,originalRowsUnchanged:true,originalTimingsPreserved:true,nativeAlternatives:true};
 });
+if(!process.argv.includes('--translations-only')) {
 await check('lrclib-live-search-and-retrieval',async()=>{
-  const resp=await request('https://lrclib.net/api/search?track_name='+encodeURIComponent('Never Gonna Give You Up')+'&artist_name=Rick%20Astley',{headers:{'User-Agent':'VerseLyrics/0.1.0 (Egern module verification)'}});
+  const resp=await request('https://lrclib.net/api/search?track_name='+encodeURIComponent('Never Gonna Give You Up')+'&artist_name=Rick%20Astley',{headers:{'User-Agent':'VerseLyrics/0.2.0 (Egern module verification)'}});
   assert.equal(resp.status,200);const records=await resp.json(),record=records.find(r=>r.syncedLyrics&&r.albumName&&r.duration>0);assert.ok(record);
   const meta={id:'live-source-check',title:record.trackName,album:record.albumName,artists:[record.artistName],duration:record.duration};
   const ctx={http,storage:storage()},state={cache:loadCache(ctx),deadline:Date.now()+18000};
@@ -53,5 +55,6 @@ await check('netease-live-search-and-retrieval',async()=>{
   const doc=await sourceLyrics(ctx,'netease',meta,{cache:loadCache(ctx),deadline:Date.now()+18000});assert.ok(doc?.lyrics.lines.length>0);
   return{searchStatus:resp.status,lyricRows:doc.lyrics.lines.length,syncType:doc.lyrics.syncType,usesProviderMetadata:true};
 });
-console.log(JSON.stringify({date:new Date().toISOString(),runtime:process.version,scope:'real upstream services; synthetic Spotify responses; not device validation',results},null,2));
+}
+console.log(JSON.stringify({date:new Date().toISOString(),runtime:process.version,scope:'real upstream services; synthetic Spotify responses; native alternative fields; not device validation',results},null,2));
 if(results.some(x=>!x.ok))process.exitCode=1;

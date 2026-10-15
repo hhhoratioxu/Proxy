@@ -1,4 +1,4 @@
-# VerseLyrics 0.1.0 — Egern 原生模块，2026-10-15
+# VerseLyrics 0.2.0 — Egern 原生模块，2026-10-15
 # 仓库分发版：远程导入此模块，Egern 自动获取同仓库的原创脚本。
 # 离线使用请导入同目录 SpotifyLyrics.local.yaml。
 name: Spotify 双语歌词 · VerseLyrics
@@ -6,11 +6,11 @@ author: Horatio Xu
 homepage: https://github.com/hhhoratioxu/Proxy/tree/main/Egern/script/SpotifyLyrics
 manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/SpotifyLyrics/README.md
 icon: music.note.list
-description: 在 Spotify 原生歌词响应内追加译文；原词优先，明确无词才按严格元数据匹配备用源。需 HTTPS 解密；尚待真机验收。
+description: 向 Spotify 原生翻译字段提供独立译文；原词优先，明确无词才按严格元数据匹配备用源。需 HTTPS 解密；尚待真机验收。
 env_schema:
   TRANSLATION_ENABLED:
     name: 开启歌词翻译
-    description: 默认关闭；开启后歌词文本会发送给 Google 翻译网页接口，原词在上、译文在下。不发送 Spotify 令牌。
+    description: 默认关闭；开启后歌词文本会发送给 Google 翻译网页接口，由 Spotify 原生翻译界面控制排版和开关；保留原词，不发送 Spotify 令牌。
     default_value: 'false'
     options: ['true', 'false']
   TARGET_LANGUAGE:
@@ -35,13 +35,13 @@ mitm:
 scriptings:
   - http_request:
       name: VerseLyrics · 歌词请求缓存处理
-      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com/color-lyrics/v2/track/[0-9A-Za-z]{22}/?(?:\?.*)?$'
+      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com/color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\s]+)?/?(?:\?.*)?$'
       script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics.js
       body_required: false
       timeout: 3
   - http_response:
       name: VerseLyrics · Spotify 原词与翻译
-      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com/color-lyrics/v2/track/[0-9A-Za-z]{22}/?(?:\?.*)?$'
+      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com/color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\s]+)?/?(?:\?.*)?$'
       script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics.js
       body_required: true
       max_size: 2097152

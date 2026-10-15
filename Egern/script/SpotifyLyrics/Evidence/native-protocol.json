@@ -1,0 +1,33 @@
+{
+  "verified_at": "2026-10-15",
+  "official_web_asset": {
+    "url": "https://open.spotifycdn.com/cdn/build/web-player/web-player.672972fa.js",
+    "bytes": 4459737,
+    "sha256": "444294394ba66b441cdc85878f20bdae3ce38f60195db66554404cb047f0f5c8"
+  },
+  "observations": {
+    "original_rows": "lyrics.lines",
+    "translation_variants": "lyrics.alternatives",
+    "variant_shape": {
+      "language": "string",
+      "lines": "string array indexed in parallel with original lines"
+    },
+    "native_renderer": "selects an alternative by language, reads the same line index, and has native show/hide controls"
+  },
+  "protobuf_mapping": {
+    "LyricsResponse.alternatives": 9,
+    "Alternative.language": 1,
+    "Alternative.lines": {
+      "number": 2,
+      "type": "repeated UTF-8 string"
+    }
+  },
+  "scope": "Official current web-player behavior plus separately published native protocol descriptors; no iOS response or UI capture",
+  "device_verified": false,
+  "spotify_official_feature_description": "https://newsroom.spotify.com/2026-02-04/lyric-translations-offline-previews/",
+  "native_descriptor_reference": {
+    "url": "https://github.com/dompling/Script/blob/12ad6fa351525e9c527071fcafa65dab04f6eb8f/spotify/spotify-lyric.ios.js",
+    "blob_sha": "07dbaa95772ea3f97a988733efa4e69169f8441a",
+    "scope": "Only generated protocol field descriptors were inspected; no plugin implementation or runtime code was copied"
+  }
+}

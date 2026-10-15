@@ -51,9 +51,9 @@ const metaNetwork = async(u,o) => {
 
 test('defaults: translation off, language zh-CN, optional discovery off',()=>{assert.deepEqual(settings({}),{translate:false,language:'zh-CN',provider:'auto',discover:false});});
 test('translation opt-in: no lyric text sent with defaults',async()=>{const x=context();const r=await run(x.ctx);assert.equal(x.calls.length,0);assert.equal(Buffer.from(r.body).toString(),JSON.stringify(lyricJSON()));});
-test('JSON keeps original text above translation and preserves timestamps and credits',async()=>{
+test('JSON native translation keeps original rows and adds a separate alternative',async()=>{
   const input=lyricJSON(),x=context({env:{TRANSLATION_ENABLED:'true'},network:translated});
-  const r=await run(x.ctx),out=value(r);assert.equal(out.lyrics.lines[0].words,fixtureLines[0]+'\n译文0');
+  const r=await run(x.ctx),out=value(r);assert.deepEqual(out.lyrics.lines,input.lyrics.lines);assert.deepEqual(out.lyrics.alternatives,[{language:'zh-CN',lines:['译文0','译文1']}]);
   assert.equal(out.lyrics.lines[0].startTimeMs,input.lyrics.lines[0].startTimeMs);assert.equal(out.lyrics.lines[0].future,'keep');
   assert.equal(out.lyrics.provider,input.lyrics.provider);assert.deepEqual(out.colors,input.colors);assert.deepEqual(out.future,input.future);
 });
@@ -66,12 +66,14 @@ test('protobuf keeps all unknown outer/lyrics/line bytes and syllable timing',as
     if(oldInner[i].no!==2) assert.deepEqual(newInner[i].raw,oldInner[i].raw);
     else { const before=readFields(oldInner[i].payload),after=readFields(newInner[i].payload);for(let j=0;j<before.length;j++)if(before[j].no!==2)assert.deepEqual(after[j].raw,before[j].raw); }
   }
-  assert.match(readFields(newInner.find(f=>f.no===2).payload).find(f=>f.no===2).payload.toString(),/\n译文0$/);
+  assert.equal(newInner.length,oldInner.length+1);
+  for(let i=0;i<oldInner.length;i++)assert.deepEqual(newInner[i].raw,oldInner[i].raw);
+  const alternative=readFields(newInner.at(-1).payload);assert.equal(newInner.at(-1).no,9);assert.equal(alternative[0].payload.toString(),'zh-CN');assert.deepEqual(alternative.filter(f=>f.no===2).map(f=>f.payload.toString()),['译文0','译文1']);
 });
 test('duplicate lyric lines translated only once; blank/music lines not sent',async()=>{
   const x=context({body:JSON.stringify(lyricJSON(['Same phrase','Same phrase','♪',''])),env:{TRANSLATION_ENABLED:'true'},network:translated});
   const r=await run(x.ctx);assert.equal(new globalThis.URL(x.calls[0].url).searchParams.getAll('q').length,1);
-  assert.equal(value(r).lyrics.lines[0].words,value(r).lyrics.lines[1].words);assert.equal(value(r).lyrics.lines[2].words,'♪');
+  assert.equal(value(r).lyrics.lines[0].words,value(r).lyrics.lines[1].words);assert.equal(value(r).lyrics.lines[2].words,'♪');assert.deepEqual(value(r).lyrics.alternatives[0].lines,['译文0','译文0','','']);
 });
 test('already bilingual lines are left intact',async()=>{const x=context({body:JSON.stringify(lyricJSON(['Original\n译文'])),env:{TRANSLATION_ENABLED:'true'}});const r=await run(x.ctx);assert.equal(x.calls.length,0);assert.equal(value(r).lyrics.lines[0].words,'Original\n译文');});
 test('translation cache is reused; changing target requests fresh translation',async()=>{
@@ -174,9 +176,9 @@ test('account upsell payload is never replaced with a synthetic successful respo
   const input=JSON.stringify({lyrics:{lines:[],showUpsell:true}}),x=context({body:input,env:{TRANSLATION_ENABLED:'true'},requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN'},network:metaNetwork});
   const r=await run(x.ctx);assert.equal(Buffer.from(r.body).toString(),input);assert.equal(x.calls.length,0);
 });
-test('partial successful translation leaves other groups in original text',async()=>{
+test('partial native translation retains empty placeholders without shifting line indices',async()=>{
   const lines=Array.from({length:40},(_,i)=>'Self written sentence '+i),x=context({body:JSON.stringify(lyricJSON(lines)),env:{TRANSLATION_ENABLED:'true'},network:async u=>new globalThis.URL(u).searchParams.getAll('q').length===32?translated(u):new Response('unavailable',{status:503})});
-  const r=await run(x.ctx),out=value(r).lyrics.lines;assert.ok(out[0].words.includes('\n'));assert.equal(out[39].words,lines[39]);
+  const r=await run(x.ctx),out=value(r).lyrics;assert.deepEqual(out.lines.map(l=>l.words),lines);assert.equal(out.alternatives[0].lines.length,40);assert.ok(out.alternatives[0].lines[0]);assert.equal(out.alternatives[0].lines[39],'');
 });
 
 test('multiple Set-Cookie fields survive header editing',async()=>{
@@ -201,4 +203,57 @@ test('overlapping invocations retain newer cache entries and Retry-After deadlin
   const {ctx}=context(),a=loadCache(ctx),b=loadCache(ctx),until=Date.now()+120000;
   a.put('first','A');a.cooldowns['lrclib.net']=until;a.save();b.put('second','B');b.save();
   const c=loadCache(ctx);assert.equal(c.get('first'),'A');assert.equal(c.get('second'),'B');assert.equal(c.cooldowns['lrclib.net'],until);
+});
+
+function protoAlternative(language,rows){return bin(9,cat(txt(1,language),...rows.map(row=>txt(2,row))));}
+function withProtoAlternative(input,alternative){const f=readFields(input);return cat(bin(1,cat(f[0].payload,alternative)),...f.slice(1).map(x=>x.raw));}
+test('Spotify official same-language JSON translation is kept byte for byte',async()=>{
+  const input=lyricJSON();input.lyrics.alternatives=[{language:'zh',lines:['官方甲','官方乙'],future:'preserve'}];
+  const body=JSON.stringify(input,null,2),x=context({body,env:{TRANSLATION_ENABLED:'true'}}),r=await run(x.ctx);assert.equal(Buffer.from(r.body).toString(),body);assert.equal(x.calls.length,0);
+});
+test('other native translations remain in order with unknown metadata',async()=>{
+  const input=lyricJSON(),foreign={language:'fr',lines:['Une ligne','Autre ligne'],future:{keep:true}};input.lyrics.alternatives=[foreign];
+  const x=context({body:JSON.stringify(input),env:{TRANSLATION_ENABLED:'true'},network:translated}),out=value(await run(x.ctx));
+  assert.deepEqual(out.lyrics.alternatives[0],foreign);assert.equal(out.lyrics.alternatives[1].language,'zh-CN');assert.deepEqual(out.lyrics.lines,input.lyrics.lines);
+});
+test('unknown native JSON alternative schema stays unchanged without translation calls',async()=>{
+  const input=lyricJSON();input.lyrics.alternatives=[{language:'zh',lines:[{words:'not the current native string schema'}]}];
+  const body=JSON.stringify(input),x=context({body,env:{TRANSLATION_ENABLED:'true'}}),r=await run(x.ctx);assert.equal(Buffer.from(r.body).toString(),body);assert.equal(x.calls.length,0);
+});
+test('same-language native translation with an unexpected line count stays unchanged',async()=>{
+  const input=lyricJSON();input.lyrics.alternatives=[{language:'zh-CN',lines:['only one row']}];const body=JSON.stringify(input),x=context({body,env:{TRANSLATION_ENABLED:'true'}});
+  const r=await run(x.ctx);assert.equal(Buffer.from(r.body).toString(),body);assert.equal(x.calls.length,0);
+});
+test('protobuf native translation stores repeated text strings, not nested lyric messages',async()=>{
+  const input=withProtoAlternative(rawProto(),protoAlternative('fr',['Première ligne','Deuxième ligne'])),x=context({body:input,type:'application/vnd.google.protobuf',env:{TRANSLATION_ENABLED:'true'},network:translated});
+  const r=await run(x.ctx),before=readFields(readFields(input)[0].payload),after=readFields(readFields(r.body)[0].payload);
+  before.forEach((f,i)=>assert.deepEqual(after[i].raw,f.raw));const alts=after.filter(f=>f.no===9);assert.equal(alts.length,2);
+  const newAlt=readFields(alts[1].payload);assert.deepEqual(newAlt.map(f=>[f.no,f.payload.toString()]),[[1,'zh-CN'],[2,'译文0'],[2,'译文1']]);
+});
+test('existing official protobuf translation is not overwritten or requested again',async()=>{
+  const input=withProtoAlternative(rawProto(),protoAlternative('zh',['官方甲','官方乙'])),x=context({body:input,type:'application/vnd.google.protobuf',env:{TRANSLATION_ENABLED:'true'}});
+  const r=await run(x.ctx);assert.deepEqual(Buffer.from(r.body),input);assert.equal(x.calls.length,0);
+});
+test('unknown nested-message protobuf alternative is preserved without guessing',async()=>{
+  const oldSchema=bin(9,cat(txt(1,'zh'),bin(2,cat(int(1,1000),txt(2,'legacy row'))))),input=withProtoAlternative(rawProto(),oldSchema),x=context({body:input,type:'application/vnd.google.protobuf',env:{TRANSLATION_ENABLED:'true'}});
+  const r=await run(x.ctx);assert.deepEqual(Buffer.from(r.body),input);assert.equal(x.calls.length,0);
+});
+test('original typography, RTL, preview rows and fullscreen action are unchanged',async()=>{
+  const input=lyricJSON();Object.assign(input.lyrics,{isDenseTypeface:true,isRtlLanguage:true,fullscreenAction:'FULLSCREEN_LYRICS',previewLines:[{startTimeMs:'1000',words:fixtureLines[0],future:'keep'}]});
+  const x=context({body:JSON.stringify(input),env:{TRANSLATION_ENABLED:'true'},network:translated}),out=value(await run(x.ctx));
+  for(const key of Object.keys(input.lyrics))assert.deepEqual(out.lyrics[key],input.lyrics[key]);assert.deepEqual(out.colors,input.colors);
+});
+test('native alternative writer rejects a shifted line count',()=>{
+  for(const [body,type] of [[Buffer.from(JSON.stringify(lyricJSON())),'application/json'],[rawProto(),'application/vnd.google.protobuf']]){const doc=parseDocument(new Uint8Array(body),type);assert.throws(()=>doc.writeNative('zh-CN',['only one row']));}
+});
+test('image-qualified lyric endpoint is intercepted without touching other endpoints',async()=>{
+  const url=URL+'/image/https%3A%2F%2Fi.scdn.co%2Fimage%2Ftest?format=json';assert.ok(LYRIC_URL.test(url));
+  const x=context({url,env:{TRANSLATION_ENABLED:'true'},network:translated}),out=value(await run(x.ctx));assert.equal(out.lyrics.alternatives[0].language,'zh-CN');assert.equal(LYRIC_URL.test(URL+'/image/space is invalid'),false);
+});
+test('native protobuf MIME is retained after adding a translation',async()=>{
+  const x=context({body:rawProto(),type:'application/vnd.google.protobuf',env:{TRANSLATION_ENABLED:'true'},network:translated}),r=await run(x.ctx);assert.equal(new Headers(r.headers).get('Content-Type'),'application/vnd.google.protobuf');
+});
+test('fallback lyrics use native translation without adding words to the original rows',async()=>{
+  const x=context({status:404,body:'{}',requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN'},env:{TRANSLATION_ENABLED:'true'},network:metaNetwork}),r=await run(x.ctx),out=value(r);
+  assert.equal(r.status,200);assert.equal(out.lyrics.provider,'lrclib');assert.deepEqual(out.lyrics.lines.map(l=>l.words),fixtureLines);assert.deepEqual(out.lyrics.alternatives[0].lines,['译文0','译文1']);
 });
