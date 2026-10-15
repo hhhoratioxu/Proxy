@@ -7,7 +7,7 @@
 
 按 Clash、Loon、Egern、Surge、Shadowrocket、QuanX 六个客户端分类的个人规则、模块、脚本与图标配置。
 
-各客户端统一使用 `rule/` 存放分流规则，`script/` 存放脚本、模块、插件、重写和任务配置；`Docs/` 存放安装与使用说明，测试代码放在对应的 `script/test/` 或 `script/插件名/test/`。共用图标统一保存在根目录 [Icons](./Icons/)。
+各客户端的 `rule/` 存放分流规则，`script/` 只放可直接使用的当前插件、模块、重写或任务资源；`Docs/` 放安装与使用说明。共用图标统一保存在根目录 [Icons](./Icons/)。
 
 ## 客户端入口
 
@@ -20,11 +20,11 @@
 | Shadowrocket | [规则、脚本与模块](./Shadowrocket/) · [使用说明](./Shadowrocket/README.md) |
 | QuanX / Quantumult X | [规则、脚本与任务](./QuantumultX/) · [使用说明](./QuantumultX/README.md) |
 
-每个客户端内，同一插件只保留当前正式版；脚本使用固定文件名，旧版通过 Git 历史查找。
+每个插件只保留一个当前安装入口。需要的运行脚本由客户端自动从固定版本加载，无需另外下载 JS、编译或运行测试。
 
 [共用图标库与导入入口](./Icons/) · [目录用途与迁移说明](./Clash/Docs/Directory-Migration.md)。Parsec 分流文档保存在 `Clash/Docs/`。
 
-图标素材、索引和各客户端图标导入配置只保留根目录 `Icons/` 一处。`Docs/` 是给人阅读的说明；`test/` 是开发者检查脚本行为的代码，正常使用只需按说明导入对应模块。
+测试、构建工具、验证记录和开发压缩包已从主分支移除。各客户端 README 直接列出安装文件和使用方法。
 
 > 配置仅供个人使用，请根据客户端版本和实际网络环境调整。图标及品牌名称归各自权利人所有。
 
@@ -35,7 +35,7 @@
 
 A personal collection of rules, modules, scripts and icon configurations organized by six clients.
 
-Each client uses `rule/` for routing lists and `script/` for JavaScript, modules, plugins, rewrites and tasks. `Docs/` contains installation and usage guides. Development tests live under `script/test/` or a plugin's own `script/<plugin>/test/` directory. All shared icons live in the root [Icons](./Icons/) directory.
+Each client keeps routing lists in `rule/` and current installable resources in `script/`. `Docs/` contains installation and usage guides. All shared icons live in the root [Icons](./Icons/) directory.
 
 ## Client directories
 
@@ -48,11 +48,11 @@ Each client uses `rule/` for routing lists and `script/` for JavaScript, modules
 | Shadowrocket | [Rules, scripts and modules](./Shadowrocket/) · [Guide](./Shadowrocket/README.md) |
 | QuanX / Quantumult X | [Rules, scripts and tasks](./QuantumultX/) · [Guide](./QuantumultX/README.md) |
 
-Each client keeps only the current production version of a plugin, using stable script filenames. Previous versions remain available in Git history.
+Each plugin has one current installation entry. Clients automatically load any required runtime from a pinned version; no separate JavaScript download, build or test run is needed.
 
 [Shared icons and import links](./Icons/) · [Directory and migration guide](./Clash/Docs/Directory-Migration.md). The Parsec routing guide is in `Clash/Docs/`.
 
-Icon images, shared indexes and client import profiles are maintained once under the root `Icons/` directory. `Docs/` files explain setup; `test/` files validate script behavior during development and do not need to be imported into proxy clients.
+Tests, build tools, validation records and development archives have been removed from the default branch. Each client README lists its installation files and usage guides.
 
 > These configurations are for personal use. Adjust them for your client version and network environment. All icons and brand names belong to their respective owners.
 

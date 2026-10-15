@@ -1,58 +1,27 @@
-# 目录用途与迁移说明
+# 目录与安装入口
 
 更新日期：2026-10-15
 
-仓库根目录包含六个客户端目录、共用的 `Icons/` 和 `README.md`。所有图标集中在根目录维护，各客户端不再单独存放 `Icons/`。
+根目录包含六个客户端、共用 `Icons/` 和 `README.md`。
 
-## 每个目录是做什么的
-
-| 位置 | 内容 | 正常使用是否需要导入 |
-| --- | --- | --- |
-| 客户端的 `rule/` | 分流规则列表。 | 按需订阅对应规则。 |
-| 客户端的 `script/` | 正式脚本、模块、插件、重写和任务配置。 | 按客户端说明导入对应配置。 |
-| 客户端的 `Docs/` | 安装步骤、设置解释和兼容性说明。 | 阅读即可。 |
-| `script/test/` 或 `script/插件名/test/` | 开发者运行的测试代码，用来检查脚本的处理结果。 | 不需要导入；这些测试在 Node.js 等开发环境运行。 |
-| 根目录的 [Icons/](../../Icons/) | 共用 PNG、图标索引和客户端图标预览配置。 | 按需从图标库选择导入入口。 |
-
-`test/` 里的文件也是代码，但用途是验证正式脚本，而不是在代理软件里处理实际流量。测试跟随对应脚本存放在 `script/` 内，避免在客户端根目录另外放一层 `Tests/`。歌词插件自己的测试保留在 `Egern/script/SpotifyLyrics/test/`。
-
-模块和插件仍按客户端的原生方式导入，文件扩展名、配置节名称和运行方式保持各客户端要求。
-
-## 路径调整
-
-| 原路径 | 当前路径 |
+| 目录 | 用途 |
 | --- | --- |
-| `Loon/Icons/`、`QuantumultX/Icons/`、`Egern/Icons/`、`Shadowrocket/Icons/` | 根目录 [Icons/](../../Icons/)；相同的 JSON 索引合并为一份。 |
-| `Egern/Tests/` | [Egern/script/test/](../../Egern/script/test/) |
-| `Surge/Tests/` | [Surge/script/test/](../../Surge/script/test/) |
-| 六个客户端下的 `Rules/` | 同客户端的 `rule/` |
-| `Clash/VergeRev.js` | [Clash/script/VergeRev.js](../script/VergeRev.js) |
-| `Egern/Modules/*.yaml` | `Egern/script/*.yaml` |
-| `Egern/Modules/*.md` | `Egern/Docs/*.md` |
-| `Egern/Scripts/*.js`、`*.yaml` | `Egern/script/` 中对应文件 |
-| `Egern/Scripts/MeituanWaimai.md` | [Egern/Docs/MeituanWaimai.md](../../Egern/Docs/MeituanWaimai.md) |
-| `Loon/Script/`、`Loon/Plugin/` | `Loon/script/` |
-| `QuantumultX/Scripts/`、`QuantumultX/Tasks/` | `QuantumultX/script/` |
-| `QuantumultX/StreamingUnlock-README.md` | [QuantumultX/Docs/StreamingUnlock.md](../../QuantumultX/Docs/StreamingUnlock.md) |
+| 各客户端的 `script/` | 当前可直接导入的插件、模块、远程重写或任务资源。Clash 的 `VergeRev.js` 用于扩展脚本入口。 |
+| 各客户端的 `rule/` | 可订阅的分流规则，按客户端格式分别提供。 |
+| 各客户端的 `Docs/` | 安装步骤、功能范围和兼容性说明。 |
+| 根目录 [Icons/](../../Icons/) | 共用图标与图标导入入口。 |
 
-## 已订阅过旧资源时
+使用目录只保留当前正式入口。测试、构建文件、验证记录、开发压缩包和本地开发配置已从主分支移除。
 
-GitHub 路径区分大小写。旧原始地址不会因目录改名而自动跳转。图标订阅和预览配置请使用 [共用图标导入入口](../../Icons/Import/README.md) 中的当前地址。
+部分客户端通过 URL 加载运行脚本。正式模块已指向固定版本，导入时自动下载，无需额外下载 JS 或运行开发工具。运行代码保存在其原有 Git 版本中，整理主分支不会使这些依赖失效。
 
-- 规则订阅使用对应客户端的 `/rule/` 地址。
-- 脚本、模块、插件和任务使用对应客户端的 `/script/` 地址。
-- 说明文档从各客户端 README 打开。
-- 开发者运行测试时，使用新的 `script/test/` 路径。
+## 地址调整
 
-## 美团外卖去广告入口
+- 图标统一从根目录 [Icons](../../Icons/) 使用，各客户端不再另放图标目录。
+- Egern 歌词模块统一为 [Egern/script/SpotifyLyrics.yaml](../../Egern/script/SpotifyLyrics.yaml)。旧的 `SpotifyLyrics/` 开发目录及离线开发包不再作为安装入口。
+- QuanX 流媒体只保留 [StreamingUnlock.json](../../QuantumultX/script/StreamingUnlock.json) 任务资源库；手动拼接配置片段已移除。
+- 已安装旧地址的资源，请从各客户端 README 更新到当前安装地址，以加载配套的固定版本依赖。
 
-| 客户端 | 当前可导入资源 |
-| --- | --- |
-| Egern | [MeituanWaimai.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/MeituanWaimai.yaml) |
-| Loon | [MeituanWaimai.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.plugin) |
-| Surge | [MeituanWaimai.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/script/MeituanWaimai.sgmodule) |
-| Shadowrocket | [MeituanWaimai.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/script/MeituanWaimai.sgmodule) |
-| Quantumult X | [MeituanWaimai.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/MeituanWaimai.conf) |
-| Clash/Mihomo | [能力限制及其他版本说明](./MeituanWaimai.md) |
+各客户端 README 列出所有安装文件的原始地址和对应使用说明。无需安装测试代码、编译或从多个文件中挑选。
 
-[返回仓库首页](../../README.md)
+[返回首页](../../README.md)

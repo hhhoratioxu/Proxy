@@ -34,13 +34,13 @@ env_schema:
 scriptings:
   - generic:
       name: "Horatio Network Info"
-      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/NetworkInfo.js?v=1.1.1"
+      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/fdb2f8cfc2701a7959d7ee58c1f2ab01ce368fc1/Egern/script/NetworkInfo.js?v=1.1.1"
       update_interval: 3600
       timeout: 25
   - http_request:
       name: "Horatio Network Info Panel"
       match: '^http://network\.horatio\.test(?:/|$)'
-      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/NetworkInfo.js?v=1.1.1"
+      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/fdb2f8cfc2701a7959d7ee58c1f2ab01ce368fc1/Egern/script/NetworkInfo.js?v=1.1.1"
       update_interval: 3600
       timeout: 25
 

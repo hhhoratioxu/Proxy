@@ -30,7 +30,7 @@ env_schema:
 scriptings:
   - generic:
       name: "Streaming Unlock"
-      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/StreamingUnlock.js"
+      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/fdb2f8cfc2701a7959d7ee58c1f2ab01ce368fc1/Egern/script/StreamingUnlock.js"
       update_interval: 3600
       timeout: 60
       disabled: false

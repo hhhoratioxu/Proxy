@@ -8,11 +8,7 @@ The output is now a native Quantumult X `$done({title,message})` modal, **not** 
 
 Add the [Task Gallery](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/StreamingUnlock.json) to QuanX and select **流媒体解锁查询-原生版**. Remove or disable the old **流媒体解锁查询** task first.
 
-Or paste only this line under the existing `[task_local]` section:
-
-```ini
-event-interaction https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/StreamingUnlockNative.js?v=1.4.0, tag=流媒体解锁查询-原生版, img-url=checkmark.seal.system, enabled=true
-```
+Only the Task Gallery JSON is published as the install entry. Quantumult X downloads the pinned runtime automatically; no script editing is required.
 
 ### Checks
 

@@ -2,8 +2,8 @@
 name: Spotify 双语歌词 · VerseLyrics
 author: Horatio Xu
 icon: music.note.list
-homepage: https://github.com/hhhoratioxu/Proxy/tree/main/Egern/script/SpotifyLyrics
-manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/SpotifyLyrics/README.md
+homepage: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/SpotifyLyrics.yaml
+manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/SpotifyLyrics.md
 description: 自动补充缺失歌词，以插件中文译文替换官方译文，保留 Spotify 原生歌词显示；默认开启，无需诊断通知。需 HTTPS 解密。
 env_schema:
   TRANSLATION_ENABLED:
@@ -66,23 +66,25 @@ mitm:
   - "*-spclient.spotify.com"
 scriptings:
 - http_request:
-    script_url: spotify-lyrics.js
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/fdb2f8cfc2701a7959d7ee58c1f2ab01ce368fc1/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=0.4.1
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
       FALLBACK_PROVIDER: auto
       DISCOVER_MISSING: 'true'
+    update_interval: 3600
     name: VerseLyrics · 请求处理
     match: "^https://(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com(?::443)?/(?:color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\\s]+)?/?|metadata/4/track/[0-9a-f]{32}|extended-metadata/v0/extended-metadata/?|scrollsita/v1/scroll/spotify(?::|%3[aA])track(?::|%3[aA])[0-9A-Za-z]{22}/?|user-customization-service/v1/customize/?|bootstrap/v1/bootstrap/?|v1/customize/?|context-resolve/v1/spotify(?::|%3[aA])[^?#\\s/]{1,512}/?|connect-state/v1/devices/[0-9A-Za-z_-]{16,128}/?)(?:\\?.*)?$"
     body_required: false
     timeout: 3
 - http_response:
-    script_url: spotify-lyrics.js
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/fdb2f8cfc2701a7959d7ee58c1f2ab01ce368fc1/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=0.4.1
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
       FALLBACK_PROVIDER: auto
       DISCOVER_MISSING: 'true'
+    update_interval: 3600
     name: VerseLyrics · 原生歌词与翻译
     match: "^https://(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com(?::443)?/(?:color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\\s]+)?/?|metadata/4/track/[0-9a-f]{32}|extended-metadata/v0/extended-metadata/?|scrollsita/v1/scroll/spotify(?::|%3[aA])track(?::|%3[aA])[0-9A-Za-z]{22}/?|user-customization-service/v1/customize/?|bootstrap/v1/bootstrap/?|v1/customize/?|context-resolve/v1/spotify(?::|%3[aA])[^?#\\s/]{1,512}/?|connect-state/v1/devices/[0-9A-Za-z_-]{16,128}/?)(?:\\?.*)?$"
     body_required: true

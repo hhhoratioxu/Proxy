@@ -93,6 +93,6 @@ egern:/modules/new?name=Streaming%20Unlock&url=https%3A%2F%2Fraw.githubuserconte
 ## 文件
 
 - `Egern/script/StreamingUnlock.yaml`
-- `Egern/script/StreamingUnlock.js`
+- 运行脚本由模块从固定版本自动下载，不需要另行添加 JS。
 
 流媒体网站会修改页面和接口，因此未来个别检测项可能需要随服务更新。

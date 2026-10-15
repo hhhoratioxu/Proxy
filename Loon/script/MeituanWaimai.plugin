@@ -6,7 +6,7 @@
 #!date = 2026-10-15
 
 [Script]
-response if ${url} ~= /^https?:\/\/wmapi\.meituan\.com\/api\/v[0-9]+\/(?:(?:loadInfo|startpicture)(?:\?.*)?$|openscreen\?ad)/ then script("https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.js") with tag="美团外卖去广告", timeout=10, requires_body=true
+response if ${url} ~= /^https?:\/\/wmapi\.meituan\.com\/api\/v[0-9]+\/(?:(?:loadInfo|startpicture)(?:\?.*)?$|openscreen\?ad)/ then script("https://raw.githubusercontent.com/hhhoratioxu/Proxy/fdb2f8cfc2701a7959d7ee58c1f2ab01ce368fc1/Loon/script/MeituanWaimai.js") with tag="美团外卖去广告", timeout=10, requires_body=true
 
 [Mitm]
 hostname = wmapi.meituan.com

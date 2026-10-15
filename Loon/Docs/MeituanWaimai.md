@@ -2,9 +2,9 @@
 
 版本：0.1.0 · 更新日期：2026-10-15
 
-[配置文件](../script/MeituanWaimai.plugin) · [脚本源码](../script/MeituanWaimai.js) · [返回客户端入口](../README.md)
+[配置文件](../script/MeituanWaimai.plugin) · [返回客户端入口](../README.md)
 
-配置位置：`Loon/script/MeituanWaimai.plugin`。脚本位置：`Loon/script/MeituanWaimai.js`。配置中的脚本引用使用本仓库的对应目录，不跨用其他客户端的路径。配置文件与 JS 都归在小写 script/，文档归在 Docs/，分流列表归在 rule/。
+只需导入上面的配置文件。客户端会自动下载固定版本的运行脚本，无需另外安装 JS、修改代码或运行测试。
 
 ## 安装
 
@@ -36,12 +36,6 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaim
 ## 验证
 
 本地使用人工构造的响应验证广告清理、两种广告数组同时存在、重复处理、长数字 ID 保留、未知结构与错误响应放行，以及订单、支付、商家列表等 URL 不被匹配。配置检查还核对了脚本原始地址和 MitM 主机范围。
-
-测试源码见 [跨客户端验证](../../Surge/script/test/MeituanWaimai.test.mjs)。在仓库根目录使用 Node.js 运行：
-
-```sh
-node --test Surge/script/test/MeituanWaimai.test.mjs
-```
 
 这些检查使用模拟的客户端脚本输入。**尚未完成 Loon 自身解析器的导入验证、真实手机流量命中和 App 界面验收**，不能将本地测试或发布成功视为真机去广告成功。接口变化、证书校验和已缓存广告都可能影响效果。
 

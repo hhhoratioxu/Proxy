@@ -1,16 +1,14 @@
 # Quantumult X（QuanX）
 
-[分流规则](./rule/) · [脚本与重写、任务](./script/) · [流媒体查询说明](./Docs/StreamingUnlock.md)
+[分流规则](./rule/) · [可导入插件](./script/) · [共用图标](../Icons/)
 
-共用图标及导入入口：[Icons](../Icons/)。
+美团外卖 `.conf` 添加到「重写 → 引用」；流媒体 `.json` 添加到「任务 → 资源库」。两者都通过对应资源入口导入，不用复制配置片段或另行安装 JS。
 
-## 说明
+| 插件 | 安装文件原始地址 | 使用说明 |
+| --- | --- | --- |
+| 美团外卖去广告 | [MeituanWaimai.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/MeituanWaimai.conf) | [说明](./Docs/MeituanWaimai.md) |
+| 流媒体解锁查询 | [StreamingUnlock.json](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/StreamingUnlock.json) | [说明](./Docs/StreamingUnlock.md) |
 
-- [Parsec 跨客户端分流](../Clash/Docs/Parsec.md)
-- [返回仓库首页](../README.md)
+每个插件只提供一个当前安装入口。运行依赖由客户端自动下载，主分支不放测试、构建工具、开发压缩包或单独的依赖源码。
 
-## 美团外卖去广告
-
-- [模块安装说明](./Docs/MeituanWaimai.md)
-
-配置文件、脚本路径、安装方法和验证范围见说明。
+[Parsec 分流说明](../Clash/Docs/Parsec.md) · [目录说明](../Clash/Docs/Directory-Migration.md) · [返回首页](../README.md)

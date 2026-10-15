@@ -2,7 +2,7 @@
 # 版本：0.1.0
 # 更新：2026-10-15
 # 只需导入此文件；使用 Egern 内置 jq 与 Map Local，无远程脚本依赖。
-# 接口及字段依据、安装方法、验证范围见同目录 MeituanWaimai.md。
+# 安装方法和处理范围见 Egern/Docs/MeituanWaimai.md。
 
 name: 美团外卖去广告
 author: Horatio Xu
