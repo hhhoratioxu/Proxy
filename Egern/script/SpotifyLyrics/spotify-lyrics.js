@@ -1,9 +1,9 @@
-/* VerseLyrics 0.3.1 — original Egern native script, 2026-10-15.
+/* VerseLyrics 0.3.2 — original Egern native script, 2026-10-15.
  * Rewrites Spotify color-lyrics JSON and protobuf; no third-party script runtime.
  * Public protocol field numbers and service endpoints are documented in README.md.
  * Egern API: export default async function(ctx), ctx.http, ctx.storage.
  */
-const VERSION = "0.3.1";
+const VERSION = "0.3.2";
 const KEY = "VerseLyrics.v1.cache";
 const STATUS = "VerseLyrics.v1.status";
 const EVENTS = "VerseLyrics.v1.events";
@@ -137,14 +137,6 @@ function hexBase62(hex) {
   }
   return out.padStart(22, "0");
 }
-function languageFamily(value) { return clean(value).toLowerCase().replace(/_/g, "-").split("-")[0]; }
-function nativeTranslationState(alternatives, language, count) {
-  if (!Array.isArray(alternatives) || alternatives.some(a => !goodObject(a) || !clean(a.language) ||
-      !Array.isArray(a.lines) || a.lines.some(line => typeof line !== "string" || /[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(line)))) return "unsupported";
-  const existing = alternatives.find(a => languageFamily(a.language) === languageFamily(language));
-  if (!existing) return "missing";
-  return existing.lines.length === count && existing.lines.some(line => clean(line)) ? "present" : "unsupported";
-}
 function checkTranslationRows(rows, count) {
   if (!Array.isArray(rows) || rows.length !== count || rows.some(row => typeof row !== "string")) throw new Error("native-line-count");
 }
@@ -158,15 +150,15 @@ function parseDocument(bytes, contentType) {
     if (lyrics && !Array.isArray(lyrics.lines)) throw new Error("line-shape");
     if ((lyrics?.lines.length || 0) > MAX_LINES) throw new Error("line-limit");
     if (lyrics?.lines.some(l => !goodObject(l) || typeof l.words !== "string")) throw new Error("line-shape");
-    const words = (lyrics?.lines || []).map(l => l.words), alternatives = lyrics?.alternatives ?? [];
+    const words = (lyrics?.lines || []).map(l => l.words);
     return { format: "json", words, obj, lyrics, language: clean(lyrics?.language), blocked: lyrics?.showUpsell === true,
-      nativeState(language) { return nativeTranslationState(alternatives, language, words.length); },
+      hasAlternatives: lyrics != null && Object.hasOwn(lyrics, "alternatives") && (!Array.isArray(lyrics.alternatives) || lyrics.alternatives.length > 0),
       writeNative(language, rows) {
         checkTranslationRows(rows, words.length);
-        if (nativeTranslationState(alternatives, language, words.length) !== "missing") throw new Error("native-alternative-conflict");
         // Keep original rows, timestamps, syllables, preview rows and typography.
-        // Spotify's existing translation renderer consumes this separate string list.
-        obj.lyrics.alternatives = [...alternatives, { language, lines: rows }];
+        // Own the entire native translation list. Never mix official alternatives
+        // into plugin output, including on partial or complete service failure.
+        obj.lyrics.alternatives = rows.some(row => clean(row)) ? [{ language, lines: rows }] : [];
         return utf8(JSON.stringify(obj));
       } };
   }
@@ -178,24 +170,14 @@ function parseDocument(bytes, contentType) {
   const parsed = lineFields.map(f => fields(f.payload));
   if (parsed.some(fs => fs.filter(f => f.number === 2).length > 1 || fs.some(f => f.number === 2 && f.wire !== 2))) throw new Error("line-shape");
   const words = parsed.map(fs => word(fs, 2)), alternativeFields = inner.filter(f => f.number === 9);
-  let alternatives;
-  try {
-    alternatives = alternativeFields.map(f => {
-      if (f.wire !== 2) throw new Error("alternative-wire");
-      const fs = fields(f.payload), languageFields = fs.filter(f => f.number === 1), rows = fs.filter(f => f.number === 2);
-      if (languageFields.length !== 1 || languageFields[0].wire !== 2 || rows.some(f => f.wire !== 2)) throw new Error("alternative-schema");
-      return { language: word(fs, 1), lines: rows.map(f => text(f.payload)) };
-    });
-  } catch { alternatives = null; }
   return { format: "protobuf", words, language: word(inner, 10), blocked: last(inner, 13, 0)?.value === 1,
-    nativeState(language) { return nativeTranslationState(alternatives, language, words.length); },
+    hasAlternatives: alternativeFields.length > 0,
     writeNative(language, rows) {
       checkTranslationRows(rows, words.length);
-      if (nativeTranslationState(alternatives, language, words.length) !== "missing") throw new Error("native-alternative-conflict");
       // LyricsResponse.alternatives = field 9; Alternative.language = field 1;
       // Alternative.lines = repeated UTF-8 strings in field 2, NOT lyric messages.
       const alternative = join([stringField(1, language), ...rows.map(row => stringField(2, row))]);
-      const body = join([...inner.map(f => f.raw), dataField(9, alternative)]);
+      const body = replaceField(inner, 9, rows.some(row => clean(row)) ? dataField(9, alternative) : null);
       return replaceField(outer, 1, dataField(1, body));
     } };
 }
@@ -677,21 +659,18 @@ export default async function(ctx) {
       doc = parseDocument(encodeDocument(generated, wantsJSON ? "json" : "protobuf"), wantsJSON ? "application/json" : "application/x-protobuf");
     }
     if (!doc || !doc.words.length) return unchanged();
-    const nativeState = doc.nativeState(config.language);
-    if (config.translate && nativeState !== "missing") {
-      status(ctx, nativeState === "present" ? "已保留 Spotify 自带的同语种翻译；请使用 Spotify 原生翻译按钮。" : "译文结构无法安全适配，已保留原生歌词；不会改为拼接双语文本。");
-      if (!generated) return unchanged();
-    }
-    const result = config.translate && nativeState === "missing" ? await translate(ctx, doc.words, state) : { translations: [], changed: 0 };
-    if (!generated && !result.changed) {
-      status(ctx, "保留 Spotify 原词；未取得可添加的原生译文。");
+    const result = config.translate ? await translate(ctx, doc.words, state) : { translations: [], changed: 0 };
+    const replaceTranslations = config.translate && (result.changed > 0 || doc.hasAlternatives);
+    if (!generated && !replaceTranslations) {
+      status(ctx, config.translate ? "保留 Spotify 原词；插件暂未取得可用译文。" : "插件翻译已关闭，保留原响应。");
       return unchanged();
     }
-    const body = result.changed ? doc.writeNative(config.language, result.translations) : encodeDocument(generated, doc.format);
-    status(ctx, (generated ? "备用来源：" + generated.lyrics.providerDisplayName : "Spotify 原词") + "；已提供 " + result.changed + " 句独立译文（" + config.language + "），显示由 Spotify 原生翻译界面决定。");
+    const body = replaceTranslations ? doc.writeNative(config.language, result.translations) : encodeDocument(generated, doc.format);
+    const origin = generated ? "备用来源：" + generated.lyrics.providerDisplayName : "Spotify 原词";
+    status(ctx, origin + (config.translate ? result.changed > 0 ? "；已用插件的 " + result.changed + " 句译文（" + config.language + "）替换全部官方译文。" : "；官方译文已移除，插件翻译暂不可用，目前仅保留原词。" : "；插件翻译已关闭。"));
     return { ...(generated ? { status: 200 } : {}), headers: responseHeaders(ctx, doc.format), body };
   } catch { status(ctx, "响应结构不支持或处理失败，已保留原响应。"); return unchanged(); }
   finally { state.cache.save(); }
 }
 export { fields, uint, dataField, stringField, numberField, join, utf8, text, base62Hex, hexBase62,
-  parseDocument, encodeDocument, parseMetadata, extendedTracks, scrollDocument, nativeTranslationState, languageFamily, settings, matches, metadataNormal, lrc, translate, sourceLyrics, loadCache, LANGUAGES, LYRIC_URL, META_URL, EXTENDED_URL, SCROLL_URL };
+  parseDocument, encodeDocument, parseMetadata, extendedTracks, scrollDocument, settings, matches, metadataNormal, lrc, translate, sourceLyrics, loadCache, LANGUAGES, LYRIC_URL, META_URL, EXTENDED_URL, SCROLL_URL };

@@ -1,4 +1,4 @@
-# VerseLyrics 0.3.1 — Egern 原生模块，2026-10-15
+# VerseLyrics 0.3.2 — Egern 原生模块，2026-10-15
 # 仓库分发版：远程导入此模块，Egern 自动获取同仓库的原创脚本。
 # 离线使用请导入同目录 SpotifyLyrics.local.yaml。
 name: Spotify 双语歌词 · VerseLyrics
@@ -6,11 +6,11 @@ author: Horatio Xu
 homepage: https://github.com/hhhoratioxu/Proxy/tree/main/Egern/script/SpotifyLyrics
 manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/SpotifyLyrics/README.md
 icon: music.note.list
-description: 向 Spotify 原生翻译字段提供独立译文；原词优先，明确无词才按严格元数据匹配备用源。需 HTTPS 解密；尚待真机验收。
+description: 开启翻译后以插件译文替换全部官方译文，保留原生排版和原词；无词时严格匹配备用源。需 HTTPS 解密。
 env_schema:
   TRANSLATION_ENABLED:
     name: 开启歌词翻译
-    description: 默认关闭；开启后歌词文本会发送给 Google 翻译网页接口，由 Spotify 原生翻译界面控制排版和开关；保留原词，不发送 Spotify 令牌。
+    description: 默认关闭；开启后用 Google 网页接口译文替换全部 Spotify 官方译文，仅保留所选目标语言。失败时显示原词，不回退到官方译文；由 Spotify 原生界面显示。
     default_value: 'false'
     options: ['true', 'false']
   TARGET_LANGUAGE:

@@ -4,8 +4,8 @@
     "sha256": "27a0372dc93e2f6f48de5595f4013f4f57f418796688d7a10967ce47c4c485ec"
   },
   "Evidence/local-tests.txt": {
-    "bytes": 9225,
-    "sha256": "3baf15190a4a64666d22ab3d4e824352370022d7eb13dc136f04b5f3bf9d122a"
+    "bytes": 10176,
+    "sha256": "334346fff79eb827bf17030d98daac23c7cdc66dacbfa2ffaff71c1cd327706a"
   },
   "Evidence/missing-lyrics-live.json": {
     "bytes": 556,
@@ -31,6 +31,10 @@
     "bytes": 1217,
     "sha256": "d8e883093a22787a7577532a9e16c92d297d9270fc4ea212d553a8b72d01cf7c"
   },
+  "Evidence/translation-ownership-live.json": {
+    "bytes": 1631,
+    "sha256": "1f7845d8cd18f2bb003f5e9539a1af3f82fcde5f2ea524c6f9ca449625430055"
+  },
   "Evidence/unicode-data.json": {
     "bytes": 765,
     "sha256": "d2fe7fb4c17c0b0b7d1df1ca40e6b7b263523364ce8d113df5c2531ffd5917af"
@@ -44,24 +48,24 @@
     "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
   },
   "README.md": {
-    "bytes": 17765,
-    "sha256": "925ff3eb2e30fa13b35fff8fef2bb59963403bf4f5263e4f4c4e3ff710ee52ce"
+    "bytes": 19681,
+    "sha256": "75913fb6e160adcf0a9854c027aff947d63048e09816271fc8831073e61bb9c1"
   },
   "SpotifyLyrics.local.yaml": {
-    "bytes": 3673,
-    "sha256": "013cd211be75dffeeda72b32839dba3c88f1193441a00ffed530ad5621fd7773"
+    "bytes": 3685,
+    "sha256": "0a9673ae6c9743c44132e79062e8ba3f3a8402d79ca86408ab49bde7ad172c11"
   },
   "SpotifyLyrics.yaml": {
-    "bytes": 4343,
-    "sha256": "77cc2321eb1cd493de4664c3e61b24e9bdce5b9e40cc3f33322ac936a52a4a78"
+    "bytes": 4355,
+    "sha256": "8e65baed37311c14f7a4c1c6b7962f3ba33cbda062d028143e5f93644ee6a329"
   },
   "package.json": {
     "bytes": 260,
-    "sha256": "a61d42da0527bfb11b78bc96fa0ce98ccb39cb18e1b01dbaee9078b4b947c457"
+    "sha256": "b037a4bffbb446c38dfa427619b0233d0d663ad9f2229250187380a1d28d30d6"
   },
   "spotify-lyrics.js": {
-    "bytes": 88373,
-    "sha256": "d1f0458a2e63884edad1eb1b6d913e73e62c2a3556a90580f4ce97b0b1e366f7"
+    "bytes": 86851,
+    "sha256": "4a3165c49a438cdf36d054e25f2a2dea9cc7d39b351ef7c3b6b03c2c6a6b5aa7"
   },
   "test/build-han-fold.py": {
     "bytes": 2863,
@@ -72,16 +76,16 @@
     "sha256": "eb72fdb8e8a8bb3da9060068361d28575b6c4c2b60e3c5b314e589b370076b5d"
   },
   "test/live-smoke.mjs": {
-    "bytes": 8245,
-    "sha256": "5843ea9f7112b05820f74859746f710a5765a9740cdbde09feb2b99b6f571cc8"
+    "bytes": 8555,
+    "sha256": "b2671718484c6c041aa18da459362e6078a1b6ae76977c5b95748188e923cbec"
   },
   "test/live-target.mjs": {
     "bytes": 4032,
     "sha256": "72be6de4c7bfa27a452177dc267c321186f0a16f6f656d7092850ac1e2acb328"
   },
   "test/spotify-lyrics.test.mjs": {
-    "bytes": 50223,
-    "sha256": "c2737b2e5877398c9feefe5a648717e728d32591372686b348c5edb416e0afd6"
+    "bytes": 56669,
+    "sha256": "b58b2a8f2ec5e882543f500846b6c5ec612026bfa0671f3028334e989135496b"
   },
   "test/validate-module.rb": {
     "bytes": 3152,

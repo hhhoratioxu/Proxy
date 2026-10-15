@@ -1,12 +1,22 @@
 # Spotify 原生双语歌词 · VerseLyrics for Egern
 
-版本 **0.3.1** · 2026-10-15 · 优先适配 iPhone／iPad
+版本 **0.3.2** · 2026-10-15 · 优先适配 iPhone／iPad
 
 本版向 Spotify 的独立译文字段提供数据：**原歌词留在 `lyrics.lines`，译文写入 `lyrics.alternatives`，界面的字体、颜色、原词/译文层级、滚动、高亮和翻译开关继续由 Spotify 自己控制。** 原词不会被改成“原词 + 换行 + 译文”。
 
-**用户已反馈 iPhone 版 Spotify 9.1.92.3058 的原有歌词翻译能够工作；本轮修正无歌词补源。** 已用用户提供的歌曲取得真实 Spotify 元数据与 QQ 同版本歌词；手机补词界面的最终显示尚未独立验收。
+**用户已反馈 iPhone 版 Spotify 9.1.92.3058 的原有歌词翻译能够工作；0.3.2 按用户要求改为全部使用插件译文。** 无词补源沿用 0.3.1 修复；新版译文替换和手机补词界面的最终显示尚未独立验收。
 
-[远程模块](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/SpotifyLyrics.yaml) · [完整 ZIP](../VerseLyrics-Egern-0.3.1.zip) · [ZIP SHA-256](../VerseLyrics-Egern-0.3.1.zip.sha256) · [原创脚本](./spotify-lyrics.js)
+[远程模块](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/SpotifyLyrics.yaml) · [完整 ZIP](../VerseLyrics-Egern-0.3.2.zip) · [ZIP SHA-256](../VerseLyrics-Egern-0.3.2.zip.sha256) · [原创脚本](./spotify-lyrics.js)
+
+## 0.3.2：全部使用插件译文
+
+开启「开启歌词翻译」后，插件接管已识别歌词响应的整个原生译文列表。**Spotify 原有的所有语言译文都会被移除，列表中只保留插件按「翻译目标语言」生成的译文**，即使 Spotify 已有同语种翻译也会替换。原词、时间戳和原生歌词界面继续保留。
+
+当前插件翻译服务为 Google 网页接口，译文也可能来自该接口此前生成的插件缓存。不会从 Spotify 官方译文中取值填入缓存。部分翻译失败时对应译文留空，行号与原词对齐；全部失败或未取得有区别的译文时，官方译文仍会移除，暂时只显示原词，状态中会说明原因。关闭插件翻译开关时保留 Spotify 原响应。
+
+JSON 中整体重写 `lyrics.alternatives`；Protobuf 中移除歌词容器内全部第 9 号字段，再写入唯一的插件译文变体。旧译文内部即使采用无法识别的格式，也会整体替换；原歌词本身结构无法识别时会保留原响应。
+
+本版真实 Google 核验覆盖简体中文、日语、阿拉伯语、法语：输入包含模拟官方译文，输出只包含插件生成的目标语言译文，原词和时间戳保持原样。证据见 [译文接管核验](./Evidence/translation-ownership-live.json)。这是服务与处理链测试，Spotify 响应为模拟，不等于手机界面验收。
 
 ## 0.3.1：用《那页夏天》实际复现并修正补词失败
 
@@ -52,7 +62,7 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyr
 3. 更新模块后还要更新其远程脚本缓存，重新加载配置，并退出再打开 Spotify。
 4. 切到另一首歌再切回，打开 Spotify 自己的播放页和歌词页；如果出现原生翻译按钮，使用那个按钮显示或隐藏译文。首次补源会增加加载时间；找到备用歌词后会缓存，后续请求可直接使用。
 
-**Egern 的开关决定是否补充译文数据，Spotify 的原生按钮决定是否显示译文。** 脚本不能替用户点击按钮，也不会修改账号权益、客户端实验配置或伪造功能开放状态。语言选择也受 Spotify 自己的界面能力和 App／设备语言影响。
+**Egern 的翻译开关决定是否用插件译文接管整个译文列表，Spotify 的原生按钮决定是否显示译文。** 原生列表只提供所选目标语言。脚本不能替用户点击按钮，也不会修改账号权益、客户端实验配置或伪造功能开放状态；实际展示仍受 Spotify 界面能力和 App／设备语言影响。
 
 没有歌词或翻译按钮时，在 Egern 运行「VerseLyrics · 最近处理状态」。0.3.0 显示实际设置和最近 6 个处理阶段，保留最多 8 条历史；包含版本、接口类别、曲目 ID 和 HTTP 状态，不记录完整 URL、令牌或 Cookie。
 
@@ -68,36 +78,37 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyr
 
 ## 与 0.1.0 的差别
 
-| 项目 | 0.2.0 的行为 |
+| 项目 | 当前行为 |
 | --- | --- |
 | 原词与译文 | 原词与独立译文列表分开，不将机器译文追加到 `words`。 |
 | 字体和布局 | 保留原歌词字体、方向、颜色、预览行和全屏标记，由 Spotify 现有视图渲染。 |
 | 同步和跳转 | 保留每条原词的时间戳、行数和音节数据，不额外发送播放控制命令。 |
-| Spotify 自带翻译 | 已有同语种且行数匹配的译文时，保持响应原样，不再调用 Google。 |
-| 不认识的译文结构 | 保留原响应，不猜测结构，也不自动降级成拼接文本。 |
-| 部分翻译失败 | 独立译文列表在失败位置留空，保持与原词行号一一对应。 |
+| Spotify 自带翻译 | 开启插件翻译后，全部替换为插件生成的所选语言译文。 |
+| 不认识的旧译文结构 | 原歌词已识别时，整体清除旧译文槽位再写入插件结果。 |
+| 部分翻译失败 | 失败位置留空，保持行号对应，不混入官方译文。 |
+| 全部翻译失败 | 清除官方译文，暂时保留原词，状态中显示失败。 |
 
 0.1.0 的显示处理是将译文拼进单条原词文本，因此不能保证达到原生双语的排版和交互。旧版本 ZIP 保留；当前模块沿用 0.2.0 的独立译文实现，并加入 0.3.0 的无词入口处理。
 
 ## 实现方式
 
-Spotify 读取歌词响应时，Egern 解析对应的 JSON 或 Protobuf 内容。开启补充翻译后：
+Spotify 读取歌词响应时，Egern 解析对应的 JSON 或 Protobuf 内容。开启插件翻译后：
 
-1. 先检查 Spotify 是否已提供目标语种的原生译文；存在且行数匹配时直接保留。
-2. 缺少目标译文时，按原词行调用 Google 网页翻译接口，并缓存结果。
-3. JSON 中添加 `{ language, lines: [逐行译文] }` 到 `lyrics.alternatives`。
-4. 二进制中添加 `LyricsResponse` 的第 9 号字段；其中 `Alternative` 第 1 号字段为语言，第 2 号字段为重复的 UTF-8 字符串。
-5. 原歌词行、时间戳、音节数据及其他字段不重写；Protobuf 中已有字段保留原始字节，仅为添加的新内容重算容器长度。
+1. 从原词读取每一行，不使用官方译文作为翻译结果或缓存。
+2. 按原词行调用 Google 网页翻译接口，复用已生成的插件译文缓存。
+3. JSON 中将 `lyrics.alternatives` 重写为唯一的 `{ language, lines: [逐行译文] }`；没有可用结果时写入空列表。
+4. 二进制中替换 `LyricsResponse` 的全部第 9 号字段；其中 `Alternative` 第 1 号字段为语言，第 2 号字段为重复的 UTF-8 字符串。没有可用结果时移除全部旧译文字段。
+5. 原歌词行、时间戳、音节数据及其他字段不重写；Protobuf 中非译文字段保留原始字节，仅为改动后的歌词容器重算长度。
 
 当前官方网页播放器直接读取 `alternatives` 并按原词行号显示译文；这一点已从 Spotify 官方分发的客户端资源核对。原生二进制字段另参考公开的生成描述符。**这两种证据都不能代替当前 iOS App 的实际响应和界面验收。** 证据路径见 [`native-protocol.json`](./Evidence/native-protocol.json)。
 
-翻译使用 Google 的网页接口，不需要购买 API Key；它不属于有服务承诺的公开开发者 API，可能限流或调整。只发送待翻译文本和语言，不发送 Spotify 令牌或 Cookie。现有 Spotify 同语种翻译优先保留；简繁体选择用于补充缺失的译文，不覆盖服务端已经提供的同语种内容。
+翻译使用 Google 的网页接口，不需要购买 API Key；它不属于有服务承诺的公开开发者 API，可能限流或调整。只发送待翻译文本和语言，不发送 Spotify 令牌或 Cookie。0.3.2 会覆盖现有同语种译文，简繁体选择也应用到重新生成的插件译文。
 
 ## 歌词来源与设置
 
 | 设置 | 默认值 | 作用 |
 | --- | --- | --- |
-| `TRANSLATION_ENABLED` | `false` | 由用户开启；允许补充独立译文。 |
+| `TRANSLATION_ENABLED` | `false` | 由用户开启；用插件译文替换全部官方译文，翻译失败时仅保留原词。 |
 | `TARGET_LANGUAGE` | `zh-CN` | 25 个语言/地区选项；实际展示由 Spotify 原生界面决定。 |
 | `FALLBACK_PROVIDER` | `auto` | 明确无词时依次 LRCLIB → QQ 音乐 → 网易云；也可指定 `lrclib`、`qq`、`netease` 或 `off`。 |
 | `DISCOVER_MISSING` | `true` | 发现无词歌曲；确认可用歌词后补入原生卡片或更改已识别的无词元数据标记。旧模块保存的关闭值需要手动开启。 |
@@ -124,14 +135,15 @@ Spotify 有原词时始终使用原词。只有明确返回 404、已识别的�
 
 2026-10-15：
 
-- **100 项离线测试通过**，新增用户目标歌曲的真实 Spotify 元数据回归、简繁歌手/专辑匹配、默认 false 的旧版与批量元数据发现、原歌词简繁翻译保留，以及损坏布尔字段回退；保留原有无卡片补全、严格版本匹配、未知字段保留与损坏输入测试。
+- **108 项离线测试通过**，覆盖 JSON/Protobuf 全量官方译文替换、多语言与重复项清除、未知旧译文结构、插件缓存、部分/全部失败不回退官方译文、原词和其他二进制字段保留；保留真实目标歌曲元数据、简繁匹配、无词补源及损坏输入回归。
 - 两种模块的 YAML、脚本路径、默认值、25 个语言选项、URL 匹配范围和大小/超时限制校验通过。
-- 本版针对《那页夏天》：Spotify 原生元数据来自匿名公开会话的真实服务器响应，使用其中的歌名/完整歌手/专辑/时长查源，QQ 实际取到 42 行带时间戳歌词。卡片与歌词 404 仍为模拟响应，未取得用户手机的界面证据。
+- 本版真实 Google 服务测试通过：简体中文、日语、阿拉伯语、法语均覆盖「已有模拟官方译文 → 只保留插件译文」。另有单句服务连通性测试，共 5 项通过。
+- 0.3.1 针对《那页夏天》的真实查源记录保留：Spotify 原生元数据来自匿名公开会话的真实服务器响应，使用其中的歌名/完整歌手/专辑/时长查源，QQ 实际取到 42 行带时间戳歌词。卡片与歌词 404 为模拟响应。本轮保留这项修复，没有重复该组网络请求。
 - 0.3.0 的 QQ 63 行链路作为历史记录保留，其 Spotify 元数据和响应为模拟。本版没有重复那组旧查询。
-- Google 单句及简体中文、日语、阿拉伯语、法语的独立译文服务记录来自 0.2.0；本版保留原生翻译逻辑，本轮未重复该组网络请求。
+- 0.2.0 的 Google 独立译文服务记录作为历史证据保留；当前接管策略以本版核验记录为准。
 - 备用服务连通性记录来自 0.1.0 的真实查询：QQ 音乐和网易云分别取到 63 行、43 行同步歌词；LRCLIB 在完整调用中遇到 429。这是历史服务记录，本轮没有把它当成 iOS 原生界面证据。
 
-验证记录：[离线测试](./Evidence/local-tests.txt)、[模块校验](./Evidence/module-validation.json)、[目标歌曲真实查源](./Evidence/target-song-live.json)、[汉字变体数据依据](./Evidence/unicode-data.json)、[0.3.0 补源链路](./Evidence/missing-lyrics-live.json)、[无词入口协议依据](./Evidence/missing-lyrics-protocol.json)、[0.2.0 翻译服务记录](./Evidence/native-translation-live.json)、[译文协议核对](./Evidence/native-protocol.json)、[0.1.0 备用源记录](./Evidence/live-services.json)。
+验证记录：[离线测试](./Evidence/local-tests.txt)、[模块校验](./Evidence/module-validation.json)、[本版译文接管核验](./Evidence/translation-ownership-live.json)、[0.3.1 目标歌曲真实查源](./Evidence/target-song-live.json)、[汉字变体数据依据](./Evidence/unicode-data.json)、[0.3.0 补源链路](./Evidence/missing-lyrics-live.json)、[无词入口协议依据](./Evidence/missing-lyrics-protocol.json)、[0.2.0 翻译服务记录](./Evidence/native-translation-live.json)、[译文协议核对](./Evidence/native-protocol.json)、[0.1.0 备用源记录](./Evidence/live-services.json)。
 
 **尚未完成：Egern 在设备中的导入与脚本运行、当前 iPhone/iPad Spotify 对注入译文的识别、翻译按钮出现条件、原词/译文的实际字号及高亮、点击跳转和真实无词补全。** 本机此前检测到 Egern 2.20.0 安装包但启动未成功；没有访问用户手机。不能据本地测试或上游服务成功宣称与手机原生效果完全一致。
 
@@ -139,7 +151,7 @@ Spotify 有原词时始终使用原词。只有明确返回 404、已识别的�
 
 1. 只开启本模块，更新模块及脚本后重新打开 Spotify。
 2. 选择你遇到的无歌词歌曲，复制分享链接，并查看状态中的 `player-cards`、`metadata`/`extended-metadata` 和 `lyrics` 阶段。确认卡片写入后是否真的出现歌词请求和界面。
-3. 再选一首原本有英文歌词、没有当前目标语种翻译的歌曲，确认歌词响应处理成功、是否出现翻译入口。验证原词/译文层级、滚动、高亮和点击歌词，并用原生按钮切回原词。
+3. 再选一首原本已有目标语种官方译文的歌曲，确认状态显示插件译文替换，原生列表仅提供所选语言的插件结果。验证原词/译文层级、滚动、高亮和点击歌词，并用原生按钮切回原词。
 4. 如果处理状态成功但界面仍无入口，需要核对 Spotify 版本、App/设备语言和去掉凭据后的实际响应。不要发送 Authorization、Cookie、Client-Token 或完整账号流量。
 
 原生界面本来不支持的控件不能单靠响应改写创造。Egern 模块也不提供 VerseDock 的悬浮窗、状态栏或灵动岛。

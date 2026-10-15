@@ -27,12 +27,12 @@ await check('google-single-phrase',async()=>{
 });
 for(const target of ['zh-CN','ja','ar','fr'])await check('handler-live-translation-'+target,async()=>{
   const words=['The blue kite follows the wind.','My quiet garden is awake.'];
-  const body=JSON.stringify({lyrics:{lines:words.map((words,i)=>({words,startTimeMs:String(i*2000),endTimeMs:'0',syllables:[]})),language:'en',syncType:'LINE_SYNCED',provider:'Self-written test text'},colors:{background:-1}});
+  const body=JSON.stringify({lyrics:{lines:words.map((words,i)=>({words,startTimeMs:String(i*2000),endTimeMs:'0',syllables:[]})),language:'en',syncType:'LINE_SYNCED',provider:'Self-written test text',alternatives:[{language:target,lines:['OLD_OFFICIAL_A','OLD_OFFICIAL_B']},{language:'de',lines:['OLD_OFFICIAL_C','OLD_OFFICIAL_D']}]},colors:{background:-1}});
   const ctx={env:{TRANSLATION_ENABLED:'true',TARGET_LANGUAGE:target},request:{url:'https://spclient.wg.spotify.com/color-lyrics/v2/track/0000000000000000000001',headers:new Headers({Accept:'application/json'})},response:new Response(body,{headers:{'Content-Type':'application/json'}}),http,storage:storage()};
   const result=await run(ctx),out=JSON.parse(Buffer.from(result.body).toString());
   assert.equal(out.lyrics.lines.length,2);out.lyrics.lines.forEach((l,i)=>{assert.equal(l.words,words[i]);assert.equal(l.startTimeMs,String(i*2000));});
-  const alternative=out.lyrics.alternatives.find(a=>a.language===target);assert.equal(alternative.lines.length,words.length);assert.ok(alternative.lines.every(s=>typeof s==='string'&&s.length>0));
-  return{translatedRows:alternative.lines.length,originalRowsUnchanged:true,originalTimingsPreserved:true,nativeAlternatives:true};
+  const alternative=out.lyrics.alternatives.find(a=>a.language===target);assert.equal(out.lyrics.alternatives.length,1);assert.equal(alternative.lines.length,words.length);assert.ok(alternative.lines.every(s=>typeof s==='string'&&s.length>0));assert.equal(JSON.stringify(out).includes('OLD_OFFICIAL_'),false);
+  return{translatedRows:alternative.lines.length,originalRowsUnchanged:true,originalTimingsPreserved:true,nativeAlternatives:true,allOfficialAlternativesRemoved:true,pluginTranslationsOnly:true};
 });
 }
 if(!process.argv.includes('--translations-only') && !missingOnly) {
