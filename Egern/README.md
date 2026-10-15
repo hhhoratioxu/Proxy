@@ -1,6 +1,6 @@
 # Egern
 
-[分流规则](./Rules/) · [模块](./Modules/) · [脚本](./Scripts/) · [网络信息](./Modules/NetworkInfo.md) · [流媒体查询](./Modules/StreamingUnlock.md)
+[分流规则](./Rules/) · [模块](./Modules/) · [脚本](./Scripts/) · [网络信息](./Modules/NetworkInfo.md) · [流媒体查询](./Modules/StreamingUnlock.md) · [美团外卖去广告](./Scripts/MeituanWaimai.md)
 
 ## 图标导入
 
@@ -15,3 +15,4 @@
 
 - [Parsec 跨客户端分流](../Clash/Docs/Parsec.md)
 - [返回仓库首页](../README.md)
+
