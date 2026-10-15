@@ -2,6 +2,8 @@
 
 [分流规则](./rule/) · [扩展脚本](./script/) · [说明文档](./Docs/)
 
+共用图标及导入入口：[Icons](../Icons/)。
+
 本目录包含 **26 组** `classical` 格式的远程分流规则。原有 Loon / Egern / Quantumult X / Shadowrocket 内容未受影响。
 
 ## 最方便的方式：扩展脚本

@@ -2,6 +2,8 @@
 
 [分流规则](./rule/) · [脚本与模块](./script/) · [说明文档](./Docs/)
 
+共用图标及导入入口：[Icons](../Icons/)。
+
 ## 说明
 
 - [Parsec 跨客户端分流](../Clash/Docs/Parsec.md)

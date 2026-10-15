@@ -5,7 +5,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "../../..");
 const clients = [
   { name: "Loon", script: "Loon/script/MeituanWaimai.js", config: "Loon/script/MeituanWaimai.plugin", status: { status: 200 } },
   { name: "Surge", script: "Surge/script/MeituanWaimai.js", config: "Surge/script/MeituanWaimai.sgmodule", status: { status: 200 } },

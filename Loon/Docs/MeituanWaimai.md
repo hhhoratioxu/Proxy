@@ -37,10 +37,10 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaim
 
 本地使用人工构造的响应验证广告清理、两种广告数组同时存在、重复处理、长数字 ID 保留、未知结构与错误响应放行，以及订单、支付、商家列表等 URL 不被匹配。配置检查还核对了脚本原始地址和 MitM 主机范围。
 
-测试源码见 [跨客户端验证](../../Surge/Tests/MeituanWaimai.test.mjs)。在仓库根目录使用 Node.js 运行：
+测试源码见 [跨客户端验证](../../Surge/script/test/MeituanWaimai.test.mjs)。在仓库根目录使用 Node.js 运行：
 
 ```sh
-node --test Surge/Tests/MeituanWaimai.test.mjs
+node --test Surge/script/test/MeituanWaimai.test.mjs
 ```
 
 这些检查使用模拟的客户端脚本输入。**尚未完成 Loon 自身解析器的导入验证、真实手机流量命中和 App 界面验收**，不能将本地测试或发布成功视为真机去广告成功。接口变化、证书校验和已缓存广告都可能影响效果。

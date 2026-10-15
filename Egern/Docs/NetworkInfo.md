@@ -95,7 +95,7 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/NetworkInf
 保持订阅链接不变，更新 Egern 模块和脚本即可获得后续版本；脚本更新间隔为 1 小时。
 
 ```sh
-node --test Egern/Tests/NetworkInfo*.test.mjs
+node --test Egern/script/test/NetworkInfo*.test.mjs
 ```
 
 已做 JavaScript/页面脚本语法、YAML 引用、模拟 Egern ctx 行为及模拟 DOM 页面交互检查，共 23 项。检查包含不同策略、IPv6 失败、GeoIP 限流、离线、隐私开关、HTTP 入口、文本安全渲染、刷新错误、复制回退、Netflix 片源证据和 YouTube Premium 地区证据。用户的 1.0.0 截图已确认大尺寸小组件在其设备上成功显示。浏览器运行包受当前环境限制，**1.1.1 尚未完成浏览器截图与 iPhone 真机解锁/布局验收**；最终透明度受 iOS 和 Egern 宿主背景影响。

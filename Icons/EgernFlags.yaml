@@ -1,0 +1,1504 @@
+---
+# Horatio Country and Region Flags - Egern Preview Profile
+# GENERATED: 2026-09-24
+# This is an icon preview profile. It does not merge icons into another active profile.
+
+vif_only: false
+policy_groups:
+  - select:
+      name: "Flag - AD"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AD.png"
+      hidden: false
+  - select:
+      name: "Flag - AE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AE.png"
+      hidden: false
+  - select:
+      name: "Flag - AF"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AF.png"
+      hidden: false
+  - select:
+      name: "Flag - AG"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AG.png"
+      hidden: false
+  - select:
+      name: "Flag - AI"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AI.png"
+      hidden: false
+  - select:
+      name: "Flag - AL"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AL.png"
+      hidden: false
+  - select:
+      name: "Flag - AM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AM.png"
+      hidden: false
+  - select:
+      name: "Flag - AO"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AO.png"
+      hidden: false
+  - select:
+      name: "Flag - AQ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AQ.png"
+      hidden: false
+  - select:
+      name: "Flag - AR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AR.png"
+      hidden: false
+  - select:
+      name: "Flag - AS"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AS.png"
+      hidden: false
+  - select:
+      name: "Flag - AT"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AT.png"
+      hidden: false
+  - select:
+      name: "Flag - AU"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AU.png"
+      hidden: false
+  - select:
+      name: "Flag - AW"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AW.png"
+      hidden: false
+  - select:
+      name: "Flag - AX"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AX.png"
+      hidden: false
+  - select:
+      name: "Flag - AZ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/AZ.png"
+      hidden: false
+  - select:
+      name: "Flag - BA"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BA.png"
+      hidden: false
+  - select:
+      name: "Flag - BB"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BB.png"
+      hidden: false
+  - select:
+      name: "Flag - BD"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BD.png"
+      hidden: false
+  - select:
+      name: "Flag - BE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BE.png"
+      hidden: false
+  - select:
+      name: "Flag - BF"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BF.png"
+      hidden: false
+  - select:
+      name: "Flag - BG"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BG.png"
+      hidden: false
+  - select:
+      name: "Flag - BH"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BH.png"
+      hidden: false
+  - select:
+      name: "Flag - BI"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BI.png"
+      hidden: false
+  - select:
+      name: "Flag - BJ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BJ.png"
+      hidden: false
+  - select:
+      name: "Flag - BL"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BL.png"
+      hidden: false
+  - select:
+      name: "Flag - BM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BM.png"
+      hidden: false
+  - select:
+      name: "Flag - BN"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BN.png"
+      hidden: false
+  - select:
+      name: "Flag - BO"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BO.png"
+      hidden: false
+  - select:
+      name: "Flag - BQ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BQ.png"
+      hidden: false
+  - select:
+      name: "Flag - BR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BR.png"
+      hidden: false
+  - select:
+      name: "Flag - BS"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BS.png"
+      hidden: false
+  - select:
+      name: "Flag - BT"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BT.png"
+      hidden: false
+  - select:
+      name: "Flag - BV"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BV.png"
+      hidden: false
+  - select:
+      name: "Flag - BW"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BW.png"
+      hidden: false
+  - select:
+      name: "Flag - BY"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BY.png"
+      hidden: false
+  - select:
+      name: "Flag - BZ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/BZ.png"
+      hidden: false
+  - select:
+      name: "Flag - CA"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CA.png"
+      hidden: false
+  - select:
+      name: "Flag - CC"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CC.png"
+      hidden: false
+  - select:
+      name: "Flag - CD"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CD.png"
+      hidden: false
+  - select:
+      name: "Flag - CF"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CF.png"
+      hidden: false
+  - select:
+      name: "Flag - CG"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CG.png"
+      hidden: false
+  - select:
+      name: "Flag - CH"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CH.png"
+      hidden: false
+  - select:
+      name: "Flag - CI"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CI.png"
+      hidden: false
+  - select:
+      name: "Flag - CK"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CK.png"
+      hidden: false
+  - select:
+      name: "Flag - CL"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CL.png"
+      hidden: false
+  - select:
+      name: "Flag - CM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CM.png"
+      hidden: false
+  - select:
+      name: "Flag - CN"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CN.png"
+      hidden: false
+  - select:
+      name: "Flag - CO"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CO.png"
+      hidden: false
+  - select:
+      name: "Flag - CR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CR.png"
+      hidden: false
+  - select:
+      name: "Flag - CU"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CU.png"
+      hidden: false
+  - select:
+      name: "Flag - CV"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CV.png"
+      hidden: false
+  - select:
+      name: "Flag - CW"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CW.png"
+      hidden: false
+  - select:
+      name: "Flag - CX"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CX.png"
+      hidden: false
+  - select:
+      name: "Flag - CY"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CY.png"
+      hidden: false
+  - select:
+      name: "Flag - CZ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/CZ.png"
+      hidden: false
+  - select:
+      name: "Flag - DE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/DE.png"
+      hidden: false
+  - select:
+      name: "Flag - DJ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/DJ.png"
+      hidden: false
+  - select:
+      name: "Flag - DK"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/DK.png"
+      hidden: false
+  - select:
+      name: "Flag - DM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/DM.png"
+      hidden: false
+  - select:
+      name: "Flag - DO"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/DO.png"
+      hidden: false
+  - select:
+      name: "Flag - DZ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/DZ.png"
+      hidden: false
+  - select:
+      name: "Flag - EC"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/EC.png"
+      hidden: false
+  - select:
+      name: "Flag - EE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/EE.png"
+      hidden: false
+  - select:
+      name: "Flag - EG"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/EG.png"
+      hidden: false
+  - select:
+      name: "Flag - EH"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/EH.png"
+      hidden: false
+  - select:
+      name: "Flag - ER"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/ER.png"
+      hidden: false
+  - select:
+      name: "Flag - ES"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/ES.png"
+      hidden: false
+  - select:
+      name: "Flag - ET"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/ET.png"
+      hidden: false
+  - select:
+      name: "Flag - FI"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/FI.png"
+      hidden: false
+  - select:
+      name: "Flag - FJ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/FJ.png"
+      hidden: false
+  - select:
+      name: "Flag - FK"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/FK.png"
+      hidden: false
+  - select:
+      name: "Flag - FM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/FM.png"
+      hidden: false
+  - select:
+      name: "Flag - FO"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/FO.png"
+      hidden: false
+  - select:
+      name: "Flag - FR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/FR.png"
+      hidden: false
+  - select:
+      name: "Flag - GA"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GA.png"
+      hidden: false
+  - select:
+      name: "Flag - GB"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GB.png"
+      hidden: false
+  - select:
+      name: "Flag - GD"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GD.png"
+      hidden: false
+  - select:
+      name: "Flag - GE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GE.png"
+      hidden: false
+  - select:
+      name: "Flag - GF"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GF.png"
+      hidden: false
+  - select:
+      name: "Flag - GG"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GG.png"
+      hidden: false
+  - select:
+      name: "Flag - GH"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GH.png"
+      hidden: false
+  - select:
+      name: "Flag - GI"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GI.png"
+      hidden: false
+  - select:
+      name: "Flag - GL"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GL.png"
+      hidden: false
+  - select:
+      name: "Flag - GM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GM.png"
+      hidden: false
+  - select:
+      name: "Flag - GN"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GN.png"
+      hidden: false
+  - select:
+      name: "Flag - GP"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GP.png"
+      hidden: false
+  - select:
+      name: "Flag - GQ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GQ.png"
+      hidden: false
+  - select:
+      name: "Flag - GR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GR.png"
+      hidden: false
+  - select:
+      name: "Flag - GS"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GS.png"
+      hidden: false
+  - select:
+      name: "Flag - GT"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GT.png"
+      hidden: false
+  - select:
+      name: "Flag - GU"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GU.png"
+      hidden: false
+  - select:
+      name: "Flag - GW"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GW.png"
+      hidden: false
+  - select:
+      name: "Flag - GY"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/GY.png"
+      hidden: false
+  - select:
+      name: "Flag - HK"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/HK.png"
+      hidden: false
+  - select:
+      name: "Flag - HM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/HM.png"
+      hidden: false
+  - select:
+      name: "Flag - HN"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/HN.png"
+      hidden: false
+  - select:
+      name: "Flag - HR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/HR.png"
+      hidden: false
+  - select:
+      name: "Flag - HT"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/HT.png"
+      hidden: false
+  - select:
+      name: "Flag - HU"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/HU.png"
+      hidden: false
+  - select:
+      name: "Flag - ID"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/ID.png"
+      hidden: false
+  - select:
+      name: "Flag - IE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/IE.png"
+      hidden: false
+  - select:
+      name: "Flag - IL"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/IL.png"
+      hidden: false
+  - select:
+      name: "Flag - IM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/IM.png"
+      hidden: false
+  - select:
+      name: "Flag - IN"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/IN.png"
+      hidden: false
+  - select:
+      name: "Flag - IO"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/IO.png"
+      hidden: false
+  - select:
+      name: "Flag - IQ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/IQ.png"
+      hidden: false
+  - select:
+      name: "Flag - IR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/IR.png"
+      hidden: false
+  - select:
+      name: "Flag - IS"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/IS.png"
+      hidden: false
+  - select:
+      name: "Flag - IT"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/IT.png"
+      hidden: false
+  - select:
+      name: "Flag - JE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/JE.png"
+      hidden: false
+  - select:
+      name: "Flag - JM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/JM.png"
+      hidden: false
+  - select:
+      name: "Flag - JO"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/JO.png"
+      hidden: false
+  - select:
+      name: "Flag - JP"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/JP.png"
+      hidden: false
+  - select:
+      name: "Flag - KE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/KE.png"
+      hidden: false
+  - select:
+      name: "Flag - KG"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/KG.png"
+      hidden: false
+  - select:
+      name: "Flag - KH"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/KH.png"
+      hidden: false
+  - select:
+      name: "Flag - KI"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/KI.png"
+      hidden: false
+  - select:
+      name: "Flag - KM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/KM.png"
+      hidden: false
+  - select:
+      name: "Flag - KN"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/KN.png"
+      hidden: false
+  - select:
+      name: "Flag - KP"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/KP.png"
+      hidden: false
+  - select:
+      name: "Flag - KR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/KR.png"
+      hidden: false
+  - select:
+      name: "Flag - KW"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/KW.png"
+      hidden: false
+  - select:
+      name: "Flag - KY"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/KY.png"
+      hidden: false
+  - select:
+      name: "Flag - KZ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/KZ.png"
+      hidden: false
+  - select:
+      name: "Flag - LA"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/LA.png"
+      hidden: false
+  - select:
+      name: "Flag - LB"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/LB.png"
+      hidden: false
+  - select:
+      name: "Flag - LC"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/LC.png"
+      hidden: false
+  - select:
+      name: "Flag - LI"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/LI.png"
+      hidden: false
+  - select:
+      name: "Flag - LK"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/LK.png"
+      hidden: false
+  - select:
+      name: "Flag - LR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/LR.png"
+      hidden: false
+  - select:
+      name: "Flag - LS"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/LS.png"
+      hidden: false
+  - select:
+      name: "Flag - LT"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/LT.png"
+      hidden: false
+  - select:
+      name: "Flag - LU"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/LU.png"
+      hidden: false
+  - select:
+      name: "Flag - LV"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/LV.png"
+      hidden: false
+  - select:
+      name: "Flag - LY"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/LY.png"
+      hidden: false
+  - select:
+      name: "Flag - MA"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MA.png"
+      hidden: false
+  - select:
+      name: "Flag - MC"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MC.png"
+      hidden: false
+  - select:
+      name: "Flag - MD"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MD.png"
+      hidden: false
+  - select:
+      name: "Flag - ME"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/ME.png"
+      hidden: false
+  - select:
+      name: "Flag - MF"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MF.png"
+      hidden: false
+  - select:
+      name: "Flag - MG"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MG.png"
+      hidden: false
+  - select:
+      name: "Flag - MH"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MH.png"
+      hidden: false
+  - select:
+      name: "Flag - MK"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MK.png"
+      hidden: false
+  - select:
+      name: "Flag - ML"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/ML.png"
+      hidden: false
+  - select:
+      name: "Flag - MM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MM.png"
+      hidden: false
+  - select:
+      name: "Flag - MN"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MN.png"
+      hidden: false
+  - select:
+      name: "Flag - MO"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MO.png"
+      hidden: false
+  - select:
+      name: "Flag - MP"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MP.png"
+      hidden: false
+  - select:
+      name: "Flag - MQ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MQ.png"
+      hidden: false
+  - select:
+      name: "Flag - MR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MR.png"
+      hidden: false
+  - select:
+      name: "Flag - MS"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MS.png"
+      hidden: false
+  - select:
+      name: "Flag - MT"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MT.png"
+      hidden: false
+  - select:
+      name: "Flag - MU"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MU.png"
+      hidden: false
+  - select:
+      name: "Flag - MV"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MV.png"
+      hidden: false
+  - select:
+      name: "Flag - MW"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MW.png"
+      hidden: false
+  - select:
+      name: "Flag - MX"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MX.png"
+      hidden: false
+  - select:
+      name: "Flag - MY"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MY.png"
+      hidden: false
+  - select:
+      name: "Flag - MZ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/MZ.png"
+      hidden: false
+  - select:
+      name: "Flag - NA"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/NA.png"
+      hidden: false
+  - select:
+      name: "Flag - NC"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/NC.png"
+      hidden: false
+  - select:
+      name: "Flag - NE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/NE.png"
+      hidden: false
+  - select:
+      name: "Flag - NF"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/NF.png"
+      hidden: false
+  - select:
+      name: "Flag - NG"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/NG.png"
+      hidden: false
+  - select:
+      name: "Flag - NI"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/NI.png"
+      hidden: false
+  - select:
+      name: "Flag - NL"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/NL.png"
+      hidden: false
+  - select:
+      name: "Flag - NO"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/NO.png"
+      hidden: false
+  - select:
+      name: "Flag - NP"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/NP.png"
+      hidden: false
+  - select:
+      name: "Flag - NR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/NR.png"
+      hidden: false
+  - select:
+      name: "Flag - NU"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/NU.png"
+      hidden: false
+  - select:
+      name: "Flag - NZ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/NZ.png"
+      hidden: false
+  - select:
+      name: "Flag - OM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/OM.png"
+      hidden: false
+  - select:
+      name: "Flag - PA"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PA.png"
+      hidden: false
+  - select:
+      name: "Flag - PE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PE.png"
+      hidden: false
+  - select:
+      name: "Flag - PF"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PF.png"
+      hidden: false
+  - select:
+      name: "Flag - PG"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PG.png"
+      hidden: false
+  - select:
+      name: "Flag - PH"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PH.png"
+      hidden: false
+  - select:
+      name: "Flag - PK"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PK.png"
+      hidden: false
+  - select:
+      name: "Flag - PL"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PL.png"
+      hidden: false
+  - select:
+      name: "Flag - PM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PM.png"
+      hidden: false
+  - select:
+      name: "Flag - PN"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PN.png"
+      hidden: false
+  - select:
+      name: "Flag - PR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PR.png"
+      hidden: false
+  - select:
+      name: "Flag - PS"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PS.png"
+      hidden: false
+  - select:
+      name: "Flag - PT"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PT.png"
+      hidden: false
+  - select:
+      name: "Flag - PW"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PW.png"
+      hidden: false
+  - select:
+      name: "Flag - PY"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/PY.png"
+      hidden: false
+  - select:
+      name: "Flag - QA"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/QA.png"
+      hidden: false
+  - select:
+      name: "Flag - RE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/RE.png"
+      hidden: false
+  - select:
+      name: "Flag - RO"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/RO.png"
+      hidden: false
+  - select:
+      name: "Flag - RS"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/RS.png"
+      hidden: false
+  - select:
+      name: "Flag - RU"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/RU.png"
+      hidden: false
+  - select:
+      name: "Flag - RW"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/RW.png"
+      hidden: false
+  - select:
+      name: "Flag - SA"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SA.png"
+      hidden: false
+  - select:
+      name: "Flag - SB"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SB.png"
+      hidden: false
+  - select:
+      name: "Flag - SC"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SC.png"
+      hidden: false
+  - select:
+      name: "Flag - SD"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SD.png"
+      hidden: false
+  - select:
+      name: "Flag - SE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SE.png"
+      hidden: false
+  - select:
+      name: "Flag - SG"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SG.png"
+      hidden: false
+  - select:
+      name: "Flag - SH"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SH.png"
+      hidden: false
+  - select:
+      name: "Flag - SI"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SI.png"
+      hidden: false
+  - select:
+      name: "Flag - SJ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SJ.png"
+      hidden: false
+  - select:
+      name: "Flag - SK"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SK.png"
+      hidden: false
+  - select:
+      name: "Flag - SL"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SL.png"
+      hidden: false
+  - select:
+      name: "Flag - SM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SM.png"
+      hidden: false
+  - select:
+      name: "Flag - SN"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SN.png"
+      hidden: false
+  - select:
+      name: "Flag - SO"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SO.png"
+      hidden: false
+  - select:
+      name: "Flag - SR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SR.png"
+      hidden: false
+  - select:
+      name: "Flag - SS"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SS.png"
+      hidden: false
+  - select:
+      name: "Flag - ST"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/ST.png"
+      hidden: false
+  - select:
+      name: "Flag - SV"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SV.png"
+      hidden: false
+  - select:
+      name: "Flag - SX"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SX.png"
+      hidden: false
+  - select:
+      name: "Flag - SY"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SY.png"
+      hidden: false
+  - select:
+      name: "Flag - SZ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/SZ.png"
+      hidden: false
+  - select:
+      name: "Flag - TC"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TC.png"
+      hidden: false
+  - select:
+      name: "Flag - TD"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TD.png"
+      hidden: false
+  - select:
+      name: "Flag - TF"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TF.png"
+      hidden: false
+  - select:
+      name: "Flag - TG"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TG.png"
+      hidden: false
+  - select:
+      name: "Flag - TH"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TH.png"
+      hidden: false
+  - select:
+      name: "Flag - TJ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TJ.png"
+      hidden: false
+  - select:
+      name: "Flag - TK"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TK.png"
+      hidden: false
+  - select:
+      name: "Flag - TL"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TL.png"
+      hidden: false
+  - select:
+      name: "Flag - TM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TM.png"
+      hidden: false
+  - select:
+      name: "Flag - TN"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TN.png"
+      hidden: false
+  - select:
+      name: "Flag - TO"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TO.png"
+      hidden: false
+  - select:
+      name: "Flag - TR"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TR.png"
+      hidden: false
+  - select:
+      name: "Flag - TT"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TT.png"
+      hidden: false
+  - select:
+      name: "Flag - TV"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TV.png"
+      hidden: false
+  - select:
+      name: "Flag - TW"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TW.png"
+      hidden: false
+  - select:
+      name: "Flag - TZ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/TZ.png"
+      hidden: false
+  - select:
+      name: "Flag - UA"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/UA.png"
+      hidden: false
+  - select:
+      name: "Flag - UG"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/UG.png"
+      hidden: false
+  - select:
+      name: "Flag - UM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/UM.png"
+      hidden: false
+  - select:
+      name: "Flag - US"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/US.png"
+      hidden: false
+  - select:
+      name: "Flag - UY"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/UY.png"
+      hidden: false
+  - select:
+      name: "Flag - UZ"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/UZ.png"
+      hidden: false
+  - select:
+      name: "Flag - VA"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/VA.png"
+      hidden: false
+  - select:
+      name: "Flag - VC"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/VC.png"
+      hidden: false
+  - select:
+      name: "Flag - VE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/VE.png"
+      hidden: false
+  - select:
+      name: "Flag - VG"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/VG.png"
+      hidden: false
+  - select:
+      name: "Flag - VI"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/VI.png"
+      hidden: false
+  - select:
+      name: "Flag - VN"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/VN.png"
+      hidden: false
+  - select:
+      name: "Flag - VU"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/VU.png"
+      hidden: false
+  - select:
+      name: "Flag - WF"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/WF.png"
+      hidden: false
+  - select:
+      name: "Flag - WS"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/WS.png"
+      hidden: false
+  - select:
+      name: "Flag - YE"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/YE.png"
+      hidden: false
+  - select:
+      name: "Flag - YT"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/YT.png"
+      hidden: false
+  - select:
+      name: "Flag - ZA"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/ZA.png"
+      hidden: false
+  - select:
+      name: "Flag - ZM"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/ZM.png"
+      hidden: false
+  - select:
+      name: "Flag - ZW"
+      policies:
+        - DIRECT
+      icon: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Icons/Flags/ZW.png"
+      hidden: false
+rules:
+  - default:
+      policy: DIRECT
