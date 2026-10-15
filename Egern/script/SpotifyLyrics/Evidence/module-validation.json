@@ -5,7 +5,7 @@
       "file": "SpotifyLyrics.yaml",
       "scripts": 6,
       "languages": 25,
-      "script_location": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics.js",
+      "script_location": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=0.3.3",
       "status": "passed"
     },
     {

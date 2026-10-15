@@ -1,11 +1,19 @@
 {
+  "Evidence/entry-flow-live.json": {
+    "bytes": 1354,
+    "sha256": "6de3349f6b2febf4a269d74ac35af223578955089e48760b88ddd41f15b0299c"
+  },
+  "Evidence/entry-flow-regression.json": {
+    "bytes": 1057,
+    "sha256": "4a039416a3ea56f081af5bf8312325d914b2f321add3aeb7fab19e842ffb0c7f"
+  },
   "Evidence/live-services.json": {
     "bytes": 1556,
     "sha256": "27a0372dc93e2f6f48de5595f4013f4f57f418796688d7a10967ce47c4c485ec"
   },
   "Evidence/local-tests.txt": {
-    "bytes": 10176,
-    "sha256": "334346fff79eb827bf17030d98daac23c7cdc66dacbfa2ffaff71c1cd327706a"
+    "bytes": 10581,
+    "sha256": "46a8275d49e66c3cd9b9442625619a1b4777ea066717a154b1eb7d874021ca5e"
   },
   "Evidence/missing-lyrics-live.json": {
     "bytes": 556,
@@ -16,8 +24,8 @@
     "sha256": "148e856aba6c93a9601abc888b74408eb0f392bb8f0a907a2b273a24828b8e03"
   },
   "Evidence/module-validation.json": {
-    "bytes": 568,
-    "sha256": "68e6746df966a85cc7cee8c1c9dfaec89cb0bc9c2dec77cae005daf51a35dff4"
+    "bytes": 576,
+    "sha256": "f5b553d9b2b00c6e3c6733ee81b515771e15c0ac1e56ed0a238ddd83e6591139"
   },
   "Evidence/native-protocol.json": {
     "bytes": 1440,
@@ -48,28 +56,32 @@
     "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
   },
   "README.md": {
-    "bytes": 19681,
-    "sha256": "75913fb6e160adcf0a9854c027aff947d63048e09816271fc8831073e61bb9c1"
+    "bytes": 22519,
+    "sha256": "7630838fb2454cd41a6cdb25dff400189e7f31108274b32a127c5417602035c4"
   },
   "SpotifyLyrics.local.yaml": {
-    "bytes": 3685,
-    "sha256": "0a9673ae6c9743c44132e79062e8ba3f3a8402d79ca86408ab49bde7ad172c11"
+    "bytes": 3733,
+    "sha256": "4a8bcbb5c479b7b9e479af06207eb3d8c84856ebca2938f458bf1fdc15481e2e"
   },
   "SpotifyLyrics.yaml": {
-    "bytes": 4355,
-    "sha256": "8e65baed37311c14f7a4c1c6b7962f3ba33cbda062d028143e5f93644ee6a329"
+    "bytes": 4619,
+    "sha256": "6db1772ab59c90e795eca67025b4439138dde24f18560d07347a5c1fd3dd2d0c"
   },
   "package.json": {
     "bytes": 260,
-    "sha256": "b037a4bffbb446c38dfa427619b0233d0d663ad9f2229250187380a1d28d30d6"
+    "sha256": "dde7fe69c714bde353714b453561b7a09a22b92e2ab0f3fae017a389b966b3cc"
   },
   "spotify-lyrics.js": {
-    "bytes": 86851,
-    "sha256": "4a3165c49a438cdf36d054e25f2a2dea9cc7d39b351ef7c3b6b03c2c6a6b5aa7"
+    "bytes": 85136,
+    "sha256": "bad6962d1e5fe43ca5c98bc380f7fc5d4792d01ef5b0de6d9a6a0b55d18bc1f0"
   },
   "test/build-han-fold.py": {
     "bytes": 2863,
     "sha256": "7e3943802832cdef63ce886f654d72d72d0320a42a704749ee2ce88b056c2ca5"
+  },
+  "test/fixtures/target-scroll.json": {
+    "bytes": 1133,
+    "sha256": "b67945feca9bdfadec3377e6eeac6b33725123bbf209731abde331b6ef992fc4"
   },
   "test/fixtures/target-song.json": {
     "bytes": 1501,
@@ -80,15 +92,15 @@
     "sha256": "b2671718484c6c041aa18da459362e6078a1b6ae76977c5b95748188e923cbec"
   },
   "test/live-target.mjs": {
-    "bytes": 4032,
-    "sha256": "72be6de4c7bfa27a452177dc267c321186f0a16f6f656d7092850ac1e2acb328"
+    "bytes": 4967,
+    "sha256": "055cf0c8ce052ac7182e07664546eb10e3a6c3f454f704001ff82cad9c8858fb"
   },
   "test/spotify-lyrics.test.mjs": {
-    "bytes": 56669,
-    "sha256": "b58b2a8f2ec5e882543f500846b6c5ec612026bfa0671f3028334e989135496b"
+    "bytes": 58932,
+    "sha256": "50ace910d119795da8804d2f78bf7d4a99a4535d78236ac2f60db80ada7bcc92"
   },
   "test/validate-module.rb": {
-    "bytes": 3152,
-    "sha256": "2a2be688ee2f12aa47ff1031be3f6e4ad09af8a63b803c48efbe0510b0847dde"
+    "bytes": 3361,
+    "sha256": "f03caea668b6fbc4b36abb62cc705c51880a19800992ccd0a734bae82bb4b93d"
   }
 }

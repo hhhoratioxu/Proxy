@@ -1,9 +1,9 @@
-/* VerseLyrics 0.3.2 — original Egern native script, 2026-10-15.
+/* VerseLyrics 0.3.3 — original Egern native script, 2026-10-15.
  * Rewrites Spotify color-lyrics JSON and protobuf; no third-party script runtime.
  * Public protocol field numbers and service endpoints are documented in README.md.
  * Egern API: export default async function(ctx), ctx.http, ctx.storage.
  */
-const VERSION = "0.3.2";
+const VERSION = "0.3.3";
 const KEY = "VerseLyrics.v1.cache";
 const STATUS = "VerseLyrics.v1.status";
 const EVENTS = "VerseLyrics.v1.events";
@@ -11,6 +11,8 @@ const LIMIT = 2 * 1024 * 1024;
 const MAX_LINES = 600;
 const INTERNAL = "x-verselyrics-internal";
 const MARKER = "x-verselyrics";
+// Public wire identifier for Spotify's lyrics section, not a donor track.
+const LYRICS_SECTION = "spotify:section:0JQ5DB6s3cssW5Bo6cGq21";
 const HOST = "(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com";
 const LYRIC_URL = new RegExp("^https://(" + HOST + ")(?::443)?/color-lyrics/v2/track/([0-9A-Za-z]{22})(?:/image/[^?#\\s]+)?/?(?:\\?.*)?$");
 const META_URL = new RegExp("^https://(" + HOST + ")(?::443)?/metadata/4/track/([0-9a-f]{32})(?:\\?.*)?$");
@@ -268,7 +270,10 @@ function scrollDocument(bytes, contentType, id) {
     const obj = JSON.parse(text(bytes)), sections = obj?.structure?.sections;
     if (!Array.isArray(sections) || sections.length > 100 || sections.some(s => !goodObject(s))) throw new Error("scroll-shape");
     return { format: "json", hasLyrics: sections.some(s => Object.hasOwn(s, "lyrics")),
-      add() { sections.unshift({ lyrics: { entityUri: uri } }); return utf8(JSON.stringify(obj)); } };
+      add() {
+        sections.unshift({ lyrics: { entityUri: uri }, sectionInfo: { sectionId: LYRICS_SECTION } });
+        return utf8(JSON.stringify(obj));
+      } };
   }
   if (!/protobuf|octet-stream/i.test(contentType)) throw new Error("scroll-format");
   const root = fields(bytes), structures = root.filter(f => f.number === 1);
@@ -278,9 +283,12 @@ function scrollDocument(bytes, contentType, id) {
   const parsed = sections.map(f => fields(f.payload));
   // NpvScrollResponse.structure(1) -> NpvScrollStructure.sections(1)
   // -> Section.lyrics(5) -> Lyrics.entity_uri(1).
+  // Each native section also carries Section.section_info(23).section_id(1).
   return { format: "protobuf", hasLyrics: parsed.some(fs => fs.some(f => f.number === 5)),
     add() {
-      const card = dataField(1, dataField(5, stringField(1, uri)));
+      const card = dataField(1, join([
+        dataField(5, stringField(1, uri)), dataField(23, stringField(1, LYRICS_SECTION))
+      ]));
       return replaceField(root, 1, dataField(1, join([card, ...inner.map(f => f.raw)])));
     } };
 }
@@ -501,18 +509,6 @@ async function metadata(ctx, host, id, state) {
   if (!record) throw new Error("extended-track-missing");
   cacheMetadata(state, record); return record.meta;
 }
-async function nativeAvailable(ctx, host, id, state) {
-  const known = state.cache.get("availability:" + id);
-  if (known === false) return false;
-  const headers = spotifyHeaders(ctx, "application/json"); if (!headers) throw new Error("native-no-auth");
-  const response = await http(ctx, "https://" + host + "/color-lyrics/v2/track/" + id + "?format=json", state, { headers }, true);
-  if (response.status === 404) { state.cache.put("availability:" + id, false, 300000); return false; }
-  const doc = parseDocument(response.bytes, header(response.headers, "Content-Type"));
-  if (doc.blocked) throw new Error("native-access");
-  if (doc.format === "json" && !Object.hasOwn(doc.obj, "lyrics")) throw new Error("native-unknown-shape");
-  const available = doc.words.some(s => clean(s));
-  state.cache.put("availability:" + id, available, 300000); return available;
-}
 async function translate(ctx, original, state) {
   const language = state.settings.language, translated = new Map(), pending = [];
   for (const s of new Set(original)) {
@@ -597,33 +593,19 @@ export default async function(ctx) {
       const card = scrollDocument(bytes, header(ctx.response.headers, "Content-Type"), scroll[2]);
       if (card.hasLyrics) { status(ctx, "播放器已下发歌词卡片，等待实际歌词请求。"); return unchanged(); }
       if (!config.discover || config.provider === "off") { status(ctx, "播放器没有歌词卡片；无词发现或备用源已关闭，请在模块设置开启。"); return unchanged(); }
-      const cached = state.cache.get("lyrics:" + config.provider + ":" + scroll[2]);
-      let ready = goodObject(cached) && Array.isArray(cached.lyrics?.lines) && cached.lyrics.lines.some(l => clean(l.words));
-      let source = ready ? cached.lyrics.providerDisplayName : "Spotify";
-      if (!ready) {
-        try { ready = await nativeAvailable(ctx, scroll[1], scroll[2], state); }
-        catch { status(ctx, "播放器没有歌词卡片；未能确认 Spotify 原词状态（鉴权、服务错误或未知响应），已保留原列表。"); return unchanged(); }
-      }
-      if (!ready) {
-        let meta; try { meta = await metadata(ctx, scroll[1], scroll[2], state); } catch { }
-        if (!meta) { status(ctx, "播放器没有歌词卡片；Spotify 无词，但歌曲信息不可核对，无法补源。"); return unchanged(); }
-        const doc = await backup(ctx, meta, state); ready = Boolean(doc); source = doc?.lyrics.providerDisplayName;
-        if (!ready) { status(ctx, "播放器没有歌词卡片；未补入卡片。" + sourceReport(state)); return unchanged(); }
-      }
-      status(ctx, "已为此曲补入原生歌词卡片（" + source + "）；备用歌词已就绪，等待客户端请求。若界面仍无卡片，请切歌后重试并检查后续 lyrics 记录。");
+      // The card list is on the player's critical loading path. Do not gate it
+      // on a second authenticated Spotify request or a slow external lookup.
+      // The actual lyric response below preserves native words and access
+      // errors; only a real 404 or recognized empty result can query backups.
+      status(ctx, "已补入完整原生歌词入口；此阶段不联网查词，等待客户端的 lyrics 请求。入口不代表备用源已收录。");
       return { headers: responseHeaders(ctx, card.format), body: card.add() };
     }
     if (extended) {
       if (/json/i.test(header(ctx.response.headers, "Content-Type"))) { status(ctx, "已命中批量元数据，但当前 JSON 结构未适配；保留响应，等待播放器卡片请求。"); return unchanged(); }
-      const batch = extendedTracks(bytes), selected = [];
+      const batch = extendedTracks(bytes);
       for (const record of batch.records) cacheMetadata(state, record);
-      if (config.discover && config.provider !== "off") {
-        for (const record of batch.records.filter(r => r.hasLyrics === false).slice(0, 3)) {
-          if (await backup(ctx, record.meta, state)) selected.push(record);
-          if (Date.now() + 250 >= state.deadline) break;
-        }
-      }
-      status(ctx, "批量元数据：缓存 " + batch.records.length + " 首歌曲信息；" + (selected.length ? "确认 " + selected.length + " 首有备用歌词并设置有词标记。" : "未更改有词标记。" + sourceReport(state)));
+      const selected = config.discover && config.provider !== "off" ? batch.records.filter(r => r.hasLyrics === false) : [];
+      status(ctx, "批量元数据：缓存 " + batch.records.length + " 首歌曲信息；" + (selected.length ? "已为 " + selected.length + " 首无词歌曲开放原生歌词请求；此阶段不联网查词。" : "未更改有词标记。"));
       return selected.length ? { headers: responseHeaders(ctx, "protobuf"), body: batch.writeFlags(selected) } : unchanged();
     }
     if (metaURL) {
@@ -633,9 +615,7 @@ export default async function(ctx) {
       if (parsed.hasLyrics !== false || !config.discover || config.provider === "off") {
         status(ctx, "已缓存歌曲信息；" + (parsed.hasLyrics === true ? "Spotify 标记有词。" : !config.discover ? "无词发现已关闭，请在模块设置开启。" : "未修改有词标记。")); return unchanged();
       }
-      const doc = await backup(ctx, parsed.meta, state);
-      if (!doc) { status(ctx, "无原词歌曲未找到严格匹配的备用歌词，保留原状态。" + sourceReport(state)); return unchanged(); }
-      status(ctx, "已找到 " + doc.lyrics.providerDisplayName + " 歌词；客户端再次请求时提供。");
+      status(ctx, "已缓存歌曲信息并开放原生歌词请求；此阶段不联网查词，补源由实际 lyrics 请求处理。");
       return { headers: responseHeaders(ctx, "protobuf"), body: replaceField(parsed.fs, 18, numberField(18, 1)) };
     }
     const contentType = header(ctx.response.headers, "Content-Type");

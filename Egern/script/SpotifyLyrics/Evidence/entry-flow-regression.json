@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-15T10:58:16.687Z",
+  "version": "0.3.3",
+  "input": {
+    "kind": "captured real public anonymous scroll structure with iOS request headers",
+    "track": "76XUZSb13QUuj1HECY4Hvo",
+    "bytes": 207,
+    "sha256": "2f069c91c62e5b251a360af41f1e96c667477780d74821796da17ea7e06c021c"
+  },
+  "before": {
+    "version": "0.3.2",
+    "noInFlightTokenLeavesOriginalCardList": true,
+    "stalledPreflightBlocksListBeyond50ms": true,
+    "syntheticPreflightRequests": 1,
+    "scriptSha256": "4a3165c49a438cdf36d054e25f2a2dea9cc7d39b351ef7c3b6b03c2c6a6b5aa7"
+  },
+  "after": {
+    "entryHasLyrics": true,
+    "lyricUriAndSectionIdentityPresent": true,
+    "entryNetworkRequests": 0,
+    "entryProcessingMs": 1.456,
+    "existingCardsPreserved": true,
+    "scriptSha256": "bad6962d1e5fe43ca5c98bc380f7fc5d4792d01ef5b0de6d9a6a0b55d18bc1f0"
+  },
+  "scope": "Saved real server structure; synthetic credential absence and stalled network contexts; no Egern runtime or physical iOS display validation",
+  "deviceVerified": false,
+  "status": "passed"
+}

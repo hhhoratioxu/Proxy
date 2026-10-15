@@ -1,6 +1,7 @@
 // Real service verification for the user's reported song. No user credentials.
 // Spotify metadata is a captured public native response in fixtures/target-song.json.
-// Card and lyric-404 responses below are synthetic; this is not an iOS UI test.
+// The card structure is a captured anonymous server response with iOS headers.
+// The lyric-404 below is synthetic; this is not an iOS UI test.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {execFile} from 'node:child_process';
@@ -9,6 +10,8 @@ import {createHash} from 'node:crypto';
 import run, {parseMetadata, parseDocument, matches} from '../spotify-lyrics.js';
 const exec=promisify(execFile);
 const fixture=JSON.parse(readFileSync(new URL('./fixtures/target-song.json',import.meta.url),'utf8'));
+const scrollFixture=JSON.parse(readFileSync(new URL('./fixtures/target-scroll.json',import.meta.url),'utf8'));
+const version=JSON.parse(readFileSync(new URL('../package.json',import.meta.url),'utf8')).version;
 const bytes=Buffer.from(fixture.metadata_base64,'base64');
 assert.equal(createHash('sha256').update(bytes).digest('hex'),fixture.metadata_sha256);
 const parsed=parseMetadata(bytes,fixture.track_hex);
@@ -30,17 +33,20 @@ const ctx={env:{FALLBACK_PROVIDER:'auto',DISCOVER_MISSING:'true'},storage,http:{
   request:{url:'https://spclient.wg.spotify.com/metadata/4/track/'+fixture.track_hex,headers:new Headers({Accept:'application/vnd.google.protobuf'})},
   response:new Response(bytes,{headers:{'Content-Type':'application/vnd.google.protobuf'}})};
 const begin=Date.now();
-const metadata=await run(ctx);assert.equal(parseMetadata(metadata.body,fixture.track_hex).hasLyrics,true);
+const metadata=await run(ctx);assert.equal(parseMetadata(metadata.body,fixture.track_hex).hasLyrics,true);assert.equal(calls.length,0);
 ctx.request={url:'https://spclient.wg.spotify.com/scrollsita/v1/scroll/spotify:track:'+fixture.track_id,headers:new Headers()};
-ctx.response=new Response(Uint8Array.from([10,0,18,3,97,98,99]),{headers:{'Content-Type':'application/vnd.google.protobuf'}});
-const card=await run(ctx);assert.ok(card.headers);assert.ok(Buffer.from(card.body).includes(Buffer.from('spotify:track:'+fixture.track_id)));
+const scrollBytes=Buffer.from(scrollFixture.structure_field_base64,'base64');assert.equal(createHash('sha256').update(scrollBytes).digest('hex'),scrollFixture.structure_field_sha256);
+ctx.response=new Response(scrollBytes,{headers:{'Content-Type':scrollFixture.content_type}});
+const cardBegin=performance.now(),card=await run(ctx),cardMs=performance.now()-cardBegin;assert.ok(card.headers);assert.ok(Buffer.from(card.body).includes(Buffer.from('spotify:track:'+fixture.track_id)));assert.ok(Buffer.from(card.body).includes(Buffer.from('spotify:section:0JQ5DB6s3cssW5Bo6cGq21')));assert.equal(calls.length,0);
 ctx.request={url:'https://spclient.wg.spotify.com/color-lyrics/v2/track/'+fixture.track_id,headers:new Headers({Accept:'application/vnd.google.protobuf'})};
-ctx.response=new Response('missing',{status:404});const count=calls.length;
-const result=await run(ctx);assert.equal(result.status,200);assert.equal(calls.length,count);
+ctx.response=new Response('missing',{status:404});
+const result=await run(ctx);assert.equal(result.status,200);assert.ok(calls.some(c=>c.host==='c.y.qq.com'));
 const doc=parseDocument(result.body,'application/vnd.google.protobuf');assert.ok(doc.words.length>0);
-console.log(JSON.stringify({date:new Date().toISOString(),version:'0.3.1',track:parsed.meta,
+const count=calls.length;ctx.response=new Response('missing',{status:404});const again=await run(ctx);assert.equal(again.status,200);assert.equal(calls.length,count);
+console.log(JSON.stringify({date:new Date().toISOString(),version,track:parsed.meta,
   originalFlagPresent:parsed.hasLyricsField,proto2DefaultRecognized:parsed.hasLyrics===false,
   qq:fixture.qq_candidate,metadataMatch:true,provider:'QQ 音乐',lyricRows:doc.words.length,
   lyricResponseSha256:createHash('sha256').update(result.body).digest('hex'),metadataFlagSet:true,nativeCardAdded:true,
+  entryNetworkCalls:0,cardProcessingMs:Number(cardMs.toFixed(3)),sectionIdentityPresent:true,
   syntheticLyric404Filled:true,cacheReused:true,elapsedMs:Date.now()-begin,calls,
-  scope:'Captured real public Spotify metadata; live lyric providers; synthetic card and lyric-404 responses; no user session or iOS UI capture',deviceVerified:false,status:'passed'},null,2));
+  scope:'Captured real public Spotify metadata and anonymous scroll structure requested with iOS headers; live lyric providers; synthetic lyric-404; no user session or physical iOS UI capture',deviceVerified:false,status:'passed'},null,2));

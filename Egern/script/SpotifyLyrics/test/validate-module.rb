@@ -1,7 +1,7 @@
 require 'yaml'
 require 'json'
 root = File.expand_path('..', __dir__)
-remote = 'https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics.js'
+remote = 'https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=0.3.3'
 results = []
 ['SpotifyLyrics.yaml', 'SpotifyLyrics.local.yaml'].each do |file|
   config = YAML.load_file(File.join(root, file))
@@ -14,7 +14,9 @@ results = []
   config['scriptings'].each do |entry|
     type, script = entry.first
     raise 'script path' unless script['script_url'] == expected
+    raise 'remote update interval' if file == 'SpotifyLyrics.yaml' && script['update_interval'] != 3600
     next if type == 'generic'
+    raise 'binary response handling' if type == 'http_response' && script['binary_body'] != true
     pattern = Regexp.new(script['match'])
     raise 'unanchored' unless script['match'].start_with?('^https://') && script['match'].end_with?('$')
     raise 'unsafe timeout' unless script['timeout'] <= 25
