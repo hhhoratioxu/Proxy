@@ -1,0 +1,11 @@
+{
+  "version": "0.4.1",
+  "date": "2026-10-15",
+  "reproducedBug": "Wildcard/absent native Accept plus JSON error envelope selected JSON fallback in 0.4.0.",
+  "fix": "Explicit request format, then explicit Accept, then native protobuf default; never infer fallback representation from error MIME.",
+  "nativeFieldFacts": "https://github.com/zbzxbg/EeveeSpotifyEvolved/blob/292b93c78ba1770cb6e96f8bee719e9e6b2d0275/Sources/EeveeSpotify/Lyrics/Models/Lyrics.pb.swift",
+  "independentDecoder": "Official Google Protobuf Python SDK, temporary test dependency only.",
+  "egernAPI": "https://egernapp.com/docs/javascript-api/",
+  "deviceVerified": false,
+  "scope": "Wire format regression and live upstream lyrics; not an iPhone response capture."
+}

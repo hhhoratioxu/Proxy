@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-15T14:39:57.269Z",
+  "trackId": "76XUZSb13QUuj1HECY4Hvo",
+  "version": "0.4.1",
+  "requestAccept": "*/*",
+  "upstreamStatus": 404,
+  "upstreamErrorContentType": "application/json",
+  "oldOutputContentType": "application/json; charset=utf-8",
+  "newOutputContentType": "application/vnd.google.protobuf",
+  "oldSha256": "161ad4b170e369f333668644452cfa3ba4aa648182afb84d6d62a4ed46991e29",
+  "newSha256": "819eb5736b795dbfa5e2aa33daae222a14f082617bba860b4153e7039fb9b2c1",
+  "newBytes": 1528,
+  "providerCalls": [
+    {
+      "host": "lrclib.net",
+      "status": 200
+    },
+    {
+      "host": "c.y.qq.com",
+      "status": 200
+    },
+    {
+      "host": "c.y.qq.com",
+      "status": 200
+    }
+  ],
+  "cachedProviderDataReused": true,
+  "scope": "Live lyric provider and captured public metadata; synthetic iOS 404, not a phone capture.",
+  "deviceVerified": false,
+  "independentDecoder": {
+    "library": "google.protobuf",
+    "version": "7.36.2",
+    "oldJsonRejected": true,
+    "newProtobufAccepted": true,
+    "timedRows": 42,
+    "provider": "QQ 音乐",
+    "unsignedColorsAccepted": true,
+    "bodyPublished": false
+  }
+}

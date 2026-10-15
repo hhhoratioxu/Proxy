@@ -8,7 +8,7 @@ schema = previous['env_schema']
 schema['TRANSLATION_ENABLED']['default_value'] = 'true'
 schema['TRANSLATION_ENABLED']['description'] = '默认开启；以插件译文替换 Spotify 官方译文，保留原词与原生歌词排版。'
 schema['DISCOVER_MISSING']['description'] = '默认开启；自动处理客户端歌词检查、歌曲有词标记与原生歌词卡片，无词时匹配备用来源。'
-match = '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com(?::443)?/(?:color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\s]+)?/?|metadata/4/track/[0-9a-f]{32}|extended-metadata/v0/extended-metadata/?|scrollsita/v1/scroll/spotify(?::|%3[aA])track(?::|%3[aA])[0-9A-Za-z]{22}/?|user-customization-service/v1/customize/?|bootstrap/v1/bootstrap/?|v1/customize/?)(?:\?.*)?$'
+match = '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com(?::443)?/(?:color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\s]+)?/?|metadata/4/track/[0-9a-f]{32}|extended-metadata/v0/extended-metadata/?|scrollsita/v1/scroll/spotify(?::|%3[aA])track(?::|%3[aA])[0-9A-Za-z]{22}/?|user-customization-service/v1/customize/?|bootstrap/v1/bootstrap/?|v1/customize/?|context-resolve/v1/spotify(?::|%3[aA])[^?#\s/]{1,512}/?|connect-state/v1/devices/[0-9A-Za-z_-]{16,128}/?)(?:\?.*)?$'
 base = {
  'name'=>'Spotify 双语歌词 · VerseLyrics', 'author'=>'Horatio Xu', 'icon'=>'music.note.list',
  'homepage'=>'https://github.com/hhhoratioxu/Proxy/tree/main/Egern/script/SpotifyLyrics',

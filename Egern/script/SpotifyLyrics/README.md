@@ -1,22 +1,41 @@
 # Spotify 原生双语歌词 · VerseLyrics
 
-**0.4.0 · 2026-10-15 · Egern 正式模块**
+**0.4.1 · 2026-10-15 · Egern 正式模块**
 
 在 Spotify 自己的歌词页补充缺失歌词，并用插件译文接管官方译文列表。默认开启自动补源、无词入口适配和简体中文翻译。正常使用无需查看状态、收集日志或等待诊断通知；正式模块只有请求与响应两个处理项，没有定时任务或通知脚本。
 
 ## 安装或更新
 
-导入 [正式模块 0.4.0](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/SpotifyLyrics.yaml?v=0.4.0)：
+导入 [正式模块 0.4.1](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/SpotifyLyrics.yaml?v=0.4.1)：
 
 ```text
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/SpotifyLyrics.yaml?v=0.4.0
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/SpotifyLyrics.yaml?v=0.4.1
 ```
 
 1. 在 Egern 中关闭旧版 VerseLyrics 及所有 VerseLyrics 诊断模块，只启用这一份正式模块。
-2. 更新模块本身并重新加载配置；脚本会自动下载。模块使用独立的 `spotify-lyrics-0.4.0.js` 地址，避免沿用旧文件缓存。
+2. 更新模块本身并重新加载配置；脚本会自动下载。模块使用独立的 `spotify-lyrics-0.4.1.js` 地址，避免沿用旧文件缓存。
 3. 将 Spotify 从后台彻底划掉后重新打开，正常播放并查看 Spotify 原生歌词页。
 
 沿用已经安装、信任并开启的 Egern HTTPS 解密。仅处理 `spclient.wg.spotify.com` 和 `*-spclient.spotify.com`；不需要另外部署服务器、登录插件或购买 API Key。默认值已同时写入模块环境与脚本，导入即可使用。已有设置若显式关闭翻译，仍以用户保存的选项为准。
+
+## 0.4.1：补齐播放器元数据的通用入口
+
+用户明确反馈 0.4.0 中不止一首歌，而是官方无词歌曲普遍仍不显示。0.4.0 只处理曲库 `TRACK_V4` 和卡片，漏掉播放器自身的两条元数据路径：
+
+- `context-resolve/v1/spotify:…` 的 `Context.pages[].tracks[].metadata.has_lyrics`，涵盖单曲、专辑、歌单、电台与收藏等上下文。
+- `connect-state/v1/devices/…` 的 `Cluster.player_state`，包括当前曲目和前后队列各自的 `ProvidedTrack.metadata.has_lyrics`。
+
+现在统一处理上述音乐曲目标记；原有标题、艺人、队列、播放时间、设备、限制和未知字段保持原样，播客与无效字段不改。JSON 仅按范围替换目标值或插入目标键，不通过重序列化改变大整数、空格或其他内容；Protobuf 按明确字段路径修改目标字符串映射，其他字段保留原始字节。入口阶段不访问歌词源，仍在实际歌词请求明确无词时补源。没有按歌名或曲目 ID 写特例。
+
+已实时调用公开匿名 Spotify 会话的 context-resolve：旧处理器未覆盖，新处理器给真实上下文中的曲目补入 `has_lyrics=true`，其余响应文本完整保留。[验证摘要](./Evidence/player-entry-live.json)。另以多曲目、多上下文和独立构造的 Connect-state 二进制/JSON 样本验证通用路径。该证据不能确定用户手机所有会话的实际格式或最终 UI 行为；Connect-state 没有取得用户账号的真实响应。
+
+## 0.4.1：修正无词补源的原生响应格式
+
+0.4.0 在 `Accept: */*`、无词 404 返回 JSON 错误页时，错误地依据错误页 MIME 选择补词格式，向原生客户端返回了 JSON。0.4.1 改为依据客户端请求决定：显式 `format` 参数优先，明确的 Accept 格式其次；通配或省略 Accept 使用原生二进制，并在发起这类歌词请求时明确请求 Protobuf。错误页的 MIME 不再决定补词格式；已成功解析的 200 响应保留自己的格式，JSON 客户端继续支持。
+
+同时修正二进制格式误判：明确的 Protobuf 内容不会因消息长度字节恰为 `{` 而被当作 JSON；原生 ARGB 颜色使用标准 uint32 编码。
+
+已用《那页夏天》的真实 QQ 42 行歌词比较同一输入的旧版与新版：旧版输出 JSON，新版输出 Protobuf；独立的官方 `google.protobuf` 7.36.2 解码器拒绝旧 JSON 并成功读取新版 42 行时间轴。Spotify 404 错误输入为自行构造，不能据此认定用户手机收到过相同错误封装，或认定这是所有原生显示失败的唯一原因。验证见 [native-format-live.json](./Evidence/native-format-live.json)。Protobuf SDK 仅供独立测试，正式插件没有新增依赖；报文正文未上传。
 
 ## 0.4.0 的完整处理链
 
@@ -53,22 +72,22 @@ Google 网页翻译接口无需 Key，但没有开发者服务承诺，可能限
 
 ## 本次自行完成的验证
 
-- **125 项本地测试通过**：涵盖正式默认值、完整配置路径、六层 bootstrap、账号属性与未知字段保留、原生卡片、实际无词处理链、缓存复用、全部官方译文替换，以及不产生通知。
+- **159 项本地测试通过**：涵盖正式默认值、完整配置路径、六层 bootstrap、账号属性与未知字段保留、原生卡片、实际无词处理链、缓存复用、全部官方译文替换，以及不产生通知。
 - 两种 YAML 模块均验证通过：只有请求与响应两个处理项、单一响应缓存、固定的版本脚本地址、默认选项、URL 范围及二进制限制。
 - 对 [《那页夏天》](https://open.spotify.com/track/76XUZSb13QUuj1HECY4Hvo) 重新调用真实备用服务，QQ 返回 **42 行同步歌词**，再次请求复用缓存。Spotify 元数据和卡片使用先前保存的真实公开响应，歌词 404 为模拟输入。
-- 实时 Google 检查 5 项通过，涵盖单句连通性及简体中文、日语、阿拉伯语、法语的插件译文接管；这些用例的 Spotify 歌词输入为自写测试内容。
-- 公开 iOS 9.1.88 配置数据在内存中验证：原有 **1,096 项**全部保留，追加一个歌词检查开关；customize 和自行构造的 bootstrap 封装均通过。没有保存或重新分发完整配置。
+- 0.4.0 的实时 Google 检查 5 项通过，本次保留相同翻译策略，涵盖单句连通性及简体中文、日语、阿拉伯语、法语的插件译文接管；这些用例的 Spotify 歌词输入为自写测试内容。
+- 0.4.0 已对公开 iOS 9.1.88 配置数据在内存中验证，本次保留相同配置适配器：原有 **1,096 项**全部保留，追加一个歌词检查开关；customize 和自行构造的 bootstrap 封装均通过。没有保存或重新分发完整配置。
 
-证据：[本地测试](./Evidence/local-tests.txt)、[模块校验](./Evidence/module-validation.json)、[本次真实目标歌曲补源](./Evidence/production-target-live.json)、[本次真实翻译服务](./Evidence/production-translation-live.json)、[正式配置处理核验](./Evidence/production-config-validation.json)、[协议字段依据](./Evidence/production-protocol.json)。
+证据：[本地测试](./Evidence/local-tests.txt)、[模块校验](./Evidence/module-validation.json)、[本次真实补源与原生格式](./Evidence/native-format-live.json)、[0.4.0 真实翻译服务](./Evidence/production-translation-live.json)、[正式配置处理核验](./Evidence/production-config-validation.json)、[协议字段依据](./Evidence/production-protocol.json)。
 
-用户之前的 iPhone 记录已确认 Egern 2.21.0、Spotify 9.1.92.3058 上诊断处理器实际执行、元数据与卡片改写，用户也已反馈翻译有效。**本次 0.4.0 尚未取得手机原生无词显示的成功证据；上述服务及本地检查不能替代该效果，也不宣称每首歌都已在手机显示。** 安装后可正常使用，无需执行诊断或回传通知。
+用户之前的 iPhone 记录已确认 Egern 2.21.0、Spotify 9.1.92.3058 上诊断处理器实际执行、元数据与卡片改写，用户也已反馈翻译有效。**本次 0.4.1 尚未取得手机原生无词显示的成功证据；上述服务及本地检查不能替代该效果，也不宣称每首歌都已在手机显示。** 安装后可正常使用，无需执行诊断或回传通知。
 
 ## 源码、离线包与复验
 
-[下载完整离线包](../VerseLyrics-Egern-0.4.0.zip)，包含源码、本地模块、测试和证据。离线模块 `SpotifyLyrics.local.yaml` 引用本地 `spotify-lyrics.js`，与远程版二选一使用。该模块使用 Egern 原生 `ctx` API，不适用于旧式 `$done` 脚本引擎。
+[下载完整离线包](../VerseLyrics-Egern-0.4.1.zip)，包含源码、本地模块、测试和证据。离线模块 `SpotifyLyrics.local.yaml` 引用本地 `spotify-lyrics.js`，与远程版二选一使用。该模块使用 Egern 原生 `ctx` API，不适用于旧式 `$done` 脚本引擎。
 
 ```sh
-node --test test/spotify-lyrics.test.mjs test/native-entry.test.mjs
+node --test test/spotify-lyrics.test.mjs test/native-entry.test.mjs test/native-format.test.mjs test/player-entry.test.mjs
 ruby test/validate-module.rb
 # 模块及固定版本脚本的构建
 ruby build-module.rb

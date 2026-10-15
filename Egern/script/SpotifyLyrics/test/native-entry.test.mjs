@@ -21,7 +21,7 @@ function ctx(url,body,{status=200,env={},type='application/x-protobuf',store=new
 }
 const endpoint=path=>'https://spclient.wg.spotify.com/'+path;
 for(const path of ['user-customization-service/v1/customize','bootstrap/v1/bootstrap'])test('production handles the complete native '+path+' response silently and preserves every other field',async()=>{
- const bootstrap=path.startsWith('bootstrap/'),input=wrapper(configuration(),bootstrap),x=ctx(endpoint(path),input),result=await run(x.context);assert.ok(result.headers);assert.equal(result.headers.get('ETag'),null);assert.equal(result.headers.get('x-verselyrics'),'0.4.0');assert.equal(x.notices.length,0);assert.equal(x.calls.length,0);
+ const bootstrap=path.startsWith('bootstrap/'),input=wrapper(configuration(),bootstrap),x=ctx(endpoint(path),input),result=await run(x.context);assert.ok(result.headers);assert.equal(result.headers.get('ETag'),null);assert.equal(result.headers.get('x-verselyrics'),'0.4.1');assert.equal(x.notices.length,0);assert.equal(x.calls.length,0);
  let a=input,b=Buffer.from(result.body);for(const no of bootstrap?[2,1,1,1,1,1]:[1,1,1]){const old=read(a),fresh=read(b);assert.deepEqual(old.filter(f=>f.no!==no).map(f=>f.raw),fresh.filter(f=>f.no!==no).map(f=>f.raw));a=old.find(f=>f.no===no).payload;b=fresh.find(f=>f.no===no).payload;}
  const old=read(a),fresh=read(b);assert.deepEqual(old.filter(f=>f.no!==3).map(f=>f.raw),fresh.filter(f=>f.no!==3).map(f=>f.raw));const assignment=read(fresh.find(f=>f.no===3).payload);assert.equal(read(assignment.find(f=>f.no===3).payload).find(f=>f.no===1).value,1);assert.doesNotMatch(JSON.stringify([...x.store]),/TEST_ONLY|PRIVATE_ACCOUNT_OPAQUE/);
 });
@@ -34,7 +34,7 @@ for(const status of [304,401,403,429,500])test('production configuration HTTP '+
 test('disabled discovery, disabled fallback, marked responses and internal requests do not enable configuration',async()=>{
  for(const env of [{DISCOVER_MISSING:'false'},{FALLBACK_PROVIDER:'off'}]){const x=ctx(endpoint('user-customization-service/v1/customize'),configuration(),{env});assert.equal(await run(x.context),undefined);assert.equal(x.context.response.bodyUsed,false);assert.equal(x.notices.length,0);}
  const x=ctx(endpoint('user-customization-service/v1/customize'),configuration());x.context.request.headers.set('x-verselyrics-internal','1');assert.equal(await run(x.context),undefined);assert.equal(x.context.response.bodyUsed,false);
- const y=ctx(endpoint('user-customization-service/v1/customize'),configuration());y.context.response.headers.set('x-verselyrics','0.4.0');assert.deepEqual(Buffer.from((await run(y.context)).body),configuration());
+ const y=ctx(endpoint('user-customization-service/v1/customize'),configuration());y.context.response.headers.set('x-verselyrics','0.4.1');assert.deepEqual(Buffer.from((await run(y.context)).body),configuration());
 });
 test('unknown configuration, JSON, and host or path lookalikes are retained',async()=>{
  for(const [input,type] of [[str(99,'unknown'),'application/x-protobuf'],[Buffer.from('{"account":"keep"}'),'application/json']]){const x=ctx(endpoint('user-customization-service/v1/customize'),input,{type});assert.deepEqual(Buffer.from((await run(x.context)).body),input);assert.equal(x.notices.length,0);}
@@ -55,5 +55,5 @@ test('one production response handler shares metadata through card insertion, au
  const count=requests.length;const again=ctx(lyrics.context.request.url,'missing',{status:404,store,network,type:'application/json'});assert.equal((await run(again.context)).status,200);assert.equal(requests.length,count);assert.equal(metadata.notices.length+cards.notices.length+lyrics.notices.length+again.notices.length,0);
 });
 test('the production bundle has no notification adapter, schedule or runtime imports',()=>{
- const source=readFileSync(new URL('../spotify-lyrics.js',import.meta.url),'utf8');assert.doesNotMatch(source,/ctx\.notify|diagnosticNotify|DIAGNOSTIC_VERSION|^\s*import\s/m);assert.deepEqual(readFileSync(new URL('../spotify-lyrics-0.4.0.js',import.meta.url)),Buffer.from(source));
+ const source=readFileSync(new URL('../spotify-lyrics.js',import.meta.url),'utf8');assert.doesNotMatch(source,/ctx\.notify|diagnosticNotify|DIAGNOSTIC_VERSION|^\s*import\s/m);assert.deepEqual(readFileSync(new URL('../spotify-lyrics-0.4.1.js',import.meta.url)),Buffer.from(source));
 });

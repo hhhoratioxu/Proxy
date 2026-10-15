@@ -1,10 +1,10 @@
 {
   "name": "verselyrics-egern",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test test/spotify-lyrics.test.mjs test/native-entry.test.mjs",
+    "test": "node --test test/spotify-lyrics.test.mjs test/native-entry.test.mjs test/native-format.test.mjs test/player-entry.test.mjs",
     "smoke": "node test/live-smoke.mjs",
     "smoke:target": "node test/live-target.mjs"
   }

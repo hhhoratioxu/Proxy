@@ -168,9 +168,9 @@ test('URL filters exclude auth, audio, ads, lookalike domains and unrelated APIs
   for(const url of ['https://accounts.spotify.com/login',URL.replace('spotify.com','spotify.com.evil.test'),URL.replace('/color-lyrics/v2/','/audio/v2/'),URL.replace('https:','http:'),URL+'/other'])assert.equal(LYRIC_URL.test(url),false);
   assert.ok(META_URL.test(`https://spclient.wg.spotify.com/metadata/4/track/${HEX}`));
 });
-test('fallback protobuf decodes with independent reader and proper signed colors',()=>{
+test('fallback protobuf decodes with independent reader and canonical native uint32 colors',()=>{
   const doc={lyrics:{syncType:'UNSYNCED',lines:[{startTimeMs:'0',words:'Plain original'}],provider:'lrclib',providerDisplayName:'LRCLIB',language:''},colors:{background:-15656936,text:-1,highlightText:-1}};
-  const bytes=encodeDocument(doc,'protobuf'),outer=readFields(bytes),inner=readFields(outer[0].payload);assert.equal(inner.find(f=>f.no===3).payload.toString(),'lrclib');assert.equal(outer[1].payload.length,33);assert.equal(parseDocument(bytes,'application/x-protobuf').words[0],'Plain original');
+  const bytes=encodeDocument(doc,'protobuf'),outer=readFields(bytes),inner=readFields(outer[0].payload);assert.equal(inner.find(f=>f.no===3).payload.toString(),'lrclib');assert.equal(outer[1].payload.length,18);assert.equal(parseDocument(bytes,'application/x-protobuf').words[0],'Plain original');
 });
 test('malformed wire fuzz always returns original bytes without throwing',async()=>{
   let seed=42;

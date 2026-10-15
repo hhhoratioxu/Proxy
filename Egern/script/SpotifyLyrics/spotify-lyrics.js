@@ -1,9 +1,9 @@
-/* VerseLyrics 0.4.0 — original Egern native script, 2026-10-15.
+/* VerseLyrics 0.4.1 — original Egern native script, 2026-10-15.
  * Rewrites Spotify color-lyrics JSON and protobuf; no third-party script runtime.
  * Public protocol field numbers and service endpoints are documented in README.md.
  * Egern API: export default async function(ctx), ctx.http, ctx.storage.
  */
-const VERSION = "0.4.0";
+const VERSION = "0.4.1";
 const KEY = "VerseLyrics.v1.cache";
 const STATUS = "VerseLyrics.v1.status";
 const EVENTS = "VerseLyrics.v1.events";
@@ -145,7 +145,7 @@ function checkTranslationRows(rows, count) {
 function parseDocument(bytes, contentType) {
   if (bytes.length > LIMIT) throw new Error("body-limit");
   let at = 0; while (at < bytes.length && [9, 10, 13, 32].includes(bytes[at])) at++;
-  if (/json/i.test(contentType) || bytes[at] === 123) {
+  if (/json/i.test(contentType) || (!/protobuf|octet-stream/i.test(contentType) && bytes[at] === 123)) {
     const obj = JSON.parse(text(bytes));
     if (!goodObject(obj) || (obj.lyrics != null && !goodObject(obj.lyrics))) throw new Error("json-shape");
     const lyrics = obj.lyrics;
@@ -191,8 +191,20 @@ function encodeDocument(doc, format) {
     ...l.lines.map(line => dataField(2, join([numberField(1, Number(line.startTimeMs)), stringField(2, line.words)]))),
     stringField(3, l.provider), stringField(5, l.providerDisplayName), stringField(10, l.language || "")
   ]);
-  const colors = join([numberField(1, doc.colors.background), numberField(2, doc.colors.text), numberField(3, doc.colors.highlightText)]);
+  // Native LyricsColors fields are uint32; JSON exposes signed ARGB numbers.
+  const colors = join([numberField(1, doc.colors.background >>> 0), numberField(2, doc.colors.text >>> 0), numberField(3, doc.colors.highlightText >>> 0)]);
   return join([dataField(1, body), dataField(2, colors)]);
+}
+function fallbackFormat(ctx, existing) {
+  if (existing) return existing.format;
+  const url = str(ctx.request.url), accept = header(ctx.request.headers, "Accept");
+  const explicit = /(?:^|[?&])format=(json|protobuf)(?:&|$)/i.exec(url)?.[1].toLowerCase();
+  if (explicit) return explicit;
+  if (/protobuf|octet-stream/i.test(accept)) return "protobuf";
+  if (/(?:^|[,;\s])application\/(?:[a-z0-9.+-]+\+)?json(?:[,;\s]|$)/i.test(accept)) return "json";
+  // An error's MIME type describes the error envelope, not the native client's
+  // lyric decoder. Wildcard/absent Accept on this native endpoint uses protobuf.
+  return "protobuf";
 }
 function parseMetadata(bytes, hex) {
   const fs = fields(bytes), gid = last(fs, 1, 2);
@@ -331,7 +343,7 @@ function status(ctx, message) {
   try {
     const url = str(ctx.request?.url), lyric = LYRIC_URL.exec(url), meta = META_URL.exec(url), scroll = SCROLL_URL.exec(url);
     const event = { message, at: new Date().toISOString(), version: VERSION,
-      route: lyric ? "lyrics" : meta ? "metadata" : scroll ? "player-cards" : EXTENDED_URL.test(url) ? "extended-metadata" : LYRICS_GATE_URL.test(url) ? "lyrics-entry" : "manual",
+      route: lyric ? "lyrics" : meta ? "metadata" : scroll ? "player-cards" : EXTENDED_URL.test(url) ? "extended-metadata" : LYRICS_GATE_URL.test(url) ? "lyrics-entry" : PLAYER_ENTRY_URL.test(url) ? "player-metadata" : "manual",
       ...(lyric || scroll ? { trackId: (lyric || scroll)[2] } : {}), ...(ctx.response ? { httpStatus: ctx.response.status } : {}) };
     const recent = ctx.storage.getJSON(EVENTS);
     ctx.storage.setJSON(EVENTS, [...(Array.isArray(recent) ? recent : []).slice(-7), event]);
@@ -568,6 +580,7 @@ export default async function(ctx) {
         ({ type: "text", text: [e.at, e.route, e.trackId || "", e.httpStatus || "", e.message].join(" · "), font: { size: "footnote" } })) : [])
     ] };
   }
+  if (PLAYER_ENTRY_URL.test(str(ctx.request.url)) && !header(ctx.request.headers, INTERNAL)) return handlePlayerEntry(ctx);
   if (LYRICS_GATE_URL.test(str(ctx.request.url)) && !header(ctx.request.headers, INTERNAL)) return handleLyricGate(ctx);
   const url = str(ctx.request.url), lyric = LYRIC_URL.exec(url), metaURL = META_URL.exec(url), extended = EXTENDED_URL.exec(url), scroll = SCROLL_URL.exec(url);
   if ((!lyric && !metaURL && !extended && !scroll) || header(ctx.request.headers, INTERNAL)) return;
@@ -578,6 +591,7 @@ export default async function(ctx) {
     const headers = ctx.request.headers;
     for (const name of ["If-None-Match", "If-Modified-Since", "Accept-Encoding", "Cache-Control"]) headers.delete(name);
     headers.set("Accept-Encoding", "identity"); headers.set("Cache-Control", "no-cache");
+    if (lyric && fallbackFormat(ctx) === "protobuf" && !/protobuf|octet-stream|json/i.test(header(headers, "Accept"))) headers.set("Accept", "application/x-protobuf");
     return { headers };
   }
   const code = ctx.response.status;
@@ -635,9 +649,8 @@ export default async function(ctx) {
       if (!meta) { status(ctx, "Spotify 无词，但未取得可核对的歌曲信息，保留原响应。"); return unchanged(); }
       generated = await backup(ctx, meta, state);
       if (!generated) { status(ctx, "备用歌词未取得，保留原响应。" + sourceReport(state)); return unchanged(); }
-      const accept = header(ctx.request.headers, "Accept");
-      const wantsJSON = doc ? doc.format === "json" : /(?:^|[?&])format=json(?:&|$)/.test(url) || (!/protobuf|octet-stream/i.test(accept) && (/json/i.test(accept) || /json/i.test(contentType)));
-      doc = parseDocument(encodeDocument(generated, wantsJSON ? "json" : "protobuf"), wantsJSON ? "application/json" : "application/x-protobuf");
+      const format = fallbackFormat(ctx, doc);
+      doc = parseDocument(encodeDocument(generated, format), format === "json" ? "application/json" : "application/x-protobuf");
     }
     if (!doc || !doc.words.length) return unchanged();
     const result = config.translate ? await translate(ctx, doc.words, state) : { translations: [], changed: 0 };
@@ -654,7 +667,7 @@ export default async function(ctx) {
   finally { state.cache.save(); }
 }
 export { fields, uint, dataField, stringField, numberField, join, utf8, text, base62Hex, hexBase62,
-  parseDocument, encodeDocument, parseMetadata, extendedTracks, scrollDocument, settings, matches, metadataNormal, lrc, translate, sourceLyrics, loadCache, LANGUAGES, LYRIC_URL, META_URL, EXTENDED_URL, SCROLL_URL };
+  parseDocument, encodeDocument, parseMetadata, extendedTracks, scrollDocument, settings, matches, metadataNormal, lrc, translate, sourceLyrics, loadCache, LANGUAGES, LYRIC_URL, META_URL, EXTENDED_URL, SCROLL_URL, fallbackFormat };
 
 // Original, narrowly scoped iOS lyric-entry configuration adapter.
 // Uses public Protobuf field facts; never changes account attributes or other
@@ -780,3 +793,103 @@ async function handleLyricGate(ctx) {
 }
 
 export { LYRICS_GATE_URL, nativeLyricGate };
+
+// Native playback models carry separate has_lyrics metadata from TRACK_V4.
+const PLAYER_ENTRY_URL = new RegExp("^https://(" + HOST + ")(?::443)?/(?:context-resolve/v1/spotify(?::|%3[aA])[^?#\\s/]{1,512}|connect-state/v1/devices/[0-9A-Za-z_-]{16,128})/?(?:\\?.*)?$");
+function playerEntryWire(bytes, connect) {
+  let changed = 0, visited = 0;
+  function track(body, mapNumber) {
+    const fs = fields(body), uri = word(fs, 1);
+    if (!/^spotify:track:[0-9A-Za-z]{22}$/.test(uri)) return body;
+    if (++visited > 300) throw new Error("player-track-limit");
+    const maps = fs.filter(f => f.number === mapNumber);
+    if (maps.some(f => f.wire !== 2)) return body;
+    const targets = maps.map(f => ({f, fs:fields(f.payload)})).filter(t => word(t.fs,1) === "has_lyrics");
+    if (targets.some(t => !["true", "false"].includes(word(t.fs,2)))) return body;
+    const replacements = new Map();
+    for (const t of targets) if (word(t.fs,2) === "false") {
+      replacements.set(t.f, dataField(mapNumber, replaceField(t.fs,2,stringField(2,"true")))); changed++;
+    }
+    const parts = fs.map(f => replacements.get(f) || f.raw);
+    if (!targets.length) { parts.push(dataField(mapNumber,join([stringField(1,"has_lyrics"),stringField(2,"true")]))); changed++; }
+    return join(parts);
+  }
+  function repeated(body, number, transform) {
+    return join(fields(body).map(f => {
+      if(f.number!==number||f.wire!==2)return f.raw;
+      const before=changed, value=transform(f.payload);return before===changed?f.raw:dataField(number,value);
+    }));
+  }
+  let body;
+  if (connect) {
+    // Cluster.player_state(3) -> PlayerState.track(7), prev(19), next(20).
+    body = repeated(bytes,3,state => {
+      const fs = fields(state);
+      return join(fs.map(f => {
+        if(![7,19,20].includes(f.number)||f.wire!==2)return f.raw;
+        const before=changed,value=track(f.payload,3);return before===changed?f.raw:dataField(f.number,value);
+      }));
+    });
+  } else {
+    // Context.pages(5) -> ContextPage.tracks(4) -> ContextTrack.metadata(4).
+    if(!/^spotify:[^\s?#]{1,512}$/.test(word(fields(bytes),1)))return {body:bytes,changed:0,visited:0};
+    body = repeated(bytes,5,page => repeated(page,4,t => track(t,4)));
+  }
+  return {body:changed ? body : bytes,changed,visited};
+}
+function playerEntryJSON(bytes, connect) {
+  const source = text(bytes), obj = JSON.parse(source), plans = new Map();let visited = 0;
+  function target(value,path) {
+    if (!goodObject(value) || !/^spotify:track:[0-9A-Za-z]{22}$/.test(str(value.uri))) return;
+    if (++visited > 300) throw new Error("player-track-limit");
+    if (!Object.hasOwn(value,"metadata")) { plans.set(JSON.stringify(path),{add:'"metadata":{"has_lyrics":"true"}'}); return; }
+    if (!goodObject(value.metadata)) return;
+    const meta = value.metadata;
+    if (!Object.hasOwn(meta,"has_lyrics")) plans.set(JSON.stringify([...path,"metadata"]),{add:'"has_lyrics":"true"'});
+    else if (meta.has_lyrics === "false" || meta.has_lyrics === false) plans.set(JSON.stringify([...path,"metadata","has_lyrics"]),{value:typeof meta.has_lyrics === "string" ? '"true"' : 'true'});
+  }
+  if (connect) {
+    const state = obj?.player_state;
+    if (goodObject(state)) {
+      target(state.track,["player_state","track"]);
+      for (const key of ["prev_tracks","next_tracks"]) if (Array.isArray(state[key])) state[key].forEach((v,i)=>target(v,["player_state",key,i]));
+    }
+  } else if (goodObject(obj) && /^spotify:[^\s?#]{1,512}$/.test(str(obj.uri)) && Array.isArray(obj.pages)) {
+    obj.pages.forEach((page,i)=>{if(Array.isArray(page?.tracks))page.tracks.forEach((v,j)=>target(v,["pages",i,"tracks",j]));});
+  }
+  if (!plans.size) return {body:bytes,changed:0,visited};
+  // Splice only selected JSON tokens. Preserve all other text, escaped strings,
+  // numeric IDs, whitespace and unknown data without JSON reserialization.
+  const edits=[];let at=0,nodes=0;
+  function space(){while(/\s/.test(source[at]||"x"))at++;}
+  function string(){const begin=at++;while(at<source.length){const ch=source[at++];if(ch==='\\')at++;else if(ch==='"')return source.slice(begin,at);}throw new Error("player-json-string");}
+  function scan(path,depth){
+    if(depth>64||++nodes>100000)throw new Error("player-json-limit");space();const begin=at,plan=plans.get(JSON.stringify(path));
+    if(source[at]==='{'){
+      at++;space();const empty=source[at]==='}';
+      while(source[at]!=='}'){const key=JSON.parse(string());space();if(source[at++]!==':')throw new Error("player-json-colon");scan([...path,key],depth+1);space();if(source[at]===','){at++;space();}else break;}
+      if(source[at]!=='}')throw new Error("player-json-object");if(plan?.add)edits.push({begin:at,end:at,value:(empty?'':',')+plan.add});at++;
+    }else if(source[at]==='['){at++;space();let i=0;while(source[at]!==']'){scan([...path,i++],depth+1);space();if(source[at]===','){at++;space();}else break;}if(source[at++]!==']')throw new Error("player-json-array");}
+    else if(source[at]==='"')string();else{while(at<source.length&&!/[\s,}\]]/.test(source[at]))at++;}
+    if(plan?.value)edits.push({begin,end:at,value:plan.value});
+  }
+  scan([],0);space();if(at!==source.length||edits.length!==plans.size)throw new Error("player-json-shape");
+  let body=source;for(const e of edits.sort((a,b)=>b.begin-a.begin))body=body.slice(0,e.begin)+e.value+body.slice(e.end);
+  JSON.parse(body);return {body:utf8(body),changed:edits.length,visited};
+}
+async function handlePlayerEntry(ctx) {
+  let config;try {config=settings(ctx.env);}catch{return;}
+  if(!config.discover||config.provider==="off")return;
+  if(!ctx.response){const h=ctx.request.headers;h.delete("If-None-Match");h.delete("If-Modified-Since");h.set("Accept-Encoding","identity");h.set("Cache-Control","no-cache");return {headers:h};}
+  if(ctx.response.status!==200||header(ctx.response.headers,MARKER))return;
+  let bytes;try{bytes=new Uint8Array(await ctx.response.arrayBuffer());}catch{return;}
+  if(bytes.length>LIMIT)return {body:bytes};
+  try {
+    const connect=str(ctx.request.url).includes("/connect-state/"),type=header(ctx.response.headers,"Content-Type"),format=/json/i.test(type)?"json":"protobuf";
+    if(format==="protobuf"&&!/protobuf|octet-stream/i.test(type))return {body:bytes};
+    const result=format==="json"?playerEntryJSON(bytes,connect):playerEntryWire(bytes,connect);
+    status(ctx,"播放器曲目元数据：识别 "+result.visited+" 首，更新 "+result.changed+" 个歌词标记。");
+    return result.changed?{headers:responseHeaders(ctx,format),body:result.body}:{body:bytes};
+  }catch{return {body:bytes};}
+}
+export { PLAYER_ENTRY_URL, playerEntryWire, playerEntryJSON };
