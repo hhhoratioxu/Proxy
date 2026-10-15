@@ -1,12 +1,31 @@
 # Spotify 原生双语歌词 · VerseLyrics for Egern
 
-版本 **0.3.0** · 2026-10-15 · 优先适配 iPhone／iPad
+版本 **0.3.1** · 2026-10-15 · 优先适配 iPhone／iPad
 
 本版向 Spotify 的独立译文字段提供数据：**原歌词留在 `lyrics.lines`，译文写入 `lyrics.alternatives`，界面的字体、颜色、原词/译文层级、滚动、高亮和翻译开关继续由 Spotify 自己控制。** 原词不会被改成“原词 + 换行 + 译文”。
 
-**已完成协议实现、本地测试与真实翻译服务核验；尚未在 iPhone／iPad 上验收实际排版和翻译按钮。** 有些歌曲没有译文时不会显示翻译按钮；也可能是客户端版本或功能开放状态不支持。补入译文后是否出现原生按钮，需要在实际设备上确认。
+**用户已反馈 iPhone 版 Spotify 9.1.92.3058 的原有歌词翻译能够工作；本轮修正无歌词补源。** 已用用户提供的歌曲取得真实 Spotify 元数据与 QQ 同版本歌词；手机补词界面的最终显示尚未独立验收。
 
-[远程模块](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/SpotifyLyrics.yaml) · [完整 ZIP](../VerseLyrics-Egern-0.3.0.zip) · [ZIP SHA-256](../VerseLyrics-Egern-0.3.0.zip.sha256) · [原创脚本](./spotify-lyrics.js)
+[远程模块](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/SpotifyLyrics.yaml) · [完整 ZIP](../VerseLyrics-Egern-0.3.1.zip) · [ZIP SHA-256](../VerseLyrics-Egern-0.3.1.zip.sha256) · [原创脚本](./spotify-lyrics.js)
+
+## 0.3.1：用《那页夏天》实际复现并修正补词失败
+
+用户提供的 [《那页夏天》](https://open.spotify.com/track/76XUZSb13QUuj1HECY4Hvo) 在 Spotify 原本没有歌词。实际核对得到：
+
+| 字段 | Spotify 原生元数据 | QQ 音乐对应版本 |
+| --- | --- | --- |
+| 歌名 | 那页夏天 | 那页夏天 |
+| 歌手 | 王俊凱 | 王俊凯 |
+| 专辑 | WJK | WJK |
+| 时长 | 246.099 秒 | 246 秒 |
+
+旧代码把「凱」和「凯」当成不同歌手，因此拒绝 QQ 的正确结果；Spotify 此曲的 `has_lyrics` 字段还被省略了。这个字段属于 proto2 的可选 bool，省略后的默认值是 `false`，旧代码却将它视为未知并跳过发现流程。
+
+本版修正这两个原因：元数据比较使用 Unicode Unihan 的无歧义汉字简繁变体映射；已识别的 proto2 曲目按照默认布尔值处理。歌名、完整歌手集合、专辑与时长仍全部核对，不将翻唱或不同版本当成原曲。原歌词和译文比较保留原有逻辑。
+
+实际查源中 LRCLIB 返回 429，随后 QQ 搜索与取词均返回 200，取到 **42 行带时间戳歌词**，查源约 **1.95 秒**。同一份真实 Spotify 元数据已覆盖本地回归；原生卡片与歌词 404 的处理仍通过模拟响应验证，不等于用户手机已经显示成功。证据见 [目标歌曲核验](./Evidence/target-song-live.json)。
+
+该修复适用于所有经过相同处理路径的歌曲，并非按这一个 track ID 特判。自动补词仍依赖至少一个备用源收录对应版本的歌词；源中也没有内容的歌曲无法保证补齐。
 
 ## 修正「Spotify 原本没歌词，仍然不显示」
 
@@ -14,7 +33,7 @@
 
 0.3.0 新增 `scrollsita/v1/scroll/spotify:track:…` 卡片列表处理和 `extended-metadata/v0/extended-metadata` 批量元数据处理，并匹配显式 `:443` 与 URL 编码的曲目 URI。无词发现默认开启，**已有模块保存的 `false` 不会自动变为 `true`，需要在设置中手动开启**。
 
-播放器未下发歌词卡片时，先确认 Spotify 原词状态。只有 Spotify 原词可用，或已从备用源找到并缓存同一版本的歌词，才插入该曲目的原生歌词卡片；不是对所有歌曲盲目标记有词。后续真实歌词请求仍优先使用 Spotify 原词，明确无词时读取备用缓存。批量元数据只解析 `TRACK_V4` 中的曲目信息；音频、可播放性和其他扩展数据保持原样。
+播放器未下发歌词卡片时，先确认 Spotify 原词状态。只有 Spotify 原词可用，或已从备用源找到并缓存同一版本的歌词，才插入该曲目的原生歌词卡片。后续真实歌词请求仍优先使用 Spotify 原词，明确无词时读取备用缓存。0.3.1 也处理已识别 proto2 元数据省略布尔字段的默认无词状态。批量元数据只解析 `TRACK_V4` 中的曲目信息；音频、可播放性和其他扩展数据保持原样。
 
 **上述链路已有独立模拟样本和真实 QQ 备用服务测试，仍没有当前 iPhone／iPad 的实际流量与界面验收。** 如果备用服务没有同版本歌词、原词状态无法确认，或客户端采用尚未适配的接口，歌曲仍可能不显示。当前不支持批量元数据的 JSON 响应；遇到它会保留原响应，等待卡片路径。
 
@@ -85,11 +104,11 @@ Spotify 读取歌词响应时，Egern 解析对应的 JSON 或 Protobuf 内容�
 
 语言包括简体/繁体中文、英语、日语、韩语、法语、德语、西班牙语、葡萄牙语、意大利语、俄语、阿拉伯语、印地语、印尼语、越南语、泰语、土耳其语、荷兰语、波兰语、瑞典语、乌克兰语、希伯来语、波斯语、马来语和希腊语。
 
-Spotify 有原词时始终使用原词。只有明确返回 404 或已识别的空歌词时才查询备用源。备用匹配核对歌名、完整歌手集合、专辑和时长，时长差值不超过 2 秒；不主动放宽到翻唱、现场版、重制版或其他专辑。只有纯文本时标记 `UNSYNCED`，不制造同步时间轴。备用歌词显示真实提供商。
+Spotify 有原词时始终使用原词。只有明确返回 404、已识别的空歌词或已识别元数据的无词状态时才查询备用源。备用匹配核对歌名、完整歌手集合、专辑和时长，时长差值不超过 2 秒；0.3.1 在元数据比较中统一无歧义的汉字简繁变体，不翻译人名或省略版本后缀。不会放宽到翻唱、现场版、重制版或其他专辑。只有纯文本时标记 `UNSYNCED`，不制造同步时间轴。备用歌词显示真实提供商。
 
 登录/权限提示、401、403、429、5xx、未知结构和处理错误会保留原响应。翻译服务限流会按 `Retry-After` 冷却；单次共享约 20 秒网络预算，每个网络请求最长 5.5 秒。首次翻译可能让歌词加载变慢。
 
-有些无词歌曲不会发起歌词请求。`DISCOVER_MISSING` 通过播放器卡片列表、旧版元数据以及批量 `TRACK_V4` 元数据提供入口；元数据仅在明确 `has_lyrics=false` 且已找到备用歌词时改变标记。批量请求最多为 3 首已明确无词的曲目查源，其余只缓存元数据，避免一次预取产生无限查询。改写过的批量实体移除旧 ETag，缩短在线缓存 TTL，不建立可离线使用的有词标记。内置歌曲信息查询在旧接口不可用时尝试原生批量接口；401/403/429 不尝试通过另一接口绕开。
+有些无词歌曲不会发起歌词请求。`DISCOVER_MISSING` 通过播放器卡片列表、旧版元数据以及批量 `TRACK_V4` 元数据提供入口；已识别元数据的 `has_lyrics=false`（含该 proto2 字段省略时的默认值）且已找到备用歌词时才改变标记。损坏的布尔字段不会被当成无词。批量请求最多为 3 首已明确无词的曲目查源，其余只缓存元数据，避免一次预取产生无限查询。改写过的批量实体移除旧 ETag，缩短在线缓存 TTL，不建立可离线使用的有词标记。内置歌曲信息查询在旧接口不可用时尝试原生批量接口；401/403/429 不尝试通过另一接口绕开。
 
 ## 离线安装
 
@@ -105,13 +124,14 @@ Spotify 有原词时始终使用原词。只有明确返回 404 或已识别的�
 
 2026-10-15：
 
-- **94 项离线测试通过**，含无卡片 → 原生无词 → 严格补源 → 原生卡片 → 后续歌词响应的模拟完整链路、批量元数据与其他曲目/未知扩展保留、旧接口失败后的批量查询、鉴权失败不补卡片、端口/编码匹配、诊断信息不含凭据，以及原有翻译与 180 组损坏二进制输入测试。
+- **100 项离线测试通过**，新增用户目标歌曲的真实 Spotify 元数据回归、简繁歌手/专辑匹配、默认 false 的旧版与批量元数据发现、原歌词简繁翻译保留，以及损坏布尔字段回退；保留原有无卡片补全、严格版本匹配、未知字段保留与损坏输入测试。
 - 两种模块的 YAML、脚本路径、默认值、25 个语言选项、URL 匹配范围和大小/超时限制校验通过。
-- 本版真实 QQ 查询取得 63 行歌词，并经过模拟播放器缺卡片与歌词 404 的补全链路。歌曲信息由 QQ 查询结果构建，Spotify 请求和响应均为模拟，不能证明目标歌曲在 Spotify 里的匹配或手机显示。
+- 本版针对《那页夏天》：Spotify 原生元数据来自匿名公开会话的真实服务器响应，使用其中的歌名/完整歌手/专辑/时长查源，QQ 实际取到 42 行带时间戳歌词。卡片与歌词 404 仍为模拟响应，未取得用户手机的界面证据。
+- 0.3.0 的 QQ 63 行链路作为历史记录保留，其 Spotify 元数据和响应为模拟。本版没有重复那组旧查询。
 - Google 单句及简体中文、日语、阿拉伯语、法语的独立译文服务记录来自 0.2.0；本版保留原生翻译逻辑，本轮未重复该组网络请求。
 - 备用服务连通性记录来自 0.1.0 的真实查询：QQ 音乐和网易云分别取到 63 行、43 行同步歌词；LRCLIB 在完整调用中遇到 429。这是历史服务记录，本轮没有把它当成 iOS 原生界面证据。
 
-验证记录：[离线测试](./Evidence/local-tests.txt)、[模块校验](./Evidence/module-validation.json)、[本版真实补源服务链路](./Evidence/missing-lyrics-live.json)、[无词入口协议依据](./Evidence/missing-lyrics-protocol.json)、[0.2.0 翻译服务记录](./Evidence/native-translation-live.json)、[译文协议核对](./Evidence/native-protocol.json)、[0.1.0 备用源记录](./Evidence/live-services.json)。
+验证记录：[离线测试](./Evidence/local-tests.txt)、[模块校验](./Evidence/module-validation.json)、[目标歌曲真实查源](./Evidence/target-song-live.json)、[汉字变体数据依据](./Evidence/unicode-data.json)、[0.3.0 补源链路](./Evidence/missing-lyrics-live.json)、[无词入口协议依据](./Evidence/missing-lyrics-protocol.json)、[0.2.0 翻译服务记录](./Evidence/native-translation-live.json)、[译文协议核对](./Evidence/native-protocol.json)、[0.1.0 备用源记录](./Evidence/live-services.json)。
 
 **尚未完成：Egern 在设备中的导入与脚本运行、当前 iPhone/iPad Spotify 对注入译文的识别、翻译按钮出现条件、原词/译文的实际字号及高亮、点击跳转和真实无词补全。** 本机此前检测到 Egern 2.20.0 安装包但启动未成功；没有访问用户手机。不能据本地测试或上游服务成功宣称与手机原生效果完全一致。
 
@@ -136,13 +156,16 @@ ruby test/validate-module.rb
 node test/live-smoke.mjs --translations-only
 # 可选；QQ 服务为真实，Spotify 元数据/卡片/404 为模拟：
 node test/live-smoke.mjs --missing-only
+# 可选；使用保存的真实 Spotify 元数据，实时查询用户报告歌曲的歌词源：
+node test/live-target.mjs
 ```
 
-所有脚本、缓存、匹配、LRC 和二进制改写逻辑独立编写；没有复制其他歌词插件的实现，也没有引入第三方脚本或 Protobuf 运行库。核对的是接口与字段事实：
+所有脚本、缓存、匹配、LRC 和二进制改写逻辑独立编写；没有复制其他歌词插件的实现，也没有引入第三方脚本或 Protobuf 运行库。0.3.1 使用 Unicode 17.0.0 Unihan 的公开标准变体数据，选取 6,447 个单目标映射生成静态表；不引入运行时依赖。数据许可完整保留于 [NOTICE-UNICODE.txt](./NOTICE-UNICODE.txt)，生成器见 [build-han-fold.py](./test/build-han-fold.py)，来源与哈希见 [unicode-data.json](./Evidence/unicode-data.json)。核对的接口与字段依据：
 
 - [Spotify 官方原生歌词翻译说明](https://newsroom.spotify.com/2026-02-04/lyric-translations-offline-previews/)。
 - [Egern JavaScript API](https://egernapp.com/docs/javascript-api/)、[模块设置](https://egernapp.com/docs/configuration/modules/)。
 - [Protobuf 官方编码格式](https://protobuf.dev/programming-guides/encoding/)。
+- [Protobuf proto2 默认值说明](https://protobuf.dev/programming-guides/proto2/)、[Unicode Unihan 标准](https://www.unicode.org/reports/tr38/)。
 - [公开原生协议描述符参考](https://github.com/dompling/Script/blob/12ad6fa351525e9c527071fcafa65dab04f6eb8f/spotify/spotify-lyric.ios.js)：仅核对生成的 `Alternative` 和 `LyricsResponse` 字段描述；未使用该插件的实现和运行库。
 - [Spotify 元数据字段参考](https://github.com/librespot-org/librespot/blob/dev/protocol/proto/metadata.proto)、[LRCLIB 官方 API](https://lrclib.net/docs)。
 - 批量元数据与原生卡片的逐字段描述符链接、哈希及平台限制见 [无词入口协议依据](./Evidence/missing-lyrics-protocol.json)。仅依据接口与生成的字段事实独立实现，没有复制其他插件的查源或注入算法。

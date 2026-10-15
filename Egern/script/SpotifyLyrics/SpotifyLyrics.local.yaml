@@ -1,4 +1,4 @@
-# VerseLyrics 0.3.0 — Egern 原生模块，2026-10-15
+# VerseLyrics 0.3.1 — Egern 原生模块，2026-10-15
 # 本地交付版：先在 Egern「工具 → 脚本」保存 spotify-lyrics.js。
 # script_url 为 Egern 本地脚本文件名，不是电脑的绝对路径。
 name: Spotify 双语歌词 · VerseLyrics

@@ -4,8 +4,8 @@
     "sha256": "27a0372dc93e2f6f48de5595f4013f4f57f418796688d7a10967ce47c4c485ec"
   },
   "Evidence/local-tests.txt": {
-    "bytes": 8517,
-    "sha256": "7f6cb140af9ad522a2b8f6449cd8fcaa9a770940d645e6766acaae3e6fb86be8"
+    "bytes": 9225,
+    "sha256": "3baf15190a4a64666d22ab3d4e824352370022d7eb13dc136f04b5f3bf9d122a"
   },
   "Evidence/missing-lyrics-live.json": {
     "bytes": 556,
@@ -27,33 +27,61 @@
     "bytes": 1289,
     "sha256": "a005cfc4c1cc3dc9deee6495309865d16c1c9bd5891b855c2b8f9cabed7e6794"
   },
+  "Evidence/target-song-live.json": {
+    "bytes": 1217,
+    "sha256": "d8e883093a22787a7577532a9e16c92d297d9270fc4ea212d553a8b72d01cf7c"
+  },
+  "Evidence/unicode-data.json": {
+    "bytes": 765,
+    "sha256": "d2fe7fb4c17c0b0b7d1df1ca40e6b7b263523364ce8d113df5c2531ffd5917af"
+  },
+  "Evidence/unicode-table-validation.json": {
+    "bytes": 119,
+    "sha256": "333e9af22ef7cba3825e2b299db149d24f585d64bd5750e3ff62212128370d0b"
+  },
+  "NOTICE-UNICODE.txt": {
+    "bytes": 1995,
+    "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+  },
   "README.md": {
-    "bytes": 15086,
-    "sha256": "7917a0ef862a60286e36780a992d677883fe5b82392a8ee184d6acdd91140abe"
+    "bytes": 17765,
+    "sha256": "925ff3eb2e30fa13b35fff8fef2bb59963403bf4f5263e4f4c4e3ff710ee52ce"
   },
   "SpotifyLyrics.local.yaml": {
     "bytes": 3673,
-    "sha256": "c8b36680b14dd92dccca8c0b889af33ccf73662444ae28724ab57dcf69da89a0"
+    "sha256": "013cd211be75dffeeda72b32839dba3c88f1193441a00ffed530ad5621fd7773"
   },
   "SpotifyLyrics.yaml": {
     "bytes": 4343,
-    "sha256": "38da81c700e935ed18e1ca1552dab2a8681cd2fa56c85b0d3ae3cc6f05742b99"
+    "sha256": "77cc2321eb1cd493de4664c3e61b24e9bdce5b9e40cc3f33322ac936a52a4a78"
   },
   "package.json": {
-    "bytes": 211,
-    "sha256": "4cf0f59bd09532680e4142efd8ff7af015035ac23acf92f4a31fceb0be57bb2f"
+    "bytes": 260,
+    "sha256": "a61d42da0527bfb11b78bc96fa0ce98ccb39cb18e1b01dbaee9078b4b947c457"
   },
   "spotify-lyrics.js": {
-    "bytes": 43725,
-    "sha256": "1bd8eb6c02e98d4ea0ec350cc8d1bfeb660384a5438923ce934f73307f821f12"
+    "bytes": 88373,
+    "sha256": "d1f0458a2e63884edad1eb1b6d913e73e62c2a3556a90580f4ce97b0b1e366f7"
+  },
+  "test/build-han-fold.py": {
+    "bytes": 2863,
+    "sha256": "7e3943802832cdef63ce886f654d72d72d0320a42a704749ee2ce88b056c2ca5"
+  },
+  "test/fixtures/target-song.json": {
+    "bytes": 1501,
+    "sha256": "eb72fdb8e8a8bb3da9060068361d28575b6c4c2b60e3c5b314e589b370076b5d"
   },
   "test/live-smoke.mjs": {
     "bytes": 8245,
     "sha256": "5843ea9f7112b05820f74859746f710a5765a9740cdbde09feb2b99b6f571cc8"
   },
+  "test/live-target.mjs": {
+    "bytes": 4032,
+    "sha256": "72be6de4c7bfa27a452177dc267c321186f0a16f6f656d7092850ac1e2acb328"
+  },
   "test/spotify-lyrics.test.mjs": {
-    "bytes": 45789,
-    "sha256": "87667cd83fe4e7047577326a1dcdd53b6ab24b703c61217c7adb532bb735b2cb"
+    "bytes": 50223,
+    "sha256": "c2737b2e5877398c9feefe5a648717e728d32591372686b348c5edb416e0afd6"
   },
   "test/validate-module.rb": {
     "bytes": 3152,

@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-15",
+  "unicode_version": "17.0.0",
+  "unihan_zip_url": "https://www.unicode.org/Public/17.0.0/ucd/Unihan.zip",
+  "unihan_zip_sha256": "f7a48b2b545acfaa77b2d607ae28747404ce02baefee16396c5d2d7a8ef34b5e",
+  "variants_sha256": "3f23cd71872633f3350875d25bd388e83b60fa71807634c9a600ec26f38a68ab",
+  "mapping": "Only single-target kSimplifiedVariant values; unambiguous chains resolved; cycles and multi-target data skipped",
+  "pairs": 6447,
+  "runtime_dependency": false,
+  "scope": "Metadata matching only; original lyrics and translation comparison unchanged",
+  "license_file": "NOTICE-UNICODE.txt",
+  "license_url": "https://www.unicode.org/license.txt",
+  "license_sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+}

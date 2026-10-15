@@ -1,4 +1,4 @@
-# VerseLyrics 0.3.0 — Egern 原生模块，2026-10-15
+# VerseLyrics 0.3.1 — Egern 原生模块，2026-10-15
 # 仓库分发版：远程导入此模块，Egern 自动获取同仓库的原创脚本。
 # 离线使用请导入同目录 SpotifyLyrics.local.yaml。
 name: Spotify 双语歌词 · VerseLyrics

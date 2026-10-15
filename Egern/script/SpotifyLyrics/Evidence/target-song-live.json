@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-15T10:29:24.322Z",
+  "version": "0.3.1",
+  "track": {
+    "id": "76XUZSb13QUuj1HECY4Hvo",
+    "title": "那页夏天",
+    "album": "WJK",
+    "artists": [
+      "王俊凱"
+    ],
+    "duration": 246.099
+  },
+  "originalFlagPresent": false,
+  "proto2DefaultRecognized": true,
+  "qq": {
+    "id": "002ungyc33fb7x",
+    "title": "那页夏天",
+    "album": "WJK",
+    "artists": [
+      "王俊凯"
+    ],
+    "duration": 246
+  },
+  "metadataMatch": true,
+  "provider": "QQ 音乐",
+  "lyricRows": 42,
+  "lyricResponseSha256": "19fdb0c9ca4807214ba8c9c800cdd741a8cb29c03cafa2d10a4464671efa484e",
+  "metadataFlagSet": true,
+  "nativeCardAdded": true,
+  "syntheticLyric404Filled": true,
+  "cacheReused": true,
+  "elapsedMs": 1950,
+  "calls": [
+    {
+      "host": "lrclib.net",
+      "status": 429,
+      "method": "GET"
+    },
+    {
+      "host": "c.y.qq.com",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "host": "c.y.qq.com",
+      "status": 200,
+      "method": "GET"
+    }
+  ],
+  "scope": "Captured real public Spotify metadata; live lyric providers; synthetic card and lyric-404 responses; no user session or iOS UI capture",
+  "deviceVerified": false,
+  "status": "passed"
+}

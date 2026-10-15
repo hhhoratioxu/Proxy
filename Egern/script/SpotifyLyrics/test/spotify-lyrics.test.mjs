@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import run, { loadCache, parseDocument, parseMetadata, extendedTracks, encodeDocument, base62Hex, hexBase62, matches, lrc, settings, LYRIC_URL, META_URL, SCROLL_URL, EXTENDED_URL } from '../spotify-lyrics.js';
+import {readFileSync} from 'node:fs';
+import run, { loadCache, parseDocument, parseMetadata, extendedTracks, encodeDocument, base62Hex, hexBase62, matches, metadataNormal, lrc, settings, LYRIC_URL, META_URL, SCROLL_URL, EXTENDED_URL } from '../spotify-lyrics.js';
 const ID = '0000000000000000000001';
 const HEX = '00000000000000000000000000000001';
 const URL = `https://spclient.wg.spotify.com/color-lyrics/v2/track/${ID}`;
@@ -133,7 +134,7 @@ test('metadata discovery only marks lyrics available AFTER successful backup loo
   const before=readFields(input).filter(f=>f.no!==18),after=readFields(r.body).filter(f=>f.no!==18);assert.deepEqual(after.map(f=>f.raw),before.map(f=>f.raw));
   const next=context({store,status:404,body:'not found',type:'application/x-protobuf'});const filled=await run(next.ctx);assert.equal(filled.status,200);assert.equal(next.calls.length,0);
 });
-test('missing metadata flag is not classified as an explicit no-lyrics flag',async()=>{const input=metadataBytes({flag:null}),x=context({url:`https://spclient.wg.spotify.com/metadata/4/track/${HEX}`,body:input,type:'application/x-protobuf',env:{DISCOVER_MISSING:'true'}});const r=await run(x.ctx);assert.deepEqual(Buffer.from(r.body),input);assert.equal(x.calls.length,0);});
+test('omitted proto2 lyrics flag defaults to false and can be filled after verified backup',async()=>{const input=metadataBytes({flag:null}),x=context({url:`https://spclient.wg.spotify.com/metadata/4/track/${HEX}`,body:input,type:'application/x-protobuf',env:{DISCOVER_MISSING:'true'},network:metaNetwork});const parsed=parseMetadata(input,HEX);assert.equal(parsed.hasLyrics,false);assert.equal(parsed.hasLyricsField,false);const r=await run(x.ctx);assert.equal(parseMetadata(r.body,HEX).hasLyrics,true);assert.equal(x.calls.length,1);});
 test('failed discovery leaves original has_lyrics=false unchanged',async()=>{const input=metadataBytes(),x=context({url:`https://spclient.wg.spotify.com/metadata/4/track/${HEX}`,body:input,type:'application/x-protobuf',env:{DISCOVER_MISSING:'true',FALLBACK_PROVIDER:'lrclib'},network:async()=>new Response('[]')});const r=await run(x.ctx);assert.deepEqual(Buffer.from(r.body),input);});
 test('request cache rewrite is restricted to lyric URL and keeps authorization',async()=>{
   const x=context({requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN','If-None-Match':'old','Accept-Encoding':'gzip'}});delete x.ctx.response;const r=await run(x.ctx);
@@ -361,5 +362,39 @@ test('no in-flight token or cached identity cannot manufacture a missing player 
 test('malformed discovery envelopes preserve every input byte and do not issue any lookup',async()=>{
   for(const url of [SCROLL,EXTENDED])for(const input of [Buffer.from([10,255]),Buffer.from([18,128]),Buffer.from([255,0]),Buffer.from([10,2,10])]){
     const x=context({url,body:input,type:'application/x-protobuf',requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN'}});assert.deepEqual(Buffer.from((await run(x.ctx)).body),input);assert.equal(x.calls.length,0);
+  }
+});
+const targetFixture=JSON.parse(readFileSync(new globalThis.URL('./fixtures/target-song.json',import.meta.url),'utf8'));
+test('real user track metadata keeps its identity and recognizes its omitted proto2 false flag',()=>{
+  const parsed=parseMetadata(Buffer.from(targetFixture.metadata_base64,'base64'),targetFixture.track_hex);
+  assert.deepEqual(parsed.meta,{id:targetFixture.track_id,title:targetFixture.expected.title,album:targetFixture.expected.album,artists:targetFixture.expected.artists,duration:targetFixture.expected.duration});
+  assert.equal(parsed.hasLyrics,false);assert.equal(parsed.hasLyricsField,false);assert.equal(matches(parsed.meta,targetFixture.qq_candidate),true);
+});
+test('traditional and simplified metadata match without accepting a wrong artist, edition, album, or duration',()=>{
+  const meta={title:'晴天',album:'葉惠美',artists:['周杰倫'],duration:269.9};
+  const candidate={title:'晴天',album:'叶惠美',artists:['周杰伦'],duration:270};assert.equal(matches(meta,candidate),true);
+  for(const delta of [{title:'晴天 (Live)'},{album:'精选辑'},{artists:['另一个人']},{duration:280}])assert.equal(matches(meta,{...candidate,...delta}),false);
+  assert.equal(metadataNormal('王俊凱'),metadataNormal('王俊凯'));assert.equal(metadataNormal('那頁夏天'),metadataNormal('那页夏天'));
+});
+test('target song with real metadata reaches QQ fallback, sets native availability, then serves native timed lyrics',async()=>{
+  const store=new Map(),metaBytes=Buffer.from(targetFixture.metadata_base64,'base64'),qq=targetFixture.qq_candidate;
+  const network=async u=>u.includes('/soso/')?new Response(JSON.stringify({code:0,data:{song:{list:[{songmid:qq.id,songname:qq.title,albumname:qq.album,singer:qq.artists.map(name=>({name})),interval:qq.duration}]}}})):u.includes('/lyric/')?new Response(JSON.stringify({retcode:0,lyric:'[00:12.34]Self written target regression line\n[00:20.00]Another original test line'})):new Response('unavailable',{status:429});
+  const meta=context({store,url:'https://spclient.wg.spotify.com/metadata/4/track/'+targetFixture.track_hex,body:metaBytes,type:'application/x-protobuf',network}),r=await run(meta.ctx);
+  assert.equal(parseMetadata(r.body,targetFixture.track_hex).hasLyrics,true);assert.ok(meta.calls.some(c=>c.url.includes('/lyric/')));
+  const next=context({store,url:'https://spclient.wg.spotify.com/color-lyrics/v2/track/'+targetFixture.track_id,status:404,body:'missing',type:'application/vnd.google.protobuf'}),filled=await run(next.ctx);
+  assert.equal(filled.status,200);assert.equal(next.calls.length,0);const doc=parseDocument(filled.body,'application/vnd.google.protobuf');assert.equal(doc.words[0],'Self written target regression line');
+  const raw=readFields(readFields(filled.body)[0].payload);assert.deepEqual(readFields(raw.find(f=>f.no===2).payload)[0].raw,int(1,12340));
+});
+test('batched metadata also handles an omitted has-lyrics flag instead of skipping the track',async()=>{
+  const input=batchBytes({track:metadataBytes({flag:null})}),x=context({url:EXTENDED,body:input,type:'application/x-protobuf',network:metaNetwork});
+  const r=await run(x.ctx);assert.equal(extendedTracks(r.body).records[0].hasLyrics,true);assert.equal(x.calls.length,1);
+});
+test('metadata Han folding does not suppress a simplified-to-traditional lyric translation',async()=>{
+  const input=lyricJSON(['头发随风飘动']),x=context({body:JSON.stringify(input),env:{TRANSLATION_ENABLED:'true',TARGET_LANGUAGE:'zh-TW'},network:async()=>new Response(JSON.stringify([['頭髮隨風飄動','zh-CN']]))});
+  const out=value(await run(x.ctx));assert.deepEqual(out.lyrics.lines,input.lyrics.lines);assert.equal(out.lyrics.alternatives[0].lines[0],'頭髮隨風飄動');
+});
+test('invalid bool wire values cannot be interpreted as missing lyrics or trigger a lookup',async()=>{
+  for(const input of [metadataBytes({flag:2}),cat(metadataBytes({flag:null}),txt(18,'not a boolean'))]){
+    const x=context({url:`https://spclient.wg.spotify.com/metadata/4/track/${HEX}`,body:input,type:'application/x-protobuf',network:metaNetwork});assert.deepEqual(Buffer.from((await run(x.ctx)).body),input);assert.equal(x.calls.length,0);
   }
 });
