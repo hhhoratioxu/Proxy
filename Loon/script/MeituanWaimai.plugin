@@ -1,0 +1,12 @@
+#!name = 美团外卖去广告
+#!desc = v0.1.0 · 清理已知开屏广告；实际效果需真机确认。
+#!author = Horatio Xu
+#!homepage = https://github.com/hhhoratioxu/Proxy
+#!loon_version = 3.5.1(983)
+#!date = 2026-10-15
+
+[Script]
+response if ${url} ~= /^https?:\/\/wmapi\.meituan\.com\/api\/v[0-9]+\/(?:(?:loadInfo|startpicture)(?:\?.*)?$|openscreen\?ad)/ then script("https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.js") with tag="美团外卖去广告", timeout=10, requires_body=true
+
+[Mitm]
+hostname = wmapi.meituan.com

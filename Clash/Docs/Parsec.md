@@ -13,12 +13,12 @@
 
 | 客户端 | 代理规则（策略选 TAG / 你的节点组） | 直连规则（策略选 DIRECT） | UDP P2P 能力 |
 |---|---|---|---|
-| Loon | [Parsec.lsr](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Rules/Parsec.lsr) | [ParsecP2P.lsr](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/Rules/ParsecP2P.lsr) | UDP + SRC-PORT 9000 |
-| Egern | [Parsec.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Rules/Parsec.yaml) | [ParsecP2P.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Rules/ParsecP2P.yaml) | STUN 域名直连；未使用缺乏官方依据的源端口规则 |
-| Quantumult X | [Parsec.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Rules/Parsec.list) | [ParsecP2P.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Rules/ParsecP2P.list) | STUN + SRC-PORT 9000（依赖客户端版本/实际接管） |
-| Shadowrocket | [Parsec.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/Rules/Parsec.list) | [ParsecP2P.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/Rules/ParsecP2P.list) | STUN 域名直连；无法可靠匹配任意对端 IP 的 P2P UDP |
-| Surge | [Parsec.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/Rules/Parsec.list) | [ParsecP2P.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/Rules/ParsecP2P.list) | Mac 上 PROCESS-NAME + UDP；另备 UDP SRC-PORT 9000 |
-| Clash Verge / Mihomo | [Parsec.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Parsec.yaml) | [ParsecP2P.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/ParsecP2P.yaml) | PROCESS-NAME + UDP 或 UDP SRC-PORT 9000，需 TUN/UDP 流量被接管 |
+| Loon | [Parsec.lsr](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/rule/Parsec.lsr) | [ParsecP2P.lsr](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/rule/ParsecP2P.lsr) | UDP + SRC-PORT 9000 |
+| Egern | [Parsec.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/rule/Parsec.yaml) | [ParsecP2P.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/rule/ParsecP2P.yaml) | STUN 域名直连；未使用缺乏官方依据的源端口规则 |
+| Quantumult X | [Parsec.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/rule/Parsec.list) | [ParsecP2P.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/rule/ParsecP2P.list) | STUN + SRC-PORT 9000（依赖客户端版本/实际接管） |
+| Shadowrocket | [Parsec.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/rule/Parsec.list) | [ParsecP2P.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/rule/ParsecP2P.list) | STUN 域名直连；无法可靠匹配任意对端 IP 的 P2P UDP |
+| Surge | [Parsec.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/Parsec.list) | [ParsecP2P.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/ParsecP2P.list) | Mac 上 PROCESS-NAME + UDP；另备 UDP SRC-PORT 9000 |
+| Clash Verge / Mihomo | [Parsec.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Parsec.yaml) | [ParsecP2P.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/ParsecP2P.yaml) | PROCESS-NAME + UDP 或 UDP SRC-PORT 9000，需 TUN/UDP 流量被接管 |
 
 ## 正确使用
 
@@ -35,8 +35,8 @@
 在 `[Rule]` 相对靠前的位置：
 
 ```ini
-RULE-SET,https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/Rules/ParsecP2P.list,DIRECT
-RULE-SET,https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/Rules/Parsec.list,TAG
+RULE-SET,https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/ParsecP2P.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/Parsec.list,TAG
 ```
 
 将 `TAG` 改成实际存在的节点/策略组。
@@ -46,8 +46,8 @@ RULE-SET,https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/Rules/Pa
 在 `[filter_remote]`，先直连后代理：
 
 ```ini
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Rules/ParsecP2P.list, tag=Parsec P2P, force-policy=direct, enabled=true
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Rules/Parsec.list, tag=Parsec, force-policy=TAG, enabled=true
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/rule/ParsecP2P.list, tag=Parsec P2P, force-policy=direct, enabled=true
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/rule/Parsec.list, tag=Parsec, force-policy=TAG, enabled=true
 ```
 
 ### Shadowrocket 配置示例
@@ -55,8 +55,8 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/Rules/Parse
 在 `[Rule]`：
 
 ```ini
-RULE-SET,https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/Rules/ParsecP2P.list,DIRECT
-RULE-SET,https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/Rules/Parsec.list,TAG
+RULE-SET,https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/rule/ParsecP2P.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/rule/Parsec.list,TAG
 ```
 
 ### Egern 配置示例
@@ -66,10 +66,10 @@ RULE-SET,https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/R
 ```yaml
 rules:
   - rule_set:
-      match: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Rules/ParsecP2P.yaml
+      match: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/rule/ParsecP2P.yaml
       policy: DIRECT
   - rule_set:
-      match: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/Rules/Parsec.yaml
+      match: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/rule/Parsec.yaml
       policy: TAG
 ```
 
@@ -85,14 +85,14 @@ rule-providers:
     type: http
     behavior: classical
     format: yaml
-    url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/ParsecP2P.yaml
+    url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/ParsecP2P.yaml
     path: ./ruleset/parsec-p2p.yaml
     interval: 86400
   parsec-control:
     type: http
     behavior: classical
     format: yaml
-    url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Parsec.yaml
+    url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Parsec.yaml
     path: ./ruleset/parsec-control.yaml
     interval: 86400
 

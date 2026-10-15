@@ -1,0 +1,13 @@
+#!name=美团外卖去广告
+#!desc=v0.1.0 · 清理已知开屏广告；实际效果需真机确认。
+#!author=Horatio Xu
+#!homepage=https://github.com/hhhoratioxu/Proxy
+
+[General]
+force-http-engine-hosts = %APPEND% wmapi.meituan.com
+
+[Script]
+MeituanWaimai = type=http-response,pattern=^https?:\/\/wmapi\.meituan\.com\/api\/v[0-9]+\/(?:(?:loadInfo|startpicture)(?:\?.*)?$|openscreen\?ad),script-path=https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/script/MeituanWaimai.js,requires-body=1,max-size=2097152,timeout=10
+
+[MITM]
+hostname = %APPEND% wmapi.meituan.com

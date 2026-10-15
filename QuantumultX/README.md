@@ -1,6 +1,6 @@
 # Quantumult X（QuanX）
 
-[分流规则](./Rules/) · [脚本](./Scripts/) · [任务](./Tasks/) · [流媒体查询说明](./StreamingUnlock-README.md)
+[分流规则](./rule/) · [脚本与重写、任务](./script/) · [流媒体查询说明](./Docs/StreamingUnlock.md)
 
 ## 图标导入
 
@@ -9,9 +9,15 @@
 
 订阅文件：[AppIcons.json](./Icons/AppIcons.json) · [CountryFlags.json](./Icons/CountryFlags.json)。
 
-共用 PNG 图库与来源说明保存在 [Loon/Icons](../Loon/Icons/)，QuanX 兼容图标保存在 [QuantumultX/Icons/Compat](../QuantumultX/Icons/Compat/)。
+共用 PNG 图库与来源说明保存在 [Loon/Icons](../Loon/Icons/)，QuanX 兼容图标保存在 [QuantumultX/Icons/Compat](./Icons/Compat/)。
 
 ## 说明
 
 - [Parsec 跨客户端分流](../Clash/Docs/Parsec.md)
 - [返回仓库首页](../README.md)
+
+## 美团外卖去广告
+
+- [模块安装说明](./Docs/MeituanWaimai.md)
+
+配置文件、脚本路径、安装方法和验证范围见说明。

@@ -1,6 +1,6 @@
 # Egern
 
-[分流规则](./Rules/) · [模块](./Modules/) · [脚本](./Scripts/) · [网络信息](./Modules/NetworkInfo.md) · [流媒体查询](./Modules/StreamingUnlock.md) · [美团外卖去广告](./Scripts/MeituanWaimai.md)
+[分流规则](./rule/) · [脚本与模块](./script/) · [网络信息](./Docs/NetworkInfo.md) · [流媒体查询](./Docs/StreamingUnlock.md) · [美团外卖去广告](./Docs/MeituanWaimai.md)
 
 ## 图标导入
 

@@ -1,0 +1,49 @@
+name: "Network Info · Liquid Glass"
+description: "v1.1.1 · 无填充 Clear 布局：根容器及全部卡片透明，去除渐变与投影。保留网络信息、Netflix 和 YouTube 检测。系统 Liquid Glass 材质需由 iOS/Egern 宿主支持。"
+author: "Horatio Xu"
+homepage: "https://github.com/hhhoratioxu/Proxy"
+manual: "https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/NetworkInfo.md"
+icon: "network"
+open_url: "http://network.horatio.test/"
+
+env_schema:
+  NETFLIX_POLICY:
+    name: "Netflix 检测策略"
+    description: "留空按 Netflix 域名现有分流；选填已有策略组/节点完整名称。独立于出口检测策略。"
+  YOUTUBE_POLICY:
+    name: "YouTube 检测策略"
+    description: "留空按 YouTube 域名现有分流；选填已有策略组/节点完整名称。检测 Premium 地区可用性，不代表已开通会员。"
+  PROBE_POLICY:
+    name: "出口检测策略"
+    description: "选填 Egern 中现有策略组或节点的完整名称，例如 TAG 或 bwg。留空按当前规则访问检测域名，可能直连，不代表所有 App 的出口。"
+  TIMEOUT:
+    name: "请求超时（毫秒）"
+    description: "默认 4000；允许 1500–7000。只在打开面板/刷新小组件时请求。"
+    default_value: "4000"
+  GEO_LOOKUP:
+    name: "在线 GeoIP 查询"
+    description: "开启时将检测到的 IPv4 提交到 ipwho.is 获取城市和 ISP；关闭后仅使用 Egern 本地 GeoIP，城市留空。"
+    default_value: "true"
+    options: ["true", "false"]
+  SHOW_LOCAL:
+    name: "显示本地网络详情"
+    description: "显示 SSID、BSSID、局域网地址及设备 DNS；这些信息不会提交给在线查询服务。"
+    default_value: "true"
+    options: ["true", "false"]
+
+scriptings:
+  - generic:
+      name: "Horatio Network Info"
+      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/NetworkInfo.js?v=1.1.1"
+      update_interval: 3600
+      timeout: 25
+  - http_request:
+      name: "Horatio Network Info Panel"
+      match: '^http://network\.horatio\.test(?:/|$)'
+      script_url: "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/NetworkInfo.js?v=1.1.1"
+      update_interval: 3600
+      timeout: 25
+
+widgets:
+  - name: "Network Info"
+    script_name: "Horatio Network Info"

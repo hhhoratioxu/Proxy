@@ -1,12 +1,14 @@
 # Clash Verge Rev / Mihomo
 
+[分流规则](./rule/) · [扩展脚本](./script/) · [说明文档](./Docs/)
+
 本目录包含 **26 组** `classical` 格式的远程分流规则。原有 Loon / Egern / Quantumult X / Shadowrocket 内容未受影响。
 
 ## 最方便的方式：扩展脚本
 
 1. 先在 Clash Verge Rev 载入自己的节点订阅，确认代理组可用。
 2. 进入「订阅 Profiles」，对要使用的订阅选择 **扩展脚本 / Extended Script**（或使用全局扩展脚本）。
-3. 复制 [VergeRev.js](./VergeRev.js) 的完整内容粘贴保存，然后更新/启用订阅。
+3. 复制 [VergeRev.js](./script/VergeRev.js) 的完整内容粘贴保存，然后更新/启用订阅。
 4. 将内核模式设为 **Rule**；到规则页检查 `Horatio-*` 规则提供者是否成功下载，日志是否出现规则命中。
 
 注意：这个 JS 是**扩展脚本的源码**，不是代理节点订阅 URL，也不能直接当作 Mihomo YAML 导入。Clash Verge Rev 的扩展配置与扩展脚本是两个不同入口。
@@ -31,7 +33,7 @@ rule-providers:
     type: http
     behavior: classical
     format: yaml
-    url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Meta.yaml
+    url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Meta.yaml
     path: ./rule-providers/horatio-meta.yaml
     interval: 86400
 rules:
@@ -45,32 +47,32 @@ rules:
 
 | 分类 | 规则下载 |
 | --- | --- |
-| AI | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/AI.yaml) |
-| Adobe | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Adobe.yaml) |
-| Apple | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Apple.yaml) |
-| Bilibili | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Bilibili.yaml) |
-| Disney | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Disney.yaml) |
-| GitHub | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/GitHub.yaml) |
-| Google | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Google.yaml) |
-| HBOMAX | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/HBOMAX.yaml) |
-| Infuse | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Infuse.yaml) |
-| LAN | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/LAN.yaml) |
-| Meituan | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Meituan.yaml) |
-| Meta | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Meta.yaml) |
-| Microsoft | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Microsoft.yaml) |
-| NTP | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/NTP.yaml) |
-| Netflix | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Netflix.yaml) |
-| Parsec | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Parsec.yaml) |
-| ParsecP2P | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/ParsecP2P.yaml) |
-| SiriAI | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/SiriAI.yaml) |
-| Spotify | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Spotify.yaml) |
-| Telegram | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Telegram.yaml) |
-| TikTok | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/TikTok.yaml) |
-| Twitter | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Twitter.yaml) |
-| WeChat | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/WeChat.yaml) |
-| Weverse | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Weverse.yaml) |
-| Wikimedia | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Wikimedia.yaml) |
-| Xiaohongshu | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/Rules/Xiaohongshu.yaml) |
+| AI | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/AI.yaml) |
+| Adobe | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Adobe.yaml) |
+| Apple | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Apple.yaml) |
+| Bilibili | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Bilibili.yaml) |
+| Disney | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Disney.yaml) |
+| GitHub | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/GitHub.yaml) |
+| Google | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Google.yaml) |
+| HBOMAX | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/HBOMAX.yaml) |
+| Infuse | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Infuse.yaml) |
+| LAN | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/LAN.yaml) |
+| Meituan | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Meituan.yaml) |
+| Meta | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Meta.yaml) |
+| Microsoft | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Microsoft.yaml) |
+| NTP | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/NTP.yaml) |
+| Netflix | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Netflix.yaml) |
+| Parsec | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Parsec.yaml) |
+| ParsecP2P | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/ParsecP2P.yaml) |
+| SiriAI | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/SiriAI.yaml) |
+| Spotify | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Spotify.yaml) |
+| Telegram | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Telegram.yaml) |
+| TikTok | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/TikTok.yaml) |
+| Twitter | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Twitter.yaml) |
+| WeChat | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/WeChat.yaml) |
+| Weverse | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Weverse.yaml) |
+| Wikimedia | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Wikimedia.yaml) |
+| Xiaohongshu | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Xiaohongshu.yaml) |
 
 ## 转换说明
 
@@ -85,3 +87,9 @@ rules:
 
 - [Parsec 跨客户端分流](./Docs/Parsec.md)
 - [返回仓库首页](../README.md)
+
+## 美团外卖去广告
+
+- [兼容性说明与客户端版本](./Docs/MeituanWaimai.md)
+
+美团外卖的开屏广告需要 HTTPS 响应改写；当前标准核心的能力限制及其他客户端版本见说明。

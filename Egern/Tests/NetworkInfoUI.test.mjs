@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-const src = readFileSync(new URL('../Scripts/NetworkInfo.js', import.meta.url), 'utf8');
+const src = readFileSync(new URL('../script/NetworkInfo.js', import.meta.url), 'utf8');
 const { default: run } = await import('data:text/javascript;base64,' + Buffer.from(src).toString('base64'));
 const page = await run({ request: { method: 'GET', url: 'http://network.horatio.test/' }, respond: r => r });
 const script = page.body.match(/<script>([\s\S]*?)<\/script>/)[1];

@@ -1,6 +1,6 @@
 # Loon
 
-[分流规则](./Rules/) · [插件](./Plugin/) · [脚本](./Script/) · [图标库](./Icons/)
+[分流规则](./rule/) · [脚本与插件](./script/) · [图标库](./Icons/) · [说明文档](./Docs/)
 
 ## 图标导入
 
@@ -9,9 +9,15 @@
 
 订阅文件：[AppIcons.json](./Icons/AppIcons.json) · [CountryFlags.json](./Icons/CountryFlags.json)。
 
-共用 PNG 图库与来源说明保存在 [Loon/Icons](../Loon/Icons/)，QuanX 兼容图标保存在 [QuantumultX/Icons/Compat](../QuantumultX/Icons/Compat/)。
+共用 PNG 图库与来源说明保存在 [Loon/Icons](./Icons/)，QuanX 兼容图标保存在 [QuantumultX/Icons/Compat](../QuantumultX/Icons/Compat/)。
 
 ## 说明
 
 - [Parsec 跨客户端分流](../Clash/Docs/Parsec.md)
 - [返回仓库首页](../README.md)
+
+## 美团外卖去广告
+
+- [模块安装说明](./Docs/MeituanWaimai.md)
+
+配置文件、脚本路径、安装方法和验证范围见说明。

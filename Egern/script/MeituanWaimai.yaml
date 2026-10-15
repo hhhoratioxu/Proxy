@@ -1,0 +1,51 @@
+# 美团外卖去广告 · Egern 原生模块
+# 版本：0.1.0
+# 更新：2026-10-15
+# 只需导入此文件；使用 Egern 内置 jq 与 Map Local，无远程脚本依赖。
+# 接口及字段依据、安装方法、验证范围见同目录 MeituanWaimai.md。
+
+name: 美团外卖去广告
+author: Horatio Xu
+homepage: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/MeituanWaimai.yaml
+manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/MeituanWaimai.md
+description: 清理已知开屏广告字段并拦截独立开屏接口；仅适配美团外卖 App，实际效果需真机确认。
+
+mitm:
+  hostnames:
+    - wmapi.meituan.com
+
+# loadInfo 是混合启动配置：保留完整 data，只清理识别到的广告数组。
+# 未知结构、缺失字段、业务错误响应均不添加或删除其他字段。
+body_rewrites:
+  - response_jq:
+      match: '^https?://wmapi\.meituan\.com/api/v[0-9]+/loadInfo(?:\?.*)?$'
+      filter: |
+        if type != "object" then .
+        elif (has("code") and (.code != 0 and .code != "0")) then .
+        elif (.data | type) != "object" then .
+        elif (.data.startpicture | type) == "array" then
+          .data.startpicture = []
+        elif (.data.startpicture | type) == "object" then
+          .data.startpicture |= (
+            (if (.ad | type) == "array" then .ad = [] else . end)
+            | (if (.mk | type) == "array" then .mk = [] else . end)
+          )
+        else .
+        end
+
+# 独立开屏接口返回空 JSON，不对整个美团域名或图片 CDN 做封禁。
+# openscreen 仅处理查询字符串以 ad 开头的已知广告请求形式。
+map_locals:
+  - match: '^https?://wmapi\.meituan\.com/api/v[0-9]+/startpicture(?:\?.*)?$'
+    status_code: 200
+    headers:
+      Content-Type: application/json; charset=utf-8
+      Cache-Control: no-store
+    body: '{}'
+  - match: '^https?://wmapi\.meituan\.com/api/v[0-9]+/openscreen\?ad'
+    status_code: 200
+    headers:
+      Content-Type: application/json; charset=utf-8
+      Cache-Control: no-store
+    body: '{}'
+

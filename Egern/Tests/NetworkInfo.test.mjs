@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-const source = readFileSync(new URL('../Scripts/NetworkInfo.js', import.meta.url), 'utf8');
+const source = readFileSync(new URL('../script/NetworkInfo.js', import.meta.url), 'utf8');
 const { default: run } = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
 function fixture(options = {}) {
   const requests = [], memory = {};
