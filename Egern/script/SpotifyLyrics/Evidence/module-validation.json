@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "variants": [
+    {
+      "file": "SpotifyLyrics.yaml",
+      "scripts": 4,
+      "languages": 25,
+      "script_location": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics.js",
+      "status": "passed"
+    },
+    {
+      "file": "SpotifyLyrics.local.yaml",
+      "scripts": 4,
+      "languages": 25,
+      "script_location": "spotify-lyrics.js",
+      "status": "passed"
+    }
+  ],
+  "checks": "YAML parse, repository script URL, local script resolution, env defaults, limits, URL scope"
+}

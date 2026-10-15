@@ -1,0 +1,37 @@
+require 'yaml'
+require 'json'
+root = File.expand_path('..', __dir__)
+remote = 'https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics.js'
+results = []
+['SpotifyLyrics.yaml', 'SpotifyLyrics.local.yaml'].each do |file|
+  config = YAML.load_file(File.join(root, file))
+  raise 'module name' unless config['name'].include?('VerseLyrics')
+  raise 'unexpected config keys' unless (config.keys - %w[name author homepage manual icon description env_schema mitm scriptings]).empty?
+  raise 'mitm scope' unless config['mitm']['hostnames'] == ['spclient.wg.spotify.com', '*-spclient.spotify.com']
+  raise 'script count' unless config['scriptings'].length == 4
+  expected = file == 'SpotifyLyrics.yaml' ? remote : 'spotify-lyrics.js'
+  raise 'local source missing' unless File.file?(File.join(root, 'spotify-lyrics.js'))
+  config['scriptings'].each do |entry|
+    type, script = entry.first
+    raise 'script path' unless script['script_url'] == expected
+    next if type == 'generic'
+    pattern = Regexp.new(script['match'])
+    raise 'unanchored' unless script['match'].start_with?('^https://') && script['match'].end_with?('$')
+    raise 'unsafe timeout' unless script['timeout'] <= 25
+    raise 'oversize' if script['max_size'] && script['max_size'] > 2097152
+    raise 'auth matched' if pattern.match?('https://accounts.spotify.com/login')
+    raise 'audio matched' if pattern.match?('https://spclient.wg.spotify.com/audio/v1/track/0000000000000000000001')
+    raise 'host spoof' if pattern.match?('https://spclient.wg.spotify.com.evil.test/color-lyrics/v2/track/0000000000000000000001')
+  end
+  schema = config['env_schema']
+  raise 'translation opt-in' unless schema['TRANSLATION_ENABLED']['default_value'] == 'false'
+  raise 'discovery opt-in' unless schema['DISCOVER_MISSING']['default_value'] == 'false'
+  raise 'default language' unless schema['TARGET_LANGUAGE']['default_value'] == 'zh-CN'
+  raise 'languages' unless schema['TARGET_LANGUAGE']['options'].length == 25
+  schema.each do |key, item|
+    raise 'non-string options' unless item['options'].all? { |x| x.is_a?(String) }
+    raise 'invalid default' unless item['options'].include?(item['default_value'])
+  end
+  results << {file:file,scripts:4,languages:25,script_location:expected,status:'passed'}
+end
+puts JSON.pretty_generate({status:'passed',variants:results,checks:'YAML parse, repository script URL, local script resolution, env defaults, limits, URL scope'})

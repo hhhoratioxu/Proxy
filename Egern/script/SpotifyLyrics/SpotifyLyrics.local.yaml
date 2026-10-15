@@ -1,0 +1,57 @@
+# VerseLyrics 0.1.0 — Egern 原生模块，2026-10-15
+# 本地交付版：先在 Egern「工具 → 脚本」保存 spotify-lyrics.js。
+# script_url 为 Egern 本地脚本文件名，不是电脑的绝对路径。
+name: Spotify 双语歌词 · VerseLyrics
+author: Horatio Xu
+icon: music.note.list
+description: 在 Spotify 原生歌词响应内追加译文；原词优先，明确无词才按严格元数据匹配备用源。需 HTTPS 解密；尚待真机验收。
+env_schema:
+  TRANSLATION_ENABLED:
+    name: 开启歌词翻译
+    description: 默认关闭；开启后歌词文本会发送给 Google 翻译网页接口，原词在上、译文在下。不发送 Spotify 令牌。
+    default_value: 'false'
+    options: ['true', 'false']
+  TARGET_LANGUAGE:
+    name: 翻译目标语言
+    description: zh-CN 简体中文，zh-TW 繁体中文，en 英语，ja 日语，ko 韩语；其他为标准语言代码。
+    default_value: zh-CN
+    options: [zh-CN, zh-TW, en, ja, ko, fr, de, es, pt, it, ru, ar, hi, id, vi, th, tr, nl, pl, sv, uk, he, fa, ms, el]
+  FALLBACK_PROVIDER:
+    name: 无词时的备用源
+    description: auto 依次 LRCLIB、QQ 音乐、网易云；off 不补源。始终优先 Spotify 原词，指定一家仅影响无词后的选择。
+    default_value: auto
+    options: [auto, lrclib, qq, netease, 'off']
+  DISCOVER_MISSING:
+    name: 尝试显示原本无歌词的歌曲
+    description: 默认关闭；开启后只在旧版 metadata/4 接口明确无词且找到严格匹配备用歌词时设置有词标记。新版客户端可能不经过此接口。
+    default_value: 'false'
+    options: ['true', 'false']
+mitm:
+  hostnames:
+    - spclient.wg.spotify.com
+    - '*-spclient.spotify.com'
+scriptings:
+  - http_request:
+      name: VerseLyrics · 歌词请求缓存处理
+      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com/color-lyrics/v2/track/[0-9A-Za-z]{22}/?(?:\?.*)?$'
+      script_url: spotify-lyrics.js
+      body_required: false
+      timeout: 3
+  - http_response:
+      name: VerseLyrics · Spotify 原词与翻译
+      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com/color-lyrics/v2/track/[0-9A-Za-z]{22}/?(?:\?.*)?$'
+      script_url: spotify-lyrics.js
+      body_required: true
+      max_size: 2097152
+      timeout: 25
+  - http_response:
+      name: VerseLyrics · 歌曲信息与无词补源
+      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com/metadata/4/track/[0-9a-f]{32}(?:\?.*)?$'
+      script_url: spotify-lyrics.js
+      body_required: true
+      max_size: 2097152
+      timeout: 25
+  - generic:
+      name: VerseLyrics · 最近处理状态
+      script_url: spotify-lyrics.js
+      timeout: 3

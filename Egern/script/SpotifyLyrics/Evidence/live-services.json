@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-15T06:20:29.269Z",
+  "runtime": "v24.19.0",
+  "scope": "real upstream services; synthetic Spotify responses; not device validation",
+  "results": [
+    {
+      "name": "google-single-phrase",
+      "ok": true,
+      "elapsedMs": 502,
+      "status": 200,
+      "alignedRows": 1
+    },
+    {
+      "name": "handler-live-translation-zh-CN",
+      "ok": true,
+      "elapsedMs": 524,
+      "translatedRows": 2,
+      "originalTimingsPreserved": true
+    },
+    {
+      "name": "handler-live-translation-ja",
+      "ok": true,
+      "elapsedMs": 551,
+      "translatedRows": 2,
+      "originalTimingsPreserved": true
+    },
+    {
+      "name": "handler-live-translation-ar",
+      "ok": true,
+      "elapsedMs": 827,
+      "translatedRows": 2,
+      "originalTimingsPreserved": true
+    },
+    {
+      "name": "handler-live-translation-fr",
+      "ok": true,
+      "elapsedMs": 1810,
+      "translatedRows": 2,
+      "originalTimingsPreserved": true
+    },
+    {
+      "name": "lrclib-live-search-and-retrieval",
+      "ok": false,
+      "elapsedMs": 1823,
+      "error": "http-429"
+    },
+    {
+      "name": "qq-live-search-and-retrieval",
+      "ok": true,
+      "elapsedMs": 1908,
+      "searchStatus": 200,
+      "lyricRows": 63,
+      "syncType": "LINE_SYNCED",
+      "usesProviderMetadata": true
+    },
+    {
+      "name": "netease-live-search-and-retrieval",
+      "ok": true,
+      "elapsedMs": 716,
+      "searchStatus": 200,
+      "lyricRows": 43,
+      "syncType": "LINE_SYNCED",
+      "usesProviderMetadata": true
+    }
+  ]
+}
