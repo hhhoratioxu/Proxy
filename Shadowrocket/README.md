@@ -6,6 +6,7 @@
 
 | 插件 | 安装文件原始地址 | 使用说明 |
 | --- | --- | --- |
+| Spotify 双语歌词 · VerseLyrics | [SpotifyLyrics.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/script/SpotifyLyrics.sgmodule) | [设置与已知限制](./Docs/SpotifyLyrics.md) |
 | 美团外卖去广告 | [MeituanWaimai.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/script/MeituanWaimai.sgmodule) | [说明](./Docs/MeituanWaimai.md) |
 
 每个插件只提供一个当前安装入口。运行依赖由客户端自动下载，主分支不放测试、构建工具、开发压缩包或单独的依赖源码。

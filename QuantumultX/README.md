@@ -2,10 +2,11 @@
 
 [分流规则](./rule/) · [可导入插件](./script/) · [共用图标](../Icons/)
 
-美团外卖 `.conf` 添加到「重写 → 引用」；流媒体 `.json` 添加到「任务 → 资源库」。两者都通过对应资源入口导入，不用复制配置片段或另行安装 JS。
+Spotify 歌词及美团外卖 `.conf` 添加到「重写 → 引用」；流媒体 `.json` 添加到「任务 → 资源库」。两者都通过对应资源入口导入，不用复制配置片段或另行安装 JS。
 
 | 插件 | 安装文件原始地址 | 使用说明 |
 | --- | --- | --- |
+| Spotify 双语歌词 · VerseLyrics | [SpotifyLyrics.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/SpotifyLyrics.conf) | [设置与已知限制](./Docs/SpotifyLyrics.md) |
 | 美团外卖去广告 | [MeituanWaimai.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/MeituanWaimai.conf) | [说明](./Docs/MeituanWaimai.md) |
 | 流媒体解锁查询 | [StreamingUnlock.json](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/StreamingUnlock.json) | [说明](./Docs/StreamingUnlock.md) |
 
