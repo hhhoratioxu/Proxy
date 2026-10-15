@@ -1,0 +1,118 @@
+# 0.3.3-diag.1 — notification diagnostics; native missing lyrics remain unverified.
+name: Spotify 歌词 · 通知诊断版
+author: Horatio Xu
+icon: waveform.badge.magnifyingglass
+homepage: https://github.com/hhhoratioxu/Proxy/tree/main/Egern/script/SpotifyLyricsDiagnostics
+manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/SpotifyLyricsDiagnostics/README.md
+description: 排查原本无歌词仍不显示：播放时自动发送状态通知，点通知复制记录；请临时关闭普通版，只启用诊断版。保留 0.3.3 歌词处理与插件译文策略。
+env_schema:
+  TRANSLATION_ENABLED:
+    name: 开启歌词翻译
+    description: 诊断版默认开启；开启后用 Google 网页接口译文替换全部 Spotify 官方译文，仅保留所选目标语言。失败时显示原词，不回退到官方译文；由
+      Spotify 原生界面显示。
+    default_value: 'true'
+    options:
+    - 'true'
+    - 'false'
+  TARGET_LANGUAGE:
+    name: 翻译目标语言
+    description: zh-CN 简体中文，zh-TW 繁体中文，en 英语，ja 日语，ko 韩语；其他为标准语言代码。
+    default_value: zh-CN
+    options:
+    - zh-CN
+    - zh-TW
+    - en
+    - ja
+    - ko
+    - fr
+    - de
+    - es
+    - pt
+    - it
+    - ru
+    - ar
+    - hi
+    - id
+    - vi
+    - th
+    - tr
+    - nl
+    - pl
+    - sv
+    - uk
+    - he
+    - fa
+    - ms
+    - el
+  FALLBACK_PROVIDER:
+    name: 无词时的备用源
+    description: auto 依次 LRCLIB、QQ 音乐、网易云；off 不补源。始终优先 Spotify 原词，指定一家仅影响无词后的选择。
+    default_value: auto
+    options:
+    - auto
+    - lrclib
+    - qq
+    - netease
+    - 'off'
+  DISCOVER_MISSING:
+    name: 尝试显示原本无歌词的歌曲
+    description: 默认开启；立即补入原生歌词入口，不等待联网查词。实际无词请求再严格匹配备用源；未收录的歌曲仍可能无词。
+    default_value: 'true'
+    options:
+    - 'true'
+    - 'false'
+mitm:
+  hostnames:
+  - spclient.wg.spotify.com
+  - "*-spclient.spotify.com"
+scriptings:
+- http_request:
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics.js?v=0.3.3-diag.1
+    env:
+      TRANSLATION_ENABLED: 'true'
+      TARGET_LANGUAGE: zh-CN
+      FALLBACK_PROVIDER: auto
+      DISCOVER_MISSING: 'true'
+    update_interval: 3600
+    name: VerseLyrics 诊断 · 请求处理
+    match: "^https://(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com(?::443)?/(?:color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\\s]+)?/?|metadata/4/track/[0-9a-f]{32}|extended-metadata/v0/extended-metadata/?|scrollsita/v1/scroll/spotify(?::|%3[aA])track(?::|%3[aA])[0-9A-Za-z]{22}/?)(?:\\?.*)?$"
+    body_required: false
+    timeout: 3
+- http_response:
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics.js?v=0.3.3-diag.1
+    env:
+      TRANSLATION_ENABLED: 'true'
+      TARGET_LANGUAGE: zh-CN
+      FALLBACK_PROVIDER: auto
+      DISCOVER_MISSING: 'true'
+    update_interval: 3600
+    name: VerseLyrics 诊断 · 接口记录
+    match: "^https://(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com(?::443)?/[^\\s]*$"
+    body_required: true
+    binary_body: true
+    max_size: 2097152
+    timeout: 25
+- schedule:
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics.js?v=0.3.3-diag.1
+    env:
+      TRANSLATION_ENABLED: 'true'
+      TARGET_LANGUAGE: zh-CN
+      FALLBACK_PROVIDER: auto
+      DISCOVER_MISSING: 'true'
+    update_interval: 3600
+    name: VerseLyrics 诊断 · 自动提示
+    cron: "* * * * *"
+    timeout: 3
+- generic:
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyricsDiagnostics/spotify-lyrics-diagnostics.js?v=0.3.3-diag.1
+    env:
+      TRANSLATION_ENABLED: 'true'
+      TARGET_LANGUAGE: zh-CN
+      FALLBACK_PROVIDER: auto
+      DISCOVER_MISSING: 'true'
+    update_interval: 3600
+    name: VerseLyrics 诊断 · 记录预览
+    timeout: 3
+widgets:
+- name: VerseLyrics 诊断
+  script_name: VerseLyrics 诊断 · 记录预览

@@ -1,0 +1,33 @@
+✔ a real public scroll sample sends a copyable notification and preserves the ordinary card output (15.628167ms)
+✔ metadata and actual lyric 404 produce direct current-invocation records and timed fallback rows (3.950167ms)
+✔ official translations are replaced by plugin output and none of the lyric text is copied to notifications (1.239084ms)
+✔ no credentials or identity leaves a real missing response intact and explains the metadata failure (0.369917ms)
+✔ metadata HTTP failures are reported without copying credentials or retrying a forbidden endpoint (0.555708ms)
+✔ service transport failures and compressed response encodings use fixed safe labels (0.401083ms)
+✔ actual lyric HTTP 401 is not changed into a success by diagnostics (0.193625ms)
+✔ actual lyric HTTP 403 is not changed into a success by diagnostics (0.131209ms)
+✔ actual lyric HTTP 429 is not changed into a success by diagnostics (0.151875ms)
+✔ actual lyric HTTP 500 is not changed into a success by diagnostics (0.155167ms)
+✔ unknown Spotify traffic is classified without reading its body, header secrets, query or arbitrary path (0.14625ms)
+✔ unmatched metadata versions are identified by a safe fixed family, without a full path (0.114666ms)
+✔ unrelated startup API families share one notification slot and leave room for the lyric entry (0.48775ms)
+✔ malformed client version is discarded instead of copying arbitrary header contents (0.167667ms)
+✔ internal fetches and lookalike hosts do not produce diagnostics (0.119291ms)
+✔ an already marked response explicitly identifies the duplicate processor without reading the body (0.085ms)
+✔ an invalid protobuf preserves every byte and reports only a known safe processing code (0.183042ms)
+✔ notification failures do not alter the card response or prevent fallback cache writes (0.313791ms)
+✔ storage failures still allow a notification from this invocation and the original card rewrite (0.388417ms)
+✔ identical results are rate-limited and retained history stays bounded (2.097292ms)
+✔ a burst of distinct cards cannot send more than six event notifications per minute (1.170709ms)
+✔ scheduled startup sends at most two initial notifications without network or lyric requests (0.147958ms)
+✔ an unrelated cached status cannot be mistaken for the current response status (0.196542ms)
+✔ manual preview keeps the existing widget result and also sends the copyable summary (0.087458ms)
+✔ the delivered bundle is self-contained and hashes match its original processor and adapter (1.13125ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 90.205792

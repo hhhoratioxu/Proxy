@@ -1,0 +1,12 @@
+{
+  "version": "0.3.3-diag.1",
+  "processorVersion": "0.3.3",
+  "sourceSha256": "bad6962d1e5fe43ca5c98bc380f7fc5d4792d01ef5b0de6d9a6a0b55d18bc1f0",
+  "adapterSha256": "380a775bbab99d342441e32db311731fb5a29a3d9e86891dc102b625fb2f46c1",
+  "bundleSha256": "fbcb85d42b60d7fad733a4ecfbd7a7d3314eaad2bd673f2c0611cc383badeb35",
+  "changesToProcessor": [
+    "rename entry point for wrapper",
+    "report a safe processing-error code before the existing pass-through"
+  ],
+  "scope": "Self-contained original source; no external runtime imports. Diagnostic notifications do not assert that missing native lyrics are fixed."
+}

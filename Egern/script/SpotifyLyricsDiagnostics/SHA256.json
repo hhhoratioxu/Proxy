@@ -1,0 +1,66 @@
+{
+  "Evidence/core-regression.txt": {
+    "bytes": 10580,
+    "sha256": "f434dd4088d626c834165a293693e0d3d8f0d2a3cd8d762515ed63a4f5775dc0"
+  },
+  "Evidence/diagnostic-tests.txt": {
+    "bytes": 2678,
+    "sha256": "44b3bd659e2e24e05fa4de8ebabc1f4b290d8eac8d7112c24bbd33496b0eefe1"
+  },
+  "Evidence/module-validation.json": {
+    "bytes": 506,
+    "sha256": "25e52e99b725227781a9c16702eb8837b91a909ae5ae3848aaaab974b6725a13"
+  },
+  "NOTICE-UNICODE.txt": {
+    "bytes": 1995,
+    "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+  },
+  "README.md": {
+    "bytes": 5167,
+    "sha256": "3de743af1f3d20cc6657d4b7da1c096b3d5d2a646c72aeccbe288f27f822eec8"
+  },
+  "SpotifyLyrics.Diagnostics.local.yaml": {
+    "bytes": 3703,
+    "sha256": "51cd7ce279bf5901a220c9e16ca9057125fa1dda03e2f61deba5cd19fdd7d6e7"
+  },
+  "SpotifyLyrics.Diagnostics.yaml": {
+    "bytes": 4247,
+    "sha256": "eb9a74afa8e7ad609854a763977e77a855e946ba7ff96294c2e78890ca98a768"
+  },
+  "build-info.json": {
+    "bytes": 618,
+    "sha256": "2581e826363ba5ae8c38ed6ec89b7125c3d2e7d2c23e1d885a41cd19c0098cbd"
+  },
+  "build-module.rb": {
+    "bytes": 2710,
+    "sha256": "0562bffd533548ced749275faa7da05d2492c453ac87bd19f102da7d88408ffa"
+  },
+  "build.mjs": {
+    "bytes": 1894,
+    "sha256": "f4e4c8ad2d9251d91cc5b1e721150314f784864f98c3e5733ebb26e58ec9ac08"
+  },
+  "notification-layer.js": {
+    "bytes": 10366,
+    "sha256": "380a775bbab99d342441e32db311731fb5a29a3d9e86891dc102b625fb2f46c1"
+  },
+  "package.json": {
+    "bytes": 217,
+    "sha256": "f7344777de9de062e629f18e9f56fda4aa49be7504d72425e15379ab82cee5fb"
+  },
+  "spotify-lyrics-diagnostics.js": {
+    "bytes": 95732,
+    "sha256": "fbcb85d42b60d7fad733a4ecfbd7a7d3314eaad2bd673f2c0611cc383badeb35"
+  },
+  "test/diagnostics.test.mjs": {
+    "bytes": 12519,
+    "sha256": "56ec51ab0fa19eae47c03d6338a4d0cc050d639a422632af39c029a4651b1d2b"
+  },
+  "test/run-core-regression.mjs": {
+    "bytes": 889,
+    "sha256": "4634c07d179d9f6e50720de91231cbc84e1a586fefd64798dd113939530632ed"
+  },
+  "test/validate-module.rb": {
+    "bytes": 2389,
+    "sha256": "5dad359a04d2c0a0b451c4cb484f4fb606fe976f1478f7a6f2ecd79569e088d4"
+  }
+}
