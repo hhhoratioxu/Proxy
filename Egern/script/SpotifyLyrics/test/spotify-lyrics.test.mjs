@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import run, { loadCache, parseDocument, parseMetadata, encodeDocument, base62Hex, hexBase62, matches, lrc, settings, LYRIC_URL, META_URL } from '../spotify-lyrics.js';
+import run, { loadCache, parseDocument, parseMetadata, extendedTracks, encodeDocument, base62Hex, hexBase62, matches, lrc, settings, LYRIC_URL, META_URL, SCROLL_URL, EXTENDED_URL } from '../spotify-lyrics.js';
 const ID = '0000000000000000000001';
 const HEX = '00000000000000000000000000000001';
 const URL = `https://spclient.wg.spotify.com/color-lyrics/v2/track/${ID}`;
@@ -49,7 +49,7 @@ const metaNetwork = async(u,o) => {
   throw new Error('unexpected endpoint');
 };
 
-test('defaults: translation off, language zh-CN, optional discovery off',()=>{assert.deepEqual(settings({}),{translate:false,language:'zh-CN',provider:'auto',discover:false});});
+test('defaults: translation off, language zh-CN, missing-lyrics discovery on',()=>{assert.deepEqual(settings({}),{translate:false,language:'zh-CN',provider:'auto',discover:true});assert.equal(settings({DISCOVER_MISSING:'false'}).discover,false);});
 test('translation opt-in: no lyric text sent with defaults',async()=>{const x=context();const r=await run(x.ctx);assert.equal(x.calls.length,0);assert.equal(Buffer.from(r.body).toString(),JSON.stringify(lyricJSON()));});
 test('JSON native translation keeps original rows and adds a separate alternative',async()=>{
   const input=lyricJSON(),x=context({env:{TRANSLATION_ENABLED:'true'},network:translated});
@@ -96,7 +96,7 @@ test('native Accept protobuf wins over JSON error response type on 404',async()=
 test('404 JSON web client gets JSON fallback with truthful source',async()=>{const x=context({body:'{}',status:404,requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN'},network:metaNetwork});const out=value(await run(x.ctx));assert.equal(out.lyrics.providerDisplayName,'LRCLIB');assert.equal(out.lyrics.syncType,'LINE_SYNCED');});
 test('200 explicit empty lyrics still uses fallback when translation is off',async()=>{const x=context({body:'{"lyrics":{"lines":[]}}',requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN'},network:metaNetwork});const r=await run(x.ctx);assert.equal(value(r).lyrics.providerDisplayName,'LRCLIB');});
 test('no bearer and no cached metadata leaves 404 intact',async()=>{const x=context({status:404,body:'no lyrics',network:metaNetwork});const r=await run(x.ctx);assert.equal(r.status,undefined);assert.equal(Buffer.from(r.body).toString(),'no lyrics');assert.equal(x.calls.length,0);});
-test('wrong Spotify metadata GID never searches backup services',async()=>{const x=context({status:404,body:'no lyrics',requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN'},network:async()=>new Response(metadataBytes({hex:HEX.replace(/1$/,'2')}))});const r=await run(x.ctx);assert.equal(r.status,undefined);assert.equal(x.calls.length,1);});
+test('wrong Spotify metadata GID never searches backup services',async()=>{const x=context({status:404,body:'no lyrics',requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN'},network:async()=>new Response(metadataBytes({hex:HEX.replace(/1$/,'2')}))});const r=await run(x.ctx);assert.equal(r.status,undefined);assert.equal(x.calls.length,2);assert.ok(x.calls.every(c=>c.url.startsWith('https://spclient.wg.spotify.com/')));});
 test('strict match rejects covers, live/remastered titles, album mismatch, length drift, missing artists',()=>{
   const base={title:basicMeta.title,album:basicMeta.album,artists:basicMeta.artists,duration:180};assert.ok(matches(basicMeta,base));
   for(const delta of [{title:'The Blue Kite (Live)'},{title:'The Blue Kite (Remastered)'},{album:'Greatest Hits'},{artists:['Another singer']},{duration:183},{artists:[]}])assert.equal(matches(basicMeta,{...base,...delta}),false);
@@ -126,7 +126,7 @@ test('NetEase POST search and synced-lyrics retrieval',async()=>{
   }});assert.equal(value(await run(x.ctx)).lyrics.providerDisplayName,'网易云音乐');assert.equal(x.calls[1].method,'POST');assert.match(x.calls[1].options.body,/type=1/);
 });
 test('metadata has_lyrics=true is unchanged, even with discovery enabled',async()=>{const input=metadataBytes({flag:1}),x=context({url:`https://spclient.wg.spotify.com/metadata/4/track/${HEX}`,body:input,type:'application/x-protobuf',env:{DISCOVER_MISSING:'true'}});const r=await run(x.ctx);assert.deepEqual(Buffer.from(r.body),input);assert.equal(x.calls.length,0);});
-test('metadata discovery off leaves no-lyrics flag untouched and sends no search',async()=>{const input=metadataBytes(),x=context({url:`https://spclient.wg.spotify.com/metadata/4/track/${HEX}`,body:input,type:'application/x-protobuf'});const r=await run(x.ctx);assert.deepEqual(Buffer.from(r.body),input);assert.equal(x.calls.length,0);});
+test('metadata discovery off leaves no-lyrics flag untouched and sends no search',async()=>{const input=metadataBytes(),x=context({url:`https://spclient.wg.spotify.com/metadata/4/track/${HEX}`,body:input,type:'application/x-protobuf',env:{DISCOVER_MISSING:'false'}});const r=await run(x.ctx);assert.deepEqual(Buffer.from(r.body),input);assert.equal(x.calls.length,0);});
 test('metadata discovery only marks lyrics available AFTER successful backup lookup',async()=>{
   const input=metadataBytes(),store=new Map(),x=context({url:`https://spclient.wg.spotify.com/metadata/4/track/${HEX}`,body:input,type:'application/x-protobuf',store,env:{DISCOVER_MISSING:'true'},network:metaNetwork});
   const r=await run(x.ctx);assert.equal(parseMetadata(new Uint8Array(r.body),HEX).hasLyrics,true);
@@ -256,4 +256,110 @@ test('native protobuf MIME is retained after adding a translation',async()=>{
 test('fallback lyrics use native translation without adding words to the original rows',async()=>{
   const x=context({status:404,body:'{}',requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN'},env:{TRANSLATION_ENABLED:'true'},network:metaNetwork}),r=await run(x.ctx),out=value(r);
   assert.equal(r.status,200);assert.equal(out.lyrics.provider,'lrclib');assert.deepEqual(out.lyrics.lines.map(l=>l.words),fixtureLines);assert.deepEqual(out.lyrics.alternatives[0].lines,['译文0','译文1']);
+});
+
+// Independent native card and batched metadata fixtures: no production encoder.
+const SCROLL = `https://gew1-spclient.spotify.com/scrollsita/v1/scroll/spotify:track:${ID}`;
+const EXTENDED = 'https://spclient.wg.spotify.com/extended-metadata/v0/extended-metadata';
+function scrollBytes({lyrics=false}={}) {
+  const sections=[bin(1,cat(bin(4,txt(1,'preserve credits')),txt(23,'opaque-section-info')))];
+  if(lyrics)sections.push(bin(1,bin(5,txt(1,'spotify:track:'+ID))));
+  return cat(bin(1,cat(...sections,txt(80,'structure-unknown'))),txt(2,'response-info-opaque'),txt(70,'root-unknown'));
+}
+function batchBytes({track=metadataBytes(),uri='spotify:track:'+ID,kind=10,type='type.googleapis.com/spotify.metadata.Track',status=200}={}) {
+  const any=cat(txt(1,type),bin(2,track),txt(100,'any-unknown'));
+  const entity=cat(bin(1,cat(int(1,status),txt(2,'old-etag'),int(4,86400),int(5,86400),txt(88,'header-unknown'))),txt(2,uri),bin(3,any),txt(90,'entity-unknown'));
+  const group=cat(bin(1,cat(int(2,86400),int(3,86400),int(4,1))),int(2,kind),bin(3,entity),txt(91,'group-unknown'));
+  return cat(bin(2,group),bin(2,cat(int(2,5),bin(3,txt(90,'opaque-audio-data')))),txt(92,'batch-unknown'));
+}
+test('missing native player card is added only after native 404 and exact backup, then the actual lyric request is fulfilled from cache',async()=>{
+  const input=scrollBytes(),store=new Map(),x=context({store,url:SCROLL,body:input,type:'application/x-protobuf',requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN','Client-Token':'TEST_ONLY_CLIENT',Cookie:'NEVER_FORWARD'},network:async(u,o)=>u.includes('/color-lyrics/')?new Response('no lyrics',{status:404}):metaNetwork(u,o)});
+  const r=await run(x.ctx),root=readFields(r.body),old=readFields(input),inner=readFields(root[0].payload),prior=readFields(old[0].payload);
+  assert.deepEqual(root.slice(1).map(f=>f.raw),old.slice(1).map(f=>f.raw));assert.deepEqual(inner.slice(1).map(f=>f.raw),prior.map(f=>f.raw));
+  const lyricCard=readFields(readFields(inner[0].payload)[0].payload);assert.equal(lyricCard[0].payload.toString(),'spotify:track:'+ID);
+  assert.equal(x.calls.length,3);assert.ok(x.calls[0].url.startsWith('https://gew1-spclient.spotify.com/color-lyrics/'));assert.ok(x.calls[0].options.headers['x-verselyrics-internal']);
+  assert.equal(x.calls[2].options.headers.Authorization,undefined);assert.equal(x.calls[2].options.headers.Cookie,undefined);
+  const next=context({store,status:404,body:'missing',type:'application/x-protobuf',env:{TRANSLATION_ENABLED:'true'},network:translated}),out=await run(next.ctx);
+  assert.equal(out.status,200);assert.deepEqual(parseDocument(out.body,'application/x-protobuf').words,fixtureLines);assert.equal(next.calls.length,1);assert.ok(next.calls[0].url.startsWith('https://translate.googleapis.com/'));
+});
+test('an existing native lyrics card is kept byte-for-byte with no network calls',async()=>{
+  const input=scrollBytes({lyrics:true}),x=context({url:SCROLL,body:input,type:'application/x-protobuf'});const r=await run(x.ctx);assert.deepEqual(Buffer.from(r.body),input);assert.equal(x.calls.length,0);
+});
+test('discovery explicitly off preserves missing card and reports the disabled setting',async()=>{
+  const input=scrollBytes(),x=context({url:SCROLL,body:input,type:'application/x-protobuf',env:{DISCOVER_MISSING:'false'}});const r=await run(x.ctx);assert.deepEqual(Buffer.from(r.body),input);assert.equal(x.calls.length,0);assert.match(x.store.get('VerseLyrics.v1.status'),/已关闭/);
+});
+test('a JSON card list keeps all prior sections, adds only the current track, and is not duplicated on reprocessing',async()=>{
+  const input={structure:{sections:[{credits:{opaque:true}}],future:7},future:'keep'},store=new Map();
+  const cache=loadCache(context({store}).ctx);cache.put('lyrics:auto:'+ID,{lyrics:{providerDisplayName:'LRCLIB',lines:[{words:'Self written line'}]}});cache.save();
+  const x=context({url:SCROLL,body:JSON.stringify(input),store}),r=await run(x.ctx),out=value(r);assert.deepEqual(out.structure.sections,[{lyrics:{entityUri:'spotify:track:'+ID}},...input.structure.sections]);assert.equal(out.future,'keep');assert.equal(out.structure.future,7);assert.equal(x.calls.length,0);
+  const second=context({url:SCROLL,body:JSON.stringify(out),store});assert.deepEqual(value(await run(second.ctx)),out);assert.equal(second.calls.length,0);
+});
+for(const httpStatus of [401,403,429,500])test(`native preflight ${httpStatus} does not trigger backup or a synthetic card`,async()=>{
+  const input=scrollBytes(),x=context({url:SCROLL,body:input,type:'application/x-protobuf',requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN'},network:async()=>new Response('error',{status:httpStatus})}),r=await run(x.ctx);assert.deepEqual(Buffer.from(r.body),input);assert.equal(x.calls.length,1);
+});
+test('unknown or entitlement native preflight payload leaves missing card intact',async()=>{
+  for(const body of ['{"error":"unknown"}','{"lyrics":{"lines":[],"showUpsell":true}}']){
+    const input=scrollBytes(),x=context({url:SCROLL,body:input,type:'application/x-protobuf',requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN'},network:async()=>new Response(body,{headers:{'Content-Type':'application/json'}})});assert.deepEqual(Buffer.from((await run(x.ctx)).body),input);assert.equal(x.calls.length,1);
+  }
+});
+test('native Spotify lyrics take priority when a missing card is found',async()=>{
+  const x=context({url:SCROLL,body:scrollBytes(),type:'application/x-protobuf',requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN'},network:async()=>new Response(JSON.stringify(lyricJSON()),{headers:{'Content-Type':'application/json'}})});const r=await run(x.ctx);assert.ok(r.headers);assert.equal(x.calls.length,1);assert.match(x.store.get('VerseLyrics.v1.status'),/Spotify/);
+});
+test('no matching fallback means no new card, with provider-specific diagnostics',async()=>{
+  const input=scrollBytes(),x=context({url:SCROLL,body:input,type:'application/x-protobuf',env:{FALLBACK_PROVIDER:'lrclib'},requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN'},network:async(u,o)=>u.includes('/color-lyrics/')?new Response('missing',{status:404}):u.includes('/metadata/')?metaNetwork(u,o):new Response('[]')});
+  assert.deepEqual(Buffer.from((await run(x.ctx)).body),input);assert.match(x.store.get('VerseLyrics.v1.status'),/LRCLIB：未找到同版本/);
+});
+test('batched TRACK_V4 discovery caches track identity and changes only the matched flag and its cache validators',async()=>{
+  const input=batchBytes(),x=context({url:EXTENDED,body:input,type:'application/x-protobuf',network:metaNetwork}),r=await run(x.ctx),parsed=extendedTracks(r.body);
+  assert.equal(parsed.records.length,1);assert.equal(parsed.records[0].hasLyrics,true);assert.equal(x.calls.length,1);assert.ok(x.calls[0].url.startsWith('https://lrclib.net/'));
+  const before=readFields(input),after=readFields(r.body);assert.deepEqual(after.slice(1).map(f=>f.raw),before.slice(1).map(f=>f.raw));
+  const old=extendedTracks(input).records[0],now=parsed.records[0];
+  for(const key of ['fs','anyFields','entityFields','groupFields']){
+    const excluded={fs:[18],anyFields:[2],entityFields:[1,3],groupFields:[1,3]}[key];
+    assert.deepEqual(now[key].filter(f=>!excluded.includes(f.number)).map(f=>Buffer.from(f.raw)),old[key].filter(f=>!excluded.includes(f.number)).map(f=>Buffer.from(f.raw)));
+  }
+  const headerFields=readFields(now.entityFields.find(f=>f.number===1).payload);assert.equal(headerFields.some(f=>f.no===2),false);assert.ok(headerFields.some(f=>f.no===88));
+});
+test('batched metadata with discovery off still primes the cache for the actual lyric request',async()=>{
+  const store=new Map(),input=batchBytes(),x=context({store,url:EXTENDED,body:input,type:'application/x-protobuf',env:{DISCOVER_MISSING:'false'}});assert.deepEqual(Buffer.from((await run(x.ctx)).body),input);assert.equal(x.calls.length,0);
+  const next=context({store,status:404,body:'missing',network:metaNetwork}),r=await run(next.ctx);assert.equal(r.status,200);assert.equal(next.calls.length,1);assert.ok(next.calls[0].url.startsWith('https://lrclib.net/'));
+});
+for(const opts of [{kind:5},{type:'type.googleapis.com/spotify.unknown.Track'},{status:403},{uri:'spotify:episode:'+ID},{track:metadataBytes({hex:HEX.replace(/1$/,'2')})}])test('unknown, non-track, forbidden, or mismatched extended entity stays opaque: '+JSON.stringify(opts).slice(0,75),async()=>{
+  const input=batchBytes(opts),x=context({url:EXTENDED,body:input,type:'application/x-protobuf'});assert.deepEqual(Buffer.from((await run(x.ctx)).body),input);assert.equal(x.calls.length,0);
+});
+test('retired metadata/4 can retrieve exactly the requested track through the native batched endpoint',async()=>{
+  const x=context({status:404,body:'missing',requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN',Cookie:'NEVER_FORWARD'},network:async(u,o)=>u.includes('/metadata/4/')?new Response('gone',{status:404}):u.includes('/extended-metadata/')?new Response(batchBytes(),{headers:{'Content-Type':'application/x-protobuf'}}):metaNetwork(u,o)});
+  assert.equal((await run(x.ctx)).status,200);assert.equal(x.calls.length,3);assert.equal(x.calls[1].method,'POST');assert.equal(x.calls[1].options.headers.Cookie,undefined);assert.equal(x.calls[2].options.headers.Authorization,undefined);
+  const request=readFields(x.calls[1].options.body),entity=readFields(request[0].payload);assert.equal(entity[0].payload.toString(),'spotify:track:'+ID);assert.equal(readFields(entity[1].payload)[0].raw.at(-1),10);
+});
+test('cached batch identity and backup allow a missing player card without any token or network',async()=>{
+  const store=new Map();await run(context({store,url:EXTENDED,body:batchBytes(),type:'application/x-protobuf',network:metaNetwork}).ctx);
+  const x=context({store,url:SCROLL,body:scrollBytes(),type:'application/x-protobuf'}),r=await run(x.ctx);assert.equal(x.calls.length,0);assert.ok(r.headers);assert.equal(readFields(readFields(readFields(r.body)[0].payload)[0].payload)[0].no,5);
+});
+test('route filters allow explicit TLS ports and encoded track URIs, reject spoofing and episode cards',()=>{
+  assert.ok(SCROLL_URL.test(SCROLL));assert.ok(SCROLL_URL.test(SCROLL.replace('.com/','.com:443/').replaceAll(':track:','%3Atrack%3A')+'?platform=iphone'));assert.ok(EXTENDED_URL.test(EXTENDED+'?x=1'));assert.ok(LYRIC_URL.test(URL.replace('.com/','.com:443/')));
+  for(const uri of [SCROLL.replace('spotify.com','spotify.com.evil.test'),SCROLL.replace(':track:',':episode:'),SCROLL+'/other',SCROLL.replace('https:','http:')])assert.equal(SCROLL_URL.test(uri),false);
+});
+test('diagnostic history keeps separate stages, is bounded, and never stores request tokens, cookies, or query strings',async()=>{
+  const store=new Map();for(let i=0;i<12;i++)await run(context({store,url:SCROLL+'?private=SECRET_QUERY',body:scrollBytes({lyrics:true}),type:'application/x-protobuf',requestHeaders:{Authorization:'Bearer SECRET_BEARER',Cookie:'SECRET_COOKIE'}}).ctx);
+  const events=JSON.parse(store.get('VerseLyrics.v1.events'));assert.equal(events.length,8);assert.ok(events.every(e=>e.route==='player-cards'&&e.trackId===ID));assert.doesNotMatch(JSON.stringify([...store]),/SECRET_/);
+  const x=context({store});delete x.ctx.request;const widget=await run(x.ctx);assert.ok(widget.children.some(c=>c.text?.includes('无词发现：开')));assert.ok(widget.children.some(c=>c.text?.includes('player-cards')));
+});
+test('a batched response keeps another track without a matching source unchanged',async()=>{
+  const first=batchBytes(),second=batchBytes({track:metadataBytes({hex:HEX.replace(/1$/,'2'),title:'Unmatched second title'}),uri:'spotify:track:0000000000000000000002'});
+  const firstRoot=readFields(first),firstGroup=readFields(firstRoot[0].payload),secondEntity=readFields(readFields(second)[0].payload).find(f=>f.no===3);
+  const input=cat(bin(2,cat(...firstGroup.map(f=>f.raw),secondEntity.raw)),...firstRoot.slice(1).map(f=>f.raw));
+  const x=context({url:EXTENDED,body:input,type:'application/x-protobuf',env:{FALLBACK_PROVIDER:'lrclib'},network:metaNetwork}),r=await run(x.ctx),records=extendedTracks(r.body).records;
+  assert.equal(records[0].hasLyrics,true);assert.equal(records[1].hasLyrics,false);assert.deepEqual(Buffer.from(records[1].entity.raw),secondEntity.raw);assert.equal(x.calls.length,2);
+});
+test('native has-lyrics batch stays unchanged and never queries fallback',async()=>{
+  const input=batchBytes({track:metadataBytes({flag:1})}),x=context({url:EXTENDED,body:input,type:'application/x-protobuf'});assert.deepEqual(Buffer.from((await run(x.ctx)).body),input);assert.equal(x.calls.length,0);
+});
+test('no in-flight token or cached identity cannot manufacture a missing player card',async()=>{
+  const input=scrollBytes(),x=context({url:SCROLL,body:input,type:'application/x-protobuf'});assert.deepEqual(Buffer.from((await run(x.ctx)).body),input);assert.equal(x.calls.length,0);
+});
+test('malformed discovery envelopes preserve every input byte and do not issue any lookup',async()=>{
+  for(const url of [SCROLL,EXTENDED])for(const input of [Buffer.from([10,255]),Buffer.from([18,128]),Buffer.from([255,0]),Buffer.from([10,2,10])]){
+    const x=context({url,body:input,type:'application/x-protobuf',requestHeaders:{Authorization:'Bearer TEST_ONLY_TOKEN'}});assert.deepEqual(Buffer.from((await run(x.ctx)).body),input);assert.equal(x.calls.length,0);
+  }
 });

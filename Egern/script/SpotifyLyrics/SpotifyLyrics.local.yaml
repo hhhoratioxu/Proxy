@@ -1,4 +1,4 @@
-# VerseLyrics 0.2.0 — Egern 原生模块，2026-10-15
+# VerseLyrics 0.3.0 — Egern 原生模块，2026-10-15
 # 本地交付版：先在 Egern「工具 → 脚本」保存 spotify-lyrics.js。
 # script_url 为 Egern 本地脚本文件名，不是电脑的绝对路径。
 name: Spotify 双语歌词 · VerseLyrics
@@ -23,8 +23,8 @@ env_schema:
     options: [auto, lrclib, qq, netease, 'off']
   DISCOVER_MISSING:
     name: 尝试显示原本无歌词的歌曲
-    description: 默认关闭；开启后只在旧版 metadata/4 接口明确无词且找到严格匹配备用歌词时设置有词标记。新版客户端可能不经过此接口。
-    default_value: 'false'
+    description: 默认开启；确认有原词或严格匹配的备用歌词后补充原生歌词卡片，并支持批量元数据。旧模块保存的 false 需手动改为 true；不保证所有歌曲有备用词。
+    default_value: 'true'
     options: ['true', 'false']
 mitm:
   hostnames:
@@ -33,20 +33,34 @@ mitm:
 scriptings:
   - http_request:
       name: VerseLyrics · 歌词请求缓存处理
-      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com/color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\s]+)?/?(?:\?.*)?$'
+      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com(?::443)?/(?:color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\s]+)?/?|metadata/4/track/[0-9a-f]{32}|extended-metadata/v0/extended-metadata/?|scrollsita/v1/scroll/spotify(?::|%3[aA])track(?::|%3[aA])[0-9A-Za-z]{22}/?)(?:\?.*)?$'
       script_url: spotify-lyrics.js
       body_required: false
       timeout: 3
   - http_response:
       name: VerseLyrics · Spotify 原词与翻译
-      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com/color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\s]+)?/?(?:\?.*)?$'
+      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com(?::443)?/color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\s]+)?/?(?:\?.*)?$'
       script_url: spotify-lyrics.js
       body_required: true
       max_size: 2097152
       timeout: 25
   - http_response:
       name: VerseLyrics · 歌曲信息与无词补源
-      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com/metadata/4/track/[0-9a-f]{32}(?:\?.*)?$'
+      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com(?::443)?/metadata/4/track/[0-9a-f]{32}(?:\?.*)?$'
+      script_url: spotify-lyrics.js
+      body_required: true
+      max_size: 2097152
+      timeout: 25
+  - http_response:
+      name: VerseLyrics · 批量歌曲信息与无词补源
+      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com(?::443)?/extended-metadata/v0/extended-metadata/?(?:\?.*)?$'
+      script_url: spotify-lyrics.js
+      body_required: true
+      max_size: 2097152
+      timeout: 25
+  - http_response:
+      name: VerseLyrics · 原生歌词卡片补全
+      match: '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com(?::443)?/scrollsita/v1/scroll/spotify(?::|%3[aA])track(?::|%3[aA])[0-9A-Za-z]{22}/?(?:\?.*)?$'
       script_url: spotify-lyrics.js
       body_required: true
       max_size: 2097152

@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-15",
+  "device_verified": false,
+  "scope": "Wire-field facts only. No iOS request/response or screenshot was captured. Implemented independently; no third-party injection or source-lookup algorithm copied.",
+  "official_current_web_asset": {
+    "url": "https://open.spotifycdn.com/cdn/build/web-player/web-player.672972fa.js",
+    "sha256": "444294394ba66b441cdc85878f20bdae3ce38f60195db66554404cb047f0f5c8",
+    "observed": "POST /extended-metadata/v0/extended-metadata; binary response"
+  },
+  "extended_metadata": {
+    "reference_commit": "4a005903e078d512456fb008aaa9ba6246881bd9",
+    "fields": {
+      "BatchedExtensionResponse.extended_metadata": 2,
+      "EntityExtensionDataArray.extension_kind": 2,
+      "EntityExtensionDataArray.extension_data": 3,
+      "EntityExtensionData.entity_uri": 2,
+      "EntityExtensionData.extension_data": 3,
+      "google.protobuf.Any.type_url": 1,
+      "google.protobuf.Any.value": 2,
+      "ExtensionKind.TRACK_V4": 10,
+      "spotify.metadata.Track.has_lyrics": 18
+    },
+    "sources": [
+      {
+        "url": "https://github.com/librespot-org/librespot/blob/4a005903e078d512456fb008aaa9ba6246881bd9/protocol/proto/extended_metadata.proto"
+      },
+      {
+        "url": "https://github.com/librespot-org/librespot/blob/4a005903e078d512456fb008aaa9ba6246881bd9/protocol/proto/entity_extension_data.proto"
+      },
+      {
+        "url": "https://github.com/librespot-org/librespot/blob/4a005903e078d512456fb008aaa9ba6246881bd9/protocol/proto/extension_kind.proto"
+      },
+      {
+        "url": "https://github.com/librespot-org/librespot/blob/4a005903e078d512456fb008aaa9ba6246881bd9/protocol/proto/metadata.proto"
+      }
+    ]
+  },
+  "native_player_cards": {
+    "schema_platform": "Publicly extracted Spotify Android generated Protobuf field descriptors; compatibility with the user's current iOS build remains unverified.",
+    "fields": {
+      "NpvScrollResponse.structure": 1,
+      "NpvScrollStructure.sections": 1,
+      "Section.lyrics": 5,
+      "Lyrics.entity_uri": 1
+    },
+    "sources": [
+      {
+        "url": "https://github.com/Persie0/spotify/blob/e10fa7c8a75ddafb7a29f20fed74d9f71067353d/decompiled/sources/com/spotify/scrollsita/p146v1/NpvScrollResponse.java",
+        "blob_sha": "e43be3768ea72b0955db466897bcc2c33d52cd4a"
+      },
+      {
+        "url": "https://github.com/Persie0/spotify/blob/e10fa7c8a75ddafb7a29f20fed74d9f71067353d/decompiled/sources/com/spotify/scrollsita/p146v1/NpvScrollStructure.java",
+        "blob_sha": "f533a601e483500fbab1c6e3942a7bbacef5818b"
+      },
+      {
+        "url": "https://github.com/Persie0/spotify/blob/e10fa7c8a75ddafb7a29f20fed74d9f71067353d/decompiled/sources/com/spotify/scrollsita/p146v1/Section.java",
+        "blob_sha": "c149981aedb33c0532220b1907db6d3b38c0f3c5"
+      },
+      {
+        "url": "https://github.com/Persie0/spotify/blob/e10fa7c8a75ddafb7a29f20fed74d9f71067353d/decompiled/sources/com/spotify/scrollsita/p146v1/Lyrics.java",
+        "blob_sha": "08abbec1fea8a82a639ad4bafe23ef869db8c7eb"
+      }
+    ]
+  },
+  "runtime_api": "https://egernapp.com/docs/javascript-api/"
+}

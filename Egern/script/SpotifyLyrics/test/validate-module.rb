@@ -8,7 +8,7 @@ results = []
   raise 'module name' unless config['name'].include?('VerseLyrics')
   raise 'unexpected config keys' unless (config.keys - %w[name author homepage manual icon description env_schema mitm scriptings]).empty?
   raise 'mitm scope' unless config['mitm']['hostnames'] == ['spclient.wg.spotify.com', '*-spclient.spotify.com']
-  raise 'script count' unless config['scriptings'].length == 4
+  raise 'script count' unless config['scriptings'].length == 6
   expected = file == 'SpotifyLyrics.yaml' ? remote : 'spotify-lyrics.js'
   raise 'local source missing' unless File.file?(File.join(root, 'spotify-lyrics.js'))
   config['scriptings'].each do |entry|
@@ -25,13 +25,19 @@ results = []
   end
   schema = config['env_schema']
   raise 'translation opt-in' unless schema['TRANSLATION_ENABLED']['default_value'] == 'false'
-  raise 'discovery opt-in' unless schema['DISCOVER_MISSING']['default_value'] == 'false'
+  raise 'discovery default' unless schema['DISCOVER_MISSING']['default_value'] == 'true'
   raise 'default language' unless schema['TARGET_LANGUAGE']['default_value'] == 'zh-CN'
   raise 'languages' unless schema['TARGET_LANGUAGE']['options'].length == 25
   schema.each do |key, item|
     raise 'non-string options' unless item['options'].all? { |x| x.is_a?(String) }
     raise 'invalid default' unless item['options'].include?(item['default_value'])
   end
-  results << {file:file,scripts:4,languages:25,script_location:expected,status:'passed'}
+  responses = config['scriptings'].select { |s| s.key?('http_response') }.map { |s| Regexp.new(s['http_response']['match']) }
+  %w[color-lyrics/v2/track/0000000000000000000001 metadata/4/track/00000000000000000000000000000001 extended-metadata/v0/extended-metadata scrollsita/v1/scroll/spotify:track:0000000000000000000001 scrollsita/v1/scroll/spotify%3Atrack%3A0000000000000000000001].each do |path|
+    url = 'https://gew1-spclient.spotify.com:443/' + path + '?platform=iphone'
+    raise 'missing response route' unless responses.count { |p| p.match?(url) } == 1
+    raise 'missing cache route' unless Regexp.new(config['scriptings'][0]['http_request']['match']).match?(url)
+  end
+  results << {file:file,scripts:6,languages:25,script_location:expected,status:'passed'}
 end
 puts JSON.pretty_generate({status:'passed',variants:results,checks:'YAML parse, repository script URL, local script resolution, env defaults, limits, URL scope'})
