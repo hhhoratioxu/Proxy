@@ -4,6 +4,8 @@
 
 在 Spotify 自己的歌词页补充缺失歌词，并用插件译文接管官方译文列表。默认开启自动补源、无词入口适配和简体中文翻译。正常使用无需查看状态、收集日志或等待诊断通知；正式模块只有请求与响应两个处理项，没有定时任务或通知脚本。
 
+仓库只保留当前正式版：一个脚本文件、一套在线／离线安装配置，以及一个最新离线包。旧版和诊断版可从 Git 历史查找。
+
 ## 安装或更新
 
 导入 [正式模块 0.4.1](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/SpotifyLyrics.yaml?v=0.4.1)：
@@ -13,7 +15,7 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyr
 ```
 
 1. 在 Egern 中关闭旧版 VerseLyrics 及所有 VerseLyrics 诊断模块，只启用这一份正式模块。
-2. 更新模块本身并重新加载配置；脚本会自动下载。模块使用独立的 `spotify-lyrics-0.4.1.js` 地址，避免沿用旧文件缓存。
+2. 更新模块本身并重新加载配置；脚本会自动下载。脚本统一使用 `spotify-lyrics.js?v=0.4.1` 地址，以查询参数更新缓存。
 3. 将 Spotify 从后台彻底划掉后重新打开，正常播放并查看 Spotify 原生歌词页。
 
 沿用已经安装、信任并开启的 Egern HTTPS 解密。仅处理 `spclient.wg.spotify.com` 和 `*-spclient.spotify.com`；不需要另外部署服务器、登录插件或购买 API Key。默认值已同时写入模块环境与脚本，导入即可使用。已有设置若显式关闭翻译，仍以用户保存的选项为准。
@@ -84,12 +86,12 @@ Google 网页翻译接口无需 Key，但没有开发者服务承诺，可能限
 
 ## 源码、离线包与复验
 
-[下载完整离线包](../VerseLyrics-Egern-0.4.1.zip)，包含源码、本地模块、测试和证据。离线模块 `SpotifyLyrics.local.yaml` 引用本地 `spotify-lyrics.js`，与远程版二选一使用。该模块使用 Egern 原生 `ctx` API，不适用于旧式 `$done` 脚本引擎。
+[下载完整离线包](../VerseLyrics-Egern.zip)（[SHA-256 校验值](../VerseLyrics-Egern.zip.sha256)），包含当前源码、本地模块、测试和证据。离线模块 `SpotifyLyrics.local.yaml` 引用本地 `spotify-lyrics.js`，与远程版二选一使用。该模块使用 Egern 原生 `ctx` API，不适用于旧式 `$done` 脚本引擎。
 
 ```sh
 node --test test/spotify-lyrics.test.mjs test/native-entry.test.mjs test/native-format.test.mjs test/player-entry.test.mjs
 ruby test/validate-module.rb
-# 模块及固定版本脚本的构建
+# 构建模块，脚本保持同一个文件名
 ruby build-module.rb
 # 可选开发复验：真实服务，模拟 Spotify 歌词输入
 node test/live-target.mjs

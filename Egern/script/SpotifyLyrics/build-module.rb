@@ -1,6 +1,5 @@
 require 'yaml'
 require 'json'
-require 'fileutils'
 root = __dir__
 version = JSON.parse(File.read(File.join(root,'package.json')))['version']
 previous = YAML.load_file(File.join(root,'SpotifyLyrics.yaml'))
@@ -17,7 +16,7 @@ base = {
  'env_schema'=>schema, 'mitm'=>{'hostnames'=>['spclient.wg.spotify.com','*-spclient.spotify.com']}
 }
 env = {'TRANSLATION_ENABLED'=>'true','TARGET_LANGUAGE'=>'zh-CN','FALLBACK_PROVIDER'=>'auto','DISCOVER_MISSING'=>'true'}
-remote = 'https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics-'+version+'.js?v='+version
+remote = 'https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics.js?v='+version
 {'SpotifyLyrics.yaml'=>remote,'SpotifyLyrics.local.yaml'=>'spotify-lyrics.js'}.each do |name,url|
  common = {'script_url'=>url,'env'=>env}
  common['update_interval'] = 3600 if name=='SpotifyLyrics.yaml'
@@ -28,5 +27,4 @@ remote = 'https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/
  config=JSON.parse(JSON.generate(config))
  File.write(File.join(root,name),'# VerseLyrics '+version+" — silent production module; no notification or scheduled scripts.\n"+YAML.dump(config).sub(/^---\n/,''))
 end
-FileUtils.cp(File.join(root,'spotify-lyrics.js'),File.join(root,'spotify-lyrics-'+version+'.js'))
 puts JSON.generate({version:version,scripts:2,defaultTranslation:true,notifications:false})

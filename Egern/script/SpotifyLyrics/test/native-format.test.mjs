@@ -2,7 +2,6 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import run,{fallbackFormat,encodeDocument,parseDocument} from '../spotify-lyrics.js';
-import old from '../spotify-lyrics-0.4.0.js';
 const target=JSON.parse(readFileSync(new URL('./fixtures/target-song.json',import.meta.url),'utf8'));
 const url='https://spclient.wg.spotify.com/color-lyrics/v2/track/'+target.track_id;
 const doc={lyrics:{syncType:'LINE_SYNCED',lines:[{startTimeMs:'1000',words:'Self written test line'}],provider:'TEST',providerDisplayName:'Self written',language:'en'},colors:{background:-15656936,text:-1,highlightText:-1}};
@@ -12,8 +11,7 @@ function session({accept='*/*',query='',type='application/json',body='{"error":"
  async function warm(handler){await handler({...ctx,request:{url:'https://spclient.wg.spotify.com/metadata/4/track/'+target.track_hex,headers:new Headers()},response:new Response(Buffer.from(target.metadata_base64,'base64'),{headers:{'Content-Type':'application/x-protobuf'}})});}
  return {ctx,warm};
 }
-test('reproduces 0.4.0 iOS wildcard Accept plus JSON error returning the wrong lyric format, then corrects it',async()=>{
- const previous=session();await previous.warm(old);const a=await old(previous.ctx);assert.match(a.headers.get('Content-Type'),/json/);assert.equal(Buffer.from(a.body)[0],123);
+test('iOS wildcard Accept plus JSON upstream error returns native protobuf lyrics',async()=>{
  const current=session();await current.warm(run);const b=await run(current.ctx);assert.equal(b.status,200);assert.match(b.headers.get('Content-Type'),/protobuf/);assert.equal(Buffer.from(b.body)[0],10);assert.deepEqual(parseDocument(b.body,b.headers.get('Content-Type')).words,['Self written test line']);
 });
 for(const [accept,type,body] of [['*/*','application/json','{}'],['*/*','application/json',''],[null,'application/json','{}'],['*/*',null,''],['application/x-protobuf','application/json','{}'],['application/octet-stream','text/plain','missing']])test('missing native lyrics format is independent of the upstream error MIME: '+JSON.stringify([accept,type,body]),async()=>{

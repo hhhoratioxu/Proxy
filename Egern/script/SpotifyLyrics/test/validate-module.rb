@@ -1,7 +1,8 @@
 require 'yaml'
 require 'json'
 root = File.expand_path('..', __dir__)
-remote = 'https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics-0.4.1.js?v=0.4.1'
+version = JSON.parse(File.read(File.join(root, 'package.json')))['version']
+remote = 'https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=' + version
 results = []
 ['SpotifyLyrics.yaml', 'SpotifyLyrics.local.yaml'].each do |file|
   config = YAML.load_file(File.join(root, file))
@@ -42,7 +43,7 @@ results = []
     raise 'missing response route' unless responses.count { |p| p.match?(url) } == 1
     raise 'missing cache route' unless Regexp.new(config['scriptings'][0]['http_request']['match']).match?(url)
   end
-  raise 'versioned bundle mismatch' unless File.binread(File.join(root,'spotify-lyrics.js')) == File.binread(File.join(root,'spotify-lyrics-0.4.1.js'))
+  raise 'duplicate published script' unless Dir.glob(File.join(root, 'spotify-lyrics*.js')).map { |p| File.basename(p) } == ['spotify-lyrics.js']
   results << {file:file,scripts:2,notifications:false,schedules:false,languages:25,script_location:expected,status:'passed'}
 end
 puts JSON.pretty_generate({status:'passed',variants:results,checks:'YAML parse, repository script URL, local script resolution, env defaults, limits, URL scope'})

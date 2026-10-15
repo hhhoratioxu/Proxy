@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import run,{PLAYER_ENTRY_URL,playerEntryJSON,playerEntryWire} from '../spotify-lyrics.js';import old from '../spotify-lyrics-0.4.0.js';
+import run,{PLAYER_ENTRY_URL,playerEntryJSON,playerEntryWire} from '../spotify-lyrics.js';
 const id=n=>String(n).padStart(22,'0'),uri=n=>'spotify:track:'+id(n),enc=s=>Buffer.from(s),cat=(...x)=>Buffer.concat(x);
 function vi(n){n=BigInt(n);const out=[];do{const b=Number(n&127n);n>>=7n;out.push(b|(n?128:0));}while(n);return Buffer.from(out);}
 const bin=(n,b)=>cat(vi(n*8+2),vi(b.length),b),str=(n,s)=>bin(n,enc(s));
@@ -27,7 +27,7 @@ test('native Cluster field path 3 then 7/19/20 then metadata 3 preserves devices
 });
 for(const path of ['context-resolve/v1/spotify:track:'+id(1),'context-resolve/v1/spotify%3Aplaylist%3A'+id(2),'connect-state/v1/devices/'+id(9)])test('production handles the previously omitted playback entry route '+path,async()=>{
  const connect=path.startsWith('connect-state'),body=JSON.stringify(connect?{player_state:{track:{uri:uri(1),metadata:{has_lyrics:'false'}}}}:{uri:uri(1),pages:[{tracks:[{uri:uri(1),metadata:{has_lyrics:'false'}}]}]});
- assert.equal(await old(ctx(path,body)),undefined);assert.equal(PLAYER_ENTRY_URL.test('https://spclient.wg.spotify.com/'+path),true);const context=ctx(path,body),result=await run(context);assert.ok(result.headers);assert.equal(result.headers.get('ETag'),null);const out=JSON.parse(Buffer.from(result.body).toString());assert.equal((connect?out.player_state.track:out.pages[0].tracks[0]).metadata.has_lyrics,'true');delete context.response;const request=await run(context);assert.equal(request.headers.get('If-None-Match'),null);
+ assert.equal(PLAYER_ENTRY_URL.test('https://spclient.wg.spotify.com/'+path),true);const context=ctx(path,body),result=await run(context);assert.ok(result.headers);assert.equal(result.headers.get('ETag'),null);const out=JSON.parse(Buffer.from(result.body).toString());assert.equal((connect?out.player_state.track:out.pages[0].tracks[0]).metadata.has_lyrics,'true');delete context.response;const request=await run(context);assert.equal(request.headers.get('If-None-Match'),null);
 });
 for(const option of [{env:{DISCOVER_MISSING:'false'}},{env:{FALLBACK_PROVIDER:'off'}},{status:401},{status:403},{status:429},{status:500}])test('playback entry retains upstream state when disabled or unavailable '+JSON.stringify(option),async()=>{const context=ctx('context-resolve/v1/spotify:track:'+id(1),'{}',option);assert.equal(await run(context),undefined);assert.equal(context.response.bodyUsed,false);});
 test('episodes, malformed flags, unknown shapes, lookalike hosts and unsupported paths stay untouched',async()=>{

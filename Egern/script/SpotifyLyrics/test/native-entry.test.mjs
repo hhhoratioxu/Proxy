@@ -55,5 +55,5 @@ test('one production response handler shares metadata through card insertion, au
  const count=requests.length;const again=ctx(lyrics.context.request.url,'missing',{status:404,store,network,type:'application/json'});assert.equal((await run(again.context)).status,200);assert.equal(requests.length,count);assert.equal(metadata.notices.length+cards.notices.length+lyrics.notices.length+again.notices.length,0);
 });
 test('the production bundle has no notification adapter, schedule or runtime imports',()=>{
- const source=readFileSync(new URL('../spotify-lyrics.js',import.meta.url),'utf8');assert.doesNotMatch(source,/ctx\.notify|diagnosticNotify|DIAGNOSTIC_VERSION|^\s*import\s/m);assert.deepEqual(readFileSync(new URL('../spotify-lyrics-0.4.1.js',import.meta.url)),Buffer.from(source));
+ const source=readFileSync(new URL('../spotify-lyrics.js',import.meta.url),'utf8');assert.doesNotMatch(source,/ctx\.notify|diagnosticNotify|DIAGNOSTIC_VERSION|^\s*import\s/m);
 });
