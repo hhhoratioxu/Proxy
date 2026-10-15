@@ -28,8 +28,8 @@
     "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
   },
   "README.md": {
-    "bytes": 9928,
-    "sha256": "20c8152786ba89d607c349dc2b3f758df3e52bc4f03ab071778aec6a48f425ac"
+    "bytes": 10211,
+    "sha256": "d55aa267a005fdedf050f76f8dd35b3c8bbd6af6b47845c8d6690bf8fd9e43b2"
   },
   "SpotifyLyrics.Diagnostics.local.yaml": {
     "bytes": 3878,
@@ -44,12 +44,24 @@
     "sha256": "d8591aa8211738390934e26d7eac2b847304546a7ac29605c925b52970cbfa8f"
   },
   "build-module.rb": {
-    "bytes": 2943,
-    "sha256": "d1e8a19bf19b9516c19d934224254803d23fca9d7ffe67ff2de34073bdeef325"
+    "bytes": 2939,
+    "sha256": "e658d5740b82a3a64d2c4c39888d0fc136d92d2a3015646ac69a8e0c784e8fdc"
   },
   "build.mjs": {
-    "bytes": 2107,
-    "sha256": "f33e7ece9cbb08d39cbfb0a58c66e920c90e0ade579cc000ef6ae066280696fa"
+    "bytes": 2098,
+    "sha256": "06fe09dc38c7d0368e1f3afd900a61d3cb165d0d046fd0749f6cb79df7ad64c5"
+  },
+  "legacy/SpotifyLyrics-0.3.3.yaml": {
+    "bytes": 4619,
+    "sha256": "6db1772ab59c90e795eca67025b4439138dde24f18560d07347a5c1fd3dd2d0c"
+  },
+  "legacy/processor-0.3.3.js": {
+    "bytes": 85136,
+    "sha256": "bad6962d1e5fe43ca5c98bc380f7fc5d4792d01ef5b0de6d9a6a0b55d18bc1f0"
+  },
+  "legacy/spotify-lyrics.test.mjs": {
+    "bytes": 58978,
+    "sha256": "8b8687fd6872796f6b02c7b421241f2cb151dc270b7ebaaeca7c15b935ecc168"
   },
   "lyrics-entry-gate.js": {
     "bytes": 7912,
@@ -76,16 +88,16 @@
     "sha256": "fbcb85d42b60d7fad733a4ecfbd7a7d3314eaad2bd673f2c0611cc383badeb35"
   },
   "test/diagnostics.test.mjs": {
-    "bytes": 12937,
-    "sha256": "5d5bb99ddde06c596e14186c0a0bd22e4e105069a2b01ceafc4eec02ec9c7e44"
+    "bytes": 12919,
+    "sha256": "b2973f48b91b93b39d71da055243ef2795b0af4bef63684e77baacbd3f3f5f8b"
   },
   "test/lyrics-gate.test.mjs": {
     "bytes": 14258,
     "sha256": "56c3133e909613b38ec684ca470726ea4dbebc4f46f707c4499be20aaa1fc3c4"
   },
   "test/run-core-regression.mjs": {
-    "bytes": 891,
-    "sha256": "09f761804f4c99ecda6c3ec25824df11e54111b907e28e53475b4016047cc349"
+    "bytes": 921,
+    "sha256": "a4d059460732c7dfac8394aeb6cdb2d2a2303955e951d6c9b4ec171484eae228"
   },
   "test/validate-module.rb": {
     "bytes": 2475,

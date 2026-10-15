@@ -29,7 +29,7 @@ async function request(url,options={},method='GET') {
   calls.push({host:new URL(url).hostname,status,method});return new Response(stdout.slice(0,marker),{status});
 }
 const map=new Map(),storage={getJSON:k=>map.has(k)?JSON.parse(map.get(k)):null,setJSON:(k,v)=>map.set(k,JSON.stringify(v))};
-const ctx={env:{FALLBACK_PROVIDER:'auto',DISCOVER_MISSING:'true'},storage,http:{get:(u,o)=>request(u,o),post:(u,o)=>request(u,o,'POST')},
+const ctx={env:{TRANSLATION_ENABLED:'false',FALLBACK_PROVIDER:'auto',DISCOVER_MISSING:'true'},storage,http:{get:(u,o)=>request(u,o),post:(u,o)=>request(u,o,'POST')},
   request:{url:'https://spclient.wg.spotify.com/metadata/4/track/'+fixture.track_hex,headers:new Headers({Accept:'application/vnd.google.protobuf'})},
   response:new Response(bytes,{headers:{'Content-Type':'application/vnd.google.protobuf'}})};
 const begin=Date.now();

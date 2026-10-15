@@ -3,9 +3,9 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {spawnSync} from 'node:child_process';
 const root=new URL('../',import.meta.url),base=new URL('../SpotifyLyrics/test/',root);
-const source=readFileSync(new URL('spotify-lyrics.test.mjs',base),'utf8');
+const source=readFileSync(new URL('legacy/spotify-lyrics.test.mjs',root),'utf8');
 const bundle=new URL('spotify-lyrics-diagnostics-3.js',root).href,fixtures=new URL('fixtures/',base).href;
-const generated=source.replace("'../spotify-lyrics.js'",JSON.stringify(bundle)).replaceAll("'./fixtures/","'"+fixtures);
+const generated=source.replace("'./processor-0.3.3.js'",JSON.stringify(bundle)).replaceAll("'../../SpotifyLyrics/test/fixtures/","'"+fixtures);
 const temp=mkdtempSync(join(tmpdir(),'verselyrics-diag-regression-'));
 try {
   const path=join(temp,'core-regression.mjs');writeFileSync(path,generated);

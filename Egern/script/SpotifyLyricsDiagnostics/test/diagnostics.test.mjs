@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import diagnose, {parseDocument, diagnosticError} from '../spotify-lyrics-diagnostics-3.js';
-import original from '../../SpotifyLyrics/spotify-lyrics.js';
+import original from '../legacy/processor-0.3.3.js';
 const fixtures = new URL('../../SpotifyLyrics/test/fixtures/', import.meta.url);
 const song = JSON.parse(readFileSync(new URL('target-song.json', fixtures), 'utf8'));
 const scroll = JSON.parse(readFileSync(new URL('target-scroll.json', fixtures), 'utf8'));
@@ -118,7 +118,7 @@ test('manual preview keeps the existing widget result and also sends the copyabl
 test('the delivered bundle is self-contained and hashes match its original processor and adapter',()=>{
   const root=new URL('../',import.meta.url),info=JSON.parse(readFileSync(new URL('build-info.json',root),'utf8'));
   const hash=p=>createHash('sha256').update(readFileSync(p)).digest('hex');
-  assert.equal(info.sourceSha256,hash(new URL('../../SpotifyLyrics/spotify-lyrics.js',import.meta.url)));
+  assert.equal(info.sourceSha256,hash(new URL('../legacy/processor-0.3.3.js',import.meta.url)));
   assert.equal(info.adapterSha256,hash(new URL('notification-layer.js',root)));assert.equal(info.gateSha256,hash(new URL('lyrics-entry-gate.js',root)));assert.equal(info.bundleSha256,hash(new URL(info.bundleFile,root)));
   assert.equal(hash(new URL('spotify-lyrics-diagnostics.js',root)),'fbcb85d42b60d7fad733a4ecfbd7a7d3314eaad2bd673f2c0611cc383badeb35');
   assert.equal(hash(new URL('spotify-lyrics-diagnostics-2.js',root)),'7e796de3e00505bbbcaf4a540dd4b81171a1f5277f38a6d2c04c4fc4a65bf347');

@@ -35,7 +35,7 @@ function metadataBytes({ title='The Blue Kite', album='Quiet Garden', artist='Ad
 function lyricJSON(lines=fixtureLines) { return { lyrics: { syncType:'LINE_SYNCED', language:'en', provider:'Musixmatch', providerDisplayName:'Original credits', lines:lines.map((words,i)=>({startTimeMs:String(1000+i*2000),endTimeMs:'0',words,syllables:[],future:'keep'})), future:'keep' }, colors:{background:-1,text:-1,highlightText:-1}, hasVocalRemoval:true, future:{x:1} }; }
 function context({ body=JSON.stringify(lyricJSON()), status=200, type='application/json', env={}, url=URL, requestHeaders={}, responseHeaders={}, store=new Map(), network=async()=>{throw Error('unexpected HTTP')} }={}) {
   const calls = [], storage = { getJSON:k=>store.has(k)?JSON.parse(store.get(k)):null, setJSON:(k,v)=>store.set(k,JSON.stringify(v)) };
-  const ctx = { env, request:{url,headers:new Headers({Accept:type,...requestHeaders})}, response:new Response(body,{status,headers:{'Content-Type':type,...responseHeaders}}), storage,
+  const ctx = { env:{TRANSLATION_ENABLED:"false",...env}, request:{url,headers:new Headers({Accept:type,...requestHeaders})}, response:new Response(body,{status,headers:{'Content-Type':type,...responseHeaders}}), storage,
     http:{get:async(u,o)=>{calls.push({url:u,options:o,method:'GET'});return network(u,o,'GET');},post:async(u,o)=>{calls.push({url:u,options:o,method:'POST'});return network(u,o,'POST');}} };
   return {ctx,calls,store};
 }
@@ -50,8 +50,8 @@ const metaNetwork = async(u,o) => {
   throw new Error('unexpected endpoint');
 };
 
-test('defaults: translation off, language zh-CN, missing-lyrics discovery on',()=>{assert.deepEqual(settings({}),{translate:false,language:'zh-CN',provider:'auto',discover:true});assert.equal(settings({DISCOVER_MISSING:'false'}).discover,false);});
-test('translation opt-in: no lyric text sent with defaults',async()=>{const x=context();const r=await run(x.ctx);assert.equal(x.calls.length,0);assert.equal(Buffer.from(r.body).toString(),JSON.stringify(lyricJSON()));});
+test('defaults: translation on, language zh-CN, missing-lyrics discovery on',()=>{assert.deepEqual(settings({}),{translate:true,language:'zh-CN',provider:'auto',discover:true});assert.equal(settings({DISCOVER_MISSING:'false'}).discover,false);});
+test('explicit translation disable sends no lyric text',async()=>{const x=context();const r=await run(x.ctx);assert.equal(x.calls.length,0);assert.equal(Buffer.from(r.body).toString(),JSON.stringify(lyricJSON()));});
 test('JSON native translation keeps original rows and adds a separate alternative',async()=>{
   const input=lyricJSON(),x=context({env:{TRANSLATION_ENABLED:'true'},network:translated});
   const r=await run(x.ctx),out=value(r);assert.deepEqual(out.lyrics.lines,input.lyrics.lines);assert.deepEqual(out.lyrics.alternatives,[{language:'zh-CN',lines:['译文0','译文1']}]);

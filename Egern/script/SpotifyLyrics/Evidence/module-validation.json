@@ -3,14 +3,18 @@
   "variants": [
     {
       "file": "SpotifyLyrics.yaml",
-      "scripts": 6,
+      "scripts": 2,
+      "notifications": false,
+      "schedules": false,
       "languages": 25,
-      "script_location": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=0.3.3",
+      "script_location": "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/SpotifyLyrics/spotify-lyrics-0.4.0.js?v=0.4.0",
       "status": "passed"
     },
     {
       "file": "SpotifyLyrics.local.yaml",
-      "scripts": 6,
+      "scripts": 2,
+      "notifications": false,
+      "schedules": false,
       "languages": 25,
       "script_location": "spotify-lyrics.js",
       "status": "passed"

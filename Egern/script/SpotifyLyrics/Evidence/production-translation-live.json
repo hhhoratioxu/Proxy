@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-15T14:09:19.203Z",
+  "runtime": "v24.19.0",
+  "scope": "real upstream services; synthetic Spotify responses and metadata; not Spotify account or device validation",
+  "results": [
+    {
+      "name": "google-single-phrase",
+      "ok": true,
+      "elapsedMs": 601,
+      "status": 200,
+      "alignedRows": 1
+    },
+    {
+      "name": "handler-live-translation-zh-CN",
+      "ok": true,
+      "elapsedMs": 649,
+      "translatedRows": 2,
+      "originalRowsUnchanged": true,
+      "originalTimingsPreserved": true,
+      "nativeAlternatives": true,
+      "allOfficialAlternativesRemoved": true,
+      "pluginTranslationsOnly": true
+    },
+    {
+      "name": "handler-live-translation-ja",
+      "ok": true,
+      "elapsedMs": 690,
+      "translatedRows": 2,
+      "originalRowsUnchanged": true,
+      "originalTimingsPreserved": true,
+      "nativeAlternatives": true,
+      "allOfficialAlternativesRemoved": true,
+      "pluginTranslationsOnly": true
+    },
+    {
+      "name": "handler-live-translation-ar",
+      "ok": true,
+      "elapsedMs": 597,
+      "translatedRows": 2,
+      "originalRowsUnchanged": true,
+      "originalTimingsPreserved": true,
+      "nativeAlternatives": true,
+      "allOfficialAlternativesRemoved": true,
+      "pluginTranslationsOnly": true
+    },
+    {
+      "name": "handler-live-translation-fr",
+      "ok": true,
+      "elapsedMs": 593,
+      "translatedRows": 2,
+      "originalRowsUnchanged": true,
+      "originalTimingsPreserved": true,
+      "nativeAlternatives": true,
+      "allOfficialAlternativesRemoved": true,
+      "pluginTranslationsOnly": true
+    }
+  ]
+}

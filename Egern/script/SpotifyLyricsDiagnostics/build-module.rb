@@ -2,7 +2,7 @@ require 'yaml'
 require 'fileutils'
 require 'json'
 root = __dir__
-original = YAML.load_file(File.join(root, '../SpotifyLyrics/SpotifyLyrics.yaml'))
+original = YAML.load_file(File.join(root, 'legacy/SpotifyLyrics-0.3.3.yaml'))
 old_known = original['scriptings'][0]['http_request']['match']
 gate = '^https://(?:spclient\.wg|[a-z0-9-]+-spclient)\.spotify\.com(?::443)?/(?:user-customization-service/v1/customize|bootstrap/v1/bootstrap|v1/customize)/?(?:\?.*)?$'
 known = '^(?:'+old_known[1...-1]+'|'+gate[1...-1]+')$'

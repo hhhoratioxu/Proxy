@@ -2,7 +2,7 @@ import {readFileSync, writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 const root = new URL('./', import.meta.url);
-const source = readFileSync(new URL('../SpotifyLyrics/spotify-lyrics.js', root), 'utf8');
+const source = readFileSync(new URL('legacy/processor-0.3.3.js', root), 'utf8');
 assert.ok(source.includes('const VERSION = "0.3.3";'));
 const entry = 'export default async function(ctx) {';
 const catcher = '} catch { status(ctx, "响应结构不支持或处理失败，已保留原响应。"); return unchanged(); }';

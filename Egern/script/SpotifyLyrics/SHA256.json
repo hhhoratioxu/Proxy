@@ -12,8 +12,8 @@
     "sha256": "27a0372dc93e2f6f48de5595f4013f4f57f418796688d7a10967ce47c4c485ec"
   },
   "Evidence/local-tests.txt": {
-    "bytes": 10581,
-    "sha256": "46a8275d49e66c3cd9b9442625619a1b4777ea066717a154b1eb7d874021ca5e"
+    "bytes": 11877,
+    "sha256": "ba24f41e5e320d6840ccf573735bb26feddbd7a5d6b2a550f8c2eb92171800ff"
   },
   "Evidence/missing-lyrics-live.json": {
     "bytes": 556,
@@ -24,8 +24,8 @@
     "sha256": "148e856aba6c93a9601abc888b74408eb0f392bb8f0a907a2b273a24828b8e03"
   },
   "Evidence/module-validation.json": {
-    "bytes": 576,
-    "sha256": "f5b553d9b2b00c6e3c6733ee81b515771e15c0ac1e56ed0a238ddd83e6591139"
+    "bytes": 694,
+    "sha256": "e25750412ed49d9e16afbb490876a0fd327b3b09915cc4beb06a2336527e2e80"
   },
   "Evidence/native-protocol.json": {
     "bytes": 1440,
@@ -34,6 +34,22 @@
   "Evidence/native-translation-live.json": {
     "bytes": 1289,
     "sha256": "a005cfc4c1cc3dc9deee6495309865d16c1c9bd5891b855c2b8f9cabed7e6794"
+  },
+  "Evidence/production-config-validation.json": {
+    "bytes": 1345,
+    "sha256": "b77e01b0a2226740ed64e52b6e28848d366e38c3d1fa8670a2affc5adc007bab"
+  },
+  "Evidence/production-protocol.json": {
+    "bytes": 1612,
+    "sha256": "a845799d844a2e2b1e1e1b62262d2743b61b9e5a55c5e57360b96a8bf8de7fe9"
+  },
+  "Evidence/production-target-live.json": {
+    "bytes": 1354,
+    "sha256": "85ce28f8a66181167dd17093e2749a46a350ab96e108634b79b04a56d6c22951"
+  },
+  "Evidence/production-translation-live.json": {
+    "bytes": 1630,
+    "sha256": "3b25d683e4f754aaf612055200ab895f1e8ae394783a4f4536dbee112ac12d91"
   },
   "Evidence/target-song-live.json": {
     "bytes": 1217,
@@ -56,24 +72,32 @@
     "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
   },
   "README.md": {
-    "bytes": 22519,
-    "sha256": "7630838fb2454cd41a6cdb25dff400189e7f31108274b32a127c5417602035c4"
+    "bytes": 8446,
+    "sha256": "ebdc66524464b92ddeb1ee61d928abfac2fc26d7dd538ef5350c0477fbfbabd0"
   },
   "SpotifyLyrics.local.yaml": {
-    "bytes": 3733,
-    "sha256": "4a8bcbb5c479b7b9e479af06207eb3d8c84856ebca2938f458bf1fdc15481e2e"
+    "bytes": 3224,
+    "sha256": "67ae50cc8033267a561d16cf0e5808636545e4dee9a38d25f695b0feb6d28051"
   },
   "SpotifyLyrics.yaml": {
-    "bytes": 4619,
-    "sha256": "6db1772ab59c90e795eca67025b4439138dde24f18560d07347a5c1fd3dd2d0c"
+    "bytes": 3472,
+    "sha256": "08790ad9ca9e7a11d5f679abe733254fcb6ecbf9e2103043da398efb3d124c3b"
+  },
+  "build-module.rb": {
+    "bytes": 2764,
+    "sha256": "68343c650d469b3518773c86e9f0125b34678fed8904a66502e45c65e6a37500"
   },
   "package.json": {
-    "bytes": 260,
-    "sha256": "dde7fe69c714bde353714b453561b7a09a22b92e2ab0f3fae017a389b966b3cc"
+    "bytes": 287,
+    "sha256": "98fd468a35ce613b882d6700233c06815bc22fa0fa671cb1a0216ccf4c4f3508"
+  },
+  "spotify-lyrics-0.4.0.js": {
+    "bytes": 92865,
+    "sha256": "0732d50db097c284db643be107f2c15be645b3e435fd135ab10f9a15f84b2d2a"
   },
   "spotify-lyrics.js": {
-    "bytes": 85136,
-    "sha256": "bad6962d1e5fe43ca5c98bc380f7fc5d4792d01ef5b0de6d9a6a0b55d18bc1f0"
+    "bytes": 92865,
+    "sha256": "0732d50db097c284db643be107f2c15be645b3e435fd135ab10f9a15f84b2d2a"
   },
   "test/build-han-fold.py": {
     "bytes": 2863,
@@ -92,15 +116,19 @@
     "sha256": "b2671718484c6c041aa18da459362e6078a1b6ae76977c5b95748188e923cbec"
   },
   "test/live-target.mjs": {
-    "bytes": 4967,
-    "sha256": "055cf0c8ce052ac7182e07664546eb10e3a6c3f454f704001ff82cad9c8858fb"
+    "bytes": 4995,
+    "sha256": "284b3c6c18aa1a3d686dd567518297a5ebc0b0c5591ac39d25cda1a20a95caa3"
+  },
+  "test/native-entry.test.mjs": {
+    "bytes": 8910,
+    "sha256": "f46651fee7f782a0ea9f6262e1c6c01d19510ad1b203f4144492e7d743403b31"
   },
   "test/spotify-lyrics.test.mjs": {
-    "bytes": 58932,
-    "sha256": "50ace910d119795da8804d2f78bf7d4a99a4535d78236ac2f60db80ada7bcc92"
+    "bytes": 58963,
+    "sha256": "d7a1c732709fb6ebb45c14f15113fd8bb477367018cd97382981c28ba7a34c9f"
   },
   "test/validate-module.rb": {
-    "bytes": 3361,
-    "sha256": "f03caea668b6fbc4b36abb62cc705c51880a19800992ccd0a734bae82bb4b93d"
+    "bytes": 3947,
+    "sha256": "d86ea93bf58b261426d4d713382fb50f2a04e17f8229a1f5e571aee91355316c"
   }
 }
