@@ -1,16 +1,16 @@
 # Spotify 双语歌词 · VerseLyrics · Quantumult X
 
-**0.4.6 首次加载与内存保护：** 高频播放器、元数据和歌词入口由独立小脚本处理，不加载六源、翻译或汉字映射。汉字匹配直接查询 6,447 组静态映射；不再为每次运行建立整张 Map。相同元数据不重复写入缓存，15 秒内连续相同状态记录合并。
+**0.4.7 客户端规范与内存保护：** 保留请求、入口、歌词三个独立脚本；按各客户端能力处理运行结束、HTTP 和二进制数据。
 
-`auto` 首次仍依次查询 LRCLIB、QQ、网易云、酷狗、酷我、lyrics.ovh；同一组歌手近期成功的同步源会提前，提示有效 6 小时。每首歌仍核对标题、歌手、时长和版本；其他来源继续保留。配色、翻译、歌词源全程串行。
+按 [官方二进制示例](https://github.com/crossutility/Quantumult-X/blob/master/sample-bytes-rewrite.js) 使用 ArrayBuffer bodyBytes；按 [响应改写示例](https://github.com/crossutility/Quantumult-X/blob/master/sample-rewrite-with-script.js) 保留原 Content-Length、Content-Type、Content-Encoding 字段，由客户端处理正文替换。仅保留一个首次联网才创建的整体退出计时器；迟到的 fetch 完成不再读取 bodyBytes。官方示例未公开单次 fetch 取消/毫秒超时/响应体硬上限参数，不伪造这些字段，也不声称计时器取消了原生网络请求。
 
-原始歌词响应上限 256 KiB，播放器与入口响应 128 KiB，普通外部服务响应 96 KiB，配色 256 KiB；单次补源累计 256 KiB、最多 12 个请求，输出最多 512 KiB。歌词缓存最多 128 条、64,000 个 JSON 字符，旧缓存自动缩减；译文保留和重复行展开各最多 60,000 个字符。缓存量不等于总进程内存。
+六源和同歌手同步来源优先保持不变。歌词、配色、翻译串行，不增加预加载或等待队列。缓存命中无需联网；共享存储对两个联网任务进行尽力准入检查，但存储不提供原子锁。超时或繁忙不会被误记成该歌无词。
 
-完整歌词处理预算 10 秒，单次 HTTP 最多 2.5 秒。共享存储检查最多两个联网歌词任务；忙时使用已有缓存或保留原响应，不建立等待队列，也不缓存为“此歌无词”。该存储无原子锁，跨实例准入是尽力保护；不能给宿主网络缓冲或 VPN 总内存提供硬上限。未确认取消的超时请求保留短期名额，不继续堆请求。
+正文预算继续为歌词 256 KiB、入口 128 KiB、普通服务 96 KiB、配色 256 KiB；补源累计 256 KiB / 12 请求；输出 512 KiB。主缓存最多 128 条 / 64,000 JSON 字符。上述值是脚本处理预算，不是 VPN 进程总内存上限。
 
-Loon 在响应头阶段跳过超过对应 128/256 KiB 上限的已知大响应；Egern、Surge、Shadowrocket 同时设置宿主大小限制。所有客户端在脚本内再次检查；Egern 的响应流超限即停止读取。超限或繁忙时，部分歌曲可能暂时不能补词或翻译，优先让原响应继续通过。
+核心以 10 秒为继续发起网络请求的预算；Egern/Loon 原生 HTTP 使用毫秒超时，Surge 使用秒超时，最多 2.5 秒。Quantumult X 不宣称有单次 2.5 秒原生超时，只在首次联网后保留一个整体 12 秒退出计时器。宿主可能先缓冲未知长度响应，结束脚本也不等于取消网络；无法据此保证整台设备的 VPN 永不因内存退出。超限或繁忙时保留原响应，可能暂时不补词或不翻译。
 
-核心 **0.4.6**，客户端适配 **5**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
+核心 **0.4.7**，客户端适配 **6**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
 
 补词优先核对同专辑；跨专辑需歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 重复记录仅在完整歌词、时间戳与时长全部相同的情况下合并），排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -37,9 +37,9 @@ Loon 在响应头阶段跳过超过对应 128/256 KiB 上限的已知大响应�
 | `FALLBACK_PROVIDER` | `auto` | 无词时顺序尝试六源；可选 `lrclib` / `qq` / `netease` / `kugou` / `kuwo` / `lyricsovh` / `off` |
 | `DISCOVER_MISSING` | `true` | 尝试适配原生入口，不保证客户端发起歌词请求 |
 
-如需繁体中文或指定来源，将资源保存为本地重写后，同步修改三条脚本 URL 的 `#` 参数。例如把两处 `TARGET_LANGUAGE=zh-CN` 改为 `TARGET_LANGUAGE=zh-TW`；无需编辑 JS。
+如需繁体中文或指定来源，将资源保存为本地重写后，同步修改三条脚本 URL 的 `#` 参数。例如把三处 `TARGET_LANGUAGE=zh-CN` 改为 `TARGET_LANGUAGE=zh-TW`；无需编辑 JS。
 
-翻译开启后，不回填 Spotify 官方译文；翻译服务失败时保留原词，移除官方译文。关闭插件翻译则保留官方响应。补源核对歌名、艺人和时长，优先同专辑，跨专辑需要唯一且严格的同曲匹配；来源没有收录时不能凭空补全歌词。
+在已处理的歌词响应中，翻译开启后不回填 Spotify 官方译文；翻译服务失败时保留原词，移除官方译文。关闭插件翻译则保留官方响应。补源核对歌名、艺人和时长，优先同专辑，跨专辑需要唯一且严格的同曲匹配；来源没有收录时不能凭空补全歌词。
 
 ## 当前验证范围
 
@@ -51,11 +51,10 @@ Quantumult X 的响应体重写在原响应体为空时不会执行，所以空�
 
 ## 运行版本与接口
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/6c0c30e4e7dced3c86b0ae07124db1dc52b27e23/QuantumultX/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/6c0c30e4e7dced3c86b0ae07124db1dc52b27e23/Surge/Development/VerseLyrics046)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/41cadc7d0fe005932fa9f80e28ec439ca2e2a466/QuantumultX/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/41cadc7d0fe005932fa9f80e28ec439ca2e2a466/Surge/Development/VerseLyrics047)
 
 原始核心和适配逻辑为独立编写。Unicode Unihan 数据许可随运行脚本完整附带。[官方二进制脚本示例](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample-bytes-rewrite.js) · [官方 HTTP 示例](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample-task.js) · [空响应体限制](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample.conf#L290)
 
 [其他客户端](../../README.md) · [返回 Quantumult X](../README.md)
 
-
-2026-10-16：556 项自动检查；具体性能、压力和真实来源验证见固定源码目录中的记录。手机 VPN 稳定性和峰值内存仍需实机验证，不能由 Node 测试替代。
+2026-10-16：568 项自动测试；官方依据与验证范围见固定源码目录的 CLIENT-CONTRACTS.md。实机 VPN 峰值内存尚未验收。
