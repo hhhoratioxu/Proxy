@@ -131,8 +131,8 @@ test('XML srv3 composition escapes content and preserves cue attributes',()=>{
 });
 test('legacy XML and VTT preserve headers, timestamps, identifiers and styles',()=>{
   assert.match(mergeSubtitles('<transcript><text start="1" dur="2">译文</text></transcript>','<transcript><text start="1" dur="2">Original</text></transcript>'),/Original\n译文/);
-  const target='WEBVTT\n\nSTYLE\n::cue {color:white}\n\nid1\n00:01.000 --> 00:03.000 align:start\n译文\n\n';const source=target.replace('译文','Original');
-  const out=mergeSubtitles(target,source);assert.match(out,/STYLE\n::cue/);assert.match(out,/id1\n00:01.000 --> 00:03.000 align:start\nOriginal\n译文/);
+  const target='WEBVTT\n\nSTYLE\n::cue {color:white}\n\nid1\n00:01.000 --> 00:03.000 align:start\n译文\n\n';const source=target.replace('译文','Original "quotes"');
+  const out=mergeSubtitles(target,source);assert.match(out,/STYLE\n::cue/);assert.match(out,/id1\n00:01.000 --> 00:03.000 align:start\nOriginal "quotes"\n译文/);
 });
 test('ASR fragments are merged once and unrelated cue times never get paired',()=>{
   const original=JSON.stringify({events:[{tStartMs:1000,dDurationMs:1000,segs:[{utf8:'Hello '}]},{tStartMs:1500,dDurationMs:1500,aAppend:1,segs:[{utf8:'world'}]}]});

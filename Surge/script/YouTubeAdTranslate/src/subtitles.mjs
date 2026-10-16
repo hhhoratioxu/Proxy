@@ -69,7 +69,7 @@ export function parseSubtitles(source) {
     }
     return { format: 'vtt', cues, render(changes) {
       let out = source;
-      for (const [cue, value] of [...changes].sort((a, b) => b[0].begin - a[0].begin)) out = out.slice(0, cue.begin) + xmlEscape(value) + out.slice(cue.end);
+      for (const [cue, value] of [...changes].sort((a, b) => b[0].begin - a[0].begin)) out = out.slice(0, cue.begin) + value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + out.slice(cue.end);
       return out;
     } };
   }
