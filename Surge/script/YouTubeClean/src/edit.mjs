@@ -2,6 +2,7 @@
 import {decodeMessage,nested,findField,join,withPayload,makeBytes,makeInt,replaceAll,readPacked,same} from './wire.mjs';
 import {utf8,fromUtf8,changeParam,CAPTION_REGEX,unb64} from './data.mjs';
 import {graph,rendererAds} from './protocol.mjs';
+import {editElementRenderer,deepCardAd,jsonElementAd} from './elements.mjs';
 const NS='.youtube.api.innertube.';
 const ROOT={player:'PlayerResponse',browse:'BrowseResponse',next:'WatchNextResponse',search:'SearchResponse',guide:'GuideResponse',get_watch:'WatchBatch',config:'ConfigResponse',log_event:'ConfigResponse','player/ad_break':'AdBreakResponse','navigation/resolve_url':'ResolveUrlResponse','reel/reel_item_watch':'ReelItemWatchResponse','reel/reel_watch_sequence':'ReelSequenceResponse'};
 const extra={
@@ -10,7 +11,7 @@ const extra={
   [NS+'BrowseResponse']:{...graph[NS+'BrowseResponse'],10:NS+'ContinuationSupportedRenderers'},
   [NS+'BrowseTabSupportedRenderers']:{...graph[NS+'BrowseTabSupportedRenderers'],58174010:NS+'TabRenderer'},
   [NS+'TabRenderer']:{4:NS+'Renderer'},
-  [NS+'SectionListSupportedRenderers']:{...graph[NS+'SectionListSupportedRenderers'],50195462:NS+'ItemSectionRenderer'},
+  [NS+'SectionListSupportedRenderers']:{...graph[NS+'SectionListSupportedRenderers'],50195462:NS+'ItemSectionRenderer',153515154:NS+'ElementRenderer'},
   [NS+'SectionListWithoutPreviewSupportedRenderers']:{...graph[NS+'SectionListWithoutPreviewSupportedRenderers'],50195462:NS+'ItemSectionRenderer'},
   [NS+'ContinuationSupportedRenderers']:{49399797:NS+'SectionListRenderer',51779803:NS+'SectionListWithoutPreviewRenderer'},
   [NS+'ItemSectionRenderer']:{1:NS+'Renderer'},
@@ -68,19 +69,21 @@ function captionList(raw,s){
   }
   out.push(makeBytes(1,track));if(s.auto)out.push(makeInt(6,index));return join(out);
 }
-export function editBinary(raw,endpoint,settings,onKeys){
+export function editBinary(raw,endpoint,settings,onKeys,trace){
   let type=ROOT[endpoint];if(!type)return raw;
   if(endpoint==='get_watch'){
     const direct=decodeMessage(raw).some(f=>(f.no===2||f.no===3)&&f.wire===2);
     if(direct)type='GetWatchResponse';
   }
-  const state={remaining:70000,depth:0,onKeys};
+  const state={remaining:70000,depth:0,onKeys,trace};
   return visit(raw,NS+type,settings,state);
 }
 export function editWatchPart(raw,settings){return visit(raw,NS+'GetWatchResponse',settings,{remaining:70000,depth:0});}
-function visit(raw,type,s,state){
+function visit(raw,type,s,state,feedCard=false){
   if(state.depth>48)throw Error('message depth');
   const fields=decodeMessage(raw);state.remaining-=fields.length;if(state.remaining<0)throw Error('message count');
+  if(feedCard&&deepCardAd(raw,s,state.trace)){if(state.trace)state.trace.removed++;return new Uint8Array();}
+  if(type===NS+'ElementRenderer')return editElementRenderer(raw,s,state.trace);
   if(type===NS+'OnesieHotConfig'&&state.onKeys){
     const key=findField(fields,1),encrypted=findField(fields,2),expiry=findField(fields,3);
     if(key?.payload?.length===32&&encrypted?.payload?.length)state.onKeys({key:key.payload,encrypted:encrypted.payload,ttl:Number(expiry?.value||3600n)});
@@ -97,15 +100,17 @@ function visit(raw,type,s,state){
       }catch{}
     }
     if(s.ads&&((type===NS+'PlayerResponse'&&PLAYER_ADS.has(f.no))||(type===NS+'AdBreakResponse'&&BREAK_ADS.has(f.no)))){modified=true;continue;}
-    if(s.ads&&f.wire===2&&rendererAds[f.no]&&(edges[f.no]||/Renderer(?:s)?$/.test(type))){modified=true;continue;}
+    if(s.ads&&f.wire===2&&rendererAds[f.no]&&(edges[f.no]||/Renderer(?:s)?$/.test(type))){modified=true;if(state.trace)state.trace.removed++;continue;}
     if(type===NS+'PivotBar'&&f.no===1&&f.wire===2&&(s.hideCreate||s.hideShorts)){
       if(hidden(navIdentity(f.payload),s)){modified=true;continue;}
     }
     let payload=f.payload;
     if(f.wire===2&&edges[f.no]){
-      state.depth++;try{payload=visit(f.payload,edges[f.no],s,state);}catch(error){
+      const previousRemoved=state.trace?.removed;
+      state.depth++;try{payload=visit(f.payload,edges[f.no],s,state,type===NS+'ItemSectionRenderer'&&f.no===1);}catch(error){
         // A changed/unknown sibling layout must not disable filtering in a valid feed.
         if(['message depth','message count','field count'].includes(error?.message))throw error;
+        if(state.trace)state.trace.removed=previousRemoved;
         payload=f.payload;
       }finally{state.depth--;}
       if(!same(payload,f.payload)){
@@ -113,6 +118,7 @@ function visit(raw,type,s,state){
         if(f.no===1)keptContent=true;output.push(withPayload(f,payload));continue;
       }
     }
+    else if(feedCard&&f.wire===2&&f.no>=1000&&state.trace?.unknown&&state.trace.unknown.size<12)state.trace.unknown.add(f.no);
     if(f.no===1)keptContent=true;
     output.push(f.raw);
   }
@@ -135,10 +141,12 @@ function jsonNavId(item){
     for(const v of Object.values(node))if(v&&typeof v==='object')stack.push(v);
   }return '';
 }
-function adCard(item,depth=0){
+function adCard(item,s,trace,depth=0){
   if(!item||typeof item!=='object'||Array.isArray(item)||depth>4)return false;
+  if(jsonElementAd(item,s,trace))return true;
   if(Object.keys(item).some(k=>AD_NAMES.has(k)))return true;
-  for(const key of ['richItemRenderer','richSectionRenderer','content','contentViewModel'])if(adCard(item[key],depth+1))return true;
+  for(const key of ['richItemRenderer','richSectionRenderer','content','contentViewModel'])if(adCard(item[key],s,trace,depth+1))return true;
+  if(s.deep)for(const [key,value]of Object.entries(item))if(!['responseContext','frameworkUpdates','trackingParams','clickTrackingParams'].includes(key)&&adCard(value,s,trace,depth+1))return true;
   return false;
 }
 function jsonCaptionList(list,s){
@@ -149,21 +157,23 @@ function jsonCaptionList(list,s){
   const index=tracks.push(track)-1;if(s.auto)list.defaultCaptionTrackIndex=index;
   for(const audio of list.audioTracks||[]){const old=Array.isArray(audio.captionTrackIndices)?audio.captionTrackIndices:[];if(!old.includes(index))audio.captionTrackIndices=[...old,index];if(s.auto){audio.defaultCaptionTrackIndex=index;audio.captionsInitialState=3;}}
 }
-export function editJson(document,s,onKeys){
+export function editJson(document,s,onKeys,trace){
   let budget=70000;
-  function traverse(node,nav=false){
+  function traverse(node,nav=false,feed=false){
     if(--budget<0)throw Error('JSON item count');if(!node||typeof node!=='object')return;
     if(Array.isArray(node)){for(let i=node.length-1;i>=0;i--){const item=node[i];if(nav&&hidden(jsonNavId(item),s)){node.splice(i,1);continue;}
       const adReel=item?.command?.reelWatchEndpoint?.adClientParams?.isAd===true||item?.reelWatchEndpoint?.adClientParams?.isAd===true;
-      if(s.ads&&(adCard(item)||adReel)){node.splice(i,1);continue;}traverse(item,nav);
+      if(s.ads&&(feed&&adCard(item,s,trace)||adReel)){node.splice(i,1);if(trace)trace.removed++;continue;}traverse(item,nav,feed);
     }return;}
     jsonCaptionList(node,s);
+    if(s.ads&&feed&&Array.isArray(node.childElements))for(let i=node.childElements.length-1;i>=0;i--){const child=node.childElements[i];if(jsonElementAd({newElement:child},s,trace)){node.childElements.splice(i,1);if(trace)trace.removed++;}}
     if(onKeys&&node.onesieHotConfig)onKeys(node.onesieHotConfig);
     for(const key of Object.keys(node)){
       if(s.ads&&AD_NAMES.has(key)){delete node[key];continue;}
       if(s.ads&&SLOT_ARRAYS.has(key)&&Array.isArray(node[key])){node[key]=[];continue;}
       if(s.ads&&PLAYER_SIGNALS.has(key)){delete node[key];continue;}
-      traverse(node[key],nav||NAV_CONTAINERS.has(key));
+      const nextFeed=['responseContext','frameworkUpdates','trackingParams','clickTrackingParams'].includes(key)?false:feed||['contents','content','items','continuationItems','continuationContents'].includes(key);
+      traverse(node[key],nav||NAV_CONTAINERS.has(key),nextFeed);
     }
   }
   traverse(document);return document;

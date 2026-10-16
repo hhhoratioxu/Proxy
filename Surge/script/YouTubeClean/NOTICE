@@ -1,4 +1,4 @@
-Horatio YouTube Clean 1.0.1
+Horatio YouTube Clean 1.2.0
 Copyright (c) 2026 Horatio Xu. MIT License.
 
 The protobuf wire editor, advertisement policies, subtitle parser and alignment,
@@ -10,6 +10,10 @@ Protocol field graph: generated from davidzeng0/innertube protocol declarations,
 Copyright (c) 2024 David Zeng, MIT. https://github.com/davidzeng0/innertube
 Observed iOS pivot-bar wire paths were verified against an anonymous public
 YouTube guide response on 2026-10-16. Observed field facts are recorded in README.
+The native newElement/type/component/template URI path was observed in public
+iOS browse responses on 2026-10-17. Advertising template-name rules are this
+implementation's heuristics, not a claim that every served advertisement is known.
+The native advertising badge field number is from the same MIT protocol declarations.
 
 UMP framing and AES-CTR/HMAC format are documented by LuanRT/GoogleVideo.
 https://github.com/LuanRT/GoogleVideo/tree/main/examples/onesie-request

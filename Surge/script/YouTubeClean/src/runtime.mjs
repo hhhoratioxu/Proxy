@@ -1,5 +1,5 @@
 // Copyright 2026 Horatio Xu. MIT. Platform-neutral processing contract.
-import {asBytes,fromUtf8,utf8,safeJson,route,param,changeParam,getHeader,b64,unb64,MAX_BODY,MAX_CAPTION} from './data.mjs';
+import {asBytes,fromUtf8,utf8,safeJson,route,param,changeParam,getHeader,b64,unb64,MAX_BODY,MAX_CAPTION,VERSION} from './data.mjs';
 import {same} from './wire.mjs';
 import {editBinary,editJson} from './edit.mjs';
 import {editStream} from './stream.mjs';
@@ -46,9 +46,15 @@ export async function handle(io,settings){
     try{output=editStream(bytes,key,settings);}catch{clear(io);return null;}
   }else{
     const collect=value=>save(io,value),first=fromUtf8(bytes.subarray(0,40));
-    if(/json/i.test(getHeader(io.responseHeaders,'Content-Type'))||/^\s*\{/.test(first)){
-      const json=safeJson(fromUtf8(bytes)),before=JSON.stringify(json);editJson(json,settings,collect);const after=JSON.stringify(json);if(after!==before)output=utf8(after);
-    }else output=editBinary(bytes,target.name,settings,collect);
+    const isJson=/json/i.test(getHeader(io.responseHeaders,'Content-Type'))||/^\s*\{/.test(first);
+    const trace=settings.debug&&target.name==='browse'?{removed:0,templates:new Set(),unknown:new Set()}:null;
+    let bypass=false;
+    try{
+      if(isJson){
+        const json=safeJson(fromUtf8(bytes)),before=JSON.stringify(json);editJson(json,settings,collect,trace);const after=JSON.stringify(json);if(after!==before)output=utf8(after);
+      }else output=editBinary(bytes,target.name,settings,collect,trace);
+    }catch{bypass=true;output=bytes;}
+    if(trace&&typeof io.report==='function')try{io.report({version:VERSION,profile:settings.profile,adRemoval:settings.ads,deepFilter:settings.deep,format:isJson?'json':'protobuf',bytes:bytes.length,removedParts:same(output,bytes)?0:trace.removed,templates:[...trace.templates],unknownRendererTags:[...trace.unknown],bypass});}catch{}
   }
   return same(output,bytes)?null:{body:output};
 }

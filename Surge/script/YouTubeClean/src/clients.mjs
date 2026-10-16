@@ -18,7 +18,7 @@ async function execute(){
   const result=await handle({
     url:request.url||'',phase:response?'response':'request',status:response?.statusCode??response?.status,
     requestHeaders:request.headers||{},responseHeaders:response?.headers||{},body:response?.bodyBytes??response?.body,
-    store:{read,write},download
+    store:{read,write},download,report:data=>{if(typeof console!=='undefined'&&typeof console.log==='function')console.log('[YouTubeClean] '+JSON.stringify(data));}
   },settings);
   if(!result)return{};
   if(result.body){const data=asBytes(result.body),headers=finalizeHeaders(response.headers);return isQX?{bodyBytes:data.buffer.slice(data.byteOffset,data.byteOffset+data.byteLength),headers}:{body:data,headers};}

@@ -1,5 +1,5 @@
 // Copyright 2026 Horatio Xu. MIT.
-export const VERSION='1.0.1', MAX_BODY=8388608, MAX_CAPTION=1048576;
+export const VERSION='1.2.0', MAX_BODY=8388608, MAX_CAPTION=1048576;
 export function asBytes(value){
   if(typeof value==='string')return utf8(value);
   if(value instanceof Uint8Array)return value;
@@ -54,14 +54,16 @@ export class Settings{
     const flag=(name,initial)=>input[name]==null?initial:input[name]===true||input[name]===1||/^(?:true|1)$/i.test(String(input[name]));
     this.ads=flag('REMOVE_ADS',true);this.translate=flag('TRANSLATE_CAPTIONS',true);this.dual=flag('BILINGUAL',true);this.auto=flag('AUTO_CAPTIONS',true);
     this.hideCreate=flag('HIDE_UPLOAD',true);this.hideShorts=flag('HIDE_SHORTS',false);
+    this.deep=flag('DEEP_FILTER',false);this.debug=flag('DIAGNOSTICS',true);
+    this.profile=['elements','deep','tcp'].includes(input.PROFILE)?input.PROFILE:(this.deep?'deep':'elements');
     const target=String(input.TARGET_LANGUAGE||'zh-Hans');this.target=({'zh-CN':'zh-Hans','zh-TW':'zh-Hant'})[target]||target;if(!/^[a-z]{2,3}(?:-[A-Za-z]{2,4})?$/.test(this.target))this.target='zh-Hans';
   }
   get active(){return this.ads||this.translate||this.hideCreate||this.hideShorts;}
 }
 export const API_HOSTS='(?:youtubei(?:-att)?\\.googleapis\\.com|(?:www|m)\\.youtube\\.com)';
-export const API_REGEX='^https://'+API_HOSTS+'/youtubei/v1/(?:player(?:/ad_break)?|browse|next|search|guide|navigation/resolve_url|reel/(?:reel_watch_sequence|reel_item_watch)|get_watch|config|log_event)(?:\\?.*)?$';
-export const CAPTION_REGEX='^https://(?:www|m)\\.youtube\\.com/api/timedtext(?:\\?.*)?$';
-export const UMP_REGEX='^https://[a-zA-Z0-9-]+\\.googlevideo\\.com/initplayback(?:\\?.*)?$';
+export const API_REGEX='^https://'+API_HOSTS+'(?::443)?/youtubei/v1/(?:player(?:/ad_break)?|browse|next|search|guide|navigation/resolve_url|reel/(?:reel_watch_sequence|reel_item_watch)|get_watch|config|log_event)(?:\\?.*)?$';
+export const CAPTION_REGEX='^https://(?:www|m)\\.youtube\\.com(?::443)?/api/timedtext(?:\\?.*)?$';
+export const UMP_REGEX='^https://[a-zA-Z0-9-]+\\.googlevideo\\.com(?::443)?/initplayback(?:\\?.*)?$';
 export function route(url){
   if(new RegExp(API_REGEX).test(url))return {kind:'api',name:url.split('?')[0].replace(/^.*\/youtubei\/v1\//,'')};
   if(new RegExp(CAPTION_REGEX).test(url))return {kind:'caption'};

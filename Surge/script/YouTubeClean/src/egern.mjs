@@ -17,6 +17,7 @@ export default async function(context){
       url:context.request.url,phase:context.response?'response':'request',status:context.response?.status,
       requestHeaders:context.request.headers,responseHeaders:context.response?.headers,body:original,
       store:{read:key=>context.storage.getJSON(key),write:(key,value)=>context.storage.setJSON(key,value)},
+      report:data=>{if(typeof console!=='undefined'&&typeof console.log==='function')console.log('[YouTubeClean] '+JSON.stringify(data));},
       download:async(url,headers)=>{
         const response=await context.http.get(url,{headers,timeout:4000,credentials:'omit',redirect:'error',insecureTls:false});
         if(response.status!==200)return{status:response.status,body:new Uint8Array()};

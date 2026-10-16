@@ -27,7 +27,7 @@ for(const name of reachable){const row={};for(const f of types.get(name).fields)
  if(Object.keys(row).length)map[name]=row;
 }
 const adIds={};
-const adName=/^(?:ad_slot|display_ad|in_feed_ad_layout|search_pyv|promoted_|compact_promoted|grid_promoted_video|carousel_ad|video_masthead_ad|brand_video_singleton|brand_video_shelf|ad_placement)\w*renderer$/;
+const adName=/^(?:ad_slot|display_ad|in_feed_ad_layout|search_pyv|promoted|compact_promoted|grid_promoted|carousel_ad|video_masthead_ad|brand_video_singleton|brand_video_shelf|ad_placement|companion_ad|ad_break)\w*renderer$/;
 for(const type of types.values())for(const f of type.fields)if(f.no>=1000&&adName.test(f.name))adIds[f.no]=f.name;
 const out='// Generated protocol field graph from davidzeng0/innertube (MIT).\n// Used only to navigate known message fields; unknown fields remain opaque.\nexport const graph='+JSON.stringify(map)+';\nexport const rendererAds='+JSON.stringify(adIds)+';\n';
 await writeFile('src/protocol.mjs',out);
