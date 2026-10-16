@@ -1,16 +1,16 @@
 # Spotify 双语歌词 · VerseLyrics
 
-**0.4.7 客户端规范与内存保护：** 保留请求、入口、歌词三个独立脚本；按各客户端能力处理运行结束、HTTP 和二进制数据。
+**0.4.8 连续切歌与内存优化：** 保留 Egern 原生异步 ctx、Headers、流读取和 max_size；歌词脚本仅加载歌词路径需要的代码，入口保持独立脚本。
 
-按 [Egern 官方 API](https://egernapp.com/docs/javascript-api/) 使用原生 async ctx、Headers、流读取和毫秒 HTTP 超时；配置使用 [max_size](https://egernapp.com/docs/configuration/scriptings/) 在宿主阶段限制响应体。缓存内容写入前后有界，超限外部流取消读取，不套用其他客户端的 $done 接口。
+歌词运行包去除仅供播放器入口使用的代码。当前歌曲处理期间只保留相关歌词、译文、配色及必要来源提示；入口缓存视图只保留元数据。保存时与完整缓存合并，其他歌曲的成功缓存不会因视图缩小而丢失。持久缓存总上限仍为 128 条 / 64,000 JSON 字符。
 
-六源和同歌手同步来源优先保持不变。歌词、配色、翻译串行，不增加预加载或等待队列。缓存命中无需联网；共享存储对两个联网任务进行尽力准入检查，但存储不提供原子锁。超时或繁忙不会被误记成该歌无词。
+不同歌曲的新歌词响应到来后，旧任务不再追加歌词源、配色或翻译请求；已发出的原生请求正常回调后结束，不调用未公开取消接口、不增加等待队列。它跟踪响应到达顺序，不能判断 Spotify 的真实播放位置。已获得歌词和可用译文继续返回，暂缓任务不写成“该歌无词”。
 
-正文预算继续为歌词 256 KiB、入口 128 KiB、普通服务 96 KiB、配色 256 KiB；补源累计 256 KiB / 12 请求；输出 512 KiB。主缓存最多 128 条 / 64,000 JSON 字符。上述值是脚本处理预算，不是 VPN 进程总内存上限。
+六源补词、严格同曲核对、插件替换官方译文、原生时间轴和配色均保留。正文预算为歌词 256 KiB、入口 128 KiB、普通服务 96 KiB；补源累计 256 KiB / 12 请求。共享存储的两个联网名额是尽力控制，不能当成原子锁。
 
-核心以 10 秒为继续发起网络请求的预算；Egern/Loon 原生 HTTP 使用毫秒超时，Surge 使用秒超时，最多 2.5 秒。Quantumult X 不宣称有单次 2.5 秒原生超时，只在首次联网后保留一个整体 12 秒退出计时器。宿主可能先缓冲未知长度响应，结束脚本也不等于取消网络；无法据此保证整台设备的 VPN 永不因内存退出。超限或繁忙时保留原响应，可能暂时不补词或不翻译。
+这些是脚本预算和减少分配的措施，不是 VPN 进程内存上限。未知长度响应可能先由宿主缓冲；超限或繁忙时使用缓存或原响应，可能暂时缺少补词或译文。尚未完成 iPhone VPN 峰值内存及连续切歌实机验收。
 
-当前模块：0.4.7，适用于支持原生 `ctx` 脚本 API 的 Egern。
+当前模块：0.4.8，适用于支持原生 `ctx` 脚本 API 的 Egern。
 
 补词优先核对同专辑；跨专辑需歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 重复记录仅在完整歌词、时间戳与时长全部相同的情况下合并），排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -51,10 +51,10 @@ Spotify 已有的原词和时间轴继续保留。备用源优先核对同专辑
 
 ## 来源与许可
 
-插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/41cadc7d0fe005932fa9f80e28ec439ca2e2a466/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
+插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/661010d356abacfad6f2bfb910db65958b357315/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/41cadc7d0fe005932fa9f80e28ec439ca2e2a466/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/41cadc7d0fe005932fa9f80e28ec439ca2e2a466/Surge/Development/VerseLyrics047) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/661010d356abacfad6f2bfb910db65958b357315/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/661010d356abacfad6f2bfb910db65958b357315/Surge/Development/VerseLyrics048) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
 
 [其他客户端](../../README.md) · [返回 Egern](../README.md)
 
-2026-10-16：568 项自动测试；官方依据与验证范围见固定源码目录的 CLIENT-CONTRACTS.md。实机 VPN 峰值内存尚未验收。
+2026-10-16：585 项自动测试；源码、官方依据、缓存与切歌模拟记录见固定源码目录。模拟测试不代表实机 VPN 稳定性验收。
