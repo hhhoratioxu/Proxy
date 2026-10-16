@@ -1,0 +1,58 @@
+{
+  "checked_at": "2026-10-16T00:53:17.636Z",
+  "version": "0.4.2",
+  "scope": "Actual unauthenticated Spotify public palette requests and simulated Loon native callback runtime. No iPhone visual acceptance.",
+  "results": [
+    {
+      "track": "76XUZSb13QUuj1HECY4Hvo",
+      "url": "https://open.spotify.com/embed/track/76XUZSb13QUuj1HECY4Hvo",
+      "status": 200,
+      "elapsed_ms": 717,
+      "colors": {
+        "background": -11709348,
+        "text": -3748137,
+        "highlightText": -1
+      }
+    },
+    {
+      "track": "4uLU6hMCjMI75M1A2tKUQC",
+      "url": "https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC",
+      "status": 200,
+      "elapsed_ms": 190,
+      "colors": {
+        "background": -16754314,
+        "text": -8594949,
+        "highlightText": -1
+      }
+    },
+    {
+      "track": "0VjIjW4GlUZAMYd2vXMi3b",
+      "url": "https://open.spotify.com/embed/track/0VjIjW4GlUZAMYd2vXMi3b",
+      "status": 200,
+      "elapsed_ms": 429,
+      "colors": {
+        "background": -9433072,
+        "text": -16972,
+        "highlightText": -1
+      }
+    },
+    {
+      "client": "Loon",
+      "scenario": "0.4.1 cached self-written lyrics plus real public track palette",
+      "status": 200,
+      "elapsed_ms": 286,
+      "colors": {
+        "background": -11709348,
+        "text": -3748137,
+        "highlightText": -1
+      },
+      "native_format": "protobuf",
+      "network_calls": [
+        {
+          "url": "https://open.spotify.com/embed/track/76XUZSb13QUuj1HECY4Hvo",
+          "timeout_ms": 1500
+        }
+      ]
+    }
+  ]
+}
