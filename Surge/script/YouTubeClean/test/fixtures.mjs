@@ -30,3 +30,13 @@ export function guide(){
 export function ids(raw,no=4){const wrapper=at(raw,no),bar=at(wrapper,117866661);return all(bar,1).map(item=>Buffer.from(at(at(item,117501096),1)).toString());}
 export const originalCaptions=JSON.stringify({wireMagic:'pb3',events:[{tStartMs:1000,dDurationMs:1500,segs:[{utf8:'An original "line"'}]},{tStartMs:3000,dDurationMs:1200,segs:[{utf8:'A second original line'}]}]});
 export const translatedCaptions=JSON.stringify({wireMagic:'pb3',events:[{tStartMs:1000,dDurationMs:1500,segs:[{utf8:'一行中文'}]},{tStartMs:3000,dDurationMs:1200,segs:[{utf8:'第二行中文'}]}]});
+
+// Native iOS homepage shapes observed on 2026-10-17, with self-written content.
+export const homeVideoCard=label=>binary(153515154,combine(binary(172660663,string(999,label)),opaque));
+export const homeAdCard=()=>binary(424701016,string(999,'self-written advertising layout'));
+export const homeSection=cards=>binary(50195462,combine(...cards.map(card=>binary(1,card)),binary(4,opaque),integer(8,1),opaque));
+const homeList=contents=>binary(49399797,combine(...contents.map(s=>binary(1,s)),binary(2,string(60487319,'self-written continuation token')),opaque));
+export const homeFirstPage=contents=>combine(binary(9,binary(58173949,binary(1,binary(58174010,combine(string(2,'Home'),integer(3,1),binary(4,homeList(contents)),string(11,'FEwhat_to_watch'),opaque))))),opaque);
+export const homeContinuationPage=contents=>combine(binary(10,homeList(contents)),opaque);
+export const homeListFrom=(body,kind)=>kind==='first'?at(at(at(at(at(at(body,9),58173949),1),58174010),4),49399797):at(at(body,10),49399797);
+export const homeContents=(body,kind)=>all(homeListFrom(body,kind),1);

@@ -22,11 +22,12 @@ function clear(io){try{const data=sessions(io);delete data[identity(io)];io.stor
 function requestHeaders(io,settings,endpoint){
   const changes=[];
   if(endpoint==='log_event'&&(settings.ads||settings.translate)&&!current(io))changes.push('x-youtube-hot-hash-data');
-  if(endpoint==='guide'&&(settings.hideCreate||settings.hideShorts))changes.push('if-none-match','if-modified-since');
+  const refresh=endpoint==='browse'&&settings.ads||endpoint==='guide'&&(settings.hideCreate||settings.hideShorts);
+  if(refresh)changes.push('if-none-match','if-modified-since');
   if(!changes.length)return null;
   const headers=io.requestHeaders;
-  if(typeof headers?.delete==='function'){for(const name of changes)headers.delete(name);if(endpoint==='guide')headers.set('Cache-Control','no-cache');return{headers};}
-  const out={};for(const [k,v]of Object.entries(headers||{}))if(!changes.includes(k.toLowerCase()))out[k]=v;if(endpoint==='guide')out['Cache-Control']='no-cache';return{headers:out};
+  if(typeof headers?.delete==='function'){for(const name of changes)headers.delete(name);if(refresh)headers.set('Cache-Control','no-cache');return{headers};}
+  const out={};for(const [k,v]of Object.entries(headers||{}))if(!changes.includes(k.toLowerCase()))out[k]=v;if(refresh)out['Cache-Control']='no-cache';return{headers:out};
 }
 export async function handle(io,settings){
   const target=route(io.url);if(!target||!settings.active||getHeader(io.requestHeaders,INTERNAL))return null;

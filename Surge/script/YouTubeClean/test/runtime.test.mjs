@@ -7,7 +7,7 @@ import vm from 'node:vm';
 import {Settings,b64,utf8} from '../src/data.mjs';
 import {handle,STORE} from '../src/runtime.mjs';
 import {umpInteger,umpFrame,umpFrames,openMetadata,editStream} from '../src/stream.mjs';
-import {combine,binary,integer,string,inspect,at,all,opaque,player,guide,ids,captionUrl,translatedCaptions,originalCaptions} from './fixtures.mjs';
+import {combine,binary,integer,string,inspect,at,all,opaque,player,guide,ids,captionUrl,translatedCaptions,originalCaptions,homeFirstPage,homeContinuationPage,homeSection,homeAdCard,homeVideoCard,homeContents} from './fixtures.mjs';
 
 const key=Buffer.from(Array.from({length:32},(_,i)=>i)),iv=Buffer.from(Array.from({length:16},(_,i)=>i+32));
 const settings=new Settings();
@@ -60,13 +60,15 @@ async function callbackClient(client,body,options={}){
     $argument:'HIDE_SHORTS=true',
   };
   if(qx){context.$environment={variables:{HIDE_SHORTS:'true'}};context.$task={fetch:async request=>{requests.push(request);return{statusCode:options.downloadStatus||200,bodyBytes:utf8(originalCaptions)};}};context.$prefs={valueForKey:k=>storage.get(k),setValueForKey:(v,k)=>storage.set(k,v)};}
+  if(options.argument)context.$argument=options.argument;
+  if(options.noClearTimeout){delete context.clearTimeout;context.setTimeout=(fn,ms)=>setTimeout(fn,ms).unref();}
   vm.runInNewContext(callbackCode,context,{timeout:3000});
   for(let i=0;i<30&&!completed.length;i++)await new Promise(resolve=>setTimeout(resolve,5));
   assert.equal(completed.length,1);return{result:completed[0],requests};
 }
 for(const client of ['Surge','Loon','Shadowrocket','QuantumultX'])test(client+' bundled adapter handles binary arrays without host text codecs',async()=>{
   const {result}=await callbackClient(client,player()),body=client==='QuantumultX'?new Uint8Array(result.bodyBytes):result.body;
-  assert.equal(inspect(body).some(f=>f.id===45),false);assert.equal(result.headers['Content-Length'],undefined);assert.equal(result.headers['Content-Encoding'],undefined);assert.equal(result.headers.ETag,undefined);assert.equal(result.headers['X-YouTubeClean'],'1.0.0');
+  assert.equal(inspect(body).some(f=>f.id===45),false);assert.equal(result.headers['Content-Length'],undefined);assert.equal(result.headers['Content-Encoding'],undefined);assert.equal(result.headers.ETag,undefined);assert.equal(result.headers['X-YouTubeClean'],'1.0.1');
 });
 for(const client of ['Surge','QuantumultX'])test(client+' bundled adapter returns malformed response without edits',async()=>{
   const {result}=await callbackClient(client,new Uint8Array([0,0,0]));assert.deepEqual(Object.keys(result),[]);
@@ -80,7 +82,7 @@ for(const client of ['Surge','QuantumultX'])test(client+' subtitle download fail
 const egern=(await import('../dist/egern.js')).default;
 function egernContext(body,extra={}){let consumed=0;return{env:{HIDE_SHORTS:'true'},request:{url:'https://youtubei.googleapis.com/youtubei/v1/player',headers:new Headers()},response:{status:200,headers:new Headers({'Content-Type':'application/x-protobuf'}),arrayBuffer:async()=>{assert.equal(consumed++,0);return body.buffer.slice(body.byteOffset,body.byteOffset+body.byteLength);}},storage:{getJSON:()=>null,setJSON:()=>{}},http:{get:()=>{throw Error('unexpected connection');}},...extra};}
 test('Egern ESM bundle consumes the Fetch response once and returns Uint8Array',async()=>{
-  const result=await egern(egernContext(player()));assert.ok(result.body instanceof Uint8Array);assert.equal(inspect(result.body).some(f=>f.id===45),false);assert.equal(result.headers.get('X-YouTubeClean'),'1.0.0');
+  const result=await egern(egernContext(player()));assert.ok(result.body instanceof Uint8Array);assert.equal(inspect(result.body).some(f=>f.id===45),false);assert.equal(result.headers.get('X-YouTubeClean'),'1.0.1');
 });
 test('Egern restores every original byte when body parsing fails after Fetch consumption',async()=>{
   const body=new Uint8Array([0,0,0]),result=await egern(egernContext(body));assert.deepEqual(result.body,body);assert.equal(result.headers,undefined);
@@ -88,4 +90,12 @@ test('Egern restores every original byte when body parsing fails after Fetch con
 test('Egern subtitle request omits cookies and rejects redirects with TLS validation on',async()=>{
   const requests=[],context=egernContext(utf8(translatedCaptions));context.request.url=captionUrl+'&tlang=zh-Hans';context.http.get=async(url,options)=>{requests.push({url,options});return{status:200,headers:new Headers(),arrayBuffer:async()=>utf8(originalCaptions).buffer};};
   const result=await egern(context);assert.match(Buffer.from(result.body).toString(),/An original/);assert.equal(requests[0].options.credentials,'omit');assert.equal(requests[0].options.redirect,'error');assert.equal(requests[0].options.insecureTls,false);
+});
+for(const [kind,make]of [['first',homeFirstPage],['continuation',homeContinuationPage]])test('Loon deployed bundle removes '+kind+' home ad cards with native object arguments',async()=>{
+  const normal=homeSection([homeVideoCard('keep real video')]),body=make([homeSection([homeAdCard()]),normal]);
+  const {result}=await callbackClient('Loon',body,{url:'https://youtubei.googleapis.com/youtubei/v1/browse?prettyPrint=false',argument:{REMOVE_ADS:true,TRANSLATE_CAPTIONS:false,HIDE_UPLOAD:false,HIDE_SHORTS:false},noClearTimeout:true});
+  assert.deepEqual(homeContents(result.body,kind).map(Buffer.from),[Buffer.from(normal)]);
+});
+test('Loon caption completion does not require an unavailable clearTimeout API',async()=>{
+  const {result}=await callbackClient('Loon',utf8(translatedCaptions),{url:captionUrl+'&tlang=zh-Hans',noClearTimeout:true});assert.match(Buffer.from(result.body).toString(),/An original/);
 });

@@ -5,6 +5,15 @@ import {graph,rendererAds} from './protocol.mjs';
 const NS='.youtube.api.innertube.';
 const ROOT={player:'PlayerResponse',browse:'BrowseResponse',next:'WatchNextResponse',search:'SearchResponse',guide:'GuideResponse',get_watch:'WatchBatch',config:'ConfigResponse',log_event:'ConfigResponse','player/ad_break':'AdBreakResponse','navigation/resolve_url':'ResolveUrlResponse','reel/reel_item_watch':'ReelItemWatchResponse','reel/reel_watch_sequence':'ReelSequenceResponse'};
 const extra={
+  // These wrappers are referenced but not defined by the upstream partial schema.
+  // Field paths were verified against native iOS browse + continuation responses.
+  [NS+'BrowseResponse']:{...graph[NS+'BrowseResponse'],10:NS+'ContinuationSupportedRenderers'},
+  [NS+'BrowseTabSupportedRenderers']:{...graph[NS+'BrowseTabSupportedRenderers'],58174010:NS+'TabRenderer'},
+  [NS+'TabRenderer']:{4:NS+'Renderer'},
+  [NS+'SectionListSupportedRenderers']:{...graph[NS+'SectionListSupportedRenderers'],50195462:NS+'ItemSectionRenderer'},
+  [NS+'SectionListWithoutPreviewSupportedRenderers']:{...graph[NS+'SectionListWithoutPreviewSupportedRenderers'],50195462:NS+'ItemSectionRenderer'},
+  [NS+'ContinuationSupportedRenderers']:{49399797:NS+'SectionListRenderer',51779803:NS+'SectionListWithoutPreviewRenderer'},
+  [NS+'ItemSectionRenderer']:{1:NS+'Renderer'},
   [NS+'PlayerResponse']:{...graph[NS+'PlayerResponse'],10:NS+'Captions'},
   [NS+'Captions']:{51621377:NS+'CaptionList'},
   [NS+'GuideResponse']:{1:NS+'ResponseContext',4:NS+'Renderer',6:NS+'Renderer'},
@@ -77,7 +86,7 @@ function visit(raw,type,s,state){
     if(key?.payload?.length===32&&encrypted?.payload?.length)state.onKeys({key:key.payload,encrypted:encrypted.payload,ttl:Number(expiry?.value||3600n)});
   }
   if(type===NS+'CaptionList')return captionList(raw,s);
-  const edges=extra[type]||graph[type]||{},output=[];let modified=false;
+  const edges=extra[type]||graph[type]||{},output=[];let modified=false,lostContent=false,keptContent=false;
   for(const f of fields){
     if(type===NS+'GlobalConfigGroup'&&state.onKeys&&(f.no===3||f.no===7)&&f.wire===2){
       // The documented hot-config field can contain either serialized base64url or raw protobuf.
@@ -94,11 +103,21 @@ function visit(raw,type,s,state){
     }
     let payload=f.payload;
     if(f.wire===2&&edges[f.no]){
-      state.depth++;try{payload=visit(f.payload,edges[f.no],s,state);}finally{state.depth--;}
-      if(!same(payload,f.payload)){modified=true;if(!payload.length)continue;output.push(withPayload(f,payload));continue;}
+      state.depth++;try{payload=visit(f.payload,edges[f.no],s,state);}catch(error){
+        // A changed/unknown sibling layout must not disable filtering in a valid feed.
+        if(['message depth','message count','field count'].includes(error?.message))throw error;
+        payload=f.payload;
+      }finally{state.depth--;}
+      if(!same(payload,f.payload)){
+        modified=true;if(!payload.length){if(f.no===1)lostContent=true;continue;}
+        if(f.no===1)keptContent=true;output.push(withPayload(f,payload));continue;
+      }
     }
+    if(f.no===1)keptContent=true;
     output.push(f.raw);
   }
+  // Drop an ad-only section including its tracking metadata, avoiding a blank card.
+  if(s.ads&&type===NS+'ItemSectionRenderer'&&lostContent&&!keptContent)return new Uint8Array();
   return modified?join(output):raw;
 }
 
