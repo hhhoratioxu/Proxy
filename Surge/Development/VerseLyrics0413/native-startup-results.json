@@ -1,0 +1,127 @@
+{
+  "at": "2026-10-16T06:13:27.839Z",
+  "environment": "v24.19.0 darwin arm64",
+  "scope": "Loon cold protobuf lyric processing: 20 fresh VM/empty lyric-cache sessions per scenario: official and fallback lyrics, 24 and 48 lines. Metadata and palette are seeded as if obtained by the playback entry. Unique script text avoids V8 compilation-cache reuse. Includes compilation and mock network callbacks; zero real network latency. Event-loop drain and GC between sessions so completed VM callbacks can release their contexts. Not iPhone startup time or VPN-process memory.",
+  "results": [
+    {
+      "version": "0.4.12",
+      "scriptBytes": 92820,
+      "sampledMaxHeapBytes": 18987536,
+      "outputSHA256": "8235923e9e862ab8a097b72dcc50e3cad693c174e8bd8e2e359fd03d31061cd7",
+      "stats": [
+        {
+          "lineCount": 24,
+          "fallback": false,
+          "sessions": 20,
+          "httpCalls": 20,
+          "historyWrites": 0,
+          "medianHeapGrowth": 676392,
+          "maxHeapGrowth": 1073824,
+          "firstInitialHeap": 5221968,
+          "lastInitialHeap": 10960040,
+          "medianCompileMs": 1.235,
+          "medianProcessingMs": 4.337
+        },
+        {
+          "lineCount": 24,
+          "fallback": true,
+          "sessions": 20,
+          "httpCalls": 40,
+          "historyWrites": 0,
+          "medianHeapGrowth": 770688,
+          "maxHeapGrowth": 833216,
+          "firstInitialHeap": 11402120,
+          "lastInitialHeap": 16976912,
+          "medianCompileMs": 1.293,
+          "medianProcessingMs": 5.235
+        },
+        {
+          "lineCount": 48,
+          "fallback": false,
+          "sessions": 20,
+          "httpCalls": 20,
+          "historyWrites": 0,
+          "medianHeapGrowth": 795104,
+          "maxHeapGrowth": 835144,
+          "firstInitialHeap": 17455168,
+          "lastInitialHeap": 10559792,
+          "medianCompileMs": 1.254,
+          "medianProcessingMs": 4.552
+        },
+        {
+          "lineCount": 48,
+          "fallback": true,
+          "sessions": 20,
+          "httpCalls": 40,
+          "historyWrites": 0,
+          "medianHeapGrowth": 926936,
+          "maxHeapGrowth": 991936,
+          "firstInitialHeap": 10851592,
+          "lastInitialHeap": 15923616,
+          "medianCompileMs": 1.276,
+          "medianProcessingMs": 5.608
+        }
+      ]
+    },
+    {
+      "version": "0.4.13",
+      "scriptBytes": 88444,
+      "sampledMaxHeapBytes": 19413976,
+      "outputSHA256": "8235923e9e862ab8a097b72dcc50e3cad693c174e8bd8e2e359fd03d31061cd7",
+      "stats": [
+        {
+          "lineCount": 24,
+          "fallback": false,
+          "sessions": 20,
+          "httpCalls": 20,
+          "historyWrites": 0,
+          "medianHeapGrowth": 631584,
+          "maxHeapGrowth": 1025344,
+          "firstInitialHeap": 5171392,
+          "lastInitialHeap": 10764624,
+          "medianCompileMs": 1.18,
+          "medianProcessingMs": 4.004
+        },
+        {
+          "lineCount": 24,
+          "fallback": true,
+          "sessions": 20,
+          "httpCalls": 40,
+          "historyWrites": 0,
+          "medianHeapGrowth": 720800,
+          "maxHeapGrowth": 773144,
+          "firstInitialHeap": 10861664,
+          "lastInitialHeap": 16469832,
+          "medianCompileMs": 1.223,
+          "medianProcessingMs": 5.052
+        },
+        {
+          "lineCount": 48,
+          "fallback": false,
+          "sessions": 20,
+          "httpCalls": 20,
+          "historyWrites": 0,
+          "medianHeapGrowth": 746008,
+          "maxHeapGrowth": 1059600,
+          "firstInitialHeap": 16937216,
+          "lastInitialHeap": 9067056,
+          "medianCompileMs": 1.208,
+          "medianProcessingMs": 4.41
+        },
+        {
+          "lineCount": 48,
+          "fallback": true,
+          "sessions": 20,
+          "httpCalls": 40,
+          "historyWrites": 0,
+          "medianHeapGrowth": 855160,
+          "maxHeapGrowth": 954520,
+          "firstInitialHeap": 9343216,
+          "lastInitialHeap": 15469680,
+          "medianCompileMs": 1.192,
+          "medianProcessingMs": 5.386
+        }
+      ]
+    }
+  ]
+}

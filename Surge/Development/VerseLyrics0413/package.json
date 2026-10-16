@@ -1,0 +1,9 @@
+{
+  "name": "verselyrics-build",
+  "private": true,
+  "version": "0.4.13",
+  "type": "module",
+  "devDependencies": {
+    "terser": "5.51.2"
+  }
+}

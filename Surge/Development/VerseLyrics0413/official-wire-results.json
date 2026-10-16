@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-16T06:22:41.397Z",
+  "scope": "200 official Protobuf parse/translation replacement cycles, 120 original synthetic rows. Separate Node VM processes under 32 MiB old-space, GC every 20 cycles. Counts cover explicit typed-array constructors, including from, not implicit views or host buffering. No network or phone memory measurement.",
+  "results": [
+    {
+      "version": "0.4.12",
+      "cycles": 200,
+      "singleReplacement": {
+        "constructors": 9,
+        "requestedBytes": 29139,
+        "outputBytes": 7873
+      },
+      "elapsedMs": 141.69,
+      "sampledMaxHeapBytes": 7820376,
+      "outputSHA256": "fa864df050a5e802cc05dbd38ffea16fc26f3e205840141434141cbca314e854"
+    },
+    {
+      "version": "0.4.13",
+      "cycles": 200,
+      "singleReplacement": {
+        "constructors": 1,
+        "requestedBytes": 7873,
+        "outputBytes": 7873
+      },
+      "elapsedMs": 103.12,
+      "sampledMaxHeapBytes": 7657216,
+      "outputSHA256": "fa864df050a5e802cc05dbd38ffea16fc26f3e205840141434141cbca314e854"
+    }
+  ]
+}

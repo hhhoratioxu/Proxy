@@ -1,0 +1,114 @@
+[
+  {
+    "path": "Surge/script/SpotifyLyrics.js",
+    "bytes": 88417,
+    "originalBytes": 133041,
+    "sha": "fa7d06e528551c5029956a4ac459e5e881d87782",
+    "sha256": "be6a1867fe128fc48fdb686947a49cad565f458a10ce1b9b9a6f1ff28eb8b8a2"
+  },
+  {
+    "path": "Surge/script/SpotifyLyrics.Entry.js",
+    "bytes": 27988,
+    "originalBytes": 55001,
+    "sha": "522f356acc699fdd4e9d1fea92f4ad727ac032e5",
+    "sha256": "c9e7f29da5e2aae0da021dd831aa83e85c5f3fd1bb739211d6e689cc17d69c49"
+  },
+  {
+    "path": "Surge/script/SpotifyLyrics.Request.js",
+    "bytes": 4018,
+    "originalBytes": 6318,
+    "sha": "890f19a7e118442b3e80b74244331bab38e1ce30",
+    "sha256": "baee48453e0794154b7ba43df1f080821d7a758415599c71ffb847ca0336a48f"
+  },
+  {
+    "path": "Loon/script/SpotifyLyrics.js",
+    "bytes": 88444,
+    "originalBytes": 133039,
+    "sha": "0f9742a689c04995e19acc5117bd957f88e15298",
+    "sha256": "80a18726fb0b1801769e740abda0fd5b31b569797db6d12706687c071b62060e"
+  },
+  {
+    "path": "Loon/script/SpotifyLyrics.Entry.js",
+    "bytes": 27987,
+    "originalBytes": 54999,
+    "sha": "c598904c43ed8cbba3b1d88474670297e24e9825",
+    "sha256": "626e9cc3f6712ffc973d0ba02e0dac170d5d123ceda0e763f7b451ecb53cd733"
+  },
+  {
+    "path": "Loon/script/SpotifyLyrics.Request.js",
+    "bytes": 4018,
+    "originalBytes": 6317,
+    "sha": "890f19a7e118442b3e80b74244331bab38e1ce30",
+    "sha256": "baee48453e0794154b7ba43df1f080821d7a758415599c71ffb847ca0336a48f"
+  },
+  {
+    "path": "Shadowrocket/script/SpotifyLyrics.js",
+    "bytes": 88424,
+    "originalBytes": 133055,
+    "sha": "7fc143f4a3ea1d7f7ec0a0ce51f5c891bb4cfee8",
+    "sha256": "a904f38884d16be69a44138a0907cae408b7ebab153d2896e974afedf9c4d13c"
+  },
+  {
+    "path": "Shadowrocket/script/SpotifyLyrics.Entry.js",
+    "bytes": 27995,
+    "originalBytes": 55015,
+    "sha": "fb0642881807cfdaf21447ed46f4906a494e5d6d",
+    "sha256": "f6b39de28afc740f61055c52394b647de0c7822cdc9283cc1619f6ee26e8f409"
+  },
+  {
+    "path": "Shadowrocket/script/SpotifyLyrics.Request.js",
+    "bytes": 4018,
+    "originalBytes": 6325,
+    "sha": "890f19a7e118442b3e80b74244331bab38e1ce30",
+    "sha256": "baee48453e0794154b7ba43df1f080821d7a758415599c71ffb847ca0336a48f"
+  },
+  {
+    "path": "QuantumultX/script/SpotifyLyrics.js",
+    "bytes": 89085,
+    "originalBytes": 133053,
+    "sha": "331f73e600c24759f19bb6ad62e0b90c607a46ef",
+    "sha256": "239a245ad429312464cf581b0144469cde1e0c6d9a069d4b5e9bd8c99427f795"
+  },
+  {
+    "path": "QuantumultX/script/SpotifyLyrics.Entry.js",
+    "bytes": 28489,
+    "originalBytes": 55013,
+    "sha": "56b05363610848c3fdee02e49afbac8c2e75a6c2",
+    "sha256": "9bfd12b37975b6f2f59e81fa0a9c38f89901f7efc35db7954c4da0ad1816d89f"
+  },
+  {
+    "path": "QuantumultX/script/SpotifyLyrics.Request.js",
+    "bytes": 4174,
+    "originalBytes": 6324,
+    "sha": "da261372940a3134ed4a636dcd36262f101f33f5",
+    "sha256": "753c7e17c39ed3a71668dd6f3f90b4521bf0da0ada2d94cfb3d085ab2ce5f16c"
+  },
+  {
+    "path": "Egern/script/SpotifyLyrics/spotify-lyrics.js",
+    "bytes": 84421,
+    "originalBytes": 123649,
+    "sha": "6526d9eb4fe85b0cea2c667a578a23a1b00baf80",
+    "sha256": "64ffdd5395717ce6f7939411d1e870087f6dc5d99089ca0c2d850fd2cd913c64"
+  },
+  {
+    "path": "Egern/script/SpotifyLyrics/spotify-lyrics-entry.js",
+    "bytes": 24900,
+    "originalBytes": 48608,
+    "sha": "c3e0da41c5e4aa2d506ff025ee2daca73d99fca4",
+    "sha256": "c234dc6bb88c421f65009043f3618659b123459f087c2aeadb4b3559499eda48"
+  },
+  {
+    "path": "Egern/script/SpotifyLyrics/spotify-lyrics-request.js",
+    "bytes": 2648,
+    "originalBytes": 3774,
+    "sha": "ed448cfd25459fbf4c2dd6909f04dedf4f9937cc",
+    "sha256": "ce5157b7082d33b633fb5b7470bf3b4201a283c586ba50b3dedb45e1fe5901df"
+  },
+  {
+    "path": "Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt",
+    "bytes": 1995,
+    "originalBytes": 1995,
+    "sha": "56da58912807030b451a4700687d5bd02c72d6ed",
+    "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+  }
+]

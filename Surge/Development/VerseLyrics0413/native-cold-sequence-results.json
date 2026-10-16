@@ -1,0 +1,954 @@
+{
+  "at": "2026-10-16T06:16:05.081Z",
+  "environment": "v24.19.0 darwin arm64",
+  "scope": "Three trials per version/scenario; each uses a separate 32 MiB old-space process with 12 fresh script/VM sessions. Empty lyric/translation cache every session; seed=true supplies only playback metadata/palette. Empty-fallback scenarios start with no stored data and fetch public embed metadata. Native HTTP mocks return strings or binary according to requested mode; network latency is zero. Sample at invocation, HTTP and completion boundaries, drain callbacks and GC between sessions. Process peaks include harness/core/VM/code-cache overhead; heap growth starts before fresh compilation. Not iPhone timings, native network buffering or VPN memory.",
+  "scenarios": [
+    {
+      "name": "official-en-24",
+      "lines": 24
+    },
+    {
+      "name": "fallback-en-24",
+      "lines": 24,
+      "fallback": true,
+      "seed": true
+    },
+    {
+      "name": "official-en-48",
+      "lines": 48
+    },
+    {
+      "name": "fallback-en-48",
+      "lines": 48,
+      "fallback": true,
+      "seed": true
+    },
+    {
+      "name": "official-en-120",
+      "lines": 120
+    },
+    {
+      "name": "fallback-en-120",
+      "lines": 120,
+      "fallback": true,
+      "seed": true
+    },
+    {
+      "name": "official-zh-48",
+      "lines": 48,
+      "han": true
+    },
+    {
+      "name": "fallback-zh-48",
+      "lines": 48,
+      "fallback": true,
+      "seed": true,
+      "han": true
+    },
+    {
+      "name": "empty-fallback-en-48",
+      "lines": 48,
+      "fallback": true
+    },
+    {
+      "name": "empty-fallback-zh-48",
+      "lines": 48,
+      "fallback": true,
+      "han": true
+    }
+  ],
+  "comparisons": [
+    {
+      "scenario": "official-en-24",
+      "0.4.12": {
+        "medianMs": 4.108,
+        "medianHeapGrowth": 653144,
+        "sampledMaxHeapBytes": 9331912,
+        "httpCalls": 12,
+        "sessions": 12
+      },
+      "0.4.13": {
+        "medianMs": 3.946,
+        "medianHeapGrowth": 614120,
+        "sampledMaxHeapBytes": 9053928,
+        "httpCalls": 12,
+        "sessions": 12
+      }
+    },
+    {
+      "scenario": "fallback-en-24",
+      "0.4.12": {
+        "medianMs": 5.089,
+        "medianHeapGrowth": 781592,
+        "sampledMaxHeapBytes": 9877712,
+        "httpCalls": 24,
+        "sessions": 12
+      },
+      "0.4.13": {
+        "medianMs": 5.15,
+        "medianHeapGrowth": 723584,
+        "sampledMaxHeapBytes": 9672920,
+        "httpCalls": 24,
+        "sessions": 12
+      }
+    },
+    {
+      "scenario": "official-en-48",
+      "0.4.12": {
+        "medianMs": 4.502,
+        "medianHeapGrowth": 773576,
+        "sampledMaxHeapBytes": 9823480,
+        "httpCalls": 12,
+        "sessions": 12
+      },
+      "0.4.13": {
+        "medianMs": 4.201,
+        "medianHeapGrowth": 724800,
+        "sampledMaxHeapBytes": 9689640,
+        "httpCalls": 12,
+        "sessions": 12
+      }
+    },
+    {
+      "scenario": "fallback-en-48",
+      "0.4.12": {
+        "medianMs": 5.615,
+        "medianHeapGrowth": 948944,
+        "sampledMaxHeapBytes": 10568536,
+        "httpCalls": 24,
+        "sessions": 12
+      },
+      "0.4.13": {
+        "medianMs": 5.53,
+        "medianHeapGrowth": 960080,
+        "sampledMaxHeapBytes": 10323312,
+        "httpCalls": 24,
+        "sessions": 12
+      }
+    },
+    {
+      "scenario": "official-en-120",
+      "0.4.12": {
+        "medianMs": 5.42,
+        "medianHeapGrowth": 1123232,
+        "sampledMaxHeapBytes": 10035992,
+        "httpCalls": 24,
+        "sessions": 12
+      },
+      "0.4.13": {
+        "medianMs": 5.131,
+        "medianHeapGrowth": 1008960,
+        "sampledMaxHeapBytes": 9659936,
+        "httpCalls": 24,
+        "sessions": 12
+      }
+    },
+    {
+      "scenario": "fallback-en-120",
+      "0.4.12": {
+        "medianMs": 6.862,
+        "medianHeapGrowth": 1324024,
+        "sampledMaxHeapBytes": 10800384,
+        "httpCalls": 36,
+        "sessions": 12
+      },
+      "0.4.13": {
+        "medianMs": 6.618,
+        "medianHeapGrowth": 1134832,
+        "sampledMaxHeapBytes": 10431656,
+        "httpCalls": 36,
+        "sessions": 12
+      }
+    },
+    {
+      "scenario": "official-zh-48",
+      "0.4.12": {
+        "medianMs": 4.557,
+        "medianHeapGrowth": 797056,
+        "sampledMaxHeapBytes": 10006776,
+        "httpCalls": 12,
+        "sessions": 12
+      },
+      "0.4.13": {
+        "medianMs": 4.46,
+        "medianHeapGrowth": 728760,
+        "sampledMaxHeapBytes": 11057480,
+        "httpCalls": 12,
+        "sessions": 12
+      }
+    },
+    {
+      "scenario": "fallback-zh-48",
+      "0.4.12": {
+        "medianMs": 5.584,
+        "medianHeapGrowth": 1024080,
+        "sampledMaxHeapBytes": 10839584,
+        "httpCalls": 24,
+        "sessions": 12
+      },
+      "0.4.13": {
+        "medianMs": 5.606,
+        "medianHeapGrowth": 996184,
+        "sampledMaxHeapBytes": 10735240,
+        "httpCalls": 24,
+        "sessions": 12
+      }
+    },
+    {
+      "scenario": "empty-fallback-en-48",
+      "0.4.12": {
+        "medianMs": 5.975,
+        "medianHeapGrowth": 1068632,
+        "sampledMaxHeapBytes": 10804128,
+        "httpCalls": 48,
+        "sessions": 12
+      },
+      "0.4.13": {
+        "medianMs": 5.763,
+        "medianHeapGrowth": 1032696,
+        "sampledMaxHeapBytes": 10469552,
+        "httpCalls": 48,
+        "sessions": 12
+      }
+    },
+    {
+      "scenario": "empty-fallback-zh-48",
+      "0.4.12": {
+        "medianMs": 6.086,
+        "medianHeapGrowth": 1102008,
+        "sampledMaxHeapBytes": 10674040,
+        "httpCalls": 48,
+        "sessions": 12
+      },
+      "0.4.13": {
+        "medianMs": 5.757,
+        "medianHeapGrowth": 974168,
+        "sampledMaxHeapBytes": 10741712,
+        "httpCalls": 48,
+        "sessions": 12
+      }
+    }
+  ],
+  "runs": [
+    {
+      "trial": 0,
+      "version": "0.4.12",
+      "scenario": "official-en-24",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.134,
+      "medianHeapGrowth": 653144,
+      "maxHeapGrowth": 901816,
+      "sampledMaxHeapBytes": 9331912,
+      "outputSHA256": "1fbfd48c5d8e7c23ae22a81d29c155e35addd6098ad574faefff0b46fe63c8c2"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.13",
+      "scenario": "official-en-24",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 3.958,
+      "medianHeapGrowth": 614120,
+      "maxHeapGrowth": 978072,
+      "sampledMaxHeapBytes": 9053928,
+      "outputSHA256": "1fbfd48c5d8e7c23ae22a81d29c155e35addd6098ad574faefff0b46fe63c8c2"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.12",
+      "scenario": "fallback-en-24",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.089,
+      "medianHeapGrowth": 781592,
+      "maxHeapGrowth": 1202784,
+      "sampledMaxHeapBytes": 9877712,
+      "outputSHA256": "8e4efe29589f3721826170aaf212b5dcf12c8538047458869a17d17fd62a84cf"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.13",
+      "scenario": "fallback-en-24",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.15,
+      "medianHeapGrowth": 706128,
+      "maxHeapGrowth": 1258288,
+      "sampledMaxHeapBytes": 9672920,
+      "outputSHA256": "8e4efe29589f3721826170aaf212b5dcf12c8538047458869a17d17fd62a84cf"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.12",
+      "scenario": "official-en-48",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.557,
+      "medianHeapGrowth": 778040,
+      "maxHeapGrowth": 1112784,
+      "sampledMaxHeapBytes": 9823480,
+      "outputSHA256": "421cfb0cd37f5b2db1011d2e292864f2b3e841ba197eef7d3657d05252d7c581"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.13",
+      "scenario": "official-en-48",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.201,
+      "medianHeapGrowth": 719336,
+      "maxHeapGrowth": 912088,
+      "sampledMaxHeapBytes": 9688112,
+      "outputSHA256": "421cfb0cd37f5b2db1011d2e292864f2b3e841ba197eef7d3657d05252d7c581"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.12",
+      "scenario": "fallback-en-48",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.641,
+      "medianHeapGrowth": 936448,
+      "maxHeapGrowth": 1360440,
+      "sampledMaxHeapBytes": 10568536,
+      "outputSHA256": "bcf6e3139a6ac846963664119da80120aa2b380a2d77975231a6eeeb60d4b25e"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.13",
+      "scenario": "fallback-en-48",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.533,
+      "medianHeapGrowth": 1113120,
+      "maxHeapGrowth": 1348528,
+      "sampledMaxHeapBytes": 10294560,
+      "outputSHA256": "bcf6e3139a6ac846963664119da80120aa2b380a2d77975231a6eeeb60d4b25e"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.12",
+      "scenario": "official-en-120",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.575,
+      "medianHeapGrowth": 1117128,
+      "maxHeapGrowth": 1297000,
+      "sampledMaxHeapBytes": 10035992,
+      "outputSHA256": "d32b535c34a5cf3ee8c81f2870b416818ddd5f6c1fc5e924bab477c65584c347"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.13",
+      "scenario": "official-en-120",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.011,
+      "medianHeapGrowth": 1008768,
+      "maxHeapGrowth": 1197936,
+      "sampledMaxHeapBytes": 9659936,
+      "outputSHA256": "d32b535c34a5cf3ee8c81f2870b416818ddd5f6c1fc5e924bab477c65584c347"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.12",
+      "scenario": "fallback-en-120",
+      "sessions": 12,
+      "httpCalls": 36,
+      "medianMs": 7.027,
+      "medianHeapGrowth": 1323944,
+      "maxHeapGrowth": 1562640,
+      "sampledMaxHeapBytes": 10800200,
+      "outputSHA256": "42476a29e260cb6d330c338893505403b7e82faf4908c95f9cd1b6dc035775fa"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.13",
+      "scenario": "fallback-en-120",
+      "sessions": 12,
+      "httpCalls": 36,
+      "medianMs": 6.641,
+      "medianHeapGrowth": 1132008,
+      "maxHeapGrowth": 1481640,
+      "sampledMaxHeapBytes": 10431400,
+      "outputSHA256": "42476a29e260cb6d330c338893505403b7e82faf4908c95f9cd1b6dc035775fa"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.12",
+      "scenario": "official-zh-48",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.557,
+      "medianHeapGrowth": 797056,
+      "maxHeapGrowth": 1023008,
+      "sampledMaxHeapBytes": 10005752,
+      "outputSHA256": "c01b38fb530eeba6468c28be5f9f664db83bb009f73191939919547f979fde9f"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.13",
+      "scenario": "official-zh-48",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.529,
+      "medianHeapGrowth": 728760,
+      "maxHeapGrowth": 946168,
+      "sampledMaxHeapBytes": 11057472,
+      "outputSHA256": "c01b38fb530eeba6468c28be5f9f664db83bb009f73191939919547f979fde9f"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.12",
+      "scenario": "fallback-zh-48",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.558,
+      "medianHeapGrowth": 988360,
+      "maxHeapGrowth": 1450128,
+      "sampledMaxHeapBytes": 11049064,
+      "outputSHA256": "3744723a338ffccbe0534b05412bb95691d68f2d8095b8b8724e862d58f906bd"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.13",
+      "scenario": "fallback-zh-48",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.606,
+      "medianHeapGrowth": 978400,
+      "maxHeapGrowth": 1423968,
+      "sampledMaxHeapBytes": 10318592,
+      "outputSHA256": "3744723a338ffccbe0534b05412bb95691d68f2d8095b8b8724e862d58f906bd"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.12",
+      "scenario": "empty-fallback-en-48",
+      "sessions": 12,
+      "httpCalls": 48,
+      "medianMs": 5.975,
+      "medianHeapGrowth": 1166200,
+      "maxHeapGrowth": 1400776,
+      "sampledMaxHeapBytes": 10646696,
+      "outputSHA256": "bcf6e3139a6ac846963664119da80120aa2b380a2d77975231a6eeeb60d4b25e"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.13",
+      "scenario": "empty-fallback-en-48",
+      "sessions": 12,
+      "httpCalls": 48,
+      "medianMs": 5.805,
+      "medianHeapGrowth": 1032696,
+      "maxHeapGrowth": 1393176,
+      "sampledMaxHeapBytes": 10878536,
+      "outputSHA256": "bcf6e3139a6ac846963664119da80120aa2b380a2d77975231a6eeeb60d4b25e"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.12",
+      "scenario": "empty-fallback-zh-48",
+      "sessions": 12,
+      "httpCalls": 48,
+      "medianMs": 6.035,
+      "medianHeapGrowth": 1072632,
+      "maxHeapGrowth": 1646448,
+      "sampledMaxHeapBytes": 10674040,
+      "outputSHA256": "3744723a338ffccbe0534b05412bb95691d68f2d8095b8b8724e862d58f906bd"
+    },
+    {
+      "trial": 0,
+      "version": "0.4.13",
+      "scenario": "empty-fallback-zh-48",
+      "sessions": 12,
+      "httpCalls": 48,
+      "medianMs": 5.757,
+      "medianHeapGrowth": 1064256,
+      "maxHeapGrowth": 1495448,
+      "sampledMaxHeapBytes": 10463600,
+      "outputSHA256": "3744723a338ffccbe0534b05412bb95691d68f2d8095b8b8724e862d58f906bd"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.13",
+      "scenario": "official-en-24",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 3.871,
+      "medianHeapGrowth": 614120,
+      "maxHeapGrowth": 930800,
+      "sampledMaxHeapBytes": 9053928,
+      "outputSHA256": "1fbfd48c5d8e7c23ae22a81d29c155e35addd6098ad574faefff0b46fe63c8c2"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.12",
+      "scenario": "official-en-24",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.108,
+      "medianHeapGrowth": 646488,
+      "maxHeapGrowth": 1127776,
+      "sampledMaxHeapBytes": 9331808,
+      "outputSHA256": "1fbfd48c5d8e7c23ae22a81d29c155e35addd6098ad574faefff0b46fe63c8c2"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.13",
+      "scenario": "fallback-en-24",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.058,
+      "medianHeapGrowth": 723584,
+      "maxHeapGrowth": 944592,
+      "sampledMaxHeapBytes": 9673872,
+      "outputSHA256": "8e4efe29589f3721826170aaf212b5dcf12c8538047458869a17d17fd62a84cf"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.12",
+      "scenario": "fallback-en-24",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.055,
+      "medianHeapGrowth": 784072,
+      "maxHeapGrowth": 1235984,
+      "sampledMaxHeapBytes": 9877712,
+      "outputSHA256": "8e4efe29589f3721826170aaf212b5dcf12c8538047458869a17d17fd62a84cf"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.13",
+      "scenario": "official-en-48",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.201,
+      "medianHeapGrowth": 724800,
+      "maxHeapGrowth": 912088,
+      "sampledMaxHeapBytes": 9689640,
+      "outputSHA256": "421cfb0cd37f5b2db1011d2e292864f2b3e841ba197eef7d3657d05252d7c581"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.12",
+      "scenario": "official-en-48",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.409,
+      "medianHeapGrowth": 773576,
+      "maxHeapGrowth": 965760,
+      "sampledMaxHeapBytes": 9818504,
+      "outputSHA256": "421cfb0cd37f5b2db1011d2e292864f2b3e841ba197eef7d3657d05252d7c581"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.13",
+      "scenario": "fallback-en-48",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.53,
+      "medianHeapGrowth": 894680,
+      "maxHeapGrowth": 1345488,
+      "sampledMaxHeapBytes": 10323312,
+      "outputSHA256": "bcf6e3139a6ac846963664119da80120aa2b380a2d77975231a6eeeb60d4b25e"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.12",
+      "scenario": "fallback-en-48",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.615,
+      "medianHeapGrowth": 1012192,
+      "maxHeapGrowth": 1360552,
+      "sampledMaxHeapBytes": 10470144,
+      "outputSHA256": "bcf6e3139a6ac846963664119da80120aa2b380a2d77975231a6eeeb60d4b25e"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.13",
+      "scenario": "official-en-120",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.176,
+      "medianHeapGrowth": 1009448,
+      "maxHeapGrowth": 1199352,
+      "sampledMaxHeapBytes": 9659688,
+      "outputSHA256": "d32b535c34a5cf3ee8c81f2870b416818ddd5f6c1fc5e924bab477c65584c347"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.12",
+      "scenario": "official-en-120",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.21,
+      "medianHeapGrowth": 1123232,
+      "maxHeapGrowth": 1312552,
+      "sampledMaxHeapBytes": 10035208,
+      "outputSHA256": "d32b535c34a5cf3ee8c81f2870b416818ddd5f6c1fc5e924bab477c65584c347"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.13",
+      "scenario": "fallback-en-120",
+      "sessions": 12,
+      "httpCalls": 36,
+      "medianMs": 6.618,
+      "medianHeapGrowth": 1134832,
+      "maxHeapGrowth": 1484824,
+      "sampledMaxHeapBytes": 10432776,
+      "outputSHA256": "42476a29e260cb6d330c338893505403b7e82faf4908c95f9cd1b6dc035775fa"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.12",
+      "scenario": "fallback-en-120",
+      "sessions": 12,
+      "httpCalls": 36,
+      "medianMs": 6.861,
+      "medianHeapGrowth": 1331192,
+      "maxHeapGrowth": 1672840,
+      "sampledMaxHeapBytes": 10800728,
+      "outputSHA256": "42476a29e260cb6d330c338893505403b7e82faf4908c95f9cd1b6dc035775fa"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.13",
+      "scenario": "official-zh-48",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.46,
+      "medianHeapGrowth": 729536,
+      "maxHeapGrowth": 946168,
+      "sampledMaxHeapBytes": 11057480,
+      "outputSHA256": "c01b38fb530eeba6468c28be5f9f664db83bb009f73191939919547f979fde9f"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.12",
+      "scenario": "official-zh-48",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.609,
+      "medianHeapGrowth": 797096,
+      "maxHeapGrowth": 1023008,
+      "sampledMaxHeapBytes": 10168208,
+      "outputSHA256": "c01b38fb530eeba6468c28be5f9f664db83bb009f73191939919547f979fde9f"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.13",
+      "scenario": "fallback-zh-48",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.562,
+      "medianHeapGrowth": 1077624,
+      "maxHeapGrowth": 1423968,
+      "sampledMaxHeapBytes": 10735240,
+      "outputSHA256": "3744723a338ffccbe0534b05412bb95691d68f2d8095b8b8724e862d58f906bd"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.12",
+      "scenario": "fallback-zh-48",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.689,
+      "medianHeapGrowth": 1079024,
+      "maxHeapGrowth": 1243064,
+      "sampledMaxHeapBytes": 10839584,
+      "outputSHA256": "3744723a338ffccbe0534b05412bb95691d68f2d8095b8b8724e862d58f906bd"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.13",
+      "scenario": "empty-fallback-en-48",
+      "sessions": 12,
+      "httpCalls": 48,
+      "medianMs": 5.693,
+      "medianHeapGrowth": 1099904,
+      "maxHeapGrowth": 1397232,
+      "sampledMaxHeapBytes": 10469552,
+      "outputSHA256": "bcf6e3139a6ac846963664119da80120aa2b380a2d77975231a6eeeb60d4b25e"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.12",
+      "scenario": "empty-fallback-en-48",
+      "sessions": 12,
+      "httpCalls": 48,
+      "medianMs": 5.948,
+      "medianHeapGrowth": 1054400,
+      "maxHeapGrowth": 1502880,
+      "sampledMaxHeapBytes": 11095512,
+      "outputSHA256": "bcf6e3139a6ac846963664119da80120aa2b380a2d77975231a6eeeb60d4b25e"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.13",
+      "scenario": "empty-fallback-zh-48",
+      "sessions": 12,
+      "httpCalls": 48,
+      "medianMs": 5.74,
+      "medianHeapGrowth": 974168,
+      "maxHeapGrowth": 1493680,
+      "sampledMaxHeapBytes": 10741712,
+      "outputSHA256": "3744723a338ffccbe0534b05412bb95691d68f2d8095b8b8724e862d58f906bd"
+    },
+    {
+      "trial": 1,
+      "version": "0.4.12",
+      "scenario": "empty-fallback-zh-48",
+      "sessions": 12,
+      "httpCalls": 48,
+      "medianMs": 6.086,
+      "medianHeapGrowth": 1102008,
+      "maxHeapGrowth": 1659872,
+      "sampledMaxHeapBytes": 11063552,
+      "outputSHA256": "3744723a338ffccbe0534b05412bb95691d68f2d8095b8b8724e862d58f906bd"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.12",
+      "scenario": "official-en-24",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.004,
+      "medianHeapGrowth": 664112,
+      "maxHeapGrowth": 1128848,
+      "sampledMaxHeapBytes": 9332136,
+      "outputSHA256": "1fbfd48c5d8e7c23ae22a81d29c155e35addd6098ad574faefff0b46fe63c8c2"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.13",
+      "scenario": "official-en-24",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 3.946,
+      "medianHeapGrowth": 613656,
+      "maxHeapGrowth": 930880,
+      "sampledMaxHeapBytes": 9053760,
+      "outputSHA256": "1fbfd48c5d8e7c23ae22a81d29c155e35addd6098ad574faefff0b46fe63c8c2"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.12",
+      "scenario": "fallback-en-24",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.19,
+      "medianHeapGrowth": 770472,
+      "maxHeapGrowth": 1000592,
+      "sampledMaxHeapBytes": 9877848,
+      "outputSHA256": "8e4efe29589f3721826170aaf212b5dcf12c8538047458869a17d17fd62a84cf"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.13",
+      "scenario": "fallback-en-24",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.232,
+      "medianHeapGrowth": 732592,
+      "maxHeapGrowth": 1214192,
+      "sampledMaxHeapBytes": 9667176,
+      "outputSHA256": "8e4efe29589f3721826170aaf212b5dcf12c8538047458869a17d17fd62a84cf"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.12",
+      "scenario": "official-en-48",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.502,
+      "medianHeapGrowth": 773520,
+      "maxHeapGrowth": 1083184,
+      "sampledMaxHeapBytes": 9987480,
+      "outputSHA256": "421cfb0cd37f5b2db1011d2e292864f2b3e841ba197eef7d3657d05252d7c581"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.13",
+      "scenario": "official-en-48",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.295,
+      "medianHeapGrowth": 724800,
+      "maxHeapGrowth": 910472,
+      "sampledMaxHeapBytes": 9689736,
+      "outputSHA256": "421cfb0cd37f5b2db1011d2e292864f2b3e841ba197eef7d3657d05252d7c581"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.12",
+      "scenario": "fallback-en-48",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.504,
+      "medianHeapGrowth": 948944,
+      "maxHeapGrowth": 1348208,
+      "sampledMaxHeapBytes": 10697128,
+      "outputSHA256": "bcf6e3139a6ac846963664119da80120aa2b380a2d77975231a6eeeb60d4b25e"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.13",
+      "scenario": "fallback-en-48",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.449,
+      "medianHeapGrowth": 960080,
+      "maxHeapGrowth": 1181448,
+      "sampledMaxHeapBytes": 10463168,
+      "outputSHA256": "bcf6e3139a6ac846963664119da80120aa2b380a2d77975231a6eeeb60d4b25e"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.12",
+      "scenario": "official-en-120",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.42,
+      "medianHeapGrowth": 1127728,
+      "maxHeapGrowth": 1357360,
+      "sampledMaxHeapBytes": 10051024,
+      "outputSHA256": "d32b535c34a5cf3ee8c81f2870b416818ddd5f6c1fc5e924bab477c65584c347"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.13",
+      "scenario": "official-en-120",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.131,
+      "medianHeapGrowth": 1008960,
+      "maxHeapGrowth": 1199280,
+      "sampledMaxHeapBytes": 9660352,
+      "outputSHA256": "d32b535c34a5cf3ee8c81f2870b416818ddd5f6c1fc5e924bab477c65584c347"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.12",
+      "scenario": "fallback-en-120",
+      "sessions": 12,
+      "httpCalls": 36,
+      "medianMs": 6.862,
+      "medianHeapGrowth": 1324024,
+      "maxHeapGrowth": 1568896,
+      "sampledMaxHeapBytes": 10800384,
+      "outputSHA256": "42476a29e260cb6d330c338893505403b7e82faf4908c95f9cd1b6dc035775fa"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.13",
+      "scenario": "fallback-en-120",
+      "sessions": 12,
+      "httpCalls": 36,
+      "medianMs": 6.452,
+      "medianHeapGrowth": 1145744,
+      "maxHeapGrowth": 1481640,
+      "sampledMaxHeapBytes": 10431656,
+      "outputSHA256": "42476a29e260cb6d330c338893505403b7e82faf4908c95f9cd1b6dc035775fa"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.12",
+      "scenario": "official-zh-48",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.541,
+      "medianHeapGrowth": 796912,
+      "maxHeapGrowth": 1023008,
+      "sampledMaxHeapBytes": 10006776,
+      "outputSHA256": "c01b38fb530eeba6468c28be5f9f664db83bb009f73191939919547f979fde9f"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.13",
+      "scenario": "official-zh-48",
+      "sessions": 12,
+      "httpCalls": 12,
+      "medianMs": 4.444,
+      "medianHeapGrowth": 726952,
+      "maxHeapGrowth": 946168,
+      "sampledMaxHeapBytes": 11057552,
+      "outputSHA256": "c01b38fb530eeba6468c28be5f9f664db83bb009f73191939919547f979fde9f"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.12",
+      "scenario": "fallback-zh-48",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.584,
+      "medianHeapGrowth": 1024080,
+      "maxHeapGrowth": 1261632,
+      "sampledMaxHeapBytes": 10628720,
+      "outputSHA256": "3744723a338ffccbe0534b05412bb95691d68f2d8095b8b8724e862d58f906bd"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.13",
+      "scenario": "fallback-zh-48",
+      "sessions": 12,
+      "httpCalls": 24,
+      "medianMs": 5.617,
+      "medianHeapGrowth": 996184,
+      "maxHeapGrowth": 1423968,
+      "sampledMaxHeapBytes": 10824912,
+      "outputSHA256": "3744723a338ffccbe0534b05412bb95691d68f2d8095b8b8724e862d58f906bd"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.12",
+      "scenario": "empty-fallback-en-48",
+      "sessions": 12,
+      "httpCalls": 48,
+      "medianMs": 6.12,
+      "medianHeapGrowth": 1068632,
+      "maxHeapGrowth": 1517480,
+      "sampledMaxHeapBytes": 10804128,
+      "outputSHA256": "bcf6e3139a6ac846963664119da80120aa2b380a2d77975231a6eeeb60d4b25e"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.13",
+      "scenario": "empty-fallback-en-48",
+      "sessions": 12,
+      "httpCalls": 48,
+      "medianMs": 5.763,
+      "medianHeapGrowth": 938800,
+      "maxHeapGrowth": 1414200,
+      "sampledMaxHeapBytes": 10468928,
+      "outputSHA256": "bcf6e3139a6ac846963664119da80120aa2b380a2d77975231a6eeeb60d4b25e"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.12",
+      "scenario": "empty-fallback-zh-48",
+      "sessions": 12,
+      "httpCalls": 48,
+      "medianMs": 6.196,
+      "medianHeapGrowth": 1130408,
+      "maxHeapGrowth": 1538680,
+      "sampledMaxHeapBytes": 10673856,
+      "outputSHA256": "3744723a338ffccbe0534b05412bb95691d68f2d8095b8b8724e862d58f906bd"
+    },
+    {
+      "trial": 2,
+      "version": "0.4.13",
+      "scenario": "empty-fallback-zh-48",
+      "sessions": 12,
+      "httpCalls": 48,
+      "medianMs": 5.923,
+      "medianHeapGrowth": 946336,
+      "maxHeapGrowth": 1493680,
+      "sampledMaxHeapBytes": 10933288,
+      "outputSHA256": "3744723a338ffccbe0534b05412bb95691d68f2d8095b8b8724e862d58f906bd"
+    }
+  ]
+}

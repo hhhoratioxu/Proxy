@@ -1,0 +1,124 @@
+{
+  "at": "2026-10-16T06:19:18.054Z",
+  "scope": "Actual compiled Loon script under Node VM with mocked Loon storage/HTTP bridge, simulated Spotify 404, empty cache and real public metadata/source/translation requests. HTTP bridge emulates documented UTF-8 string/binary fallback. No user credentials, lyrics or embedded page/session data retained. Not on-device API or VPN verification.",
+  "results": [
+    {
+      "id": "76XUZSb13QUuj1HECY4Hvo",
+      "matched": true,
+      "lineCount": 42,
+      "translationLines": 0,
+      "colors": {
+        "background": -10985626,
+        "text": -16777216,
+        "highlightText": -1
+      },
+      "elapsedMs": 2025,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/76XUZSb13QUuj1HECY4Hvo",
+          "binary": false,
+          "status": 200,
+          "responseBytes": 10480,
+          "elapsedMs": 700
+        },
+        {
+          "host": "c.y.qq.com",
+          "path": "/soso/fcgi-bin/client_search_cp",
+          "binary": false,
+          "status": 200,
+          "responseBytes": 9579,
+          "elapsedMs": 518
+        },
+        {
+          "host": "c.y.qq.com",
+          "path": "/lyric/fcgi-bin/fcg_query_lyric_new.fcg",
+          "binary": false,
+          "status": 200,
+          "responseBytes": 1779,
+          "elapsedMs": 110
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "binary": false,
+          "status": 200,
+          "responseBytes": 979,
+          "elapsedMs": 682
+        }
+      ],
+      "repeatElapsedMs": 2,
+      "repeatHTTP": 0,
+      "maxActiveHTTP": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 2189
+    },
+    {
+      "id": "0VjIjW4GlUZAMYd2vXMi3b",
+      "matched": true,
+      "lineCount": 49,
+      "translationLines": 49,
+      "colors": {
+        "background": -7190456,
+        "text": -16777216,
+        "highlightText": -1
+      },
+      "elapsedMs": 2868,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/0VjIjW4GlUZAMYd2vXMi3b",
+          "binary": false,
+          "status": 200,
+          "responseBytes": 10501,
+          "elapsedMs": 379
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/get",
+          "binary": false,
+          "status": 200,
+          "responseBytes": 7943,
+          "elapsedMs": 740
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/search",
+          "binary": false,
+          "status": 200,
+          "responseBytes": 165696,
+          "elapsedMs": 466
+        },
+        {
+          "host": "c.y.qq.com",
+          "path": "/soso/fcgi-bin/client_search_cp",
+          "binary": false,
+          "status": 200,
+          "responseBytes": 11664,
+          "elapsedMs": 722
+        },
+        {
+          "host": "c.y.qq.com",
+          "path": "/lyric/fcgi-bin/fcg_query_lyric_new.fcg",
+          "binary": false,
+          "status": 200,
+          "responseBytes": 2160,
+          "elapsedMs": 109
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "binary": false,
+          "status": 200,
+          "responseBytes": 1463,
+          "elapsedMs": 442
+        }
+      ],
+      "repeatElapsedMs": 3,
+      "repeatHTTP": 0,
+      "maxActiveHTTP": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 4380
+    }
+  ]
+}
