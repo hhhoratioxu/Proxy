@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-16",
+  "version": "0.1.0",
+  "local_tests": { "passed": 80, "failed": 0, "scope": "Synthetic protocol fixtures and simulated documented client APIs, using production bundles" },
+  "public_youtube_player_response": { "result": "PASS", "playability_before": "OK", "playability_after": "OK", "caption_tracks_before": 52, "caption_tracks_after": 53, "original_tracks_preserved": true },
+  "public_youtube_subtitle_download": { "result": "UNVERIFIED", "original_status": 429, "translated_status": 429 },
+  "native_client_import": "UNVERIFIED",
+  "phone_video_playback": "UNVERIFIED",
+  "real_ad_removal": "UNVERIFIED",
+  "on_device_bilingual_subtitles": "UNVERIFIED"
+}

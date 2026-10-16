@@ -1,0 +1,21 @@
+YouTube Enhance 0.1.0 — integration and client adapters by Horatio Xu, 2026.
+Licensed under Apache-2.0. Third-party licenses are reproduced in each distribution.
+
+Maasea/sgmodule, Apache-2.0:
+https://github.com/Maasea/sgmodule/tree/65075cdb388fc5e3094afd7e7314c67b243f3525
+The response bundle supplies protobuf-ts codecs and native ad classification.
+Original SHA-256: f98483d5f5017514f82502253c0db5ce2d4ffb7839887aa2cadc22666f5a7f12
+Modified to export codecs and ad filters, disable its entrypoint and retain Shorts.
+The upstream request bundle and its Cloudflare Worker are not included or used.
+Maasea's bundled protobuf-ts runtime: Copyright Timostamm, Apache-2.0.
+
+LuanRT/GoogleVideo, MIT, Copyright (c) 2024 LuanRT:
+https://github.com/LuanRT/GoogleVideo
+UMP integer framing and Onesie AES-CTR/HMAC behavior follow its reader/writer,
+protocol definitions and examples/onesie-request/utils.ts.
+
+@noble/ciphers 1.3.0 and @noble/hashes 1.8.0, MIT, Copyright Paul Miller.
+fflate 0.8.2, MIT, Copyright Arjun Barrett.
+
+Subtitle composition and native Egern/other proxy adapters are integration code.
+No code from IBL3ND/module or DualSubs is redistributed in this runtime.
