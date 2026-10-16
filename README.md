@@ -38,7 +38,7 @@
 
 ## Spotify 双语歌词 · VerseLyrics
 
-Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **0.4.5**，优化连续切歌时的歌词和译文缓存、按需读取响应，减少重复请求；保留六源补词与同曲配色。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
+Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **0.4.6**，分离轻量入口脚本、静态汉字索引、同歌手来源优先，并收紧响应与缓存大小、限制重叠联网任务；保留六源补词与原生配色。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
 
 | 客户端 | 安装入口 | 设置与限制 |
 | --- | --- | --- |
@@ -79,7 +79,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 
 YouTube AdTranslate 0.1.0 combines ad removal and bilingual subtitles in one import per supported client, defaulting to the original text plus Simplified Chinese. Links are listed above; disable other YouTube modules before enabling it. Eighty local tests passed and a public player response gained a bilingual track. Live subtitle downloads returned HTTP 429; native client imports, real ad removal and on-device playback remain unverified. [Compatibility guide](./Clash/Docs/YouTubeAdTranslate.md).
 
-VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.4.5 with per-track translation caching, compact fallback storage, lazy bounded response reads, six sequential sources, and song-specific colors. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
+VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.4.6 with lightweight entry scripts, static Han lookup, artist source hints, stricter body/cache bounds and shared network admission checks; six sequential sources and native colors remain. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
 Each plugin has one current installation entry. Clients automatically load any required runtime from a pinned version; no separate JavaScript download, build or test run is needed.
 
