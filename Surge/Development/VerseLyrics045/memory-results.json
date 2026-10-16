@@ -1,0 +1,39 @@
+{
+  "environment": "v24.19.0 darwin arm64",
+  "note": "Synthetic Node.js JSON decode and native translation rewrite. RSS includes the Node process; not an iPhone RAM measurement.",
+  "results": [
+    {
+      "version": "0.4.4",
+      "heapMiB": 256,
+      "inputBytes": 1572970,
+      "outputBytes": 1573045,
+      "elapsedMs": 26,
+      "baselineHeapBytes": 6098424,
+      "afterDecodeHeapBytes": 13394080,
+      "afterRewriteHeapBytes": 12582968,
+      "maxRSSKiB": 81632
+    },
+    {
+      "version": "0.4.5",
+      "heapMiB": 256,
+      "inputBytes": 1572970,
+      "outputBytes": 1573045,
+      "elapsedMs": 25,
+      "baselineHeapBytes": 6113328,
+      "afterDecodeHeapBytes": 13408984,
+      "afterRewriteHeapBytes": 12599256,
+      "maxRSSKiB": 81776
+    },
+    {
+      "version": "0.4.5",
+      "heapMiB": 32,
+      "inputBytes": 1572970,
+      "outputBytes": 1573045,
+      "elapsedMs": 25,
+      "baselineHeapBytes": 6113328,
+      "afterDecodeHeapBytes": 13408984,
+      "afterRewriteHeapBytes": 12599256,
+      "maxRSSKiB": 83344
+    }
+  ]
+}

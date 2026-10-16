@@ -1,0 +1,78 @@
+{
+  "at": "2026-10-16T02:24:47.254Z",
+  "environment": "v24.19.0 darwin arm64",
+  "scope": "Synthetic 12-song playlist, 40 unique original lines per song, two rounds through the whole processor. Fake deterministic HTTP with no real network. Node old-space limit 32 MiB. Elapsed CPU time is not network latency or iPhone responsiveness.",
+  "results": [
+    {
+      "version": "0.4.4",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 60,
+          "byHost": {
+            "spclient.wg.spotify.com": 12,
+            "lrclib.net": 12,
+            "open.spotify.com": 12,
+            "translate.googleapis.com": 24
+          },
+          "elapsedMs": 84,
+          "cacheCharacters": 37755,
+          "cacheEntries": 192,
+          "lyricEntries": 4,
+          "translationEntries": 176
+        },
+        {
+          "round": 2,
+          "httpCalls": 60,
+          "byHost": {
+            "spclient.wg.spotify.com": 12,
+            "lrclib.net": 12,
+            "open.spotify.com": 12,
+            "translate.googleapis.com": 24
+          },
+          "elapsedMs": 18,
+          "cacheCharacters": 37755,
+          "cacheEntries": 192,
+          "lyricEntries": 4,
+          "translationEntries": 176
+        }
+      ],
+      "baselineHeapBytes": 4542312,
+      "sampledMaxHeapBytes": 13397032,
+      "maxRSSKiB": 77920
+    },
+    {
+      "version": "0.4.5",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 60,
+          "byHost": {
+            "spclient.wg.spotify.com": 12,
+            "lrclib.net": 12,
+            "open.spotify.com": 12,
+            "translate.googleapis.com": 24
+          },
+          "elapsedMs": 54,
+          "cacheCharacters": 52051,
+          "cacheEntries": 60,
+          "lyricEntries": 12,
+          "translationEntries": 12
+        },
+        {
+          "round": 2,
+          "httpCalls": 0,
+          "byHost": {},
+          "elapsedMs": 7,
+          "cacheCharacters": 52051,
+          "cacheEntries": 60,
+          "lyricEntries": 12,
+          "translationEntries": 12
+        }
+      ],
+      "baselineHeapBytes": 4558648,
+      "sampledMaxHeapBytes": 13072016,
+      "maxRSSKiB": 77456
+    }
+  ]
+}
