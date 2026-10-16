@@ -1,7 +1,0 @@
-{
-  "at": "2026-10-16T12:50:00.829Z",
-  "scope": "300 deterministic generated scenarios against unchanged 0.4.16, 70 writes each, overlapping scoped snapshots, expiry conflicts, Unicode/escaping, cooldowns, legacy and invalid-offset migration. Complete serialized cache must match byte for byte. Semantic comparison, not performance or device acceptance.",
-  "cases": 300,
-  "writesPerCase": 70,
-  "allEqual": true
-}

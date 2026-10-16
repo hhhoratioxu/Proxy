@@ -1,11 +1,10 @@
 # Spotify 双语歌词 · VerseLyrics
 
-当前发布 **0.4.16**（原生适配 10）：优化所有歌曲共用的文字解码。纯 ASCII 内容直接读取字节；中文、日文等 UTF-8 内容使用最多 8,194 字节的临时字符缓冲区，保留严格编码校验。繁简匹配只拼接需要转换的字符片段，复用未改变的文字；缓存命中时不再创建网络任务标识或读取等待任务状态。
+当前发布 **0.5.0**（原生适配 10）：重构缓存合并写回。较大的缓存逐条校验旧记录，校验后复用未修改的序列化内容，减少其他歌曲的歌词与译文同时展开、再次序列化。空缓存、小缓存及旧格式沿用轻量兼容路径；同曲译文冲突仍合并成功结果，异常索引回退到兼容读取。
 
-保留六源串行补词、插件翻译、繁简转换、原生时间轴和高亮，以及上一版的同语言与重复句优化。没有增加预加载或并发，缓存仍为 128 条 / 64,000 JSON UTF-16 字符，原有响应、请求与时间预算不变。8,194 字节只是解码临时字符区的上限，不是整个脚本或 VPN 的内存上限；首次联网速度和歌词覆盖仍受来源限制。
+保留六源串行补词、插件翻译、繁简转换、原生时间轴和高亮，以及已有的文字解码和翻译去重优化。缓存仍为 128 条 / 64,000 JSON UTF-16 字符，没有扩大缓存、响应或并发限制。首次联网速度及歌词覆盖仍受来源限制；脚本测试不能证明手机 VPN 的内存峰值或绝不掉线。
 
-
-当前模块：0.4.16，适用于支持原生 `ctx` 脚本 API 的 Egern。
+当前模块：0.5.0，适用于支持原生 `ctx` 脚本 API 的 Egern。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -48,10 +47,10 @@ Spotify 已有的原词和时间轴继续保留。备用源优先核对同专辑
 
 ## 来源与许可
 
-插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/f58590b91003d5d887f556f74850faa63ccf4d59/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
+插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/48bca8c7e15b0ff08bb6e202a1832a04b11d566e/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/f58590b91003d5d887f556f74850faa63ccf4d59/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/f58590b91003d5d887f556f74850faa63ccf4d59/Surge/Development/VerseLyrics0416) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/48bca8c7e15b0ff08bb6e202a1832a04b11d566e/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/48bca8c7e15b0ff08bb6e202a1832a04b11d566e/Surge/Development/VerseLyrics050) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
 
 [其他客户端](../../README.md) · [返回 Egern](../README.md)
 
-2026-10-16：837 项自动测试通过；包含多语言编码、固定缓冲区边界、缓存命中不访问网络状态、独立 Protobuf 字节校验、短句合批及失败退回、五客户端重叠请求、六源与连续切歌模拟。记录见固定源码目录；未进行手机实机验收。
+2026-10-16：851 项自动测试通过；包含逐条缓存合并、旧缓存兼容、重叠写入、到期与淘汰、独立 Protobuf 字节校验、五客户端重叠请求、六源与连续切歌模拟。记录见固定源码目录；未进行手机实机验收。
