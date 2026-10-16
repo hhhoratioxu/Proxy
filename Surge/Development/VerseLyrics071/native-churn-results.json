@@ -1,0 +1,1435 @@
+{
+  "at": "2026-10-16T23:48:05.406Z",
+  "environment": "v24.19.0 darwin arm64",
+  "scope": "240 different synthetic cold songs with bounded-cache eviction and 720 HTTP calls. 24 original lines per song, metadata and lyric transactions on every change. Native API mocks; separate Node processes with 32 MiB old-space. Loon candidate applies the verified native header-rewrite effect without launching a request script. Explicit GC every six changes makes sampled heap reproducible; it is not an on-device peak or VPN stability test.",
+  "results": [
+    {
+      "version": "baseline",
+      "client": "Loon",
+      "format": "json",
+      "trackChanges": 240,
+      "scriptInvocations": 480,
+      "httpCalls": 720,
+      "maxActiveHTTP": 1,
+      "scheduledTimers": 0,
+      "completionCalls": 480,
+      "elapsedMs": 927,
+      "baselineHeapBytes": 5316256,
+      "sampledMaxHeapBytes": 20772224,
+      "retainedHeapBytes": 5522448,
+      "outputSHA256": "8914664cbfae98938435b0016d175240ec390ca7662e5ee8cb86a9fa1537272d",
+      "contentSHA256": "0d27a3575ac25e012234459e0baf9e2fb330a27b4e660db89e398e0d9b7dd8b9",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 36,
+          "cacheCharacters": 35033
+        },
+        {
+          "round": 2,
+          "httpCalls": 72,
+          "cacheCharacters": 63991
+        },
+        {
+          "round": 3,
+          "httpCalls": 108,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 4,
+          "httpCalls": 144,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 5,
+          "httpCalls": 180,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 6,
+          "httpCalls": 216,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 7,
+          "httpCalls": 252,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 8,
+          "httpCalls": 288,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 9,
+          "httpCalls": 324,
+          "cacheCharacters": 63988
+        },
+        {
+          "round": 10,
+          "httpCalls": 360,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 11,
+          "httpCalls": 396,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 12,
+          "httpCalls": 432,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 13,
+          "httpCalls": 468,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 14,
+          "httpCalls": 504,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 15,
+          "httpCalls": 540,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 16,
+          "httpCalls": 576,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 17,
+          "httpCalls": 612,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 18,
+          "httpCalls": 648,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 19,
+          "httpCalls": 684,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 20,
+          "httpCalls": 720,
+          "cacheCharacters": 63962
+        }
+      ]
+    },
+    {
+      "version": "candidate",
+      "client": "Loon",
+      "format": "json",
+      "trackChanges": 240,
+      "scriptInvocations": 480,
+      "httpCalls": 720,
+      "maxActiveHTTP": 1,
+      "scheduledTimers": 0,
+      "completionCalls": 480,
+      "elapsedMs": 921,
+      "baselineHeapBytes": 5322488,
+      "sampledMaxHeapBytes": 20779072,
+      "retainedHeapBytes": 5530656,
+      "outputSHA256": "8914664cbfae98938435b0016d175240ec390ca7662e5ee8cb86a9fa1537272d",
+      "contentSHA256": "0d27a3575ac25e012234459e0baf9e2fb330a27b4e660db89e398e0d9b7dd8b9",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 36,
+          "cacheCharacters": 35033
+        },
+        {
+          "round": 2,
+          "httpCalls": 72,
+          "cacheCharacters": 63991
+        },
+        {
+          "round": 3,
+          "httpCalls": 108,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 4,
+          "httpCalls": 144,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 5,
+          "httpCalls": 180,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 6,
+          "httpCalls": 216,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 7,
+          "httpCalls": 252,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 8,
+          "httpCalls": 288,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 9,
+          "httpCalls": 324,
+          "cacheCharacters": 63988
+        },
+        {
+          "round": 10,
+          "httpCalls": 360,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 11,
+          "httpCalls": 396,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 12,
+          "httpCalls": 432,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 13,
+          "httpCalls": 468,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 14,
+          "httpCalls": 504,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 15,
+          "httpCalls": 540,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 16,
+          "httpCalls": 576,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 17,
+          "httpCalls": 612,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 18,
+          "httpCalls": 648,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 19,
+          "httpCalls": 684,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 20,
+          "httpCalls": 720,
+          "cacheCharacters": 63962
+        }
+      ]
+    },
+    {
+      "version": "candidate",
+      "client": "Surge",
+      "format": "json",
+      "trackChanges": 240,
+      "scriptInvocations": 960,
+      "httpCalls": 720,
+      "maxActiveHTTP": 1,
+      "scheduledTimers": 0,
+      "completionCalls": 960,
+      "elapsedMs": 1144,
+      "baselineHeapBytes": 5322168,
+      "sampledMaxHeapBytes": 24998640,
+      "retainedHeapBytes": 5569856,
+      "outputSHA256": "8914664cbfae98938435b0016d175240ec390ca7662e5ee8cb86a9fa1537272d",
+      "contentSHA256": "0d27a3575ac25e012234459e0baf9e2fb330a27b4e660db89e398e0d9b7dd8b9",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 36,
+          "cacheCharacters": 35033
+        },
+        {
+          "round": 2,
+          "httpCalls": 72,
+          "cacheCharacters": 63991
+        },
+        {
+          "round": 3,
+          "httpCalls": 108,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 4,
+          "httpCalls": 144,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 5,
+          "httpCalls": 180,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 6,
+          "httpCalls": 216,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 7,
+          "httpCalls": 252,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 8,
+          "httpCalls": 288,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 9,
+          "httpCalls": 324,
+          "cacheCharacters": 63988
+        },
+        {
+          "round": 10,
+          "httpCalls": 360,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 11,
+          "httpCalls": 396,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 12,
+          "httpCalls": 432,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 13,
+          "httpCalls": 468,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 14,
+          "httpCalls": 504,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 15,
+          "httpCalls": 540,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 16,
+          "httpCalls": 576,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 17,
+          "httpCalls": 612,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 18,
+          "httpCalls": 648,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 19,
+          "httpCalls": 684,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 20,
+          "httpCalls": 720,
+          "cacheCharacters": 63962
+        }
+      ]
+    },
+    {
+      "version": "candidate",
+      "client": "Shadowrocket",
+      "format": "json",
+      "trackChanges": 240,
+      "scriptInvocations": 960,
+      "httpCalls": 720,
+      "maxActiveHTTP": 1,
+      "scheduledTimers": 0,
+      "completionCalls": 960,
+      "elapsedMs": 1118,
+      "baselineHeapBytes": 5322216,
+      "sampledMaxHeapBytes": 24998112,
+      "retainedHeapBytes": 5569896,
+      "outputSHA256": "8914664cbfae98938435b0016d175240ec390ca7662e5ee8cb86a9fa1537272d",
+      "contentSHA256": "0d27a3575ac25e012234459e0baf9e2fb330a27b4e660db89e398e0d9b7dd8b9",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 36,
+          "cacheCharacters": 35033
+        },
+        {
+          "round": 2,
+          "httpCalls": 72,
+          "cacheCharacters": 63991
+        },
+        {
+          "round": 3,
+          "httpCalls": 108,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 4,
+          "httpCalls": 144,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 5,
+          "httpCalls": 180,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 6,
+          "httpCalls": 216,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 7,
+          "httpCalls": 252,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 8,
+          "httpCalls": 288,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 9,
+          "httpCalls": 324,
+          "cacheCharacters": 63988
+        },
+        {
+          "round": 10,
+          "httpCalls": 360,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 11,
+          "httpCalls": 396,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 12,
+          "httpCalls": 432,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 13,
+          "httpCalls": 468,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 14,
+          "httpCalls": 504,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 15,
+          "httpCalls": 540,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 16,
+          "httpCalls": 576,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 17,
+          "httpCalls": 612,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 18,
+          "httpCalls": 648,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 19,
+          "httpCalls": 684,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 20,
+          "httpCalls": 720,
+          "cacheCharacters": 63962
+        }
+      ]
+    },
+    {
+      "version": "candidate",
+      "client": "QuantumultX",
+      "format": "json",
+      "trackChanges": 240,
+      "scriptInvocations": 960,
+      "httpCalls": 720,
+      "maxActiveHTTP": 1,
+      "scheduledTimers": 240,
+      "completionCalls": 960,
+      "elapsedMs": 1111,
+      "baselineHeapBytes": 5327808,
+      "sampledMaxHeapBytes": 25008536,
+      "retainedHeapBytes": 5581056,
+      "outputSHA256": "8914664cbfae98938435b0016d175240ec390ca7662e5ee8cb86a9fa1537272d",
+      "contentSHA256": "0d27a3575ac25e012234459e0baf9e2fb330a27b4e660db89e398e0d9b7dd8b9",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 36,
+          "cacheCharacters": 35033
+        },
+        {
+          "round": 2,
+          "httpCalls": 72,
+          "cacheCharacters": 63991
+        },
+        {
+          "round": 3,
+          "httpCalls": 108,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 4,
+          "httpCalls": 144,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 5,
+          "httpCalls": 180,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 6,
+          "httpCalls": 216,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 7,
+          "httpCalls": 252,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 8,
+          "httpCalls": 288,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 9,
+          "httpCalls": 324,
+          "cacheCharacters": 63988
+        },
+        {
+          "round": 10,
+          "httpCalls": 360,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 11,
+          "httpCalls": 396,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 12,
+          "httpCalls": 432,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 13,
+          "httpCalls": 468,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 14,
+          "httpCalls": 504,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 15,
+          "httpCalls": 540,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 16,
+          "httpCalls": 576,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 17,
+          "httpCalls": 612,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 18,
+          "httpCalls": 648,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 19,
+          "httpCalls": 684,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 20,
+          "httpCalls": 720,
+          "cacheCharacters": 63962
+        }
+      ]
+    },
+    {
+      "version": "candidate",
+      "client": "Egern",
+      "format": "json",
+      "trackChanges": 240,
+      "scriptInvocations": 960,
+      "httpCalls": 720,
+      "maxActiveHTTP": 1,
+      "scheduledTimers": 0,
+      "completionCalls": 0,
+      "elapsedMs": 483,
+      "baselineHeapBytes": 5355912,
+      "sampledMaxHeapBytes": 20033064,
+      "retainedHeapBytes": 7822320,
+      "outputSHA256": "8914664cbfae98938435b0016d175240ec390ca7662e5ee8cb86a9fa1537272d",
+      "contentSHA256": "0d27a3575ac25e012234459e0baf9e2fb330a27b4e660db89e398e0d9b7dd8b9",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 36,
+          "cacheCharacters": 35033
+        },
+        {
+          "round": 2,
+          "httpCalls": 72,
+          "cacheCharacters": 63991
+        },
+        {
+          "round": 3,
+          "httpCalls": 108,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 4,
+          "httpCalls": 144,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 5,
+          "httpCalls": 180,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 6,
+          "httpCalls": 216,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 7,
+          "httpCalls": 252,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 8,
+          "httpCalls": 288,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 9,
+          "httpCalls": 324,
+          "cacheCharacters": 63988
+        },
+        {
+          "round": 10,
+          "httpCalls": 360,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 11,
+          "httpCalls": 396,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 12,
+          "httpCalls": 432,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 13,
+          "httpCalls": 468,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 14,
+          "httpCalls": 504,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 15,
+          "httpCalls": 540,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 16,
+          "httpCalls": 576,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 17,
+          "httpCalls": 612,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 18,
+          "httpCalls": 648,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 19,
+          "httpCalls": 684,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 20,
+          "httpCalls": 720,
+          "cacheCharacters": 63962
+        }
+      ]
+    },
+    {
+      "version": "baseline",
+      "client": "Loon",
+      "format": "protobuf",
+      "trackChanges": 240,
+      "scriptInvocations": 480,
+      "httpCalls": 720,
+      "maxActiveHTTP": 1,
+      "scheduledTimers": 0,
+      "completionCalls": 480,
+      "elapsedMs": 883,
+      "baselineHeapBytes": 5316296,
+      "sampledMaxHeapBytes": 20787664,
+      "retainedHeapBytes": 5542168,
+      "outputSHA256": "8b7b7ccaff333c7c9f6c3f1f902ccd600a222afea7c443ed1ed45a45c72132a9",
+      "contentSHA256": "0d27a3575ac25e012234459e0baf9e2fb330a27b4e660db89e398e0d9b7dd8b9",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 36,
+          "cacheCharacters": 35033
+        },
+        {
+          "round": 2,
+          "httpCalls": 72,
+          "cacheCharacters": 63991
+        },
+        {
+          "round": 3,
+          "httpCalls": 108,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 4,
+          "httpCalls": 144,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 5,
+          "httpCalls": 180,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 6,
+          "httpCalls": 216,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 7,
+          "httpCalls": 252,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 8,
+          "httpCalls": 288,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 9,
+          "httpCalls": 324,
+          "cacheCharacters": 63988
+        },
+        {
+          "round": 10,
+          "httpCalls": 360,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 11,
+          "httpCalls": 396,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 12,
+          "httpCalls": 432,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 13,
+          "httpCalls": 468,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 14,
+          "httpCalls": 504,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 15,
+          "httpCalls": 540,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 16,
+          "httpCalls": 576,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 17,
+          "httpCalls": 612,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 18,
+          "httpCalls": 648,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 19,
+          "httpCalls": 684,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 20,
+          "httpCalls": 720,
+          "cacheCharacters": 63962
+        }
+      ]
+    },
+    {
+      "version": "candidate",
+      "client": "Loon",
+      "format": "protobuf",
+      "trackChanges": 240,
+      "scriptInvocations": 480,
+      "httpCalls": 720,
+      "maxActiveHTTP": 1,
+      "scheduledTimers": 0,
+      "completionCalls": 480,
+      "elapsedMs": 888,
+      "baselineHeapBytes": 5322416,
+      "sampledMaxHeapBytes": 20826784,
+      "retainedHeapBytes": 5550448,
+      "outputSHA256": "8b7b7ccaff333c7c9f6c3f1f902ccd600a222afea7c443ed1ed45a45c72132a9",
+      "contentSHA256": "0d27a3575ac25e012234459e0baf9e2fb330a27b4e660db89e398e0d9b7dd8b9",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 36,
+          "cacheCharacters": 35033
+        },
+        {
+          "round": 2,
+          "httpCalls": 72,
+          "cacheCharacters": 63991
+        },
+        {
+          "round": 3,
+          "httpCalls": 108,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 4,
+          "httpCalls": 144,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 5,
+          "httpCalls": 180,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 6,
+          "httpCalls": 216,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 7,
+          "httpCalls": 252,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 8,
+          "httpCalls": 288,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 9,
+          "httpCalls": 324,
+          "cacheCharacters": 63988
+        },
+        {
+          "round": 10,
+          "httpCalls": 360,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 11,
+          "httpCalls": 396,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 12,
+          "httpCalls": 432,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 13,
+          "httpCalls": 468,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 14,
+          "httpCalls": 504,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 15,
+          "httpCalls": 540,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 16,
+          "httpCalls": 576,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 17,
+          "httpCalls": 612,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 18,
+          "httpCalls": 648,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 19,
+          "httpCalls": 684,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 20,
+          "httpCalls": 720,
+          "cacheCharacters": 63962
+        }
+      ]
+    },
+    {
+      "version": "candidate",
+      "client": "Surge",
+      "format": "protobuf",
+      "trackChanges": 240,
+      "scriptInvocations": 960,
+      "httpCalls": 720,
+      "maxActiveHTTP": 1,
+      "scheduledTimers": 0,
+      "completionCalls": 960,
+      "elapsedMs": 1093,
+      "baselineHeapBytes": 5322064,
+      "sampledMaxHeapBytes": 25977176,
+      "retainedHeapBytes": 5595104,
+      "outputSHA256": "8b7b7ccaff333c7c9f6c3f1f902ccd600a222afea7c443ed1ed45a45c72132a9",
+      "contentSHA256": "0d27a3575ac25e012234459e0baf9e2fb330a27b4e660db89e398e0d9b7dd8b9",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 36,
+          "cacheCharacters": 35033
+        },
+        {
+          "round": 2,
+          "httpCalls": 72,
+          "cacheCharacters": 63991
+        },
+        {
+          "round": 3,
+          "httpCalls": 108,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 4,
+          "httpCalls": 144,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 5,
+          "httpCalls": 180,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 6,
+          "httpCalls": 216,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 7,
+          "httpCalls": 252,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 8,
+          "httpCalls": 288,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 9,
+          "httpCalls": 324,
+          "cacheCharacters": 63988
+        },
+        {
+          "round": 10,
+          "httpCalls": 360,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 11,
+          "httpCalls": 396,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 12,
+          "httpCalls": 432,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 13,
+          "httpCalls": 468,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 14,
+          "httpCalls": 504,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 15,
+          "httpCalls": 540,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 16,
+          "httpCalls": 576,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 17,
+          "httpCalls": 612,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 18,
+          "httpCalls": 648,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 19,
+          "httpCalls": 684,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 20,
+          "httpCalls": 720,
+          "cacheCharacters": 63962
+        }
+      ]
+    },
+    {
+      "version": "candidate",
+      "client": "Shadowrocket",
+      "format": "protobuf",
+      "trackChanges": 240,
+      "scriptInvocations": 960,
+      "httpCalls": 720,
+      "maxActiveHTTP": 1,
+      "scheduledTimers": 0,
+      "completionCalls": 960,
+      "elapsedMs": 1076,
+      "baselineHeapBytes": 5322144,
+      "sampledMaxHeapBytes": 25984928,
+      "retainedHeapBytes": 5595208,
+      "outputSHA256": "8b7b7ccaff333c7c9f6c3f1f902ccd600a222afea7c443ed1ed45a45c72132a9",
+      "contentSHA256": "0d27a3575ac25e012234459e0baf9e2fb330a27b4e660db89e398e0d9b7dd8b9",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 36,
+          "cacheCharacters": 35033
+        },
+        {
+          "round": 2,
+          "httpCalls": 72,
+          "cacheCharacters": 63991
+        },
+        {
+          "round": 3,
+          "httpCalls": 108,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 4,
+          "httpCalls": 144,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 5,
+          "httpCalls": 180,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 6,
+          "httpCalls": 216,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 7,
+          "httpCalls": 252,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 8,
+          "httpCalls": 288,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 9,
+          "httpCalls": 324,
+          "cacheCharacters": 63988
+        },
+        {
+          "round": 10,
+          "httpCalls": 360,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 11,
+          "httpCalls": 396,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 12,
+          "httpCalls": 432,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 13,
+          "httpCalls": 468,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 14,
+          "httpCalls": 504,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 15,
+          "httpCalls": 540,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 16,
+          "httpCalls": 576,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 17,
+          "httpCalls": 612,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 18,
+          "httpCalls": 648,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 19,
+          "httpCalls": 684,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 20,
+          "httpCalls": 720,
+          "cacheCharacters": 63962
+        }
+      ]
+    },
+    {
+      "version": "candidate",
+      "client": "QuantumultX",
+      "format": "protobuf",
+      "trackChanges": 240,
+      "scriptInvocations": 960,
+      "httpCalls": 720,
+      "maxActiveHTTP": 1,
+      "scheduledTimers": 240,
+      "completionCalls": 960,
+      "elapsedMs": 1080,
+      "baselineHeapBytes": 5327808,
+      "sampledMaxHeapBytes": 25991776,
+      "retainedHeapBytes": 5606168,
+      "outputSHA256": "8b7b7ccaff333c7c9f6c3f1f902ccd600a222afea7c443ed1ed45a45c72132a9",
+      "contentSHA256": "0d27a3575ac25e012234459e0baf9e2fb330a27b4e660db89e398e0d9b7dd8b9",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 36,
+          "cacheCharacters": 35033
+        },
+        {
+          "round": 2,
+          "httpCalls": 72,
+          "cacheCharacters": 63991
+        },
+        {
+          "round": 3,
+          "httpCalls": 108,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 4,
+          "httpCalls": 144,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 5,
+          "httpCalls": 180,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 6,
+          "httpCalls": 216,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 7,
+          "httpCalls": 252,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 8,
+          "httpCalls": 288,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 9,
+          "httpCalls": 324,
+          "cacheCharacters": 63988
+        },
+        {
+          "round": 10,
+          "httpCalls": 360,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 11,
+          "httpCalls": 396,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 12,
+          "httpCalls": 432,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 13,
+          "httpCalls": 468,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 14,
+          "httpCalls": 504,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 15,
+          "httpCalls": 540,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 16,
+          "httpCalls": 576,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 17,
+          "httpCalls": 612,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 18,
+          "httpCalls": 648,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 19,
+          "httpCalls": 684,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 20,
+          "httpCalls": 720,
+          "cacheCharacters": 63962
+        }
+      ]
+    },
+    {
+      "version": "candidate",
+      "client": "Egern",
+      "format": "protobuf",
+      "trackChanges": 240,
+      "scriptInvocations": 960,
+      "httpCalls": 720,
+      "maxActiveHTTP": 1,
+      "scheduledTimers": 0,
+      "completionCalls": 0,
+      "elapsedMs": 469,
+      "baselineHeapBytes": 5355912,
+      "sampledMaxHeapBytes": 20151712,
+      "retainedHeapBytes": 7938888,
+      "outputSHA256": "8b7b7ccaff333c7c9f6c3f1f902ccd600a222afea7c443ed1ed45a45c72132a9",
+      "contentSHA256": "0d27a3575ac25e012234459e0baf9e2fb330a27b4e660db89e398e0d9b7dd8b9",
+      "rounds": [
+        {
+          "round": 1,
+          "httpCalls": 36,
+          "cacheCharacters": 35033
+        },
+        {
+          "round": 2,
+          "httpCalls": 72,
+          "cacheCharacters": 63991
+        },
+        {
+          "round": 3,
+          "httpCalls": 108,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 4,
+          "httpCalls": 144,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 5,
+          "httpCalls": 180,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 6,
+          "httpCalls": 216,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 7,
+          "httpCalls": 252,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 8,
+          "httpCalls": 288,
+          "cacheCharacters": 63940
+        },
+        {
+          "round": 9,
+          "httpCalls": 324,
+          "cacheCharacters": 63988
+        },
+        {
+          "round": 10,
+          "httpCalls": 360,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 11,
+          "httpCalls": 396,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 12,
+          "httpCalls": 432,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 13,
+          "httpCalls": 468,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 14,
+          "httpCalls": 504,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 15,
+          "httpCalls": 540,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 16,
+          "httpCalls": 576,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 17,
+          "httpCalls": 612,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 18,
+          "httpCalls": 648,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 19,
+          "httpCalls": 684,
+          "cacheCharacters": 63962
+        },
+        {
+          "round": 20,
+          "httpCalls": 720,
+          "cacheCharacters": 63962
+        }
+      ]
+    }
+  ]
+}
