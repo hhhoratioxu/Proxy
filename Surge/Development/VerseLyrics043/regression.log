@@ -1,0 +1,2050 @@
+TAP version 13
+# Subtest: Surge: two native hooks with complete URL coverage and correct binary configuration
+ok 1 - Surge: two native hooks with complete URL coverage and correct binary configuration
+  ---
+  duration_ms: 7.4645
+  type: 'test'
+  ...
+# Subtest: Loon: two native hooks with complete URL coverage and correct binary configuration
+ok 2 - Loon: two native hooks with complete URL coverage and correct binary configuration
+  ---
+  duration_ms: 2.791458
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: two native hooks with complete URL coverage and correct binary configuration
+ok 3 - Shadowrocket: two native hooks with complete URL coverage and correct binary configuration
+  ---
+  duration_ms: 1.9295
+  type: 'test'
+  ...
+# Subtest: QuantumultX: two native hooks with complete URL coverage and correct binary configuration
+ok 4 - QuantumultX: two native hooks with complete URL coverage and correct binary configuration
+  ---
+  duration_ms: 1.982958
+  type: 'test'
+  ...
+# Subtest: production handles the complete native user-customization-service/v1/customize response silently and preserves every other field
+ok 5 - production handles the complete native user-customization-service/v1/customize response silently and preserves every other field
+  ---
+  duration_ms: 38.830209
+  type: 'test'
+  ...
+# Subtest: production handles the complete native bootstrap/v1/bootstrap response silently and preserves every other field
+ok 6 - production handles the complete native bootstrap/v1/bootstrap response silently and preserves every other field
+  ---
+  duration_ms: 1.091125
+  type: 'test'
+  ...
+# Subtest: production cache request handling covers user-customization-service/v1/customize
+ok 7 - production cache request handling covers user-customization-service/v1/customize
+  ---
+  duration_ms: 0.186625
+  type: 'test'
+  ...
+# Subtest: production cache request handling covers bootstrap/v1/bootstrap
+ok 8 - production cache request handling covers bootstrap/v1/bootstrap
+  ---
+  duration_ms: 0.139292
+  type: 'test'
+  ...
+# Subtest: production configuration HTTP 304 stays untouched and silent
+ok 9 - production configuration HTTP 304 stays untouched and silent
+  ---
+  duration_ms: 0.158583
+  type: 'test'
+  ...
+# Subtest: production configuration HTTP 401 stays untouched and silent
+ok 10 - production configuration HTTP 401 stays untouched and silent
+  ---
+  duration_ms: 0.151
+  type: 'test'
+  ...
+# Subtest: production configuration HTTP 403 stays untouched and silent
+ok 11 - production configuration HTTP 403 stays untouched and silent
+  ---
+  duration_ms: 0.121875
+  type: 'test'
+  ...
+# Subtest: production configuration HTTP 429 stays untouched and silent
+ok 12 - production configuration HTTP 429 stays untouched and silent
+  ---
+  duration_ms: 0.111041
+  type: 'test'
+  ...
+# Subtest: production configuration HTTP 500 stays untouched and silent
+ok 13 - production configuration HTTP 500 stays untouched and silent
+  ---
+  duration_ms: 0.12675
+  type: 'test'
+  ...
+# Subtest: disabled discovery, disabled fallback, marked responses and internal requests do not enable configuration
+ok 14 - disabled discovery, disabled fallback, marked responses and internal requests do not enable configuration
+  ---
+  duration_ms: 2.599959
+  type: 'test'
+  ...
+# Subtest: unknown configuration, JSON, and host or path lookalikes are retained
+ok 15 - unknown configuration, JSON, and host or path lookalikes are retained
+  ---
+  duration_ms: 0.580834
+  type: 'test'
+  ...
+# Subtest: one production response handler shares metadata through card insertion, auto fallback, plugin translation and cache reuse without notifications
+ok 16 - one production response handler shares metadata through card insertion, auto fallback, plugin translation and cache reuse without notifications
+  ---
+  duration_ms: 9.210583
+  type: 'test'
+  ...
+# Subtest: the production bundle has no notification adapter, schedule or runtime imports
+ok 17 - the production bundle has no notification adapter, schedule or runtime imports
+  ---
+  duration_ms: 0.759416
+  type: 'test'
+  ...
+# Subtest: iOS wildcard Accept plus JSON upstream error returns native protobuf lyrics
+ok 18 - iOS wildcard Accept plus JSON upstream error returns native protobuf lyrics
+  ---
+  duration_ms: 51.753917
+  type: 'test'
+  ...
+# Subtest: missing native lyrics format is independent of the upstream error MIME: ["*/*","application/json","{}"]
+ok 19 - missing native lyrics format is independent of the upstream error MIME: ["*/*","application/json","{}"]
+  ---
+  duration_ms: 1.557125
+  type: 'test'
+  ...
+# Subtest: missing native lyrics format is independent of the upstream error MIME: ["*/*","application/json",""]
+ok 20 - missing native lyrics format is independent of the upstream error MIME: ["*/*","application/json",""]
+  ---
+  duration_ms: 0.797042
+  type: 'test'
+  ...
+# Subtest: missing native lyrics format is independent of the upstream error MIME: [null,"application/json","{}"]
+ok 21 - missing native lyrics format is independent of the upstream error MIME: [null,"application/json","{}"]
+  ---
+  duration_ms: 10.583792
+  type: 'test'
+  ...
+# Subtest: missing native lyrics format is independent of the upstream error MIME: ["*/*",null,""]
+ok 22 - missing native lyrics format is independent of the upstream error MIME: ["*/*",null,""]
+  ---
+  duration_ms: 0.676916
+  type: 'test'
+  ...
+# Subtest: missing native lyrics format is independent of the upstream error MIME: ["application/x-protobuf","application/json","{}"]
+ok 23 - missing native lyrics format is independent of the upstream error MIME: ["application/x-protobuf","application/json","{}"]
+  ---
+  duration_ms: 0.568667
+  type: 'test'
+  ...
+# Subtest: missing native lyrics format is independent of the upstream error MIME: ["application/octet-stream","text/plain","missing"]
+ok 24 - missing native lyrics format is independent of the upstream error MIME: ["application/octet-stream","text/plain","missing"]
+  ---
+  duration_ms: 0.520083
+  type: 'test'
+  ...
+# Subtest: explicit successful representation remains supported ["*/*","?format=json","json"]
+ok 25 - explicit successful representation remains supported ["*/*","?format=json","json"]
+  ---
+  duration_ms: 0.516208
+  type: 'test'
+  ...
+# Subtest: explicit successful representation remains supported ["application/json","","json"]
+ok 26 - explicit successful representation remains supported ["application/json","","json"]
+  ---
+  duration_ms: 0.551
+  type: 'test'
+  ...
+# Subtest: explicit successful representation remains supported ["application/json","?format=protobuf","protobuf"]
+ok 27 - explicit successful representation remains supported ["application/json","?format=protobuf","protobuf"]
+  ---
+  duration_ms: 0.605291
+  type: 'test'
+  ...
+# Subtest: explicit successful representation remains supported ["application/x-protobuf","?format=json","json"]
+ok 28 - explicit successful representation remains supported ["application/x-protobuf","?format=json","json"]
+  ---
+  duration_ms: 0.431167
+  type: 'test'
+  ...
+# Subtest: explicit successful representation remains supported ["application/x-protobuf","","protobuf"]
+ok 29 - explicit successful representation remains supported ["application/x-protobuf","","protobuf"]
+  ---
+  duration_ms: 0.376667
+  type: 'test'
+  ...
+# Subtest: a successfully parsed empty JSON document remains JSON for clients using that endpoint representation
+ok 30 - a successfully parsed empty JSON document remains JSON for clients using that endpoint representation
+  ---
+  duration_ms: 0.049458
+  type: 'test'
+  ...
+# Subtest: wildcard native requests explicitly ask upstream for protobuf while JSON clients retain their representation
+ok 31 - wildcard native requests explicitly ask upstream for protobuf while JSON clients retain their representation
+  ---
+  duration_ms: 0.165792
+  type: 'test'
+  ...
+# Subtest: a valid native protobuf with a 123-byte lyrics message cannot be mistaken for a JSON opening brace
+ok 32 - a valid native protobuf with a 123-byte lyrics message cannot be mistaken for a JSON opening brace
+  ---
+  duration_ms: 1.122459
+  type: 'test'
+  ...
+# Subtest: native ARGB fields are encoded as canonical unsigned 32-bit values
+ok 33 - native ARGB fields are encoded as canonical unsigned 32-bit values
+  ---
+  duration_ms: 0.132791
+  type: 'test'
+  ...
+# Subtest: bounded UTF-8 codecs agree with independent platform encoders across the full Unicode range
+ok 34 - bounded UTF-8 codecs agree with independent platform encoders across the full Unicode range
+  ---
+  duration_ms: 32.403833
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 fails closed 192,128
+ok 35 - invalid UTF-8 fails closed 192,128
+  ---
+  duration_ms: 0.198417
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 fails closed 193,191
+ok 36 - invalid UTF-8 fails closed 193,191
+  ---
+  duration_ms: 0.060709
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 fails closed 224,128,128
+ok 37 - invalid UTF-8 fails closed 224,128,128
+  ---
+  duration_ms: 0.05675
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 fails closed 237,160,128
+ok 38 - invalid UTF-8 fails closed 237,160,128
+  ---
+  duration_ms: 0.0755
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 fails closed 240,128,128,128
+ok 39 - invalid UTF-8 fails closed 240,128,128,128
+  ---
+  duration_ms: 0.053958
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 fails closed 244,144,128,128
+ok 40 - invalid UTF-8 fails closed 244,144,128,128
+  ---
+  duration_ms: 0.091458
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 fails closed 245,128,128,128
+ok 41 - invalid UTF-8 fails closed 245,128,128,128
+  ---
+  duration_ms: 0.071375
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 fails closed 128
+ok 42 - invalid UTF-8 fails closed 128
+  ---
+  duration_ms: 0.067709
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 fails closed 255
+ok 43 - invalid UTF-8 fails closed 255
+  ---
+  duration_ms: 0.117667
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 fails closed 226,130
+ok 44 - invalid UTF-8 fails closed 226,130
+  ---
+  duration_ms: 0.062833
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 fails closed 194,65
+ok 45 - invalid UTF-8 fails closed 194,65
+  ---
+  duration_ms: 0.058958
+  type: 'test'
+  ...
+# Subtest: unpaired surrogate still fails closed "\\ud800"
+ok 46 - unpaired surrogate still fails closed "\\ud800"
+  ---
+  duration_ms: 0.082667
+  type: 'test'
+  ...
+# Subtest: unpaired surrogate still fails closed "\\udfff"
+ok 47 - unpaired surrogate still fails closed "\\udfff"
+  ---
+  duration_ms: 0.032333
+  type: 'test'
+  ...
+# Subtest: unpaired surrogate still fails closed "A\\ud800Z"
+ok 48 - unpaired surrogate still fails closed "A\\ud800Z"
+  ---
+  duration_ms: 0.0425
+  type: 'test'
+  ...
+# Subtest: request initialization does not allocate the Han map; uncommon Unicode 17 variants still fold
+ok 49 - request initialization does not allocate the Han map; uncommon Unicode 17 variants still fold
+  ---
+  duration_ms: 7.424791
+  type: 'test'
+  ...
+# Subtest: cache is lazy and read-only hits do not rewrite it
+ok 50 - cache is lazy and read-only hits do not rewrite it
+  ---
+  duration_ms: 16.541083
+  type: 'test'
+  ...
+# Subtest: legacy cache is compacted once; large records and repeated inserts stay bounded
+ok 51 - legacy cache is compacted once; large records and repeated inserts stay bounded
+  ---
+  duration_ms: 11.074417
+  type: 'test'
+  ...
+# Subtest: concurrent cache writers preserve entries that were not in their initial snapshots
+ok 52 - concurrent cache writers preserve entries that were not in their initial snapshots
+  ---
+  duration_ms: 0.274083
+  type: 'test'
+  ...
+# Subtest: a unique same-recording candidate can differ by single/album name
+ok 53 - a unique same-recording candidate can differ by single/album name
+  ---
+  duration_ms: 0.646792
+  type: 'test'
+  ...
+# Subtest: exact album outranks equivalent album; null and malformed records are ignored
+ok 54 - exact album outranks equivalent album; null and malformed records are ignored
+  ---
+  duration_ms: 0.076958
+  type: 'test'
+  ...
+# Subtest: relaxed album matching rejects wrong recording {"trackName":"Paper Lantern (Live)"}
+ok 55 - relaxed album matching rejects wrong recording {"trackName":"Paper Lantern (Live)"}
+  ---
+  duration_ms: 0.048
+  type: 'test'
+  ...
+# Subtest: relaxed album matching rejects wrong recording {"artistName":"Another Artist"}
+ok 56 - relaxed album matching rejects wrong recording {"artistName":"Another Artist"}
+  ---
+  duration_ms: 0.049375
+  type: 'test'
+  ...
+# Subtest: relaxed album matching rejects wrong recording {"duration":182}
+ok 57 - relaxed album matching rejects wrong recording {"duration":182}
+  ---
+  duration_ms: 0.0485
+  type: 'test'
+  ...
+# Subtest: relaxed album matching rejects wrong recording {"albumName":"Concert 2026"}
+ok 58 - relaxed album matching rejects wrong recording {"albumName":"Concert 2026"}
+  ---
+  duration_ms: 0.034166
+  type: 'test'
+  ...
+# Subtest: relaxed album matching rejects wrong recording {"albumName":"Live at Home"}
+ok 59 - relaxed album matching rejects wrong recording {"albumName":"Live at Home"}
+  ---
+  duration_ms: 0.033208
+  type: 'test'
+  ...
+# Subtest: relaxed album matching rejects wrong recording {"albumName":"Remix Collection"}
+ok 60 - relaxed album matching rejects wrong recording {"albumName":"Remix Collection"}
+  ---
+  duration_ms: 0.03775
+  type: 'test'
+  ...
+# Subtest: relaxed album matching rejects wrong recording {"albumName":"Remastered 2026"}
+ok 61 - relaxed album matching rejects wrong recording {"albumName":"Remastered 2026"}
+  ---
+  duration_ms: 0.031792
+  type: 'test'
+  ...
+# Subtest: relaxed album matching rejects wrong recording {"albumName":"Acoustic Collection"}
+ok 62 - relaxed album matching rejects wrong recording {"albumName":"Acoustic Collection"}
+  ---
+  duration_ms: 0.03025
+  type: 'test'
+  ...
+# Subtest: relaxed album matching rejects wrong recording {"albumName":"伴奏版"}
+ok 63 - relaxed album matching rejects wrong recording {"albumName":"伴奏版"}
+  ---
+  duration_ms: 0.767208
+  type: 'test'
+  ...
+# Subtest: two otherwise equivalent album candidates remain ambiguous
+ok 64 - two otherwise equivalent album candidates remain ambiguous
+  ---
+  duration_ms: 0.054875
+  type: 'test'
+  ...
+# Subtest: LRCLIB exact GET avoids the bulk search response
+ok 65 - LRCLIB exact GET avoids the bulk search response
+  ---
+  duration_ms: 1.478208
+  type: 'test'
+  ...
+# Subtest: LRCLIB 404 searches without album filter, then validates the unique equivalent
+ok 66 - LRCLIB 404 searches without album filter, then validates the unique equivalent
+  ---
+  duration_ms: 0.540417
+  type: 'test'
+  ...
+# Subtest: empty source results are negatively cached briefly and retried after expiry
+ok 67 - empty source results are negatively cached briefly and retried after expiry
+  ---
+  duration_ms: 1.01225
+  type: 'test'
+  ...
+# Subtest: transient source errors have a shorter negative cache and retain Retry-After
+ok 68 - transient source errors have a shorter negative cache and retain Retry-After
+  ---
+  duration_ms: 0.419291
+  type: 'test'
+  ...
+# Subtest: each source gets a chance when preceding sources time out
+ok 69 - each source gets a chance when preceding sources time out
+  ---
+  duration_ms: 1.08825
+  type: 'test'
+  ...
+# Subtest: oversized service body is rejected before reading it when length is known
+ok 70 - oversized service body is rejected before reading it when length is known
+  ---
+  duration_ms: 0.384667
+  type: 'test'
+  ...
+# Subtest: oversized service body without a length is not decoded or parsed
+ok 71 - oversized service body without a length is not decoded or parsed
+  ---
+  duration_ms: 0.529709
+  type: 'test'
+  ...
+# Subtest: missing lyrics do not trigger needless palette retrieval
+ok 72 - missing lyrics do not trigger needless palette retrieval
+  ---
+  duration_ms: 3.085166
+  type: 'test'
+  ...
+# Subtest: new fallback protobuf encodes own translations in one pass
+ok 73 - new fallback protobuf encodes own translations in one pass
+  ---
+  duration_ms: 3.713834
+  type: 'test'
+  ...
+# Subtest: lightweight request hook matches full processor: color-lyrics/v2/track/0000000000000000000001
+ok 74 - lightweight request hook matches full processor: color-lyrics/v2/track/0000000000000000000001
+  ---
+  duration_ms: 1.458458
+  type: 'test'
+  ...
+# Subtest: lightweight request hook matches full processor: metadata/4/track/00000000000000000000000000000001
+ok 75 - lightweight request hook matches full processor: metadata/4/track/00000000000000000000000000000001
+  ---
+  duration_ms: 0.605625
+  type: 'test'
+  ...
+# Subtest: lightweight request hook matches full processor: extended-metadata/v0/extended-metadata
+ok 76 - lightweight request hook matches full processor: extended-metadata/v0/extended-metadata
+  ---
+  duration_ms: 0.407083
+  type: 'test'
+  ...
+# Subtest: lightweight request hook matches full processor: scrollsita/v1/scroll/spotify:track:0000000000000000000001
+ok 77 - lightweight request hook matches full processor: scrollsita/v1/scroll/spotify:track:0000000000000000000001
+  ---
+  duration_ms: 0.326667
+  type: 'test'
+  ...
+# Subtest: lightweight request hook matches full processor: user-customization-service/v1/customize
+ok 78 - lightweight request hook matches full processor: user-customization-service/v1/customize
+  ---
+  duration_ms: 0.448625
+  type: 'test'
+  ...
+# Subtest: lightweight request hook matches full processor: bootstrap/v1/bootstrap
+ok 79 - lightweight request hook matches full processor: bootstrap/v1/bootstrap
+  ---
+  duration_ms: 0.336375
+  type: 'test'
+  ...
+# Subtest: lightweight request hook matches full processor: context-resolve/v1/spotify:playlist:abcdef
+ok 80 - lightweight request hook matches full processor: context-resolve/v1/spotify:playlist:abcdef
+  ---
+  duration_ms: 0.366125
+  type: 'test'
+  ...
+# Subtest: lightweight request hook matches full processor: connect-state/v1/devices/abcdefghijklmnop
+ok 81 - lightweight request hook matches full processor: connect-state/v1/devices/abcdefghijklmnop
+  ---
+  duration_ms: 0.285834
+  type: 'test'
+  ...
+# Subtest: large unrelated player data is skipped before body allocation
+ok 82 - large unrelated player data is skipped before body allocation
+  ---
+  duration_ms: 0.151292
+  type: 'test'
+  ...
+# Subtest: empty LRCLIB records do not mask an available equivalent recording
+ok 83 - empty LRCLIB records do not mask an available equivalent recording
+  ---
+  duration_ms: 0.272833
+  type: 'test'
+  ...
+# Subtest: cross-album uniqueness considers the entire bounded service response
+ok 84 - cross-album uniqueness considers the entire bounded service response
+  ---
+  duration_ms: 0.108209
+  type: 'test'
+  ...
+# Subtest: target song takes its Spotify slate palette and distinct text roles
+ok 85 - target song takes its Spotify slate palette and distinct text roles
+  ---
+  duration_ms: 1.579625
+  type: 'test'
+  ...
+# Subtest: a mismatched public page cannot color another track {"id":"0000000000000000000001"}
+ok 86 - a mismatched public page cannot color another track {"id":"0000000000000000000001"}
+  ---
+  duration_ms: 0.296667
+  type: 'test'
+  ...
+# Subtest: a mismatched public page cannot color another track {"uri":"spotify:track:0000000000000000000001"}
+ok 87 - a mismatched public page cannot color another track {"uri":"spotify:track:0000000000000000000001"}
+  ---
+  duration_ms: 0.070917
+  type: 'test'
+  ...
+# Subtest: a mismatched public page cannot color another track {"type":"episode"}
+ok 88 - a mismatched public page cannot color another track {"type":"episode"}
+  ---
+  duration_ms: 0.077
+  type: 'test'
+  ...
+# Subtest: invalid or oversized embed data is rejected 0
+ok 89 - invalid or oversized embed data is rejected 0
+  ---
+  duration_ms: 0.064916
+  type: 'test'
+  ...
+# Subtest: invalid or oversized embed data is rejected 42
+ok 90 - invalid or oversized embed data is rejected 42
+  ---
+  duration_ms: 0.053333
+  type: 'test'
+  ...
+# Subtest: invalid or oversized embed data is rejected 2751000
+ok 91 - invalid or oversized embed data is rejected 2751000
+  ---
+  duration_ms: 0.043084
+  type: 'test'
+  ...
+# Subtest: invalid or oversized embed data is rejected 39
+ok 92 - invalid or oversized embed data is rejected 39
+  ---
+  duration_ms: 0.040917
+  type: 'test'
+  ...
+# Subtest: invalid background channels are rejected {"alpha":254,"red":20,"green":30,"blue":40}
+ok 93 - invalid background channels are rejected {"alpha":254,"red":20,"green":30,"blue":40}
+  ---
+  duration_ms: 0.088667
+  type: 'test'
+  ...
+# Subtest: invalid background channels are rejected {"alpha":255,"red":256,"green":0,"blue":0}
+ok 94 - invalid background channels are rejected {"alpha":255,"red":256,"green":0,"blue":0}
+  ---
+  duration_ms: 0.289125
+  type: 'test'
+  ...
+# Subtest: invalid background channels are rejected {"alpha":255,"red":"40","green":0,"blue":0}
+ok 95 - invalid background channels are rejected {"alpha":255,"red":"40","green":0,"blue":0}
+  ---
+  duration_ms: 0.417958
+  type: 'test'
+  ...
+# Subtest: missing or illegible text colors are readable on background 0
+ok 96 - missing or illegible text colors are readable on background 0
+  ---
+  duration_ms: 0.634792
+  type: 'test'
+  ...
+# Subtest: missing or illegible text colors are readable on background 77
+ok 97 - missing or illegible text colors are readable on background 77
+  ---
+  duration_ms: 0.380333
+  type: 'test'
+  ...
+# Subtest: missing or illegible text colors are readable on background 128
+ok 98 - missing or illegible text colors are readable on background 128
+  ---
+  duration_ms: 1.145041
+  type: 'test'
+  ...
+# Subtest: missing or illegible text colors are readable on background 200
+ok 99 - missing or illegible text colors are readable on background 200
+  ---
+  duration_ms: 0.101542
+  type: 'test'
+  ...
+# Subtest: missing or illegible text colors are readable on background 255
+ok 100 - missing or illegible text colors are readable on background 255
+  ---
+  duration_ms: 0.549208
+  type: 'test'
+  ...
+# Subtest: signed and unsigned opaque ARGB are accepted; transparent, fractional and absent values are rejected
+ok 101 - signed and unsigned opaque ARGB are accepted; transparent, fractional and absent values are rejected
+  ---
+  duration_ms: 0.264083
+  type: 'test'
+  ...
+# Subtest: public palette lookup omits every Spotify credential, bounds time, and caches only colors
+ok 102 - public palette lookup omits every Spotify credential, bounds time, and caches only colors
+  ---
+  duration_ms: 20.713917
+  type: 'test'
+  ...
+# Subtest: offline color service still returns fallback lyrics and retries only after its short negative cache expires
+ok 103 - offline color service still returns fallback lyrics and retries only after its short negative cache expires
+  ---
+  duration_ms: 15.877625
+  type: 'test'
+  ...
+# Subtest: near overall deadline returns a safe palette without starting another request
+ok 104 - near overall deadline returns a safe palette without starting another request
+  ---
+  duration_ms: 0.186458
+  type: 'test'
+  ...
+# Subtest: HTTP 429 honors Retry-After without stopping cached fallback lyrics
+ok 105 - HTTP 429 honors Retry-After without stopping cached fallback lyrics
+  ---
+  duration_ms: 0.9325
+  type: 'test'
+  ...
+# Subtest: old fallback cache gets fresh colors without changing lines or timing: application/json
+ok 106 - old fallback cache gets fresh colors without changing lines or timing: application/json
+  ---
+  duration_ms: 0.665
+  type: 'test'
+  ...
+# Subtest: old fallback cache gets fresh colors without changing lines or timing: application/x-protobuf
+ok 107 - old fallback cache gets fresh colors without changing lines or timing: application/x-protobuf
+  ---
+  duration_ms: 1.014209
+  type: 'test'
+  ...
+# Subtest: an official palette on an empty lyric response is kept: application/json
+ok 108 - an official palette on an empty lyric response is kept: application/json
+  ---
+  duration_ms: 0.377042
+  type: 'test'
+  ...
+# Subtest: an official palette on an empty lyric response is kept: application/x-protobuf
+ok 109 - an official palette on an empty lyric response is kept: application/x-protobuf
+  ---
+  duration_ms: 0.293458
+  type: 'test'
+  ...
+# Subtest: existing Spotify lyrics and palette remain byte-for-byte when no translation is requested
+ok 110 - existing Spotify lyrics and palette remain byte-for-byte when no translation is requested
+  ---
+  duration_ms: 0.276125
+  type: 'test'
+  ...
+# Subtest: context track adds missing lyric metadata for multiple tracks, without reserializing unknown large numbers
+ok 111 - context track adds missing lyric metadata for multiple tracks, without reserializing unknown large numbers
+  ---
+  duration_ms: 3.197333
+  type: 'test'
+  ...
+# Subtest: context album adds missing lyric metadata for multiple tracks, without reserializing unknown large numbers
+ok 112 - context album adds missing lyric metadata for multiple tracks, without reserializing unknown large numbers
+  ---
+  duration_ms: 0.273208
+  type: 'test'
+  ...
+# Subtest: context playlist adds missing lyric metadata for multiple tracks, without reserializing unknown large numbers
+ok 113 - context playlist adds missing lyric metadata for multiple tracks, without reserializing unknown large numbers
+  ---
+  duration_ms: 0.212291
+  type: 'test'
+  ...
+# Subtest: context station:artist adds missing lyric metadata for multiple tracks, without reserializing unknown large numbers
+ok 114 - context station:artist adds missing lyric metadata for multiple tracks, without reserializing unknown large numbers
+  ---
+  duration_ms: 0.204291
+  type: 'test'
+  ...
+# Subtest: context collection:tracks adds missing lyric metadata for multiple tracks, without reserializing unknown large numbers
+ok 115 - context collection:tracks adds missing lyric metadata for multiple tracks, without reserializing unknown large numbers
+  ---
+  duration_ms: 0.18175
+  type: 'test'
+  ...
+# Subtest: player state updates current, previous and next metadata without modifying playback timing or restrictions
+ok 116 - player state updates current, previous and next metadata without modifying playback timing or restrictions
+  ---
+  duration_ms: 0.55675
+  type: 'test'
+  ...
+# Subtest: native Context field path 5,4,4 preserves all other track and container fields
+ok 117 - native Context field path 5,4,4 preserves all other track and container fields
+  ---
+  duration_ms: 0.927041
+  type: 'test'
+  ...
+# Subtest: native Cluster field path 3 then 7/19/20 then metadata 3 preserves devices and unknown state bytes
+ok 118 - native Cluster field path 3 then 7/19/20 then metadata 3 preserves devices and unknown state bytes
+  ---
+  duration_ms: 0.835083
+  type: 'test'
+  ...
+# Subtest: production handles the previously omitted playback entry route context-resolve/v1/spotify:track:0000000000000000000001
+ok 119 - production handles the previously omitted playback entry route context-resolve/v1/spotify:track:0000000000000000000001
+  ---
+  duration_ms: 19.584375
+  type: 'test'
+  ...
+# Subtest: production handles the previously omitted playback entry route context-resolve/v1/spotify%3Aplaylist%3A0000000000000000000002
+ok 120 - production handles the previously omitted playback entry route context-resolve/v1/spotify%3Aplaylist%3A0000000000000000000002
+  ---
+  duration_ms: 1.613375
+  type: 'test'
+  ...
+# Subtest: production handles the previously omitted playback entry route connect-state/v1/devices/0000000000000000000009
+ok 121 - production handles the previously omitted playback entry route connect-state/v1/devices/0000000000000000000009
+  ---
+  duration_ms: 1.102208
+  type: 'test'
+  ...
+# Subtest: playback entry retains upstream state when disabled or unavailable {"env":{"DISCOVER_MISSING":"false"}}
+ok 122 - playback entry retains upstream state when disabled or unavailable {"env":{"DISCOVER_MISSING":"false"}}
+  ---
+  duration_ms: 0.243917
+  type: 'test'
+  ...
+# Subtest: playback entry retains upstream state when disabled or unavailable {"env":{"FALLBACK_PROVIDER":"off"}}
+ok 123 - playback entry retains upstream state when disabled or unavailable {"env":{"FALLBACK_PROVIDER":"off"}}
+  ---
+  duration_ms: 0.122458
+  type: 'test'
+  ...
+# Subtest: playback entry retains upstream state when disabled or unavailable {"status":401}
+ok 124 - playback entry retains upstream state when disabled or unavailable {"status":401}
+  ---
+  duration_ms: 0.106542
+  type: 'test'
+  ...
+# Subtest: playback entry retains upstream state when disabled or unavailable {"status":403}
+ok 125 - playback entry retains upstream state when disabled or unavailable {"status":403}
+  ---
+  duration_ms: 0.090667
+  type: 'test'
+  ...
+# Subtest: playback entry retains upstream state when disabled or unavailable {"status":429}
+ok 126 - playback entry retains upstream state when disabled or unavailable {"status":429}
+  ---
+  duration_ms: 0.091041
+  type: 'test'
+  ...
+# Subtest: playback entry retains upstream state when disabled or unavailable {"status":500}
+ok 127 - playback entry retains upstream state when disabled or unavailable {"status":500}
+  ---
+  duration_ms: 0.095375
+  type: 'test'
+  ...
+# Subtest: episodes, malformed flags, unknown shapes, lookalike hosts and unsupported paths stay untouched
+ok 128 - episodes, malformed flags, unknown shapes, lookalike hosts and unsupported paths stay untouched
+  ---
+  duration_ms: 0.463625
+  type: 'test'
+  ...
+# Subtest: defaults: translation on, language zh-CN, missing-lyrics discovery on
+ok 129 - defaults: translation on, language zh-CN, missing-lyrics discovery on
+  ---
+  duration_ms: 1.792542
+  type: 'test'
+  ...
+# Subtest: explicit translation disable sends no lyric text
+ok 130 - explicit translation disable sends no lyric text
+  ---
+  duration_ms: 27.498209
+  type: 'test'
+  ...
+# Subtest: JSON native translation keeps original rows and adds a separate alternative
+ok 131 - JSON native translation keeps original rows and adds a separate alternative
+  ---
+  duration_ms: 3.148459
+  type: 'test'
+  ...
+# Subtest: protobuf keeps all unknown outer/lyrics/line bytes and syllable timing
+ok 132 - protobuf keeps all unknown outer/lyrics/line bytes and syllable timing
+  ---
+  duration_ms: 1.695625
+  type: 'test'
+  ...
+# Subtest: duplicate lyric lines translated only once; blank/music lines not sent
+ok 133 - duplicate lyric lines translated only once; blank/music lines not sent
+  ---
+  duration_ms: 0.895167
+  type: 'test'
+  ...
+# Subtest: already bilingual lines are left intact
+ok 134 - already bilingual lines are left intact
+  ---
+  duration_ms: 0.254375
+  type: 'test'
+  ...
+# Subtest: translation cache is reused; changing target requests fresh translation
+ok 135 - translation cache is reused; changing target requests fresh translation
+  ---
+  duration_ms: 1.650125
+  type: 'test'
+  ...
+# Subtest: wrong translation count never shifts translations onto another line
+ok 136 - wrong translation count never shifts translations onto another line
+  ---
+  duration_ms: 1.119333
+  type: 'test'
+  ...
+# Subtest: one invalid translation invalidates entire batch
+ok 137 - one invalid translation invalidates entire batch
+  ---
+  duration_ms: 0.673625
+  type: 'test'
+  ...
+# Subtest: network timeout retains exact original bytes and upstream headers
+ok 138 - network timeout retains exact original bytes and upstream headers
+  ---
+  duration_ms: 0.4185
+  type: 'test'
+  ...
+# Subtest: Spotify HTTP 401 never treated as missing lyrics
+ok 139 - Spotify HTTP 401 never treated as missing lyrics
+  ---
+  duration_ms: 0.156625
+  type: 'test'
+  ...
+# Subtest: Spotify HTTP 403 never treated as missing lyrics
+ok 140 - Spotify HTTP 403 never treated as missing lyrics
+  ---
+  duration_ms: 0.07475
+  type: 'test'
+  ...
+# Subtest: Spotify HTTP 429 never treated as missing lyrics
+ok 141 - Spotify HTTP 429 never treated as missing lyrics
+  ---
+  duration_ms: 0.060042
+  type: 'test'
+  ...
+# Subtest: Spotify HTTP 500 never treated as missing lyrics
+ok 142 - Spotify HTTP 500 never treated as missing lyrics
+  ---
+  duration_ms: 0.069959
+  type: 'test'
+  ...
+# Subtest: Spotify HTTP 503 never treated as missing lyrics
+ok 143 - Spotify HTTP 503 never treated as missing lyrics
+  ---
+  duration_ms: 0.057625
+  type: 'test'
+  ...
+# Subtest: 404 fallback uses validated metadata and exact-version matching
+ok 144 - 404 fallback uses validated metadata and exact-version matching
+  ---
+  duration_ms: 2.138125
+  type: 'test'
+  ...
+# Subtest: native Accept protobuf wins over JSON error response type on 404
+ok 145 - native Accept protobuf wins over JSON error response type on 404
+  ---
+  duration_ms: 0.723208
+  type: 'test'
+  ...
+# Subtest: 404 JSON web client gets JSON fallback with truthful source
+ok 146 - 404 JSON web client gets JSON fallback with truthful source
+  ---
+  duration_ms: 0.53
+  type: 'test'
+  ...
+# Subtest: 200 explicit empty lyrics still uses fallback when translation is off
+ok 147 - 200 explicit empty lyrics still uses fallback when translation is off
+  ---
+  duration_ms: 0.435583
+  type: 'test'
+  ...
+# Subtest: no bearer and no cached metadata leaves 404 intact
+ok 148 - no bearer and no cached metadata leaves 404 intact
+  ---
+  duration_ms: 0.108084
+  type: 'test'
+  ...
+# Subtest: wrong Spotify metadata GID never searches backup services
+ok 149 - wrong Spotify metadata GID never searches backup services
+  ---
+  duration_ms: 0.477709
+  type: 'test'
+  ...
+# Subtest: strict match rejects covers, live/remastered titles, album mismatch, length drift, missing artists
+ok 150 - strict match rejects covers, live/remastered titles, album mismatch, length drift, missing artists
+  ---
+  duration_ms: 0.119
+  type: 'test'
+  ...
+# Subtest: mismatched source records leave missing-lyrics response intact
+ok 151 - mismatched source records leave missing-lyrics response intact
+  ---
+  duration_ms: 0.48575
+  type: 'test'
+  ...
+# Subtest: LRC keeps real timings, repeated timestamps, offsets and same-time bilingual rows
+ok 152 - LRC keeps real timings, repeated timestamps, offsets and same-time bilingual rows
+  ---
+  duration_ms: 0.2525
+  type: 'test'
+  ...
+# Subtest: plain lyrics remain UNSYNCED with zero timestamps
+ok 153 - plain lyrics remain UNSYNCED with zero timestamps
+  ---
+  duration_ms: 0.756458
+  type: 'test'
+  ...
+# Subtest: QQ selection only used after Spotify missing, with exact metadata
+ok 154 - QQ selection only used after Spotify missing, with exact metadata
+  ---
+  duration_ms: 0.774208
+  type: 'test'
+  ...
+# Subtest: NetEase POST search and synced-lyrics retrieval
+ok 155 - NetEase POST search and synced-lyrics retrieval
+  ---
+  duration_ms: 0.62175
+  type: 'test'
+  ...
+# Subtest: metadata has_lyrics=true is unchanged, even with discovery enabled
+ok 156 - metadata has_lyrics=true is unchanged, even with discovery enabled
+  ---
+  duration_ms: 0.183209
+  type: 'test'
+  ...
+# Subtest: metadata discovery off leaves no-lyrics flag untouched and sends no search
+ok 157 - metadata discovery off leaves no-lyrics flag untouched and sends no search
+  ---
+  duration_ms: 0.144
+  type: 'test'
+  ...
+# Subtest: metadata opens the lyric request without network work and leaves matching to the real 404
+ok 158 - metadata opens the lyric request without network work and leaves matching to the real 404
+  ---
+  duration_ms: 0.523875
+  type: 'test'
+  ...
+# Subtest: omitted proto2 lyrics flag opens the native request without an external lookup
+ok 159 - omitted proto2 lyrics flag opens the native request without an external lookup
+  ---
+  duration_ms: 0.245542
+  type: 'test'
+  ...
+# Subtest: no matching source leaves the actual lyric 404 unchanged after opening discovery
+ok 160 - no matching source leaves the actual lyric 404 unchanged after opening discovery
+  ---
+  duration_ms: 0.362666
+  type: 'test'
+  ...
+# Subtest: request cache rewrite is restricted to lyric URL and keeps authorization
+ok 161 - request cache rewrite is restricted to lyric URL and keeps authorization
+  ---
+  duration_ms: 0.123583
+  type: 'test'
+  ...
+# Subtest: module fully disabled at environment level passes request through
+ok 162 - module fully disabled at environment level passes request through
+  ---
+  duration_ms: 0.068708
+  type: 'test'
+  ...
+# Subtest: internal metadata requests are never processed recursively
+ok 163 - internal metadata requests are never processed recursively
+  ---
+  duration_ms: 0.1055
+  type: 'test'
+  ...
+# Subtest: rewritten response strips stale length, encoding and etag; keeps unrelated headers
+ok 164 - rewritten response strips stale length, encoding and etag; keeps unrelated headers
+  ---
+  duration_ms: 0.320416
+  type: 'test'
+  ...
+# Subtest: marked response is not translated twice
+ok 165 - marked response is not translated twice
+  ---
+  duration_ms: 0.07375
+  type: 'test'
+  ...
+# Subtest: 429 Retry-After is honored across repeated translation requests
+ok 166 - 429 Retry-After is honored across repeated translation requests
+  ---
+  duration_ms: 6.654667
+  type: 'test'
+  ...
+# Subtest: malformed/unknown response passes through: application/json {bad json
+ok 167 - malformed/unknown response passes through: application/json {bad json
+  ---
+  duration_ms: 0.468791
+  type: 'test'
+  ...
+# Subtest: malformed/unknown response passes through: application/x-protobuf \\n�
+ok 168 - malformed/unknown response passes through: application/x-protobuf \\n�
+  ---
+  duration_ms: 0.139875
+  type: 'test'
+  ...
+# Subtest: malformed/unknown response passes through: application/x-protobuf \\b�
+ok 169 - malformed/unknown response passes through: application/x-protobuf \\b�
+  ---
+  duration_ms: 0.103833
+  type: 'test'
+  ...
+# Subtest: malformed/unknown response passes through: text/html <html>login</ht
+ok 170 - malformed/unknown response passes through: text/html <html>login</ht
+  ---
+  duration_ms: 0.09025
+  type: 'test'
+  ...
+# Subtest: malformed/unknown response passes through: application/x-protobuf unknown respo
+ok 171 - malformed/unknown response passes through: application/x-protobuf unknown respo
+  ---
+  duration_ms: 0.085208
+  type: 'test'
+  ...
+# Subtest: invalid settings pass through without reading or sending body
+ok 172 - invalid settings pass through without reading or sending body
+  ---
+  duration_ms: 0.117125
+  type: 'test'
+  ...
+# Subtest: unknown successful JSON is not reclassified as no lyrics
+ok 173 - unknown successful JSON is not reclassified as no lyrics
+  ---
+  duration_ms: 0.105709
+  type: 'test'
+  ...
+# Subtest: base62 conversion matches independent 128-bit oracle
+ok 174 - base62 conversion matches independent 128-bit oracle
+  ---
+  duration_ms: 0.290375
+  type: 'test'
+  ...
+# Subtest: URL filters exclude auth, audio, ads, lookalike domains and unrelated APIs
+ok 175 - URL filters exclude auth, audio, ads, lookalike domains and unrelated APIs
+  ---
+  duration_ms: 0.057292
+  type: 'test'
+  ...
+# Subtest: fallback protobuf decodes with independent reader and canonical native uint32 colors
+ok 176 - fallback protobuf decodes with independent reader and canonical native uint32 colors
+  ---
+  duration_ms: 0.123417
+  type: 'test'
+  ...
+# Subtest: malformed wire fuzz always returns original bytes without throwing
+ok 177 - malformed wire fuzz always returns original bytes without throwing
+  ---
+  duration_ms: 12.351792
+  type: 'test'
+  ...
+# Subtest: manual status uses documented generic widget return format
+ok 178 - manual status uses documented generic widget return format
+  ---
+  duration_ms: 0.127958
+  type: 'test'
+  ...
+# Subtest: account upsell payload is never replaced with a synthetic successful response
+ok 179 - account upsell payload is never replaced with a synthetic successful response
+  ---
+  duration_ms: 0.111208
+  type: 'test'
+  ...
+# Subtest: partial native translation retains empty placeholders without shifting line indices
+ok 180 - partial native translation retains empty placeholders without shifting line indices
+  ---
+  duration_ms: 0.904167
+  type: 'test'
+  ...
+# Subtest: multiple Set-Cookie fields survive header editing
+ok 181 - multiple Set-Cookie fields survive header editing
+  ---
+  duration_ms: 0.293042
+  type: 'test'
+  ...
+# Subtest: automatic fallback continues to QQ when LRCLIB is rate limited
+ok 182 - automatic fallback continues to QQ when LRCLIB is rate limited
+  ---
+  duration_ms: 1.321791
+  type: 'test'
+  ...
+# Subtest: protobuf account upsell field is preserved without provider requests
+ok 183 - protobuf account upsell field is preserved without provider requests
+  ---
+  duration_ms: 0.189167
+  type: 'test'
+  ...
+# Subtest: overlapping invocations retain newer cache entries and Retry-After deadlines
+ok 184 - overlapping invocations retain newer cache entries and Retry-After deadlines
+  ---
+  duration_ms: 0.107
+  type: 'test'
+  ...
+# Subtest: Spotify official same-language JSON translation is replaced with plugin output
+ok 185 - Spotify official same-language JSON translation is replaced with plugin output
+  ---
+  duration_ms: 0.266458
+  type: 'test'
+  ...
+# Subtest: official translations for other languages are removed from the native list
+ok 186 - official translations for other languages are removed from the native list
+  ---
+  duration_ms: 0.190792
+  type: 'test'
+  ...
+# Subtest: unknown JSON alternative contents are replaced as a whole while original lyric rows are kept
+ok 187 - unknown JSON alternative contents are replaced as a whole while original lyric rows are kept
+  ---
+  duration_ms: 0.184125
+  type: 'test'
+  ...
+# Subtest: a misaligned official translation is replaced by correctly aligned plugin rows
+ok 188 - a misaligned official translation is replaced by correctly aligned plugin rows
+  ---
+  duration_ms: 0.160292
+  type: 'test'
+  ...
+# Subtest: protobuf native translation stores repeated text strings, not nested lyric messages
+ok 189 - protobuf native translation stores repeated text strings, not nested lyric messages
+  ---
+  duration_ms: 0.389
+  type: 'test'
+  ...
+# Subtest: existing official protobuf translation is replaced and never reused as plugin output
+ok 190 - existing official protobuf translation is replaced and never reused as plugin output
+  ---
+  duration_ms: 0.268625
+  type: 'test'
+  ...
+# Subtest: unknown nested-message protobuf alternatives are removed without decoding their contents
+ok 191 - unknown nested-message protobuf alternatives are removed without decoding their contents
+  ---
+  duration_ms: 0.336166
+  type: 'test'
+  ...
+# Subtest: original typography, RTL, preview rows and fullscreen action are unchanged
+ok 192 - original typography, RTL, preview rows and fullscreen action are unchanged
+  ---
+  duration_ms: 0.291417
+  type: 'test'
+  ...
+# Subtest: native alternative writer rejects a shifted line count
+ok 193 - native alternative writer rejects a shifted line count
+  ---
+  duration_ms: 0.156417
+  type: 'test'
+  ...
+# Subtest: image-qualified lyric endpoint is intercepted without touching other endpoints
+ok 194 - image-qualified lyric endpoint is intercepted without touching other endpoints
+  ---
+  duration_ms: 0.164208
+  type: 'test'
+  ...
+# Subtest: native protobuf MIME is retained after adding a translation
+ok 195 - native protobuf MIME is retained after adding a translation
+  ---
+  duration_ms: 0.510958
+  type: 'test'
+  ...
+# Subtest: fallback lyrics use native translation without adding words to the original rows
+ok 196 - fallback lyrics use native translation without adding words to the original rows
+  ---
+  duration_ms: 0.51825
+  type: 'test'
+  ...
+# Subtest: missing player card returns immediately, then the real lyric request performs the exact fallback
+ok 197 - missing player card returns immediately, then the real lyric request performs the exact fallback
+  ---
+  duration_ms: 0.893458
+  type: 'test'
+  ...
+# Subtest: an existing native lyrics card is kept byte-for-byte with no network calls
+ok 198 - an existing native lyrics card is kept byte-for-byte with no network calls
+  ---
+  duration_ms: 0.134875
+  type: 'test'
+  ...
+# Subtest: discovery explicitly off preserves missing card and reports the disabled setting
+ok 199 - discovery explicitly off preserves missing card and reports the disabled setting
+  ---
+  duration_ms: 0.108708
+  type: 'test'
+  ...
+# Subtest: a JSON card list keeps all prior sections, adds only the current track, and is not duplicated on reprocessing
+ok 200 - a JSON card list keeps all prior sections, adds only the current track, and is not duplicated on reprocessing
+  ---
+  duration_ms: 0.251958
+  type: 'test'
+  ...
+# Subtest: card injection cannot turn an actual lyric HTTP 401 into fallback success
+ok 201 - card injection cannot turn an actual lyric HTTP 401 into fallback success
+  ---
+  duration_ms: 0.177375
+  type: 'test'
+  ...
+# Subtest: card injection cannot turn an actual lyric HTTP 403 into fallback success
+ok 202 - card injection cannot turn an actual lyric HTTP 403 into fallback success
+  ---
+  duration_ms: 0.113958
+  type: 'test'
+  ...
+# Subtest: card injection cannot turn an actual lyric HTTP 429 into fallback success
+ok 203 - card injection cannot turn an actual lyric HTTP 429 into fallback success
+  ---
+  duration_ms: 0.097125
+  type: 'test'
+  ...
+# Subtest: card injection cannot turn an actual lyric HTTP 500 into fallback success
+ok 204 - card injection cannot turn an actual lyric HTTP 500 into fallback success
+  ---
+  duration_ms: 0.097958
+  type: 'test'
+  ...
+# Subtest: a supplied entry never converts unknown or entitlement lyric payloads into backup lyrics
+ok 205 - a supplied entry never converts unknown or entitlement lyric payloads into backup lyrics
+  ---
+  duration_ms: 0.249208
+  type: 'test'
+  ...
+# Subtest: native Spotify lyrics take priority after a missing card is added
+ok 206 - native Spotify lyrics take priority after a missing card is added
+  ---
+  duration_ms: 0.860875
+  type: 'test'
+  ...
+# Subtest: a permanently stalled provider cannot hold the card list or track metadata
+ok 207 - a permanently stalled provider cannot hold the card list or track metadata
+  ---
+  duration_ms: 1.040417
+  type: 'test'
+  ...
+# Subtest: batched TRACK_V4 discovery immediately caches identities and changes only flags and cache validators
+ok 208 - batched TRACK_V4 discovery immediately caches identities and changes only flags and cache validators
+  ---
+  duration_ms: 0.598875
+  type: 'test'
+  ...
+# Subtest: batched metadata with discovery off still primes the cache for the actual lyric request
+ok 209 - batched metadata with discovery off still primes the cache for the actual lyric request
+  ---
+  duration_ms: 0.485625
+  type: 'test'
+  ...
+# Subtest: unknown, non-track, forbidden, or mismatched extended entity stays opaque: {"kind":5}
+ok 210 - unknown, non-track, forbidden, or mismatched extended entity stays opaque: {"kind":5}
+  ---
+  duration_ms: 0.141542
+  type: 'test'
+  ...
+# Subtest: unknown, non-track, forbidden, or mismatched extended entity stays opaque: {"type":"type.googleapis.com/spotify.unknown.Track"}
+ok 211 - unknown, non-track, forbidden, or mismatched extended entity stays opaque: {"type":"type.googleapis.com/spotify.unknown.Track"}
+  ---
+  duration_ms: 0.113291
+  type: 'test'
+  ...
+# Subtest: unknown, non-track, forbidden, or mismatched extended entity stays opaque: {"status":403}
+ok 212 - unknown, non-track, forbidden, or mismatched extended entity stays opaque: {"status":403}
+  ---
+  duration_ms: 0.095542
+  type: 'test'
+  ...
+# Subtest: unknown, non-track, forbidden, or mismatched extended entity stays opaque: {"uri":"spotify:episode:0000000000000000000001"}
+ok 213 - unknown, non-track, forbidden, or mismatched extended entity stays opaque: {"uri":"spotify:episode:0000000000000000000001"}
+  ---
+  duration_ms: 0.106375
+  type: 'test'
+  ...
+# Subtest: unknown, non-track, forbidden, or mismatched extended entity stays opaque: {"track":{"type":"Buffer","data":[10,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,18,
+ok 214 - unknown, non-track, forbidden, or mismatched extended entity stays opaque: {"track":{"type":"Buffer","data":[10,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,18,
+  ---
+  duration_ms: 0.144334
+  type: 'test'
+  ...
+# Subtest: retired metadata/4 can retrieve exactly the requested track through the native batched endpoint
+ok 215 - retired metadata/4 can retrieve exactly the requested track through the native batched endpoint
+  ---
+  duration_ms: 0.542666
+  type: 'test'
+  ...
+# Subtest: cached batch identity and a cold lyric cache do not delay a player card
+ok 216 - cached batch identity and a cold lyric cache do not delay a player card
+  ---
+  duration_ms: 0.264625
+  type: 'test'
+  ...
+# Subtest: route filters allow explicit TLS ports and encoded track URIs, reject spoofing and episode cards
+ok 217 - route filters allow explicit TLS ports and encoded track URIs, reject spoofing and episode cards
+  ---
+  duration_ms: 0.061208
+  type: 'test'
+  ...
+# Subtest: diagnostic history keeps separate stages, is bounded, and never stores request tokens, cookies, or query strings
+ok 218 - diagnostic history keeps separate stages, is bounded, and never stores request tokens, cookies, or query strings
+  ---
+  duration_ms: 0.705583
+  type: 'test'
+  ...
+# Subtest: batched discovery enables every recognized track without launching any speculative searches
+ok 219 - batched discovery enables every recognized track without launching any speculative searches
+  ---
+  duration_ms: 0.471166
+  type: 'test'
+  ...
+# Subtest: native has-lyrics batch stays unchanged and never queries fallback
+ok 220 - native has-lyrics batch stays unchanged and never queries fallback
+  ---
+  duration_ms: 0.160375
+  type: 'test'
+  ...
+# Subtest: a native card needs neither in-flight credentials nor a warmed metadata cache
+ok 221 - a native card needs neither in-flight credentials nor a warmed metadata cache
+  ---
+  duration_ms: 0.09675
+  type: 'test'
+  ...
+# Subtest: malformed discovery envelopes preserve every input byte and do not issue any lookup
+ok 222 - malformed discovery envelopes preserve every input byte and do not issue any lookup
+  ---
+  duration_ms: 0.406917
+  type: 'test'
+  ...
+# Subtest: real target scroll structure gains the lyric URI and section identity while every existing card stays intact
+ok 223 - real target scroll structure gains the lyric URI and section identity while every existing card stays intact
+  ---
+  duration_ms: 0.377792
+  type: 'test'
+  ...
+# Subtest: turning the fallback provider off preserves cards discovery bytes
+ok 224 - turning the fallback provider off preserves cards discovery bytes
+  ---
+  duration_ms: 0.11575
+  type: 'test'
+  ...
+# Subtest: turning the fallback provider off preserves metadata discovery bytes
+ok 225 - turning the fallback provider off preserves metadata discovery bytes
+  ---
+  duration_ms: 0.089292
+  type: 'test'
+  ...
+# Subtest: turning the fallback provider off preserves batch discovery bytes
+ok 226 - turning the fallback provider off preserves batch discovery bytes
+  ---
+  duration_ms: 0.104792
+  type: 'test'
+  ...
+# Subtest: real user track metadata keeps its identity and recognizes its omitted proto2 false flag
+ok 227 - real user track metadata keeps its identity and recognizes its omitted proto2 false flag
+  ---
+  duration_ms: 1.6845
+  type: 'test'
+  ...
+# Subtest: traditional and simplified metadata match without accepting a wrong artist, edition, album, or duration
+ok 228 - traditional and simplified metadata match without accepting a wrong artist, edition, album, or duration
+  ---
+  duration_ms: 0.125334
+  type: 'test'
+  ...
+# Subtest: target song with real metadata reaches QQ fallback, sets native availability, then serves native timed lyrics
+ok 229 - target song with real metadata reaches QQ fallback, sets native availability, then serves native timed lyrics
+  ---
+  duration_ms: 0.897666
+  type: 'test'
+  ...
+# Subtest: batched metadata also handles an omitted has-lyrics flag instead of skipping the track
+ok 230 - batched metadata also handles an omitted has-lyrics flag instead of skipping the track
+  ---
+  duration_ms: 0.24875
+  type: 'test'
+  ...
+# Subtest: metadata Han folding does not suppress a simplified-to-traditional lyric translation
+ok 231 - metadata Han folding does not suppress a simplified-to-traditional lyric translation
+  ---
+  duration_ms: 0.231167
+  type: 'test'
+  ...
+# Subtest: invalid bool wire values cannot be interpreted as missing lyrics or trigger a lookup
+ok 232 - invalid bool wire values cannot be interpreted as missing lyrics or trigger a lookup
+  ---
+  duration_ms: 0.208958
+  type: 'test'
+  ...
+# Subtest: complete translation failure removes every official JSON alternative and retains original lyrics
+ok 233 - complete translation failure removes every official JSON alternative and retains original lyrics
+  ---
+  duration_ms: 0.18975
+  type: 'test'
+  ...
+# Subtest: complete translation failure removes all protobuf alternatives and preserves every non-translation byte
+ok 234 - complete translation failure removes all protobuf alternatives and preserves every non-translation byte
+  ---
+  duration_ms: 0.303875
+  type: 'test'
+  ...
+# Subtest: partial translation failure never fills remaining rows with official text
+ok 235 - partial translation failure never fills remaining rows with official text
+  ---
+  duration_ms: 0.601209
+  type: 'test'
+  ...
+# Subtest: turning plugin translation off keeps official data unchanged and sends no translation request
+ok 236 - turning plugin translation off keeps official data unchanged and sends no translation request
+  ---
+  duration_ms: 0.140833
+  type: 'test'
+  ...
+# Subtest: changing the plugin target removes old-language official entries and writes only the chosen language
+ok 237 - changing the plugin target removes old-language official entries and writes only the chosen language
+  ---
+  duration_ms: 0.166083
+  type: 'test'
+  ...
+# Subtest: official alternatives are replaced with cached plugin translations on every response
+ok 238 - official alternatives are replaced with cached plugin translations on every response
+  ---
+  duration_ms: 0.261375
+  type: 'test'
+  ...
+# Subtest: multiple protobuf official languages and duplicate language entries collapse to one plugin alternative
+ok 239 - multiple protobuf official languages and duplicate language entries collapse to one plugin alternative
+  ---
+  duration_ms: 0.343916
+  type: 'test'
+  ...
+# Subtest: a non-array official JSON alternative container is replaced without changing the original lyric payload
+ok 240 - a non-array official JSON alternative container is replaced without changing the original lyric payload
+  ---
+  duration_ms: 0.20225
+  type: 'test'
+  ...
+# Subtest: Egern packaged native ctx: application/json, palette offline=false
+ok 241 - Egern packaged native ctx: application/json, palette offline=false
+  ---
+  duration_ms: 21.745209
+  type: 'test'
+  ...
+# Subtest: Egern packaged native ctx: application/json, palette offline=true
+ok 242 - Egern packaged native ctx: application/json, palette offline=true
+  ---
+  duration_ms: 1.208708
+  type: 'test'
+  ...
+# Subtest: Egern packaged native ctx: application/x-protobuf, palette offline=false
+ok 243 - Egern packaged native ctx: application/x-protobuf, palette offline=false
+  ---
+  duration_ms: 1.38025
+  type: 'test'
+  ...
+# Subtest: Egern packaged native ctx: application/x-protobuf, palette offline=true
+ok 244 - Egern packaged native ctx: application/x-protobuf, palette offline=true
+  ---
+  duration_ms: 0.641958
+  type: 'test'
+  ...
+# Subtest: Surge: album palette crosses the native HTTP and binary bridge (application/json)
+ok 245 - Surge: album palette crosses the native HTTP and binary bridge (application/json)
+  ---
+  duration_ms: 26.999916
+  type: 'test'
+  ...
+# Subtest: Surge: album palette crosses the native HTTP and binary bridge (application/x-protobuf)
+ok 246 - Surge: album palette crosses the native HTTP and binary bridge (application/x-protobuf)
+  ---
+  duration_ms: 6.170291
+  type: 'test'
+  ...
+# Subtest: Surge: request cache headers and binary accept
+ok 247 - Surge: request cache headers and binary accept
+  ---
+  duration_ms: 1.535292
+  type: 'test'
+  ...
+# Subtest: Surge: native JSON translations replace every official alternative
+ok 248 - Surge: native JSON translations replace every official alternative
+  ---
+  duration_ms: 3.408375
+  type: 'test'
+  ...
+# Subtest: Surge: protobuf and nonzero buffer offset preserve original words
+ok 249 - Surge: protobuf and nonzero buffer offset preserve original words
+  ---
+  duration_ms: 3.189625
+  type: 'test'
+  ...
+# Subtest: Surge: metadata response cache is shared with a later 404
+ok 250 - Surge: metadata response cache is shared with a later 404
+  ---
+  duration_ms: 5.113042
+  type: 'test'
+  ...
+# Subtest: Surge: uncached metadata HTTP stays binary and credentials stay on Spotify
+ok 251 - Surge: uncached metadata HTTP stays binary and credentials stay on Spotify
+  ---
+  duration_ms: 3.025958
+  type: 'test'
+  ...
+# Subtest: Surge: all processing disabled preserves bytes and makes no calls
+ok 252 - Surge: all processing disabled preserves bytes and makes no calls
+  ---
+  duration_ms: 1.196709
+  type: 'test'
+  ...
+# Subtest: Surge: failing translator removes official alternatives
+ok 253 - Surge: failing translator removes official alternatives
+  ---
+  duration_ms: 1.487084
+  type: 'test'
+  ...
+# Subtest: Surge: preserves HTTP 401
+ok 254 - Surge: preserves HTTP 401
+  ---
+  duration_ms: 1.177792
+  type: 'test'
+  ...
+# Subtest: Surge: preserves HTTP 403
+ok 255 - Surge: preserves HTTP 403
+  ---
+  duration_ms: 1.4895
+  type: 'test'
+  ...
+# Subtest: Surge: preserves HTTP 429
+ok 256 - Surge: preserves HTTP 429
+  ---
+  duration_ms: 1.086125
+  type: 'test'
+  ...
+# Subtest: Surge: preserves HTTP 500
+ok 257 - Surge: preserves HTTP 500
+  ---
+  duration_ms: 1.205417
+  type: 'test'
+  ...
+# Subtest: Surge: preserves HTTP 503
+ok 258 - Surge: preserves HTTP 503
+  ---
+  duration_ms: 1.258625
+  type: 'test'
+  ...
+# Subtest: Surge: invalid/unrelated input passes through {"url":"https://example.com/color-lyrics/v2/track/0000000000000000000001"}
+ok 259 - Surge: invalid/unrelated input passes through {"url":"https://example.com/color-lyrics/v2/track/0000000000000000000001"}
+  ---
+  duration_ms: 1.98425
+  type: 'test'
+  ...
+# Subtest: Surge: invalid/unrelated input passes through {"body":"bad protobuf","type":"application/x-protobuf"}
+ok 260 - Surge: invalid/unrelated input passes through {"body":"bad protobuf","type":"application/x-protobuf"}
+  ---
+  duration_ms: 1.345042
+  type: 'test'
+  ...
+# Subtest: Surge: invalid/unrelated input passes through {"requestHeaders":{"x-verselyrics-internal":"1"}}
+ok 261 - Surge: invalid/unrelated input passes through {"requestHeaders":{"x-verselyrics-internal":"1"}}
+  ---
+  duration_ms: 1.031542
+  type: 'test'
+  ...
+# Subtest: Surge: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=invalid"}
+ok 262 - Surge: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=invalid"}
+  ---
+  duration_ms: 1.040542
+  type: 'test'
+  ...
+# Subtest: Surge: invalid/unrelated input passes through {"stage":"none"}
+ok 263 - Surge: invalid/unrelated input passes through {"stage":"none"}
+  ---
+  duration_ms: 1.747459
+  type: 'test'
+  ...
+# Subtest: Surge: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=%broken"}
+ok 264 - Surge: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=%broken"}
+  ---
+  duration_ms: 1.099042
+  type: 'test'
+  ...
+# Subtest: Surge: empty 404 with source off passes through
+ok 265 - Surge: empty 404 with source off passes through
+  ---
+  duration_ms: 1.333208
+  type: 'test'
+  ...
+# Subtest: Surge: cached translation avoids a second service request
+ok 266 - Surge: cached translation avoids a second service request
+  ---
+  duration_ms: 3.025875
+  type: 'test'
+  ...
+# Subtest: Loon: album palette crosses the native HTTP and binary bridge (application/json)
+ok 267 - Loon: album palette crosses the native HTTP and binary bridge (application/json)
+  ---
+  duration_ms: 8.077875
+  type: 'test'
+  ...
+# Subtest: Loon: album palette crosses the native HTTP and binary bridge (application/x-protobuf)
+ok 268 - Loon: album palette crosses the native HTTP and binary bridge (application/x-protobuf)
+  ---
+  duration_ms: 5.589375
+  type: 'test'
+  ...
+# Subtest: Loon: request cache headers and binary accept
+ok 269 - Loon: request cache headers and binary accept
+  ---
+  duration_ms: 1.776042
+  type: 'test'
+  ...
+# Subtest: Loon: native JSON translations replace every official alternative
+ok 270 - Loon: native JSON translations replace every official alternative
+  ---
+  duration_ms: 1.973125
+  type: 'test'
+  ...
+# Subtest: Loon: protobuf and nonzero buffer offset preserve original words
+ok 271 - Loon: protobuf and nonzero buffer offset preserve original words
+  ---
+  duration_ms: 1.782667
+  type: 'test'
+  ...
+# Subtest: Loon: metadata response cache is shared with a later 404
+ok 272 - Loon: metadata response cache is shared with a later 404
+  ---
+  duration_ms: 3.275
+  type: 'test'
+  ...
+# Subtest: Loon: uncached metadata HTTP stays binary and credentials stay on Spotify
+ok 273 - Loon: uncached metadata HTTP stays binary and credentials stay on Spotify
+  ---
+  duration_ms: 2.020042
+  type: 'test'
+  ...
+# Subtest: Loon: all processing disabled preserves bytes and makes no calls
+ok 274 - Loon: all processing disabled preserves bytes and makes no calls
+  ---
+  duration_ms: 1.139125
+  type: 'test'
+  ...
+# Subtest: Loon: failing translator removes official alternatives
+ok 275 - Loon: failing translator removes official alternatives
+  ---
+  duration_ms: 1.403792
+  type: 'test'
+  ...
+# Subtest: Loon: preserves HTTP 401
+ok 276 - Loon: preserves HTTP 401
+  ---
+  duration_ms: 0.983208
+  type: 'test'
+  ...
+# Subtest: Loon: preserves HTTP 403
+ok 277 - Loon: preserves HTTP 403
+  ---
+  duration_ms: 1.118167
+  type: 'test'
+  ...
+# Subtest: Loon: preserves HTTP 429
+ok 278 - Loon: preserves HTTP 429
+  ---
+  duration_ms: 1.049083
+  type: 'test'
+  ...
+# Subtest: Loon: preserves HTTP 500
+ok 279 - Loon: preserves HTTP 500
+  ---
+  duration_ms: 1.135667
+  type: 'test'
+  ...
+# Subtest: Loon: preserves HTTP 503
+ok 280 - Loon: preserves HTTP 503
+  ---
+  duration_ms: 1.7245
+  type: 'test'
+  ...
+# Subtest: Loon: invalid/unrelated input passes through {"url":"https://example.com/color-lyrics/v2/track/0000000000000000000001"}
+ok 281 - Loon: invalid/unrelated input passes through {"url":"https://example.com/color-lyrics/v2/track/0000000000000000000001"}
+  ---
+  duration_ms: 1.077875
+  type: 'test'
+  ...
+# Subtest: Loon: invalid/unrelated input passes through {"body":"bad protobuf","type":"application/x-protobuf"}
+ok 282 - Loon: invalid/unrelated input passes through {"body":"bad protobuf","type":"application/x-protobuf"}
+  ---
+  duration_ms: 1.04375
+  type: 'test'
+  ...
+# Subtest: Loon: invalid/unrelated input passes through {"requestHeaders":{"x-verselyrics-internal":"1"}}
+ok 283 - Loon: invalid/unrelated input passes through {"requestHeaders":{"x-verselyrics-internal":"1"}}
+  ---
+  duration_ms: 0.991125
+  type: 'test'
+  ...
+# Subtest: Loon: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=invalid"}
+ok 284 - Loon: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=invalid"}
+  ---
+  duration_ms: 0.920875
+  type: 'test'
+  ...
+# Subtest: Loon: invalid/unrelated input passes through {"stage":"none"}
+ok 285 - Loon: invalid/unrelated input passes through {"stage":"none"}
+  ---
+  duration_ms: 0.88525
+  type: 'test'
+  ...
+# Subtest: Loon: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=%broken"}
+ok 286 - Loon: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=%broken"}
+  ---
+  duration_ms: 1.24575
+  type: 'test'
+  ...
+# Subtest: Loon: empty 404 with source off passes through
+ok 287 - Loon: empty 404 with source off passes through
+  ---
+  duration_ms: 1.171
+  type: 'test'
+  ...
+# Subtest: Loon: cached translation avoids a second service request
+ok 288 - Loon: cached translation avoids a second service request
+  ---
+  duration_ms: 2.552791
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: album palette crosses the native HTTP and binary bridge (application/json)
+ok 289 - Shadowrocket: album palette crosses the native HTTP and binary bridge (application/json)
+  ---
+  duration_ms: 7.261583
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: album palette crosses the native HTTP and binary bridge (application/x-protobuf)
+ok 290 - Shadowrocket: album palette crosses the native HTTP and binary bridge (application/x-protobuf)
+  ---
+  duration_ms: 4.273417
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: request cache headers and binary accept
+ok 291 - Shadowrocket: request cache headers and binary accept
+  ---
+  duration_ms: 1.181167
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: native JSON translations replace every official alternative
+ok 292 - Shadowrocket: native JSON translations replace every official alternative
+  ---
+  duration_ms: 2.115542
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: protobuf and nonzero buffer offset preserve original words
+ok 293 - Shadowrocket: protobuf and nonzero buffer offset preserve original words
+  ---
+  duration_ms: 1.481459
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: metadata response cache is shared with a later 404
+ok 294 - Shadowrocket: metadata response cache is shared with a later 404
+  ---
+  duration_ms: 2.473834
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: uncached metadata HTTP stays binary and credentials stay on Spotify
+ok 295 - Shadowrocket: uncached metadata HTTP stays binary and credentials stay on Spotify
+  ---
+  duration_ms: 1.537209
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: all processing disabled preserves bytes and makes no calls
+ok 296 - Shadowrocket: all processing disabled preserves bytes and makes no calls
+  ---
+  duration_ms: 0.874375
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: failing translator removes official alternatives
+ok 297 - Shadowrocket: failing translator removes official alternatives
+  ---
+  duration_ms: 2.226541
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: preserves HTTP 401
+ok 298 - Shadowrocket: preserves HTTP 401
+  ---
+  duration_ms: 0.899208
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: preserves HTTP 403
+ok 299 - Shadowrocket: preserves HTTP 403
+  ---
+  duration_ms: 0.804125
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: preserves HTTP 429
+ok 300 - Shadowrocket: preserves HTTP 429
+  ---
+  duration_ms: 0.819958
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: preserves HTTP 500
+ok 301 - Shadowrocket: preserves HTTP 500
+  ---
+  duration_ms: 0.780542
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: preserves HTTP 503
+ok 302 - Shadowrocket: preserves HTTP 503
+  ---
+  duration_ms: 0.75825
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: invalid/unrelated input passes through {"url":"https://example.com/color-lyrics/v2/track/0000000000000000000001"}
+ok 303 - Shadowrocket: invalid/unrelated input passes through {"url":"https://example.com/color-lyrics/v2/track/0000000000000000000001"}
+  ---
+  duration_ms: 0.778667
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: invalid/unrelated input passes through {"body":"bad protobuf","type":"application/x-protobuf"}
+ok 304 - Shadowrocket: invalid/unrelated input passes through {"body":"bad protobuf","type":"application/x-protobuf"}
+  ---
+  duration_ms: 0.923334
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: invalid/unrelated input passes through {"requestHeaders":{"x-verselyrics-internal":"1"}}
+ok 305 - Shadowrocket: invalid/unrelated input passes through {"requestHeaders":{"x-verselyrics-internal":"1"}}
+  ---
+  duration_ms: 0.824042
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=invalid"}
+ok 306 - Shadowrocket: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=invalid"}
+  ---
+  duration_ms: 0.849542
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: invalid/unrelated input passes through {"stage":"none"}
+ok 307 - Shadowrocket: invalid/unrelated input passes through {"stage":"none"}
+  ---
+  duration_ms: 0.687209
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=%broken"}
+ok 308 - Shadowrocket: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=%broken"}
+  ---
+  duration_ms: 0.770667
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: empty 404 with source off passes through
+ok 309 - Shadowrocket: empty 404 with source off passes through
+  ---
+  duration_ms: 0.832625
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: cached translation avoids a second service request
+ok 310 - Shadowrocket: cached translation avoids a second service request
+  ---
+  duration_ms: 2.375208
+  type: 'test'
+  ...
+# Subtest: QuantumultX: album palette crosses the native HTTP and binary bridge (application/json)
+ok 311 - QuantumultX: album palette crosses the native HTTP and binary bridge (application/json)
+  ---
+  duration_ms: 7.4635
+  type: 'test'
+  ...
+# Subtest: QuantumultX: album palette crosses the native HTTP and binary bridge (application/x-protobuf)
+ok 312 - QuantumultX: album palette crosses the native HTTP and binary bridge (application/x-protobuf)
+  ---
+  duration_ms: 4.37025
+  type: 'test'
+  ...
+# Subtest: QuantumultX: request cache headers and binary accept
+ok 313 - QuantumultX: request cache headers and binary accept
+  ---
+  duration_ms: 1.523667
+  type: 'test'
+  ...
+# Subtest: QuantumultX: native JSON translations replace every official alternative
+ok 314 - QuantumultX: native JSON translations replace every official alternative
+  ---
+  duration_ms: 2.426834
+  type: 'test'
+  ...
+# Subtest: QuantumultX: protobuf and nonzero buffer offset preserve original words
+ok 315 - QuantumultX: protobuf and nonzero buffer offset preserve original words
+  ---
+  duration_ms: 4.667041
+  type: 'test'
+  ...
+# Subtest: QuantumultX: metadata response cache is shared with a later 404
+ok 316 - QuantumultX: metadata response cache is shared with a later 404
+  ---
+  duration_ms: 2.918125
+  type: 'test'
+  ...
+# Subtest: QuantumultX: uncached metadata HTTP stays binary and credentials stay on Spotify
+ok 317 - QuantumultX: uncached metadata HTTP stays binary and credentials stay on Spotify
+  ---
+  duration_ms: 1.80725
+  type: 'test'
+  ...
+# Subtest: QuantumultX: all processing disabled preserves bytes and makes no calls
+ok 318 - QuantumultX: all processing disabled preserves bytes and makes no calls
+  ---
+  duration_ms: 0.952417
+  type: 'test'
+  ...
+# Subtest: QuantumultX: failing translator removes official alternatives
+ok 319 - QuantumultX: failing translator removes official alternatives
+  ---
+  duration_ms: 1.532209
+  type: 'test'
+  ...
+# Subtest: QuantumultX: preserves HTTP 401
+ok 320 - QuantumultX: preserves HTTP 401
+  ---
+  duration_ms: 0.938916
+  type: 'test'
+  ...
+# Subtest: QuantumultX: preserves HTTP 403
+ok 321 - QuantumultX: preserves HTTP 403
+  ---
+  duration_ms: 1.014333
+  type: 'test'
+  ...
+# Subtest: QuantumultX: preserves HTTP 429
+ok 322 - QuantumultX: preserves HTTP 429
+  ---
+  duration_ms: 1.032583
+  type: 'test'
+  ...
+# Subtest: QuantumultX: preserves HTTP 500
+ok 323 - QuantumultX: preserves HTTP 500
+  ---
+  duration_ms: 0.856334
+  type: 'test'
+  ...
+# Subtest: QuantumultX: preserves HTTP 503
+ok 324 - QuantumultX: preserves HTTP 503
+  ---
+  duration_ms: 0.763958
+  type: 'test'
+  ...
+# Subtest: QuantumultX: invalid/unrelated input passes through {"url":"https://example.com/color-lyrics/v2/track/0000000000000000000001"}
+ok 325 - QuantumultX: invalid/unrelated input passes through {"url":"https://example.com/color-lyrics/v2/track/0000000000000000000001"}
+  ---
+  duration_ms: 0.785958
+  type: 'test'
+  ...
+# Subtest: QuantumultX: invalid/unrelated input passes through {"body":"bad protobuf","type":"application/x-protobuf"}
+ok 326 - QuantumultX: invalid/unrelated input passes through {"body":"bad protobuf","type":"application/x-protobuf"}
+  ---
+  duration_ms: 0.931167
+  type: 'test'
+  ...
+# Subtest: QuantumultX: invalid/unrelated input passes through {"requestHeaders":{"x-verselyrics-internal":"1"}}
+ok 327 - QuantumultX: invalid/unrelated input passes through {"requestHeaders":{"x-verselyrics-internal":"1"}}
+  ---
+  duration_ms: 1.132167
+  type: 'test'
+  ...
+# Subtest: QuantumultX: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=invalid"}
+ok 328 - QuantumultX: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=invalid"}
+  ---
+  duration_ms: 0.920916
+  type: 'test'
+  ...
+# Subtest: QuantumultX: invalid/unrelated input passes through {"stage":"none"}
+ok 329 - QuantumultX: invalid/unrelated input passes through {"stage":"none"}
+  ---
+  duration_ms: 0.9235
+  type: 'test'
+  ...
+# Subtest: QuantumultX: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=%broken"}
+ok 330 - QuantumultX: invalid/unrelated input passes through {"args":"TARGET_LANGUAGE=%broken"}
+  ---
+  duration_ms: 0.932375
+  type: 'test'
+  ...
+# Subtest: QuantumultX: empty 404 with source off passes through
+ok 331 - QuantumultX: empty 404 with source off passes through
+  ---
+  duration_ms: 0.977083
+  type: 'test'
+  ...
+# Subtest: QuantumultX: cached translation avoids a second service request
+ok 332 - QuantumultX: cached translation avoids a second service request
+  ---
+  duration_ms: 2.388958
+  type: 'test'
+  ...
+# Subtest: Surge: full-span binary buffers are reused and offset views remain isolated
+ok 333 - Surge: full-span binary buffers are reused and offset views remain isolated
+  ---
+  duration_ms: 2.236541
+  type: 'test'
+  ...
+# Subtest: Surge: repeated missing lyrics reuse the short miss cache
+ok 334 - Surge: repeated missing lyrics reuse the short miss cache
+  ---
+  duration_ms: 3.791792
+  type: 'test'
+  ...
+# Subtest: Loon: full-span binary buffers are reused and offset views remain isolated
+ok 335 - Loon: full-span binary buffers are reused and offset views remain isolated
+  ---
+  duration_ms: 2.001041
+  type: 'test'
+  ...
+# Subtest: Loon: repeated missing lyrics reuse the short miss cache
+ok 336 - Loon: repeated missing lyrics reuse the short miss cache
+  ---
+  duration_ms: 3.834458
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: full-span binary buffers are reused and offset views remain isolated
+ok 337 - Shadowrocket: full-span binary buffers are reused and offset views remain isolated
+  ---
+  duration_ms: 2.150667
+  type: 'test'
+  ...
+# Subtest: Shadowrocket: repeated missing lyrics reuse the short miss cache
+ok 338 - Shadowrocket: repeated missing lyrics reuse the short miss cache
+  ---
+  duration_ms: 3.110583
+  type: 'test'
+  ...
+# Subtest: QuantumultX: full-span binary buffers are reused and offset views remain isolated
+ok 339 - QuantumultX: full-span binary buffers are reused and offset views remain isolated
+  ---
+  duration_ms: 2.168708
+  type: 'test'
+  ...
+# Subtest: QuantumultX: repeated missing lyrics reuse the short miss cache
+ok 340 - QuantumultX: repeated missing lyrics reuse the short miss cache
+  ---
+  duration_ms: 3.702167
+  type: 'test'
+  ...
+1..340
+# tests 340
+# suites 0
+# pass 340
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 437.203083
