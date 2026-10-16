@@ -1,14 +1,10 @@
 # Spotify 双语歌词 · VerseLyrics · Quantumult X
 
-当前发布 **0.5.3**（原生适配 12），重点降低 Loon 首次进入播放页及连续切歌时的入口处理内存。五端共用同一修复，原有六源补词、插件翻译、精确对齐的源译文复用、原生时间轴和高亮配色保留。
+当前发布 **0.5.4**（原生适配 12）。歌曲元数据改为扫描所需字段，缓存与补词查询不再展开音频文件等无关字段。只有真正改写有词标记时才构建字段列表；批量响应保留这种按需行为。保持原有缓存容量、网络并发和查询预算。
 
-播放器 JSON 入口由「整树解析 + 为每个节点创建并序列化路径」改为一次字段扫描，只保留要改写的位置。Protobuf 入口只扫描必要字段并保存实际改动，未知字段不再展开成对象数组；未更改的内容保留原字节。网易云与 QQ 搜索处理仅向后续步骤传递最多两个已核对的候选 ID，避免搜索函数持有完整目录跨越歌词 HTTP 等待。没有新增预取、排队轮询或缓存容量。
+保留六源补词、插件翻译、原生时间轴与高亮。缓存和网络都有明确上限；未收录的歌曲仍不能凭空补全。本地自动测试与 macOS JavaScriptCore 测量不等于 iPhone Loon 实机 VPN 验收，不能保证所有设备都不会被系统终止。
 
-首次加载与切歌都参与对照。macOS JavaScriptCore 中，大型 JSON / Protobuf 入口的进程内存峰值下降，普通歌词冷启动保持在测量波动范围内；详细数值、全部样本、运行脚本摘要和测量边界见固定源码的 `jsc-memory-results.json` 与 README。源码测试之外，还检查五端打包脚本实际执行，防止构建裁剪丢失必要函数。
-
-单名额协同限制、128 条 / 64,000 JSON UTF-16 字符缓存及现有查询预算不变。网络忙碌时缓存仍可返回，未缓存结果依赖后续客户端请求；不会主动安排重试，也不会丢弃已经返回的有效歌词来降低内存。Loon 原生存储没有原子锁，原生网络缓冲不在 JS 预算内。**本地测量不等于 iPhone Loon 实机验证，不能据此保证 VPN 永不被系统终止。** 未收录的歌曲仍不能凭空补全。
-
-核心 **0.5.3**，客户端适配 **12**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
+核心 **0.5.4**，客户端适配 **12**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -52,10 +48,10 @@ Quantumult X 的响应体重写在原响应体为空时不会执行，所以空�
 
 ## 运行版本与接口
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/ae2ed2b9b3c5ae2a7922bfa003c2687c8c0310f3/QuantumultX/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/ae2ed2b9b3c5ae2a7922bfa003c2687c8c0310f3/Surge/Development/VerseLyrics053)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/c5e05357633ea4d78bbd023f080388ea1d901b25/QuantumultX/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/c5e05357633ea4d78bbd023f080388ea1d901b25/Surge/Development/VerseLyrics054)
 
 原始核心和适配逻辑为独立编写。Unicode Unihan 数据许可随运行脚本完整附带。[官方二进制脚本示例](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample-bytes-rewrite.js) · [官方 HTTP 示例](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample-task.js) · [空响应体限制](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample.conf#L290)
 
 [其他客户端](../../README.md) · [返回 Quantumult X](../README.md)
 
-2026-10-17：961 项自动测试通过；包括五端实际打包入口的 JSON / Protobuf、500 组 JSON 与 200 组 Protobuf 差分样本、慢回调重叠请求、补词和译文缓存。macOS JavaScriptCore 首次加载及重复加载对照、Node 五端连续切歌报告均随固定源码保存。测试不等同于 iPhone 实机 VPN 验收。
+2026-10-17：964 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
