@@ -1,10 +1,10 @@
 # Spotify 双语歌词 · VerseLyrics
 
-当前发布 **0.6.0**（原生适配 12）。翻译只准备当前要发送的一批，网络忙碌时不再提前编码后续请求；移除全量分组和译文中间数组。保留重复句合并、64 行批次上限、失败后一次降为 32 行、原有超时及响应大小限制。
+当前发布 **0.6.1**（原生适配 12）。切换 auto 与指定歌词源时，同一首歌已验证且未过期的成功缓存可直接复用，避免重复搜索和下载；固定来源仅复用该来源的歌词，不共享失败缓存、不延长有效期。新增 PREFERRED_SOURCE，默认 auto 保持自动排序；用户可选择优先尝试哪一家，仍保留其他来源兜底。 自动模式只跨来源复用带真实时间轴的成功缓存；纯文本旧缓存仍继续查同步歌词。
 
 保留六源补词、插件翻译、原生时间轴与高亮。缓存和网络都有明确上限；未收录的歌曲仍不能凭空补全。本地自动测试与 macOS JavaScriptCore 测量不等于 iPhone Loon 实机 VPN 验收，不能保证所有设备都不会被系统终止。
 
-当前模块：0.6.0，适用于支持原生 `ctx` 脚本 API 的 Egern。
+当前模块：0.6.1，适用于支持原生 `ctx` 脚本 API 的 Egern。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -30,6 +30,7 @@
 | `TARGET_LANGUAGE` | `zh-CN` | 简体中文，可在模块设置中改为其他语言。 |
 | `FALLBACK_PROVIDER` | `auto` | 官方无词时依次核对六源；也可选 `lrclib` / `qq` / `netease` / `kugou` / `kuwo` / `lyricsovh` / `off`。 |
 | `DISCOVER_MISSING` | `true` | 处理已适配的歌词检查、元数据和原生歌词入口。 |
+| `PREFERRED_SOURCE` | `auto` | 仅 auto 补词模式生效；优先尝试所选来源，其他来源继续兜底，已有成功缓存优先。 可选：`auto`, `lrclib`, `qq`, `netease`, `kugou`, `kuwo`, `lyricsovh`。 |
 | `SOURCE_TRANSLATIONS` | `true` | 简体中文目标下，复用补词响应中严格对齐的中文译文；关闭后忽略此类缓存并使用翻译服务。 |
 
 Spotify 已有的原词和时间轴继续保留。备用源优先核对同专辑结果；跨专辑的列表搜索要求唯一同曲匹配，LRCLIB 签名结果需通过身份、时长与版本校验，未收录的歌曲无法生成歌词。译文由插件处理，翻译服务不可用时保留原词。
@@ -48,10 +49,10 @@ Spotify 已有的原词和时间轴继续保留。备用源优先核对同专辑
 
 ## 来源与许可
 
-插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/d67194ad204b6545997d2d07a5785323ff7e3e10/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
+插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/49ae0d505c4b9dd32caa8a7d270d6a608f0b7439/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/d67194ad204b6545997d2d07a5785323ff7e3e10/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/d67194ad204b6545997d2d07a5785323ff7e3e10/Surge/Development/VerseLyrics060) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/49ae0d505c4b9dd32caa8a7d270d6a608f0b7439/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/49ae0d505c4b9dd32caa8a7d270d6a608f0b7439/Surge/Development/VerseLyrics061) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
 
 [其他客户端](../../README.md) · [返回 Egern](../README.md)
 
-2026-10-17：966 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
+2026-10-17：989 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
