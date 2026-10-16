@@ -1,0 +1,63 @@
+{
+  "at": "2026-10-16T04:41:55.762Z",
+  "scope": "Deterministic network-latency fault model through complete core, not observed device speed or measured VPN memory. Same latency model and metadata for 0.4.8 and 0.4.9.",
+  "cases": [
+    {
+      "scenario": "timeout",
+      "baseline": {
+        "elapsedModelMs": 800,
+        "calls": 1,
+        "lyricsAvailable": false,
+        "translatedLines": 0,
+        "leasedSlots": 1,
+        "cacheCharacters": 387
+      },
+      "current": {
+        "elapsedModelMs": 2600,
+        "calls": 3,
+        "lyricsAvailable": true,
+        "translatedLines": 0,
+        "leasedSlots": 0,
+        "cacheCharacters": 634
+      }
+    },
+    {
+      "scenario": "chinese",
+      "baseline": {
+        "elapsedModelMs": 1417,
+        "calls": 2,
+        "lyricsAvailable": false,
+        "translatedLines": 0,
+        "leasedSlots": 1,
+        "cacheCharacters": 378
+      },
+      "current": {
+        "elapsedModelMs": 1800,
+        "calls": 2,
+        "lyricsAvailable": true,
+        "translatedLines": 0,
+        "leasedSlots": 0,
+        "cacheCharacters": 590
+      }
+    },
+    {
+      "scenario": "translation",
+      "baseline": {
+        "elapsedModelMs": 5100,
+        "calls": 3,
+        "lyricsAvailable": true,
+        "translatedLines": 96,
+        "leasedSlots": 0,
+        "cacheCharacters": 3396
+      },
+      "current": {
+        "elapsedModelMs": 2500,
+        "calls": 2,
+        "lyricsAvailable": true,
+        "translatedLines": 32,
+        "leasedSlots": 0,
+        "cacheCharacters": 1472
+      }
+    }
+  ]
+}
