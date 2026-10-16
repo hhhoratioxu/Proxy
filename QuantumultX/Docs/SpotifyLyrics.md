@@ -1,11 +1,11 @@
 # Spotify 双语歌词 · VerseLyrics · Quantumult X
 
-当前发布 **0.4.15**（原生适配 10）：优化所有歌曲共用的翻译流程，不按某首歌曲单独处理。明确标为目标语言且逐行文字兼容的中、日、韩歌词直接跳过无效翻译请求；混合歌词仍翻译其中的外语。只差横向空格的重复句共用一次翻译和缓存，原词、时间轴与行数不变。旧缓存继续可用。
+当前发布 **0.4.16**（原生适配 10）：优化所有歌曲共用的文字解码。纯 ASCII 内容直接读取字节；中文、日文等 UTF-8 内容使用最多 8,194 字节的临时字符缓冲区，保留严格编码校验。繁简匹配只拼接需要转换的字符片段，复用未改变的文字；缓存命中时不再创建网络任务标识或读取等待任务状态。
 
-保留六源串行补词、插件翻译与原生高亮。仍为每批最多 64 句 / URL 6,800 字符，单源响应 96 KiB、补词总量 256 KiB / 12 次请求、缓存 128 条 / 64,000 JSON UTF-16 字符，均未扩大。没有新增预加载或后台并发。未知语言、繁简转换及混合外语仍走正常翻译；没有收录的歌曲仍可能无词，首次联网速度仍受服务和网络影响。
+保留六源串行补词、插件翻译、繁简转换、原生时间轴和高亮，以及上一版的同语言与重复句优化。没有增加预加载或并发，缓存仍为 128 条 / 64,000 JSON UTF-16 字符，原有响应、请求与时间预算不变。8,194 字节只是解码临时字符区的上限，不是整个脚本或 VPN 的内存上限；首次联网速度和歌词覆盖仍受来源限制。
 
 
-核心 **0.4.15**，客户端适配 **10**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
+核心 **0.4.16**，客户端适配 **10**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -48,10 +48,10 @@ Quantumult X 的响应体重写在原响应体为空时不会执行，所以空�
 
 ## 运行版本与接口
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/cdbe2470156953d7ca91cf9db7c57a0d5bdf5ba0/QuantumultX/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/cdbe2470156953d7ca91cf9db7c57a0d5bdf5ba0/Surge/Development/VerseLyrics0415)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/f58590b91003d5d887f556f74850faa63ccf4d59/QuantumultX/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/f58590b91003d5d887f556f74850faa63ccf4d59/Surge/Development/VerseLyrics0416)
 
 原始核心和适配逻辑为独立编写。Unicode Unihan 数据许可随运行脚本完整附带。[官方二进制脚本示例](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample-bytes-rewrite.js) · [官方 HTTP 示例](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample-task.js) · [空响应体限制](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample.conf#L290)
 
 [其他客户端](../../README.md) · [返回 Quantumult X](../README.md)
 
-2026-10-16：813 项自动测试通过；包含多语言及混合歌词、空格变体缓存、独立 Protobuf 字节校验、短句合批及失败退回、五客户端同曲重叠请求、六源、颜色与连续切歌模拟。记录见固定源码目录；未进行手机实机验收。
+2026-10-16：837 项自动测试通过；包含多语言编码、固定缓冲区边界、缓存命中不访问网络状态、独立 Protobuf 字节校验、短句合批及失败退回、五客户端重叠请求、六源与连续切歌模拟。记录见固定源码目录；未进行手机实机验收。
