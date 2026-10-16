@@ -1,10 +1,10 @@
-# VerseLyrics 0.4.4 — silent production module; no notification or scheduled scripts.
+# VerseLyrics 0.4.5 — silent production module; no notification or scheduled scripts.
 name: Spotify 双语歌词 · VerseLyrics
 author: Horatio Xu
 icon: music.note.list
 homepage: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/SpotifyLyrics.yaml
 manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/SpotifyLyrics.md
-description: 六源顺序补词，限制请求与内存开销；保留歌曲配色，以插件译文替换官方译文。需 HTTPS 解密。
+description: 优化连续切歌和内存开销，六源补词；保留原生时间轴与歌曲配色，以插件译文替换官方译文。需 HTTPS 解密。
 env_schema:
   TRANSLATION_ENABLED:
     name: 开启歌词翻译
@@ -69,7 +69,7 @@ mitm:
   - "*-spclient.spotify.com"
 scriptings:
 - http_request:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/50b2adf2bc8d36d43d9999302af4ab1b8d3a9e95/Egern/script/SpotifyLyrics/spotify-lyrics-request.js?v=0.4.4
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/b5aba2b016b4049ded282b1909f1502ba78a63c1/Egern/script/SpotifyLyrics/spotify-lyrics-request.js?v=0.4.5
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
@@ -81,7 +81,7 @@ scriptings:
     body_required: false
     timeout: 3
 - http_response:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/50b2adf2bc8d36d43d9999302af4ab1b8d3a9e95/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=0.4.4
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/b5aba2b016b4049ded282b1909f1502ba78a63c1/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=0.4.5
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
