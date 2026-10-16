@@ -1,0 +1,24 @@
+{
+  "version": "0.6.1",
+  "previous": "0.6.0",
+  "summary": "切换歌词源时复用同曲已验证缓存；新增可选优先歌词源，其他来源仍可兜底。",
+  "intro": "切换 auto 与指定歌词源时，同一首歌已验证且未过期的成功缓存可直接复用，避免重复搜索和下载；固定来源仅复用该来源的歌词，不共享失败缓存、不延长有效期。新增 PREFERRED_SOURCE，默认 auto 保持自动排序；用户可选择优先尝试哪一家，仍保留其他来源兜底。 自动模式只跨来源复用带真实时间轴的成功缓存；纯文本旧缓存仍继续查同步歌词。",
+  "english": "Reuse validated same-track successful caches across compatible provider selections; optional PREFERRED_SOURCE changes priority while retaining all fallback sources.",
+  "options": [
+    {
+      "key": "PREFERRED_SOURCE",
+      "default": "auto",
+      "label": "优先歌词源",
+      "desc": "仅 auto 补词模式生效；优先尝试所选来源，其他来源继续兜底，已有成功缓存优先。",
+      "values": [
+        "auto",
+        "lrclib",
+        "qq",
+        "netease",
+        "kugou",
+        "kuwo",
+        "lyricsovh"
+      ]
+    }
+  ]
+}
