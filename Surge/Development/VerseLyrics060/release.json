@@ -1,0 +1,1 @@
+{"version":"0.6.0","previous":"0.5.4","summary":"翻译改为按需组批，只编码即将发送的一批，移除全部分组和译文中间数组。","intro":"翻译只准备当前要发送的一批，网络忙碌时不再提前编码后续请求；移除全量分组和译文中间数组。保留重复句合并、64 行批次上限、失败后一次降为 32 行、原有超时及响应大小限制。","english":"Translation batches are built on demand; eager grouping, repeated URL encoding and the temporary response-value array are removed."}
