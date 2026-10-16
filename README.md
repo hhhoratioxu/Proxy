@@ -38,7 +38,7 @@
 
 ## Spotify 双语歌词 · VerseLyrics
 
-Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **0.4.2**，同步修正补充歌词的背景与文字配色。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
+Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **0.4.3**，降低内存占用、改进补词匹配，并保留同曲配色。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
 
 | 客户端 | 安装入口 | 设置与限制 |
 | --- | --- | --- |
@@ -79,7 +79,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 
 YouTube AdTranslate 0.1.0 combines ad removal and bilingual subtitles in one import per supported client, defaulting to the original text plus Simplified Chinese. Links are listed above; disable other YouTube modules before enabling it. Eighty local tests passed and a public player response gained a bilingual track. Live subtitle downloads returned HTTP 429; native client imports, real ad removal and on-device playback remain unverified. [Compatibility guide](./Clash/Docs/YouTubeAdTranslate.md).
 
-VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.4.2 with the fallback lyric color correction. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
+VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.4.3 with bounded-memory processing, improved fallback matching, and song-specific colors. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
 Each plugin has one current installation entry. Clients automatically load any required runtime from a pinned version; no separate JavaScript download, build or test run is needed.
 
@@ -90,3 +90,4 @@ Tests, build tools, validation records and development archives have been remove
 > These configurations are for personal use. Adjust them for your client version and network environment. All icons and brand names belong to their respective owners.
 
 </details>
+
