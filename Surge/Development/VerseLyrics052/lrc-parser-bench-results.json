@@ -1,0 +1,459 @@
+{
+  "at": "2026-10-16T15:12:35.498Z",
+  "scope": "Four separate 32 MiB Node old-space processes per version. Per case: thirty single parses sampled immediately before/after with explicit GC outside each sample; time is a separate 500-parse loop after warmup. Heap delta includes temporary garbage still present after parsing, not retained memory, allocator peak or iPhone memory. Inputs/output hashes identical.",
+  "environment": "v24.19.0 darwin arm64",
+  "comparisons": [
+    {
+      "name": 24,
+      "0.5.1": {
+        "medianHeapDelta": 34808,
+        "medianMsPerParse": 0.0149
+      },
+      "0.5.2": {
+        "medianHeapDelta": 14488,
+        "medianMsPerParse": 0.0087
+      }
+    },
+    {
+      "name": 48,
+      "0.5.1": {
+        "medianHeapDelta": 62616,
+        "medianMsPerParse": 0.0258
+      },
+      "0.5.2": {
+        "medianHeapDelta": 26856,
+        "medianMsPerParse": 0.0138
+      }
+    },
+    {
+      "name": 120,
+      "0.5.1": {
+        "medianHeapDelta": 137184,
+        "medianMsPerParse": 0.0486
+      },
+      "0.5.2": {
+        "medianHeapDelta": 60544,
+        "medianMsPerParse": 0.0342
+      }
+    },
+    {
+      "name": 600,
+      "0.5.1": {
+        "medianHeapDelta": 681328,
+        "medianMsPerParse": 0.2432
+      },
+      "0.5.2": {
+        "medianHeapDelta": 306984,
+        "medianMsPerParse": 0.1715
+      }
+    },
+    {
+      "name": "reverse",
+      "0.5.1": {
+        "medianHeapDelta": 137208,
+        "medianMsPerParse": 0.0477
+      },
+      "0.5.2": {
+        "medianHeapDelta": 67288,
+        "medianMsPerParse": 0.0396
+      }
+    },
+    {
+      "name": "multi",
+      "0.5.1": {
+        "medianHeapDelta": 205936,
+        "medianMsPerParse": 0.0847
+      },
+      "0.5.2": {
+        "medianHeapDelta": 145256,
+        "medianMsPerParse": 0.0769
+      }
+    }
+  ],
+  "runs": [
+    {
+      "trial": 0,
+      "name": 24,
+      "version": "0.5.1",
+      "medianHeapDelta": 34808,
+      "msPerParse": 0.015,
+      "sha256": "b996a068f339495132342f5e3de8e9f942cd926255e53041766f24bcfb54d2ac"
+    },
+    {
+      "trial": 0,
+      "name": 48,
+      "version": "0.5.1",
+      "medianHeapDelta": 62616,
+      "msPerParse": 0.0266,
+      "sha256": "daba50f12970d4dcdfbc310fabdbc61dab6ef692aa12e9ba2519949b1a5b46c5"
+    },
+    {
+      "trial": 0,
+      "name": 120,
+      "version": "0.5.1",
+      "medianHeapDelta": 137184,
+      "msPerParse": 0.0495,
+      "sha256": "fd792dc2af0b26feeff7850b4e6f9a8ea1d063d9f3b8193f4809fe6f5ec042d6"
+    },
+    {
+      "trial": 0,
+      "name": 600,
+      "version": "0.5.1",
+      "medianHeapDelta": 679856,
+      "msPerParse": 0.2419,
+      "sha256": "f535f9602d8c974417abf4f040991b39abf62d4437e2f62a4c83d29623116c25"
+    },
+    {
+      "trial": 0,
+      "name": "reverse",
+      "version": "0.5.1",
+      "medianHeapDelta": 137208,
+      "msPerParse": 0.0477,
+      "sha256": "f1bde045238563235cab1c37f3090927de80258a53bfa97380d6a61a11a71e98"
+    },
+    {
+      "trial": 0,
+      "name": "multi",
+      "version": "0.5.1",
+      "medianHeapDelta": 205936,
+      "msPerParse": 0.0843,
+      "sha256": "f08258af2adf701914b31f3fbcd5b84c551a6d629fbbc2fc43128b4ef576599c"
+    },
+    {
+      "trial": 0,
+      "name": 24,
+      "version": "0.5.2",
+      "medianHeapDelta": 14488,
+      "msPerParse": 0.0088,
+      "sha256": "b996a068f339495132342f5e3de8e9f942cd926255e53041766f24bcfb54d2ac"
+    },
+    {
+      "trial": 0,
+      "name": 48,
+      "version": "0.5.2",
+      "medianHeapDelta": 26856,
+      "msPerParse": 0.0139,
+      "sha256": "daba50f12970d4dcdfbc310fabdbc61dab6ef692aa12e9ba2519949b1a5b46c5"
+    },
+    {
+      "trial": 0,
+      "name": 120,
+      "version": "0.5.2",
+      "medianHeapDelta": 60544,
+      "msPerParse": 0.0342,
+      "sha256": "fd792dc2af0b26feeff7850b4e6f9a8ea1d063d9f3b8193f4809fe6f5ec042d6"
+    },
+    {
+      "trial": 0,
+      "name": 600,
+      "version": "0.5.2",
+      "medianHeapDelta": 306984,
+      "msPerParse": 0.1716,
+      "sha256": "f535f9602d8c974417abf4f040991b39abf62d4437e2f62a4c83d29623116c25"
+    },
+    {
+      "trial": 0,
+      "name": "reverse",
+      "version": "0.5.2",
+      "medianHeapDelta": 67288,
+      "msPerParse": 0.0396,
+      "sha256": "f1bde045238563235cab1c37f3090927de80258a53bfa97380d6a61a11a71e98"
+    },
+    {
+      "trial": 0,
+      "name": "multi",
+      "version": "0.5.2",
+      "medianHeapDelta": 145032,
+      "msPerParse": 0.0769,
+      "sha256": "f08258af2adf701914b31f3fbcd5b84c551a6d629fbbc2fc43128b4ef576599c"
+    },
+    {
+      "trial": 1,
+      "name": 24,
+      "version": "0.5.2",
+      "medianHeapDelta": 14488,
+      "msPerParse": 0.0087,
+      "sha256": "b996a068f339495132342f5e3de8e9f942cd926255e53041766f24bcfb54d2ac"
+    },
+    {
+      "trial": 1,
+      "name": 48,
+      "version": "0.5.2",
+      "medianHeapDelta": 26856,
+      "msPerParse": 0.0138,
+      "sha256": "daba50f12970d4dcdfbc310fabdbc61dab6ef692aa12e9ba2519949b1a5b46c5"
+    },
+    {
+      "trial": 1,
+      "name": 120,
+      "version": "0.5.2",
+      "medianHeapDelta": 60544,
+      "msPerParse": 0.0341,
+      "sha256": "fd792dc2af0b26feeff7850b4e6f9a8ea1d063d9f3b8193f4809fe6f5ec042d6"
+    },
+    {
+      "trial": 1,
+      "name": 600,
+      "version": "0.5.2",
+      "medianHeapDelta": 306984,
+      "msPerParse": 0.1713,
+      "sha256": "f535f9602d8c974417abf4f040991b39abf62d4437e2f62a4c83d29623116c25"
+    },
+    {
+      "trial": 1,
+      "name": "reverse",
+      "version": "0.5.2",
+      "medianHeapDelta": 67288,
+      "msPerParse": 0.0393,
+      "sha256": "f1bde045238563235cab1c37f3090927de80258a53bfa97380d6a61a11a71e98"
+    },
+    {
+      "trial": 1,
+      "name": "multi",
+      "version": "0.5.2",
+      "medianHeapDelta": 143784,
+      "msPerParse": 0.078,
+      "sha256": "f08258af2adf701914b31f3fbcd5b84c551a6d629fbbc2fc43128b4ef576599c"
+    },
+    {
+      "trial": 1,
+      "name": 24,
+      "version": "0.5.1",
+      "medianHeapDelta": 34808,
+      "msPerParse": 0.0149,
+      "sha256": "b996a068f339495132342f5e3de8e9f942cd926255e53041766f24bcfb54d2ac"
+    },
+    {
+      "trial": 1,
+      "name": 48,
+      "version": "0.5.1",
+      "medianHeapDelta": 62616,
+      "msPerParse": 0.0256,
+      "sha256": "daba50f12970d4dcdfbc310fabdbc61dab6ef692aa12e9ba2519949b1a5b46c5"
+    },
+    {
+      "trial": 1,
+      "name": 120,
+      "version": "0.5.1",
+      "medianHeapDelta": 137184,
+      "msPerParse": 0.0486,
+      "sha256": "fd792dc2af0b26feeff7850b4e6f9a8ea1d063d9f3b8193f4809fe6f5ec042d6"
+    },
+    {
+      "trial": 1,
+      "name": 600,
+      "version": "0.5.1",
+      "medianHeapDelta": 681328,
+      "msPerParse": 0.2431,
+      "sha256": "f535f9602d8c974417abf4f040991b39abf62d4437e2f62a4c83d29623116c25"
+    },
+    {
+      "trial": 1,
+      "name": "reverse",
+      "version": "0.5.1",
+      "medianHeapDelta": 137208,
+      "msPerParse": 0.0476,
+      "sha256": "f1bde045238563235cab1c37f3090927de80258a53bfa97380d6a61a11a71e98"
+    },
+    {
+      "trial": 1,
+      "name": "multi",
+      "version": "0.5.1",
+      "medianHeapDelta": 205936,
+      "msPerParse": 0.0851,
+      "sha256": "f08258af2adf701914b31f3fbcd5b84c551a6d629fbbc2fc43128b4ef576599c"
+    },
+    {
+      "trial": 2,
+      "name": 24,
+      "version": "0.5.1",
+      "medianHeapDelta": 34808,
+      "msPerParse": 0.0147,
+      "sha256": "b996a068f339495132342f5e3de8e9f942cd926255e53041766f24bcfb54d2ac"
+    },
+    {
+      "trial": 2,
+      "name": 48,
+      "version": "0.5.1",
+      "medianHeapDelta": 62616,
+      "msPerParse": 0.0258,
+      "sha256": "daba50f12970d4dcdfbc310fabdbc61dab6ef692aa12e9ba2519949b1a5b46c5"
+    },
+    {
+      "trial": 2,
+      "name": 120,
+      "version": "0.5.1",
+      "medianHeapDelta": 137184,
+      "msPerParse": 0.0484,
+      "sha256": "fd792dc2af0b26feeff7850b4e6f9a8ea1d063d9f3b8193f4809fe6f5ec042d6"
+    },
+    {
+      "trial": 2,
+      "name": 600,
+      "version": "0.5.1",
+      "medianHeapDelta": 681328,
+      "msPerParse": 0.2432,
+      "sha256": "f535f9602d8c974417abf4f040991b39abf62d4437e2f62a4c83d29623116c25"
+    },
+    {
+      "trial": 2,
+      "name": "reverse",
+      "version": "0.5.1",
+      "medianHeapDelta": 137208,
+      "msPerParse": 0.0477,
+      "sha256": "f1bde045238563235cab1c37f3090927de80258a53bfa97380d6a61a11a71e98"
+    },
+    {
+      "trial": 2,
+      "name": "multi",
+      "version": "0.5.1",
+      "medianHeapDelta": 205936,
+      "msPerParse": 0.0847,
+      "sha256": "f08258af2adf701914b31f3fbcd5b84c551a6d629fbbc2fc43128b4ef576599c"
+    },
+    {
+      "trial": 2,
+      "name": 24,
+      "version": "0.5.2",
+      "medianHeapDelta": 14488,
+      "msPerParse": 0.0087,
+      "sha256": "b996a068f339495132342f5e3de8e9f942cd926255e53041766f24bcfb54d2ac"
+    },
+    {
+      "trial": 2,
+      "name": 48,
+      "version": "0.5.2",
+      "medianHeapDelta": 26856,
+      "msPerParse": 0.0138,
+      "sha256": "daba50f12970d4dcdfbc310fabdbc61dab6ef692aa12e9ba2519949b1a5b46c5"
+    },
+    {
+      "trial": 2,
+      "name": 120,
+      "version": "0.5.2",
+      "medianHeapDelta": 60544,
+      "msPerParse": 0.0342,
+      "sha256": "fd792dc2af0b26feeff7850b4e6f9a8ea1d063d9f3b8193f4809fe6f5ec042d6"
+    },
+    {
+      "trial": 2,
+      "name": 600,
+      "version": "0.5.2",
+      "medianHeapDelta": 306984,
+      "msPerParse": 0.1709,
+      "sha256": "f535f9602d8c974417abf4f040991b39abf62d4437e2f62a4c83d29623116c25"
+    },
+    {
+      "trial": 2,
+      "name": "reverse",
+      "version": "0.5.2",
+      "medianHeapDelta": 67288,
+      "msPerParse": 0.0395,
+      "sha256": "f1bde045238563235cab1c37f3090927de80258a53bfa97380d6a61a11a71e98"
+    },
+    {
+      "trial": 2,
+      "name": "multi",
+      "version": "0.5.2",
+      "medianHeapDelta": 145256,
+      "msPerParse": 0.0766,
+      "sha256": "f08258af2adf701914b31f3fbcd5b84c551a6d629fbbc2fc43128b4ef576599c"
+    },
+    {
+      "trial": 3,
+      "name": 24,
+      "version": "0.5.2",
+      "medianHeapDelta": 14488,
+      "msPerParse": 0.0087,
+      "sha256": "b996a068f339495132342f5e3de8e9f942cd926255e53041766f24bcfb54d2ac"
+    },
+    {
+      "trial": 3,
+      "name": 48,
+      "version": "0.5.2",
+      "medianHeapDelta": 26856,
+      "msPerParse": 0.0138,
+      "sha256": "daba50f12970d4dcdfbc310fabdbc61dab6ef692aa12e9ba2519949b1a5b46c5"
+    },
+    {
+      "trial": 3,
+      "name": 120,
+      "version": "0.5.2",
+      "medianHeapDelta": 60544,
+      "msPerParse": 0.0342,
+      "sha256": "fd792dc2af0b26feeff7850b4e6f9a8ea1d063d9f3b8193f4809fe6f5ec042d6"
+    },
+    {
+      "trial": 3,
+      "name": 600,
+      "version": "0.5.2",
+      "medianHeapDelta": 306984,
+      "msPerParse": 0.1715,
+      "sha256": "f535f9602d8c974417abf4f040991b39abf62d4437e2f62a4c83d29623116c25"
+    },
+    {
+      "trial": 3,
+      "name": "reverse",
+      "version": "0.5.2",
+      "medianHeapDelta": 67288,
+      "msPerParse": 0.0399,
+      "sha256": "f1bde045238563235cab1c37f3090927de80258a53bfa97380d6a61a11a71e98"
+    },
+    {
+      "trial": 3,
+      "name": "multi",
+      "version": "0.5.2",
+      "medianHeapDelta": 145256,
+      "msPerParse": 0.0756,
+      "sha256": "f08258af2adf701914b31f3fbcd5b84c551a6d629fbbc2fc43128b4ef576599c"
+    },
+    {
+      "trial": 3,
+      "name": 24,
+      "version": "0.5.1",
+      "medianHeapDelta": 34808,
+      "msPerParse": 0.0148,
+      "sha256": "b996a068f339495132342f5e3de8e9f942cd926255e53041766f24bcfb54d2ac"
+    },
+    {
+      "trial": 3,
+      "name": 48,
+      "version": "0.5.1",
+      "medianHeapDelta": 62616,
+      "msPerParse": 0.0257,
+      "sha256": "daba50f12970d4dcdfbc310fabdbc61dab6ef692aa12e9ba2519949b1a5b46c5"
+    },
+    {
+      "trial": 3,
+      "name": 120,
+      "version": "0.5.1",
+      "medianHeapDelta": 137184,
+      "msPerParse": 0.0486,
+      "sha256": "fd792dc2af0b26feeff7850b4e6f9a8ea1d063d9f3b8193f4809fe6f5ec042d6"
+    },
+    {
+      "trial": 3,
+      "name": 600,
+      "version": "0.5.1",
+      "medianHeapDelta": 681328,
+      "msPerParse": 0.2436,
+      "sha256": "f535f9602d8c974417abf4f040991b39abf62d4437e2f62a4c83d29623116c25"
+    },
+    {
+      "trial": 3,
+      "name": "reverse",
+      "version": "0.5.1",
+      "medianHeapDelta": 137208,
+      "msPerParse": 0.0479,
+      "sha256": "f1bde045238563235cab1c37f3090927de80258a53bfa97380d6a61a11a71e98"
+    },
+    {
+      "trial": 3,
+      "name": "multi",
+      "version": "0.5.1",
+      "medianHeapDelta": 205936,
+      "msPerParse": 0.0847,
+      "sha256": "f08258af2adf701914b31f3fbcd5b84c551a6d629fbbc2fc43128b4ef576599c"
+    }
+  ]
+}
