@@ -6,7 +6,7 @@ Spotify 歌词及美团外卖 `.conf` 添加到「重写 → 引用」；流媒�
 
 | 插件 | 安装文件原始地址 | 使用说明 |
 | --- | --- | --- |
-| YouTube 去广告与双语字幕 | [YouTubeAdTranslate.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/YouTubeAdTranslate.conf) | [设置与验证范围](./Docs/YouTubeAdTranslate.md) |
+| YouTube Clean · 去广告、双语字幕与底栏 | [YouTubeClean.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/YouTubeClean.conf) | [设置与验证范围](./Docs/YouTubeClean.md) |
 | Spotify 双语歌词 · VerseLyrics | [SpotifyLyrics.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/SpotifyLyrics.conf) | [设置与已知限制](./Docs/SpotifyLyrics.md) |
 | 美团外卖去广告 | [MeituanWaimai.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/MeituanWaimai.conf) | [说明](./Docs/MeituanWaimai.md) |
 | 流媒体解锁查询 | [StreamingUnlock.json](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/StreamingUnlock.json) | [说明](./Docs/StreamingUnlock.md) |
