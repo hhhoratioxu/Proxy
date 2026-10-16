@@ -1,10 +1,14 @@
 # Spotify 双语歌词 · VerseLyrics · Shadowrocket
 
-核心 **0.4.1**，客户端适配 **1**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
+核心 **0.4.2**，客户端适配 **1**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
 
-**已知问题：官方原本没有歌词的歌曲，仍可能完全不显示歌词。用户在 Egern / iOS Spotify 9.1.92.3058 已反馈此问题未解决；本次发布移植了相同核心，没有把移植视为修复。**
+**0.4.2 配色修正：** 补充歌词使用同一首歌曲的 Spotify 公开配色，普通文字和高亮文字分别设色；替换旧版固定的深绿黑背景。旧缓存会自动应用新配色，原词、时间轴及已有官方歌词的配色保持不变。
 
-## 安装
+用户已确认《那页夏天》在 Loon 能显示补充歌词；Egern 此前的无词问题仍未解决。本次同步配色不代表所有客户端、所有无词歌曲均已通过实机验证，补源仍受客户端请求行为及来源收录限制。
+
+## 安装与更新
+
+已安装的用户更新原模块或重写引用，再重新打开 Spotify；原来的导入地址继续有效。
 
 [SpotifyLyrics.sgmodule 原始地址](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/script/SpotifyLyrics.sgmodule)
 
@@ -29,13 +33,15 @@
 
 ## 当前验证范围
 
-四种客户端接口模拟测试与 0.4.1 核心回归通过，覆盖 JSON / Protobuf、替换译文、共享缓存、二进制 HTTP 与错误透传。没有完成四种客户端的实际导入和 iPhone Spotify 播放验证。
+补充歌词优先保留歌词接口已有的有效配色，否则读取同一歌曲公开嵌入页面的 `visualIdentity`，核对歌曲 ID、颜色范围和文字对比度。取色与补词并行，最多使用现有总预算中的 1.5 秒；成功缓存一天，失败使用中性灰并缓存五分钟，仍可返回已经找到的歌词。
 
-脚本不写入或记录 Spotify 授权令牌；仅在同一 Spotify 服务域名查询元数据时使用当前请求授权。歌词来源收到歌曲信息，Google 翻译服务收到待翻译歌词文本。没有诊断通知或定时监测。
+2026-10-16：281 项自动检查通过，覆盖核心回归、五客户端打包接口、JSON / Protobuf、缓存换色、翻译替换及原生配置。五个运行版本均在接口模拟环境中完成了真实公开取色，并返回预期的原生 Protobuf 颜色。新版的各客户端实际导入和 iPhone 最终画面尚未实测。
+
+脚本不写入或记录 Spotify 授权令牌；仅在同一 Spotify 服务域名查询元数据时使用当前请求授权。歌词来源收到歌曲信息，Google 翻译服务收到待翻译歌词文本。取色仅向 `open.spotify.com` 发送歌曲 ID，不附带当前请求的 Spotify 授权、客户端令牌或 Cookie；无需新增解密域名。没有诊断通知或定时监测。
 
 ## 运行版本与接口
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/c35a07c9a851cba4c9f33c9d421cb68cf36b0784/Shadowrocket/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/c35a07c9a851cba4c9f33c9d421cb68cf36b0784/Surge/Development/VerseLyricsPorts)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/86a6f4f3e28d4819ad3e820f2a8d3e3ac562fb91/Shadowrocket/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/86a6f4f3e28d4819ad3e820f2a8d3e3ac562fb91/Surge/Development/VerseLyrics042)
 
 原始核心和适配逻辑为独立编写。Unicode Unihan 数据许可随运行脚本完整附带。[开发者网站](https://shadowlaunch.com/)；使用 Shadowrocket 的模块与脚本兼容接口，尚未在客户端完成导入或播放验证。
 
