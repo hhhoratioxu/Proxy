@@ -1,5 +1,5 @@
 // Copyright 2026 Horatio Xu. MIT.
-export const VERSION='1.2.0', MAX_BODY=8388608, MAX_CAPTION=1048576;
+export const VERSION='1.2.1', MAX_BODY=8388608, MAX_CAPTION=1048576;
 export function asBytes(value){
   if(typeof value==='string')return utf8(value);
   if(value instanceof Uint8Array)return value;
@@ -51,6 +51,8 @@ export function changeParam(url,name,value){
 export class Settings{
   constructor(input={}){
     if(typeof input==='string'){if(input.trim().startsWith('{'))input=JSON.parse(input);else{const values={};for(const part of input.split('&')){const at=part.indexOf('=');if(at>0)values[unquote(part.slice(0,at))]=unquote(part.slice(at+1));}input=values;}}
+    if(input==null)input={};
+    if(typeof input!=='object'||Array.isArray(input))throw Error('settings representation');
     const flag=(name,initial)=>input[name]==null?initial:input[name]===true||input[name]===1||/^(?:true|1)$/i.test(String(input[name]));
     this.ads=flag('REMOVE_ADS',true);this.translate=flag('TRANSLATE_CAPTIONS',true);this.dual=flag('BILINGUAL',true);this.auto=flag('AUTO_CAPTIONS',true);
     this.hideCreate=flag('HIDE_UPLOAD',true);this.hideShorts=flag('HIDE_SHORTS',false);

@@ -4,7 +4,7 @@ import {createCipheriv,createDecipheriv,createHmac} from 'node:crypto';
 import {gzipSync,gunzipSync} from 'node:zlib';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
-import {Settings,b64,utf8} from '../src/data.mjs';
+import {Settings,b64,utf8,VERSION} from '../src/data.mjs';
 import {handle,STORE} from '../src/runtime.mjs';
 import {umpInteger,umpFrame,umpFrames,openMetadata,editStream} from '../src/stream.mjs';
 import {combine,binary,integer,string,inspect,at,all,opaque,player,guide,ids,captionUrl,translatedCaptions,originalCaptions,homeFirstPage,homeContinuationPage,homeSection,homeAdCard,homeVideoCard,homeContents} from './fixtures.mjs';
@@ -68,7 +68,7 @@ async function callbackClient(client,body,options={}){
 }
 for(const client of ['Surge','Loon','Shadowrocket','QuantumultX'])test(client+' bundled adapter handles binary arrays without host text codecs',async()=>{
   const {result}=await callbackClient(client,player()),body=client==='QuantumultX'?new Uint8Array(result.bodyBytes):result.body;
-  assert.equal(inspect(body).some(f=>f.id===45),false);assert.equal(result.headers['Content-Length'],undefined);assert.equal(result.headers['Content-Encoding'],undefined);assert.equal(result.headers.ETag,undefined);assert.equal(result.headers['X-YouTubeClean'],'1.2.0');
+  assert.equal(inspect(body).some(f=>f.id===45),false);assert.equal(result.headers['Content-Length'],undefined);assert.equal(result.headers['Content-Encoding'],undefined);assert.equal(result.headers.ETag,undefined);assert.equal(result.headers['X-YouTubeClean'],VERSION);
 });
 for(const client of ['Surge','QuantumultX'])test(client+' bundled adapter returns malformed response without edits',async()=>{
   const {result}=await callbackClient(client,new Uint8Array([0,0,0]));assert.deepEqual(Object.keys(result),[]);
@@ -82,7 +82,7 @@ for(const client of ['Surge','QuantumultX'])test(client+' subtitle download fail
 const egern=(await import('../dist/egern.js')).default;
 function egernContext(body,extra={}){let consumed=0;return{env:{HIDE_SHORTS:'true'},request:{url:'https://youtubei.googleapis.com/youtubei/v1/player',headers:new Headers()},response:{status:200,headers:new Headers({'Content-Type':'application/x-protobuf'}),arrayBuffer:async()=>{assert.equal(consumed++,0);return body.buffer.slice(body.byteOffset,body.byteOffset+body.byteLength);}},storage:{getJSON:()=>null,setJSON:()=>{}},http:{get:()=>{throw Error('unexpected connection');}},...extra};}
 test('Egern ESM bundle consumes the Fetch response once and returns Uint8Array',async()=>{
-  const result=await egern(egernContext(player()));assert.ok(result.body instanceof Uint8Array);assert.equal(inspect(result.body).some(f=>f.id===45),false);assert.equal(result.headers.get('X-YouTubeClean'),'1.2.0');
+  const result=await egern(egernContext(player()));assert.ok(result.body instanceof Uint8Array);assert.equal(inspect(result.body).some(f=>f.id===45),false);assert.equal(result.headers.get('X-YouTubeClean'),VERSION);
 });
 test('Egern restores every original byte when body parsing fails after Fetch consumption',async()=>{
   const body=new Uint8Array([0,0,0]),result=await egern(egernContext(body));assert.deepEqual(result.body,body);assert.equal(result.headers,undefined);

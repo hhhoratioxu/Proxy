@@ -21,7 +21,7 @@ function element(name){
 }
 for(const [stem,profile,deep]of [['YouTubeClean','elements',false],['YouTubeClean.Deep','deep',true],['YouTubeClean.TCP','tcp',true]])test('Loon '+profile+' actual generated entry dispatches the bundled code using its own defaults',async()=>{
   const plugin=await readFile(join(dir,'Loon/script',stem+'.plugin'),'utf8'),args=parameters(plugin),logs=[];
-  assert.equal(args.PROFILE,profile);assert.equal(args.DEEP_FILTER,deep);assert.equal(args.DIAGNOSTICS,true);assert.ok(plugin.includes('1.2.0'));
+  assert.equal(args.PROFILE,profile);assert.equal(args.DEEP_FILTER,deep);assert.equal(args.DIAGNOSTICS,true);assert.ok(plugin.includes('1.2.1'));
   for(const line of plugin.split('\n').filter(l=>/^(?:request|response) if /.test(l))){const raw=line.slice(line.indexOf('~= /')+4,line.indexOf('/ then script'));assert.ok(new RegExp(raw).test('https://youtubei.googleapis.com:443/youtubei/v1/browse?alt=proto'));const passed=[...line.matchAll(/\$\{(\w+)\}/g)].map(m=>m[1]).filter(k=>k!=='url');assert.deepEqual(new Set(passed),new Set(Object.keys(args)));}
   const unknownAd=binary(477777777,binary(1,element('ad_layout'))),body=homeFirstPage([homeSection([element('ads_video_with_context')]),homeSection([unknownAd]),homeSection([element('video_card')])]);
   let finish;const done=new Promise(resolve=>finish=resolve);let calls=0;

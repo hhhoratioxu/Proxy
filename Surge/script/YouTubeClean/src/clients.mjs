@@ -1,8 +1,10 @@
 // Copyright 2026 Horatio Xu. MIT. Proxy clients with callback-style script interfaces.
-import {Settings,asBytes,finalizeHeaders,MAX_CAPTION} from './data.mjs';
+import {Settings,asBytes,finalizeHeaders,MAX_CAPTION,VERSION,route} from './data.mjs';
 import {handle} from './runtime.mjs';
 const isQX=typeof $task!=='undefined';
 const request=typeof $request==='undefined'?{}:$request,response=typeof $response==='undefined'?null:$response;
+let diagnostics=true;
+function report(data){try{if(typeof console!=='undefined'&&typeof console.log==='function')console.log('[YouTubeClean] '+JSON.stringify(data));}catch{}}
 function read(key){const encoded=isQX?$prefs.valueForKey(key):$persistentStore.read(key);if(!encoded)return null;try{return JSON.parse(encoded);}catch{return null;}}
 function write(key,value){const encoded=JSON.stringify(value);return isQX?$prefs.setValueForKey(encoded,key):$persistentStore.write(encoded,key);}
 async function download(url,headers){
@@ -15,13 +17,18 @@ async function download(url,headers){
 async function execute(){
   const input=isQX?(typeof $environment==='undefined'?{}:$environment.variables||{}):(typeof $argument==='undefined'?{}:$argument);
   const settings=new Settings(input);
+  diagnostics=settings.debug;
   const result=await handle({
     url:request.url||'',phase:response?'response':'request',status:response?.statusCode??response?.status,
     requestHeaders:request.headers||{},responseHeaders:response?.headers||{},body:response?.bodyBytes??response?.body,
-    store:{read,write},download,report:data=>{if(typeof console!=='undefined'&&typeof console.log==='function')console.log('[YouTubeClean] '+JSON.stringify(data));}
+    store:{read,write},download,report
   },settings);
   if(!result)return{};
   if(result.body){const data=asBytes(result.body),headers=finalizeHeaders(response.headers);return isQX?{bodyBytes:data.buffer.slice(data.byteOffset,data.byteOffset+data.byteLength),headers}:{body:data,headers};}
   return result;
 }
-execute().then(result=>$done(result),()=> $done({}));
+execute().then(result=>$done(result),()=>{
+  const target=route(request.url||'');
+  if(diagnostics&&target)report({version:VERSION,endpoint:target.name||(target.kind==='ump'?'initplayback':'timedtext'),phase:response?'response':'request',changed:false,bypass:true,reason:'adapter-error'});
+  $done({});
+});

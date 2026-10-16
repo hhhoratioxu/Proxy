@@ -78,10 +78,12 @@ export function editBinary(raw,endpoint,settings,onKeys,trace){
   const state={remaining:70000,depth:0,onKeys,trace};
   return visit(raw,NS+type,settings,state);
 }
-export function editWatchPart(raw,settings){return visit(raw,NS+'GetWatchResponse',settings,{remaining:70000,depth:0});}
+export function editWatchPart(raw,settings,onKeys,trace){return visit(raw,NS+'GetWatchResponse',settings,{remaining:70000,depth:0,onKeys,trace});}
 function visit(raw,type,s,state,feedCard=false){
   if(state.depth>48)throw Error('message depth');
   const fields=decodeMessage(raw);state.remaining-=fields.length;if(state.remaining<0)throw Error('message count');
+  if(state.trace&&state.depth===0)state.trace.rootFields=fields.slice(0,16).map(f=>f.no);
+  if(feedCard&&state.trace)state.trace.feedCards=(state.trace.feedCards||0)+1;
   if(feedCard&&deepCardAd(raw,s,state.trace)){if(state.trace)state.trace.removed++;return new Uint8Array();}
   if(type===NS+'ElementRenderer')return editElementRenderer(raw,s,state.trace);
   if(type===NS+'OnesieHotConfig'&&state.onKeys){
@@ -99,7 +101,7 @@ function visit(raw,type,s,state,feedCard=false){
         state.depth++;try{visit(hot,NS+'HotConfigGroup',s,state);}finally{state.depth--;}
       }catch{}
     }
-    if(s.ads&&((type===NS+'PlayerResponse'&&PLAYER_ADS.has(f.no))||(type===NS+'AdBreakResponse'&&BREAK_ADS.has(f.no)))){modified=true;continue;}
+    if(s.ads&&((type===NS+'PlayerResponse'&&PLAYER_ADS.has(f.no))||(type===NS+'AdBreakResponse'&&BREAK_ADS.has(f.no)))){modified=true;if(state.trace)state.trace.removed++;continue;}
     if(s.ads&&f.wire===2&&rendererAds[f.no]&&(edges[f.no]||/Renderer(?:s)?$/.test(type))){modified=true;if(state.trace)state.trace.removed++;continue;}
     if(type===NS+'PivotBar'&&f.no===1&&f.wire===2&&(s.hideCreate||s.hideShorts)){
       if(hidden(navIdentity(f.payload),s)){modified=true;continue;}
@@ -169,9 +171,9 @@ export function editJson(document,s,onKeys,trace){
     if(s.ads&&feed&&Array.isArray(node.childElements))for(let i=node.childElements.length-1;i>=0;i--){const child=node.childElements[i];if(jsonElementAd({newElement:child},s,trace)){node.childElements.splice(i,1);if(trace)trace.removed++;}}
     if(onKeys&&node.onesieHotConfig)onKeys(node.onesieHotConfig);
     for(const key of Object.keys(node)){
-      if(s.ads&&AD_NAMES.has(key)){delete node[key];continue;}
-      if(s.ads&&SLOT_ARRAYS.has(key)&&Array.isArray(node[key])){node[key]=[];continue;}
-      if(s.ads&&PLAYER_SIGNALS.has(key)){delete node[key];continue;}
+      if(s.ads&&AD_NAMES.has(key)){delete node[key];if(trace)trace.removed++;continue;}
+      if(s.ads&&SLOT_ARRAYS.has(key)&&Array.isArray(node[key])){if(trace)trace.removed+=node[key].length;node[key]=[];continue;}
+      if(s.ads&&PLAYER_SIGNALS.has(key)){delete node[key];if(trace)trace.removed++;continue;}
       const nextFeed=['responseContext','frameworkUpdates','trackingParams','clickTrackingParams'].includes(key)?false:feed||['contents','content','items','continuationItems','continuationContents'].includes(key);
       traverse(node[key],nav||NAV_CONTAINERS.has(key),nextFeed);
     }
