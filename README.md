@@ -38,7 +38,7 @@
 
 ## Spotify 双语歌词 · VerseLyrics
 
-Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **0.5.0**，重构缓存合并：逐条校验并复用未修改记录，减少保存新歌时整批展开旧歌词与译文。保留六源补词、插件翻译、高亮及原有内存限制。Shadowrocket 完整官方脚本规范尚未取得，其兼容适配未标为官方验证。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
+Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **0.5.1**，补词与翻译共用单个联网名额，取消拥堵排队和轮询计时器。缓存命中照常显示；忙碌时保留原词或暂不补词，后续请求可以重试。保留六源补词、插件翻译及原生高亮；没有实机不掉线保证。Shadowrocket 完整官方脚本规范尚未取得，其兼容适配未标为官方验证。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
 
 | 客户端 | 安装入口 | 设置与限制 |
 | --- | --- | --- |
@@ -79,7 +79,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 
 YouTube AdTranslate 0.1.0 combines ad removal and bilingual subtitles in one import per supported client, defaulting to the original text plus Simplified Chinese. Links are listed above; disable other YouTube modules before enabling it. Eighty local tests passed and a public player response gained a bilingual track. Live subtitle downloads returned HTTP 429; native client imports, real ad removal and on-device playback remain unverified. [Compatibility guide](./Clash/Docs/YouTubeAdTranslate.md).
 
-VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.5.0 with record-wise cache validation and serialized reuse of unchanged entries, reducing whole-catalog materialization during saves. Six sequential sources, plugin translations, highlighting and the existing memory limits remain. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
+VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.5.1 with one advisory network slot and no admission polling or waiting queue. Cached results remain available; overloaded responses keep original words or defer missing lyrics until a later request. Six sources, plugin translations and native highlighting remain. Device VPN stability is unverified. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
 Each plugin has one current installation entry. Clients automatically load any required runtime from a pinned version; no separate JavaScript download, build or test run is needed.
 
