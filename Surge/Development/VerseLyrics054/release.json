@@ -1,0 +1,1 @@
+{"version":"0.5.4","previous":"0.5.3","summary":"歌曲元数据按需解码，避免展开无关字段；只在改写有词标记时构建字段列表。","intro":"歌曲元数据改为扫描所需字段，缓存与补词查询不再展开音频文件等无关字段。只有真正改写有词标记时才构建字段列表；批量响应保留这种按需行为。保持原有缓存容量、网络并发和查询预算。","english":"Track metadata is decoded selectively; field objects are materialized only for a flag rewrite."}

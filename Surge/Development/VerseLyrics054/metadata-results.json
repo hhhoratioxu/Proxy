@@ -1,0 +1,472 @@
+{
+  "scope": "8 fresh Node processes per version/size; 40 metadata parses while retaining results, GC before measurement. Synthetic metadata below 128 KiB. Not native host peak.",
+  "comparisons": [
+    {
+      "fields": 0,
+      "baseline": {
+        "ms": 0.9863749999999953,
+        "heapGrowth": 928440
+      },
+      "candidate": {
+        "ms": 0.8302499999999995,
+        "heapGrowth": 810728
+      }
+    },
+    {
+      "fields": 100,
+      "baseline": {
+        "ms": 1.8532909999999987,
+        "heapGrowth": 2031800
+      },
+      "candidate": {
+        "ms": 1.357916000000003,
+        "heapGrowth": 740040
+      }
+    },
+    {
+      "fields": 1000,
+      "baseline": {
+        "ms": 10.068416000000006,
+        "heapGrowth": 11485648
+      },
+      "candidate": {
+        "ms": 2.9619579999999956,
+        "heapGrowth": 1422704
+      }
+    }
+  ],
+  "rows": [
+    {
+      "trial": 0,
+      "version": "baseline",
+      "fields": 0,
+      "ms": 0.9937500000000057,
+      "heapGrowth": 1182688,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 0,
+      "version": "candidate",
+      "fields": 0,
+      "ms": 0.859499999999997,
+      "heapGrowth": 806664,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 0,
+      "version": "baseline",
+      "fields": 100,
+      "ms": 1.9300410000000028,
+      "heapGrowth": 2035080,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 0,
+      "version": "candidate",
+      "fields": 100,
+      "ms": 1.3467920000000007,
+      "heapGrowth": 740976,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 0,
+      "version": "baseline",
+      "fields": 1000,
+      "ms": 10.068416000000006,
+      "heapGrowth": 11492992,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 0,
+      "version": "candidate",
+      "fields": 1000,
+      "ms": 3.0181669999999983,
+      "heapGrowth": 1222688,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 1,
+      "version": "candidate",
+      "fields": 0,
+      "ms": 0.8302499999999995,
+      "heapGrowth": 1065248,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 1,
+      "version": "baseline",
+      "fields": 0,
+      "ms": 0.9549999999999983,
+      "heapGrowth": 909416,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 1,
+      "version": "candidate",
+      "fields": 100,
+      "ms": 1.4817910000000012,
+      "heapGrowth": 739968,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 1,
+      "version": "baseline",
+      "fields": 100,
+      "ms": 1.8532909999999987,
+      "heapGrowth": 2031344,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 1,
+      "version": "candidate",
+      "fields": 1000,
+      "ms": 2.9190830000000005,
+      "heapGrowth": 1416944,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 1,
+      "version": "baseline",
+      "fields": 1000,
+      "ms": 10.223082999999995,
+      "heapGrowth": 11469920,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 2,
+      "version": "baseline",
+      "fields": 0,
+      "ms": 0.9762909999999962,
+      "heapGrowth": 1455872,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 2,
+      "version": "candidate",
+      "fields": 0,
+      "ms": 0.8363750000000039,
+      "heapGrowth": 809192,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 2,
+      "version": "baseline",
+      "fields": 100,
+      "ms": 1.8089159999999964,
+      "heapGrowth": 2031696,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 2,
+      "version": "candidate",
+      "fields": 100,
+      "ms": 1.357916000000003,
+      "heapGrowth": 737608,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 2,
+      "version": "baseline",
+      "fields": 1000,
+      "ms": 10.213667000000001,
+      "heapGrowth": 11479496,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 2,
+      "version": "candidate",
+      "fields": 1000,
+      "ms": 2.9122500000000002,
+      "heapGrowth": 1668992,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 3,
+      "version": "candidate",
+      "fields": 0,
+      "ms": 0.8275000000000006,
+      "heapGrowth": 1133480,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 3,
+      "version": "baseline",
+      "fields": 0,
+      "ms": 0.9465000000000003,
+      "heapGrowth": 908208,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 3,
+      "version": "candidate",
+      "fields": 100,
+      "ms": 1.375833,
+      "heapGrowth": 739768,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 3,
+      "version": "baseline",
+      "fields": 100,
+      "ms": 1.8006249999999966,
+      "heapGrowth": 2031800,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 3,
+      "version": "candidate",
+      "fields": 1000,
+      "ms": 3.035625000000003,
+      "heapGrowth": 1422704,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 3,
+      "version": "baseline",
+      "fields": 1000,
+      "ms": 9.506792000000004,
+      "heapGrowth": 11267784,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 4,
+      "version": "baseline",
+      "fields": 0,
+      "ms": 1.1374999999999957,
+      "heapGrowth": 926736,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 4,
+      "version": "candidate",
+      "fields": 0,
+      "ms": 0.8219580000000022,
+      "heapGrowth": 804816,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 4,
+      "version": "baseline",
+      "fields": 100,
+      "ms": 1.8472500000000025,
+      "heapGrowth": 2031800,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 4,
+      "version": "candidate",
+      "fields": 100,
+      "ms": 1.3409580000000005,
+      "heapGrowth": 741472,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 4,
+      "version": "baseline",
+      "fields": 1000,
+      "ms": 9.829374999999999,
+      "heapGrowth": 11676408,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 4,
+      "version": "candidate",
+      "fields": 1000,
+      "ms": 2.9344169999999963,
+      "heapGrowth": 1660400,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 5,
+      "version": "candidate",
+      "fields": 0,
+      "ms": 0.8749589999999969,
+      "heapGrowth": 810272,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 5,
+      "version": "baseline",
+      "fields": 0,
+      "ms": 0.939582999999999,
+      "heapGrowth": 922584,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 5,
+      "version": "candidate",
+      "fields": 100,
+      "ms": 1.331832999999996,
+      "heapGrowth": 739408,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 5,
+      "version": "baseline",
+      "fields": 100,
+      "ms": 1.8456249999999983,
+      "heapGrowth": 2032872,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 5,
+      "version": "candidate",
+      "fields": 1000,
+      "ms": 2.9142500000000027,
+      "heapGrowth": 1421120,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 5,
+      "version": "baseline",
+      "fields": 1000,
+      "ms": 10.222833999999999,
+      "heapGrowth": 11662840,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 6,
+      "version": "baseline",
+      "fields": 0,
+      "ms": 0.9936250000000015,
+      "heapGrowth": 1455904,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 6,
+      "version": "candidate",
+      "fields": 0,
+      "ms": 0.8230829999999969,
+      "heapGrowth": 810728,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 6,
+      "version": "baseline",
+      "fields": 100,
+      "ms": 1.8562089999999998,
+      "heapGrowth": 2032920,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 6,
+      "version": "candidate",
+      "fields": 100,
+      "ms": 1.360750000000003,
+      "heapGrowth": 742304,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 6,
+      "version": "baseline",
+      "fields": 1000,
+      "ms": 9.623708999999998,
+      "heapGrowth": 11485648,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 6,
+      "version": "candidate",
+      "fields": 1000,
+      "ms": 3.178416999999996,
+      "heapGrowth": 1674568,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 7,
+      "version": "candidate",
+      "fields": 0,
+      "ms": 0.7991249999999965,
+      "heapGrowth": 1066696,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 7,
+      "version": "baseline",
+      "fields": 0,
+      "ms": 0.9863749999999953,
+      "heapGrowth": 928440,
+      "bytes": 67,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 7,
+      "version": "candidate",
+      "fields": 100,
+      "ms": 1.3258750000000035,
+      "heapGrowth": 740040,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 7,
+      "version": "baseline",
+      "fields": 100,
+      "ms": 1.9194999999999993,
+      "heapGrowth": 2031800,
+      "bytes": 9257,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 7,
+      "version": "candidate",
+      "fields": 1000,
+      "ms": 2.9619579999999956,
+      "heapGrowth": 1410512,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    },
+    {
+      "trial": 7,
+      "version": "baseline",
+      "fields": 1000,
+      "ms": 9.800832999999997,
+      "heapGrowth": 11406312,
+      "bytes": 92957,
+      "hash": "88bf38d91b22517afaf0b4bb0343d729411962b05c3128201802c19167b5cfd7"
+    }
+  ]
+}
