@@ -21,20 +21,20 @@
 | QuanX / Quantumult X | [规则、脚本与任务](./QuantumultX/) · [使用说明](./QuantumultX/README.md) |
 
 
-## YouTube 去广告与双语字幕
+## YouTube Clean · 去广告、双语字幕与底栏控制
 
-**0.1.0** 将去广告和字幕翻译合并在一个插件内，默认原文＋简体中文；每个客户端只需导入一个文件。安装前停用其他 YouTube 模块，包括原有 Egern YouTubeEnhance，避免冲突。
+**1.0.0 独立重写版**。旧 YouTubeAdTranslate 与 Egern YouTubeEnhance 已移除。去广告和翻译共用一个插件，默认原文＋简体中文；发布「＋」与 Shorts 底栏分别可选隐藏，默认隐藏发布「＋」、保留 Shorts。更改设置后强制退出并重新打开 YouTube。
 
 | 客户端 | 合并插件安装入口 |
 | --- | --- |
-| Egern | [YouTubeAdTranslate.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/YouTubeAdTranslate.yaml) |
-| Surge | [YouTubeAdTranslate.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/script/YouTubeAdTranslate.sgmodule) |
-| Loon | [YouTubeAdTranslate.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeAdTranslate.plugin) |
-| Shadowrocket | [YouTubeAdTranslate.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/script/YouTubeAdTranslate.sgmodule) |
-| Quantumult X | [YouTubeAdTranslate.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/YouTubeAdTranslate.conf) |
-| Clash / Mihomo | [能力限制与其他客户端入口](./Clash/Docs/YouTubeAdTranslate.md) |
+| Egern | [YouTubeClean.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/YouTubeClean.yaml) |
+| Surge | [YouTubeClean.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/script/YouTubeClean.sgmodule) |
+| Loon | [YouTubeClean.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.plugin) |
+| Shadowrocket | [YouTubeClean.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/script/YouTubeClean.sgmodule) |
+| Quantumult X | [YouTubeClean.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/YouTubeClean.conf) |
+| Clash / Mihomo | [能力限制与其他客户端入口](./Clash/Docs/YouTubeClean.md) |
 
-80 项本地测试通过，真实公开播放器数据已成功加入双语轨道。字幕下载返回 HTTP 429，手机客户端导入、实际去广告和播放效果仍待真机验收。
+61 项本地检查通过；公开原生播放器数据保留 52 条原字幕并新增 1 条轨道。公开底栏数据未出现发布「＋」与 Shorts；字幕下载返回 HTTP 429。手机客户端导入、实际去广告、按钮隐藏与字幕显示仍待真机验收。[源码与验证说明](https://github.com/hhhoratioxu/Proxy/tree/749d68f4530323f924b3bd7a9cf1bc272d4bfeff/Surge/script/YouTubeClean)。
 
 ## Spotify 双语歌词 · VerseLyrics
 
@@ -77,7 +77,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 | Shadowrocket | [Rules, scripts and modules](./Shadowrocket/) · [Guide](./Shadowrocket/README.md) |
 | QuanX / Quantumult X | [Rules, scripts and tasks](./QuantumultX/) · [Guide](./QuantumultX/README.md) |
 
-YouTube AdTranslate 0.1.0 combines ad removal and bilingual subtitles in one import per supported client, defaulting to the original text plus Simplified Chinese. Links are listed above; disable other YouTube modules before enabling it. Eighty local tests passed and a public player response gained a bilingual track. Live subtitle downloads returned HTTP 429; native client imports, real ad removal and on-device playback remain unverified. [Compatibility guide](./Clash/Docs/YouTubeAdTranslate.md).
+YouTube Clean 1.0.0 is an independently written combined plugin for ad removal, bilingual subtitles and separate bottom upload/Shorts controls. Upload is hidden by default; Shorts remains visible by default. The previous YouTube entries were removed. Sixty-one local checks and public native-response processing passed; public caption downloads returned HTTP 429. Native imports, actual ad removal, button visibility and subtitle display require device acceptance. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
 
 VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.5.2. Optional source translations reuse exactly aligned Simplified Chinese rows from the same fallback response, with translator fallback for other rows. Incremental LRC parsing reduces temporary arrays and avoids sorting already ordered rows. Six sources, native timing/highlighting and existing budgets remain. Device VPN stability is unverified. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
