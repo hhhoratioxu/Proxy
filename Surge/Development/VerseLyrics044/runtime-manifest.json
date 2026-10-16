@@ -1,0 +1,68 @@
+[
+  {
+    "path": "Surge/script/SpotifyLyrics.js",
+    "bytes": 130123,
+    "sha": "aea7c266430a95a87bc05f41173efe0fcf8ae5c0",
+    "sha256": "c11ef289dbdd341112ef3e94281a83d23ea7e795e3720ebafdd7995ccb8a83c1"
+  },
+  {
+    "path": "Surge/script/SpotifyLyrics.Request.js",
+    "bytes": 6114,
+    "sha": "97ec5bb1dd064964a2c6dfd58e461d28d400b9b9",
+    "sha256": "b7655f5a2df05754015a014b6d4f15d95bb3963826300dcc716a03db892179be"
+  },
+  {
+    "path": "Loon/script/SpotifyLyrics.js",
+    "bytes": 130121,
+    "sha": "e8aeea275beb9d51cb6d7364b1c84737cd33fe90",
+    "sha256": "7f20c284d15ba721b8fa05d5d190705ed914cfb2fdb0e4e0454010c3667fb746"
+  },
+  {
+    "path": "Loon/script/SpotifyLyrics.Request.js",
+    "bytes": 6113,
+    "sha": "0838f7f4a5c7928744aae9a7d636be35f316db2d",
+    "sha256": "22fa52ee374d75e0d387699a6dbc5d74bc3d44fab6244b21b1470feced60d850"
+  },
+  {
+    "path": "Shadowrocket/script/SpotifyLyrics.js",
+    "bytes": 130137,
+    "sha": "0e1b7b6b8c3363966a40109f461fc410339cf914",
+    "sha256": "7f92ad01279b3a8cf6c708663a89e050a99b852a876743236e48d96efc2341c7"
+  },
+  {
+    "path": "Shadowrocket/script/SpotifyLyrics.Request.js",
+    "bytes": 6121,
+    "sha": "6f4ddcb2d45bdea974e9b5fe98a56a2228068d0c",
+    "sha256": "113fba70e8a9bfd30c5fd10bbd2fb6c2ffb36e3754cbdf0a8c1fc61d4b16513d"
+  },
+  {
+    "path": "QuantumultX/script/SpotifyLyrics.js",
+    "bytes": 130135,
+    "sha": "5f8ae8b5d8e4c53e0b044c980a9cf2ad6ecef112",
+    "sha256": "83675ac2147b4017866741769a1c05b59347f9184124a71d623d7a6647f6d6ed"
+  },
+  {
+    "path": "QuantumultX/script/SpotifyLyrics.Request.js",
+    "bytes": 6120,
+    "sha": "e983382280a00a42a9da3e2fbbc495475dff98f8",
+    "sha256": "1b5dc754f0402551d7ea2ada3a84ecbbc3ab966704fc04a1d45262bf22017b4d"
+  },
+  {
+    "path": "Egern/script/SpotifyLyrics/spotify-lyrics.js",
+    "bytes": 123027,
+    "sha": "208db9d2ca46823ce76b98c71de4c25b4616b8fe",
+    "sha256": "88c7f6900e12df2e0a08b2859ed44bd612a65b2fe18f3b3be82637d580820ea0"
+  },
+  {
+    "path": "Egern/script/SpotifyLyrics/spotify-lyrics-request.js",
+    "bytes": 3773,
+    "sha": "ebda748093613ae085750c4cdd80e16df610471a",
+    "sha256": "5c35628616d153285cca0c8229613cbfc51d5ead508bf5e71a4892083e9fa028"
+  },
+  {
+    "path": "Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt",
+    "bytes": 1995,
+    "sha": "56da58912807030b451a4700687d5bd02c72d6ed",
+    "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+  }
+]

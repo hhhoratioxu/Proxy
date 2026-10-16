@@ -1,0 +1,105 @@
+{
+  "at": "2026-10-16T01:58:41.426Z",
+  "core": "0.4.4",
+  "scope": "Real public service HTTP. Metadata cases selected from service catalogs, not Spotify device acceptance. No lyric text, access keys or user credentials retained.",
+  "results": [
+    {
+      "provider": "kugou",
+      "title": "小幸运",
+      "artists": [
+        "田馥甄"
+      ],
+      "matched": true,
+      "lineCount": 44,
+      "syncType": "LINE_SYNCED",
+      "elapsedMs": 127,
+      "usage": {
+        "requests": 2,
+        "bytes": 7841
+      },
+      "calls": [
+        {
+          "host": "lyrics.kugou.com",
+          "path": "/search",
+          "status": 200,
+          "bytes": 5053,
+          "elapsedMs": 109
+        },
+        {
+          "host": "lyrics.kugou.com",
+          "path": "/download",
+          "status": 200,
+          "bytes": 2788,
+          "elapsedMs": 12
+        }
+      ]
+    },
+    {
+      "provider": "kuwo",
+      "title": "我的祖国-《我和我的家乡》电影青春推广曲",
+      "artists": [
+        "韩昊霖",
+        "小辣李嘉琦",
+        "王俊凯",
+        "王源",
+        "杨紫",
+        "合唱团"
+      ],
+      "matched": true,
+      "lineCount": 49,
+      "syncType": "LINE_SYNCED",
+      "elapsedMs": 264,
+      "usage": {
+        "requests": 2,
+        "bytes": 25826
+      },
+      "calls": [
+        {
+          "host": "search.kuwo.cn",
+          "path": "/r.s",
+          "status": 200,
+          "bytes": 22747,
+          "elapsedMs": 135
+        },
+        {
+          "host": "www.kuwo.cn",
+          "path": "/openapi/v1/www/lyric/getlyric",
+          "status": 200,
+          "bytes": 3079,
+          "elapsedMs": 127
+        }
+      ]
+    },
+    {
+      "provider": "lyricsovh",
+      "title": "Never Gonna Give You Up",
+      "artists": [
+        "Rick Astley"
+      ],
+      "matched": true,
+      "lineCount": 63,
+      "syncType": "UNSYNCED",
+      "elapsedMs": 2436,
+      "usage": {
+        "requests": 2,
+        "bytes": 32996
+      },
+      "calls": [
+        {
+          "host": "api.lyrics.ovh",
+          "path": "/suggest/Never%20Gonna%20Give%20You%20Up%20Rick%20Astley",
+          "status": 200,
+          "bytes": 30984,
+          "elapsedMs": 1367
+        },
+        {
+          "host": "api.lyrics.ovh",
+          "path": "/v1/Rick%20Astley/Never%20Gonna%20Give%20You%20Up",
+          "status": 200,
+          "bytes": 2012,
+          "elapsedMs": 1064
+        }
+      ]
+    }
+  ]
+}
