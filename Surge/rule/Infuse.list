@@ -1,0 +1,28 @@
+# FORMAT: Surge Remote Rule Set
+# UPDATED: 2026-10-16
+# RULES: 13
+# PORTED FROM: https://raw.githubusercontent.com/hhhoratioxu/Proxy/73e99eb3e2c36920768328b65bbf60b8eed3281f/Loon/rule/Infuse.lsr
+# POLICY: Assign a policy when importing this URL as RULE-SET in Surge.
+# All source rule entries and their order are retained.
+#
+# NAME: Infuse
+# AUTHOR: Horatio
+# SOURCE FORMAT: Loon Rule Set
+# SOURCE UPDATED: 2026-09-25
+# TOTAL: 13
+# SOURCE: Firecore/Infuse services + TMDB + Trakt + OpenSubtitles + observed Infuse sync endpoint + Horatio custom media domains
+# NOTE: TMDB is Infuse's current primary online metadata source.
+
+DOMAIN,infuse-sync.s3-accelerate.amazonaws.com
+DOMAIN-SUFFIX,firecore.com
+DOMAIN-SUFFIX,infuse.im
+DOMAIN-SUFFIX,ncdn1.sntp.uk
+DOMAIN-SUFFIX,opensubtitles.com
+DOMAIN-SUFFIX,opensubtitles.org
+DOMAIN-SUFFIX,post.cn2gias.uk
+DOMAIN-SUFFIX,pre.cn2gias.uk
+DOMAIN-SUFFIX,precdns.cn2gias.uk
+DOMAIN-SUFFIX,sub1.sntp.me
+DOMAIN-SUFFIX,themoviedb.org
+DOMAIN-SUFFIX,tmdb.org
+DOMAIN-SUFFIX,trakt.tv

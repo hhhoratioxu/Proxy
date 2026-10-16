@@ -1,0 +1,29 @@
+# FORMAT: Surge Remote Rule Set
+# UPDATED: 2026-10-16
+# RULES: 14
+# PORTED FROM: https://raw.githubusercontent.com/hhhoratioxu/Proxy/73e99eb3e2c36920768328b65bbf60b8eed3281f/Loon/rule/Weverse.lsr
+# POLICY: Assign a policy when importing this URL as RULE-SET in Surge.
+# All source rule entries and their order are retained.
+#
+# NAME: Weverse
+# AUTHOR: Horatio
+# SOURCE FORMAT: Loon Rule Set
+# SOURCE UPDATED: 2026-09-25
+# TOTAL: 14
+# SOURCE: Horatio observed Weverse/NAVER endpoints + current public Weverse media host cross-checks
+# NOTE: Weverse, Weverse Shop, static/media CDN, NAVER APIs and live/resource delivery hosts.
+
+DOMAIN,apis.naver.com
+DOMAIN,g-aegis-naver.akamaized.net
+DOMAIN,global.apis.naver.com
+DOMAIN,jp.apis.naver.com
+DOMAIN,nelo2-col.navercorp.com
+DOMAIN,resources-rmcnmv.akamaized.net
+DOMAIN,ssl.pstatic.net
+DOMAIN,weverse-live.pstatic.net
+DOMAIN,weverse-phinf.pstatic.net
+DOMAIN,weverse-rmcnmv.akamaized.net
+DOMAIN-SUFFIX,weverse.io
+DOMAIN-SUFFIX,weversecdn.com
+DOMAIN-SUFFIX,weverseshop.io
+DOMAIN-SUFFIX,wevpstatic.net

@@ -1,0 +1,37 @@
+# FORMAT: Surge Remote Rule Set
+# UPDATED: 2026-10-16
+# RULES: 22
+# PORTED FROM: https://raw.githubusercontent.com/hhhoratioxu/Proxy/73e99eb3e2c36920768328b65bbf60b8eed3281f/Loon/rule/Wikimedia.lsr
+# POLICY: Assign a policy when importing this URL as RULE-SET in Surge.
+# All source rule entries and their order are retained.
+#
+# NAME: Wikimedia
+# AUTHOR: Horatio
+# SOURCE FORMAT: Loon Rule Set
+# SOURCE UPDATED: 2026-09-22
+#
+# Converted from the matching comprehensive Egern Wikimedia rule set.
+# Keep this file aligned with Egern/rule for dual-client use.
+
+DOMAIN-SUFFIX,mediawiki.org
+DOMAIN-SUFFIX,toolforge.org
+DOMAIN-SUFFIX,w.wiki
+DOMAIN-SUFFIX,wikibooks.org
+DOMAIN-SUFFIX,wikidata.org
+DOMAIN-SUFFIX,wikifunctions.org
+DOMAIN-SUFFIX,wikimedia.com
+DOMAIN-SUFFIX,wikimedia.org
+DOMAIN-SUFFIX,wikimediacloud.org
+DOMAIN-SUFFIX,wikimediafoundation.org
+DOMAIN-SUFFIX,wikinews.org
+DOMAIN-SUFFIX,wikipedia.com
+DOMAIN-SUFFIX,wikipedia.org
+DOMAIN-SUFFIX,wikiquote.org
+DOMAIN-SUFFIX,wikisource.org
+DOMAIN-SUFFIX,wikispecies.org
+DOMAIN-SUFFIX,wikiversity.org
+DOMAIN-SUFFIX,wikivoyage.org
+DOMAIN-SUFFIX,wiktionary.org
+DOMAIN-SUFFIX,wmcloud.org
+DOMAIN-SUFFIX,wmflabs.org
+DOMAIN-SUFFIX,wmfusercontent.org
