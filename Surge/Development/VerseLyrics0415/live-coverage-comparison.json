@@ -1,0 +1,772 @@
+{
+  "at": "2026-10-16T07:34:14.683Z",
+  "scope": "Alternating versions of actual compiled Loon runtime under a Node VM mock host, simulated Spotify 404, empty cache, real public HTTP including POST. No tokens, lyric text or page session fields saved. Songs are samples, not a representative catalog or a claim that Spotify lacks their official lyrics. This is not phone/VPN validation. Sequential runs and network fluctuations preclude controlled latency conclusions.",
+  "results": [
+    {
+      "id": "76XUZSb13QUuj1HECY4Hvo",
+      "version": "0.4.14",
+      "runtimeSHA256": "69a7e9da54860cdff350caa8a21263a04f0a63b3dbaa22215661ed04f9e9c3d4",
+      "title": "那页夏天",
+      "matched": true,
+      "provider": "qq",
+      "lineCount": 42,
+      "translationLines": 0,
+      "synced": true,
+      "elapsedMs": 2313,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/76XUZSb13QUuj1HECY4Hvo",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10478,
+          "elapsedMs": 860
+        },
+        {
+          "host": "c.y.qq.com",
+          "path": "/soso/fcgi-bin/client_search_cp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 9579,
+          "elapsedMs": 813
+        },
+        {
+          "host": "c.y.qq.com",
+          "path": "/lyric/fcgi-bin/fcg_query_lyric_new.fcg",
+          "method": "GET",
+          "status": 200,
+          "bytes": 1779,
+          "elapsedMs": 110
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "method": "GET",
+          "status": 200,
+          "bytes": 979,
+          "elapsedMs": 519
+        }
+      ],
+      "responseBytes": 22815,
+      "repeatElapsedMs": 1,
+      "repeatHTTP": 0,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 2189
+    },
+    {
+      "id": "76XUZSb13QUuj1HECY4Hvo",
+      "version": "0.4.15",
+      "runtimeSHA256": "966def88706c11f51c35309c1246d99a4fcc37e0521329eb0e1f0d417497ba71",
+      "title": "那页夏天",
+      "matched": true,
+      "provider": "qq",
+      "lineCount": 42,
+      "translationLines": 0,
+      "synced": true,
+      "elapsedMs": 1116,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/76XUZSb13QUuj1HECY4Hvo",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10480,
+          "elapsedMs": 440
+        },
+        {
+          "host": "c.y.qq.com",
+          "path": "/soso/fcgi-bin/client_search_cp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 9579,
+          "elapsedMs": 354
+        },
+        {
+          "host": "c.y.qq.com",
+          "path": "/lyric/fcgi-bin/fcg_query_lyric_new.fcg",
+          "method": "GET",
+          "status": 200,
+          "bytes": 1779,
+          "elapsedMs": 96
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "method": "GET",
+          "status": 200,
+          "bytes": 979,
+          "elapsedMs": 218
+        }
+      ],
+      "responseBytes": 22817,
+      "repeatElapsedMs": 1,
+      "repeatHTTP": 0,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 2189
+    },
+    {
+      "id": "0VjIjW4GlUZAMYd2vXMi3b",
+      "version": "0.4.15",
+      "runtimeSHA256": "966def88706c11f51c35309c1246d99a4fcc37e0521329eb0e1f0d417497ba71",
+      "title": "Blinding Lights",
+      "matched": true,
+      "provider": "lrclib",
+      "lineCount": 40,
+      "translationLines": 35,
+      "synced": true,
+      "elapsedMs": 1692,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/0VjIjW4GlUZAMYd2vXMi3b",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10501,
+          "elapsedMs": 680
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/get",
+          "method": "GET",
+          "status": 200,
+          "bytes": 7943,
+          "elapsedMs": 818
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "method": "GET",
+          "status": 200,
+          "bytes": 1061,
+          "elapsedMs": 190
+        }
+      ],
+      "responseBytes": 19505,
+      "repeatElapsedMs": 1,
+      "repeatHTTP": 0,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 3685
+    },
+    {
+      "id": "0VjIjW4GlUZAMYd2vXMi3b",
+      "version": "0.4.14",
+      "runtimeSHA256": "69a7e9da54860cdff350caa8a21263a04f0a63b3dbaa22215661ed04f9e9c3d4",
+      "title": "Blinding Lights",
+      "matched": true,
+      "provider": "lrclib",
+      "lineCount": 40,
+      "translationLines": 35,
+      "synced": true,
+      "elapsedMs": 1427,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/0VjIjW4GlUZAMYd2vXMi3b",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10503,
+          "elapsedMs": 728
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/get",
+          "method": "GET",
+          "status": 200,
+          "bytes": 7943,
+          "elapsedMs": 510
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "method": "GET",
+          "status": 200,
+          "bytes": 1061,
+          "elapsedMs": 185
+        }
+      ],
+      "responseBytes": 19507,
+      "repeatElapsedMs": 2,
+      "repeatHTTP": 0,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 3708
+    },
+    {
+      "id": "4uLU6hMCjMI75M1A2tKUQC",
+      "version": "0.4.14",
+      "runtimeSHA256": "69a7e9da54860cdff350caa8a21263a04f0a63b3dbaa22215661ed04f9e9c3d4",
+      "title": "Never Gonna Give You Up",
+      "matched": false,
+      "provider": null,
+      "lineCount": 0,
+      "translationLines": 0,
+      "synced": false,
+      "elapsedMs": 4368,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/4uLU6hMCjMI75M1A2tKUQC",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10526,
+          "elapsedMs": 240
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/get",
+          "method": "GET",
+          "status": 200,
+          "bytes": 501,
+          "elapsedMs": 492
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/search",
+          "method": "GET",
+          "status": 200,
+          "bytes": 132503,
+          "elapsedMs": 513
+        },
+        {
+          "host": "c.y.qq.com",
+          "path": "/soso/fcgi-bin/client_search_cp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10707,
+          "elapsedMs": 1023
+        },
+        {
+          "host": "music.163.com",
+          "path": "/api/cloudsearch/pc",
+          "method": "POST",
+          "status": 200,
+          "bytes": 25322,
+          "elapsedMs": 460
+        },
+        {
+          "host": "lyrics.kugou.com",
+          "path": "/search",
+          "method": "GET",
+          "status": 200,
+          "bytes": 253,
+          "elapsedMs": 110
+        },
+        {
+          "host": "search.kuwo.cn",
+          "path": "/r.s",
+          "method": "GET",
+          "status": 200,
+          "bytes": 19587,
+          "elapsedMs": 125
+        },
+        {
+          "host": "api.lyrics.ovh",
+          "path": "/suggest/Never%20Gonna%20Give%20You%20Up%20Rick%20Astley",
+          "method": "GET",
+          "status": 200,
+          "bytes": 30984,
+          "elapsedMs": 1399
+        }
+      ],
+      "responseBytes": 230383,
+      "repeatElapsedMs": 2998,
+      "repeatHTTP": 7,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 411
+    },
+    {
+      "id": "4uLU6hMCjMI75M1A2tKUQC",
+      "version": "0.4.15",
+      "runtimeSHA256": "966def88706c11f51c35309c1246d99a4fcc37e0521329eb0e1f0d417497ba71",
+      "title": "Never Gonna Give You Up",
+      "matched": false,
+      "provider": null,
+      "lineCount": 0,
+      "translationLines": 0,
+      "synced": false,
+      "elapsedMs": 3022,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/4uLU6hMCjMI75M1A2tKUQC",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10524,
+          "elapsedMs": 599
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/get",
+          "method": "GET",
+          "status": 200,
+          "bytes": 501,
+          "elapsedMs": 407
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/search",
+          "method": "GET",
+          "status": 200,
+          "bytes": 132503,
+          "elapsedMs": 453
+        },
+        {
+          "host": "c.y.qq.com",
+          "path": "/soso/fcgi-bin/client_search_cp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10707,
+          "elapsedMs": 526
+        },
+        {
+          "host": "music.163.com",
+          "path": "/api/cloudsearch/pc",
+          "method": "POST",
+          "status": 200,
+          "bytes": 25322,
+          "elapsedMs": 288
+        },
+        {
+          "host": "lyrics.kugou.com",
+          "path": "/search",
+          "method": "GET",
+          "status": 200,
+          "bytes": 253,
+          "elapsedMs": 16
+        },
+        {
+          "host": "search.kuwo.cn",
+          "path": "/r.s",
+          "method": "GET",
+          "status": 200,
+          "bytes": 19587,
+          "elapsedMs": 52
+        },
+        {
+          "host": "api.lyrics.ovh",
+          "path": "/suggest/Never%20Gonna%20Give%20You%20Up%20Rick%20Astley",
+          "method": "GET",
+          "status": 200,
+          "bytes": 30984,
+          "elapsedMs": 658
+        }
+      ],
+      "responseBytes": 230381,
+      "repeatElapsedMs": 2873,
+      "repeatHTTP": 7,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 411
+    },
+    {
+      "id": "7qiZfU4dY1lWllzX7mPBI3",
+      "version": "0.4.15",
+      "runtimeSHA256": "966def88706c11f51c35309c1246d99a4fcc37e0521329eb0e1f0d417497ba71",
+      "title": "Shape of You",
+      "matched": true,
+      "provider": "lrclib",
+      "lineCount": 93,
+      "translationLines": 90,
+      "synced": true,
+      "elapsedMs": 2303,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/7qiZfU4dY1lWllzX7mPBI3",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10478,
+          "elapsedMs": 996
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/get",
+          "method": "GET",
+          "status": 200,
+          "bytes": 18662,
+          "elapsedMs": 812
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "method": "GET",
+          "status": 200,
+          "bytes": 1720,
+          "elapsedMs": 484
+        }
+      ],
+      "responseBytes": 30860,
+      "repeatElapsedMs": 5,
+      "repeatHTTP": 0,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 7089
+    },
+    {
+      "id": "7qiZfU4dY1lWllzX7mPBI3",
+      "version": "0.4.14",
+      "runtimeSHA256": "69a7e9da54860cdff350caa8a21263a04f0a63b3dbaa22215661ed04f9e9c3d4",
+      "title": "Shape of You",
+      "matched": true,
+      "provider": "lrclib",
+      "lineCount": 93,
+      "translationLines": 90,
+      "synced": true,
+      "elapsedMs": 1014,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/7qiZfU4dY1lWllzX7mPBI3",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10480,
+          "elapsedMs": 324
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/get",
+          "method": "GET",
+          "status": 200,
+          "bytes": 18662,
+          "elapsedMs": 461
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "method": "GET",
+          "status": 200,
+          "bytes": 1720,
+          "elapsedMs": 219
+        }
+      ],
+      "responseBytes": 30862,
+      "repeatElapsedMs": 5,
+      "repeatHTTP": 0,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 7127
+    },
+    {
+      "id": "0tgVpDi06FyKpA1z0VMD4v",
+      "version": "0.4.14",
+      "runtimeSHA256": "69a7e9da54860cdff350caa8a21263a04f0a63b3dbaa22215661ed04f9e9c3d4",
+      "title": "Perfect",
+      "matched": true,
+      "provider": "lrclib",
+      "lineCount": 49,
+      "translationLines": 45,
+      "synced": true,
+      "elapsedMs": 950,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/0tgVpDi06FyKpA1z0VMD4v",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10458,
+          "elapsedMs": 296
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/get",
+          "method": "GET",
+          "status": 200,
+          "bytes": 9212,
+          "elapsedMs": 438
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "method": "GET",
+          "status": 200,
+          "bytes": 1609,
+          "elapsedMs": 208
+        }
+      ],
+      "responseBytes": 21279,
+      "repeatElapsedMs": 3,
+      "repeatHTTP": 0,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 4638
+    },
+    {
+      "id": "0tgVpDi06FyKpA1z0VMD4v",
+      "version": "0.4.15",
+      "runtimeSHA256": "966def88706c11f51c35309c1246d99a4fcc37e0521329eb0e1f0d417497ba71",
+      "title": "Perfect",
+      "matched": true,
+      "provider": "lrclib",
+      "lineCount": 49,
+      "translationLines": 45,
+      "synced": true,
+      "elapsedMs": 835,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/0tgVpDi06FyKpA1z0VMD4v",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10458,
+          "elapsedMs": 217
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/get",
+          "method": "GET",
+          "status": 200,
+          "bytes": 9212,
+          "elapsedMs": 413
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "method": "GET",
+          "status": 200,
+          "bytes": 1609,
+          "elapsedMs": 198
+        }
+      ],
+      "responseBytes": 21279,
+      "repeatElapsedMs": 3,
+      "repeatHTTP": 0,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 4602
+    },
+    {
+      "id": "4u7Ene7wjrC6dGE9rGQeFJ",
+      "version": "0.4.15",
+      "runtimeSHA256": "966def88706c11f51c35309c1246d99a4fcc37e0521329eb0e1f0d417497ba71",
+      "matched": false,
+      "provider": null,
+      "lineCount": 0,
+      "translationLines": 0,
+      "synced": false,
+      "elapsedMs": 336,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/4u7Ene7wjrC6dGE9rGQeFJ",
+          "method": "GET",
+          "status": 200,
+          "bytes": 6386,
+          "elapsedMs": 331
+        }
+      ],
+      "responseBytes": 6386,
+      "repeatElapsedMs": 1117,
+      "repeatHTTP": 1,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 0
+    },
+    {
+      "id": "4u7Ene7wjrC6dGE9rGQeFJ",
+      "version": "0.4.14",
+      "runtimeSHA256": "69a7e9da54860cdff350caa8a21263a04f0a63b3dbaa22215661ed04f9e9c3d4",
+      "matched": false,
+      "provider": null,
+      "lineCount": 0,
+      "translationLines": 0,
+      "synced": false,
+      "elapsedMs": 248,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/4u7Ene7wjrC6dGE9rGQeFJ",
+          "method": "GET",
+          "status": 200,
+          "bytes": 6384,
+          "elapsedMs": 246
+        }
+      ],
+      "responseBytes": 6384,
+      "repeatElapsedMs": 351,
+      "repeatHTTP": 1,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 0
+    },
+    {
+      "id": "2WfaOiMkCvy7F5fcp2zZ8L",
+      "version": "0.4.14",
+      "runtimeSHA256": "69a7e9da54860cdff350caa8a21263a04f0a63b3dbaa22215661ed04f9e9c3d4",
+      "title": "Take on Me",
+      "matched": true,
+      "provider": "lrclib",
+      "lineCount": 37,
+      "translationLines": 34,
+      "synced": true,
+      "elapsedMs": 847,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/2WfaOiMkCvy7F5fcp2zZ8L",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10462,
+          "elapsedMs": 216
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/get",
+          "method": "GET",
+          "status": 200,
+          "bytes": 6127,
+          "elapsedMs": 422
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "method": "GET",
+          "status": 200,
+          "bytes": 841,
+          "elapsedMs": 203
+        }
+      ],
+      "responseBytes": 17430,
+      "repeatElapsedMs": 1,
+      "repeatHTTP": 0,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 3008
+    },
+    {
+      "id": "2WfaOiMkCvy7F5fcp2zZ8L",
+      "version": "0.4.15",
+      "runtimeSHA256": "966def88706c11f51c35309c1246d99a4fcc37e0521329eb0e1f0d417497ba71",
+      "title": "Take on Me",
+      "matched": true,
+      "provider": "lrclib",
+      "lineCount": 37,
+      "translationLines": 34,
+      "synced": true,
+      "elapsedMs": 1062,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/2WfaOiMkCvy7F5fcp2zZ8L",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10464,
+          "elapsedMs": 348
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/get",
+          "method": "GET",
+          "status": 200,
+          "bytes": 6127,
+          "elapsedMs": 502
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "method": "GET",
+          "status": 200,
+          "bytes": 841,
+          "elapsedMs": 206
+        }
+      ],
+      "responseBytes": 17432,
+      "repeatElapsedMs": 3,
+      "repeatHTTP": 0,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 2984
+    },
+    {
+      "id": "2Fxmhks0bxGSBdJ92vM42m",
+      "version": "0.4.15",
+      "runtimeSHA256": "966def88706c11f51c35309c1246d99a4fcc37e0521329eb0e1f0d417497ba71",
+      "title": "bad guy",
+      "matched": true,
+      "provider": "lrclib",
+      "lineCount": 55,
+      "translationLines": 49,
+      "synced": true,
+      "elapsedMs": 1310,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/2Fxmhks0bxGSBdJ92vM42m",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10470,
+          "elapsedMs": 349
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/get",
+          "method": "GET",
+          "status": 200,
+          "bytes": 8868,
+          "elapsedMs": 461
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "method": "GET",
+          "status": 200,
+          "bytes": 1360,
+          "elapsedMs": 491
+        }
+      ],
+      "responseBytes": 20698,
+      "repeatElapsedMs": 2,
+      "repeatHTTP": 0,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 4169
+    },
+    {
+      "id": "2Fxmhks0bxGSBdJ92vM42m",
+      "version": "0.4.14",
+      "runtimeSHA256": "69a7e9da54860cdff350caa8a21263a04f0a63b3dbaa22215661ed04f9e9c3d4",
+      "title": "bad guy",
+      "matched": true,
+      "provider": "lrclib",
+      "lineCount": 55,
+      "translationLines": 49,
+      "synced": true,
+      "elapsedMs": 971,
+      "calls": [
+        {
+          "host": "open.spotify.com",
+          "path": "/embed/track/2Fxmhks0bxGSBdJ92vM42m",
+          "method": "GET",
+          "status": 200,
+          "bytes": 10470,
+          "elapsedMs": 339
+        },
+        {
+          "host": "lrclib.net",
+          "path": "/api/get",
+          "method": "GET",
+          "status": 200,
+          "bytes": 8868,
+          "elapsedMs": 428
+        },
+        {
+          "host": "translate.googleapis.com",
+          "path": "/translate_a/t",
+          "method": "GET",
+          "status": 200,
+          "bytes": 1360,
+          "elapsedMs": 198
+        }
+      ],
+      "responseBytes": 20698,
+      "repeatElapsedMs": 4,
+      "repeatHTTP": 0,
+      "maxActive": 1,
+      "doneCalls": 2,
+      "persistentCharacters": 4205
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+file:///private/var/folders/nd/7mjnltf526q8zsj7g6h92frh0000gn/T/verselyrics-speed-0415-xwwunu7m/native-playlist-bench.mjs:9
+  const r=spawnSync(process.execPath,['--expose-gc','--max-old-space-size=32',fileURLToPath(import.meta.url),'child',root,client,version,format],{encoding:'utf8',timeout:60000,maxBuffer:16384});if(r.status!==0)throw Error(client+' '+r.stderr.slice(-1500));results.push({version,client,format,...JSON.parse(r.stdout)});
+                                                                                                                                                                                                                        ^
+
+Error: Shadowrocket tioxu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node]
+37: 0x1045a33b0 node::InternalMakeCallback(node::Environment*, v8::Local<v8::Object>, v8::Local<v8::Object>, v8::Local<v8::Function>, int, v8::Local<v8::Value>*, node::async_context, v8::Local<v8::Value>) [/Users/hhhoratioxu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node]
+38: 0x1045a36b8 node::InternalMakeCallback(v8::Isolate*, v8::Local<v8::Object>, v8::Local<v8::Function>, int, v8::Local<v8::Value>*, node::async_context, v8::Local<v8::Value>) [/Users/hhhoratioxu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node]
+39: 0x10463c72c node::Environment::CheckImmediate(uv_check_s*) [/Users/hhhoratioxu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node]
+40: 0x10559f160 uv__run_check [/Users/hhhoratioxu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node]
+41: 0x105597fa8 uv_run [/Users/hhhoratioxu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node]
+42: 0x1045a46a8 node::SpinEventLoopInternal(node::Environment*) [/Users/hhhoratioxu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node]
+43: 0x1047207d8 node::NodeMainInstance::Run() [/Users/hhhoratioxu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node]
+44: 0x1046727e0 node::Start(int, char**) [/Users/hhhoratioxu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node]
+45: 0x185584d7c start [/usr/lib/dyld]
+
+    at file:///private/var/folders/nd/7mjnltf526q8zsj7g6h92frh0000gn/T/verselyrics-speed-0415-xwwunu7m/native-playlist-bench.mjs:9:217
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0
