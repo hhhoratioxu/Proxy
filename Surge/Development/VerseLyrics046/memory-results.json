@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-16T03:02:07.412Z",
+  "environment": "v24.19.0 darwin arm64",
+  "scope": "Separate Node processes with 32 MiB old-space. First Han normalization and a declared 1.5 MiB native body. Sampled heap deltas are not complete peaks or phone/VPN memory.",
+  "results": [
+    {
+      "version": "0.4.5",
+      "folded": "那页夏天王俊凯国语",
+      "firstFoldMs": 1.667625000000001,
+      "firstFoldAllocatedBytes": 700520,
+      "retainedFoldHeapDeltaBytes": 634776,
+      "inputBytes": 1572957,
+      "bodyReads": 1,
+      "passthrough": false,
+      "outputBytes": 1573032,
+      "processingHeapDeltaBytes": 6645024,
+      "maxRSSKiB": 89808
+    },
+    {
+      "version": "0.4.6",
+      "folded": "那页夏天王俊凯国语",
+      "firstFoldMs": 0.569500000000005,
+      "firstFoldAllocatedBytes": 155152,
+      "retainedFoldHeapDeltaBytes": 99496,
+      "inputBytes": 1572957,
+      "bodyReads": 0,
+      "passthrough": true,
+      "outputBytes": 0,
+      "processingHeapDeltaBytes": 87040,
+      "maxRSSKiB": 68144
+    }
+  ]
+}

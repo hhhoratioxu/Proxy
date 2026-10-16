@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-16T03:02:07.669Z",
+  "core": "0.4.6",
+  "environment": "v24.19.0 darwin arm64",
+  "scope": "Synthetic sequential fallback traversal, 200 unique tracks, Node old-space limit 32 MiB. Sampled heap is not a complete peak or proxy-process RAM measurement.",
+  "tracks": 200,
+  "totalHTTPCalls": 1600,
+  "maxInFlight": 1,
+  "maxCallsPerTrack": 8,
+  "maxResponseBytesPerTrack": 192434,
+  "cacheCharacters": 23068,
+  "cacheEntries": 128,
+  "baselineHeapBytes": 4554328,
+  "sampledMaxHeapBytes": 44340160,
+  "maxRSSKiB": 143920,
+  "elapsedMs": 409
+}

@@ -1,0 +1,55 @@
+{
+  "at": "2026-10-16T03:09:08.133Z",
+  "core": "0.4.6",
+  "scope": "Real unauthenticated lyric-source HTTP using public fixture metadata; no Spotify client or UI. No lyrics retained in evidence.",
+  "track": "76XUZSb13QUuj1HECY4Hvo",
+  "title": "那页夏天",
+  "artist": [
+    "王俊凱"
+  ],
+  "matched": true,
+  "provider": "qq",
+  "lineCount": 42,
+  "syncType": "LINE_SYNCED",
+  "elapsedMs": 1852,
+  "attempts": [
+    {
+      "provider": "lrclib",
+      "result": "no-match"
+    },
+    {
+      "provider": "qq",
+      "result": "matched"
+    }
+  ],
+  "calls": [
+    {
+      "host": "lrclib.net",
+      "path": "/api/get",
+      "status": 404,
+      "bytes": 84,
+      "elapsedMs": 719
+    },
+    {
+      "host": "lrclib.net",
+      "path": "/api/search",
+      "status": 200,
+      "bytes": 2,
+      "elapsedMs": 391
+    },
+    {
+      "host": "c.y.qq.com",
+      "path": "/soso/fcgi-bin/client_search_cp",
+      "status": 200,
+      "bytes": 9620,
+      "elapsedMs": 636
+    },
+    {
+      "host": "c.y.qq.com",
+      "path": "/lyric/fcgi-bin/fcg_query_lyric_new.fcg",
+      "status": 200,
+      "bytes": 1779,
+      "elapsedMs": 91
+    }
+  ]
+}

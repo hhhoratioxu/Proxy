@@ -1,0 +1,140 @@
+{
+  "at": "2026-10-16T03:02:09.130Z",
+  "scope": "Twelve initially uncached songs by the same artist, native metadata already intercepted. Every fake HTTP call waits 12 ms. Not actual mobile latency. Every source result and native output is checked.",
+  "results": [
+    {
+      "version": "0.4.5",
+      "results": [
+        {
+          "song": 1,
+          "httpCalls": 6,
+          "elapsedMs": 93
+        },
+        {
+          "song": 2,
+          "httpCalls": 6,
+          "elapsedMs": 86
+        },
+        {
+          "song": 3,
+          "httpCalls": 6,
+          "elapsedMs": 85
+        },
+        {
+          "song": 4,
+          "httpCalls": 6,
+          "elapsedMs": 84
+        },
+        {
+          "song": 5,
+          "httpCalls": 6,
+          "elapsedMs": 86
+        },
+        {
+          "song": 6,
+          "httpCalls": 6,
+          "elapsedMs": 85
+        },
+        {
+          "song": 7,
+          "httpCalls": 6,
+          "elapsedMs": 85
+        },
+        {
+          "song": 8,
+          "httpCalls": 6,
+          "elapsedMs": 91
+        },
+        {
+          "song": 9,
+          "httpCalls": 6,
+          "elapsedMs": 84
+        },
+        {
+          "song": 10,
+          "httpCalls": 6,
+          "elapsedMs": 85
+        },
+        {
+          "song": 11,
+          "httpCalls": 6,
+          "elapsedMs": 92
+        },
+        {
+          "song": 12,
+          "httpCalls": 6,
+          "elapsedMs": 88
+        }
+      ],
+      "totalHTTPCalls": 72,
+      "maxInFlight": 1
+    },
+    {
+      "version": "0.4.6",
+      "results": [
+        {
+          "song": 1,
+          "httpCalls": 6,
+          "elapsedMs": 92
+        },
+        {
+          "song": 2,
+          "httpCalls": 4,
+          "elapsedMs": 56
+        },
+        {
+          "song": 3,
+          "httpCalls": 4,
+          "elapsedMs": 56
+        },
+        {
+          "song": 4,
+          "httpCalls": 4,
+          "elapsedMs": 55
+        },
+        {
+          "song": 5,
+          "httpCalls": 4,
+          "elapsedMs": 57
+        },
+        {
+          "song": 6,
+          "httpCalls": 4,
+          "elapsedMs": 57
+        },
+        {
+          "song": 7,
+          "httpCalls": 4,
+          "elapsedMs": 60
+        },
+        {
+          "song": 8,
+          "httpCalls": 4,
+          "elapsedMs": 63
+        },
+        {
+          "song": 9,
+          "httpCalls": 4,
+          "elapsedMs": 59
+        },
+        {
+          "song": 10,
+          "httpCalls": 4,
+          "elapsedMs": 58
+        },
+        {
+          "song": 11,
+          "httpCalls": 4,
+          "elapsedMs": 57
+        },
+        {
+          "song": 12,
+          "httpCalls": 4,
+          "elapsedMs": 58
+        }
+      ],
+      "totalHTTPCalls": 50,
+      "maxInFlight": 1
+    }
+  ]
+}

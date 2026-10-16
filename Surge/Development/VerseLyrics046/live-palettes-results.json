@@ -1,0 +1,92 @@
+{
+  "checked_at": "2026-10-16T03:02:14.776Z",
+  "core": "0.4.6",
+  "scope": "Real unauthenticated Spotify palette HTTP; simulated Egern ctx and native callback hosts; self-written cached lyrics. This does not verify app import, iPhone UI or missing-lyric discovery.",
+  "results": [
+    {
+      "client": "Egern",
+      "pass": true,
+      "http_status": 200,
+      "elapsed_ms": 974,
+      "colors": {
+        "background": -11709348,
+        "text": -3748137,
+        "highlightText": -1
+      },
+      "format": "protobuf",
+      "public_requests": [
+        {
+          "url": "https://open.spotify.com/embed/track/76XUZSb13QUuj1HECY4Hvo"
+        }
+      ]
+    },
+    {
+      "client": "Surge",
+      "pass": true,
+      "http_status": 200,
+      "elapsed_ms": 300,
+      "colors": {
+        "background": -11709348,
+        "text": -3748137,
+        "highlightText": -1
+      },
+      "format": "protobuf",
+      "public_requests": [
+        {
+          "url": "https://open.spotify.com/embed/track/76XUZSb13QUuj1HECY4Hvo"
+        }
+      ]
+    },
+    {
+      "client": "Loon",
+      "pass": true,
+      "http_status": 200,
+      "elapsed_ms": 225,
+      "colors": {
+        "background": -11709348,
+        "text": -3748137,
+        "highlightText": -1
+      },
+      "format": "protobuf",
+      "public_requests": [
+        {
+          "url": "https://open.spotify.com/embed/track/76XUZSb13QUuj1HECY4Hvo"
+        }
+      ]
+    },
+    {
+      "client": "Shadowrocket",
+      "pass": true,
+      "http_status": 200,
+      "elapsed_ms": 387,
+      "colors": {
+        "background": -11709348,
+        "text": -3748137,
+        "highlightText": -1
+      },
+      "format": "protobuf",
+      "public_requests": [
+        {
+          "url": "https://open.spotify.com/embed/track/76XUZSb13QUuj1HECY4Hvo"
+        }
+      ]
+    },
+    {
+      "client": "QuantumultX",
+      "pass": true,
+      "http_status": 200,
+      "elapsed_ms": 258,
+      "colors": {
+        "background": -11709348,
+        "text": -3748137,
+        "highlightText": -1
+      },
+      "format": "protobuf",
+      "public_requests": [
+        {
+          "url": "https://open.spotify.com/embed/track/76XUZSb13QUuj1HECY4Hvo"
+        }
+      ]
+    }
+  ]
+}
