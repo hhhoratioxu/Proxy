@@ -1,6 +1,6 @@
 # Spotify 双语歌词 · VerseLyrics · Shadowrocket
 
-**0.4.9 补词与等待修复：** 普通网络超时回调结束后立即释放名额并继续下一个歌词源，不再把已结束的请求误判为仍在运行。两个名额用满时，只登记最新一个等待者，最多等待 2.6 秒；旧请求回调后停止追加工作，最新请求可在本次响应中继续补词。普通重叠响应和预取不会再仅因到达顺序互相取消；没有无限队列，也不在结束后后台联网。
+**0.4.9 补词与等待修复：** 普通网络超时回调结束后可继续下一个歌词源，整个处理任务结束时释放名额，不再遗留失效占位。两个名额用满时，只登记最新一个等待者，最多等待 2.6 秒；旧请求回调后停止追加工作，最新请求可在本次响应中继续补词。普通重叠响应和预取不会再仅因到达顺序互相取消；没有无限队列，也不在结束后后台联网。
 
 中文标题或歌手优先 QQ、网易、酷狗、酷我，再查 LRCLIB / lyrics.ovh；已有成功来源提示继续优先。已核对到候选曲目后，为下载歌词保留独立时间，且仍受总预算约束。QQ / 网易查询统一简繁搜索词；核对歌名、歌手、版本与时长的要求不放宽。只有完整查询全部来源且均未匹配才缓存“无词”；旧版失败缓存自动失效，成功缓存保留。
 
@@ -51,7 +51,7 @@
 
 ## 运行版本与接口
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/9031436e2e6ad7a70a69eaaa00ffffeb848eeb65/Shadowrocket/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/9031436e2e6ad7a70a69eaaa00ffffeb848eeb65/Surge/Development/VerseLyrics049)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/d485cd3194964a92017967f7d7bcdf2f6fe7df0e/Shadowrocket/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/d485cd3194964a92017967f7d7bcdf2f6fe7df0e/Surge/Development/VerseLyrics049)
 
 原始核心和适配逻辑为独立编写。Unicode Unihan 数据许可随运行脚本完整附带。[开发者网站](https://shadowlaunch.com/)；使用 Shadowrocket 的模块与脚本兼容接口，尚未在客户端完成导入或播放验证。
 
