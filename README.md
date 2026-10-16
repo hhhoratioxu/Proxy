@@ -21,9 +21,24 @@
 | QuanX / Quantumult X | [规则、脚本与任务](./QuantumultX/) · [使用说明](./QuantumultX/README.md) |
 
 
+## YouTube Clean · 去广告、双语字幕与底栏控制
+
+**1.0.0 独立重写版**。旧 YouTubeAdTranslate 与 Egern YouTubeEnhance 已移除。去广告和翻译共用一个插件，默认原文＋简体中文；发布「＋」与 Shorts 底栏分别可选隐藏，默认隐藏发布「＋」、保留 Shorts。更改设置后强制退出并重新打开 YouTube。
+
+| 客户端 | 合并插件安装入口 |
+| --- | --- |
+| Egern | [YouTubeClean.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/YouTubeClean.yaml) |
+| Surge | [YouTubeClean.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/script/YouTubeClean.sgmodule) |
+| Loon | [YouTubeClean.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.plugin) |
+| Shadowrocket | [YouTubeClean.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/script/YouTubeClean.sgmodule) |
+| Quantumult X | [YouTubeClean.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/YouTubeClean.conf) |
+| Clash / Mihomo | [能力限制与其他客户端入口](./Clash/Docs/YouTubeClean.md) |
+
+61 项本地检查通过；公开原生播放器数据保留 52 条原字幕并新增 1 条轨道。公开底栏数据未出现发布「＋」与 Shorts；字幕下载返回 HTTP 429。手机客户端导入、实际去广告、按钮隐藏与字幕显示仍待真机验收。[源码与验证说明](https://github.com/hhhoratioxu/Proxy/tree/749d68f4530323f924b3bd7a9cf1bc272d4bfeff/Surge/script/YouTubeClean)。
+
 ## Spotify 双语歌词 · VerseLyrics
 
-Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **0.4.2**，同步修正补充歌词的背景与文字配色。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
+Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **0.5.2**，新增复用歌词源同次响应中的中文译文，只采用精确对齐的简体中文行，其余继续翻译；可关闭该选项。LRC 改为逐行解析并按需排序，保留六源、原生高亮和原有内存预算。自动测试不代表手机 VPN 稳定性保证。Shadowrocket 完整官方脚本规范尚未取得，其兼容适配未标为官方验证。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
 
 | 客户端 | 安装入口 | 设置与限制 |
 | --- | --- | --- |
@@ -62,7 +77,9 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 | Shadowrocket | [Rules, scripts and modules](./Shadowrocket/) · [Guide](./Shadowrocket/README.md) |
 | QuanX / Quantumult X | [Rules, scripts and tasks](./QuantumultX/) · [Guide](./QuantumultX/README.md) |
 
-VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.4.2 with the fallback lyric color correction. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
+YouTube Clean 1.0.0 is an independently written combined plugin for ad removal, bilingual subtitles and separate bottom upload/Shorts controls. Upload is hidden by default; Shorts remains visible by default. The previous YouTube entries were removed. Sixty-one local checks and public native-response processing passed; public caption downloads returned HTTP 429. Native imports, actual ad removal, button visibility and subtitle display require device acceptance. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
+
+VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.5.2. Optional source translations reuse exactly aligned Simplified Chinese rows from the same fallback response, with translator fallback for other rows. Incremental LRC parsing reduces temporary arrays and avoids sorting already ordered rows. Six sources, native timing/highlighting and existing budgets remain. Device VPN stability is unverified. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
 Each plugin has one current installation entry. Clients automatically load any required runtime from a pinned version; no separate JavaScript download, build or test run is needed.
 
@@ -73,3 +90,4 @@ Tests, build tools, validation records and development archives have been remove
 > These configurations are for personal use. Adjust them for your client version and network environment. All icons and brand names belong to their respective owners.
 
 </details>
+

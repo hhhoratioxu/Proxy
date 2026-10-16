@@ -1,14 +1,21 @@
-# VerseLyrics 0.4.2 — silent production module; no notification or scheduled scripts.
+# VerseLyrics 0.5.2 — silent production module; no notification or scheduled scripts.
 name: Spotify 双语歌词 · VerseLyrics
 author: Horatio Xu
 icon: music.note.list
 homepage: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/SpotifyLyrics.yaml
 manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/SpotifyLyrics.md
-description: 尝试补充缺失歌词并跟随歌曲配色，区分普通文字与高亮文字；以插件译文替换官方译文。需 HTTPS 解密。
+description: 核心 0.5.2 · 适配 11。新增复用歌词源中文译文，精确对齐后减少翻译请求；LRC 逐行解析，减少临时数组与排序。保留六源补词、插件翻译及原生高亮，缓存和联网预算不变。需 HTTPS 解密。
 env_schema:
   TRANSLATION_ENABLED:
     name: 开启歌词翻译
     description: 默认开启；以插件译文替换 Spotify 官方译文，保留原词与原生歌词排版。
+    default_value: 'true'
+    options:
+    - 'true'
+    - 'false'
+  SOURCE_TRANSLATIONS:
+    name: 复用歌词源译文
+    description: 简体中文目标下采用同次补词响应中精确对齐的中文译文，其余行继续翻译；关闭则全部使用翻译服务。
     default_value: 'true'
     options:
     - 'true'
@@ -45,13 +52,16 @@ env_schema:
     - el
   FALLBACK_PROVIDER:
     name: 无词时的备用源
-    description: auto 依次 LRCLIB、QQ 音乐、网易云；off 不补源。始终优先 Spotify 原词，指定一家仅影响无词后的选择。
+    description: auto 按六源顺序查询，优先同歌手近期成功的同步源；off 不补源。始终优先 Spotify 原词，指定一家仅影响无词后的选择。
     default_value: auto
     options:
     - auto
     - lrclib
     - qq
     - netease
+    - kugou
+    - kuwo
+    - lyricsovh
     - 'off'
   DISCOVER_MISSING:
     name: 尝试显示原本无歌词的歌曲
@@ -66,28 +76,45 @@ mitm:
   - "*-spclient.spotify.com"
 scriptings:
 - http_request:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/86a6f4f3e28d4819ad3e820f2a8d3e3ac562fb91/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=0.4.2
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/a3a2314449c54404f14fd70050b5bc12abda3060/Egern/script/SpotifyLyrics/spotify-lyrics-request.js?v=0.5.2
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
       FALLBACK_PROVIDER: auto
       DISCOVER_MISSING: 'true'
+      SOURCE_TRANSLATIONS: 'true'
     update_interval: 3600
     name: VerseLyrics · 请求处理
     match: "^https://(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com(?::443)?/(?:color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\\s]+)?/?|metadata/4/track/[0-9a-f]{32}|extended-metadata/v0/extended-metadata/?|scrollsita/v1/scroll/spotify(?::|%3[aA])track(?::|%3[aA])[0-9A-Za-z]{22}/?|user-customization-service/v1/customize/?|bootstrap/v1/bootstrap/?|v1/customize/?|context-resolve/v1/spotify(?::|%3[aA])[^?#\\s/]{1,512}/?|connect-state/v1/devices/[0-9A-Za-z_-]{16,128}/?)(?:\\?.*)?$"
     body_required: false
     timeout: 3
 - http_response:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/86a6f4f3e28d4819ad3e820f2a8d3e3ac562fb91/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=0.4.2
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/a3a2314449c54404f14fd70050b5bc12abda3060/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=0.5.2
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
       FALLBACK_PROVIDER: auto
       DISCOVER_MISSING: 'true'
+      SOURCE_TRANSLATIONS: 'true'
     update_interval: 3600
-    name: VerseLyrics · 原生歌词与翻译
-    match: "^https://(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com(?::443)?/(?:color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\\s]+)?/?|metadata/4/track/[0-9a-f]{32}|extended-metadata/v0/extended-metadata/?|scrollsita/v1/scroll/spotify(?::|%3[aA])track(?::|%3[aA])[0-9A-Za-z]{22}/?|user-customization-service/v1/customize/?|bootstrap/v1/bootstrap/?|v1/customize/?|context-resolve/v1/spotify(?::|%3[aA])[^?#\\s/]{1,512}/?|connect-state/v1/devices/[0-9A-Za-z_-]{16,128}/?)(?:\\?.*)?$"
+    name: VerseLyrics · 歌词
+    match: "^https://(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com(?::443)?/color-lyrics/v2/track/[0-9A-Za-z]{22}(?:/image/[^?#\\s]+)?/?(?:\\?.*)?$"
     body_required: true
     binary_body: true
-    max_size: 2097152
-    timeout: 25
+    max_size: 262144
+    timeout: 12
+- http_response:
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/a3a2314449c54404f14fd70050b5bc12abda3060/Egern/script/SpotifyLyrics/spotify-lyrics-entry.js?v=0.5.2
+    env:
+      TRANSLATION_ENABLED: 'true'
+      TARGET_LANGUAGE: zh-CN
+      FALLBACK_PROVIDER: auto
+      DISCOVER_MISSING: 'true'
+      SOURCE_TRANSLATIONS: 'true'
+    update_interval: 3600
+    name: VerseLyrics · 入口
+    match: "^https://(?:spclient\\.wg|[a-z0-9-]+-spclient)\\.spotify\\.com(?::443)?/(?:metadata/4/track/[0-9a-f]{32}|extended-metadata/v0/extended-metadata/?|scrollsita/v1/scroll/spotify(?::|%3[aA])track(?::|%3[aA])[0-9A-Za-z]{22}/?|user-customization-service/v1/customize/?|bootstrap/v1/bootstrap/?|v1/customize/?|context-resolve/v1/spotify(?::|%3[aA])[^?#\\s/]+/?|connect-state/v1/devices/[0-9A-Za-z_-]{16}[0-9A-Za-z_-]*/?)(?:\\?.*)?$"
+    body_required: true
+    binary_body: true
+    max_size: 131072
+    timeout: 3
