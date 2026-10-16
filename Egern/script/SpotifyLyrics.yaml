@@ -1,11 +1,25 @@
-# VerseLyrics 0.6.1 — silent production module; no notification or scheduled scripts.
+# VerseLyrics 0.7.0 — silent production module; no notification or scheduled scripts.
 name: Spotify 双语歌词 · VerseLyrics
 author: Horatio Xu
 icon: music.note.list
 homepage: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/SpotifyLyrics.yaml
 manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/SpotifyLyrics.md
-description: 核心 0.6.1 · 适配 12。切换歌词源时复用同曲已验证缓存；新增可选优先歌词源，其他来源仍可兜底。 保留补词、翻译与原生高亮。需 HTTPS 解密。
+description: 核心 0.7.0 · 适配 12。新增可选紧凑缓存与专辑取色开关；紧凑模式将缓存上限减半，关闭取色可省去额外页面下载。 保留补词、翻译与原生高亮。需 HTTPS 解密。
 env_schema:
+  FETCH_ARTWORK_COLOR:
+    name: 联网获取专辑配色
+    description: 关闭可省去额外取色请求；已有配色仍可复用，否则使用中性灰，补词和翻译保留。
+    default_value: "true"
+    options:
+    - "true"
+    - "false"
+  MEMORY_MODE:
+    name: 缓存容量
+    description: standard 为 128 条和 64000 字符；compact 为 64 条和 32000 字符，旧歌更早淘汰，较长记录可能不缓存。
+    default_value: "standard"
+    options:
+    - "standard"
+    - "compact"
   PREFERRED_SOURCE:
     name: 优先歌词源
     description: 仅 auto 补词模式生效；优先尝试所选来源，其他来源继续兜底，已有成功缓存优先。
@@ -88,13 +102,15 @@ mitm:
   - "*-spclient.spotify.com"
 scriptings:
 - http_request:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/49ae0d505c4b9dd32caa8a7d270d6a608f0b7439/Egern/script/SpotifyLyrics/spotify-lyrics-request.js?v=0.6.1
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/78f4484922e925ee704b65dcf18aeb0f7c94a23d/Egern/script/SpotifyLyrics/spotify-lyrics-request.js?v=0.7.0
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
       FALLBACK_PROVIDER: auto
       DISCOVER_MISSING: 'true'
       SOURCE_TRANSLATIONS: 'true'
+      FETCH_ARTWORK_COLOR: "true"
+      MEMORY_MODE: "standard"
       PREFERRED_SOURCE: "auto"
     update_interval: 3600
     name: VerseLyrics · 请求处理
@@ -102,13 +118,15 @@ scriptings:
     body_required: false
     timeout: 3
 - http_response:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/49ae0d505c4b9dd32caa8a7d270d6a608f0b7439/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=0.6.1
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/78f4484922e925ee704b65dcf18aeb0f7c94a23d/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=0.7.0
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
       FALLBACK_PROVIDER: auto
       DISCOVER_MISSING: 'true'
       SOURCE_TRANSLATIONS: 'true'
+      FETCH_ARTWORK_COLOR: "true"
+      MEMORY_MODE: "standard"
       PREFERRED_SOURCE: "auto"
     update_interval: 3600
     name: VerseLyrics · 歌词
@@ -118,13 +136,15 @@ scriptings:
     max_size: 262144
     timeout: 12
 - http_response:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/49ae0d505c4b9dd32caa8a7d270d6a608f0b7439/Egern/script/SpotifyLyrics/spotify-lyrics-entry.js?v=0.6.1
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/78f4484922e925ee704b65dcf18aeb0f7c94a23d/Egern/script/SpotifyLyrics/spotify-lyrics-entry.js?v=0.7.0
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
       FALLBACK_PROVIDER: auto
       DISCOVER_MISSING: 'true'
       SOURCE_TRANSLATIONS: 'true'
+      FETCH_ARTWORK_COLOR: "true"
+      MEMORY_MODE: "standard"
       PREFERRED_SOURCE: "auto"
     update_interval: 3600
     name: VerseLyrics · 入口
