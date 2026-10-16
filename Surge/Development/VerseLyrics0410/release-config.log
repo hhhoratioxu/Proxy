@@ -1,0 +1,15 @@
+✔ Surge: three native hooks with complete URL coverage and correct binary configuration (6.716875ms)
+✔ Shadowrocket: three native hooks with complete URL coverage and correct binary configuration (3.391333ms)
+✔ QuantumultX: three native hooks with complete URL coverage and correct binary configuration (3.604792ms)
+✔ Loon header-stage size guards cover all lengths around both body limits (32.076458ms)
+✔ Loon uses native header rewrites and exactly two disjoint response scripts (19.263792ms)
+✔ Loon native header rules preserve request-hook behavior across paths, options, MIME types and format queries (133.303917ms)
+✔ Loon internal metadata fetches, unrelated hosts and known oversized bodies never select a response script (0.434333ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 205.311583

@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-16T05:02:02.392Z",
+  "environment": "v24.19.0 darwin arm64",
+  "scope": "32 independently retained cache objects over the same 12-song store, separate Node processes with 32 MiB old-space. This isolates cache object retention, not allowed native concurrency or phone/VPN memory. All bytes are synthetic original fixtures.",
+  "results": [
+    {
+      "version": "0.4.9",
+      "instances": 32,
+      "persistentCacheCharacters": 33631,
+      "meanLiveEntries": 4,
+      "meanLiveEntryCharacters": 2796.6875,
+      "allocatedHeapDeltaBytes": 2118120,
+      "retainedHeapDeltaBytes": 426504,
+      "loadMs": 3.53
+    },
+    {
+      "version": "0.4.10",
+      "instances": 32,
+      "persistentCacheCharacters": 33631,
+      "meanLiveEntries": 4,
+      "meanLiveEntryCharacters": 2796.6875,
+      "allocatedHeapDeltaBytes": 2118336,
+      "retainedHeapDeltaBytes": 426792,
+      "loadMs": 3.5
+    }
+  ]
+}
