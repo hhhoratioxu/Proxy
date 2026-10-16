@@ -1,0 +1,55 @@
+{
+  "at": "2026-10-16T05:25:43.294Z",
+  "environment": "v24.19.0 darwin arm64",
+  "scope": "Loon cold lyric processing: 20 fresh VM/empty lyric-cache sessions for official lyrics and 20 for fallback lyrics, 24 lines each. Metadata and palette are seeded as if obtained by the playback entry. Unique script text avoids V8 compilation-cache reuse. Includes compilation and mock network callbacks; zero real network latency. GC between sessions. Not iPhone startup time or VPN-process memory.",
+  "results": [
+    {
+      "version": "0.4.10",
+      "scriptBytes": 129178,
+      "sampledMaxHeapBytes": 19355688,
+      "outputSHA256": "ce9b840da205b96cdbd692ad13898019882a3f0ced664fc63d792d27ed4ae7ab",
+      "stats": [
+        {
+          "fallback": false,
+          "sessions": 20,
+          "httpCalls": 20,
+          "historyWrites": 40,
+          "medianCompileMs": 1.508,
+          "medianProcessingMs": 4.771
+        },
+        {
+          "fallback": true,
+          "sessions": 20,
+          "httpCalls": 40,
+          "historyWrites": 40,
+          "medianCompileMs": 1.486,
+          "medianProcessingMs": 5.527
+        }
+      ]
+    },
+    {
+      "version": "0.4.11",
+      "scriptBytes": 90814,
+      "sampledMaxHeapBytes": 16110968,
+      "outputSHA256": "ce9b840da205b96cdbd692ad13898019882a3f0ced664fc63d792d27ed4ae7ab",
+      "stats": [
+        {
+          "fallback": false,
+          "sessions": 20,
+          "httpCalls": 20,
+          "historyWrites": 0,
+          "medianCompileMs": 1.137,
+          "medianProcessingMs": 3.946
+        },
+        {
+          "fallback": true,
+          "sessions": 20,
+          "httpCalls": 40,
+          "historyWrites": 0,
+          "medianCompileMs": 1.233,
+          "medianProcessingMs": 5.016
+        }
+      ]
+    }
+  ]
+}
