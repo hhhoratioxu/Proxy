@@ -1,18 +1,7 @@
 # YouTube Clean 与 Clash / Mihomo
 
-Clash/Mihomo 标准核心没有这套功能所需的 HTTPS 响应体 JavaScript 改写能力，无法通过普通域名分流实现 YouTube 去广告、双语字幕或隐藏底部发布「＋」与 Shorts。本目录仅提供能力说明，不提供功能等价的配置。
+Clash/Mihomo 标准核心没有本插件所需的 HTTPS 响应体 JavaScript 改写能力，普通域名分流不能等价实现原生 YouTube 去广告、双语字幕或底部按钮隐藏。本目录提供能力说明，不提供功能等价的插件。
 
-可选择仓库中支持响应脚本的客户端，每个客户端只安装一个新插件：
+1.2.0 为五种支持脚本的客户端更新当前入口，Loon 另提供 A/B/C 三个测试方案，详见 [所有客户端安装入口](../../README.md) 和 [Loon 三版差异](../../Loon/Docs/YouTubeClean.md)。用户已确认 1.0.1 主页仍有广告，1.2.0 尚待手机实际验证。
 
-| 客户端 | 合并插件安装入口 |
-| --- | --- |
-| Egern | [YouTubeClean.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/YouTubeClean.yaml) |
-| Surge | [YouTubeClean.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/script/YouTubeClean.sgmodule) |
-| Loon | [YouTubeClean.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.plugin) |
-| Shadowrocket | [YouTubeClean.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/script/YouTubeClean.sgmodule) |
-| Quantumult X | [YouTubeClean.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/YouTubeClean.conf) |
-| Clash / Mihomo | [能力限制与其他客户端入口](https://github.com/hhhoratioxu/Proxy/blob/main/Clash/Docs/YouTubeClean.md) |
-
-新插件为 1.0.1 主页广告修复版；旧 YouTubeAdTranslate 与 Egern YouTubeEnhance 已移除。发布「＋」与 Shorts 分别设置，使用说明与未完成的真机验证项目见各客户端 Docs。
-
-[Mihomo 官方项目相关能力讨论](https://github.com/MetaCubeX/mihomo/issues/2237) · [源码与验证范围](https://github.com/hhhoratioxu/Proxy/tree/f9ed760ea6ba25b17511bc6dff64a3b761a4c3d6/Surge/script/YouTubeClean) · [返回目录](../README.md)
+[Mihomo 相关能力讨论](https://github.com/MetaCubeX/mihomo/issues/2237) · [返回目录](../README.md)

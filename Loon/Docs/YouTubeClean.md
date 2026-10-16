@@ -1,57 +1,53 @@
-# YouTube Clean · Loon
+# YouTube Clean 1.2.0 · Loon
 
-**1.0.1 主页广告修复版**：一个插件包含去广告、双语字幕，以及底部发布「＋」和 Shorts 的独立隐藏开关。
+**1.2.0 测试版**：去广告、双语字幕与发布「＋」/Shorts 独立隐藏开关。用户确认 1.0.1 仍有 Loon 主页广告，本版针对原生元素广告继续处理，未宣称已在手机上彻底清除。
 
-[安装 YouTubeClean.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.plugin)
-
-## 1.0.1 更新
-
-修复 1.0.0 遗漏的主页标签页、推荐卡片列表及继续下拉加载路径，删除已识别的广告专用分组并保留相邻普通卡片和分页信息。开启去广告时让主页请求重新验证 HTTP 缓存；修复 Loon 缺少清除计时器接口时的字幕下载完成处理。
-
-请在客户端更新远程插件，确认描述显示 **1.0.1**。保留已选设置，强制退出并重新打开 YouTube，再下拉刷新主页；无需叠加第二个去广告插件。用户已确认 Loon 1.0.0 的发布「＋」隐藏生效，但主页广告仍在，本版针对解析遗漏修复，真实广告是否消失仍待更新后的用户确认。
-
-新增 11 项回归检查，合计 72 项通过。对真实初始主页（763,872 字节）和继续加载（763,991 字节）各加入 1 个自写广告分组，处理后其余响应逐字节保留。这是协议与混合样本验证，不能作为真实广告已在手机消失的证明。
-
-## 安装与设置
-
-需要 Loon 3.5.1（983）或更新版本。在插件管理中添加上方链接，再进入插件设置，分别切换「隐藏底部发布＋」与「隐藏底部 Shorts」。
-
-先删除或停用旧的 YouTubeAdTranslate、YouTubeEnhance，以及其他处理相同流量的 YouTube 插件。新入口不会自动删除手机上已经安装的旧模块。只保留这一套，确认客户端已开启 HTTPS 解密，并已安装和信任你自己的解密证书；运行脚本由客户端自动下载，无需单独安装 JS。
-
-| 设置 | 默认 | 含义 |
+| 版本 | 链接 | 差异 |
 | --- | --- | --- |
-| `HIDE_UPLOAD` | `true` | 隐藏底部发布「＋」按钮 |
-| `HIDE_SHORTS` | `false` | 隐藏底部 Shorts 按钮 |
-| `REMOVE_ADS` | `true` | 清理已识别的播放器及信息流广告 |
-| `TRANSLATE_CAPTIONS` | `true` | 为已有字幕添加翻译轨道 |
-| `TARGET_LANGUAGE` | `zh-Hans` | 简体中文；可选 `zh-Hant`、`en`、`ja`、`ko` 等 |
-| `BILINGUAL` | `true` | 原文在上，译文在下 |
-| `AUTO_CAPTIONS` | `true` | 优先选择新增字幕轨道；仍受 App 行为影响 |
+| A 元素版 | [YouTubeClean.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.plugin) | 传统广告字段及原生元素广告模板 |
+| B 深层版 | [YouTubeClean.Deep.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.Deep.plugin) | 额外检查单张卡片内的新封装、广告徽标和推广/试用模板 |
+| C 连接兼容版 | [YouTubeClean.TCP.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.TCP.plugin) | B 的过滤策略，加四个 YouTube API 主机 UDP/443 拒绝规则，测试 TCP 回退 |
 
-两个底栏开关相互独立。想同时隐藏发布「＋」与 Shorts，设置 `HIDE_UPLOAD=true` 和 `HIDE_SHORTS=true`；全部保留则都设为 `false`。关闭广告和翻译后，底栏设置仍然生效。这两个设置只控制底栏按钮，保留普通 Shorts 视频内容。
+## 安装和使用
 
-保存后强制退出 YouTube，再重新打开。客户端可能缓存导航或字幕列表；如果立即切换仍未变化，请先确认新模块已重新加载、旧模块已停用，以及 `guide` 接口确实被 HTTPS 解密。
+需要 Loon 3.5.1（983）或更新版本。在插件管理中选择下面一个方案导入，并在插件设置中调整开关。
 
-## 字幕与广告
+停用旧版本和其他处理相同请求的 YouTube 插件，只启用当前选中的一个方案。确认你自己的 HTTPS 解密证书已安装并信任，客户端已开启解密。保存后强制退出 YouTube，再重新打开并下拉刷新主页。
 
-默认在字幕菜单中新增「双语字幕 · 简体中文」轨道，保留原有轨道。原文在上、中文在下。视频必须已有原字幕或 YouTube 自动字幕，且对应字幕可翻译；本插件不能为无字幕视频生成语音识别。
+| 设置 | 默认 | 用途 |
+| --- | --- | --- |
+| `REMOVE_ADS` | `true` | 广告处理 |
+| `TRANSLATE_CAPTIONS` | `true` | 已有字幕翻译 |
+| `TARGET_LANGUAGE` | `zh-Hans` | 简体中文，可选繁体等 |
+| `BILINGUAL` | `true` | 原文在上、译文在下 |
+| `AUTO_CAPTIONS` | `true` | 优先新增字幕轨道 |
+| `HIDE_UPLOAD` | `true` | 隐藏底部发布「＋」 |
+| `HIDE_SHORTS` | `false` | 隐藏底部 Shorts，普通 Shorts 视频保留 |
+| `DEEP_FILTER` | A 为 `false`，B/C 为 `true` | 深查广告封装和徽标，也会隐藏推广/试用卡片 |
+| `DIAGNOSTICS` | `true` | 输出结构诊断日志，可关闭 |
 
-清理已知播放器广告、广告断点参数和信息流广告卡片；处理支持的加密播放元数据。广告策略和字幕/底栏处理器由本实现编写，不加载旧 YouTube 插件。通用加密与压缩库及 MIT 协议字段声明有明确许可，见[源码、构建与许可](https://github.com/hhhoratioxu/Proxy/tree/f9ed760ea6ba25b17511bc6dff64a3b761a4c3d6/Surge/script/YouTubeClean)。
+Loon 的三版分别针对元素识别、深层卡片识别和连接兼容性。当前主页仍有广告时先试 B。**A/B/C 每次只启用一个**，否则第一条命中的脚本可能使其他方案无法执行。三版保留双语字幕和底栏开关。
 
-## 工作范围与失败处理
+C 版仅拒绝 `youtubei.googleapis.com`、`youtubei-att.googleapis.com`、`www.youtube.com`、`m.youtube.com` 的 UDP/443，用于测试回退到可解密的 TCP；不拦截其他域名或 `googlevideo.com` 媒体主机的 UDP。客户端是否回退及已有本地规则的优先级需要实际检查，可能有加载延迟。其他客户端没有额外发布 C 版路由规则，可在当前入口设置 `DEEP_FILTER=true` 使用深层过滤。
 
-只运行于已列出的 YouTube API、`initplayback` 与字幕 URL。解密主机为 `youtubei.googleapis.com`、`youtubei-att.googleapis.com`、`www.youtube.com`、`m.youtube.com`、`*.googlevideo.com`。普通 `videoplayback` 不运行响应脚本，模块不添加路由规则或替换代理策略。
+## 仍显示广告时
 
-二进制未知字段保留原始字节，错误数据、认证失败、缺少密钥、不支持的压缩或翻译下载失败保留原响应。播放密钥仅保存在当前代理客户端本地，不输出到日志。双语合成最多向同一 YouTube 原字幕地址额外请求一次，4 秒限时，不转发账号 Cookie 或 Authorization，无需付费翻译密钥。二进制上限 8 MiB，字幕上限 1 MiB。
+确认名称显示 **1.2.0** 和所选方案，并确认「去广告」开启。在 Loon 中看该插件的脚本日志，复制以 `[YouTubeClean]` 开头的主页诊断行即可继续定位。日志只包含版本、方案、开关、数据格式/大小、删除部件数、有限的模板标识与未知渲染器字段号，以及是否回退；不输出账号、视频标题、Cookie、Authorization、完整 URL、访客标识、字幕签名或播放密钥。
 
-服务端广告实验、不同 App 版本、缓存和 HTTP/3 可能影响命中，不能保证清除所有广告或所有布局的按钮。创作者口播推广不在清理范围内。
+若完全没有主页日志，说明尚不能确认主页请求命中，可用 C 版测试连接兼容性；有日志但删除数为零时，模板标识与字段号有助于继续识别漏掉的卡片。诊断可在设置中关闭，无通知弹窗、定时任务或外部上报。
 
-## 验证状态
+## 处理范围
 
-2026-10-17：**72 项本地检查通过**，包括五种客户端接口模拟、开关组合、原始字段保留、独立加密校验、gzip、失败回退与字幕时间轴合成。真实公开 iOS 原生 player 响应由 71,245 字节改为 71,634 字节，52 条原字幕轨道逐字节保留，新增 1 条翻译轨道；除字幕和已知广告字段外的顶层数据逐字节保留。
+广告元素按已确认的 protobuf 结构读取静态模板名称；深层模式只检查单张推荐卡片，不扫描整个账号数据或全局模板资源。模板命名识别是启发式策略，仍可能漏掉不同的服务端广告实验。B/C 也会隐藏推广和试用卡片。创作者口播推广不在自动处理范围内。
 
-匿名 guide 响应证实了在线/离线底栏结构，但该样本未出现发布「＋」与 Shorts；删除这两个按钮仅用结构一致的自写样本验证。真实 player 样本仅含广告心跳字段，没有投放中的广告视频。公开字幕下载返回 HTTP 429。
+翻译依赖视频已有字幕及 YouTube 翻译，原文在上、译文在下，原轨道保留。没有字幕时不能生成语音识别字幕。原字幕请求最多一次、限时 4 秒，不转发账号凭证、不跟随重定向，无需购买翻译 API。
 
-**用户已确认 Loon 1.0.0 插件隐藏了发布「＋」。1.0.1 的实际主页去广告、Shorts 隐藏、字幕显示、拖动和连续播放仍待真机验收。** 请以你当前客户端的实际流量和界面为准；出现播放异常时可停用模块并检查旧模块冲突及 HTTPS 解密状态。
+二进制处理上限 8 MiB，字幕 1 MiB。未知或错误数据、认证失败、缺少密钥及不支持的压缩保持原响应；普通 videoplayback 不运行响应脚本。播放密钥只存于当前代理客户端本地。
 
-[返回客户端说明](../README.md) · [所有客户端入口](../../README.md)
+## 验证与源码
+
+2026-10-17：**92 项本地检查通过**，包括五种客户端接口、Loon 三份实际生成配置与默认参数、原生元素广告、深层封装/徽标、推广过滤、相邻普通卡片保留、C 版规则范围及日志隐私。真实公开初始主页和继续加载响应加入自写广告后，处理可逐字节保留其余数据；原始匿名样本没有投放中的主页广告。
+
+**本地及混合数据验证不代表真实广告已经从用户手机消失。** 用户已确认旧版可隐藏发布「＋」，也确认 1.0.1 仍有主页广告。1.2.0 的实际广告去除、C 版网络回退、字幕显示、Shorts 隐藏和连续播放仍待真机确认。公开字幕下载此前返回 HTTP 429。
+
+[源码、测试与许可](https://github.com/hhhoratioxu/Proxy/tree/4823b8a027838625386e481c08c10a5f1891f34b/Surge/script/YouTubeClean) · [客户端说明](../README.md) · [所有客户端入口](../../README.md)
