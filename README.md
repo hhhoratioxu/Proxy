@@ -23,7 +23,7 @@
 
 ## YouTube Clean · 去广告、双语字幕与底栏控制
 
-**1.2.0 测试版**。保留双语字幕和发布「＋」/Shorts 独立开关，增加原生元素广告识别、深层卡片/广告徽标过滤和结构诊断。Loon 提供 A 元素版、B 深层版、C 连接兼容版；每次只启用一个，当前仍有主页广告时先试 B。
+**1.2.1 修复版**。修复原始 gzip 与明文 Onesie 播放元数据处理，补齐各接口明确诊断，并改善启动阶段热配置刷新。保留双语字幕和发布「＋」/Shorts 独立开关。Loon 提供 A 元素版、B 深层版、C 连接兼容版，每次只启用一个。
 
 | 客户端 | 安装入口 |
 | --- | --- |
@@ -35,7 +35,7 @@
 | Clash / Mihomo | [能力说明](./Clash/Docs/YouTubeClean.md) |
 
 
-92 项本地检查通过。用户确认 1.0.1 仍有主页广告；1.2.0 的实际去广告效果尚待用户更新后确认，不能承诺全部广告清除。[源码与验证范围](https://github.com/hhhoratioxu/Proxy/tree/4823b8a027838625386e481c08c10a5f1891f34b/Surge/script/YouTubeClean)。
+112 项本地检查通过。用户反馈 1.2.0 B 仍有广告；1.2.1 修复已复现的处理缺口，但实际残留原因需根据新诊断确认，手机效果尚待验证。[源码与验证范围](https://github.com/hhhoratioxu/Proxy/tree/7ff5135483b285a5b2a3156142a09d67ab0d8b5e/Surge/script/YouTubeClean)。
 
 ## Spotify 双语歌词 · VerseLyrics
 
@@ -78,7 +78,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 | Shadowrocket | [Rules, scripts and modules](./Shadowrocket/) · [Guide](./Shadowrocket/README.md) |
 | QuanX / Quantumult X | [Rules, scripts and tasks](./QuantumultX/) · [Guide](./QuantumultX/README.md) |
 
-YouTube Clean 1.2.0 adds native element-template filtering, bounded deep-card inspection, advertising badges and structural diagnostics. Loon has separate A elements, B deep and C connection-compatibility entries; enable one at a time. Other capable clients keep one current entry with an optional deep mode. Ninety-two local checks passed; the user still saw home ads on 1.0.1, and actual 1.2.0 ad removal requires device acceptance. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
+YouTube Clean 1.2.1 fixes raw HTTP gzip, clear Onesie player metadata, startup hot-config refresh and explicit diagnostics for every supported endpoint. Loon keeps separate A elements, B deep and C connection-compatibility entries; enable one at a time. The user still saw ads on 1.2.0 B and supplied a completed initplayback record without a response body. All 112 local checks passed; the actual remaining ad cause and on-device result require new diagnostics. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
 
 VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.7.0. Optional compact cache halves record/text budgets; artwork fetch can be disabled to avoid extra color-page downloads while retaining fallback and translation. Defaults preserve existing behavior. Six sources, plugin translations and native highlighting remain. Measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
