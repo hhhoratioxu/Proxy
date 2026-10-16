@@ -1,10 +1,10 @@
 # Spotify 双语歌词 · VerseLyrics · Shadowrocket
 
-当前发布 **0.5.4**（原生适配 12）。歌曲元数据改为扫描所需字段，缓存与补词查询不再展开音频文件等无关字段。只有真正改写有词标记时才构建字段列表；批量响应保留这种按需行为。保持原有缓存容量、网络并发和查询预算。
+当前发布 **0.6.0**（原生适配 12）。翻译只准备当前要发送的一批，网络忙碌时不再提前编码后续请求；移除全量分组和译文中间数组。保留重复句合并、64 行批次上限、失败后一次降为 32 行、原有超时及响应大小限制。
 
 保留六源补词、插件翻译、原生时间轴与高亮。缓存和网络都有明确上限；未收录的歌曲仍不能凭空补全。本地自动测试与 macOS JavaScriptCore 测量不等于 iPhone Loon 实机 VPN 验收，不能保证所有设备都不会被系统终止。
 
-核心 **0.5.4**，客户端适配 **12**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
+核心 **0.6.0**，客户端适配 **12**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -46,10 +46,10 @@
 
 ## 运行版本与接口
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/c5e05357633ea4d78bbd023f080388ea1d901b25/Shadowrocket/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/c5e05357633ea4d78bbd023f080388ea1d901b25/Surge/Development/VerseLyrics054)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/d67194ad204b6545997d2d07a5785323ff7e3e10/Shadowrocket/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/d67194ad204b6545997d2d07a5785323ff7e3e10/Surge/Development/VerseLyrics060)
 
 原始核心和适配逻辑为独立编写。Unicode Unihan 数据许可随运行脚本完整附带。[开发者网站](https://shadowlaunch.com/)；使用 Shadowrocket 的模块与脚本兼容接口，尚未在客户端完成导入或播放验证。
 
 [其他客户端](../../README.md) · [返回 Shadowrocket](../README.md)
 
-2026-10-17：964 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
+2026-10-17：966 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
