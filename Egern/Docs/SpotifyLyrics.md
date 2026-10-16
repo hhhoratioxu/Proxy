@@ -1,12 +1,16 @@
 # Spotify 双语歌词 · VerseLyrics
 
-当前发布 **0.5.1**（原生适配 10）：优先处理慢请求叠加切歌时的内存压力。补词、取色和翻译共用一个联网名额，取消原先最长 2.6 秒的等待及 50 毫秒轮询；未获名额的请求立即结束。不同歌曲发生拥堵时，旧任务收到已发出请求的回调后停止追加查询，已经取得的歌词与译文可以保留。
+当前发布 **0.5.2**（原生适配 11）：新增「复用歌词源译文」。补词响应同时附带中文译文时，仅采用与原词毫秒时间戳完全相同、没有冲突的简体中文行；其余行继续使用插件翻译服务。复用同一次响应不增加歌词源查询。译文全部覆盖时可以省去翻译 HTTP；已有翻译缓存优先。可关闭 `SOURCE_TRANSLATIONS`，关闭后也不会读取歌词源译文缓存。Spotify 官方译文仍按原设置替换。
 
-缓存命中仍直接返回；正常请求保留六源补词、插件翻译、繁简转换、原生时间轴与高亮。**拥堵时没有缓存的请求可能暂时只有原词或仍然无词，需要客户端后续请求重试；不生成失败缓存，不承诺自动重新请求。** 本次没有关闭补词或翻译，也没有增加重试、预取或缓存容量。
+目前接入网易云 `tlyric.lyric` 和 QQ `trans` 可选字段，仅对 `zh-CN` 生效。实际网易云响应验证有中文译文；本次三个 QQ 公开样本的 `trans` 为空，QQ 非空分支经过模拟测试，不能视为实际覆盖率证明。时间偏移、重复句译文冲突、繁体或混合语言不会靠行号猜配。原词、原生时间轴和高亮色不改动。
 
-本地存储没有原子锁，因此单名额属于脚本层协同限制，不能保证多线程竞争下的全局硬上限。缓存仍为 128 条 / 64,000 JSON UTF-16 字符；这些值不代表 VPN 总内存。已发出的原生 HTTP 请求会等待回调，再完成脚本。自动测试与 Node 重叠请求对照不能证明 iPhone 不再断开 VPN。
+LRC 改为逐行扫描，常见单时间标签不再创建标签数组，已有顺序时不排序，同时间行原地合并。保留原来的字符、行数和响应大小限制。六源补词、译文缓存与连续切歌逻辑继续保留；缓存仍为 128 条 / 64,000 JSON UTF-16 字符，没有增加预取、轮询或联网并发。
 
-当前模块：0.5.1，适用于支持原生 `ctx` 脚本 API 的 Egern。
+继承 0.5.1 的单名额协同限制：拥堵且无缓存时可能暂缺补词或译文，等待客户端后续请求，不保证自动重试。原生存储没有原子锁，原生网络缓冲也不属于脚本预算。自动测试和 Node 测量不能证明 iPhone 不会内存退出；来源未收录的歌曲仍无法凭空补全。
+
+对照测量中，24～600 行 LRC 的解析后临时堆增量下降约 55%～58%；完整源译文的 48 / 120 行样本少用 1 / 2 次翻译请求。**首次加载的总堆占用没有在所有场景下降**：部分覆盖的源译文样本仍高约 3%～5%，常规首次加载也有波动。解析阶段的下降不能当作 VPN 总内存下降，本版不作为内存断线已修复的证明。完整方法、未改善样本与原始记录见源码目录。
+
+当前模块：0.5.2，适用于支持原生 `ctx` 脚本 API 的 Egern。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -32,6 +36,7 @@
 | `TARGET_LANGUAGE` | `zh-CN` | 简体中文，可在模块设置中改为其他语言。 |
 | `FALLBACK_PROVIDER` | `auto` | 官方无词时依次核对六源；也可选 `lrclib` / `qq` / `netease` / `kugou` / `kuwo` / `lyricsovh` / `off`。 |
 | `DISCOVER_MISSING` | `true` | 处理已适配的歌词检查、元数据和原生歌词入口。 |
+| `SOURCE_TRANSLATIONS` | `true` | 简体中文目标下，复用补词响应中严格对齐的中文译文；关闭后忽略此类缓存并使用翻译服务。 |
 
 Spotify 已有的原词和时间轴继续保留。备用源优先核对同专辑结果；跨专辑的列表搜索要求唯一同曲匹配，LRCLIB 签名结果需通过身份、时长与版本校验，未收录的歌曲无法生成歌词。译文由插件处理，翻译服务不可用时保留原词。
 
@@ -49,10 +54,10 @@ Spotify 已有的原词和时间轴继续保留。备用源优先核对同专辑
 
 ## 来源与许可
 
-插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/37f5b58fcd2a95489dec1409b0b19d1baf7e71b4/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
+插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/a3a2314449c54404f14fd70050b5bc12abda3060/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/37f5b58fcd2a95489dec1409b0b19d1baf7e71b4/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/37f5b58fcd2a95489dec1409b0b19d1baf7e71b4/Surge/Development/VerseLyrics051) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/a3a2314449c54404f14fd70050b5bc12abda3060/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/a3a2314449c54404f14fd70050b5bc12abda3060/Surge/Development/VerseLyrics052) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
 
 [其他客户端](../../README.md) · [返回 Egern](../README.md)
 
-2026-10-16：870 项自动测试通过；包括五客户端慢回调下的 80 请求重叠测试、繁简与翻译、六源、缓存及原生 JSON / Protobuf。另有 Loon 新旧版重叠请求对照、首次加载与顺序切歌模拟。记录见固定源码目录；未进行手机实机验收。
+2026-10-16：926 项自动测试通过；覆盖五客户端 JSON / Protobuf、同响应译文及开关与缓存、时间戳歧义、500 组解析兼容对照和慢回调重叠请求。固定源码目录包含对照测量和实际公开响应验证；未进行手机实机验收。
