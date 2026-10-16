@@ -1,0 +1,79 @@
+{
+  "at": "2026-10-16T03:31:00.711Z",
+  "environment": "v24.19.0 darwin arm64",
+  "scope": "Native adapter VM fixture: twelve sequential 96 KiB mock responses, no clearTimeout and a timer API returning no handle. Counts timer creation, not host cancellation, phone RAM or full lyrics latency.",
+  "results": [
+    {
+      "version": "0.4.6",
+      "client": "Loon",
+      "nativeRequests": 12,
+      "maxInFlight": 1,
+      "jsTimersScheduled": 13,
+      "completionCalls": 1,
+      "outputBytes": 2
+    },
+    {
+      "version": "0.4.6",
+      "client": "Surge",
+      "nativeRequests": 12,
+      "maxInFlight": 1,
+      "jsTimersScheduled": 13,
+      "completionCalls": 1,
+      "outputBytes": 2
+    },
+    {
+      "version": "0.4.6",
+      "client": "Shadowrocket",
+      "nativeRequests": 12,
+      "maxInFlight": 1,
+      "jsTimersScheduled": 13,
+      "completionCalls": 1,
+      "outputBytes": 2
+    },
+    {
+      "version": "0.4.6",
+      "client": "QuantumultX",
+      "nativeRequests": 12,
+      "maxInFlight": 1,
+      "jsTimersScheduled": 13,
+      "completionCalls": 1,
+      "outputBytes": 2
+    },
+    {
+      "version": "0.4.7",
+      "client": "Loon",
+      "nativeRequests": 12,
+      "maxInFlight": 1,
+      "jsTimersScheduled": 0,
+      "completionCalls": 1,
+      "outputBytes": 2
+    },
+    {
+      "version": "0.4.7",
+      "client": "Surge",
+      "nativeRequests": 12,
+      "maxInFlight": 1,
+      "jsTimersScheduled": 0,
+      "completionCalls": 1,
+      "outputBytes": 2
+    },
+    {
+      "version": "0.4.7",
+      "client": "Shadowrocket",
+      "nativeRequests": 12,
+      "maxInFlight": 1,
+      "jsTimersScheduled": 0,
+      "completionCalls": 1,
+      "outputBytes": 2
+    },
+    {
+      "version": "0.4.7",
+      "client": "QuantumultX",
+      "nativeRequests": 12,
+      "maxInFlight": 1,
+      "jsTimersScheduled": 1,
+      "completionCalls": 1,
+      "outputBytes": 2
+    }
+  ]
+}
