@@ -1,0 +1,20 @@
+#!name = YouTube 去广告与双语字幕
+#!desc = 0.1.0 · 默认原文＋简体中文；需 HTTPS 解密，实际效果待真机验收。
+#!author = Horatio Xu
+#!homepage = https://github.com/hhhoratioxu/Proxy/blob/main/Loon/Docs/YouTubeAdTranslate.md
+#!loon_version = 3.5.1(983)
+#!date = 2026-10-16
+
+[Argument]
+ADBLOCK_ENABLED = switch,true,type=boolean,tag=去广告
+TRANSLATION_ENABLED = switch,true,type=boolean,tag=字幕翻译
+TARGET_LANGUAGE = select,"zh-Hans","zh-Hant","en","ja","ko",type=string,tag=翻译目标语言
+BILINGUAL = switch,true,type=boolean,tag=显示原文与译文
+AUTO_CC = switch,true,type=boolean,tag=优先选择翻译字幕轨道
+
+[Script]
+request if ${url} ~= /^https:\/\/youtubei(?:-att)?\.googleapis\.com\/youtubei\/v1\/log_event(?:\?.*)?$/ then script("https://raw.githubusercontent.com/hhhoratioxu/Proxy/28ac3725fe8e753a666c92625b2c308042d32150/Loon/script/YouTubeAdTranslate.js", {${ADBLOCK_ENABLED}, ${TRANSLATION_ENABLED}, ${TARGET_LANGUAGE}, ${BILINGUAL}, ${AUTO_CC}}) with tag="YouTube 配置刷新", timeout=12
+response if ${url} ~= /(?:^https:\/\/(?:youtubei(?:-att)?\.googleapis\.com|(?:www|m)\.youtube\.com)\/youtubei\/v1\/(?:browse|next|player|search|reel\/reel_watch_sequence|get_watch|log_event|config)(?:\?.*)?$|^https:\/\/[a-zA-Z0-9-]+\.googlevideo\.com\/initplayback(?:\?.*)?$|^https:\/\/(?:www|m)\.youtube\.com\/api\/timedtext(?:\?.*)?$)/ then script("https://raw.githubusercontent.com/hhhoratioxu/Proxy/28ac3725fe8e753a666c92625b2c308042d32150/Loon/script/YouTubeAdTranslate.js", {${ADBLOCK_ENABLED}, ${TRANSLATION_ENABLED}, ${TARGET_LANGUAGE}, ${BILINGUAL}, ${AUTO_CC}}) with tag="YouTube 广告与双语字幕", timeout=12, requires_body=true, binary_body_mode=true
+
+[Mitm]
+hostname = youtubei.googleapis.com, youtubei-att.googleapis.com, www.youtube.com, m.youtube.com, *.googlevideo.com

@@ -2,6 +2,8 @@
 
 [分流规则](./rule/) · [扩展脚本](./script/) · [说明文档](./Docs/)
 
+[YouTube 去广告与双语字幕能力说明](./Docs/YouTubeAdTranslate.md)：安装入口及当前核心限制见说明。
+
 [Spotify 歌词插件能力说明](./Docs/SpotifyLyrics.md)：Clash / Mihomo 无响应体脚本版本；其他客户端入口见说明。
 
 共用图标及导入入口：[Icons](../Icons/)。

@@ -6,6 +6,7 @@
 
 | 插件 | 安装文件原始地址 | 使用说明 |
 | --- | --- | --- |
+| YouTube 去广告与双语字幕 | [YouTubeAdTranslate.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/YouTubeAdTranslate.yaml) | [设置与验证范围](./Docs/YouTubeAdTranslate.md) |
 | 局域网绕过 | [LAN-Bypass.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/LAN-Bypass.yaml) | 导入后使用客户端对应功能 |
 | 美团外卖去广告 | [MeituanWaimai.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/MeituanWaimai.yaml) | [说明](./Docs/MeituanWaimai.md) |
 | 网络信息 | [NetworkInfo.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/NetworkInfo.yaml) | [说明](./Docs/NetworkInfo.md) |

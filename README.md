@@ -21,6 +21,21 @@
 | QuanX / Quantumult X | [规则、脚本与任务](./QuantumultX/) · [使用说明](./QuantumultX/README.md) |
 
 
+## YouTube 去广告与双语字幕
+
+**0.1.0** 将去广告和字幕翻译合并在一个插件内，默认原文＋简体中文；每个客户端只需导入一个文件。安装前停用其他 YouTube 模块，包括原有 Egern YouTubeEnhance，避免冲突。
+
+| 客户端 | 合并插件安装入口 |
+| --- | --- |
+| Egern | [YouTubeAdTranslate.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/YouTubeAdTranslate.yaml) |
+| Surge | [YouTubeAdTranslate.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/script/YouTubeAdTranslate.sgmodule) |
+| Loon | [YouTubeAdTranslate.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeAdTranslate.plugin) |
+| Shadowrocket | [YouTubeAdTranslate.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/script/YouTubeAdTranslate.sgmodule) |
+| Quantumult X | [YouTubeAdTranslate.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/YouTubeAdTranslate.conf) |
+| Clash / Mihomo | [能力限制与其他客户端入口](./Clash/Docs/YouTubeAdTranslate.md) |
+
+80 项本地测试通过，真实公开播放器数据已成功加入双语轨道。字幕下载返回 HTTP 429，手机客户端导入、实际去广告和播放效果仍待真机验收。
+
 ## Spotify 双语歌词 · VerseLyrics
 
 Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **0.4.2**，同步修正补充歌词的背景与文字配色。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
@@ -61,6 +76,8 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 | Surge | [Rules](./Surge/rule/) · [Guide](./Surge/README.md) |
 | Shadowrocket | [Rules, scripts and modules](./Shadowrocket/) · [Guide](./Shadowrocket/README.md) |
 | QuanX / Quantumult X | [Rules, scripts and tasks](./QuantumultX/) · [Guide](./QuantumultX/README.md) |
+
+YouTube AdTranslate 0.1.0 combines ad removal and bilingual subtitles in one import per supported client, defaulting to the original text plus Simplified Chinese. Links are listed above; disable other YouTube modules before enabling it. Eighty local tests passed and a public player response gained a bilingual track. Live subtitle downloads returned HTTP 429; native client imports, real ad removal and on-device playback remain unverified. [Compatibility guide](./Clash/Docs/YouTubeAdTranslate.md).
 
 VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.4.2 with the fallback lyric color correction. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 

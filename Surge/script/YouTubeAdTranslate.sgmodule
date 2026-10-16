@@ -1,0 +1,16 @@
+#!name = YouTube 去广告与双语字幕
+#!desc = 0.1.0 · 默认原文＋简体中文；需 HTTPS 解密，实际效果待真机验收。
+#!author = Horatio Xu
+#!homepage = https://github.com/hhhoratioxu/Proxy/blob/main/Surge/Docs/YouTubeAdTranslate.md
+#!arguments = ADBLOCK_ENABLED:true,TRANSLATION_ENABLED:true,TARGET_LANGUAGE:zh-Hans,BILINGUAL:true,AUTO_CC:true
+#!arguments-desc = ADBLOCK_ENABLED：去广告；TRANSLATION_ENABLED：翻译；TARGET_LANGUAGE：zh-Hans 简体、zh-Hant 繁体、en/ja/ko；BILINGUAL：原文＋译文；AUTO_CC：优先翻译轨道。\n布尔开关填写 true 或 false。
+
+[General]
+force-http-engine-hosts = %APPEND% youtubei.googleapis.com, youtubei-att.googleapis.com, www.youtube.com, m.youtube.com, *.googlevideo.com
+
+[Script]
+YouTubeAdTranslate-request = type=http-request,pattern=^https://youtubei(?:-att)?\.googleapis\.com/youtubei/v1/log_event(?:\?.*)?$,script-path=https://raw.githubusercontent.com/hhhoratioxu/Proxy/28ac3725fe8e753a666c92625b2c308042d32150/Surge/script/YouTubeAdTranslate.js,timeout=12,argument=ADBLOCK_ENABLED={{{ADBLOCK_ENABLED}}}&TRANSLATION_ENABLED={{{TRANSLATION_ENABLED}}}&TARGET_LANGUAGE={{{TARGET_LANGUAGE}}}&BILINGUAL={{{BILINGUAL}}}&AUTO_CC={{{AUTO_CC}}}
+YouTubeAdTranslate-response = type=http-response,pattern=(?:^https://(?:youtubei(?:-att)?\.googleapis\.com|(?:www|m)\.youtube\.com)/youtubei/v1/(?:browse|next|player|search|reel/reel_watch_sequence|get_watch|log_event|config)(?:\?.*)?$|^https://[a-zA-Z0-9-]+\.googlevideo\.com/initplayback(?:\?.*)?$|^https://(?:www|m)\.youtube\.com/api/timedtext(?:\?.*)?$),script-path=https://raw.githubusercontent.com/hhhoratioxu/Proxy/28ac3725fe8e753a666c92625b2c308042d32150/Surge/script/YouTubeAdTranslate.js,timeout=12,requires-body=true,binary-body-mode=true,max-size=8388608,argument=ADBLOCK_ENABLED={{{ADBLOCK_ENABLED}}}&TRANSLATION_ENABLED={{{TRANSLATION_ENABLED}}}&TARGET_LANGUAGE={{{TARGET_LANGUAGE}}}&BILINGUAL={{{BILINGUAL}}}&AUTO_CC={{{AUTO_CC}}}
+
+[MITM]
+hostname = %APPEND% youtubei.googleapis.com, youtubei-att.googleapis.com, www.youtube.com, m.youtube.com, *.googlevideo.com
