@@ -1,0 +1,44 @@
+{
+  "version": "0.7.0",
+  "previous": "0.6.1",
+  "summary": "新增可选紧凑缓存与专辑取色开关；紧凑模式将缓存上限减半，关闭取色可省去额外页面下载。",
+  "intro": "新增 MEMORY_MODE=compact，把缓存上限从 128 条 / 64,000 UTF-16 字符减为 64 条 / 32,000 字符，旧缓存会在下一次写入时按新上限收敛。默认 standard 保持现有行为。新增 FETCH_ARTWORK_COLOR，默认开启；关闭时仍可复用已有有效配色，无配色则使用经过对比度校验的中性灰，省去额外取色页面下载。歌曲身份元数据查询、六源补词、翻译和高亮保留；紧凑模式可能更早淘汰旧歌缓存，回听旧歌可能需要重新查询。 紧凑模式中，单条缓存也更小，较长的歌词或译文可能不缓存，下次播放需要重新查询。",
+  "english": "Optional compact cache halves record/text budgets; artwork fetch can be disabled to avoid extra color-page downloads while retaining fallback and translation. Defaults preserve existing behavior.",
+  "options": [
+    {
+      "key": "PREFERRED_SOURCE",
+      "default": "auto",
+      "label": "优先歌词源",
+      "desc": "仅 auto 补词模式生效；优先尝试所选来源，其他来源继续兜底，已有成功缓存优先。",
+      "values": [
+        "auto",
+        "lrclib",
+        "qq",
+        "netease",
+        "kugou",
+        "kuwo",
+        "lyricsovh"
+      ]
+    },
+    {
+      "key": "MEMORY_MODE",
+      "default": "standard",
+      "label": "缓存容量",
+      "desc": "standard 为 128 条和 64000 字符；compact 为 64 条和 32000 字符，旧歌更早淘汰，较长记录可能不缓存。",
+      "values": [
+        "standard",
+        "compact"
+      ]
+    },
+    {
+      "key": "FETCH_ARTWORK_COLOR",
+      "default": "true",
+      "label": "联网获取专辑配色",
+      "desc": "关闭可省去额外取色请求；已有配色仍可复用，否则使用中性灰，补词和翻译保留。",
+      "values": [
+        "true",
+        "false"
+      ]
+    }
+  ]
+}

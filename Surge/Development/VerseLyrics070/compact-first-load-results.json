@@ -1,0 +1,653 @@
+{
+  "scope": "Six fresh macOS JSC processes per scenario/mode; same 0.7.0 runtime and empty store, zero-latency mocks. Identical output fingerprints and HTTP counts. Compact cache first-load check, not native phone/VPN evidence.",
+  "runtimeSHA256": "1c76dfba6662a57e7b7aa317c5a3e7793860fc7dc869c8db84fd2908931324c6",
+  "comparisons": [
+    {
+      "scenario": "official-120-protobuf",
+      "standard": {
+        "sampledPeakFootprint": 7242352.0,
+        "milliseconds": 9.494
+      },
+      "compact": {
+        "sampledPeakFootprint": 7275120.0,
+        "milliseconds": 9.366
+      }
+    },
+    {
+      "scenario": "metadata-1000",
+      "standard": {
+        "sampledPeakFootprint": 9560724.0,
+        "milliseconds": 18.6065
+      },
+      "compact": {
+        "sampledPeakFootprint": 9446036.0,
+        "milliseconds": 18.656
+      }
+    },
+    {
+      "scenario": "netease-half-120-protobuf",
+      "standard": {
+        "sampledPeakFootprint": 7750256.0,
+        "milliseconds": 14.748000000000001
+      },
+      "compact": {
+        "sampledPeakFootprint": 7783024.0,
+        "milliseconds": 14.7905
+      }
+    }
+  ],
+  "runs": [
+    {
+      "scenario": "official-120-protobuf",
+      "mode": "standard",
+      "trial": 0,
+      "sampledPeakFootprint": 7275120,
+      "beforeFootprint": 1868208,
+      "endFootprint": 7258736,
+      "maxRSS": 12795904,
+      "milliseconds": 9.549,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 6071,
+        "hash": 3147123981,
+        "cacheCharacters": 4962
+      }
+    },
+    {
+      "scenario": "official-120-protobuf",
+      "mode": "compact",
+      "trial": 0,
+      "sampledPeakFootprint": 7275168,
+      "beforeFootprint": 1868208,
+      "endFootprint": 7258784,
+      "maxRSS": 12763136,
+      "milliseconds": 9.346,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 6071,
+        "hash": 3147123981,
+        "cacheCharacters": 4962
+      }
+    },
+    {
+      "scenario": "official-120-protobuf",
+      "mode": "compact",
+      "trial": 1,
+      "sampledPeakFootprint": 7291528,
+      "beforeFootprint": 1900976,
+      "endFootprint": 7275144,
+      "maxRSS": 12795904,
+      "milliseconds": 9.732,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 6071,
+        "hash": 3147123981,
+        "cacheCharacters": 4962
+      }
+    },
+    {
+      "scenario": "official-120-protobuf",
+      "mode": "standard",
+      "trial": 1,
+      "sampledPeakFootprint": 7275120,
+      "beforeFootprint": 1868208,
+      "endFootprint": 7258736,
+      "maxRSS": 12795904,
+      "milliseconds": 9.271,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 6071,
+        "hash": 3147123981,
+        "cacheCharacters": 4962
+      }
+    },
+    {
+      "scenario": "official-120-protobuf",
+      "mode": "standard",
+      "trial": 2,
+      "sampledPeakFootprint": 7242352,
+      "beforeFootprint": 1868208,
+      "endFootprint": 7225968,
+      "maxRSS": 12763136,
+      "milliseconds": 9.314,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 6071,
+        "hash": 3147123981,
+        "cacheCharacters": 4962
+      }
+    },
+    {
+      "scenario": "official-120-protobuf",
+      "mode": "compact",
+      "trial": 2,
+      "sampledPeakFootprint": 7275120,
+      "beforeFootprint": 1884592,
+      "endFootprint": 7258736,
+      "maxRSS": 12795904,
+      "milliseconds": 9.543,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 6071,
+        "hash": 3147123981,
+        "cacheCharacters": 4962
+      }
+    },
+    {
+      "scenario": "official-120-protobuf",
+      "mode": "compact",
+      "trial": 3,
+      "sampledPeakFootprint": 7242352,
+      "beforeFootprint": 1868208,
+      "endFootprint": 7225968,
+      "maxRSS": 12763136,
+      "milliseconds": 9.091,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 6071,
+        "hash": 3147123981,
+        "cacheCharacters": 4962
+      }
+    },
+    {
+      "scenario": "official-120-protobuf",
+      "mode": "standard",
+      "trial": 3,
+      "sampledPeakFootprint": 7242352,
+      "beforeFootprint": 1868208,
+      "endFootprint": 7225968,
+      "maxRSS": 12763136,
+      "milliseconds": 9.636,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 6071,
+        "hash": 3147123981,
+        "cacheCharacters": 4962
+      }
+    },
+    {
+      "scenario": "official-120-protobuf",
+      "mode": "standard",
+      "trial": 4,
+      "sampledPeakFootprint": 7242352,
+      "beforeFootprint": 1868208,
+      "endFootprint": 7225968,
+      "maxRSS": 12763136,
+      "milliseconds": 9.439,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 6071,
+        "hash": 3147123981,
+        "cacheCharacters": 4962
+      }
+    },
+    {
+      "scenario": "official-120-protobuf",
+      "mode": "compact",
+      "trial": 4,
+      "sampledPeakFootprint": 7242352,
+      "beforeFootprint": 1868208,
+      "endFootprint": 7225968,
+      "maxRSS": 12763136,
+      "milliseconds": 9.053,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 6071,
+        "hash": 3147123981,
+        "cacheCharacters": 4962
+      }
+    },
+    {
+      "scenario": "official-120-protobuf",
+      "mode": "compact",
+      "trial": 5,
+      "sampledPeakFootprint": 7275120,
+      "beforeFootprint": 1868208,
+      "endFootprint": 7258736,
+      "maxRSS": 12795904,
+      "milliseconds": 9.386,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 6071,
+        "hash": 3147123981,
+        "cacheCharacters": 4962
+      }
+    },
+    {
+      "scenario": "official-120-protobuf",
+      "mode": "standard",
+      "trial": 5,
+      "sampledPeakFootprint": 7242352,
+      "beforeFootprint": 1868208,
+      "endFootprint": 7225968,
+      "maxRSS": 12763136,
+      "milliseconds": 9.577,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 6071,
+        "hash": 3147123981,
+        "cacheCharacters": 4962
+      }
+    },
+    {
+      "scenario": "metadata-1000",
+      "mode": "standard",
+      "trial": 0,
+      "sampledPeakFootprint": 9192072,
+      "beforeFootprint": 2163120,
+      "endFootprint": 9175688,
+      "maxRSS": 22429696,
+      "milliseconds": 18.542,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 2425,
+        "hash": 1419806866,
+        "cacheCharacters": 4377
+      }
+    },
+    {
+      "scenario": "metadata-1000",
+      "mode": "compact",
+      "trial": 0,
+      "sampledPeakFootprint": 9323144,
+      "beforeFootprint": 2130352,
+      "endFootprint": 9306760,
+      "maxRSS": 22560768,
+      "milliseconds": 18.606,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 2425,
+        "hash": 1419806866,
+        "cacheCharacters": 4377
+      }
+    },
+    {
+      "scenario": "metadata-1000",
+      "mode": "compact",
+      "trial": 1,
+      "sampledPeakFootprint": 9732720,
+      "beforeFootprint": 2130352,
+      "endFootprint": 9503392,
+      "maxRSS": 22478848,
+      "milliseconds": 18.671,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 2425,
+        "hash": 1419806866,
+        "cacheCharacters": 4377
+      }
+    },
+    {
+      "scenario": "metadata-1000",
+      "mode": "standard",
+      "trial": 1,
+      "sampledPeakFootprint": 9699952,
+      "beforeFootprint": 2130352,
+      "endFootprint": 9437832,
+      "maxRSS": 22429696,
+      "milliseconds": 18.681,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 2425,
+        "hash": 1419806866,
+        "cacheCharacters": 4377
+      }
+    },
+    {
+      "scenario": "metadata-1000",
+      "mode": "standard",
+      "trial": 2,
+      "sampledPeakFootprint": 9306760,
+      "beforeFootprint": 2130352,
+      "endFootprint": 9290376,
+      "maxRSS": 22544384,
+      "milliseconds": 18.671,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 2425,
+        "hash": 1419806866,
+        "cacheCharacters": 4377
+      }
+    },
+    {
+      "scenario": "metadata-1000",
+      "mode": "compact",
+      "trial": 2,
+      "sampledPeakFootprint": 9437856,
+      "beforeFootprint": 2130352,
+      "endFootprint": 9421472,
+      "maxRSS": 22528000,
+      "milliseconds": 18.641,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 2425,
+        "hash": 1419806866,
+        "cacheCharacters": 4377
+      }
+    },
+    {
+      "scenario": "metadata-1000",
+      "mode": "compact",
+      "trial": 3,
+      "sampledPeakFootprint": 9519752,
+      "beforeFootprint": 2130352,
+      "endFootprint": 9503368,
+      "maxRSS": 22495232,
+      "milliseconds": 18.21,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 2425,
+        "hash": 1419806866,
+        "cacheCharacters": 4377
+      }
+    },
+    {
+      "scenario": "metadata-1000",
+      "mode": "standard",
+      "trial": 3,
+      "sampledPeakFootprint": 9552544,
+      "beforeFootprint": 2130352,
+      "endFootprint": 9536160,
+      "maxRSS": 22495232,
+      "milliseconds": 18.438,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 2425,
+        "hash": 1419806866,
+        "cacheCharacters": 4377
+      }
+    },
+    {
+      "scenario": "metadata-1000",
+      "mode": "standard",
+      "trial": 4,
+      "sampledPeakFootprint": 9568904,
+      "beforeFootprint": 2130352,
+      "endFootprint": 9552520,
+      "maxRSS": 22544384,
+      "milliseconds": 18.34,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 2425,
+        "hash": 1419806866,
+        "cacheCharacters": 4377
+      }
+    },
+    {
+      "scenario": "metadata-1000",
+      "mode": "compact",
+      "trial": 4,
+      "sampledPeakFootprint": 9421448,
+      "beforeFootprint": 2130352,
+      "endFootprint": 9405064,
+      "maxRSS": 22528000,
+      "milliseconds": 18.827,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 2425,
+        "hash": 1419806866,
+        "cacheCharacters": 4377
+      }
+    },
+    {
+      "scenario": "metadata-1000",
+      "mode": "compact",
+      "trial": 5,
+      "sampledPeakFootprint": 9454216,
+      "beforeFootprint": 2130352,
+      "endFootprint": 9437832,
+      "maxRSS": 22560768,
+      "milliseconds": 18.677,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 2425,
+        "hash": 1419806866,
+        "cacheCharacters": 4377
+      }
+    },
+    {
+      "scenario": "metadata-1000",
+      "mode": "standard",
+      "trial": 5,
+      "sampledPeakFootprint": 9618080,
+      "beforeFootprint": 2130352,
+      "endFootprint": 9601696,
+      "maxRSS": 22544384,
+      "milliseconds": 18.776,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 2425,
+        "hash": 1419806866,
+        "cacheCharacters": 4377
+      }
+    },
+    {
+      "scenario": "netease-half-120-protobuf",
+      "mode": "standard",
+      "trial": 0,
+      "sampledPeakFootprint": 7750256,
+      "beforeFootprint": 1851824,
+      "endFootprint": 7733872,
+      "maxRSS": 13238272,
+      "milliseconds": 14.865,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 6075,
+        "hash": 2434462928,
+        "cacheCharacters": 10496
+      }
+    },
+    {
+      "scenario": "netease-half-120-protobuf",
+      "mode": "compact",
+      "trial": 0,
+      "sampledPeakFootprint": 7815840,
+      "beforeFootprint": 1851824,
+      "endFootprint": 7799456,
+      "maxRSS": 13271040,
+      "milliseconds": 15.079,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 6075,
+        "hash": 2434462928,
+        "cacheCharacters": 10496
+      }
+    },
+    {
+      "scenario": "netease-half-120-protobuf",
+      "mode": "compact",
+      "trial": 1,
+      "sampledPeakFootprint": 7766664,
+      "beforeFootprint": 1851824,
+      "endFootprint": 7750280,
+      "maxRSS": 13238272,
+      "milliseconds": 14.51,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 6075,
+        "hash": 2434462928,
+        "cacheCharacters": 10496
+      }
+    },
+    {
+      "scenario": "netease-half-120-protobuf",
+      "mode": "standard",
+      "trial": 1,
+      "sampledPeakFootprint": 7783072,
+      "beforeFootprint": 1851824,
+      "endFootprint": 7766688,
+      "maxRSS": 13238272,
+      "milliseconds": 14.909,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 6075,
+        "hash": 2434462928,
+        "cacheCharacters": 10496
+      }
+    },
+    {
+      "scenario": "netease-half-120-protobuf",
+      "mode": "standard",
+      "trial": 2,
+      "sampledPeakFootprint": 7750256,
+      "beforeFootprint": 1851824,
+      "endFootprint": 7733872,
+      "maxRSS": 13238272,
+      "milliseconds": 14.788,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 6075,
+        "hash": 2434462928,
+        "cacheCharacters": 10496
+      }
+    },
+    {
+      "scenario": "netease-half-120-protobuf",
+      "mode": "compact",
+      "trial": 2,
+      "sampledPeakFootprint": 7783024,
+      "beforeFootprint": 1851824,
+      "endFootprint": 7766640,
+      "maxRSS": 13271040,
+      "milliseconds": 14.761,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 6075,
+        "hash": 2434462928,
+        "cacheCharacters": 10496
+      }
+    },
+    {
+      "scenario": "netease-half-120-protobuf",
+      "mode": "compact",
+      "trial": 3,
+      "sampledPeakFootprint": 7783024,
+      "beforeFootprint": 1851824,
+      "endFootprint": 7766640,
+      "maxRSS": 13271040,
+      "milliseconds": 14.82,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 6075,
+        "hash": 2434462928,
+        "cacheCharacters": 10496
+      }
+    },
+    {
+      "scenario": "netease-half-120-protobuf",
+      "mode": "standard",
+      "trial": 3,
+      "sampledPeakFootprint": 7766664,
+      "beforeFootprint": 1851824,
+      "endFootprint": 7750280,
+      "maxRSS": 13238272,
+      "milliseconds": 14.707,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 6075,
+        "hash": 2434462928,
+        "cacheCharacters": 10496
+      }
+    },
+    {
+      "scenario": "netease-half-120-protobuf",
+      "mode": "standard",
+      "trial": 4,
+      "sampledPeakFootprint": 7750256,
+      "beforeFootprint": 1851824,
+      "endFootprint": 7733872,
+      "maxRSS": 13238272,
+      "milliseconds": 14.477,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 6075,
+        "hash": 2434462928,
+        "cacheCharacters": 10496
+      }
+    },
+    {
+      "scenario": "netease-half-120-protobuf",
+      "mode": "compact",
+      "trial": 4,
+      "sampledPeakFootprint": 7783024,
+      "beforeFootprint": 1884592,
+      "endFootprint": 7766640,
+      "maxRSS": 13271040,
+      "milliseconds": 15.212,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 6075,
+        "hash": 2434462928,
+        "cacheCharacters": 10496
+      }
+    },
+    {
+      "scenario": "netease-half-120-protobuf",
+      "mode": "compact",
+      "trial": 5,
+      "sampledPeakFootprint": 7766664,
+      "beforeFootprint": 1851824,
+      "endFootprint": 7750280,
+      "maxRSS": 13238272,
+      "milliseconds": 14.529,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 6075,
+        "hash": 2434462928,
+        "cacheCharacters": 10496
+      }
+    },
+    {
+      "scenario": "netease-half-120-protobuf",
+      "mode": "standard",
+      "trial": 5,
+      "sampledPeakFootprint": 7750256,
+      "beforeFootprint": 1851824,
+      "endFootprint": 7733872,
+      "maxRSS": 13238272,
+      "milliseconds": 14.708,
+      "repeats": 1,
+      "result": {
+        "calls": 4,
+        "bytes": 6075,
+        "hash": 2434462928,
+        "cacheCharacters": 10496
+      }
+    }
+  ]
+}
