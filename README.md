@@ -38,7 +38,7 @@
 
 ## Spotify 双语歌词 · VerseLyrics
 
-Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **0.5.2**，新增复用歌词源同次响应中的中文译文，只采用精确对齐的简体中文行，其余继续翻译；可关闭该选项。LRC 改为逐行解析并按需排序，保留六源、原生高亮和原有内存预算。自动测试不代表手机 VPN 稳定性保证。Shadowrocket 完整官方脚本规范尚未取得，其兼容适配未标为官方验证。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
+Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **0.5.3**，降低播放器入口解析内存：JSON 单次扫描、Protobuf 按字段范围改写，搜索后仅保留候选 ID。保留六源补词、插件翻译、源译文复用和原生高亮；缓存与并发不增加。macOS JavaScriptCore 对照不代表 iPhone VPN 稳定性保证。Shadowrocket 完整官方脚本规范尚未取得，其兼容适配未标为官方验证。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
 
 | 客户端 | 安装入口 | 设置与限制 |
 | --- | --- | --- |
@@ -79,7 +79,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 
 YouTube Clean 1.0.0 is an independently written combined plugin for ad removal, bilingual subtitles and separate bottom upload/Shorts controls. Upload is hidden by default; Shorts remains visible by default. The previous YouTube entries were removed. Sixty-one local checks and public native-response processing passed; public caption downloads returned HTTP 429. Native imports, actual ad removal, button visibility and subtitle display require device acceptance. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
 
-VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.5.2. Optional source translations reuse exactly aligned Simplified Chinese rows from the same fallback response, with translator fallback for other rows. Incremental LRC parsing reduces temporary arrays and avoids sorting already ordered rows. Six sources, native timing/highlighting and existing budgets remain. Device VPN stability is unverified. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
+VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.5.3. Player entries use selective JSON scanning and Protobuf range edits; catalog searches retain only accepted IDs. Six sources, plugin translations, optional source translations and native highlighting remain. Cache and concurrency budgets are unchanged. macOS JavaScriptCore measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
 Each plugin has one current installation entry. Clients automatically load any required runtime from a pinned version; no separate JavaScript download, build or test run is needed.
 

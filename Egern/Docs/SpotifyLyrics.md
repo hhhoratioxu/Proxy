@@ -1,16 +1,14 @@
 # Spotify 双语歌词 · VerseLyrics
 
-当前发布 **0.5.2**（原生适配 11）：新增「复用歌词源译文」。补词响应同时附带中文译文时，仅采用与原词毫秒时间戳完全相同、没有冲突的简体中文行；其余行继续使用插件翻译服务。复用同一次响应不增加歌词源查询。译文全部覆盖时可以省去翻译 HTTP；已有翻译缓存优先。可关闭 `SOURCE_TRANSLATIONS`，关闭后也不会读取歌词源译文缓存。Spotify 官方译文仍按原设置替换。
+当前发布 **0.5.3**（原生适配 12），重点降低 Loon 首次进入播放页及连续切歌时的入口处理内存。五端共用同一修复，原有六源补词、插件翻译、精确对齐的源译文复用、原生时间轴和高亮配色保留。
 
-目前接入网易云 `tlyric.lyric` 和 QQ `trans` 可选字段，仅对 `zh-CN` 生效。实际网易云响应验证有中文译文；本次三个 QQ 公开样本的 `trans` 为空，QQ 非空分支经过模拟测试，不能视为实际覆盖率证明。时间偏移、重复句译文冲突、繁体或混合语言不会靠行号猜配。原词、原生时间轴和高亮色不改动。
+播放器 JSON 入口由「整树解析 + 为每个节点创建并序列化路径」改为一次字段扫描，只保留要改写的位置。Protobuf 入口只扫描必要字段并保存实际改动，未知字段不再展开成对象数组；未更改的内容保留原字节。网易云与 QQ 搜索处理仅向后续步骤传递最多两个已核对的候选 ID，避免搜索函数持有完整目录跨越歌词 HTTP 等待。没有新增预取、排队轮询或缓存容量。
 
-LRC 改为逐行扫描，常见单时间标签不再创建标签数组，已有顺序时不排序，同时间行原地合并。保留原来的字符、行数和响应大小限制。六源补词、译文缓存与连续切歌逻辑继续保留；缓存仍为 128 条 / 64,000 JSON UTF-16 字符，没有增加预取、轮询或联网并发。
+首次加载与切歌都参与对照。macOS JavaScriptCore 中，大型 JSON / Protobuf 入口的进程内存峰值下降，普通歌词冷启动保持在测量波动范围内；详细数值、全部样本、运行脚本摘要和测量边界见固定源码的 `jsc-memory-results.json` 与 README。源码测试之外，还检查五端打包脚本实际执行，防止构建裁剪丢失必要函数。
 
-继承 0.5.1 的单名额协同限制：拥堵且无缓存时可能暂缺补词或译文，等待客户端后续请求，不保证自动重试。原生存储没有原子锁，原生网络缓冲也不属于脚本预算。自动测试和 Node 测量不能证明 iPhone 不会内存退出；来源未收录的歌曲仍无法凭空补全。
+单名额协同限制、128 条 / 64,000 JSON UTF-16 字符缓存及现有查询预算不变。网络忙碌时缓存仍可返回，未缓存结果依赖后续客户端请求；不会主动安排重试，也不会丢弃已经返回的有效歌词来降低内存。Loon 原生存储没有原子锁，原生网络缓冲不在 JS 预算内。**本地测量不等于 iPhone Loon 实机验证，不能据此保证 VPN 永不被系统终止。** 未收录的歌曲仍不能凭空补全。
 
-对照测量中，24～600 行 LRC 的解析后临时堆增量下降约 55%～58%；完整源译文的 48 / 120 行样本少用 1 / 2 次翻译请求。**首次加载的总堆占用没有在所有场景下降**：部分覆盖的源译文样本仍高约 3%～5%，常规首次加载也有波动。解析阶段的下降不能当作 VPN 总内存下降，本版不作为内存断线已修复的证明。完整方法、未改善样本与原始记录见源码目录。
-
-当前模块：0.5.2，适用于支持原生 `ctx` 脚本 API 的 Egern。
+当前模块：0.5.3，适用于支持原生 `ctx` 脚本 API 的 Egern。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -54,10 +52,10 @@ Spotify 已有的原词和时间轴继续保留。备用源优先核对同专辑
 
 ## 来源与许可
 
-插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/a3a2314449c54404f14fd70050b5bc12abda3060/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
+插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/ae2ed2b9b3c5ae2a7922bfa003c2687c8c0310f3/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/a3a2314449c54404f14fd70050b5bc12abda3060/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/a3a2314449c54404f14fd70050b5bc12abda3060/Surge/Development/VerseLyrics052) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/ae2ed2b9b3c5ae2a7922bfa003c2687c8c0310f3/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/ae2ed2b9b3c5ae2a7922bfa003c2687c8c0310f3/Surge/Development/VerseLyrics053) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
 
 [其他客户端](../../README.md) · [返回 Egern](../README.md)
 
-2026-10-16：926 项自动测试通过；覆盖五客户端 JSON / Protobuf、同响应译文及开关与缓存、时间戳歧义、500 组解析兼容对照和慢回调重叠请求。固定源码目录包含对照测量和实际公开响应验证；未进行手机实机验收。
+2026-10-17：961 项自动测试通过；包括五端实际打包入口的 JSON / Protobuf、500 组 JSON 与 200 组 Protobuf 差分样本、慢回调重叠请求、补词和译文缓存。macOS JavaScriptCore 首次加载及重复加载对照、Node 五端连续切歌报告均随固定源码保存。测试不等同于 iPhone 实机 VPN 验收。
