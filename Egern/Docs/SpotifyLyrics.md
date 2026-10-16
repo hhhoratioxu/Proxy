@@ -1,16 +1,18 @@
 # Spotify 双语歌词 · VerseLyrics
 
-**0.4.8 连续切歌与内存优化：** 保留 Egern 原生异步 ctx、Headers、流读取和 max_size；歌词脚本仅加载歌词路径需要的代码，入口保持独立脚本。
+**0.4.9 补词与等待修复：** 普通网络超时回调结束后立即释放名额并继续下一个歌词源，不再把已结束的请求误判为仍在运行。两个名额用满时，只登记最新一个等待者，最多等待 2.6 秒；旧请求回调后停止追加工作，最新请求可在本次响应中继续补词。普通重叠响应和预取不会再仅因到达顺序互相取消；没有无限队列，也不在结束后后台联网。
 
-歌词运行包去除仅供播放器入口使用的代码。当前歌曲处理期间只保留相关歌词、译文、配色及必要来源提示；入口缓存视图只保留元数据。保存时与完整缓存合并，其他歌曲的成功缓存不会因视图缩小而丢失。持久缓存总上限仍为 128 条 / 64,000 JSON 字符。
+中文标题或歌手优先 QQ、网易、酷狗、酷我，再查 LRCLIB / lyrics.ovh；已有成功来源提示继续优先。已核对到候选曲目后，为下载歌词保留独立时间，且仍受总预算约束。QQ / 网易查询统一简繁搜索词；核对歌名、歌手、版本与时长的要求不放宽。只有完整查询全部来源且均未匹配才缓存“无词”；旧版失败缓存自动失效，成功缓存保留。
 
-不同歌曲的新歌词响应到来后，旧任务不再追加歌词源、配色或翻译请求；已发出的原生请求正常回调后结束，不调用未公开取消接口、不增加等待队列。它跟踪响应到达顺序，不能判断 Spotify 的真实播放位置。已获得歌词和可用译文继续返回，暂缓任务不写成“该歌无词”。
+未缓存且拿不到 Spotify 元数据时，增加同一歌曲公开 embed 页回退，一次读取歌名、歌手、时长与配色。页面没有专辑，必须按原有唯一同曲规则核对，不能将同名歌曲直接当作匹配。Spotify 鉴权或权限错误仍保留原响应。
 
-六源补词、严格同曲核对、插件替换官方译文、原生时间轴和配色均保留。正文预算为歌词 256 KiB、入口 128 KiB、普通服务 96 KiB；补源累计 256 KiB / 12 请求。共享存储的两个联网名额是尽力控制，不能当成原子锁。
+翻译阶段最多使用剩余总预算中的 2.5 秒，慢服务不再长期拖住已有歌词；成功译文保留，未完成部分可在后续歌词请求继续补齐。原词、时间轴、插件替换官方译文和原生配色保留。
 
-这些是脚本预算和减少分配的措施，不是 VPN 进程内存上限。未知长度响应可能先由宿主缓冲；超限或繁忙时使用缓存或原响应，可能暂时缺少补词或译文。尚未完成 iPhone VPN 峰值内存及连续切歌实机验收。
+持久缓存仍不超过 128 条 / 64,000 JSON 字符，仅保留当前歌曲相关工作数据；两个联网名额和一个等待记录均为尽力控制，存储没有原子锁。歌词 / 入口正文 256 / 128 KiB，普通服务 96 KiB，补源累计 256 KiB / 12 请求，等待时不发 HTTP。宿主缓冲与 VM 内存不受这些数字直接限制，尚无 iPhone VPN 实机内存或稳定性验收。
 
-当前模块：0.4.8，适用于支持原生 `ctx` 脚本 API 的 Egern。
+保留原生异步 ctx、Headers、流读取与 max_size；只在宿主存在 setTimeout 时启用短等待，否则繁忙请求按原响应返回。官方 JavaScript API 未列出该全局计时器，因此不将 Egern 的等待能力标为已验证。
+
+当前模块：0.4.9，适用于支持原生 `ctx` 脚本 API 的 Egern。
 
 补词优先核对同专辑；跨专辑需歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 重复记录仅在完整歌词、时间戳与时长全部相同的情况下合并），排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -51,10 +53,10 @@ Spotify 已有的原词和时间轴继续保留。备用源优先核对同专辑
 
 ## 来源与许可
 
-插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/661010d356abacfad6f2bfb910db65958b357315/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
+插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/9031436e2e6ad7a70a69eaaa00ffffeb848eeb65/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/661010d356abacfad6f2bfb910db65958b357315/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/661010d356abacfad6f2bfb910db65958b357315/Surge/Development/VerseLyrics048) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/9031436e2e6ad7a70a69eaaa00ffffeb848eeb65/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/9031436e2e6ad7a70a69eaaa00ffffeb848eeb65/Surge/Development/VerseLyrics049) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
 
 [其他客户端](../../README.md) · [返回 Egern](../README.md)
 
-2026-10-16：585 项自动测试；源码、官方依据、缓存与切歌模拟记录见固定源码目录。模拟测试不代表实机 VPN 稳定性验收。
+2026-10-16：606 项自动测试；延迟故障模型、五客户端连续切歌模拟和真实公开来源记录见固定源码目录。自动测试不代替手机验收。
