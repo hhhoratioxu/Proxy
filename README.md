@@ -23,7 +23,7 @@
 
 ## YouTube Clean · 去广告、双语字幕与底栏控制
 
-**1.0.0 独立重写版**。旧 YouTubeAdTranslate 与 Egern YouTubeEnhance 已移除。去广告和翻译共用一个插件，默认原文＋简体中文；发布「＋」与 Shorts 底栏分别可选隐藏，默认隐藏发布「＋」、保留 Shorts。更改设置后强制退出并重新打开 YouTube。
+**1.0.1 主页广告修复版**。旧 YouTubeAdTranslate 与 Egern YouTubeEnhance 已移除。去广告和翻译共用一个插件，默认原文＋简体中文；发布「＋」与 Shorts 底栏分别可选隐藏，默认隐藏发布「＋」、保留 Shorts。更改设置后强制退出并重新打开 YouTube。
 
 | 客户端 | 合并插件安装入口 |
 | --- | --- |
@@ -34,7 +34,7 @@
 | Quantumult X | [YouTubeClean.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/YouTubeClean.conf) |
 | Clash / Mihomo | [能力限制与其他客户端入口](./Clash/Docs/YouTubeClean.md) |
 
-61 项本地检查通过；公开原生播放器数据保留 52 条原字幕并新增 1 条轨道。公开底栏数据未出现发布「＋」与 Shorts；字幕下载返回 HTTP 429。手机客户端导入、实际去广告、按钮隐藏与字幕显示仍待真机验收。[源码与验证说明](https://github.com/hhhoratioxu/Proxy/tree/749d68f4530323f924b3bd7a9cf1bc272d4bfeff/Surge/script/YouTubeClean)。
+补齐主页标签页与继续下拉加载的广告处理路径，保留普通卡片与分页信息。72 项本地检查通过；真实主页响应加入自写广告后可精确移除并逐字节保留其余数据。用户确认 Loon 旧版隐藏发布「＋」有效；1.0.1 实际广告去除仍待用户更新后确认。[源码与验证说明](https://github.com/hhhoratioxu/Proxy/tree/f9ed760ea6ba25b17511bc6dff64a3b761a4c3d6/Surge/script/YouTubeClean)。
 
 ## Spotify 双语歌词 · VerseLyrics
 
@@ -77,7 +77,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 | Shadowrocket | [Rules, scripts and modules](./Shadowrocket/) · [Guide](./Shadowrocket/README.md) |
 | QuanX / Quantumult X | [Rules, scripts and tasks](./QuantumultX/) · [Guide](./QuantumultX/README.md) |
 
-YouTube Clean 1.0.0 is an independently written combined plugin for ad removal, bilingual subtitles and separate bottom upload/Shorts controls. Upload is hidden by default; Shorts remains visible by default. The previous YouTube entries were removed. Sixty-one local checks and public native-response processing passed; public caption downloads returned HTTP 429. Native imports, actual ad removal, button visibility and subtitle display require device acceptance. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
+YouTube Clean 1.0.1 fixes missing native home-feed tabs, item sections and continuation paths. Ad-only sections are removed while ordinary cards and pagination remain intact; browse HTTP cache validators are refreshed when ad removal is enabled. Seventy-two local checks passed, including Loon object arguments and public response envelopes with self-written ads. The user confirmed that Loon 1.0.0 hid the upload button; real 1.0.1 ad removal still needs user acceptance. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
 
 VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 0.5.3. Player entries use selective JSON scanning and Protobuf range edits; catalog searches retain only accepted IDs. Six sources, plugin translations, optional source translations and native highlighting remain. Cache and concurrency budgets are unchanged. macOS JavaScriptCore measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
