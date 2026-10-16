@@ -1,0 +1,20 @@
+{
+  "version": "0.5.3",
+  "tests": 961,
+  "testsFailed": 0,
+  "egernYaml": "passed",
+  "jscColdCases": 36,
+  "jscChurnCases": 6,
+  "jscTrialsPerVersionCase": 6,
+  "maxJscColdLyricFootprintChangePercent": 0.8951060255544929,
+  "coldRegressionReview": "all cold lyric footprint/heap medians within 3 percent tolerance; complete data retained",
+  "noFeatureRemoval": true,
+  "nativeDeviceTest": false,
+  "reports": {
+    "jsc-memory-results.json": "024e05f444b4fc390c0d909d80e789770454504e1176ed04b3e254912a708dc4",
+    "native-first-load-results.json": "bc1fad9634579d2f3f864b355f05879b0fa22a071ac3635ec03f1326496660ca",
+    "native-churn-results.json": "6b979e3430a6a82493021cb2ab70ccad54768f56882656456709cfae68811258",
+    "native-pressure-results.json": "b4840c2c32dea668caecc1109542c785696d8f31059cddc74cac2d0b70542f58",
+    "tests.log": "ec05a9f6a601ffb89455924df81f227dda5fe54ba06a052392561b92ec1a2c51"
+  }
+}
