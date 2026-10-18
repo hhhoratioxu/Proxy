@@ -1,10 +1,10 @@
 # Spotify 双语歌词 · VerseLyrics · Loon
 
-当前发布 **1.0.0**（原生适配 13）。网络回调返回后重新核对请求归属和截止时间，已被新歌曲淘汰的请求不再解码搜索目录，也不启动额外请求或等待计时器。酷狗、酷我、lyrics.ovh 搜索阶段只把必要候选信息带入下载阶段。批量 Spotify 身份查询按目标曲目扫描，避免建立无用的改写字段树。新增 FALLBACK_MODE：默认 synced 继续寻找真实逐行时间轴；fast 找到首份经过歌曲身份核对的歌词即返回，可能是无时间轴文本。快速模式专用纯文本缓存不阻止切回默认模式后寻找同步歌词。
+当前发布 **3.0.0**（原生适配 14）。auto 模式中各歌词源确认无匹配的结果按歌曲短期复用，失败与超时仍可重试，避免每次从头查完。保留 1.0.0 的缓存读写方案。原生 Headers 只在修改时复制，删除字段时复用现有数组。新增 NETWORK_MODE：online 保留正常补词与翻译；cache-only 只使用有效的已有歌词、译文和配色，不发起任何插件外网查询。默认仍为 online 和同步歌词优先。删除正式入口中的历史诊断小组件分支和 Loon 未使用的请求脚本产物。
 
 保留六源补词、插件翻译、原生时间轴与高亮。缓存和网络都有明确上限；未收录的歌曲仍不能凭空补全。本地自动测试与 macOS JavaScriptCore 测量不等于 iPhone Loon 实机 VPN 验收，不能保证所有设备都不会被系统终止。
 
-核心 **1.0.0**，客户端适配 **13**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
+核心 **3.0.0**，客户端适配 **14**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -33,6 +33,7 @@
 | `FETCH_ARTWORK_COLOR` | `true` | 关闭可省去额外取色请求；已有配色仍可复用，否则使用中性灰，补词和翻译保留。 可选：`true`, `false`。 |
 | `FALLBACK_OFFSET_MS` | `0` | 仅影响所有备用来源的逐行同步歌词。正数延后、负数提前，默认 0；不影响官方原词，无时间轴歌词不移动。 可选：`0`, `-500`, `-1000`, `-2000`, `-5000`, `500`, `1000`, `2000`, `5000`。 |
 | `FALLBACK_MODE` | `synced` | synced 默认继续寻找逐行时间轴；fast 找到首份经过身份核对的歌词即返回，可能无滚动时间轴。切回 synced 不复用 fast 专用的纯文本缓存。 可选：`synced`, `fast`。 |
+| `NETWORK_MODE` | `online` | online 正常补词与翻译；cache-only 仅使用有效缓存，未缓存的歌曲无法补词，未缓存的句子不联网翻译。不影响 Spotify 自身联网。 可选：`online`, `cache-only`。 |
 | `SOURCE_TRANSLATIONS` | `true` | 简体中文目标下，复用补词响应中严格对齐的中文译文；关闭后忽略此类缓存并使用翻译服务。 |
 
 可以直接在插件参数中调整上述设置。
@@ -49,10 +50,10 @@
 
 ## 运行版本与接口
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/b237806470a5ca874e6c168b42c2998815212145/Loon/script/SpotifyLyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/b237806470a5ca874e6c168b42c2998815212145/Surge/Development/VerseLyrics100)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/f782e75afe834be7c796f3ce1ec8d2e7939e312a/Loon/script/SpotifyLyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/f782e75afe834be7c796f3ce1ec8d2e7939e312a/Surge/Development/VerseLyrics300)
 
 原始核心和适配逻辑为独立编写。Unicode Unihan 数据许可随运行脚本完整附带。[Script 语法](https://nsloon.app/docs/Script/script_v2/) · [Script API](https://nsloon.app/docs/Script/script_api/) · [目标歌曲公开配色来源](https://open.spotify.com/embed/track/76XUZSb13QUuj1HECY4Hvo)
 
 [其他客户端](../../README.md) · [返回 Loon](../README.md)
 
-2026-10-18：1094 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
+2026-10-19：1148 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。

@@ -1,11 +1,18 @@
-# VerseLyrics 1.0.0 — silent production module; no notification or scheduled scripts.
+# VerseLyrics 3.0.0 — silent production module; no notification or scheduled scripts.
 name: Spotify 双语歌词 · VerseLyrics
 author: Horatio Xu
 icon: music.note.list
 homepage: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/SpotifyLyrics.yaml
 manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/SpotifyLyrics.md
-description: 核心 1.0.0 · 适配 13。切歌后停止过时响应解码，精简补词目录与批量身份查询；新增可选快速补词策略。 保留补词、翻译与原生高亮。需 HTTPS 解密。
+description: 核心 3.0.0 · 适配 14。复用各源短期无匹配结果，头部按需复制并原地删除；新增仅缓存联网模式，精简历史入口。 保留补词、翻译与原生高亮。需 HTTPS 解密。
 env_schema:
+  NETWORK_MODE:
+    name: 插件联网模式
+    description: online 正常补词与翻译；cache-only 仅使用有效缓存，未缓存的歌曲无法补词，未缓存的句子不联网翻译。不影响 Spotify 自身联网。
+    default_value: "online"
+    options:
+    - "online"
+    - "cache-only"
   FALLBACK_MODE:
     name: 补词策略
     description: synced 默认继续寻找逐行时间轴；fast 找到首份经过身份核对的歌词即返回，可能无滚动时间轴。切回 synced 不复用 fast 专用的纯文本缓存。
@@ -123,13 +130,14 @@ mitm:
   - "*-spclient.spotify.com"
 scriptings:
 - http_request:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/b237806470a5ca874e6c168b42c2998815212145/Egern/script/SpotifyLyrics/spotify-lyrics-request.js?v=1.0.0
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/f782e75afe834be7c796f3ce1ec8d2e7939e312a/Egern/script/SpotifyLyrics/spotify-lyrics-request.js?v=3.0.0
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
       FALLBACK_PROVIDER: auto
       DISCOVER_MISSING: 'true'
       SOURCE_TRANSLATIONS: 'true'
+      NETWORK_MODE: "online"
       FALLBACK_MODE: "synced"
       FALLBACK_OFFSET_MS: "0"
       FETCH_ARTWORK_COLOR: "true"
@@ -141,13 +149,14 @@ scriptings:
     body_required: false
     timeout: 3
 - http_response:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/b237806470a5ca874e6c168b42c2998815212145/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=1.0.0
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/f782e75afe834be7c796f3ce1ec8d2e7939e312a/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=3.0.0
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
       FALLBACK_PROVIDER: auto
       DISCOVER_MISSING: 'true'
       SOURCE_TRANSLATIONS: 'true'
+      NETWORK_MODE: "online"
       FALLBACK_MODE: "synced"
       FALLBACK_OFFSET_MS: "0"
       FETCH_ARTWORK_COLOR: "true"
@@ -161,13 +170,14 @@ scriptings:
     max_size: 262144
     timeout: 12
 - http_response:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/b237806470a5ca874e6c168b42c2998815212145/Egern/script/SpotifyLyrics/spotify-lyrics-entry.js?v=1.0.0
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/f782e75afe834be7c796f3ce1ec8d2e7939e312a/Egern/script/SpotifyLyrics/spotify-lyrics-entry.js?v=3.0.0
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
       FALLBACK_PROVIDER: auto
       DISCOVER_MISSING: 'true'
       SOURCE_TRANSLATIONS: 'true'
+      NETWORK_MODE: "online"
       FALLBACK_MODE: "synced"
       FALLBACK_OFFSET_MS: "0"
       FETCH_ARTWORK_COLOR: "true"

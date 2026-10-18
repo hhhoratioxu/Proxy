@@ -39,7 +39,7 @@
 
 ## Spotify 双语歌词 · VerseLyrics
 
-Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **1.0.0**，切歌后停止过时响应解码，精简补词目录与批量身份查询；新增可选快速补词策略。 保留六源补词、插件翻译与原生高亮。性能测量范围见固定源码，未做 iPhone VPN 验收。Shadowrocket 完整官方脚本规范尚未取得，其兼容适配未标为官方验证。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
+Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **3.0.0**，复用各源短期无匹配结果，头部按需复制并原地删除；新增仅缓存联网模式，精简历史入口。 保留六源补词、插件翻译与原生高亮。性能测量范围见固定源码，未做 iPhone VPN 验收。Shadowrocket 完整官方脚本规范尚未取得，其兼容适配未标为官方验证。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
 
 | 客户端 | 安装入口 | 设置与限制 |
 | --- | --- | --- |
@@ -80,7 +80,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 
 YouTube Clean 1.2.3 fixes two explicit video-display advertising layouts missed by keyword-based detection. The buttoned layout was observed in a real Loon home response that parsed twelve cards but made no changes. Regression fixtures now remove the target ad and preserve ordinary sections exactly; all 117 local checks passed. One import per client remains. Post-fix device acceptance is pending. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
 
-VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 1.0.0. Settled transports recheck ownership and deadlines before decoding obsolete responses. Compact candidate frames and target-only extended metadata scans reduce retained work. Optional fast fallback returns the first identity-verified document; the default continues seeking real timestamps. Six sources, plugin translations and native highlighting remain. Measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
+VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 3.0.0. Reuse short-lived verified per-source misses without caching transport/application errors. Copy native headers only on mutation and compact deleted fields in place. Add an opt-in cache-only network mode, retain online synced defaults, and remove the unused production entry widget and Loon request script. Six sources, plugin translations and native highlighting remain. Measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
 Each plugin has one current installation entry. Clients automatically load any required runtime from a pinned version; no separate JavaScript download, build or test run is needed.
 
