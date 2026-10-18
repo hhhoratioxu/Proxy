@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "baseline": "0.7.1",
+  "tests": 1094,
+  "runtimeFiles": 16,
+  "jscColdCases": 55,
+  "jscRepeatedCases": 6,
+  "jscProcesses": 976,
+  "jscSampledPeakDeltaRangePercent": [
+    -5.833035299785127,
+    0.5113558643426774
+  ],
+  "retiredCatalogDecodedCharacters": {
+    "baseline": [
+      90021
+    ],
+    "candidate": [
+      0
+    ]
+  },
+  "nodePeakDeltaRangesPercent": {
+    "native-first-load-results.json": [
+      0.14089401597050522,
+      0.24868928107897315
+    ],
+    "native-filled-first-load-results.json": [
+      0.12647189994074992,
+      0.20750511394771465
+    ]
+  },
+  "candidateChurnCases": 10,
+  "baselineChurnCases": 2,
+  "physicalIPhoneVPNValidated": false
+}

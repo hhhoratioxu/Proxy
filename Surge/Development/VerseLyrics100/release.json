@@ -1,0 +1,71 @@
+{
+  "version": "1.0.0",
+  "previous": "0.7.1",
+  "summary": "切歌后停止过时响应解码，精简补词目录与批量身份查询；新增可选快速补词策略。",
+  "intro": "网络回调返回后重新核对请求归属和截止时间，已被新歌曲淘汰的请求不再解码搜索目录，也不启动额外请求或等待计时器。酷狗、酷我、lyrics.ovh 搜索阶段只把必要候选信息带入下载阶段。批量 Spotify 身份查询按目标曲目扫描，避免建立无用的改写字段树。新增 FALLBACK_MODE：默认 synced 继续寻找真实逐行时间轴；fast 找到首份经过歌曲身份核对的歌词即返回，可能是无时间轴文本。快速模式专用纯文本缓存不阻止切回默认模式后寻找同步歌词。",
+  "english": "Settled transports recheck ownership and deadlines before decoding obsolete responses. Compact candidate frames and target-only extended metadata scans reduce retained work. Optional fast fallback returns the first identity-verified document; the default continues seeking real timestamps.",
+  "options": [
+    {
+      "key": "PREFERRED_SOURCE",
+      "default": "auto",
+      "label": "优先歌词源",
+      "desc": "仅 auto 补词模式生效；优先尝试所选来源，其他来源继续兜底，已有成功缓存优先。",
+      "values": [
+        "auto",
+        "lrclib",
+        "qq",
+        "netease",
+        "kugou",
+        "kuwo",
+        "lyricsovh"
+      ]
+    },
+    {
+      "key": "MEMORY_MODE",
+      "default": "standard",
+      "label": "缓存容量",
+      "desc": "standard 为 128 条和 64000 字符；compact 为 64 条和 32000 字符，旧歌更早淘汰，较长记录可能不缓存。",
+      "values": [
+        "standard",
+        "compact"
+      ]
+    },
+    {
+      "key": "FETCH_ARTWORK_COLOR",
+      "default": "true",
+      "label": "联网获取专辑配色",
+      "desc": "关闭可省去额外取色请求；已有配色仍可复用，否则使用中性灰，补词和翻译保留。",
+      "values": [
+        "true",
+        "false"
+      ]
+    },
+    {
+      "key": "FALLBACK_OFFSET_MS",
+      "default": "0",
+      "label": "补词时间校正（毫秒）",
+      "desc": "仅影响所有备用来源的逐行同步歌词。正数延后、负数提前，默认 0；不影响官方原词，无时间轴歌词不移动。",
+      "values": [
+        "0",
+        "-500",
+        "-1000",
+        "-2000",
+        "-5000",
+        "500",
+        "1000",
+        "2000",
+        "5000"
+      ]
+    },
+    {
+      "key": "FALLBACK_MODE",
+      "default": "synced",
+      "label": "补词策略",
+      "desc": "synced 默认继续寻找逐行时间轴；fast 找到首份经过身份核对的歌词即返回，可能无滚动时间轴。切回 synced 不复用 fast 专用的纯文本缓存。",
+      "values": [
+        "synced",
+        "fast"
+      ]
+    }
+  ]
+}
