@@ -5,7 +5,7 @@ import {editBinary,editJson} from '../src/edit.mjs';
 import {handle} from '../src/runtime.mjs';
 import {templateName} from '../src/elements.mjs';
 import {combine,binary,string,at,all,opaque,homeFirstPage,homeContinuationPage,homeSection,homeContents} from './fixtures.mjs';
-const normal=new Settings({TRANSLATE_CAPTIONS:false}),strong=new Settings({TRANSLATE_CAPTIONS:false,DEEP_FILTER:true});
+const normal=new Settings({TRANSLATE_CAPTIONS:false,DEEP_FILTER:false}),strong=new Settings({TRANSLATE_CAPTIONS:false,DEEP_FILTER:true});
 export function elementNode(name,children=[],model=null){
   const component=combine(binary(3,binary(172035250,string(1,name+'.eml-fe|self-written-fixture'))),...(model?[binary(5,model)]:[]),opaque);
   return combine(binary(1,binary(168777401,component)),...children.map(n=>binary(3,n)),opaque);
@@ -57,7 +57,7 @@ test('JSON element cards and nested element children are filtered without alteri
 test('diagnostics contain only structural identifiers and never request tokens, titles, full URLs or account information',async()=>{
   const reports=[],body=homeFirstPage([homeSection([card('ads_video_with_context'),card('video_card')])]);
   const result=await handle({url:'https://youtubei.googleapis.com:443/youtubei/v1/browse?key=PRIVATE_KEY_FIXTURE',phase:'response',status:200,requestHeaders:{Authorization:'PRIVATE_AUTH_FIXTURE',Cookie:'PRIVATE_COOKIE_FIXTURE'},responseHeaders:{},body,report:r=>reports.push(r)},new Settings({TRANSLATE_CAPTIONS:false,DEEP_FILTER:true,DIAGNOSTICS:true,PROFILE:'tcp'}));
-  assert.ok(result.body);assert.equal(reports.length,1);assert.equal(reports[0].version,'1.2.1');assert.equal(reports[0].profile,'tcp');assert.equal(reports[0].removedParts,1);
+  assert.ok(result.body);assert.equal(reports.length,1);assert.equal(reports[0].version,'1.2.2');assert.equal(reports[0].profile,'tcp');assert.equal(reports[0].removedParts,1);
   const encoded=JSON.stringify(reports);assert.ok(!/PRIVATE_|https:|Cookie|Authorization/.test(encoded));assert.ok(encoded.includes('ads_video_with_context'));
 });
 test('diagnostic bypass is explicit for malformed native data and preserves the response',async()=>{

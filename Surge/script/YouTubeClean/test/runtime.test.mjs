@@ -60,6 +60,7 @@ async function callbackClient(client,body,options={}){
     $argument:'HIDE_SHORTS=true',
   };
   if(qx){context.$environment={variables:{HIDE_SHORTS:'true'}};context.$task={fetch:async request=>{requests.push(request);return{statusCode:options.downloadStatus||200,bodyBytes:utf8(originalCaptions)};}};context.$prefs={valueForKey:k=>storage.get(k),setValueForKey:(v,k)=>storage.set(k,v)};}
+  if(client==='Loon')context.$loon='iPhone fixture 3.5.3(1008)';
   if(options.argument)context.$argument=options.argument;
   if(options.noClearTimeout){delete context.clearTimeout;context.setTimeout=(fn,ms)=>setTimeout(fn,ms).unref();}
   vm.runInNewContext(callbackCode,context,{timeout:3000});
@@ -97,5 +98,5 @@ for(const [kind,make]of [['first',homeFirstPage],['continuation',homeContinuatio
   assert.deepEqual(homeContents(result.body,kind).map(Buffer.from),[Buffer.from(normal)]);
 });
 test('Loon caption completion does not require an unavailable clearTimeout API',async()=>{
-  const {result}=await callbackClient('Loon',utf8(translatedCaptions),{url:captionUrl+'&tlang=zh-Hans',noClearTimeout:true});assert.match(Buffer.from(result.body).toString(),/An original/);
+  const {result,requests}=await callbackClient('Loon',utf8(translatedCaptions),{url:captionUrl+'&tlang=zh-Hans',noClearTimeout:true});assert.match(Buffer.from(result.body).toString(),/An original/);assert.equal(requests.length,1);assert.equal(requests[0].timeout,4000);
 });

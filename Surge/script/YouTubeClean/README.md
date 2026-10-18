@@ -1,18 +1,16 @@
-# Horatio YouTube Clean 1.2.1
+# Horatio YouTube Clean 1.2.2
 
-独立编写的 YouTube 去广告、双语字幕与底栏控制脚本，支持 Egern、Loon、Surge、Shadowrocket 与 Quantumult X。Loon 提供 A、B、C 三种测试方案，每次只启用一个；其他客户端保留一个当前入口，可通过 `DEEP_FILTER` 切换过滤强度。
+独立编写的 YouTube 去广告、双语字幕与底栏控制脚本。每个支持客户端只提供一个当前安装入口，统一默认开启深层广告过滤，不再提供测试方案选择。
 
-用户确认旧版可隐藏 Loon 中的发布「＋」，但 1.0.0、1.0.1 和 1.2.0 B 深层版仍显示广告。用户的 Loon 3.5.3(1008) 日志确认 `initplayback` 响应脚本执行完成，未提供正文或主页 `browse` 处理结果。1.2.1 修复已复现的处理缺口并补齐诊断，**没有完成在用户手机上清除全部广告的验收**。
+| 客户端 | 安装文件 |
+| --- | --- |
+| Egern | `Egern/script/YouTubeClean.yaml` |
+| Loon | `Loon/script/YouTubeClean.plugin` |
+| Surge | `Surge/script/YouTubeClean.sgmodule` |
+| Shadowrocket | `Shadowrocket/script/YouTubeClean.sgmodule` |
+| Quantumult X | `QuantumultX/script/YouTubeClean.conf` |
 
-## 三个 Loon 方案
-
-| 文件 | 方案 | 处理差异 |
-| --- | --- | --- |
-| `YouTubeClean.plugin` | A 元素版 | 传统广告字段、首页与分页路径，加上原生元素广告模板识别 |
-| `YouTubeClean.Deep.plugin` | B 深层版 | A 的能力，加上单张卡片中的新封装、原生广告徽标与推广/试用模板 |
-| `YouTubeClean.TCP.plugin` | C 连接兼容版 | B 的过滤策略，加上四个 YouTube API 主机的 UDP/443 拒绝规则，测试客户端是否回退到可解密的 TCP |
-
-B 更适合目前仍显示主页广告的排查。C 版规则只针对 `youtubei.googleapis.com`、`youtubei-att.googleapis.com`、`www.youtube.com`、`m.youtube.com`，不会拦截 `googlevideo.com` 媒体主机或其他域名的 UDP。客户端是否回退、规则是否被已有本地规则覆盖，需要实际验证；可能出现加载延迟。语法依据 [Loon 逻辑规则](https://nsloon.app/docs/Rule/logic_rule/) 与 [协议规则](https://nsloon.app/docs/Rule/protocol_rule/)。
+1.2.2 整理为单一入口，保留既有过滤、字幕和诊断能力。按 Loon 官方 API 核对后，字幕请求超时明确采用 4000 毫秒；其他客户端继续使用各自适配。旧版实际主页广告仍有遗漏，本次没有新的真机清除或 VPN 稳定性结论。
 
 ## 设置
 
@@ -25,7 +23,7 @@ B 更适合目前仍显示主页广告的排查。C 版规则只针对 `youtubei
 | `AUTO_CAPTIONS` | `true` | 优先新增字幕轨道，仍受 App 控制 |
 | `HIDE_UPLOAD` | `true` | 隐藏底部发布「＋」 |
 | `HIDE_SHORTS` | `false` | 隐藏底部 Shorts；正常 Shorts 内容保留 |
-| `DEEP_FILTER` | A 为 `false`；B/C 为 `true` | 深查卡片封装和广告徽标，也会隐藏推广与试用卡片 |
+| `DEEP_FILTER` | `true` | 深查卡片封装和广告徽标，也会隐藏推广与试用卡片 |
 | `DIAGNOSTICS` | `true` | 每个命中的受支持请求/响应输出一行处理结果，可关闭 |
 
 日志以 `[YouTubeClean]` 开头，仅含版本、方案、固定接口名称（如 `browse`/`initplayback`）、开关布尔值、状态码、数据格式/大小、改动结果与固定原因、密钥状态（缺少/过期/可用等状态，不含密钥本身）、删除部件数、主页卡片数，以及有限的模板标识和 protobuf/UMP 数字类型。**不记录 Cookie、Authorization、账号、视频标题、完整 URL、访客标识、字幕签名或播放密钥。** 没有通知弹窗、定时任务或后台轮询。
@@ -57,13 +55,15 @@ pnpm test
 node package-native.mjs <40位运行脚本提交SHA> <输出目录>
 ```
 
-生成五个客户端入口和两个额外 Loon 方案。运行脚本固定提交，用户无需编译。源码、测试和构建脚本位于独立运行版本分支，主分支只放可导入入口与说明。
+为五个支持客户端各生成一个入口。运行脚本固定提交，用户无需编译。源码、测试和构建脚本位于独立运行版本分支，主分支只放可导入入口与说明。
 
-2026-10-17：**112 项本地检查通过**，包含播放器、字幕、加密封装、底栏、字节保留、原生元素、新封装、广告徽标、推广过滤、诊断隐私和三份实际生成的 Loon 配置；新增原始 gzip/损坏/膨胀限制、明文 UMP、密钥缺失/过期/失效、热配置刷新与诊断分支的测试。三个配置的默认参数送入待发布的同一自包含脚本执行，确认策略差异。C 版四条规则检查了域名、协议和端口限制，未在真实 Loon 网络栈中运行。
+2026-10-18：**110 项本地检查通过**，包含播放器、字幕、加密封装、底栏、字节保留、元素/卡片过滤、gzip、密钥状态和诊断隐私。实际生成的唯一 Loon 入口用默认参数执行自包含脚本，验证深层过滤和原生对象参数。字幕请求验证 4000 毫秒超时和一次完成回调，不依赖 clearTimeout。自动检查不等同于真实 iPhone VPN 验收。
 
-对 763,872 字节的公开初始主页与 763,991 字节的继续加载响应加入自写传统广告、原生元素广告和新封装广告，处理后可逐字节恢复其余真实响应。匿名返回没有实际投放的主页广告，属于真实信封与自写广告的混合验证，**不能当作用户主页广告已消失的证明**。可运行 `node test/probe-home.mjs <初始主页文件> <继续加载文件>` 重做；抓取、访客信息和签名链接不随源码发布。
+官方核对日期：2026-10-18。依据 [Loon 插件](https://nsloon.app/docs/Plugin/)、[Script](https://nsloon.app/docs/Script/script_v2/) 和 [Script API](https://nsloon.app/docs/Script/script_api/)，最低版本仍为 3.5.1(983)。只使用文档支持的参数、二进制表示和 with 字段。
 
-旧播放器样本保留 52 条字幕并新增一条轨道；公开字幕下载返回 HTTP 429。1.2.1 的真实广告去除、字幕显示、Shorts 隐藏、拖动和连续播放均待真机确认，不能承诺所有服务端广告实验均可清除。创作者口播推广不在自动处理范围内。
+先前对 763,872 字节的公开初始主页与 763,991 字节的继续加载响应加入自写传统广告、原生元素广告和新封装广告，处理后可逐字节恢复其余真实响应。匿名返回没有实际投放的主页广告，属于真实信封与自写广告的混合验证，**不能当作用户主页广告已消失的证明**。可运行 `node test/probe-home.mjs <初始主页文件> <继续加载文件>` 重做；抓取、访客信息和签名链接不随源码发布。
+
+旧播放器样本保留 52 条字幕并新增一条轨道；公开字幕下载返回 HTTP 429。当前版本的真实广告去除、字幕显示、Shorts 隐藏、拖动和连续播放均待真机确认，不能承诺所有服务端广告实验均可清除。创作者口播推广不在自动处理范围内。
 
 ## 来源与许可
 

@@ -2,6 +2,7 @@
 import {Settings,asBytes,finalizeHeaders,MAX_CAPTION,VERSION,route} from './data.mjs';
 import {handle} from './runtime.mjs';
 const isQX=typeof $task!=='undefined';
+const isLoon=typeof $loon!=='undefined';
 const request=typeof $request==='undefined'?{}:$request,response=typeof $response==='undefined'?null:$response;
 let diagnostics=true;
 function report(data){try{if(typeof console!=='undefined'&&typeof console.log==='function')console.log('[YouTubeClean] '+JSON.stringify(data));}catch{}}
@@ -10,7 +11,7 @@ function write(key,value){const encoded=JSON.stringify(value);return isQX?$prefs
 async function download(url,headers){
   let timer;
   const task=isQX?$task.fetch({url,method:'GET',headers,opts:{redirection:false,'auto-cookie':false,hints:false}}).then(r=>({status:r.statusCode,body:r.bodyBytes||r.body})):
-    new Promise((resolve,reject)=>$httpClient.get({url,headers,timeout:4,'binary-mode':true,'auto-cookie':false,'auto-redirect':false},(error,result,body)=>{if(error||!result)reject(Error('caption connection'));else resolve({status:result.status||result.statusCode,body});}));
+    new Promise((resolve,reject)=>$httpClient.get({url,headers,timeout:isLoon?4000:4,'binary-mode':true,'auto-cookie':false,'auto-redirect':false},(error,result,body)=>{if(error||!result)reject(Error('caption connection'));else resolve({status:result.status||result.statusCode,body});}));
   const result=await Promise.race([task,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('caption timeout')),4000);})]).finally(()=>{if(typeof clearTimeout==='function')clearTimeout(timer);});
   if(result.status===200&&asBytes(result.body).length>MAX_CAPTION)throw Error('caption size');return result;
 }
