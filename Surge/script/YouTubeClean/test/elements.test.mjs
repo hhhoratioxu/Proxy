@@ -57,7 +57,7 @@ test('JSON element cards and nested element children are filtered without alteri
 test('diagnostics contain only structural identifiers and never request tokens, titles, full URLs or account information',async()=>{
   const reports=[],body=homeFirstPage([homeSection([card('ads_video_with_context'),card('video_card')])]);
   const result=await handle({url:'https://youtubei.googleapis.com:443/youtubei/v1/browse?key=PRIVATE_KEY_FIXTURE',phase:'response',status:200,requestHeaders:{Authorization:'PRIVATE_AUTH_FIXTURE',Cookie:'PRIVATE_COOKIE_FIXTURE'},responseHeaders:{},body,report:r=>reports.push(r)},new Settings({TRANSLATE_CAPTIONS:false,DEEP_FILTER:true,DIAGNOSTICS:true,PROFILE:'tcp'}));
-  assert.ok(result.body);assert.equal(reports.length,1);assert.equal(reports[0].version,'1.2.2');assert.equal(reports[0].profile,'tcp');assert.equal(reports[0].removedParts,1);
+  assert.ok(result.body);assert.equal(reports.length,1);assert.equal(reports[0].version,'1.2.3');assert.equal(reports[0].profile,'tcp');assert.equal(reports[0].removedParts,1);
   const encoded=JSON.stringify(reports);assert.ok(!/PRIVATE_|https:|Cookie|Authorization/.test(encoded));assert.ok(encoded.includes('ads_video_with_context'));
 });
 test('diagnostic bypass is explicit for malformed native data and preserves the response',async()=>{

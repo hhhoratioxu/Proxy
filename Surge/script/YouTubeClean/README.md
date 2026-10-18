@@ -1,4 +1,4 @@
-# Horatio YouTube Clean 1.2.2
+# Horatio YouTube Clean 1.2.3
 
 独立编写的 YouTube 去广告、双语字幕与底栏控制脚本。每个支持客户端只提供一个当前安装入口，统一默认开启深层广告过滤，不再提供测试方案选择。
 
@@ -10,7 +10,17 @@
 | Shadowrocket | `Shadowrocket/script/YouTubeClean.sgmodule` |
 | Quantumult X | `QuantumultX/script/YouTubeClean.conf` |
 
-1.2.2 整理为单一入口，保留既有过滤、字幕和诊断能力。按 Loon 官方 API 核对后，字幕请求超时明确采用 4000 毫秒；其他客户端继续使用各自适配。旧版实际主页广告仍有遗漏，本次没有新的真机清除或 VPN 稳定性结论。
+1.2.3 修复实际主页日志暴露的模板漏识别，继续保持每个客户端一个入口。Loon 字幕请求超时为 4000 毫秒；其他客户端使用各自适配。修复后的实际广告结果及 VPN 稳定性仍需设备验证。
+
+## 已定位的主页漏识别
+
+2026-10-19：用户的 Loon 1.2.2 主页响应诊断显示，正文 355759 字节、解析 12 张卡片，未发生跳过或错误，但修改为零。实际观察到 `video_display_full_buttoned_layout`、`video_lockup_with_attachment` 和 `cell_divider`。旧策略只按模板中的 ad/promoted 等词匹配，漏掉不包含这些词的广告布局。
+
+新增两个完整标识的广告分类：`video_display_full_buttoned_layout` 和 `video_display_full_layout`。前者来自此次实际日志；两个标识的广告用途均与 [PoomSmart/YouTube-X 固定版本](https://github.com/PoomSmart/YouTube-X/blob/48b901532f9e12152684f3326d4250efcdea61e5/Tweak.x) 交叉核对。只使用模板标识事实，没有引入上游 tweak 代码；MIT 声明见 `licenses/youtube-x-MIT.txt`，也嵌入构建产物。
+
+匹配仅发生在已解析的原生元素模板位置，不按视频标题或任意字节搜索，不扩大到全部 video 布局。`video_lockup_with_attachment` 与 `cell_divider` 保留。新增 `matchedAdTemplates` 诊断字段，最多 16 个规范化静态标识，用于确认这次命中了哪些广告模板。
+
+基于这些观察构造了独立 protobuf/JSON 数据。修复前新回归检查有 5 项失败，修复后通过；其中含 12 张卡片、1 张目标广告的首页和分页样本，剩余 11 张卡片及其他字段精确保留。测试数据并非用户 355759 字节原始响应，也不是手机广告已消失的证明。未发布用户抓包、账号信息或完整 URL。
 
 ## 设置
 
@@ -57,9 +67,9 @@ node package-native.mjs <40位运行脚本提交SHA> <输出目录>
 
 为五个支持客户端各生成一个入口。运行脚本固定提交，用户无需编译。源码、测试和构建脚本位于独立运行版本分支，主分支只放可导入入口与说明。
 
-2026-10-18：**110 项本地检查通过**，包含播放器、字幕、加密封装、底栏、字节保留、元素/卡片过滤、gzip、密钥状态和诊断隐私。实际生成的唯一 Loon 入口用默认参数执行自包含脚本，验证深层过滤和原生对象参数。字幕请求验证 4000 毫秒超时和一次完成回调，不依赖 clearTimeout。自动检查不等同于真实 iPhone VPN 验收。
+2026-10-19：**117 项本地检查通过**，包含播放器、字幕、加密封装、底栏、字节保留、元素/卡片过滤、gzip、密钥状态和诊断隐私。实际生成的唯一 Loon 入口用默认参数执行自包含脚本，验证深层过滤和原生对象参数。字幕请求验证 4000 毫秒超时和一次完成回调，不依赖 clearTimeout。自动检查不等同于真实 iPhone VPN 验收。
 
-官方核对日期：2026-10-18。依据 [Loon 插件](https://nsloon.app/docs/Plugin/)、[Script](https://nsloon.app/docs/Script/script_v2/) 和 [Script API](https://nsloon.app/docs/Script/script_api/)，最低版本仍为 3.5.1(983)。只使用文档支持的参数、二进制表示和 with 字段。
+官方核对日期：2026-10-19。依据 [Loon 插件](https://nsloon.app/docs/Plugin/)、[Script](https://nsloon.app/docs/Script/script_v2/) 和 [Script API](https://nsloon.app/docs/Script/script_api/)，最低版本仍为 3.5.1(983)。只使用文档支持的参数、二进制表示和 with 字段。
 
 先前对 763,872 字节的公开初始主页与 763,991 字节的继续加载响应加入自写传统广告、原生元素广告和新封装广告，处理后可逐字节恢复其余真实响应。匿名返回没有实际投放的主页广告，属于真实信封与自写广告的混合验证，**不能当作用户主页广告已消失的证明**。可运行 `node test/probe-home.mjs <初始主页文件> <继续加载文件>` 重做；抓取、访客信息和签名链接不随源码发布。
 

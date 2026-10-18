@@ -4,6 +4,10 @@ import {fromUtf8} from './data.mjs';
 import {rendererAds} from './protocol.mjs';
 const ELEMENT_RENDERER=153515154,NEW_ELEMENT=172660663,COMPONENT_TYPE=168777401,URI_CONFIG=172035250;
 const AD_BADGE=138592202;
+// Observed on a real iOS home feed; advertising use independently confirmed in
+// PoomSmart/YouTube-X 48b901532f9e12152684f3326d4250efcdea61e5 (MIT).
+// Match complete normalized identifiers, never a visible title or arbitrary bytes.
+const VIDEO_AD_TEMPLATES=new Set(['video_display_full_buttoned_layout','video_display_full_layout']);
 const fields=raw=>decodeMessage(raw,256);
 function child(raw,no){const f=findField(fields(raw),no);return f?.wire===2?f.payload:null;}
 
@@ -14,8 +18,10 @@ export function templateName(uri){
   return /^[a-z][a-z0-9_./-]{0,100}$/.test(name)?name:'';
 }
 function remember(trace,name){if(name&&trace?.templates&&trace.templates.size<16)trace.templates.add(name);}
+function matched(trace,name){if(name&&trace?.matchedAdTemplates&&trace.matchedAdTemplates.size<16)trace.matchedAdTemplates.add(name);}
 export function promotionalTemplate(name,deep=false){
   if(!name)return false;
+  if(VIDEO_AD_TEMPLATES.has(name))return true;
   const ad=/(?:^|[_./-])(?:ad|ads|advertisement|advertising|promoted|sponsored)(?:$|[_./-])/;
   if(ad.test(name))return true;
   return deep&&(/(?:^|[_./-])(?:promo|promotion|upsell)(?:$|[_./-])/.test(name)||/^(?:statement_banner|brand_banner|premium_offer)(?:$|[_./-])/.test(name));
@@ -25,7 +31,7 @@ function inspectNode(raw,settings,trace){
   const c=component(raw);if(!c)return false;
   const config=child(c,3),uri=config&&child(config,URI_CONFIG),label=uri&&child(uri,1);
   const name=label?templateName(fromUtf8(label,true)):'';remember(trace,name);
-  return promotionalTemplate(name,settings.deep);
+  const blocked=promotionalTemplate(name,settings.deep);if(blocked)matched(trace,name);return blocked;
 }
 function markerInModel(raw,state,depth=0){
   if(depth>12||state.left--<=0)return false;
@@ -91,5 +97,5 @@ export function jsonElementAd(node,settings,trace){
   const root=node.elementRenderer?.newElement||node.newElement;
   if(!root)return false;
   const name=templateName(root.type?.componentType?.templateConfig?.uriTemplateConfig?.uri);remember(trace,name);
-  return promotionalTemplate(name,settings.deep);
+  const blocked=promotionalTemplate(name,settings.deep);if(blocked)matched(trace,name);return blocked;
 }

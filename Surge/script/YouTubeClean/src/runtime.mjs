@@ -39,7 +39,7 @@ function requestHeaders(io,settings,endpoint){
 }
 export async function handle(io,settings){
   const target=route(io.url);if(!target||getHeader(io.requestHeaders,INTERNAL))return null;
-  const trace=settings.debug?{removed:0,templates:new Set(),unknown:new Set(),feedCards:0}:null;
+  const trace=settings.debug?{removed:0,templates:new Set(),matchedAdTemplates:new Set(),unknown:new Set(),feedCards:0}:null;
   const status=Number(io.status),session=sessionKey(io);
   const diagnostic={version:VERSION,profile:settings.profile,endpoint:target.name||(target.kind==='ump'?'initplayback':'timedtext'),phase:io.phase==='request'?'request':'response',adRemoval:settings.ads,deepFilter:settings.deep,format:target.kind==='ump'?'ump':'unknown',bytes:0,outputBytes:0,compression:'none',keyState:session.state,keySaved:false,changed:false,bypass:false,reason:'unchanged'};
   if(Number.isInteger(status)&&status>=100&&status<=599)diagnostic.status=status;
@@ -96,7 +96,7 @@ export async function handle(io,settings){
     return null;
   }finally{
     if(trace&&typeof io.report==='function')try{
-      io.report({...diagnostic,removedParts:diagnostic.changed?trace.removed:0,feedCards:trace.feedCards,templates:[...trace.templates],unknownRendererTags:[...trace.unknown],...(trace.rootFields?{rootFields:trace.rootFields}:{}),...(trace.umpFrames!==undefined?{umpFrames:trace.umpFrames,umpTypes:trace.umpTypes,umpHeaderTypes:trace.umpHeaderTypes,metadataParts:trace.metadataParts,changedMetadataParts:diagnostic.changed?trace.changedMetadataParts:0}:{})});
+      io.report({...diagnostic,removedParts:diagnostic.changed?trace.removed:0,feedCards:trace.feedCards,templates:[...trace.templates],matchedAdTemplates:[...trace.matchedAdTemplates],unknownRendererTags:[...trace.unknown],...(trace.rootFields?{rootFields:trace.rootFields}:{}),...(trace.umpFrames!==undefined?{umpFrames:trace.umpFrames,umpTypes:trace.umpTypes,umpHeaderTypes:trace.umpHeaderTypes,metadataParts:trace.metadataParts,changedMetadataParts:diagnostic.changed?trace.changedMetadataParts:0}:{})});
     }catch{}
   }
 }

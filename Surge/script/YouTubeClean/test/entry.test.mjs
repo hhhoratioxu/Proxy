@@ -24,10 +24,12 @@ test('the sole Loon entry runs the bundled code with deep filtering and typed ob
   const plugin=await readFile(join(dir,'Loon/script/YouTubeClean.plugin'),'utf8'),args=parameters(plugin),logs=[];
   assert.equal(args.PROFILE,undefined);assert.equal(args.DEEP_FILTER,true);assert.equal(args.DIAGNOSTICS,true);assert.ok(plugin.includes(VERSION));
   for(const line of plugin.split('\n').filter(l=>/^(?:request|response) if /.test(l))){const raw=line.slice(line.indexOf('~= /')+4,line.indexOf('/ then script'));assert.ok(new RegExp(raw).test('https://youtubei.googleapis.com:443/youtubei/v1/browse?alt=proto'));const passed=[...line.matchAll(/\$\{(\w+)\}/g)].map(m=>m[1]).filter(k=>k!=='url');assert.deepEqual(new Set(passed),new Set(Object.keys(args)));}
-  const unknownAd=binary(477777777,binary(1,element('ad_layout'))),body=homeFirstPage([homeSection([element('ads_video_with_context')]),homeSection([unknownAd]),homeSection([element('video_card')])]);
+  const ordinary=[homeSection([element('cell_divider')]),...Array.from({length:10},()=>homeSection([element('video_lockup_with_attachment')]))];
+  const body=homeFirstPage([ordinary[0],homeSection([element('video_display_full_buttoned_layout')]),...ordinary.slice(1)]);
   let finish;const done=new Promise(resolve=>finish=resolve);let calls=0;
   vm.runInNewContext(code,{Uint8Array,ArrayBuffer,DataView,setTimeout,TextEncoder:undefined,TextDecoder:undefined,$loon:'iPhone fixture 3.5.3(1008)',$argument:args,$request:{url:'https://youtubei.googleapis.com:443/youtubei/v1/browse?alt=proto',headers:{}},$response:{status:200,headers:{},body},$persistentStore:{read:()=>null,write:()=>true},$done:r=>{calls++;finish(r);},console:{log:s=>logs.push(s)}},{timeout:3000});
-  const result=await done;assert.equal(calls,1);assert.equal(homeContents(result.body,'first').length,1);assert.equal(logs.length,1);assert.ok(logs[0].includes('"profile":"deep"'));
+  const result=await done;assert.equal(calls,1);assert.deepEqual(homeContents(result.body,'first').map(Buffer.from),ordinary.map(Buffer.from));assert.equal(logs.length,1);assert.ok(logs[0].includes('"profile":"deep"'));
+  const diagnostic=JSON.parse(logs[0].slice(15));assert.equal(diagnostic.reason,'modified');assert.equal(diagnostic.removedParts,1);assert.deepEqual(diagnostic.matchedAdTemplates,['video_display_full_buttoned_layout']);
 });
 test('packaging produces one import per capable client with no scheme selector or route changes',async()=>{
   for(const [client,name]of [['Egern','YouTubeClean.yaml'],['Loon','YouTubeClean.plugin'],['Surge','YouTubeClean.sgmodule'],['Shadowrocket','YouTubeClean.sgmodule'],['QuantumultX','YouTubeClean.conf']]){
