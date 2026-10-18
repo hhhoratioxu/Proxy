@@ -1,10 +1,10 @@
-# Horatio YouTube Clean 1.2.2; native ESM runtime.
-name: YouTube Clean 1.2.2
+# Horatio YouTube Clean 1.2.3; native ESM runtime.
+name: YouTube Clean 1.2.3
 author: Horatio Xu
 icon: captions.bubble.fill
 homepage: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/YouTubeClean.md
 manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/YouTubeClean.md
-description: 去广告、双语字幕及发布＋、Shorts 独立开关；默认开启深层过滤。需 HTTPS 解密。
+description: 补齐主页视频展示广告识别；保留双语字幕及发布＋、Shorts 独立开关。需 HTTPS 解密。
 env_schema:
   REMOVE_ADS:
     name: 去广告
@@ -53,14 +53,14 @@ scriptings:
   - http_request:
       name: YouTube Clean · 底栏与播放配置刷新
       match: "^https://(?:youtubei(?:-att)?\\.googleapis\\.com|(?:www|m)\\.youtube\\.com)(?::443)?/youtubei/v1/(?:browse|guide|log_event)(?:\\?.*)?$"
-      script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/a39c45884ecf3fe56674c204613d611d3c18ee32/Egern/script/YouTubeClean.js
+      script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/5a6b71f48e19df72498173b938d32a45c1143849/Egern/script/YouTubeClean.js
       body_required: false
       timeout: 8
       update_interval: 86400
   - http_response:
       name: YouTube Clean · 广告字幕与底栏
       match: "(?:^https://(?:youtubei(?:-att)?\\.googleapis\\.com|(?:www|m)\\.youtube\\.com)(?::443)?/youtubei/v1/(?:player(?:/ad_break)?|browse|next|search|guide|navigation/resolve_url|reel/(?:reel_watch_sequence|reel_item_watch)|get_watch|config|log_event)(?:\\?.*)?$|^https://(?:www|m)\\.youtube\\.com(?::443)?/api/timedtext(?:\\?.*)?$|^https://[a-zA-Z0-9-]+\\.googlevideo\\.com(?::443)?/initplayback(?:\\?.*)?$)"
-      script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/a39c45884ecf3fe56674c204613d611d3c18ee32/Egern/script/YouTubeClean.js
+      script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/5a6b71f48e19df72498173b938d32a45c1143849/Egern/script/YouTubeClean.js
       body_required: true
       binary_body: true
       max_size: 8388608

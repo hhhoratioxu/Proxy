@@ -1,8 +1,14 @@
-# YouTube Clean 1.2.2 · Loon
+# YouTube Clean 1.2.3 · Loon
 
 一个插件包含去广告、双语字幕及发布「＋」/Shorts 独立开关，默认开启深层过滤。此后统一使用下面这一个安装入口更新。
 
 [安装 YouTubeClean.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.plugin)
+
+## 本次主页广告修复
+
+1.2.3 补齐 `video_display_full_buttoned_layout` 和 `video_display_full_layout` 两个广告布局的完整标识匹配。前者实际出现在用户的主页响应日志中，旧版已解析卡片但没有删除。普通视频 `video_lockup_with_attachment`、分隔项 `cell_divider` 及未知数据保留。广告布局用途与 [固定公开源码](https://github.com/PoomSmart/YouTube-X/blob/48b901532f9e12152684f3326d4250efcdea61e5/Tweak.x) 交叉核对，未引入该项目运行代码，MIT 许可保存在固定源码版本并嵌入运行脚本。
+
+新版诊断增加 `matchedAdTemplates`，表示识别出的广告模板；结合 `reason=modified` 和 `removedParts` 可以确认这次响应产生了修改。继续使用同一个安装入口，在客户端更新后确认名称为 1.2.3，再重启 YouTube、刷新主页。
 
 ## 安装和使用
 
@@ -40,12 +46,12 @@
 
 ## Loon 官方依据
 
-核对日期：2026-10-18。依据 [官方插件](https://nsloon.app/docs/Plugin/)、[Script](https://nsloon.app/docs/Script/script_v2/) 与 [Script API](https://nsloon.app/docs/Script/script_api/)。使用原生对象参数与二进制正文，最低版本仍为 3.5.1(983)。字幕网络请求超时按 API 单位采用 4000 毫秒；完成回调只调用一次，不依赖 clearTimeout。参见 [仓库适配记录](./OfficialReference.md)。
+核对日期：2026-10-19。依据 [官方插件](https://nsloon.app/docs/Plugin/)、[Script](https://nsloon.app/docs/Script/script_v2/) 与 [Script API](https://nsloon.app/docs/Script/script_api/)。使用原生对象参数与二进制正文，最低版本仍为 3.5.1(983)。字幕网络请求超时按 API 单位采用 4000 毫秒；完成回调只调用一次，不依赖 clearTimeout。参见 [仓库适配记录](./OfficialReference.md)。
 
 ## 验证与源码
 
-2026-10-18：**110 项本地检查通过**，覆盖五种客户端接口、唯一 Loon 入口及默认深层参数、gzip、加密与明文播放元数据、字幕、底栏、错误恢复和日志隐私。此前公开主页样本加入自写广告的混合测试可以保留其余真实响应字节，原始匿名样本没有实际投放的主页广告。
+2026-10-19：**117 项本地检查通过**，覆盖五种客户端接口、唯一 Loon 入口及默认深层参数、gzip、加密与明文播放元数据、字幕、底栏、错误恢复和日志隐私。此前公开主页样本加入自写广告的混合测试可以保留其余真实响应字节，原始匿名样本没有实际投放的主页广告。
 
-用户之前仍看到广告；本次统一入口不代表剩余广告已经消失。实际广告去除、字幕显示、Shorts 隐藏与连续播放仍需真机确认，本地检查不等同于 iPhone VPN 稳定性验收。
+已根据用户的实际主页日志定位并修复一个明确的广告模板漏识别。回归数据按观察到的布局独立构造，尚未获得用户原始响应或修复后的手机结果。实际广告去除、字幕显示、Shorts 隐藏与连续播放仍需真机确认，本地检查不等同于 iPhone VPN 稳定性验收。
 
-[源码、测试与许可](https://github.com/hhhoratioxu/Proxy/tree/a39c45884ecf3fe56674c204613d611d3c18ee32/Surge/script/YouTubeClean) · [客户端说明](../README.md) · [所有客户端入口](../../README.md)
+[源码、测试与许可](https://github.com/hhhoratioxu/Proxy/tree/5a6b71f48e19df72498173b938d32a45c1143849/Surge/script/YouTubeClean) · [客户端说明](../README.md) · [所有客户端入口](../../README.md)

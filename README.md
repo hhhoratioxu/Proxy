@@ -23,7 +23,7 @@
 
 ## YouTube Clean · 去广告、双语字幕与底栏控制
 
-**1.2.2**。各客户端统一为一个安装入口，默认开启深层广告过滤，保留双语字幕及发布「＋」/Shorts 独立开关。以后通过同一入口更新。
+**1.2.3**。根据实际主页日志，补齐两个未被关键词规则识别的视频展示广告布局，并增加命中模板诊断。各客户端继续保持一个安装入口，保留深层过滤、双语字幕及发布「＋」/Shorts 独立开关。
 
 | 客户端 | 安装入口 |
 | --- | --- |
@@ -35,7 +35,7 @@
 | Clash / Mihomo | [能力说明](./Clash/Docs/YouTubeClean.md) |
 
 
-110 项本地检查通过。当前工作统一了安装入口；用户之前仍看到广告，实际去除效果尚待手机确认。[源码与验证范围](https://github.com/hhhoratioxu/Proxy/tree/a39c45884ecf3fe56674c204613d611d3c18ee32/Surge/script/YouTubeClean)。
+117 项本地检查通过。已复现旧版对观察到的广告布局不产生修改，并验证修复可移除目标卡片、精确保留普通内容。测试数据独立构造，修复后的手机结果仍待确认。[源码与验证范围](https://github.com/hhhoratioxu/Proxy/tree/5a6b71f48e19df72498173b938d32a45c1143849/Surge/script/YouTubeClean)。
 
 ## Spotify 双语歌词 · VerseLyrics
 
@@ -78,7 +78,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 | Shadowrocket | [Rules, scripts and modules](./Shadowrocket/) · [Guide](./Shadowrocket/README.md) |
 | QuanX / Quantumult X | [Rules, scripts and tasks](./QuantumultX/) · [Guide](./QuantumultX/README.md) |
 
-YouTube Clean 1.2.2 provides one current import per capable client, with deep filtering enabled by default and independent bilingual-subtitle, upload-button and Shorts settings. All 110 local checks passed. This release consolidates installation; actual ad removal and iPhone VPN stability remain unverified. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
+YouTube Clean 1.2.3 fixes two explicit video-display advertising layouts missed by keyword-based detection. The buttoned layout was observed in a real Loon home response that parsed twelve cards but made no changes. Regression fixtures now remove the target ad and preserve ordinary sections exactly; all 117 local checks passed. One import per client remains. Post-fix device acceptance is pending. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
 
 VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 1.0.0. Settled transports recheck ownership and deadlines before decoding obsolete responses. Compact candidate frames and target-only extended metadata scans reduce retained work. Optional fast fallback returns the first identity-verified document; the default continues seeking real timestamps. Six sources, plugin translations and native highlighting remain. Measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
