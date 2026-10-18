@@ -6,9 +6,7 @@
 
 | 插件 | 安装文件原始地址 | 使用说明 |
 | --- | --- | --- |
-| YouTube Clean · A 元素版 | [YouTubeClean.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.plugin) | [设置与验证范围](./Docs/YouTubeClean.md) |
-| YouTube Clean · B 深层版 | [YouTubeClean.Deep.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.Deep.plugin) | [三版差异与诊断](./Docs/YouTubeClean.md) |
-| YouTube Clean · C 连接兼容版 | [YouTubeClean.TCP.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.TCP.plugin) | [三版只启用一个](./Docs/YouTubeClean.md) |
+| YouTube Clean | [YouTubeClean.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.plugin) | [设置与验证范围](./Docs/YouTubeClean.md) |
 | Spotify 双语歌词 · VerseLyrics | [SpotifyLyrics.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/SpotifyLyrics.plugin) | [设置与已知限制](./Docs/SpotifyLyrics.md) |
 | 美团外卖去广告 | [MeituanWaimai.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.plugin) | [说明](./Docs/MeituanWaimai.md) |
 | 流媒体解锁查询 | [StreamingUnlock.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/StreamingUnlock.plugin) | 导入后使用客户端对应功能 |

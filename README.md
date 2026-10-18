@@ -23,19 +23,19 @@
 
 ## YouTube Clean · 去广告、双语字幕与底栏控制
 
-**1.2.1 修复版**。修复原始 gzip 与明文 Onesie 播放元数据处理，补齐各接口明确诊断，并改善启动阶段热配置刷新。保留双语字幕和发布「＋」/Shorts 独立开关。Loon 提供 A 元素版、B 深层版、C 连接兼容版，每次只启用一个。
+**1.2.2**。各客户端统一为一个安装入口，默认开启深层广告过滤，保留双语字幕及发布「＋」/Shorts 独立开关。以后通过同一入口更新。
 
 | 客户端 | 安装入口 |
 | --- | --- |
 | Egern | [YouTubeClean.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/script/YouTubeClean.yaml) |
-| Loon | [YouTubeClean.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.plugin) · [B 深层版](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.Deep.plugin) · [C 连接兼容版](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.TCP.plugin) |
+| Loon | [YouTubeClean.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.plugin) |
 | Surge | [YouTubeClean.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/script/YouTubeClean.sgmodule) |
 | Shadowrocket | [YouTubeClean.sgmodule](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/script/YouTubeClean.sgmodule) |
 | Quantumult X | [YouTubeClean.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/YouTubeClean.conf) |
 | Clash / Mihomo | [能力说明](./Clash/Docs/YouTubeClean.md) |
 
 
-112 项本地检查通过。用户反馈 1.2.0 B 仍有广告；1.2.1 修复已复现的处理缺口，但实际残留原因需根据新诊断确认，手机效果尚待验证。[源码与验证范围](https://github.com/hhhoratioxu/Proxy/tree/7ff5135483b285a5b2a3156142a09d67ab0d8b5e/Surge/script/YouTubeClean)。
+110 项本地检查通过。当前工作统一了安装入口；用户之前仍看到广告，实际去除效果尚待手机确认。[源码与验证范围](https://github.com/hhhoratioxu/Proxy/tree/a39c45884ecf3fe56674c204613d611d3c18ee32/Surge/script/YouTubeClean)。
 
 ## Spotify 双语歌词 · VerseLyrics
 
@@ -78,7 +78,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 | Shadowrocket | [Rules, scripts and modules](./Shadowrocket/) · [Guide](./Shadowrocket/README.md) |
 | QuanX / Quantumult X | [Rules, scripts and tasks](./QuantumultX/) · [Guide](./QuantumultX/README.md) |
 
-YouTube Clean 1.2.1 fixes raw HTTP gzip, clear Onesie player metadata, startup hot-config refresh and explicit diagnostics for every supported endpoint. Loon keeps separate A elements, B deep and C connection-compatibility entries; enable one at a time. The user still saw ads on 1.2.0 B and supplied a completed initplayback record without a response body. All 112 local checks passed; the actual remaining ad cause and on-device result require new diagnostics. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
+YouTube Clean 1.2.2 provides one current import per capable client, with deep filtering enabled by default and independent bilingual-subtitle, upload-button and Shorts settings. All 110 local checks passed. This release consolidates installation; actual ad removal and iPhone VPN stability remain unverified. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
 
 VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 1.0.0. Settled transports recheck ownership and deadlines before decoding obsolete responses. Compact candidate frames and target-only extended metadata scans reduce retained work. Optional fast fallback returns the first identity-verified document; the default continues seeking real timestamps. Six sources, plugin translations and native highlighting remain. Measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
