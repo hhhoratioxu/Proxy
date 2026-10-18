@@ -4,10 +4,17 @@ import {fromUtf8} from './data.mjs';
 import {rendererAds} from './protocol.mjs';
 const ELEMENT_RENDERER=153515154,NEW_ELEMENT=172660663,COMPONENT_TYPE=168777401,URI_CONFIG=172035250;
 const AD_BADGE=138592202;
-// Observed on a real iOS home feed; advertising use independently confirmed in
+// Video and square-image layouts observed on real iOS home feeds; related
+// advertising display layouts independently confirmed in
 // PoomSmart/YouTube-X 48b901532f9e12152684f3326d4250efcdea61e5 (MIT).
 // Match complete normalized identifiers, never a visible title or arbitrary bytes.
-const VIDEO_AD_TEMPLATES=new Set(['video_display_full_buttoned_layout','video_display_full_layout']);
+// Community posts and shopping/product shelves are not classified by these names.
+const DISPLAY_AD_TEMPLATES=new Set([
+  'video_display_full_buttoned_layout','video_display_full_layout',
+  'full_width_square_image_layout','full_width_portrait_image_layout',
+  'landscape_image_wide_button_layout','square_image_layout','text_image_button_layout',
+  'grid_ads_image_layout','carousel_headered_layout','carousel_footered_layout','brand_video_shelf'
+]);
 const fields=raw=>decodeMessage(raw,256);
 function child(raw,no){const f=findField(fields(raw),no);return f?.wire===2?f.payload:null;}
 
@@ -21,7 +28,7 @@ function remember(trace,name){if(name&&trace?.templates&&trace.templates.size<16
 function matched(trace,name){if(name&&trace?.matchedAdTemplates&&trace.matchedAdTemplates.size<16)trace.matchedAdTemplates.add(name);}
 export function promotionalTemplate(name,deep=false){
   if(!name)return false;
-  if(VIDEO_AD_TEMPLATES.has(name))return true;
+  if(DISPLAY_AD_TEMPLATES.has(name))return true;
   const ad=/(?:^|[_./-])(?:ad|ads|advertisement|advertising|promoted|sponsored)(?:$|[_./-])/;
   if(ad.test(name))return true;
   return deep&&(/(?:^|[_./-])(?:promo|promotion|upsell)(?:$|[_./-])/.test(name)||/^(?:statement_banner|brand_banner|premium_offer)(?:$|[_./-])/.test(name));
