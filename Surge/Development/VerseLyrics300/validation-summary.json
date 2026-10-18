@@ -1,0 +1,41 @@
+{
+  "version": "3.0.0",
+  "baseline": "1.0.0",
+  "tests": 1148,
+  "runtimeFiles": 15,
+  "jscColdCases": 59,
+  "jscRepeatedCases": 6,
+  "jscProcesses": 1040,
+  "jscSampledPeakDeltaRangePercent": [
+    -2.2043776408722016,
+    3.468249690271863
+  ],
+  "casesAbovePriorThreePercentComparisonThreshold": [
+    {
+      "mode": "cold",
+      "scenario": "official-48-json",
+      "peakDeltaPercent": 3.2445380309642724
+    },
+    {
+      "mode": "cold",
+      "scenario": "entry-context-1",
+      "peakDeltaPercent": 3.468249690271863
+    }
+  ],
+  "nodeSampledPeakDeltaRangePercent": {
+    "native-first-load-results.json": [
+      -4.696495544779145,
+      0.26693482732296214
+    ],
+    "native-filled-first-load-results.json": [
+      0.11991387401313336,
+      0.19493652945596907
+    ]
+  },
+  "sourceProgressRetryRequests": [
+    5,
+    2
+  ],
+  "candidateChurnCases": 10,
+  "physicalIPhoneVPNValidated": false
+}
