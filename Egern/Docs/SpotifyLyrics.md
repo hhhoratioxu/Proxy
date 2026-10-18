@@ -1,10 +1,10 @@
 # Spotify 双语歌词 · VerseLyrics
 
-当前发布 **3.0.0**（原生适配 14）。auto 模式中各歌词源确认无匹配的结果按歌曲短期复用，失败与超时仍可重试，避免每次从头查完。保留 1.0.0 的缓存读写方案。原生 Headers 只在修改时复制，删除字段时复用现有数组。新增 NETWORK_MODE：online 保留正常补词与翻译；cache-only 只使用有效的已有歌词、译文和配色，不发起任何插件外网查询。默认仍为 online 和同步歌词优先。删除正式入口中的历史诊断小组件分支和 Loon 未使用的请求脚本产物。
+当前发布 **3.1.0**（原生适配 14）。简体与繁体中文原词均原样保留，目标为中文时不请求简繁转换，也不复用旧转换缓存或来源附带转换。外语与混合语言行仍按设置翻译，明确标注为日语或韩语的内容仍可翻译。官方只有 UNSYNCED 静态歌词时自动搜索经过歌曲身份核对的真实逐行同步歌词，即使选择 fast 也不拿另一份纯文本覆盖；查询失败、网络忙或仅缓存模式未命中时保留官方原词及可用插件译文。已同步官方歌词不额外搜源，完整无时间轴搜索的短期结果在原有有界缓存内复用，服务故障不作为缺词依据。
 
 保留六源补词、插件翻译、原生时间轴与高亮。缓存和网络都有明确上限；未收录的歌曲仍不能凭空补全。本地自动测试与 macOS JavaScriptCore 测量不等于 iPhone Loon 实机 VPN 验收，不能保证所有设备都不会被系统终止。
 
-当前模块：3.0.0，适用于支持原生 `ctx` 脚本 API 的 Egern。
+当前模块：3.1.0，适用于支持原生 `ctx` 脚本 API 的 Egern。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -28,7 +28,7 @@
 | --- | --- | --- |
 | `TRANSLATION_ENABLED` | `true` | 使用插件译文替换官方译文列表。 |
 | `TARGET_LANGUAGE` | `zh-CN` | 简体中文，可在模块设置中改为其他语言。 |
-| `FALLBACK_PROVIDER` | `auto` | 官方无词时依次核对六源；也可选 `lrclib` / `qq` / `netease` / `kugou` / `kuwo` / `lyricsovh` / `off`。 |
+| `FALLBACK_PROVIDER` | `auto` | 官方无词时核对六源；只有静态歌词时搜索真实同步来源；也可选 `lrclib` / `qq` / `netease` / `kugou` / `kuwo` / `lyricsovh` / `off`。 |
 | `DISCOVER_MISSING` | `true` | 处理已适配的歌词检查、元数据和原生歌词入口。 |
 | `PREFERRED_SOURCE` | `auto` | 仅 auto 补词模式生效；优先尝试所选来源，其他来源继续兜底，已有成功缓存优先。 可选：`auto`, `lrclib`, `qq`, `netease`, `kugou`, `kuwo`, `lyricsovh`。 |
 | `MEMORY_MODE` | `standard` | standard 为 128 条和 64000 字符；compact 为 64 条和 32000 字符，旧歌更早淘汰，较长记录可能不缓存。 可选：`standard`, `compact`。 |
@@ -38,7 +38,7 @@
 | `NETWORK_MODE` | `online` | online 正常补词与翻译；cache-only 仅使用有效缓存，未缓存的歌曲无法补词，未缓存的句子不联网翻译。不影响 Spotify 自身联网。 可选：`online`, `cache-only`。 |
 | `SOURCE_TRANSLATIONS` | `true` | 简体中文目标下，复用补词响应中严格对齐的中文译文；关闭后忽略此类缓存并使用翻译服务。 |
 
-Spotify 已有的原词和时间轴继续保留。备用源优先核对同专辑结果；跨专辑的列表搜索要求唯一同曲匹配，LRCLIB 签名结果需通过身份、时长与版本校验，未收录的歌曲无法生成歌词。译文由插件处理，翻译服务不可用时保留原词。
+Spotify 已有同步歌词的原词和时间轴继续保留；官方只有静态歌词时尝试真实同步来源，未匹配则保留原词。备用源优先核对同专辑结果；跨专辑的列表搜索要求唯一同曲匹配，LRCLIB 签名结果需通过身份、时长与版本校验，未收录的歌曲无法生成歌词。译文由插件处理，翻译服务不可用时保留原词。
 
 ## 兼容性
 
@@ -54,10 +54,10 @@ Spotify 已有的原词和时间轴继续保留。备用源优先核对同专辑
 
 ## 来源与许可
 
-插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/f782e75afe834be7c796f3ce1ec8d2e7939e312a/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
+插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/4a74064675bf7224fdd45859dc0b513ffa074c6c/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/f782e75afe834be7c796f3ce1ec8d2e7939e312a/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/f782e75afe834be7c796f3ce1ec8d2e7939e312a/Surge/Development/VerseLyrics300) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/4a74064675bf7224fdd45859dc0b513ffa074c6c/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/4a74064675bf7224fdd45859dc0b513ffa074c6c/Surge/Development/VerseLyrics310) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
 
 [其他客户端](../../README.md) · [返回 Egern](../README.md)
 
-2026-10-19：1148 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
+2026-10-19：1253 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。

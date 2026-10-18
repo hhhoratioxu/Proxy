@@ -1,10 +1,10 @@
-# VerseLyrics 3.0.0 — silent production module; no notification or scheduled scripts.
+# VerseLyrics 3.1.0 — silent production module; no notification or scheduled scripts.
 name: Spotify 双语歌词 · VerseLyrics
 author: Horatio Xu
 icon: music.note.list
 homepage: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/SpotifyLyrics.yaml
 manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/SpotifyLyrics.md
-description: 核心 3.0.0 · 适配 14。复用各源短期无匹配结果，头部按需复制并原地删除；新增仅缓存联网模式，精简历史入口。 保留补词、翻译与原生高亮。需 HTTPS 解密。
+description: 核心 3.1.0 · 适配 14。中文歌词不再简繁互译；官方静态歌词自动寻找真实同步时间轴，失败保留原词。 保留补词、翻译与原生高亮。需 HTTPS 解密。
 env_schema:
   NETWORK_MODE:
     name: 插件联网模式
@@ -69,7 +69,7 @@ env_schema:
     - 'false'
   SOURCE_TRANSLATIONS:
     name: 复用歌词源译文
-    description: 简体中文目标下采用同次补词响应中精确对齐的中文译文，其余行继续翻译；关闭则全部使用翻译服务。
+    description: 简体中文目标下采用同次补词响应中精确对齐的中文译文，其余行继续翻译；关闭则外语行使用翻译服务，中文原词不简繁互译。
     default_value: 'true'
     options:
     - 'true'
@@ -105,8 +105,8 @@ env_schema:
     - ms
     - el
   FALLBACK_PROVIDER:
-    name: 无词时的备用源
-    description: auto 按六源顺序查询，优先同歌手近期成功的同步源；off 不补源。始终优先 Spotify 原词，指定一家仅影响无词后的选择。
+    name: 补词与同步歌词来源
+    description: auto 按六源顺序查询，优先同歌手近期成功的同步源；off 不补源。官方同步歌词保持原样；官方无词或只有静态歌词时按所选来源补充或升级。
     default_value: auto
     options:
     - auto
@@ -130,7 +130,7 @@ mitm:
   - "*-spclient.spotify.com"
 scriptings:
 - http_request:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/f782e75afe834be7c796f3ce1ec8d2e7939e312a/Egern/script/SpotifyLyrics/spotify-lyrics-request.js?v=3.0.0
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/4a74064675bf7224fdd45859dc0b513ffa074c6c/Egern/script/SpotifyLyrics/spotify-lyrics-request.js?v=3.1.0
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
@@ -149,7 +149,7 @@ scriptings:
     body_required: false
     timeout: 3
 - http_response:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/f782e75afe834be7c796f3ce1ec8d2e7939e312a/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=3.0.0
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/4a74064675bf7224fdd45859dc0b513ffa074c6c/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=3.1.0
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
@@ -170,7 +170,7 @@ scriptings:
     max_size: 262144
     timeout: 12
 - http_response:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/f782e75afe834be7c796f3ce1ec8d2e7939e312a/Egern/script/SpotifyLyrics/spotify-lyrics-entry.js?v=3.0.0
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/4a74064675bf7224fdd45859dc0b513ffa074c6c/Egern/script/SpotifyLyrics/spotify-lyrics-entry.js?v=3.1.0
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN

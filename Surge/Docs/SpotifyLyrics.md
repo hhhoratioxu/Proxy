@@ -1,10 +1,10 @@
 # Spotify 双语歌词 · VerseLyrics · Surge
 
-当前发布 **3.0.0**（原生适配 14）。auto 模式中各歌词源确认无匹配的结果按歌曲短期复用，失败与超时仍可重试，避免每次从头查完。保留 1.0.0 的缓存读写方案。原生 Headers 只在修改时复制，删除字段时复用现有数组。新增 NETWORK_MODE：online 保留正常补词与翻译；cache-only 只使用有效的已有歌词、译文和配色，不发起任何插件外网查询。默认仍为 online 和同步歌词优先。删除正式入口中的历史诊断小组件分支和 Loon 未使用的请求脚本产物。
+当前发布 **3.1.0**（原生适配 14）。简体与繁体中文原词均原样保留，目标为中文时不请求简繁转换，也不复用旧转换缓存或来源附带转换。外语与混合语言行仍按设置翻译，明确标注为日语或韩语的内容仍可翻译。官方只有 UNSYNCED 静态歌词时自动搜索经过歌曲身份核对的真实逐行同步歌词，即使选择 fast 也不拿另一份纯文本覆盖；查询失败、网络忙或仅缓存模式未命中时保留官方原词及可用插件译文。已同步官方歌词不额外搜源，完整无时间轴搜索的短期结果在原有有界缓存内复用，服务故障不作为缺词依据。
 
 保留六源补词、插件翻译、原生时间轴与高亮。缓存和网络都有明确上限；未收录的歌曲仍不能凭空补全。本地自动测试与 macOS JavaScriptCore 测量不等于 iPhone Loon 实机 VPN 验收，不能保证所有设备都不会被系统终止。
 
-核心 **3.0.0**，客户端适配 **14**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
+核心 **3.1.0**，客户端适配 **14**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -28,7 +28,7 @@
 | --- | --- | --- |
 | `TRANSLATION_ENABLED` | `true` | 以插件译文替换全部官方译文列表 |
 | `TARGET_LANGUAGE` | `zh-CN` | 默认简体；`zh-TW` 繁体、`en` 英文、`ja` 日文、`ko` 韩文 |
-| `FALLBACK_PROVIDER` | `auto` | 无词时顺序尝试六源；可选 `lrclib` / `qq` / `netease` / `kugou` / `kuwo` / `lyricsovh` / `off` |
+| `FALLBACK_PROVIDER` | `auto` | 无词时核对六源；官方静态歌词尝试升级为真实同步歌词；可选 `lrclib` / `qq` / `netease` / `kugou` / `kuwo` / `lyricsovh` / `off` |
 | `DISCOVER_MISSING` | `true` | 尝试适配原生入口，不保证客户端发起歌词请求 |
 | `PREFERRED_SOURCE` | `auto` | 仅 auto 补词模式生效；优先尝试所选来源，其他来源继续兜底，已有成功缓存优先。 可选：`auto`, `lrclib`, `qq`, `netease`, `kugou`, `kuwo`, `lyricsovh`。 |
 | `MEMORY_MODE` | `standard` | standard 为 128 条和 64000 字符；compact 为 64 条和 32000 字符，旧歌更早淘汰，较长记录可能不缓存。 可选：`standard`, `compact`。 |
@@ -52,10 +52,10 @@
 
 ## 运行版本与接口
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/f782e75afe834be7c796f3ce1ec8d2e7939e312a/Surge/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/f782e75afe834be7c796f3ce1ec8d2e7939e312a/Surge/Development/VerseLyrics300)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/4a74064675bf7224fdd45859dc0b513ffa074c6c/Surge/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/4a74064675bf7224fdd45859dc0b513ffa074c6c/Surge/Development/VerseLyrics310)
 
 原始核心和适配逻辑为独立编写。Unicode Unihan 数据许可随运行脚本完整附带。[HTTP Response Script](https://manual.nssurge.com/scripting/http-response.html) · [HTTP / Storage API](https://manual.nssurge.com/scripting/api.html)
 
 [其他客户端](../../README.md) · [返回 Surge](../README.md)
 
-2026-10-19：1148 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
+2026-10-19：1253 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。

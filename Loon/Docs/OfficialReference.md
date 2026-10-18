@@ -41,3 +41,8 @@ input/select 支持 string 或 number，switch 使用 boolean；select 首项是
 ## VerseLyrics 3.0.0 核对记录
 
 2026-10-19 重新核对 Script、Script API 与插件官方页面。NETWORK_MODE 是插件自有 string select 参数，默认 online，通过现有参数对象传入；cache-only 只控制插件查询，不修改 Loon 路由或 Spotify 本身联网。没有新增宿主 API、计时器或权限，最低版本继续为 3.5.1（983）。请求头继续使用官方原生 Rewrite；不再生成未被导入文件引用的 Loon 请求脚本。存储仍使用文档公开的同步字符串读写，保持原有容量与并发边界，不假设事务或原子交换能力。
+
+
+## VerseLyrics 3.1.0 共享歌词行为
+
+2026-10-19 核对 Script API 的异步完成与二进制约定。本次只改共享歌词判断与来源选择，不改 Loon 语法、宿主 API、最低版本或参数。简繁中文原词不互译；官方 UNSYNCED 静态歌词可在原有串行查询和容量边界内换为身份核对通过的真实同步歌词，无匹配则保留原词。无时间轴搜索结果与完全无词结果使用不同的短期缓存键，避免相互阻断。完整自动测试和 macOS 测量见对应版本固定源码；仍不能作为 iPhone VPN 稳定性结论。
