@@ -1,6 +1,6 @@
 // Copyright 2026 Horatio Xu. MIT. Native feed-element policy, written independently.
 import {decodeMessage,findField,join,withPayload,same} from './wire.mjs';
-import {fromUtf8} from './data.mjs';
+import {fromUtf8,isOpaqueText} from './data.mjs';
 import {rendererAds} from './protocol.mjs';
 const ELEMENT_RENDERER=153515154,NEW_ELEMENT=172660663,COMPONENT_TYPE=168777401,URI_CONFIG=172035250;
 const AD_BADGE=138592202;
@@ -34,10 +34,9 @@ export function promotionalTemplate(name,deep=false){
   return deep&&(/(?:^|[_./-])(?:promo|promotion|upsell)(?:$|[_./-])/.test(name)||/^(?:statement_banner|brand_banner|premium_offer)(?:$|[_./-])/.test(name));
 }
 function component(raw){const type=child(raw,1);return type?child(type,COMPONENT_TYPE):null;}
-function inspectNode(raw,settings,trace){
-  const c=component(raw);if(!c)return false;
+function inspectComponent(c,settings,trace){
   const config=child(c,3),uri=config&&child(config,URI_CONFIG),label=uri&&child(uri,1);
-  const name=label?templateName(fromUtf8(label,true)):'';remember(trace,name);
+  const name=label&&label.length<=720?templateName(fromUtf8(label,true)):'';remember(trace,name);
   const blocked=promotionalTemplate(name,settings.deep);if(blocked)matched(trace,name);return blocked;
 }
 function markerInModel(raw,state,depth=0){
@@ -46,14 +45,14 @@ function markerInModel(raw,state,depth=0){
   for(const f of fs){if(f.wire!==2)continue;
     if(f.no===AD_BADGE||rendererAds[f.no])return true;
     // Text, links and signatures stay opaque. Recurse only into binary-shaped data.
-    const text=fromUtf8(f.payload,true);
-    if(text&&!/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(text))continue;
+    if(isOpaqueText(f.payload))continue;
     if(markerInModel(f.payload,state,depth+1))return true;
   }return false;
 }
 function nodeAd(raw,settings,trace){
-  if(inspectNode(raw,settings,trace))return true;
-  if(settings.deep){const c=component(raw),model=c&&child(c,5);if(model&&markerInModel(model,{left:256}))return true;}
+  const c=component(raw);if(!c)return false;
+  if(inspectComponent(c,settings,trace))return true;
+  if(settings.deep){const model=child(c,5);if(model&&markerInModel(model,{left:256}))return true;}
   return false;
 }
 function editNode(raw,settings,trace,state,depth=0){
@@ -92,8 +91,7 @@ export function deepCardAd(raw,settings,trace){
       if(f.no===ELEMENT_RENDERER){try{
         for(const e of fields(f.payload))if(e.no===NEW_ELEMENT&&e.wire===2&&nodeAd(e.payload,settings,trace))return true;
       }catch{} }
-      const text=fromUtf8(f.payload,true);
-      if(text&&!/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(text))continue;
+      if(isOpaqueText(f.payload))continue;
       if(scan(f.payload,depth+1))return true;
     }return false;
   }

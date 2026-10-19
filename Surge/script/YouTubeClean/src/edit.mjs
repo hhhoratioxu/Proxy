@@ -1,6 +1,6 @@
 // Copyright 2026 Horatio Xu. MIT. YouTube policies and edits are implemented here.
 import {decodeMessage,nested,findField,join,withPayload,makeBytes,makeInt,replaceAll,readPacked,same} from './wire.mjs';
-import {fromUtf8,CAPTION_REGEX,unb64} from './data.mjs';
+import {fromUtf8,isOpaqueText,CAPTION_REGEX,unb64} from './data.mjs';
 import {graph,rendererAds} from './protocol.mjs';
 import {editElementRenderer,deepCardAd,jsonElementAd} from './elements.mjs';
 const NS='.youtube.api.innertube.';
@@ -33,10 +33,10 @@ export function navIdentity(raw,depth=0){
   if(depth>7)return '';
   for(const f of decodeMessage(raw)){
     if(f.wire!==2)continue;
-    const word=fromUtf8(f.payload,true);
+    const word=f.payload.length<=32?fromUtf8(f.payload,true):null;
     if(word&&(creation.has(word)||shortNav.has(word)))return word;
     // Navigation endpoint/renderer messages; never inspect arbitrary strings or tracking blobs.
-    if(word&&!/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(word))continue;
+    if(isOpaqueText(f.payload))continue;
     try{const id=navIdentity(f.payload,depth+1);if(id)return id;}catch{}
   }return '';
 }
@@ -140,32 +140,33 @@ function adCard(item,s,trace,depth=0){
   return false;
 }
 function jsonCaptionList(list,s){
-  const tracks=list.captionTracks;if(!s.translate||!s.auto||!Array.isArray(tracks)||!tracks.length||tracks.length>128)return;
-  if(!Array.isArray(list.audioTracks))return;
+  const tracks=list.captionTracks;if(!s.translate||!s.auto||!Array.isArray(tracks)||!tracks.length||tracks.length>128)return false;
+  if(!Array.isArray(list.audioTracks))return false;let changed=false;
   for(const audio of list.audioTracks){
     if(!Array.isArray(audio.captionTrackIndices))continue;
     const ids=audio.captionTrackIndices.filter(n=>Number.isInteger(n)&&n>=0&&n<tracks.length);
     if(ids.includes(audio.defaultCaptionTrackIndex))continue;
     const chosen=ids.find(n=>tracks[n]?.isTranslatable===true&&new RegExp(CAPTION_REGEX).test(tracks[n]?.baseUrl||''));
-    if(chosen!==undefined)audio.defaultCaptionTrackIndex=chosen;
-  }
+    if(chosen!==undefined){audio.defaultCaptionTrackIndex=chosen;changed=true;}
+  }return changed;
 }
 
-export function editJson(document,s,onKeys,trace){
+export function editJson(document,s,onKeys,trace,changes){
   let budget=70000;
+  const mark=()=>{if(changes)changes.changed=true;};
   function traverse(node,nav=false,feed=false){
     if(--budget<0)throw Error('JSON item count');if(!node||typeof node!=='object')return;
-    if(Array.isArray(node)){for(let i=node.length-1;i>=0;i--){const item=node[i];if(nav&&hidden(jsonNavId(item),s)){node.splice(i,1);continue;}
+    if(Array.isArray(node)){for(let i=node.length-1;i>=0;i--){const item=node[i];if(nav&&hidden(jsonNavId(item),s)){node.splice(i,1);mark();continue;}
       const adReel=item?.command?.reelWatchEndpoint?.adClientParams?.isAd===true||item?.reelWatchEndpoint?.adClientParams?.isAd===true;
-      if(s.ads&&(feed&&adCard(item,s,trace)||adReel)){node.splice(i,1);if(trace)trace.removed++;continue;}traverse(item,nav,feed);
+      if(s.ads&&(feed&&adCard(item,s,trace)||adReel)){node.splice(i,1);mark();if(trace)trace.removed++;continue;}traverse(item,nav,feed);
     }return;}
-    jsonCaptionList(node,s);
-    if(s.ads&&feed&&Array.isArray(node.childElements))for(let i=node.childElements.length-1;i>=0;i--){const child=node.childElements[i];if(jsonElementAd({newElement:child},s,trace)){node.childElements.splice(i,1);if(trace)trace.removed++;}}
+    if(jsonCaptionList(node,s))mark();
+    if(s.ads&&feed&&Array.isArray(node.childElements))for(let i=node.childElements.length-1;i>=0;i--){const child=node.childElements[i];if(jsonElementAd({newElement:child},s,trace)){node.childElements.splice(i,1);mark();if(trace)trace.removed++;}}
     if(onKeys&&node.onesieHotConfig)onKeys(node.onesieHotConfig);
     for(const key of Object.keys(node)){
-      if(s.ads&&AD_NAMES.has(key)){delete node[key];if(trace)trace.removed++;continue;}
-      if(s.ads&&SLOT_ARRAYS.has(key)&&Array.isArray(node[key])){if(trace)trace.removed+=node[key].length;node[key]=[];continue;}
-      if(s.ads&&PLAYER_SIGNALS.has(key)){delete node[key];if(trace)trace.removed++;continue;}
+      if(s.ads&&AD_NAMES.has(key)){delete node[key];mark();if(trace)trace.removed++;continue;}
+      if(s.ads&&SLOT_ARRAYS.has(key)&&Array.isArray(node[key])){if(node[key].length){if(trace)trace.removed+=node[key].length;node[key]=[];mark();}continue;}
+      if(s.ads&&PLAYER_SIGNALS.has(key)){delete node[key];mark();if(trace)trace.removed++;continue;}
       const nextFeed=['responseContext','frameworkUpdates','trackingParams','clickTrackingParams'].includes(key)?false:feed||['contents','content','items','continuationItems','continuationContents'].includes(key);
       traverse(node[key],nav||NAV_CONTAINERS.has(key),nextFeed);
     }

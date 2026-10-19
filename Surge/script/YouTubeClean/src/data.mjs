@@ -1,5 +1,5 @@
 // Copyright 2026 Horatio Xu. MIT.
-export const VERSION='1.2.7', MAX_BODY=8388608, MAX_CAPTION=1048576;
+export const VERSION='1.2.8', MAX_BODY=8388608, MAX_CAPTION=1048576;
 export function asBytes(value){
   if(typeof value==='string')return utf8(value);
   if(value instanceof Uint8Array)return value;
@@ -7,21 +7,49 @@ export function asBytes(value){
   if(value instanceof ArrayBuffer)return new Uint8Array(value);
   throw Error('body representation');
 }
-export function utf8(value){
-  const out=[];for(const char of String(value)){let n=char.codePointAt(0);if(n>=0xd800&&n<=0xdfff)n=0xfffd;
-    if(n<0x80)out.push(n);else if(n<0x800)out.push(0xc0|(n>>6),0x80|(n&63));
-    else if(n<0x10000)out.push(0xe0|(n>>12),0x80|((n>>6)&63),0x80|(n&63));
-    else out.push(0xf0|(n>>18),0x80|((n>>12)&63),0x80|((n>>6)&63),0x80|(n&63));
-  }return new Uint8Array(out);
+export function utf8Length(value){
+  const text=String(value);let size=0;
+  for(let i=0;i<text.length;i++){const n=text.charCodeAt(i);
+    if(n<128)size++;else if(n<2048)size+=2;
+    else if(n>=0xd800&&n<=0xdbff&&text.charCodeAt(i+1)>=0xdc00&&text.charCodeAt(i+1)<=0xdfff){size+=4;i++;}
+    else size+=3;
+  }return size;
 }
+export function utf8(value){
+  const text=String(value),out=new Uint8Array(utf8Length(text));let at=0;
+  for(let i=0;i<text.length;i++){let n=text.charCodeAt(i);
+    if(n>=0xd800&&n<=0xdbff&&text.charCodeAt(i+1)>=0xdc00&&text.charCodeAt(i+1)<=0xdfff)n=0x10000+((n-0xd800)<<10)+(text.charCodeAt(++i)-0xdc00);
+    else if(n>=0xd800&&n<=0xdfff)n=0xfffd;
+    if(n<128)out[at++]=n;
+    else if(n<2048){out[at++]=0xc0|(n>>6);out[at++]=0x80|(n&63);}
+    else if(n<65536){out[at++]=0xe0|(n>>12);out[at++]=0x80|((n>>6)&63);out[at++]=0x80|(n&63);}
+    else{out[at++]=0xf0|(n>>18);out[at++]=0x80|((n>>12)&63);out[at++]=0x80|((n>>6)&63);out[at++]=0x80|(n&63);}
+  }return out;
+}
+// Synchronous only: no scratch view escapes and each returned string is copied.
+// Reuse at most 4096 UTF-16 units instead of allocating arrays for every chunk.
+let textScratch;
 export function fromUtf8(data,strict=false){
-  data=asBytes(data);let output='',chunk=[];
+  data=asBytes(data);const chunk=textScratch||(textScratch=new Uint16Array(4096));let output='',used=0;
   for(let at=0;at<data.length;){const b=data[at++];let size,n,min;
-    if(b<128){size=0;n=b;min=0;}else if(b>=194&&b<224){size=1;n=b&31;min=128;}else if(b>=224&&b<240){size=2;n=b&15;min=2048;}else if(b>=240&&b<=244){size=3;n=b&7;min=65536;}else{if(strict)return null;chunk.push(0xfffd);continue;}
+    if(b<128){size=0;n=b;min=0;}else if(b>=194&&b<224){size=1;n=b&31;min=128;}else if(b>=224&&b<240){size=2;n=b&15;min=2048;}else if(b>=240&&b<=244){size=3;n=b&7;min=65536;}else{if(strict)return null;size=0;n=0xfffd;min=0;}
     let valid=at+size<=data.length;for(let i=0;i<size&&valid;i++){const next=data[at+i];if((next&192)!==128)valid=false;else n=(n<<6)|(next&63);}
-    if(!valid||n<min||n>0x10ffff||(n>=0xd800&&n<=0xdfff)){if(strict)return null;chunk.push(0xfffd);}else{at+=size;chunk.push(n);}
-    if(chunk.length>=2048){output+=String.fromCodePoint(...chunk);chunk=[];}
-  }return output+String.fromCodePoint(...chunk);
+    if(!valid||n<min||n>0x10ffff||(n>=0xd800&&n<=0xdfff)){if(strict)return null;n=0xfffd;}else at+=size;
+    if(used+(n>65535?2:1)>chunk.length){output+=String.fromCharCode.apply(null,chunk.subarray(0,used));used=0;}
+    if(n>65535){n-=65536;chunk[used++]=0xd800+(n>>10);chunk[used++]=0xdc00+(n&1023);}else chunk[used++]=n;
+  }return output+(used?String.fromCharCode.apply(null,chunk.subarray(0,used)):'');
+}
+// Equivalent to strict decoding plus the existing ASCII-control test, without
+// constructing a title/signature string just to decide whether it is opaque.
+export function isOpaqueText(data){
+  if(!data.length)return false;
+  for(let at=0;at<data.length;){const b=data[at++];let size,n,min;
+    if(b<128){if(b<=8||b===11||b===12||b>=14&&b<=31)return false;continue;}
+    if(b>=194&&b<224){size=1;n=b&31;min=128;}else if(b>=224&&b<240){size=2;n=b&15;min=2048;}else if(b>=240&&b<=244){size=3;n=b&7;min=65536;}else return false;
+    if(at+size>data.length)return false;
+    for(let i=0;i<size;i++){const next=data[at++];if((next&192)!==128)return false;n=(n<<6)|(next&63);}
+    if(n<min||n>0x10ffff||n>=0xd800&&n<=0xdfff)return false;
+  }return true;
 }
 export function getHeader(headers,name){
   if(headers&&typeof headers.get==='function')return String(headers.get(name)||'');

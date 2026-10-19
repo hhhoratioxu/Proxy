@@ -69,7 +69,7 @@ export async function handle(io,settings){
       const isJson=/json/i.test(getHeader(io.responseHeaders,'Content-Type'))||/^\s*\{/.test(first);
       diagnostic.format=isJson?'json':'protobuf';
       if(isJson){
-        const json=safeJson(fromUtf8(plain)),before=JSON.stringify(json);editJson(json,settings,collect,trace);const after=JSON.stringify(json);if(after!==before)output=utf8(after);
+        const json=safeJson(fromUtf8(plain)),changes={changed:false};editJson(json,settings,collect,trace,changes);if(changes.changed)output=utf8(JSON.stringify(json));
       }else output=editBinary(plain,target.name,settings,collect,trace);
     }
     if(same(output,plain))return null;

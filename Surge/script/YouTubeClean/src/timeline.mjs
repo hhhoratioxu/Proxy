@@ -7,7 +7,7 @@ function entityText(source){
     return({amp:'&',lt:'<',gt:'>',quot:'"',apos:"'",nbsp:' '})[entity.toLowerCase()]||whole;
   });
 }
-const escapeText=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const escapeText=s=>s.replace(/[&<>]/g,c=>c==='&'?'&amp;':c==='<'?'&lt;':'&gt;');
 const finiteTime=(n)=>Number.isFinite(n)&&n>=0&&n<1e10;
 function stamp(source){const parts=source.replace(',','.').split(':').map(Number);if(parts.length<2||parts.some(n=>!Number.isFinite(n)))throw Error('caption time');return parts.reduce((n,v)=>n*60+v,0)*1000;}
 export function readTimeline(source){
@@ -39,10 +39,11 @@ export function readTimeline(source){
       cues.push({start,end:start+Math.max(Number.isFinite(duration)?duration:0,1),words,begin:match.index,endOffset:match.index+match[0].length,tag:match[1],attrs:match[2]});
     }
     render=replacements=>{
-      let out=source;for(const [cue,words]of [...replacements].sort((a,b)=>b[0].begin-a[0].begin)){
+      if(!replacements.size)return source;
+      const parts=[];let cursor=0;for(const [cue,words]of [...replacements].sort((a,b)=>a[0].begin-b[0].begin)){
         const payload=cue.tag==='p'?'<s>'+escapeText(words)+'</s>':escapeText(words);
-        out=out.slice(0,cue.begin)+'<'+cue.tag+cue.attrs+'>'+payload+'</'+cue.tag+'>'+out.slice(cue.endOffset);
-      }return out;
+        parts.push(source.slice(cursor,cue.begin),'<'+cue.tag+cue.attrs+'>'+payload+'</'+cue.tag+'>');cursor=cue.endOffset;
+      }parts.push(source.slice(cursor));return parts.join('');
     };
   }else if(/^\uFEFF?WEBVTT(?:\s|$)/.test(source)){
     format='vtt';

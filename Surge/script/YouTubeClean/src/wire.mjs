@@ -64,4 +64,4 @@ export function readPacked(field) {
   while (pos < field.payload.length) { const v = varint(field.payload, pos); values.push(v.value); pos = v.pos; }
   return values;
 }
-export function same(a,b) { if (a.length !== b.length) return false; for (let i=0;i<a.length;i++) if(a[i]!==b[i]) return false; return true; }
+export function same(a,b) { if (a === b) return true; if (a.length !== b.length) return false; for (let i=0;i<a.length;i++) if(a[i]!==b[i]) return false; return true; }

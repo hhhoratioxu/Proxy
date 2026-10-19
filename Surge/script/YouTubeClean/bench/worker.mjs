@@ -1,0 +1,20 @@
+// Node/V8 desktop interface simulation. This is not Loon process measurement.
+import {readFile} from 'node:fs/promises';
+import {join} from 'node:path';
+import {createHash} from 'node:crypto';
+import vm from 'node:vm';
+const [bundle,directory,name]=process.argv.slice(2),cases=JSON.parse(await readFile(join(directory,'cases.json'),'utf8')),fixture=cases.find(c=>c.name===name);
+if(!fixture)throw Error('unknown fixture');
+const code=await readFile(bundle,'utf8'),body=await readFile(join(directory,name+'.body'));
+const download=fixture.download?await readFile(join(directory,fixture.download)):Buffer.from('self-written unavailable response');
+const translation=fixture.translation?await readFile(join(directory,fixture.translation)):null;
+const storage=new Map();if(fixture.sessionKey)storage.set('Horatio.YouTubeClean.session.v1',JSON.stringify({video:{key:fixture.sessionKey,until:Date.now()+60000}}));
+const reports=[];let finish,completions=0,requests=0;const done=new Promise(resolve=>finish=resolve);
+const context={Uint8Array,Uint16Array,Uint32Array,ArrayBuffer,DataView,TextEncoder:undefined,TextDecoder:undefined,setTimeout:(fn,ms)=>setTimeout(fn,ms).unref(),$loon:'desktop self-written API fixture',$argument:{BILINGUAL:false,TARGET_LANGUAGE:'zh-Hant'},$request:{url:fixture.url,headers:{}},$response:{status:200,headers:{'Content-Type':fixture.contentType||'application/x-protobuf',...(fixture.encoding?{'Content-Encoding':fixture.encoding}:{})},body},$persistentStore:{read:k=>storage.get(k),write:(v,k)=>{storage.set(k,v);return true;}},$httpClient:{get:(r,cb)=>{requests++;cb(null,{status:fixture.downloadStatus||503,headers:{}},download);},post:(r,cb)=>{requests++;if(!translation)throw Error('unexpected translation');cb(null,{status:200,headers:{'Content-Type':'application/json'}},translation);}},console:{log:s=>reports.push(JSON.parse(s.slice(15)))},$done:result=>{completions++;finish(result);}};
+global.gc?.();const startRss=process.memoryUsage().rss,heapBefore=process.memoryUsage().heapUsed,started=performance.now();
+vm.runInNewContext(code,context,{timeout:12000});const result=await done;
+const elapsedMs=performance.now()-started,memory=process.memoryUsage(),peakRss=process.resourceUsage().maxRSS*1024;
+if(completions!==1)throw Error('completion count');
+if(!!result.body!==fixture.expectedChanged)throw Error('unexpected changed state: '+fixture.name+' '+reports[0]?.reason);
+const output=result.body||body;
+console.log(JSON.stringify({name,inputBytes:body.length,outputBytes:output.length,sha256:createHash('sha256').update(output).digest('hex'),changed:!!result.body,reason:reports[0]?.reason,requests,completions,elapsedMs,startRss,peakRss,rssGrowth:Math.max(0,peakRss-startRss),heapBefore,heapAfter:memory.heapUsed,externalAfter:memory.external}));

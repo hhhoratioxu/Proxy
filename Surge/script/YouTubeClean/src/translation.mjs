@@ -1,5 +1,5 @@
 // Copyright 2026 Horatio Xu. MIT. One bounded, position-checked fallback batch.
-import {utf8,fromUtf8,asBytes,safeJson,MAX_CAPTION,getHeader} from './data.mjs';
+import {utf8,utf8Length,fromUtf8,asBytes,safeJson,MAX_CAPTION,getHeader} from './data.mjs';
 import {unpackHttp} from './body.mjs';
 export const TRANSLATION_BACKOFF='Horatio.YouTubeClean.translation.backoff.v1';
 const compact=s=>s.replace(/\s+/g,' ').trim();
@@ -10,10 +10,10 @@ function language(value,target=false){
 export function translationBatch(timeline,source,target){
  const texts=[],indices=new Map();let total=0;
  for(const cue of timeline.cues){const text=compact(cue.words);if(!text||indices.has(text))continue;
-  total+=utf8(text).length;if(text.length>4000||total>48000||texts.length>=2048)throw Error('translation input limit');indices.set(text,texts.length);texts.push(text);
+  total+=utf8Length(text);if(text.length>4000||total>48000||texts.length>=2048)throw Error('translation input limit');indices.set(text,texts.length);texts.push(text);
  }
  if(!texts.length)throw Error('translation empty');
- const body=texts.map(text=>'q='+encodeURIComponent(text)).join('&');if(utf8(body).length>192000)throw Error('translation input limit');
+ const body=texts.map(text=>'q='+encodeURIComponent(text)).join('&');if(body.length>192000)throw Error('translation input limit');
  return {texts,indices,request:{url:'https://translate.googleapis.com/translate_a/t?client=gtx&format=text&sl='+language(source)+'&tl='+language(target,true),headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',Accept:'application/json','Accept-Encoding':'identity'},body}};
 }
 // Do not log response text or arbitrary headers. A 200 alone does not mean

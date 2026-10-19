@@ -27,7 +27,7 @@ export function umpFrames(raw){
   while(pos<raw.length){if(frames.length>=50000)throw Error('UMP count');const begin=pos;let type,size;[type,pos]=readInteger(raw,pos);[size,pos]=readInteger(raw,pos);if(size>raw.length-pos)throw Error('UMP payload truncated');frames.push({type,payload:raw.subarray(pos,pos+size),raw:raw.subarray(begin,pos+size)});pos+=size;}
   return frames;
 }
-function signature(cipher,iv,key){if(key.length!==32||iv.length!==16)throw Error('UMP crypto dimensions');return hmac(sha256,key.subarray(16),join([cipher,iv]));}
+function signature(cipher,iv,key){if(key.length!==32||iv.length!==16)throw Error('UMP crypto dimensions');return hmac.create(sha256,key.subarray(16)).update(cipher).update(iv).digest();}
 export function openMetadata(cipher,mac,iv,key){
   if(mac?.length!==32||!iv||!cipher)throw Error('UMP authentication');const actual=signature(cipher,iv,key);let difference=0;for(let i=0;i<32;i++)difference|=actual[i]^mac[i];if(difference)throw Error('UMP authentication');return ctr(key.subarray(0,16),iv).decrypt(cipher);
 }
@@ -51,7 +51,7 @@ function modifyPlayerEnvelope(plain,settings,onKeys,trace){
   const fields=decodeMessage(plain),status=findField(fields,1)?.value,http=findField(fields,2)?.value,body=findField(fields,4);
   if(status!==1n||http!==200n||body?.wire!==2)return plain;
   let fresh=body.payload;const first=fromUtf8(fresh.subarray(0,40));
-  if(/^\s*\{/.test(first)){const json=safeJson(fromUtf8(fresh)),before=JSON.stringify(json);editJson(json,settings,onKeys,trace);const after=JSON.stringify(json);if(after===before)return plain;fresh=utf8(after);}
+  if(/^\s*\{/.test(first)){const json=safeJson(fromUtf8(fresh)),changes={changed:false};editJson(json,settings,onKeys,trace,changes);if(!changes.changed)return plain;fresh=utf8(JSON.stringify(json));}
   else fresh=editBinary(fresh,'player',settings,onKeys,trace);
   return same(fresh,body.payload)?plain:replaceAll(fields,4,[withPayload(body,fresh)]);
 }

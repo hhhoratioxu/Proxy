@@ -1,4 +1,4 @@
-Horatio YouTube Clean 1.2.7
+Horatio YouTube Clean 1.2.8
 Copyright (c) 2026 Horatio Xu. MIT License.
 
 The protobuf wire editor, advertisement policies, subtitle parser and alignment,
@@ -33,3 +33,5 @@ The advertising classification of eleven complete video, image, carousel and bra
 1.2.6 adds one bounded Google Translate webpage-service fallback request, with no SDK, API key or paid-account creation. Only subtitle text and language codes are sent; no signed YouTube URL or account credential is forwarded. The public endpoint can change or rate-limit requests. The batch planner, positional validation and native adapters are independently written.
 
 1.2.7 requests an identity-encoded fallback response, recognizes bounded gzip and explicit JSON protection prefixes, preserves empty translation slots without shifting neighboring captions, and reports only structural failure diagnostics. The user's 1.2.6 HTTP-200 invalid-batch response body was not captured; compatibility tests do not establish the device-side failure cause or acceptance.
+
+1.2.8 reduces allocations with exactly sized UTF-8 encoding, a lazy 4096-unit synchronous UTF-16 scratch buffer, allocation-free opaque-text classification, explicit JSON mutation tracking, forward XML subtitle rendering and incremental HMAC updates. All parsing, advertisement policies, caption fallback, privacy and size/time boundaries remain. Performance evidence is a desktop Node/V8 interface simulation, not native Loon/iPhone memory or VPN acceptance.

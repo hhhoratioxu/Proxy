@@ -1,4 +1,4 @@
-# Horatio YouTube Clean 1.2.7
+# Horatio YouTube Clean 1.2.8
 
 独立编写的 YouTube 去广告、双语字幕与底栏控制脚本。每个支持客户端只提供一个当前安装入口，统一默认开启深层广告过滤，不再提供测试方案选择。
 
@@ -10,7 +10,44 @@
 | Shadowrocket | `Shadowrocket/script/YouTubeClean.sgmodule` |
 | Quantumult X | `QuantumultX/script/YouTubeClean.conf` |
 
-1.2.7 补齐 Google 备用回复的编码与空项处理，并细分 HTTP 200 后的结构诊断。继续使用原生轨道和既有时间轴，每个客户端一个安装入口。
+1.2.8 减少整份正文复制、重复序列化、临时文字解码和字幕拼接分配，保留现有功能与一个安装入口。Loon 默认仅显示译文，其他已保存设置继续生效。
+
+## 1.2.8 分配与内存优化
+
+保留去广告、字幕、播放加密封装和底栏控制。UTF-8 编码先计算长度后一次分配，不再创建按字节增长的普通数字数组；仅检查编码后大小时直接计算字节数。UTF-8 解码在同次同步脚本中复用最多 4096 个 UTF-16 单元（8192 字节），返回值为已复制字符串，临时视图不暴露给调用方或跨 await 保留。长串非法 UTF-8 也经过分块输出，修正旧实现非法首字节连续跳过分块检查的问题。
+
+JSON 编辑器显式记录实际语义变化，未修改时保留原始正文，不再为了比较而序列化整份文档；修改时只序列化一次。已处理及加密播放元数据中的 JSON 使用同一策略。深层卡片的二进制/文字判断扫描字节，不再构造完整标题或签名字串；组件字段复用解析结果。原始未知字节、64 位整数、广告模板与扫描边界继续保留。
+
+XML 字幕按原文位置前向拼接一次，避免每句反复复制完整正文；字幕顺序、时间、未知属性、转义及未修改片段保持。HMAC 分别更新密文与 IV，不再拼出一份完整密文副本。没有增加网络请求、并发、正文/字幕上限、退避记录或持久缓存。Loon 入口保持用户要求的 `BILINGUAL=false`，其他客户端的已有默认设置保持。
+
+新增 19 项字符边界、长非法 UTF-8、JSON 变化、XML 源顺序和大正文认证检查；共 **215 项本地检查通过**。
+
+### 可复现的桌面测量
+
+2026-10-19，macOS ARM64 / Node.js v24.19.0。基线是已发布的 1.2.7（`8cfd57baf23480d1f8ee84e4fea129741bd50dc6`）回调脚本，候选是实际 1.2.8 构建脚本。9 个自写场景，分别以旧/新版本交错执行，每项每版 3 个新进程，共 54 次；每个进程包含脚本初始化及一次请求。夹具在独立进程生成，测量前 GC；完成时读取操作系统峰值 RSS，中位数列于下表。哈希及断言在读取峰值后执行，未包含在处理耗时内。`process.resourceUsage().maxRSS` 按 [Node 官方文档](https://nodejs.org/docs/latest-v24.x/api/process.html#processresourceusage) 的 KiB 转换为 MiB。
+
+**这些是桌面进程峰值，包含 Node/V8、模拟接口和输入缓冲；不是插件独占堆、Loon 或 iPhone 的内存。** 所有 54 次输出正文哈希与基线对应相同，并核对预期修改/放行状态、完成一次及网络请求数。仅译文样本为 2500 句，gzip 主页解压后约 1.39 MiB。
+
+| 自写场景 | 1.2.7 峰值 RSS / MiB | 1.2.8 峰值 RSS / MiB | 变化 | 耗时 / ms |
+| --- | ---: | ---: | ---: | ---: |
+| 未修改 JSON 主页 | 88.42 | 78.80 | -10.9% | 62.45 → 50.18 |
+| JSON 主页去广告 | 190.09 | 88.30 | -53.6% | 143.42 → 61.66 |
+| gzip JSON 主页去广告 | 203.08 | 86.38 | -57.5% | 170.65 → 90.25 |
+| 原生 protobuf 主页去广告 | 93.98 | 94.17 | +0.2% | 45.87 → 30.31 |
+| 2500 句字幕，仅译文 | 109.16 | 68.89 | -36.9% | 160.35 → 51.09 |
+| 180 句字幕，备用翻译 | 63.16 | 60.61 | -4.0% | 16.64 → 14.46 |
+| 加密 UMP / JSON 播放元数据 | 204.11 | 88.52 | -56.6% | 194.96 → 105.14 |
+| 加密 UMP / protobuf 播放元数据 | 84.89 | 79.77 | -6.0% | 69.18 → 68.70 |
+| 超出 8 MiB 直接保留 | 67.06 | 66.86 | -0.3% | 9.10 → 9.30 |
+
+原生 protobuf 主页峰值增加 0.2%，没有测得内存改善；其处理时间下降约三分之一。超限放行耗时增加约 0.2 ms。小幅差异可能受进程、JIT 和 GC 波动影响；不概括成所有路径都下降。宿主可能已读入整份正文，脚本检查不能限制宿主缓冲峰值，也不提供请求取消或稳定性保证。用户已确认 1.2.7 的 Loon 原文＋中文显示；1.2.8 的手机内存、仅译文显示和 VPN 连续播放仍待实机确认。
+
+[完整测量数据与逐次记录](./bench/memory-1.2.8.json)。复现方式：
+
+```sh
+curl -fL https://raw.githubusercontent.com/hhhoratioxu/Proxy/8cfd57baf23480d1f8ee84e4fea129741bd50dc6/Loon/script/YouTubeClean.js -o /tmp/youtube-clean-1.2.7.js
+node bench/run-memory.mjs /tmp/youtube-clean-1.2.7.js dist/clients.js /tmp/youtube-clean-memory 3
+```
 
 ## 1.2.7 备用回复兼容与定位
 
@@ -22,7 +59,7 @@
 
 新增的 `captionFallbackRequestItems`、`captionFallbackResponseItems`、`captionFallbackResponseBytes`、`captionFallbackShape`、`captionFallbackEncoding` 与 `captionFallbackContentType` 仅记录数量和固定结构类别。失败原因区分 `html-response`、`invalid-json`、`unexpected-shape`、`item-count`、`invalid-entry`、`invalid-utf8`、`unsupported-encoding`、`invalid-compression` 等；`captionFallbackTranslatedItems` 和 `captionFallbackEmptyItems` 分别记录成功及空项数。不记录字幕文字、原始回复、任意头值或完整 URL。
 
-本版新增 19 项检查，累计 **196 项通过**。实际构建的 Loon 脚本使用 180 条带唯一位置标记的自写韩文 srv3，模拟 YouTube 429 后真实请求 Google，得到 180 条繁体译文；每条原文、译文位置标记和时间轴均核对通过，单次完成。另核对公开服务在 gzip 与 identity 请求下的真实返回。此处是桌面接口模拟加真实备用服务请求；用户视频及 iPhone VPN 验收仍未通过，不能把这批成功当作实际失败原因已查明。
+本版新增 19 项检查，累计 **196 项通过**。实际构建的 Loon 脚本使用 180 条带唯一位置标记的自写韩文 srv3，模拟 YouTube 429 后真实请求 Google，得到 180 条繁体译文；每条原文、译文位置标记和时间轴均核对通过，单次完成。另核对公开服务在 gzip 与 identity 请求下的真实返回。此处是桌面接口模拟加真实备用服务请求；该批成功不能确认 1.2.6 的失败分支；用户随后确认 1.2.7 在 Loon 上显示原文＋中文。1.2.8 手机性能和 iPhone VPN 稳定性仍待确认。
 
 ## 1.2.6 Google 备用翻译
 
@@ -84,7 +121,7 @@
 | `TRANSLATE_CAPTIONS` | `true` | 为已加载的原字幕获取译文 |
 | `FALLBACK_TRANSLATION` | `true` | YouTube 译文失败时把字幕文字发送给 Google 备用翻译，可关闭 |
 | `TARGET_LANGUAGE` | `zh-Hans` | 简体中文，可用 `zh-Hant`、`en`、`ja`、`ko` 等 |
-| `BILINGUAL` | `true` | 原文在上、译文在下 |
+| `BILINGUAL` | `true`，Loon 为 `false` | 开启时原文在上、译文在下；Loon 默认仅译文 |
 | `AUTO_CAPTIONS` | `true` | 为缺少合法默认字幕的音轨选择已有可翻译轨道，仍需 App 打开 CC |
 | `HIDE_UPLOAD` | `true` | 隐藏底部发布「＋」 |
 | `HIDE_SHORTS` | `false` | 隐藏底部 Shorts；正常 Shorts 内容保留 |
@@ -122,7 +159,7 @@ node package-native.mjs <40位运行脚本提交SHA> <输出目录>
 
 为五个支持客户端各生成一个入口。运行脚本固定提交，用户无需编译。源码、测试和构建脚本位于独立运行版本分支，主分支只放可导入入口与说明。
 
-2026-10-19：**196 项本地检查通过**，包含播放器、字幕、加密封装、底栏、字节保留、元素/卡片过滤、gzip、密钥状态和诊断隐私。实际生成的唯一 Loon 入口用默认参数执行自包含脚本，验证深层过滤和原生对象参数。字幕请求验证 4000 毫秒超时、HTTP 错误恢复、MIME 修正和一次完成回调，不依赖 clearTimeout。自动检查不等同于真实 iPhone VPN 验收。
+2026-10-19：**215 项本地检查通过**，包含播放器、字幕、加密封装、底栏、字节保留、元素/卡片过滤、gzip、密钥状态和诊断隐私。实际生成的唯一 Loon 入口用默认参数执行自包含脚本，验证深层过滤和原生对象参数。字幕请求验证 4000 毫秒超时、HTTP 错误恢复、MIME 修正和一次完成回调，不依赖 clearTimeout。自动检查不等同于真实 iPhone VPN 验收。
 
 官方核对日期：2026-10-19。依据 [Loon 插件](https://nsloon.app/docs/Plugin/)、[Script](https://nsloon.app/docs/Script/script_v2/) 和 [Script API](https://nsloon.app/docs/Script/script_api/)，最低版本仍为 3.5.1(983)。只使用文档支持的参数、二进制表示和 with 字段。
 
