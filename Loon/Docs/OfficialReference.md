@@ -103,3 +103,11 @@ input/select 支持 string 或 number，switch 使用 boolean；select 首项是
 2026-10-19 重新核对官方 [Script API](https://nsloon.app/docs/Script/script_api/) 的 Uint8Array、同步存储、异步完成与定时器约定，以及 [Script](https://nsloon.app/docs/Script/script_v2/) 的正文声明。本次仅修改共享 JavaScript 实现，保留最低版本 3.5.1（983）、原生对象参数、Loon 仅译文默认、URL Guard、MITM、8 秒脚本超时、6.5 秒网络预算和单次完成。没有新增宿主 API、字段、请求、并发、退避记录或持久缓存，不依赖可靠的 clearTimeout 或未公开的请求取消能力。
 
 同步 UTF-8 解码按需复用最多 4096 个 UTF-16 单元（8192 字节），返回字符串已复制，不将临时视图暴露给异步调用；编码一次分配精确长度。JSON 显式记录语义变化，避免为比较而序列化；卡片文字只做字节分类；XML 按源位置一次拼接；HMAC 分段处理。原有数据、深度、节点、大小和时间边界保留。215 项自动检查通过，9 个自写场景共 54 个独立 Node/V8 桌面进程核对输出字节与峰值 RSS。部分路径下降，原生 protobuf 主页内存持平，超限放行耗时轻微增加；数据及方法保存在固定源码的 bench/。这些结果不代表 Loon/iPhone 或 VPN 稳定性，脚本大小检查也不能限制宿主已经持有的完整正文。
+
+## VerseLyrics 3.1.6 缓存读取与原型回退
+
+2026-10-19 重新核对官方 [Script](https://nsloon.app/docs/Script/script_v2/) 与 [Script API](https://nsloon.app/docs/Script/script_api/) 的 Uint8Array、同步字符串存储和异步结束后单次完成约定。没有新增 Loon 字段、宿主 API、参数、权限、超时或最低版本要求；适配仍为 15、最低版本 3.5.1（983）。
+
+索引缓存的普通键由排除控制字符、引号与反斜杠的 JSON 字符串模式验证后直接读取，带转义的旧键继续用 JSON.parse；值和写入校验、缓存格式、TTL、并发合并及容量都不变。Map/WeakMap 记账容器按需创建；歌曲后缀和语言前缀只在筛选需要时生成一次，读取前后的 translations/translate 范围开关仍生效。纯中文快速保留与不访问缓存的卡片不会创建这些容器。
+
+逐行范围解析原型虽然减少字节视图，却在 600 行混排、满缓存的独立 Node 进程中反复增加堆占用；拆分对比确认后已撤回，实际发布继续使用 3.1.5 的严格 protobuf/UTF-8 解析和至多 8194 字节解码暂存。未采用该原型的计数作为最终收益。所有补词、混排翻译、简繁与语气词过滤、静态替换开关、颜色和时间轴保留。完整改善与退化数据在固定源码中公开；桌面检查不能证明 iPhone 原生缓冲峰值或 VPN 稳定性。

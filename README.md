@@ -39,7 +39,7 @@
 
 ## Spotify 双语歌词 · VerseLyrics
 
-Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **3.1.5**，复用 UTF-8 解码缓冲与语气词扫描，减少短字段解析分配；修正静态歌词来源匹配和候选提前退出。 保留六源补词、插件翻译与原生高亮。性能测量范围见固定源码，未做 iPhone VPN 验收。Shadowrocket 完整官方脚本规范尚未取得，其兼容适配未标为官方验证。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
+Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **3.1.6**，普通缓存键免逐键 JSON 解码，缓存容器及筛选前缀按需创建；撤回长混排歌词出现内存回退的范围解析原型。 保留六源补词、插件翻译与原生高亮。性能测量范围见固定源码，未做 iPhone VPN 验收。Shadowrocket 完整官方脚本规范尚未取得，其兼容适配未标为官方验证。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
 
 | 客户端 | 安装入口 | 设置与限制 |
 | --- | --- | --- |
@@ -80,7 +80,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 
 YouTube Clean 1.2.8 reduces buffer copies, duplicate JSON serialization and caption-rendering allocations. All 215 checks pass; 54 isolated desktop trials preserve output bytes. Median peak RSS falls about 54% for edited JSON home feeds, 37% for long captions and 6% for encrypted protobuf playback; protobuf home-feed memory is essentially unchanged. These are Node/V8 simulations, not native Loon or iPhone measurements. Loon keeps translation-only defaults and one import. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
 
-VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 3.1.5. Reduce short-field parse allocations and reuse bounded UTF-8 scratch and lazy vocal/Latin scanners. Keep all prior fallback and translation controls. Correct verified artist/title normalization, timed candidate continuation and mode-separated negative caches without weakening recording identity or increasing concurrency/capacity. Six sources, plugin translations and native highlighting remain. Measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
+VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 3.1.6. Avoid per-key JSON parsing for ordinary indexed keys, lazily create cache bookkeeping and reuse scope key fragments. Reject the range-parser prototype after a reproducible long mixed-lyric/filled-cache heap regression. Preserve six-source fallback, mixed-English translation, vocal/Chinese filtering, native timing/colors and all controls without increasing limits. Six sources, plugin translations and native highlighting remain. Measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
 Each plugin has one current installation entry. Clients automatically load any required runtime from a pinned version; no separate JavaScript download, build or test run is needed.
 

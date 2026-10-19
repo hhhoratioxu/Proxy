@@ -1,10 +1,10 @@
 # Spotify 双语歌词 · VerseLyrics · Quantumult X
 
-当前发布 **3.1.5**（原生适配 15）。复用至多 8194 字节的 UTF-8 解码暂存区，短 protobuf 字段不再为每个 varint 分配结果对象；混排和语气词扫描按需复用表达式，判断阶段不再拼接查询。官方静态歌词升级会继续检查已匹配的后续同步候选；同步未命中与完全无词的来源缓存分开。修正明确剧集插曲说明和有公开依据的艺人中英文同名匹配，保留录音版本、全部艺人、时长和歧义校验。保留补词、中文夹英文翻译、简繁过滤、语气词过滤及静态歌词替换开关，缓存与并发上限不变。
+当前发布 **3.1.6**（原生适配 15）。普通索引缓存键直接读取已验证的 JSON 字符串内容，带转义的旧键仍严格解码；首次实际访问缓存时才创建 Map/WeakMap 容器，筛选所需的歌曲和语言前缀只拼接一次。长歌词范围解析原型在满缓存混排测量中出现堆占用回退，已撤回，继续使用原先的严格字节解析。保留六源补词、中文夹英文翻译、简繁与语气词过滤、官方静态歌词替换开关及原生时间轴和颜色，缓存容量与网络预算不变。
 
 保留六源补词、插件翻译、原生时间轴与高亮。缓存和网络都有明确上限；未收录的歌曲仍不能凭空补全。本地自动测试与 macOS JavaScriptCore 测量不等于 iPhone Loon 实机 VPN 验收，不能保证所有设备都不会被系统终止。
 
-核心 **3.1.5**，客户端适配 **15**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
+核心 **3.1.6**，客户端适配 **15**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -55,10 +55,10 @@ Quantumult X 的响应体重写在原响应体为空时不会执行，所以空�
 
 ## 运行版本与接口
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/c9eda7c3424f9a446db886cfac08a6e1509c6347/QuantumultX/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/c9eda7c3424f9a446db886cfac08a6e1509c6347/Surge/Development/VerseLyrics315)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/4f5d87583a44364de3495a4f9902a5abb4756ae6/QuantumultX/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/4f5d87583a44364de3495a4f9902a5abb4756ae6/Surge/Development/VerseLyrics316)
 
 原始核心和适配逻辑为独立编写。Unicode Unihan 数据许可随运行脚本完整附带。[官方二进制脚本示例](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample-bytes-rewrite.js) · [官方 HTTP 示例](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample-task.js) · [空响应体限制](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample.conf#L290)
 
 [其他客户端](../../README.md) · [返回 Quantumult X](../README.md)
 
-2026-10-19：1734 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
+2026-10-19：1741 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
