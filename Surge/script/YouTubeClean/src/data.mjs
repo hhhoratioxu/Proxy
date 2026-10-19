@@ -1,5 +1,5 @@
 // Copyright 2026 Horatio Xu. MIT.
-export const VERSION='1.2.5', MAX_BODY=8388608, MAX_CAPTION=1048576;
+export const VERSION='1.2.6', MAX_BODY=8388608, MAX_CAPTION=1048576;
 export function asBytes(value){
   if(typeof value==='string')return utf8(value);
   if(value instanceof Uint8Array)return value;
@@ -57,6 +57,7 @@ export class Settings{
     if(typeof input!=='object'||Array.isArray(input))throw Error('settings representation');
     const flag=(name,initial)=>input[name]==null?initial:input[name]===true||input[name]===1||/^(?:true|1)$/i.test(String(input[name]));
     this.ads=flag('REMOVE_ADS',true);this.translate=flag('TRANSLATE_CAPTIONS',true);this.dual=flag('BILINGUAL',true);this.auto=flag('AUTO_CAPTIONS',true);
+    this.fallback=flag('FALLBACK_TRANSLATION',true);
     this.hideCreate=flag('HIDE_UPLOAD',true);this.hideShorts=flag('HIDE_SHORTS',false);
     this.deep=flag('DEEP_FILTER',true);this.debug=flag('DIAGNOSTICS',true);
     this.profile=['elements','deep','tcp'].includes(input.PROFILE)?input.PROFILE:(this.deep?'deep':'elements');

@@ -2,6 +2,7 @@
 import {asBytes,fromUtf8,utf8,param,changeParam,getHeader,route,MAX_CAPTION} from './data.mjs';
 import {unpackHttp} from './body.mjs';
 import {readTimeline,mergeTimelines} from './timeline.mjs';
+import {googleFallback} from './translation.mjs';
 export const CAPTION_BACKOFF='Horatio.YouTubeClean.captions.backoff.v1';
 const MAX_BACKOFF=300000;
 const normalized=language=>({'zh-tw':'zh-hant','zh-hk':'zh-hant','zh-cn':'zh-hans','zh-sg':'zh-hans'})[String(language).toLowerCase()]||String(language).toLowerCase();
@@ -30,7 +31,7 @@ function headers(io,internal){
   return out;
 }
 export async function handleCaption(io,settings,diagnostic,internal){
-  const d=diagnostic;d.format='caption';
+  const d=diagnostic,deadline=Date.now()+6500;d.format='caption';
   if(!settings.translate){d.reason='caption-disabled';return null;}
   const status=Number(io.status),selected=param(io.url,'tlang'),source=param(io.url,'lang'),target=normalized(settings.target);
   const translated=!!selected;
@@ -50,6 +51,12 @@ export async function handleCaption(io,settings,diagnostic,internal){
   if(translated&&!targetSelected){d.reason='caption-other-target';return null;}
   if(!translated&&normalized(source)===target){d.reason='caption-already-target';return null;}
   let base;
+  async function backup(timeline,recovered=false){
+    if(translated&&!recovered)return null;
+    const body=await googleFallback(io,settings,timeline,source,d,deadline);if(!body)return null;
+    d.changed=true;d.bypass=false;d.reason='caption-fallback-translated';d.outputBytes=body.length;d.captionMode=settings.dual?'bilingual':'translation';d.captionOutputStatus=recovered?200:status;
+    return recovered?{body,status:200,headers:{'Content-Type':contentType(timeline.format),'Retry-After':null}}:{body};
+  }
   if(!recovering){
     if(!raw.length){d.bypass=true;d.reason='empty-body';return null;}
     d.compression=raw[0]===31&&raw[1]===139?'gzip':'none';
@@ -57,33 +64,34 @@ export async function handleCaption(io,settings,diagnostic,internal){
     d.captionFormat=base.format;
     if(!base.cues.length){d.reason='caption-empty';return null;}
     if(targetSelected&&!settings.dual){d.reason='caption-target-only';return null;}
-    const paused=!translated&&cooldown(io);if(paused){remaining(d,paused.until);d.reason='caption-cooldown';return null;}
+    const paused=!translated&&cooldown(io);if(paused){remaining(d,paused.until);d.reason='caption-cooldown';return await backup(base);}
   }
   const url=companionUrl(io.url,translated?null:settings.target);
   if(!url){d.reason='caption-signed-target';return null;}
   let response;
   try{response=await io.download(url,headers(io,internal));}catch(error){
-    d.reason=error?.message==='caption timeout'?'caption-timeout':error?.message==='caption size'?'caption-download-too-large':'caption-download-failed';return null;
+    d.reason=error?.message==='caption timeout'?'caption-timeout':error?.message==='caption size'?'caption-download-too-large':'caption-download-failed';return base?await backup(base):null;
   }
   const downloadStatus=Number(response.status);
   if(Number.isInteger(downloadStatus)&&downloadStatus>=100&&downloadStatus<=599)d.captionDownloadStatus=downloadStatus;
   if(downloadStatus!==200){
     if(downloadStatus===429)remaining(d,backoff(io,response.headers,translated));
-    d.reason=recovering?'caption-fallback-failed':downloadStatus===429?'caption-rate-limited':'caption-download-http-status';return null;
+    d.reason=recovering?'caption-fallback-failed':downloadStatus===429?'caption-rate-limited':'caption-download-http-status';return base?await backup(base):null;
   }
   let companion,bytes;
   try{
     bytes=asBytes(response.body);d.captionDownloadBytes=bytes.length;
-    if(bytes.length>MAX_CAPTION){d.reason='caption-download-too-large';return null;}
-    if(!bytes.length){d.reason='caption-download-empty';return null;}
-    companion=timeline(bytes);if(!companion.cues.length){d.reason='caption-download-empty';return null;}
-  }catch{d.reason='caption-download-invalid';return null;}
+    if(bytes.length>MAX_CAPTION){d.reason='caption-download-too-large';return base?await backup(base):null;}
+    if(!bytes.length){d.reason='caption-download-empty';return base?await backup(base):null;}
+    companion=timeline(bytes);if(!companion.cues.length){d.reason='caption-download-empty';return base?await backup(base):null;}
+  }catch{d.reason='caption-download-invalid';return base?await backup(base):null;}
   let body;
   if(recovering){
+    const translatedBody=await backup(companion,true);if(translatedBody)return translatedBody;
     body=unpackHttp(bytes,MAX_CAPTION).bytes;d.reason='caption-fallback-original';d.captionMode='original-fallback';d.captionFormat=companion.format;
   }else{
     const merged=mergeTimelines(base,companion,{baseOriginal:!translated,dual:settings.dual});
-    if(!merged){d.reason='caption-no-alignment';return null;}body=utf8(merged);d.reason='modified';d.captionMode=settings.dual?'bilingual':'translation';
+    if(!merged){d.reason='caption-no-alignment';return await backup(base);}body=utf8(merged);d.reason='modified';d.captionProvider='youtube';d.captionMode=settings.dual?'bilingual':'translation';
   }
   if(body.length>MAX_CAPTION){d.reason='caption-output-too-large';return null;}
   d.changed=true;d.bypass=false;d.outputBytes=body.length;d.captionOutputStatus=recovering?200:status;

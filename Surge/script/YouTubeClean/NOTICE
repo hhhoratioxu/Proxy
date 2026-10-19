@@ -1,4 +1,4 @@
-Horatio YouTube Clean 1.2.5
+Horatio YouTube Clean 1.2.6
 Copyright (c) 2026 Horatio Xu. MIT License.
 
 The protobuf wire editor, advertisement policies, subtitle parser and alignment,
@@ -28,4 +28,6 @@ esbuild and protobufjs are build-time tools. They are not runtime dependencies.
 
 The advertising classification of eleven complete video, image, carousel and brand display-template identifiers was cross-checked against PoomSmart/YouTube-X, commit 48b901532f9e12152684f3326d4250efcdea61e5 (MIT). No upstream tweak code is included. See licenses/youtube-x-MIT.txt.
 
-1.2.5 preserves native caption tracks, fetches a single companion transcript, and uses bounded rate-limit backoff. This implementation cannot override YouTube server-side caption availability or rate limits. No transcript, signed URL or account credential is persisted by the caption backoff mechanism.
+1.2.6 preserves native caption tracks, fetches a single companion transcript, and uses bounded rate-limit backoff. This implementation cannot override YouTube server-side caption availability or rate limits. No transcript, signed URL or account credential is persisted by the caption backoff mechanism.
+
+1.2.6 adds one bounded Google Translate webpage-service fallback request, with no SDK, API key or paid-account creation. Only subtitle text and language codes are sent; no signed YouTube URL or account credential is forwarded. The public endpoint can change or rate-limit requests. The batch planner, positional validation and native adapters are independently written.

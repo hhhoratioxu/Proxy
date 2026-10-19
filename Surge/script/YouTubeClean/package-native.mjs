@@ -7,7 +7,7 @@ if(!/^[a-f0-9]{40}$/.test(ref||'')||!destination)throw Error('Usage: node packag
 const raw='https://raw.githubusercontent.com/hhhoratioxu/Proxy/';
 const settings=[
   ['REMOVE_ADS','true','去广告'],['TRANSLATE_CAPTIONS','true','字幕翻译'],['TARGET_LANGUAGE','zh-Hans','翻译语言'],
-  ['BILINGUAL','true','原文与译文双语'],['AUTO_CAPTIONS','true','优先原生字幕轨道'],
+  ['FALLBACK_TRANSLATION','true','Google 备用翻译'],['BILINGUAL','true','原文与译文双语'],['AUTO_CAPTIONS','true','优先原生字幕轨道'],
   ['HIDE_UPLOAD','true','隐藏底部发布＋'],['HIDE_SHORTS','false','隐藏底部 Shorts'],
   ['DEEP_FILTER','true','深层广告与推广过滤'],['DIAGNOSTICS','true','输出结构诊断日志']
 ];
@@ -15,14 +15,14 @@ const response='(?:'+[API_REGEX,CAPTION_REGEX,UMP_REGEX].join('|')+')';
 const request='^https://(?:youtubei(?:-att)?\\.googleapis\\.com|(?:www|m)\\.youtube\\.com)(?::443)?/youtubei/v1/(?:browse|guide|log_event)(?:\\?.*)?$';
 const hosts=['youtubei.googleapis.com','youtubei-att.googleapis.com','www.youtube.com','m.youtube.com','*.googlevideo.com'];
 const defaults=settings.map(([k,v])=>k+'='+v).join('&');
-const title='YouTube Clean 1.2.5';
-const description='原生字幕优先，翻译限流时保留原文；保留去广告及发布＋、Shorts 独立开关。需 HTTPS 解密。';
+const title='YouTube Clean 1.2.6';
+const description='YouTube 译文限流时使用 Google 备用翻译；保留去广告、双语字幕及底栏独立开关。需 HTTPS 解密。';
 const runtime=client=>raw+ref+'/'+client+'/script/YouTubeClean.js';
 const manual=client=>'https://github.com/hhhoratioxu/Proxy/blob/main/'+client+'/Docs/YouTubeClean.md';
 async function save(client,extension,content,stem='YouTubeClean'){const dir=join(destination,client,'script');await mkdir(dir,{recursive:true});await writeFile(join(dir,stem+'.'+extension),content+'\n');}
 
 const schema=settings.map(([key,value,label])=>'  '+key+':\n    name: '+label+'\n    default_value: '+JSON.stringify(value)+'\n    options: '+(key==='TARGET_LANGUAGE'?'["zh-Hans", "zh-Hant", "en", "ja", "ko"]':'["true", "false"]')).join('\n');
-await save('Egern','yaml',`# Horatio YouTube Clean 1.2.5; native ESM runtime.
+await save('Egern','yaml',`# Horatio YouTube Clean 1.2.6; native ESM runtime.
 name: ${title}
 author: Horatio Xu
 icon: captions.bubble.fill
@@ -85,8 +85,8 @@ await save('Loon','plugin',`#!name = ${title}
 ${loonArgs}
 
 [Script]
-request if \${url} ~= /${slash(request)}/ then script("${runtime('Loon')}", ${loonPass}) with tag="YouTube Clean 请求", timeout=8
-response if \${url} ~= /${slash(response)}/ then script("${runtime('Loon')}", ${loonPass}) with tag="YouTube Clean 响应", timeout=8, requires_body=true, binary_body_mode=true
+request if \${url} ~= /${slash(request)}/ then script("${runtime('Loon')}", ${loonPass}) with tag="${title} 请求", timeout=8
+response if \${url} ~= /${slash(response)}/ then script("${runtime('Loon')}", ${loonPass}) with tag="${title} 响应", timeout=8, requires_body=true, binary_body_mode=true
 
 [Mitm]
 hostname = ${hosts.join(', ')}`);

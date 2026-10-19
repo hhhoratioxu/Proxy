@@ -18,6 +18,12 @@ export default async function(context){
       requestHeaders:context.request.headers,responseHeaders:context.response?.headers,body:original,
       store:{read:key=>context.storage.getJSON(key),write:(key,value)=>context.storage.setJSON(key,value)},
       report:data=>{if(typeof console!=='undefined'&&typeof console.log==='function')console.log('[YouTubeClean] '+JSON.stringify(data));},
+      translate:async(request,timeoutMs)=>{
+        const response=await context.http.post(request.url,{headers:request.headers,body:request.body,timeout:timeoutMs,credentials:'omit',redirect:'error',insecureTls:false});
+        if(response.status!==200)return{status:response.status,headers:response.headers,body:new Uint8Array()};
+        if(Number(getHeader(response.headers,'Content-Length'))>MAX_CAPTION)throw Error('caption size');
+        return{status:response.status,headers:response.headers,body:new Uint8Array(await response.arrayBuffer())};
+      },
       download:async(url,headers)=>{
         const response=await context.http.get(url,{headers,timeout:4000,credentials:'omit',redirect:'error',insecureTls:false});
         if(response.status!==200)return{status:response.status,headers:response.headers,body:new Uint8Array()};
