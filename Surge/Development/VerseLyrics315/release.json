@@ -1,0 +1,91 @@
+{
+  "version": "3.1.5",
+  "previous": "3.1.4",
+  "summary": "复用 UTF-8 解码缓冲与语气词扫描，减少短字段解析分配；修正静态歌词来源匹配和候选提前退出。",
+  "intro": "复用至多 8194 字节的 UTF-8 解码暂存区，短 protobuf 字段不再为每个 varint 分配结果对象；混排和语气词扫描按需复用表达式，判断阶段不再拼接查询。官方静态歌词升级会继续检查已匹配的后续同步候选；同步未命中与完全无词的来源缓存分开。修正明确剧集插曲说明和有公开依据的艺人中英文同名匹配，保留录音版本、全部艺人、时长和歧义校验。保留补词、中文夹英文翻译、简繁过滤、语气词过滤及静态歌词替换开关，缓存与并发上限不变。",
+  "english": "Reduce short-field parse allocations and reuse bounded UTF-8 scratch and lazy vocal/Latin scanners. Keep all prior fallback and translation controls. Correct verified artist/title normalization, timed candidate continuation and mode-separated negative caches without weakening recording identity or increasing concurrency/capacity.",
+  "options": [
+    {
+      "key": "PREFERRED_SOURCE",
+      "default": "auto",
+      "label": "优先歌词源",
+      "desc": "仅 auto 补词模式生效；优先尝试所选来源，其他来源继续兜底，已有成功缓存优先。",
+      "values": [
+        "auto",
+        "lrclib",
+        "qq",
+        "netease",
+        "kugou",
+        "kuwo",
+        "lyricsovh"
+      ]
+    },
+    {
+      "key": "MEMORY_MODE",
+      "default": "standard",
+      "label": "缓存容量",
+      "desc": "standard 为 128 条和 64000 字符；compact 为 64 条和 32000 字符，旧歌更早淘汰，较长记录可能不缓存。",
+      "values": [
+        "standard",
+        "compact"
+      ]
+    },
+    {
+      "key": "FETCH_ARTWORK_COLOR",
+      "default": "true",
+      "label": "联网获取专辑配色",
+      "desc": "关闭可省去额外取色请求；已有配色仍可复用，否则使用中性灰，补词和翻译保留。",
+      "values": [
+        "true",
+        "false"
+      ]
+    },
+    {
+      "key": "FALLBACK_OFFSET_MS",
+      "default": "0",
+      "label": "补词时间校正（毫秒）",
+      "desc": "仅影响所有备用来源的逐行同步歌词。正数延后、负数提前，默认 0；不影响官方原词，无时间轴歌词不移动。",
+      "values": [
+        "0",
+        "-500",
+        "-1000",
+        "-2000",
+        "-5000",
+        "500",
+        "1000",
+        "2000",
+        "5000"
+      ]
+    },
+    {
+      "key": "FALLBACK_MODE",
+      "default": "synced",
+      "label": "补词策略",
+      "desc": "synced 默认继续寻找逐行时间轴；fast 对完全无词歌曲可返回首份核对通过的纯文本。“替换官方非同步歌词”开启时，两种模式都只用真实同步歌词升级官方静态歌词。",
+      "values": [
+        "synced",
+        "fast"
+      ]
+    },
+    {
+      "key": "NETWORK_MODE",
+      "default": "online",
+      "label": "插件联网模式",
+      "desc": "online 正常补词与翻译；cache-only 仅使用有效缓存，未缓存的歌曲无法补词，未缓存的句子不联网翻译。不影响 Spotify 自身联网。",
+      "values": [
+        "online",
+        "cache-only"
+      ]
+    },
+    {
+      "key": "REPLACE_UNSYNCED",
+      "default": "true",
+      "label": "替换官方非同步歌词",
+      "desc": "开启：官方只有静态歌词时尝试备用同步源；未匹配保留官方原词。关闭：保留官方静态歌词，完全无词时的补词及翻译仍正常。",
+      "values": [
+        "true",
+        "false"
+      ]
+    }
+  ]
+}

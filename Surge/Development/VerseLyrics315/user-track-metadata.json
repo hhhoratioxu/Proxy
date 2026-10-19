@@ -1,0 +1,21 @@
+{
+  "type": "track",
+  "name": "后会无期 (《诡案》网络剧插曲)",
+  "uri": "spotify:track:1fpBhAhO9gpTwuglQfjVBh",
+  "id": "1fpBhAhO9gpTwuglQfjVBh",
+  "title": "后会无期 (《诡案》网络剧插曲)",
+  "artists": [
+    {
+      "name": "Silence Wang",
+      "uri": "spotify:artist:0PdNEiQ3MsJGCEgE13Tz60"
+    },
+    {
+      "name": "徐良",
+      "uri": "spotify:artist:6sqXIwIIs1LWj6OQuBVPpR"
+    }
+  ],
+  "releaseDate": {
+    "isoString": "2011-12-26T00:00:00Z"
+  },
+  "duration": 211760
+}

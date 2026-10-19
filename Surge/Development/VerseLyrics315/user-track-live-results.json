@@ -1,0 +1,139 @@
+{
+  "version": "3.1.5",
+  "at": "2026-10-19T06:43:01.303Z",
+  "scope": "Real unauthenticated QQ catalog/lyric requests with public Spotify same-track metadata. Static official input is a self-written fixture, not captured iPhone traffic. Translation disabled only for this focused source check. Ten native client/format replays use the real replies in memory; downloaded lyrics are not published. This does not establish Spotify UI or VPN acceptance.",
+  "meta": {
+    "id": "1fpBhAhO9gpTwuglQfjVBh",
+    "title": "后会无期 (《诡案》网络剧插曲)",
+    "artists": [
+      "Silence Wang",
+      "徐良"
+    ],
+    "duration": 211.76,
+    "album": ""
+  },
+  "metadataSHA256": "3bae4a3a7b5d6c82b7cfdfaab7093f9dde6195e23ff6382fa7afa67791e4ce9e",
+  "baseline": {
+    "version": "3.1.4",
+    "static": true,
+    "httpCalls": 1
+  },
+  "candidate": {
+    "version": "3.1.5",
+    "static": false,
+    "rows": 65,
+    "httpCalls": 2,
+    "bodySHA256": "4ed3a17dadde895d18d034776df001e7a33f3067d4a9954071f2728e96fb827b"
+  },
+  "trace": [
+    {
+      "phase": "baseline",
+      "url": "https://c.y.qq.com/soso/fcgi-bin/client_search_cp?w=%E5%90%8E%E4%BC%9A%E6%97%A0%E6%9C%9F%20(%E3%80%8A%E8%AF%A1%E6%A1%88%E3%80%8B%E7%BD%91%E7%BB%9C%E5%89%A7%E6%8F%92%E6%9B%B2)%20Silence%20Wang%20%E5%BE%90%E8%89%AF&format=json&n=10&p=1&t=0",
+      "method": "GET",
+      "status": 200,
+      "bytes": 10456,
+      "sha256": "b7de69bff87288721130403c2795a4002a293c9f52ee5f54626c16885cf59868",
+      "milliseconds": 512
+    },
+    {
+      "phase": "candidate",
+      "url": "https://c.y.qq.com/soso/fcgi-bin/client_search_cp?w=%E5%90%8E%E4%BC%9A%E6%97%A0%E6%9C%9F%20%E6%B1%AA%E8%8B%8F%E6%B3%B7%20%E5%BE%90%E8%89%AF&format=json&n=10&p=1&t=0",
+      "method": "GET",
+      "status": 200,
+      "bytes": 10079,
+      "sha256": "06ea49dbab3c62c01eeacebe6b994fafceb0e1776b289e9f30bbc7de738bd2e9",
+      "milliseconds": 652
+    },
+    {
+      "phase": "candidate",
+      "url": "https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?songmid=004gZy7l1GYJ1Q&format=json&nobase64=1&g_tk=5381",
+      "method": "GET",
+      "status": 200,
+      "bytes": 2240,
+      "sha256": "bb77dbb5db464852f29ad3d571d8577a23bce5fc061201e7a884a76809f1457e",
+      "milliseconds": 330
+    }
+  ],
+  "nativeReplays": [
+    {
+      "client": "Loon",
+      "format": "json",
+      "rows": 65,
+      "httpCalls": 2,
+      "warmHTTP": 0,
+      "bodySHA256": "3741d57cfdcc72a69e2263efed5d311abc6364d760bf2ba3a540f52f67393b9c"
+    },
+    {
+      "client": "Loon",
+      "format": "protobuf",
+      "rows": 65,
+      "httpCalls": 2,
+      "warmHTTP": 0,
+      "bodySHA256": "4ed3a17dadde895d18d034776df001e7a33f3067d4a9954071f2728e96fb827b"
+    },
+    {
+      "client": "Surge",
+      "format": "json",
+      "rows": 65,
+      "httpCalls": 2,
+      "warmHTTP": 0,
+      "bodySHA256": "3741d57cfdcc72a69e2263efed5d311abc6364d760bf2ba3a540f52f67393b9c"
+    },
+    {
+      "client": "Surge",
+      "format": "protobuf",
+      "rows": 65,
+      "httpCalls": 2,
+      "warmHTTP": 0,
+      "bodySHA256": "4ed3a17dadde895d18d034776df001e7a33f3067d4a9954071f2728e96fb827b"
+    },
+    {
+      "client": "Shadowrocket",
+      "format": "json",
+      "rows": 65,
+      "httpCalls": 2,
+      "warmHTTP": 0,
+      "bodySHA256": "3741d57cfdcc72a69e2263efed5d311abc6364d760bf2ba3a540f52f67393b9c"
+    },
+    {
+      "client": "Shadowrocket",
+      "format": "protobuf",
+      "rows": 65,
+      "httpCalls": 2,
+      "warmHTTP": 0,
+      "bodySHA256": "4ed3a17dadde895d18d034776df001e7a33f3067d4a9954071f2728e96fb827b"
+    },
+    {
+      "client": "QuantumultX",
+      "format": "json",
+      "rows": 65,
+      "httpCalls": 2,
+      "warmHTTP": 0,
+      "bodySHA256": "3741d57cfdcc72a69e2263efed5d311abc6364d760bf2ba3a540f52f67393b9c"
+    },
+    {
+      "client": "QuantumultX",
+      "format": "protobuf",
+      "rows": 65,
+      "httpCalls": 2,
+      "warmHTTP": 0,
+      "bodySHA256": "4ed3a17dadde895d18d034776df001e7a33f3067d4a9954071f2728e96fb827b"
+    },
+    {
+      "client": "Egern",
+      "format": "json",
+      "rows": 65,
+      "httpCalls": 2,
+      "warmHTTP": 0,
+      "bodySHA256": "3741d57cfdcc72a69e2263efed5d311abc6364d760bf2ba3a540f52f67393b9c"
+    },
+    {
+      "client": "Egern",
+      "format": "protobuf",
+      "rows": 65,
+      "httpCalls": 2,
+      "warmHTTP": 0,
+      "bodySHA256": "4ed3a17dadde895d18d034776df001e7a33f3067d4a9954071f2728e96fb827b"
+    }
+  ]
+}
