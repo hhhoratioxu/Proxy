@@ -1,10 +1,10 @@
 # Spotify 双语歌词 · VerseLyrics · Surge
 
-当前发布 **3.1.6**（原生适配 15）。普通索引缓存键直接读取已验证的 JSON 字符串内容，带转义的旧键仍严格解码；首次实际访问缓存时才创建 Map/WeakMap 容器，筛选所需的歌曲和语言前缀只拼接一次。长歌词范围解析原型在满缓存混排测量中出现堆占用回退，已撤回，继续使用原先的严格字节解析。保留六源补词、中文夹英文翻译、简繁与语气词过滤、官方静态歌词替换开关及原生时间轴和颜色，缓存容量与网络预算不变。
+当前发布 **3.1.7**（原生适配 15）。补齐 ohohoh、hahaha、lalala 和带隐藏格式字符的 oh 等语气词识别，原词保留，官方译文、来源译文与旧缓存不能绕过过滤。语气词过滤仅用于中文、英文及没有明确其他语种的常见英文语气词；日语、韩语等其他明确语种不套用英文短词过滤，保留实际翻译。纯中文仍不简繁互译，中文夹有意义英文按片段翻译。保留六源补词、官方静态歌词替换开关、原生时间轴及颜色，网络并发和缓存容量不变。
 
 保留六源补词、插件翻译、原生时间轴与高亮。缓存和网络都有明确上限；未收录的歌曲仍不能凭空补全。本地自动测试与 macOS JavaScriptCore 测量不等于 iPhone Loon 实机 VPN 验收，不能保证所有设备都不会被系统终止。
 
-核心 **3.1.6**，客户端适配 **15**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
+核心 **3.1.7**，客户端适配 **15**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -53,10 +53,10 @@
 
 ## 运行版本与接口
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/4f5d87583a44364de3495a4f9902a5abb4756ae6/Surge/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/4f5d87583a44364de3495a4f9902a5abb4756ae6/Surge/Development/VerseLyrics316)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/898570540494794a4fc7efa0f97037b6049fd590/Surge/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/898570540494794a4fc7efa0f97037b6049fd590/Surge/Development/VerseLyrics317)
 
 原始核心和适配逻辑为独立编写。Unicode Unihan 数据许可随运行脚本完整附带。[HTTP Response Script](https://manual.nssurge.com/scripting/http-response.html) · [HTTP / Storage API](https://manual.nssurge.com/scripting/api.html)
 
 [其他客户端](../../README.md) · [返回 Surge](../README.md)
 
-2026-10-19：1741 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
+2026-10-20：1892 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
