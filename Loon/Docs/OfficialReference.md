@@ -70,3 +70,10 @@ input/select 支持 string 或 number，switch 使用 boolean；select 首项是
 ## VerseLyrics 3.1.2 混合句纠正
 
 2026-10-19 重新阅读官方 Script API 与插件页面。前述 3.1.1 将中文夹英文整行保留的策略已由本版纠正：提取英文片段合批翻译，再放回原位置，中文和标点保持原样；纯中文不简繁互译。有效旧译文复用，旧混合句身份或转换缓存按行重查；本次实际查询无译文的证明保存在原有受限记录中，避免反复联网。每个原词行仍占一个 q，多个英文片段不拆成独立请求；片段数量不符时不猜测拼接。没有增加 Loon 语法、宿主 API、参数、最低版本、并发、计时器或缓存容量。异步 HTTP 回调结束后单次完成的官方约定保持。自动测试与 macOS 测量不能代替 iPhone VPN 实机验收。
+
+
+## YouTube Clean 1.2.7 备用回复兼容
+
+2026-10-19 重新核对官方 [Script API](https://nsloon.app/docs/Script/script_api/) 与 [Script](https://nsloon.app/docs/Script/script_v2/)。仅通过公开 headers 对象设置 Accept-Encoding: identity，不新增宿主字段、参数、MITM 域名、路由或最低版本。继续使用 Uint8Array、毫秒超时和异步结束后单次完成，不依赖 clearTimeout。宿主已解压的正文可保留旧压缩响应头；脚本按实际字节解码已支持的 gzip，并在 1 MiB 边界内验证回复。
+
+只在数组长度严格对应时保留空项位置，未知结构不猜测。诊断仅增加请求/回复数量、字节数和固定编码/类型类别，区分压缩、JSON、HTML、条数和条目错误，不输出实际字幕、回复或任意 Header 内容。没有增加请求数量、并发、缓存或计时器，仍受既有 6.5 秒预算和 8 秒原生脚本超时约束。196 项自动检查与 180 条自写字幕的真实备用请求不代表用户视频或 iPhone VPN 已验收；实际 1.2.6 invalid-batch 的具体回复未取得。
