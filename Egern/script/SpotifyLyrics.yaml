@@ -1,10 +1,10 @@
-# VerseLyrics 3.1.4 — silent production module; no notification or scheduled scripts.
+# VerseLyrics 3.1.5 — silent production module; no notification or scheduled scripts.
 name: Spotify 双语歌词 · VerseLyrics
 author: Horatio Xu
 icon: music.note.list
 homepage: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/SpotifyLyrics.yaml
 manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/SpotifyLyrics.md
-description: 核心 3.1.4 · 适配 15。新增官方静态歌词替换开关，过滤 oh、ah 等纯语气词翻译，保留补词和中英混排翻译。 保留补词、翻译与原生高亮。需 HTTPS 解密。
+description: 核心 3.1.5 · 适配 15。复用 UTF-8 解码缓冲与语气词扫描，减少短字段解析分配；修正静态歌词来源匹配和候选提前退出。 保留补词、翻译与原生高亮。需 HTTPS 解密。
 env_schema:
   REPLACE_UNSYNCED:
     name: 替换官方非同步歌词
@@ -137,7 +137,7 @@ mitm:
   - "*-spclient.spotify.com"
 scriptings:
 - http_request:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/1e76330ca4427bd966f17471196a1b1f41f1cac5/Egern/script/SpotifyLyrics/spotify-lyrics-request.js?v=3.1.4
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/c9eda7c3424f9a446db886cfac08a6e1509c6347/Egern/script/SpotifyLyrics/spotify-lyrics-request.js?v=3.1.5
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
@@ -157,7 +157,7 @@ scriptings:
     body_required: false
     timeout: 3
 - http_response:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/1e76330ca4427bd966f17471196a1b1f41f1cac5/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=3.1.4
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/c9eda7c3424f9a446db886cfac08a6e1509c6347/Egern/script/SpotifyLyrics/spotify-lyrics.js?v=3.1.5
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN
@@ -179,7 +179,7 @@ scriptings:
     max_size: 262144
     timeout: 12
 - http_response:
-    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/1e76330ca4427bd966f17471196a1b1f41f1cac5/Egern/script/SpotifyLyrics/spotify-lyrics-entry.js?v=3.1.4
+    script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/c9eda7c3424f9a446db886cfac08a6e1509c6347/Egern/script/SpotifyLyrics/spotify-lyrics-entry.js?v=3.1.5
     env:
       TRANSLATION_ENABLED: 'true'
       TARGET_LANGUAGE: zh-CN

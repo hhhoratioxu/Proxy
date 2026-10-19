@@ -1,10 +1,10 @@
 # Spotify 双语歌词 · VerseLyrics
 
-当前发布 **3.1.4**（原生适配 15）。新增“替换官方非同步歌词”开关，默认开启：Spotify 已有歌词但只有静态文字时，寻找身份核对通过的真实同步歌词；关闭后保留官方静态歌词，完全无词时的补词与插件翻译照常。查不到同步来源时保留官方原词。过滤单独的 oh、ah、ooh、hmm 等语气词及重复拖音，不联网翻译，也不显示旧缓存、来源或官方的这类译文；中文混排中的独立语气片段保持原样，有实际含义的英文仍翻译。简繁不互译，沿用 3.1.3 的延迟中文表、查询去重、缓存与请求边界。
+当前发布 **3.1.5**（原生适配 15）。复用至多 8194 字节的 UTF-8 解码暂存区，短 protobuf 字段不再为每个 varint 分配结果对象；混排和语气词扫描按需复用表达式，判断阶段不再拼接查询。官方静态歌词升级会继续检查已匹配的后续同步候选；同步未命中与完全无词的来源缓存分开。修正明确剧集插曲说明和有公开依据的艺人中英文同名匹配，保留录音版本、全部艺人、时长和歧义校验。保留补词、中文夹英文翻译、简繁过滤、语气词过滤及静态歌词替换开关，缓存与并发上限不变。
 
 保留六源补词、插件翻译、原生时间轴与高亮。缓存和网络都有明确上限；未收录的歌曲仍不能凭空补全。本地自动测试与 macOS JavaScriptCore 测量不等于 iPhone Loon 实机 VPN 验收，不能保证所有设备都不会被系统终止。
 
-当前模块：3.1.4，适用于支持原生 `ctx` 脚本 API 的 Egern。
+当前模块：3.1.5，适用于支持原生 `ctx` 脚本 API 的 Egern。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -55,10 +55,10 @@ Spotify 已有同步歌词的原词和时间轴继续保留；官方只有静态
 
 ## 来源与许可
 
-插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/1e76330ca4427bd966f17471196a1b1f41f1cac5/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
+插件逻辑独立编写。Unihan 简繁体映射的许可保存在运行版本对应的 [NOTICE-UNICODE.txt](https://raw.githubusercontent.com/hhhoratioxu/Proxy/c9eda7c3424f9a446db886cfac08a6e1509c6347/Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt)。
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/1e76330ca4427bd966f17471196a1b1f41f1cac5/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/1e76330ca4427bd966f17471196a1b1f41f1cac5/Surge/Development/VerseLyrics314) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/c9eda7c3424f9a446db886cfac08a6e1509c6347/Egern/script/SpotifyLyrics/spotify-lyrics.js) · [源码与验证记录](https://github.com/hhhoratioxu/Proxy/tree/c9eda7c3424f9a446db886cfac08a6e1509c6347/Surge/Development/VerseLyrics315) · [Egern 原生 API](https://egernapp.com/docs/javascript-api/)
 
 [其他客户端](../../README.md) · [返回 Egern](../README.md)
 
-2026-10-19：1683 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
+2026-10-19：1734 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
