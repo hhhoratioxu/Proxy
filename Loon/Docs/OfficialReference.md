@@ -51,3 +51,10 @@ input/select 支持 string 或 number，switch 使用 boolean；select 首项是
 ## VerseLyrics 3.1.1 简繁输出拦截
 
 2026-10-19：仅修改共享翻译判断，不新增或改变 Loon 语法、宿主 API、参数、最低版本或原生超时。中文夹英文与注音保留原句；缓存、来源和网络结果输出前再核对简繁与排版等价，服务明确识别为中文的结果复用原文身份记录。没有新增计时器、并行查询或缓存容量。保持异步回调结束后再完成脚本；本地编译产物回归与 iPhone VPN 实机结论继续分开报告。
+
+
+## YouTube Clean 1.2.5 字幕恢复
+
+2026-10-19 重新核对 [Script](https://nsloon.app/docs/Script/script_v2/)、[Script API](https://nsloon.app/docs/Script/script_api/) 与[插件](https://nsloon.app/docs/Plugin/)。保持原有 URL Guard、原生对象参数、Uint8Array 表示及 3.5.1（983）最低版本。字幕 HTTP 请求使用官方字段：timeout=4000 毫秒、binary-mode=true、auto-cookie=false、auto-redirect=false、insecure=false。只有真实取得合法字幕时，Response Script 才用官方支持的数字 status=200、正文和对应 Content-Type 恢复失败响应；未获取成功时保留原错误状态。
+
+每次字幕响应最多一次附加请求、无自动重试，完成回调仅一次；不依赖 clearTimeout 生效。原字幕、附加字幕与合成结果均限 1 MiB，宿主已经读取的正文仍不受 JavaScript 长度检查限制。HTTP 429 的同步存储只保留一个到期时间和状态，默认退避 60 秒、Retry-After 限制在 30–300 秒；无字幕、签名或账号缓存。读写不具备事务保证，短时并发可能各自发出一次请求；存储失败时保持原字幕处理并放弃跨请求退避。自动检查不能证明真实 iPhone VPN 稳定性或服务端翻译已恢复。
