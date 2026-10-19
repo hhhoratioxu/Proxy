@@ -1,0 +1,64 @@
+{
+  "at": "2026-10-19T15:55:19.796Z",
+  "scope": "Actual baseline/candidate readable functions on identical self-written inputs. Counted input views, JSON.parse calls and bookkeeping allocations only. Instrumentation is separate from uninstrumented timing/heap runs; these are not whole-process memory or device/VPN measurements.",
+  "results": [
+    {
+      "version": "3.1.5",
+      "parse": [
+        {
+          "kind": "han",
+          "rows": 600,
+          "inputByteViews": 1202,
+          "wordsSHA256": "0f8b20d35e69f4be7a5f1a4c1d8d32df09e9307e8bd74053e158be06600609b2"
+        },
+        {
+          "kind": "ascii",
+          "rows": 600,
+          "inputByteViews": 1202,
+          "wordsSHA256": "bb8035dd41bba531ca5597f2ef9f6643a9f8757ed11d2a26334fba7c643fcb2d"
+        }
+      ],
+      "unusedCache": {
+        "mapContainers": 1,
+        "weakMapContainers": 1,
+        "persistentReads": 0,
+        "persistentWrites": 0
+      },
+      "indexedRead": {
+        "records": 128,
+        "selectedValues": 1,
+        "jsonParseCalls": 131,
+        "cacheCharacters": 12984
+      }
+    },
+    {
+      "version": "3.1.6",
+      "parse": [
+        {
+          "kind": "han",
+          "rows": 600,
+          "inputByteViews": 1202,
+          "wordsSHA256": "0f8b20d35e69f4be7a5f1a4c1d8d32df09e9307e8bd74053e158be06600609b2"
+        },
+        {
+          "kind": "ascii",
+          "rows": 600,
+          "inputByteViews": 1202,
+          "wordsSHA256": "bb8035dd41bba531ca5597f2ef9f6643a9f8757ed11d2a26334fba7c643fcb2d"
+        }
+      ],
+      "unusedCache": {
+        "mapContainers": 0,
+        "weakMapContainers": 0,
+        "persistentReads": 0,
+        "persistentWrites": 0
+      },
+      "indexedRead": {
+        "records": 128,
+        "selectedValues": 1,
+        "jsonParseCalls": 3,
+        "cacheCharacters": 12984
+      }
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "version": "3.1.6",
+  "adapter": 15,
+  "scope": "Compiled native host mocks with deterministic service fixtures; not iPhone peak memory or VPN acceptance.",
+  "invocations": 60,
+  "results": [
+    {
+      "client": "Loon",
+      "format": "json",
+      "http": {
+        "staticOn": 2,
+        "staticOffTranslationsOnly": 1,
+        "missingWithStaticOff": 2,
+        "filler600": 0,
+        "mixed": 1,
+        "warmMixed": 0
+      },
+      "mixedQueries": 2,
+      "completionOnce": true,
+      "maxActiveHTTP": 1
+    },
+    {
+      "client": "Loon",
+      "format": "protobuf",
+      "http": {
+        "staticOn": 2,
+        "staticOffTranslationsOnly": 1,
+        "missingWithStaticOff": 2,
+        "filler600": 0,
+        "mixed": 1,
+        "warmMixed": 0
+      },
+      "mixedQueries": 2,
+      "completionOnce": true,
+      "maxActiveHTTP": 1
+    },
+    {
+      "client": "Surge",
+      "format": "json",
+      "http": {
+        "staticOn": 2,
+        "staticOffTranslationsOnly": 1,
+        "missingWithStaticOff": 2,
+        "filler600": 0,
+        "mixed": 1,
+        "warmMixed": 0
+      },
+      "mixedQueries": 2,
+      "completionOnce": true,
+      "maxActiveHTTP": 1
+    },
+    {
+      "client": "Surge",
+      "format": "protobuf",
+      "http": {
+        "staticOn": 2,
+        "staticOffTranslationsOnly": 1,
+        "missingWithStaticOff": 2,
+        "filler600": 0,
+        "mixed": 1,
+        "warmMixed": 0
+      },
+      "mixedQueries": 2,
+      "completionOnce": true,
+      "maxActiveHTTP": 1
+    },
+    {
+      "client": "Shadowrocket",
+      "format": "json",
+      "http": {
+        "staticOn": 2,
+        "staticOffTranslationsOnly": 1,
+        "missingWithStaticOff": 2,
+        "filler600": 0,
+        "mixed": 1,
+        "warmMixed": 0
+      },
+      "mixedQueries": 2,
+      "completionOnce": true,
+      "maxActiveHTTP": 1
+    },
+    {
+      "client": "Shadowrocket",
+      "format": "protobuf",
+      "http": {
+        "staticOn": 2,
+        "staticOffTranslationsOnly": 1,
+        "missingWithStaticOff": 2,
+        "filler600": 0,
+        "mixed": 1,
+        "warmMixed": 0
+      },
+      "mixedQueries": 2,
+      "completionOnce": true,
+      "maxActiveHTTP": 1
+    },
+    {
+      "client": "QuantumultX",
+      "format": "json",
+      "http": {
+        "staticOn": 2,
+        "staticOffTranslationsOnly": 1,
+        "missingWithStaticOff": 2,
+        "filler600": 0,
+        "mixed": 1,
+        "warmMixed": 0
+      },
+      "mixedQueries": 2,
+      "completionOnce": true,
+      "maxActiveHTTP": 1
+    },
+    {
+      "client": "QuantumultX",
+      "format": "protobuf",
+      "http": {
+        "staticOn": 2,
+        "staticOffTranslationsOnly": 1,
+        "missingWithStaticOff": 2,
+        "filler600": 0,
+        "mixed": 1,
+        "warmMixed": 0
+      },
+      "mixedQueries": 2,
+      "completionOnce": true,
+      "maxActiveHTTP": 1
+    },
+    {
+      "client": "Egern",
+      "format": "json",
+      "http": {
+        "staticOn": 2,
+        "staticOffTranslationsOnly": 1,
+        "missingWithStaticOff": 2,
+        "filler600": 0,
+        "mixed": 1,
+        "warmMixed": 0
+      },
+      "mixedQueries": 2,
+      "completionOnce": true,
+      "maxActiveHTTP": 1
+    },
+    {
+      "client": "Egern",
+      "format": "protobuf",
+      "http": {
+        "staticOn": 2,
+        "staticOffTranslationsOnly": 1,
+        "missingWithStaticOff": 2,
+        "filler600": 0,
+        "mixed": 1,
+        "warmMixed": 0
+      },
+      "mixedQueries": 2,
+      "completionOnce": true,
+      "maxActiveHTTP": 1
+    }
+  ],
+  "runtimeSHA256": {
+    "Surge/script/SpotifyLyrics.js": "92d6d789edc01db22d39e9ca7fb5bcb5469ecd19ced6925db97737bb9957d9f4",
+    "Surge/script/SpotifyLyrics.Entry.js": "722f58a0bd308c0425d90ff472fd23a8f030e4a1382cf3f184079d26833dccaa",
+    "Surge/script/SpotifyLyrics.Request.js": "a9ff5c55052484c82ecf9bd7e6f1d75a09a7c90fb91d22cc248934ef9d1e8eae",
+    "Loon/script/SpotifyLyrics.js": "d031e1c8a868dd2a54ecd1fae4d33a14f92ddd46de7dfb6d5edda36e735c3c8b",
+    "Loon/script/SpotifyLyrics.Entry.js": "1c7acd33a94b52fc384cb0508a1d9a12fedded79035a77653585ddc0a5158666",
+    "Shadowrocket/script/SpotifyLyrics.js": "fa8437c01668c03121ac93ac4fce33c12e6f38d358a4b5575e59a2cf8a962c7f",
+    "Shadowrocket/script/SpotifyLyrics.Entry.js": "bcc3b978f8fb723246875359feaa9e645e58516cdbcb65438b70517e59b3e254",
+    "Shadowrocket/script/SpotifyLyrics.Request.js": "a9ff5c55052484c82ecf9bd7e6f1d75a09a7c90fb91d22cc248934ef9d1e8eae",
+    "QuantumultX/script/SpotifyLyrics.js": "feb802db6beab02d1aa3f932d7611d2e48efcc0a74036c4dda2c5d0a1cef8300",
+    "QuantumultX/script/SpotifyLyrics.Entry.js": "ce22787f82b53db009206f273c35c4806695aa549949104c9c5408cd357fde71",
+    "QuantumultX/script/SpotifyLyrics.Request.js": "9bc377860c83294f980383fb52a250ecb7e0fec5711e3d0974c8fd4b6a04f622",
+    "Egern/script/SpotifyLyrics/spotify-lyrics.js": "61a4a553e84f455d084099e7d991fe6ddfedaf7ce0434757f9b41259ed33a527",
+    "Egern/script/SpotifyLyrics/spotify-lyrics-entry.js": "d967f745583aca4977f13258d6fcc126637095ed78296b3d6be5ff60a77f6656",
+    "Egern/script/SpotifyLyrics/spotify-lyrics-request.js": "ddd3b798d9526fef4d1e4f2fdbb4eea1f7b4552ce01d088c055ffcfe35bcaf6d",
+    "Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+  }
+}
