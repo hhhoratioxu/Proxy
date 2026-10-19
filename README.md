@@ -23,7 +23,7 @@
 
 ## YouTube Clean · 去广告、双语字幕与底栏控制
 
-**1.2.7**。补齐备用译文回复的编码/保护前缀兼容，保留空项位置并细分失败原因；原生轨道、时间和格式保持。备用只接收字幕文字和语言，可关闭。每个客户端继续一个安装入口，包含去广告、双语字幕与发布「＋」/Shorts 独立开关。
+**1.2.8**。减少正文复制、重复序列化和字幕拼接分配，保留去广告、翻译与发布「＋」/Shorts 独立开关。Loon 默认仅显示译文；每个客户端仍为一个安装入口。
 
 | 客户端 | 安装入口 |
 | --- | --- |
@@ -35,7 +35,7 @@
 | Clash / Mihomo | [能力说明](./Clash/Docs/YouTubeClean.md) |
 
 
-196 项本地检查通过。构建的 Loon 脚本对 180 条带唯一位置标记的自写韩文取得真实繁体译文，逐条核对位置与时间。实际 Loon 1.2.6 仍报 HTTP 200 / invalid-batch，回复正文未取得，具体原因和手机修复结果待确认。[源码与验证范围](https://github.com/hhhoratioxu/Proxy/tree/8cfd57baf23480d1f8ee84e4fea129741bd50dc6/Surge/script/YouTubeClean)。
+215 项本地检查通过。54 次独立桌面测量的输出字节对应一致；JSON 主页峰值 RSS 约降 54%、2500 句字幕约降 37%、加密 protobuf 播放数据约降 6%，原生 protobuf 主页内存基本持平。测量包含 Node/V8 和接口模拟，不能作为 Loon/iPhone 内存或 VPN 稳定性结论。用户已确认 1.2.7 中韩双语显示。[源码与完整测量](https://github.com/hhhoratioxu/Proxy/tree/5fd57ddda63380d5c9c608ae2f26b6becb97dc12/Surge/script/YouTubeClean)。
 
 ## Spotify 双语歌词 · VerseLyrics
 
@@ -78,7 +78,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 | Shadowrocket | [Rules, scripts and modules](./Shadowrocket/) · [Guide](./Shadowrocket/README.md) |
 | QuanX / Quantumult X | [Rules, scripts and tasks](./QuantumultX/) · [Guide](./QuantumultX/README.md) |
 
-YouTube Clean 1.2.7 handles fallback response encoding, explicit JSON protection prefixes and empty slots without shifting captions. It records precise structural failures without caption text. All 196 local checks passed; the built Loon adapter obtained and aligned 180 real Traditional Chinese translations of self-written Korean. The user-device invalid-batch cause and acceptance remain unconfirmed. One import per client. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
+YouTube Clean 1.2.8 reduces buffer copies, duplicate JSON serialization and caption-rendering allocations. All 215 checks pass; 54 isolated desktop trials preserve output bytes. Median peak RSS falls about 54% for edited JSON home feeds, 37% for long captions and 6% for encrypted protobuf playback; protobuf home-feed memory is essentially unchanged. These are Node/V8 simulations, not native Loon or iPhone measurements. Loon keeps translation-only defaults and one import. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
 
 VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 3.1.5. Reduce short-field parse allocations and reuse bounded UTF-8 scratch and lazy vocal/Latin scanners. Keep all prior fallback and translation controls. Correct verified artist/title normalization, timed candidate continuation and mode-separated negative caches without weakening recording identity or increasing concurrency/capacity. Six sources, plugin translations and native highlighting remain. Measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
