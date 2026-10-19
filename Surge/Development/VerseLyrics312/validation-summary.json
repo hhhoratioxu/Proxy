@@ -1,0 +1,146 @@
+{
+  "version": "3.1.2",
+  "adapter": 14,
+  "baseline": "3.1.1",
+  "tests": {
+    "passed": 1515,
+    "failed": 0,
+    "addedSince311": 158,
+    "egernYAML": "passed"
+  },
+  "nativePolicies": "Five compiled native adapters; JSON/protobuf; zh-CN/zh-TW; pure Chinese, Latin spans, old identity/conversion/legacy/source caches, checked no-op proofs, cache-only, native source/timing/palette preservation, static-to-timed upgrades and fallback retained.",
+  "livePublicRequests": {
+    "actualCandidateTranslator": 2,
+    "inputRowsPerTarget": 5,
+    "wholeRowAutoObservation": 2,
+    "forcedEnExperimentNotShipped": 2,
+    "standaloneFragmentObservation": 2,
+    "warmHTTP": 0
+  },
+  "jsc": {
+    "freshProcesses": 360,
+    "ranges": [
+      {
+        "mode": "cold",
+        "mixed": false,
+        "scenarios": 12,
+        "peakFootprintPercent": [
+          -0.858,
+          0.921
+        ],
+        "deltaMilliseconds": [
+          -1.861,
+          0.935
+        ]
+      },
+      {
+        "mode": "cold",
+        "mixed": true,
+        "scenarios": 8,
+        "peakFootprintPercent": [
+          7.71,
+          12.845
+        ],
+        "deltaMilliseconds": [
+          1.778,
+          6.138
+        ]
+      },
+      {
+        "mode": "sequence",
+        "mixed": false,
+        "scenarios": 2,
+        "peakFootprintPercent": [
+          -0.102,
+          0.687
+        ],
+        "deltaMilliseconds": [
+          3.517,
+          5.147
+        ]
+      },
+      {
+        "mode": "sequence",
+        "mixed": true,
+        "scenarios": 8,
+        "peakFootprintPercent": [
+          10.244,
+          13.667
+        ],
+        "deltaMilliseconds": [
+          63.085,
+          180.135
+        ]
+      }
+    ],
+    "report": "mixed-jsc-results.json"
+  },
+  "nativeCold": [
+    {
+      "report": "native-first-load-results.json",
+      "freshProcesses": 240,
+      "peakHeapPercent": [
+        -1.565,
+        0.613
+      ],
+      "deltaMilliseconds": [
+        0.597,
+        1.493
+      ]
+    },
+    {
+      "report": "native-filled-first-load-results.json",
+      "freshProcesses": 240,
+      "peakHeapPercent": [
+        0.223,
+        0.543
+      ],
+      "deltaMilliseconds": [
+        0.56,
+        1.212
+      ]
+    }
+  ],
+  "mixedChurn": {
+    "configurations": 20,
+    "songChangesPerConfiguration": 120,
+    "lyricResponses": 4800,
+    "httpCalls": 2400,
+    "warmHTTP": 0,
+    "unfinishedHTTP": 0,
+    "maxActiveHTTP": 1,
+    "standardMaxCacheCharacters": 63956,
+    "compactMaxCacheCharacters": 31978,
+    "sampledHeapBytes": [
+      16785968,
+      27294344
+    ],
+    "report": "mixed-native-churn-results.json"
+  },
+  "pressure": {
+    "trials": 16,
+    "maxLiveInvocations": 2,
+    "maxActiveHTTP": 1,
+    "admissionTimers": 0,
+    "settledRetryPreservesTranslation": true,
+    "report": "native-pressure-results.json"
+  },
+  "runtimeSHA256": {
+    "Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
+    "Egern/script/SpotifyLyrics/spotify-lyrics-entry.js": "54edb0125247a0c59bb94aa6927c89440754df9314275bc0f6964e9de8684d52",
+    "Egern/script/SpotifyLyrics/spotify-lyrics-request.js": "6484f34f4985e225684c7e7bb9aaf3b8958ce0efcb5d36d3658b7e36576427dd",
+    "Egern/script/SpotifyLyrics/spotify-lyrics.js": "98aa99b3a9445673ab44695ecdd483c974bec8d1c24873387263b35fd3b919b1",
+    "Loon/script/SpotifyLyrics.Entry.js": "9b80a88fe33767397f1e45a98926b9e80af7c08dbefec0d7e7ace0e3b126e8cc",
+    "Loon/script/SpotifyLyrics.js": "edfb46508add866d391429797850e874cfdef825d15435be76f15f07eb7d3d76",
+    "QuantumultX/script/SpotifyLyrics.Entry.js": "96c2e1be88340113acde59c72ec2f08159a99e243d55b94dfd909281c7e5d6a3",
+    "QuantumultX/script/SpotifyLyrics.Request.js": "5b4fe271499ab6fd81c4b4d4e5e901d13890acf242c39e57db51a1ef4f66a9e0",
+    "QuantumultX/script/SpotifyLyrics.js": "bf1292b04e1ecf7d16e06af2487d546fa84232f70952ed68b534029ded7aaa8e",
+    "Shadowrocket/script/SpotifyLyrics.Entry.js": "bbbf279062280c1e1ce93905c63f622ccc1cb695996dc2a137826067206769a1",
+    "Shadowrocket/script/SpotifyLyrics.Request.js": "aaf178344f1659cf98b63e071a74184c982a220044f687f6c552104bbe34e930",
+    "Shadowrocket/script/SpotifyLyrics.js": "9536bf918ce93a6745f5db44fb8170282ebafefec821ee2f21991a07d4de1005",
+    "Surge/script/SpotifyLyrics.Entry.js": "8ca3e9dfffbbd1cbf036bd3311dc5370303b513de6108b6c1c5285c17312d2da",
+    "Surge/script/SpotifyLyrics.Request.js": "aaf178344f1659cf98b63e071a74184c982a220044f687f6c552104bbe34e930",
+    "Surge/script/SpotifyLyrics.js": "67a2f240512b2a70e0741ae781fdb8a4394249abd0f41299327cc52c87e5e0f4"
+  },
+  "scope": "Local source reproduction, 1515 automated checks, live unauthenticated synthetic translation requests and macOS JSC/Node native mocks. Not native app import, iPhone traffic, process memory ceiling, complete catalog coverage or VPN acceptance."
+}

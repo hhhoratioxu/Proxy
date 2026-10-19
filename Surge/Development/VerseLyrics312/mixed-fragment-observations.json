@@ -1,0 +1,78 @@
+[
+  {
+    "target": "zh-CN",
+    "inputs": [
+      "baby",
+      "stay with me",
+      "never say goodbye",
+      "hello world",
+      "Don't leave me\nI need you",
+      "WJK"
+    ],
+    "response": [
+      [
+        "婴儿",
+        "en"
+      ],
+      [
+        "留在我身边",
+        "en"
+      ],
+      [
+        "永不说再见",
+        "en"
+      ],
+      [
+        "你好世界",
+        "en"
+      ],
+      [
+        "别离开我\n我需要你",
+        "en"
+      ],
+      [
+        "王家康",
+        "en"
+      ]
+    ],
+    "status": 200
+  },
+  {
+    "target": "zh-TW",
+    "inputs": [
+      "baby",
+      "stay with me",
+      "never say goodbye",
+      "hello world",
+      "Don't leave me\nI need you",
+      "WJK"
+    ],
+    "response": [
+      [
+        "嬰兒",
+        "en"
+      ],
+      [
+        "留在我身邊",
+        "en"
+      ],
+      [
+        "永不說再見",
+        "en"
+      ],
+      [
+        "你好世界",
+        "en"
+      ],
+      [
+        "別離開我\n我需要你",
+        "en"
+      ],
+      [
+        "王家康",
+        "en"
+      ]
+    ],
+    "status": 200
+  }
+]

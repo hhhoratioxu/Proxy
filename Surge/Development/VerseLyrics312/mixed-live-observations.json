@@ -1,0 +1,58 @@
+[
+  {
+    "target": "zh-CN",
+    "inputs": [
+      "我爱你 baby",
+      "如果你愿意 stay with me",
+      "把那句 never say goodbye 放在心里",
+      "我想说 hello world"
+    ],
+    "response": [
+      [
+        "我爱你 baby",
+        "zh-CN"
+      ],
+      [
+        "如果你愿意 stay with me",
+        "zh-CN"
+      ],
+      [
+        "把那句 never say goodbye 放在心里",
+        "zh-CN"
+      ],
+      [
+        "我想说 hello world",
+        "zh-CN"
+      ]
+    ],
+    "status": 200
+  },
+  {
+    "target": "zh-TW",
+    "inputs": [
+      "我爱你 baby",
+      "如果你愿意 stay with me",
+      "把那句 never say goodbye 放在心里",
+      "我想说 hello world"
+    ],
+    "response": [
+      [
+        "我愛你 baby",
+        "zh-CN"
+      ],
+      [
+        "如果你願意 stay with me",
+        "zh-CN"
+      ],
+      [
+        "把那句 never say goodbye 放在心裡",
+        "zh-CN"
+      ],
+      [
+        "我想說 hello world",
+        "zh-CN"
+      ]
+    ],
+    "status": 200
+  }
+]

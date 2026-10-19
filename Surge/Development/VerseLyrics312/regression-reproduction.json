@@ -1,0 +1,117 @@
+{
+  "at": "2026-10-19T03:43:21.131Z",
+  "scope": "Actual 3.1.1 and 3.1.2 source run locally against deterministic fragment replies; no phone credentials.",
+  "results": [
+    {
+      "version": "3.1.1",
+      "cache": "empty",
+      "inputs": [
+        "我愛你 baby",
+        "請說：hello，還有 goodbye！",
+        "原創紙燈"
+      ],
+      "calls": [],
+      "translations": [
+        "",
+        "",
+        ""
+      ],
+      "changed": 0
+    },
+    {
+      "version": "3.1.1",
+      "cache": "identity",
+      "inputs": [
+        "我愛你 baby",
+        "請說：hello，還有 goodbye！",
+        "原創紙燈"
+      ],
+      "calls": [],
+      "translations": [
+        "",
+        "",
+        ""
+      ],
+      "changed": 0
+    },
+    {
+      "version": "3.1.1",
+      "cache": "conversion",
+      "inputs": [
+        "我愛你 baby",
+        "請說：hello，還有 goodbye！",
+        "原創紙燈"
+      ],
+      "calls": [],
+      "translations": [
+        "",
+        "",
+        ""
+      ],
+      "changed": 0
+    },
+    {
+      "version": "3.1.2",
+      "cache": "empty",
+      "inputs": [
+        "我愛你 baby",
+        "請說：hello，還有 goodbye！",
+        "原創紙燈"
+      ],
+      "calls": [
+        [
+          "baby",
+          "hello\ngoodbye"
+        ]
+      ],
+      "translations": [
+        "我愛你 宝贝",
+        "請說：你好，還有 再见！",
+        ""
+      ],
+      "changed": 2
+    },
+    {
+      "version": "3.1.2",
+      "cache": "identity",
+      "inputs": [
+        "我愛你 baby",
+        "請說：hello，還有 goodbye！",
+        "原創紙燈"
+      ],
+      "calls": [
+        [
+          "baby",
+          "hello\ngoodbye"
+        ]
+      ],
+      "translations": [
+        "我愛你 宝贝",
+        "請說：你好，還有 再见！",
+        ""
+      ],
+      "changed": 2
+    },
+    {
+      "version": "3.1.2",
+      "cache": "conversion",
+      "inputs": [
+        "我愛你 baby",
+        "請說：hello，還有 goodbye！",
+        "原創紙燈"
+      ],
+      "calls": [
+        [
+          "baby",
+          "hello\ngoodbye"
+        ]
+      ],
+      "translations": [
+        "我愛你 宝贝",
+        "請說：你好，還有 再见！",
+        ""
+      ],
+      "changed": 2
+    }
+  ]
+}

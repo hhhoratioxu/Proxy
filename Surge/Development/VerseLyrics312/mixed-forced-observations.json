@@ -1,0 +1,44 @@
+[
+  {
+    "target": "zh-CN",
+    "source": "en",
+    "inputs": [
+      "我爱你 baby",
+      "如果你愿意 stay with me",
+      "把那句 never say goodbye 放在心里",
+      "我想说 hello world",
+      "WJK 原創紙燈",
+      "WJK 软件正在更新"
+    ],
+    "response": [
+      "我爱你宝贝",
+      "如果你愿意留在我身边",
+      "把那句话永远不要说再见放在心里",
+      "我写下你好世界",
+      "WJK 原创纸灯",
+      "WJK软件正在更新"
+    ],
+    "status": 200
+  },
+  {
+    "target": "zh-TW",
+    "source": "en",
+    "inputs": [
+      "我爱你 baby",
+      "如果你愿意 stay with me",
+      "把那句 never say goodbye 放在心里",
+      "我想说 hello world",
+      "WJK 原創紙燈",
+      "WJK 软件正在更新"
+    ],
+    "response": [
+      "我愛你寶貝",
+      "如果你願意留在我身邊",
+      "把那句話永遠不要說再見放在心裡",
+      "我寫下你好世界",
+      "WJK 原創紙燈",
+      "WJK軟體正在更新"
+    ],
+    "status": 200
+  }
+]
