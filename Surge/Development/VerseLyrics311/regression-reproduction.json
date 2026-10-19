@@ -1,0 +1,67 @@
+{
+  "contextDate": "2026-10-19",
+  "timezone": "Asia/Taipei",
+  "baselineVersion": "3.1.0",
+  "syntheticReproductions": [
+    {
+      "documentLanguage": "zh",
+      "path": "network",
+      "original": "Hey，原創紙燈",
+      "baselineOutput": "Hey, 原创纸灯",
+      "baselineHTTP": 1
+    },
+    {
+      "documentLanguage": "ja",
+      "path": "network",
+      "original": "原創紙燈",
+      "baselineOutput": "原创纸灯",
+      "baselineHTTP": 1
+    },
+    {
+      "documentLanguage": "zh",
+      "path": "cached-track-pair",
+      "original": "WJK 紙燈",
+      "baselineOutput": "WJK 纸灯",
+      "baselineHTTP": 0
+    }
+  ],
+  "liveTranslationObservations": [
+    {
+      "target": "zh-CN",
+      "status": 200,
+      "input": [
+        "Hey，原創的紙燈照著海面",
+        "WJK 原创的纸灯"
+      ],
+      "response": [
+        [
+          "Hey，原创的纸灯照着海面",
+          "en"
+        ],
+        [
+          "WJK 原创的纸灯",
+          "zh-CN"
+        ]
+      ]
+    },
+    {
+      "target": "zh-TW",
+      "status": 200,
+      "input": [
+        "Hey，原創的紙燈照著海面",
+        "WJK 原创的纸灯"
+      ],
+      "response": [
+        [
+          "Hey，原創的紙燈照著海面",
+          "en"
+        ],
+        [
+          "WJK 原創的紙燈",
+          "zh-CN"
+        ]
+      ]
+    }
+  ],
+  "scope": "Synthetic local code reproduction and two public unauthenticated API observations. Not a capture of the user phone, a native client import or VPN acceptance."
+}
