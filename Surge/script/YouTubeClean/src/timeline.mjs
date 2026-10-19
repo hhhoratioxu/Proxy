@@ -1,5 +1,6 @@
 // Copyright 2026 Horatio Xu. MIT. Independent subtitle parsing and interval alignment.
 import {safeJson,MAX_CAPTION} from './data.mjs';
+import {formatTranslation} from './caption-layout.mjs';
 const compact=s=>String(s).replace(/\s+/g,' ').trim();
 function entityText(source){
   return source.replace(/<br\s*\/?\s*>/gi,'\n').replace(/<[^>]*>/g,'').replace(/&(#x[0-9a-f]+|#\d+|amp|lt|gt|quot|apos|nbsp);/gi,(whole,entity)=>{
@@ -25,8 +26,8 @@ export function readTimeline(source){
       if(event.aAppend&&previous&&start<=previous.end+5000){previous.words+=words;previous.end=Math.max(previous.end,end);previous.events.push(index);}
       else{const cue={start,end,words,events:[index],event};cues.push(cue);windows.set(window,cue);}
     }
-    render=replacements=>{
-      for(const [cue,words]of replacements){cue.event.segs=[{utf8:words}];cue.event.dDurationMs=cue.end-cue.start;delete cue.event.aAppend;for(const index of cue.events.slice(1))doc.events[index].segs=[];}
+    render=(replacements,{textOnly=false}={})=>{
+      for(const [cue,words]of replacements){cue.event.segs=[{utf8:words}];if(!textOnly){cue.event.dDurationMs=cue.end-cue.start;delete cue.event.aAppend;for(const index of cue.events.slice(1))doc.events[index].segs=[];}}
       return JSON.stringify(doc);
     };
   }else if(/^(?:<\?xml[^>]*>\s*)?<(?:timedtext|transcript)\b/.test(leading)){
@@ -62,7 +63,7 @@ export function readTimeline(source){
 }
 // Render into the document the native player already accepted. Translation may
 // arrive in another supported representation; it never replaces the envelope.
-export function mergeTimelines(target,source,{baseOriginal=false,dual=true}={}){
+export function mergeTimelines(target,source,{baseOriginal=false,dual=true,layout=false,language}={}){
   if(!target.cues.length||!source.cues.length)return null;
   const replacements=new Map();
   for(const cue of target.cues){
@@ -75,8 +76,19 @@ export function mergeTimelines(target,source,{baseOriginal=false,dual=true}={}){
       if(overlap/shorter>=0.25||Math.abs(candidate.start-cue.start)<=60)words.push(compact(candidate.words));
     }
     const first=[...new Set(words)].filter(Boolean).join(' '),second=compact(cue.words);
-    if(first&&second&&first!==second&&!second.startsWith(first+' '))replacements.set(cue,dual?(baseOriginal?cue.words.trim()+'\n'+first:first+'\n'+cue.words.trim()):first);
+    if(first&&second&&first!==second&&!second.startsWith(first+' ')){
+      const translated=baseOriginal?first:cue.words.trim(),original=baseOriginal?cue.words.trim():first;
+      const formatted=layout?formatTranslation(translated,language):translated;
+      replacements.set(cue,dual?original+'\n'+formatted:formatted);
+    }
   }
   return replacements.size?target.render(replacements):null;
+}
+// A native translated track needs no companion request. Leave rolling JSON3
+// append groups alone rather than changing their timing just to wrap text.
+export function reflowTimeline(timeline,language){
+  const replacements=new Map();
+  for(const cue of timeline.cues){if(cue.events?.length>1)continue;const words=formatTranslation(cue.words,language);if(words!==cue.words)replacements.set(cue,words);}
+  return replacements.size?timeline.render(replacements,{textOnly:true}):null;
 }
 export function bilingual(translated,original){return mergeTimelines(readTimeline(translated),readTimeline(original));}

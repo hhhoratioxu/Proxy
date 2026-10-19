@@ -1,6 +1,7 @@
 // Copyright 2026 Horatio Xu. MIT. One bounded, position-checked fallback batch.
 import {utf8,utf8Length,fromUtf8,asBytes,safeJson,MAX_CAPTION,getHeader} from './data.mjs';
 import {unpackHttp} from './body.mjs';
+import {formatTranslation} from './caption-layout.mjs';
 export const TRANSLATION_BACKOFF='Horatio.YouTubeClean.translation.backoff.v1';
 const compact=s=>s.replace(/\s+/g,' ').trim();
 function language(value,target=false){
@@ -67,7 +68,7 @@ export async function googleFallback(io,settings,timeline,source,diagnostic,dead
  const answers=decodeReply(response,batch.texts.length,d);if(!answers)return null;
  d.captionFallbackTranslatedItems=answers.filter((text,index)=>text&&text!==batch.texts[index]).length;
  const replacements=new Map();
- for(const cue of timeline.cues){const original=compact(cue.words),translated=answers[batch.indices.get(original)];if(!translated||translated===original)continue;replacements.set(cue,settings.dual?cue.words.trim()+'\n'+translated:translated);}
+ for(const cue of timeline.cues){const original=compact(cue.words),translated=answers[batch.indices.get(original)];if(!translated||translated===original)continue;const formatted=settings.layout?formatTranslation(translated,settings.target):translated;replacements.set(cue,settings.dual?cue.words.trim()+'\n'+formatted:formatted);}
  if(!replacements.size){d.captionFallbackReason='unchanged';return null;}
  const body=utf8(timeline.render(replacements));if(body.length>MAX_CAPTION){d.captionFallbackReason='output-limit';return null;}
  d.captionProvider='google';d.captionFallbackItems=batch.texts.length;d.captionFallbackReason='translated';return body;

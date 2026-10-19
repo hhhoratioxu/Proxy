@@ -1,7 +1,7 @@
 // Copyright 2026 Horatio Xu. MIT. Native-first subtitles and bounded recovery.
 import {asBytes,fromUtf8,utf8,param,changeParam,getHeader,route,MAX_CAPTION} from './data.mjs';
 import {unpackHttp} from './body.mjs';
-import {readTimeline,mergeTimelines} from './timeline.mjs';
+import {readTimeline,mergeTimelines,reflowTimeline} from './timeline.mjs';
 import {googleFallback} from './translation.mjs';
 export const CAPTION_BACKOFF='Horatio.YouTubeClean.captions.backoff.v1';
 const MAX_BACKOFF=300000;
@@ -31,7 +31,7 @@ function headers(io,internal){
   return out;
 }
 export async function handleCaption(io,settings,diagnostic,internal){
-  const d=diagnostic,deadline=Date.now()+6500;d.format='caption';
+  const d=diagnostic,deadline=Date.now()+6500;d.format='caption';d.captionLayout=settings.layout?'balanced':'off';
   if(!settings.translate){d.reason='caption-disabled';return null;}
   const status=Number(io.status),selected=param(io.url,'tlang'),source=param(io.url,'lang'),target=normalized(settings.target);
   const translated=!!selected;
@@ -63,7 +63,11 @@ export async function handleCaption(io,settings,diagnostic,internal){
     try{base=timeline(raw);}catch{d.bypass=true;d.reason='caption-format-unsupported';return null;}
     d.captionFormat=base.format;
     if(!base.cues.length){d.reason='caption-empty';return null;}
-    if(targetSelected&&!settings.dual){d.reason='caption-target-only';return null;}
+    if(targetSelected&&!settings.dual){
+      d.reason='caption-target-only';const formatted=settings.layout?reflowTimeline(base,settings.target):null;if(!formatted)return null;
+      const body=utf8(formatted);if(body.length>MAX_CAPTION){d.reason='caption-output-too-large';return null;}
+      d.changed=true;d.outputBytes=body.length;d.reason='caption-layout';d.captionMode='translation';return{body};
+    }
     const paused=!translated&&cooldown(io);if(paused){remaining(d,paused.until);d.reason='caption-cooldown';return await backup(base);}
   }
   const url=companionUrl(io.url,translated?null:settings.target);
@@ -90,7 +94,7 @@ export async function handleCaption(io,settings,diagnostic,internal){
     const translatedBody=await backup(companion,true);if(translatedBody)return translatedBody;
     body=unpackHttp(bytes,MAX_CAPTION).bytes;d.reason='caption-fallback-original';d.captionMode='original-fallback';d.captionFormat=companion.format;
   }else{
-    const merged=mergeTimelines(base,companion,{baseOriginal:!translated,dual:settings.dual});
+    const merged=mergeTimelines(base,companion,{baseOriginal:!translated,dual:settings.dual,layout:settings.layout,language:settings.target});
     if(!merged){d.reason='caption-no-alignment';return await backup(base);}body=utf8(merged);d.reason='modified';d.captionProvider='youtube';d.captionMode=settings.dual?'bilingual':'translation';
   }
   if(body.length>MAX_CAPTION){d.reason='caption-output-too-large';return null;}

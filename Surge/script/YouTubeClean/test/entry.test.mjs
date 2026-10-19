@@ -22,7 +22,7 @@ function element(name){
 }
 test('the sole Loon entry runs the bundled code with deep filtering and typed object arguments',async()=>{
   const plugin=await readFile(join(dir,'Loon/script/YouTubeClean.plugin'),'utf8'),args=parameters(plugin),logs=[];
-  assert.equal(args.PROFILE,undefined);assert.equal(args.DEEP_FILTER,true);assert.equal(args.DIAGNOSTICS,true);assert.ok(plugin.includes(VERSION));
+  assert.equal(args.PROFILE,undefined);assert.equal(args.DEEP_FILTER,true);assert.equal(args.DIAGNOSTICS,true);assert.equal(args.CAPTION_LAYOUT,true);assert.equal(args.BILINGUAL,false);assert.ok(plugin.includes(VERSION));
   for(const line of plugin.split('\n').filter(l=>/^(?:request|response) if /.test(l))){const raw=line.slice(line.indexOf('~= /')+4,line.indexOf('/ then script'));assert.ok(new RegExp(raw).test('https://youtubei.googleapis.com:443/youtubei/v1/browse?alt=proto'));const passed=[...line.matchAll(/\$\{(\w+)\}/g)].map(m=>m[1]).filter(k=>k!=='url');assert.deepEqual(new Set(passed),new Set(Object.keys(args)));}
   const ordinary=[homeSection([element('cell_divider')]),...Array.from({length:8},()=>homeSection([element('video_lockup_with_attachment')]))];
   const body=homeFirstPage([ordinary[0],homeSection([element('full_width_square_image_layout')]),homeSection([element('video_display_full_buttoned_layout')]),...ordinary.slice(1)]);
@@ -37,5 +37,6 @@ test('packaging produces one import per capable client with no scheme selector o
   }
   const plugin=await readFile(join(dir,'Loon/script/YouTubeClean.plugin'),'utf8');
   assert.ok(!plugin.includes('[Rule]'));assert.ok(!plugin.includes('PROFILE'));assert.ok(plugin.includes('DEEP_FILTER = switch,true,type=boolean'));
+  assert.ok(plugin.includes('CAPTION_LAYOUT = switch,true,type=boolean,tag=译文智能换行'));
 });
 test.after(async()=>rm(dir,{recursive:true,force:true}));

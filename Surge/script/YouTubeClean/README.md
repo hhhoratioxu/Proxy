@@ -1,4 +1,4 @@
-# Horatio YouTube Clean 1.2.8
+# Horatio YouTube Clean 1.2.9
 
 独立编写的 YouTube 去广告、双语字幕与底栏控制脚本。每个支持客户端只提供一个当前安装入口，统一默认开启深层广告过滤，不再提供测试方案选择。
 
@@ -10,7 +10,22 @@
 | Shadowrocket | `Shadowrocket/script/YouTubeClean.sgmodule` |
 | Quantumult X | `QuantumultX/script/YouTubeClean.conf` |
 
-1.2.8 减少整份正文复制、重复序列化、临时文字解码和字幕拼接分配，保留现有功能与一个安装入口。Loon 默认仅显示译文，其他已保存设置继续生效。
+1.2.9 新增默认开启的 `CAPTION_LAYOUT`（译文智能换行），继续保留 1.2.8 的分配优化。Loon 默认仅显示译文，其他客户端已有默认与用户保存设置继续生效。
+
+## 1.2.9 译文排版
+
+短译文保持一行，长译文按句号、逗号和词边界选择一个均衡断点，最多插入一次换行。中文标点周围多余空格会整理，不改简繁、不删字、不摘要，也不改变字幕开始/结束时间。单行软目标为 36 个视觉单位（汉字约占两个），不是播放器硬字符上限；特别长的句子、单个不可拆分的长词仍完整保留，YouTube 可能继续自动折行。
+
+YouTube 译文与 Google 备用译文使用同一规则；只排译文，双语模式的原文保持。仅译文模式手动选中的目标翻译轨道可在本地排版，不附加联网；JSON3 滚动追加组保留原样，避免仅为排版合并事件。中文原生作者字幕仍保留原排版。`CAPTION_LAYOUT=false` 可关闭；Loon 是原生 boolean switch，其他客户端使用各自已有参数机制。
+
+字体、字号、背景、屏幕位置由 YouTube 原生 CC 控制；视频画面内嵌文字不属于可改写字幕。没有添加或假设未公开的样式参数。界面最终行宽也取决于屏幕方向和播放器字号。
+
+独立实现的格式化器在已有 1 MiB 字幕边界内做两次前向扫描，不构建候选/分词数组或字幕缓存，不增加请求数、并发或计时器。新增 44 项排版与构建产物检查，累计 **259 项自动检查通过**；覆盖四种字幕格式、标点、英文词/数字/URL、emoji/扩展汉字、仅译文/双语、关闭开关、JSON3 追加组，以及五客户端实际构建脚本的两种翻译来源。手机上的最终视觉效果和原生内存尚待实机确认。
+
+另以 1.2.8/1.2.9 对两个已有短句字幕场景做 12 次交错独立进程检查，输出字节、网络次数和单次完成全部一致。2500 句字幕桌面峰值 RSS 中位数 69.20 → 70.05 MiB，处理 53.68 → 58.67 ms；180 句备用翻译 60.17 → 60.78 MiB，14.64 → 15.01 ms。排版有少量处理开销，不宣称这次继续降低内存；原始记录见 [layout-1.2.9.json](./bench/layout-1.2.9.json)。这些是 Node/V8 整进程测量，不能推断手机数值。
+
+复现此开销检查：用 `node bench/prepare.mjs /tmp/youtube-layout-fixtures` 生成自写输入，下载 `5fd57ddda63380d5c9c608ae2f26b6becb97dc12/Loon/script/YouTubeClean.js` 作基线，对 `caption-translation-only` 与 `caption-fallback` 分别以两版交错执行 `node --expose-gc bench/worker.mjs <bundle> /tmp/youtube-layout-fixtures <case>` 各三次，比较正文 SHA-256、requests、completions 与 peakRss 中位数。
+
 
 ## 1.2.8 分配与内存优化
 
@@ -42,9 +57,12 @@ XML 字幕按原文位置前向拼接一次，避免每句反复复制完整正�
 
 原生 protobuf 主页峰值增加 0.2%，没有测得内存改善；其处理时间下降约三分之一。超限放行耗时增加约 0.2 ms。小幅差异可能受进程、JIT 和 GC 波动影响；不概括成所有路径都下降。宿主可能已读入整份正文，脚本检查不能限制宿主缓冲峰值，也不提供请求取消或稳定性保证。用户已确认 1.2.7 的 Loon 原文＋中文显示；1.2.8 的手机内存、仅译文显示和 VPN 连续播放仍待实机确认。
 
-[完整测量数据与逐次记录](./bench/memory-1.2.8.json)。复现方式：
+[完整测量数据与逐次记录](./bench/memory-1.2.8.json)。以下为 1.2.8 的历史测量，复现时固定检出该版本，不能把新排版正文与旧版要求为逐字节相同。复现方式：
 
 ```sh
+git clone --single-branch --branch runtime/youtube-clean-1.2.8 https://github.com/hhhoratioxu/Proxy.git /tmp/proxy-youtube-memory-1.2.8
+cd /tmp/proxy-youtube-memory-1.2.8/Surge/script/YouTubeClean
+# Verify git rev-parse HEAD = 5fd57ddda63380d5c9c608ae2f26b6becb97dc12
 curl -fL https://raw.githubusercontent.com/hhhoratioxu/Proxy/8cfd57baf23480d1f8ee84e4fea129741bd50dc6/Loon/script/YouTubeClean.js -o /tmp/youtube-clean-1.2.7.js
 node bench/run-memory.mjs /tmp/youtube-clean-1.2.7.js dist/clients.js /tmp/youtube-clean-memory 3
 ```
@@ -122,6 +140,7 @@ node bench/run-memory.mjs /tmp/youtube-clean-1.2.7.js dist/clients.js /tmp/youtu
 | `FALLBACK_TRANSLATION` | `true` | YouTube 译文失败时把字幕文字发送给 Google 备用翻译，可关闭 |
 | `TARGET_LANGUAGE` | `zh-Hans` | 简体中文，可用 `zh-Hant`、`en`、`ja`、`ko` 等 |
 | `BILINGUAL` | `true`，Loon 为 `false` | 开启时原文在上、译文在下；Loon 默认仅译文 |
+| `CAPTION_LAYOUT` | `true` | 译文按标点均衡换行，可关闭；不修改字体和位置 |
 | `AUTO_CAPTIONS` | `true` | 为缺少合法默认字幕的音轨选择已有可翻译轨道，仍需 App 打开 CC |
 | `HIDE_UPLOAD` | `true` | 隐藏底部发布「＋」 |
 | `HIDE_SHORTS` | `false` | 隐藏底部 Shorts；正常 Shorts 内容保留 |
