@@ -1,0 +1,11 @@
+{
+  "version": "0.2.0",
+  "date": "2026-10-20",
+  "assertions": 687,
+  "clients": 5,
+  "urlCases": 41,
+  "bodyCases": 20,
+  "input": "Authored synthetic fixtures; no user traffic or credentials",
+  "nativeClientImportVerified": false,
+  "realPhoneTrafficVerified": false
+}
