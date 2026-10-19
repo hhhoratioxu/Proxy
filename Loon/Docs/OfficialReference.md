@@ -118,3 +118,11 @@ input/select 支持 string 或 number，switch 使用 boolean；select 首项是
 2026-10-20 重新核对官方[插件参数](https://nsloon.app/docs/Plugin/)的 boolean switch 与原生对象传参。`CAPTION_LAYOUT = switch,true,type=boolean` 是插件自有文本处理开关，经已声明的参数对象传入两条 Script；不假设任何未公开的 CC 样式字段。最低版本仍为 3.5.1（983），没有新增宿主 API、MITM 域名、路由、请求、并发、缓存或计时器，保留 8 秒超时、6.5 秒网络预算、4 秒单次请求及一次完成。
 
 短句快速保留；长译文在原 1 MiB 边界内前向扫描两次，按标点与词边界插入至多一个换行。正文内容、简繁及字幕起止时间保留，特别长的句子由原生播放器继续折行。仅译文模式已有目标译文可本地处理，不取伴随轨道；JSON3 追加组不因纯排版而合并事件。259 项自动检查和 12 次字幕桌面开销检查与真实 iPhone CC 效果、宿主缓冲峰值及 VPN 稳定性分别报告，1.2.8 的测量继续固定在历史版本。
+
+## 美团外卖 0.2.0 广告素材与配置刷新
+
+2026-10-20 重新核对官方 [总览](https://nsloon.app/docs/intro/)、[Script](https://nsloon.app/docs/Script/script_v2/)、[Script API](https://nsloon.app/docs/Script/script_api/)、[Rewrite](https://nsloon.app/docs/Rewrite/rewrite_v2/) 和[插件](https://nsloon.app/docs/Plugin/)。最低版本继续为 3.5.1（983）。Loon 使用 request 阶段的 reject_dict(200)、reject_img(200)、reject(200) 拦截独立广告，使用 request.header.del/set 移除 loadInfo 条件缓存头并请求 no-cache；只有 loadInfo 进入 Response Script，保持每个成功分支均经过 URL Guard，timeout=8、requires_body=true 为原生字段。没有引入其他客户端的 max_size、engine 或 requires-body 写法。
+
+Response Script 只替换明确的广告数组原文范围，成功改写后复制其他响应头，删除旧 ETag/Last-Modified/Content-MD5/Digest，设置 no-store；Content-Length、Transfer-Encoding 和 Content-Encoding 按官方约定交给 Loon 处理。非 200、未知结构、歧义重复键、畸形/超限正文均原样放行，304 不伪装为成功。请求头刷新仅作用于实际发出的请求，无法清除 App 本地缓存。
+
+共享 JavaScript 限 2097152 个 UTF-16 单元、64 层、50000 个扫描节点及扫描中 250 毫秒软预算；没有额外网络请求、持久缓存、并发任务或计时器，仅同步结束后调用一次 $done。宿主缓冲已经发生，脚本检查不保证原生峰值内存。广告图片只按 bizad/brandCpt/linglong 等已公开路径匹配，MITM 增加对应素材主机而非整个美团后缀。687 项实际生成配置与脚本的本地断言通过，不代表 Loon 解析器导入、iPhone 真实流量或 VPN 稳定性验收。

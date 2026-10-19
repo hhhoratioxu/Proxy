@@ -1,46 +1,61 @@
 # 美团外卖去广告 · Loon
 
-版本：0.1.0 · 更新日期：2026-10-15
+版本：**0.2.0** · 更新日期：2026-10-20
 
 [配置文件](../script/MeituanWaimai.plugin) · [返回客户端入口](../README.md)
 
-只需导入上面的配置文件。客户端会自动下载固定版本的运行脚本，无需另外安装 JS、修改代码或运行测试。
+## 安装或升级
 
-## 安装
+1. 在 Loon 插件管理中更新已有插件，或用下方地址新增远程插件。使用官方新版 Script/Rewrite 语法，要求 **Loon 3.5.1 (983) 或更新版本**；运行脚本自动下载。
+2. 确认 HTTPS 解密已启用，并已安装、信任自己的解密证书。本模块使用 `wmapi.meituan.com`、`img.meituan.net`、`p*.meituan.net`、`s3plus.meituan.net` 和 `flowplus.meituan.net`；只匹配下文所述广告路径。
+3. 更新后检查模块说明显示 `v0.2.0`，仅启用一个版本及一套处理相同请求的规则，保存并重新加载。
+4. 彻底退出美团外卖 App 后重新打开；若 App 提供清理缓存入口，可清理旧开屏素材后复测。网络规则无法删除 App 已存储的本地广告。
 
-1. 在 Loon 插件管理中新增远程插件，填写下方原始地址并启用。此配置使用官方新版 Script 语法，要求 **Loon 3.5.1 (983) 或更新版本**。
-2. 在客户端中安装并信任自己的 HTTPS 解密证书，启用 MitM。此配置只为 `wmapi.meituan.com` 添加解密主机。
-3. 保存配置并重新加载。
-4. 彻底退出美团外卖 App 后重新打开。如果 App 中有清理缓存入口，可先清理已有开屏广告缓存再复测。
-
-配置原始地址：
+[直接导入的 Raw 地址](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.plugin)
 
 ```text
 https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.plugin
 ```
 
+模块和脚本位于各客户端的 `script/`，路由列表位于 `rule/`。只需导入一个配置文件；固定版本运行脚本会自动下载。
+
+## 0.2.0 的改动
+
+- 修复 `openscreen` 的 `ad` 前缀参数排在查询串后面时漏匹配，兼容多位 API 版本、默认端口和接口末尾斜杠。
+- 独立开屏接口在请求阶段直接返回空 JSON；广告图片返回 1 像素 GIF，已知开屏视频/广告包返回空响应。
+- 增加公开规则已标明的素材路径：`img.meituan.net/bizad/bizad_brandCpt_数字.jpg`、`p数字.meituan.net/(bizad|brandCpt)/文件.jpg`、`s3plus`/`flowplus` 的 `linglong` 图片和视频，以及 `s3plus` 的 `brandcpt-vedio` 广告包。支持这些路径的查询参数。
+- 仅对 `loadInfo` 移除 `If-None-Match` 和 `If-Modified-Since`，请求重新验证配置；成功清理后的配置设为 `no-store` 并移除旧验证标识。Cookie、Authorization、If-Match 等其他请求头保留。
+- 五客户端均使用原文范围替换，只清空已确认的广告数组，保留其他文本、长数字 ID、金额写法和业务字段；Egern 不再重序列化整份 JSON。
+
 ## 当前范围
 
-| 接口 | 处理 |
+| 请求或字段 | 行为 |
 | --- | --- |
-| `/api/v数字/loadInfo` | 清空 `data.startpicture.ad`、`data.startpicture.mk` 中已识别的广告数组；`startpicture` 本身为数组时清空它。 |
-| `/api/v数字/startpicture` | 将正常 JSON 响应替换为 `{}`。 |
-| `/api/v数字/openscreen?ad…` | 仅匹配查询字符串以 `ad` 开头的开屏请求，将正常 JSON 响应替换为 `{}`。 |
+| `wmapi.meituan.com/api/v数字/loadInfo` | HTTP 200 且业务 `code` 为 0/`"0"` 或缺省时，清空 `data.startpicture.ad`、`data.startpicture.mk` 的非空数组；`startpicture` 本身为数组时清空它。 |
+| `/api/v数字/startpicture` | 请求阶段返回 HTTP 200、JSON `{}`。 |
+| `/api/v数字/openscreen?...&ad…=…` | 参数名以 `ad` 开头且处于完整参数边界时返回 `{}`，参数可位于查询串任意位置；不把参数值中的 `ad` 当成参数名。 |
+| 已识别的广告素材 URL | 按完整主机与广告目录匹配，图片返回 GIF，视频和广告包返回空 HTTP 200。 |
 
-只处理 `wmapi.meituan.com`，支持 HTTP、HTTPS 和多位数 API 版本号。规则面向独立美团外卖 App 的已知开屏广告；尚未适配首页推广、红包弹窗、美团主 App 内嵌外卖和微信小程序。
+本版针对独立美团外卖 App。广告素材的兜底拦截可以阻止已缓存配置再次从网络下载这些素材，但不会自动擦除 App 已保存在本地的图片，也不保证移除页面占位。
 
-这四个新增客户端版本都在**响应阶段**处理内容，上游请求仍会发生；处理时机与 Egern 版的 Map Local 不同。只处理 HTTP 200 和可解析 JSON，非零 `code`、未知结构、畸形 JSON、过大响应和解析异常均原样放行。
+首页信息流中的推广商家、红包弹窗、悬浮活动、美团主 App 内嵌外卖和微信小程序还没有可靠的当前响应样本，未宣称已完整适配。不按 `ad`、`banner` 等名称递归删字段；商家列表、菜单、优惠券、购物车、订单和支付接口不在本版处理范围。`wmbanner`、`waimai-alita` 与通用配置资源没有加入拦截。
 
-`loadInfo` 除目标广告数组外保留响应原文，包括长数字 ID、其他业务字段和数字原有写法；不对整个业务配置重新序列化。脚本不发起额外请求、不记录流量或账号信息，也不修改节点、DNS 或业务分流。
+## 验证与边界
 
-## 验证
+2026-10-20：**687 项本地断言通过**。检查实际生成的五客户端导入文件、41 组 URL 正反例、20 组 JSON/边界数据，以及广告参数顺序、业务字段、长数字、重复键、异常状态、UTF-8、单次完成和请求/响应头。测试使用人工构造的数据，不包含真实账号抓包。
 
-本地使用人工构造的响应验证广告清理、两种广告数组同时存在、重复处理、长数字 ID 保留、未知结构与错误响应放行，以及订单、支付、商家列表等 URL 不被匹配。配置检查还核对了脚本原始地址和 MitM 主机范围。
+运行脚本没有附加网络请求、后台任务、持久缓存或并行查询。客户端脚本超时为 8 秒。Egern/Surge/Shadowrocket 声明正文上限 2097152 字节；共享 JavaScript 还限制 2097152 个 UTF-16 单元、64 层结构、50000 个扫描节点，并在扫描中检查 250 毫秒的软预算。Loon 不使用未公开的正文大小配置字段；脚本检查不能限制宿主已经读取的正文或保证 VPN 峰值内存。
 
-这些检查使用模拟的客户端脚本输入。**尚未完成 Loon 自身解析器的导入验证、真实手机流量命中和 App 界面验收**，不能将本地测试或发布成功视为真机去广告成功。接口变化、证书校验和已缓存广告都可能影响效果。
+只改写 HTTP 200 且结构明确的正文。HTTP 304/错误状态、非零业务码、未知结构、畸形 JSON、歧义重复键或超限内容保留原响应。缓存头处理仅作用于实际发出的 `loadInfo` 请求，不把 304 伪装成 200。
 
-## 依据
+**尚未完成原生客户端解析器导入、真实手机流量命中和 App 界面验收。** 本地测试和 GitHub 发布不能证明手机上的广告已经全部清除。MITM 未开启、证书未信任、证书校验、旧插件冲突和 App 本地缓存仍可能影响效果。
 
-- [Loon 插件格式](https://nsloon.app/docs/Plugin/)与[脚本语法](https://nsloon.app/en/docs/Script/script_v2/)、[Script API](https://nsloon.app/docs/Script/script_api/)。
-- [公开的美团外卖启动字段示例](https://github.com/blackmatrix7/ios_rule_script/blob/master/script/startup/startup.js)，用于核对 `loadInfo` 以及 `startpicture.ad`、`startpicture.mk`；脚本代码独立编写。
-- [Clash/Mihomo 兼容性说明及其他客户端入口](../../Clash/Docs/MeituanWaimai.md)。
+仍有广告时，定位到对应客户端、App 版本、广告出现位置及具体主机/路径后，才能继续扩展混合业务响应中的字段。提供响应样本前应移除 Cookie、Token、手机号、地址、经纬度和订单信息，无需分享完整账号流量。
+
+## 接口与配置依据
+
+- [公开启动字段示例](https://github.com/blackmatrix7/ios_rule_script/blob/master/script/startup/startup.js)及[公开广告素材路径](https://github.com/blackmatrix7/ios_rule_script/blob/master/rewrite/Surge/AdvertisingLite/AdvertisingLite.sgmodule)。这是作者维护的接口线索，不等于当前 App 实测；本项目运行代码独立编写。
+- [固定版本源码和测试](https://github.com/hhhoratioxu/Proxy/tree/0ab4530cf4c96408e4d81f5896a6d694a49be571/Source/MeituanWaimai)：运行脚本按提交固定，主分支每客户端保留一个当前安装入口。
+- [其他客户端与 Clash/Mihomo 能力说明](../../Clash/Docs/MeituanWaimai.md)。
+
+- [Loon 插件](https://nsloon.app/docs/Plugin/)、[Script](https://nsloon.app/docs/Script/script_v2/)、[Script API](https://nsloon.app/docs/Script/script_api/)及[Rewrite](https://nsloon.app/docs/Rewrite/rewrite_v2/)。

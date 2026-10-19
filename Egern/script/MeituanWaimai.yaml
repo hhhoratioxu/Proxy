@@ -1,51 +1,31 @@
-# 美团外卖去广告 · Egern 原生模块
-# 版本：0.1.0
-# 更新：2026-10-15
-# 只需导入此文件；使用 Egern 内置 jq 与 Map Local，无远程脚本依赖。
-# 安装方法和处理范围见 Egern/Docs/MeituanWaimai.md。
-
+# 美团外卖去广告 v0.2.0 · Egern 原生模块
+# 2026-10-20 · 广告接口、素材与开屏配置缓存处理
 name: 美团外卖去广告
+description: v0.2.0 · 开屏广告和已知广告素材；首页推广与红包弹窗仍需实测。
 author: Horatio Xu
-homepage: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/script/MeituanWaimai.yaml
+homepage: https://github.com/hhhoratioxu/Proxy
 manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/MeituanWaimai.md
-description: 清理已知开屏广告字段并拦截独立开屏接口；仅适配美团外卖 App，实际效果需真机确认。
-
 mitm:
   hostnames:
-    - wmapi.meituan.com
-
-# loadInfo 是混合启动配置：保留完整 data，只清理识别到的广告数组。
-# 未知结构、缺失字段、业务错误响应均不添加或删除其他字段。
-body_rewrites:
-  - response_jq:
-      match: '^https?://wmapi\.meituan\.com/api/v[0-9]+/loadInfo(?:\?.*)?$'
-      filter: |
-        if type != "object" then .
-        elif (has("code") and (.code != 0 and .code != "0")) then .
-        elif (.data | type) != "object" then .
-        elif (.data.startpicture | type) == "array" then
-          .data.startpicture = []
-        elif (.data.startpicture | type) == "object" then
-          .data.startpicture |= (
-            (if (.ad | type) == "array" then .ad = [] else . end)
-            | (if (.mk | type) == "array" then .mk = [] else . end)
-          )
-        else .
-        end
-
-# 独立开屏接口返回空 JSON，不对整个美团域名或图片 CDN 做封禁。
-# openscreen 仅处理查询字符串以 ad 开头的已知广告请求形式。
-map_locals:
-  - match: '^https?://wmapi\.meituan\.com/api/v[0-9]+/startpicture(?:\?.*)?$'
-    status_code: 200
-    headers:
-      Content-Type: application/json; charset=utf-8
-      Cache-Control: no-store
-    body: '{}'
-  - match: '^https?://wmapi\.meituan\.com/api/v[0-9]+/openscreen\?ad'
-    status_code: 200
-    headers:
-      Content-Type: application/json; charset=utf-8
-      Cache-Control: no-store
-    body: '{}'
-
+    - "wmapi.meituan.com"
+    - "img.meituan.net"
+    - "p*.meituan.net"
+    - "s3plus.meituan.net"
+    - "flowplus.meituan.net"
+scriptings:
+  - http_request:
+      name: 美团外卖 · 广告拦截与配置刷新
+      match: "(?:^https?:\\/\\/wmapi\\.meituan\\.com(?::(?:80|443))?\\/api\\/v[0-9]+\\/loadInfo\\/?(?:\\?[^#]*)?$)|(?:^https?:\\/\\/wmapi\\.meituan\\.com(?::(?:80|443))?\\/api\\/v[0-9]+\\/(?:startpicture\\/?(?:\\?[^#]*)?|openscreen\\/?\\?(?:[^&#]*&)*ad[A-Za-z0-9_]*(?:=[^&#]*)?(?:&[^#]*)?)$)|(?:^https?:\\/\\/img\\.meituan\\.net(?::(?:80|443))?\\/bizad\\/bizad_brandCpt_[0-9]+\\.jpg(?:@[^/?#]+)?(?:\\?[^#]*)?$)|(?:^https?:\\/\\/p[0-9]+\\.meituan\\.net(?::(?:80|443))?\\/(?:bizad|brandCpt)\\/[A-Za-z0-9_-]+\\.jpg(?:@[^/?#]+)?(?:\\?[^#]*)?$)|(?:^https?:\\/\\/(?:s3plus|flowplus)\\.meituan\\.net(?::(?:80|443))?\\/v[0-9]+\\/[A-Za-z0-9_-]+\\/linglong\\/[A-Za-z0-9_-]+\\.(?:gif|jpg)(?:@[^/?#]+)?(?:\\?[^#]*)?$)|(?:^https?:\\/\\/(?:s3plus|flowplus)\\.meituan\\.net(?::(?:80|443))?\\/v[0-9]+\\/[A-Za-z0-9_-]+\\/linglong\\/[A-Za-z0-9_-]+\\.mp4(?:\\?[^#]*)?$)|(?:^https?:\\/\\/s3plus\\.meituan\\.net(?::(?:80|443))?\\/v[0-9]+\\/mss_[A-Za-z0-9_-]+\\/brandcpt-vedio\\/[A-Za-z0-9_-]+\\.(?:zip|mp4)(?:\\?[^#]*)?$)"
+      script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/0ab4530cf4c96408e4d81f5896a6d694a49be571/Egern/script/MeituanWaimai.js
+      body_required: false
+      timeout: 8
+      update_interval: 86400
+  - http_response:
+      name: 美团外卖 · 开屏配置清理
+      match: "^https?:\\/\\/wmapi\\.meituan\\.com(?::(?:80|443))?\\/api\\/v[0-9]+\\/loadInfo\\/?(?:\\?[^#]*)?$"
+      script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/0ab4530cf4c96408e4d81f5896a6d694a49be571/Egern/script/MeituanWaimai.js
+      body_required: true
+      binary_body: true
+      max_size: 2097152
+      timeout: 8
+      update_interval: 86400
