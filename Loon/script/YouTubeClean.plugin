@@ -10,7 +10,7 @@ REMOVE_ADS = switch,true,type=boolean,tag=去广告
 TRANSLATE_CAPTIONS = switch,true,type=boolean,tag=字幕翻译
 TARGET_LANGUAGE = select,"zh-Hans","zh-Hant","en","ja","ko",type=string,tag=翻译语言
 FALLBACK_TRANSLATION = switch,true,type=boolean,tag=Google 备用翻译
-BILINGUAL = switch,true,type=boolean,tag=原文与译文双语
+BILINGUAL = switch,false,type=boolean,tag=原文与译文双语
 AUTO_CAPTIONS = switch,true,type=boolean,tag=优先原生字幕轨道
 HIDE_UPLOAD = switch,true,type=boolean,tag=隐藏底部发布＋
 HIDE_SHORTS = switch,false,type=boolean,tag=隐藏底部 Shorts
