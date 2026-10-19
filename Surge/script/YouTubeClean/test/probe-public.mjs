@@ -8,7 +8,7 @@ const [playerPath,guidePath]=process.argv.slice(2);
 if(!playerPath||!guidePath)throw Error('Pass native player and guide protobuf files');
 const p=await readFile(playerPath),g=await readFile(guidePath),s=new Settings({HIDE_UPLOAD:true,HIDE_SHORTS:true});
 const fresh=editBinary(p,'player',s),before=all(at(at(p,10),51621377),1),after=all(at(at(fresh,10),51621377),1);
-assert.equal(after.length,before.length+1);
+assert.equal(after.length,before.length);
 for(let i=0;i<before.length;i++)assert.deepEqual(Buffer.from(after[i]),Buffer.from(before[i]));
 const adFields=new Set([7,23,25,27,38,44,45,48,68,69]),unrelated=f=>f.id!==10&&!adFields.has(f.id);
 assert.deepEqual(inspect(fresh).filter(unrelated).map(f=>f.raw),inspect(p).filter(unrelated).map(f=>f.raw));

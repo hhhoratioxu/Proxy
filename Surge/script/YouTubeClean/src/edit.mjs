@@ -1,6 +1,6 @@
 // Copyright 2026 Horatio Xu. MIT. YouTube policies and edits are implemented here.
 import {decodeMessage,nested,findField,join,withPayload,makeBytes,makeInt,replaceAll,readPacked,same} from './wire.mjs';
-import {utf8,fromUtf8,changeParam,CAPTION_REGEX,unb64} from './data.mjs';
+import {fromUtf8,CAPTION_REGEX,unb64} from './data.mjs';
 import {graph,rendererAds} from './protocol.mjs';
 import {editElementRenderer,deepCardAd,jsonElementAd} from './elements.mjs';
 const NS='.youtube.api.innertube.';
@@ -41,34 +41,22 @@ export function navIdentity(raw,depth=0){
   }return '';
 }
 function hidden(id,settings){return settings.hideCreate&&creation.has(id)||settings.hideShorts&&shortNav.has(id);}
-function label(target,dual){const name=target==='zh-Hans'?'简体中文':target==='zh-Hant'?'繁體中文':target;return(dual?'双语字幕 · ':'翻译字幕 · ')+name;}
-function replaceText(raw,no,value){return replaceAll(decodeMessage(raw),no,[makeBytes(no,utf8(value))]);}
+// Keep every native track and signed URL intact. AUTO_CAPTIONS only fills a
+// missing/invalid default with an existing eligible track in that audio group.
 function captionList(raw,s){
-  if(!s.translate)return raw;
+  if(!s.translate||!s.auto)return raw;
   const fields=decodeMessage(raw),tracks=fields.filter(f=>f.no===1&&f.wire===2);
   if(!tracks.length||tracks.length>128)return raw;
-  const entries=tracks.map(f=>({field:f,fields:decodeMessage(f.payload)}));
-  const word=(entry,n)=>fromUtf8(findField(entry.fields,n)?.payload||new Uint8Array(),true)||'';
-  if(entries.some(e=>word(e,3)==='.ytclean.'+s.target))return raw;
-  const valid=entries.filter(e=>word(e,4)!==s.target&&new RegExp(CAPTION_REGEX).test(word(e,1)));
-  const chosen=valid.find(e=>word(e,4)==='en')||valid[0];if(!chosen)return raw;
-  let track=chosen.field.payload;
-  track=replaceText(track,1,changeParam(word(chosen,1),'tlang',s.target));
-  track=replaceText(track,3,'.ytclean.'+s.target);track=replaceText(track,4,s.target);
-  const title=makeBytes(1,makeBytes(1,utf8(label(s.target,s.dual))));
-  track=replaceAll(decodeMessage(track),2,[makeBytes(2,title)]);
-  track=replaceAll(decodeMessage(track),7,[makeInt(7,1)]);
-  const index=tracks.length,out=[];
-  for(const f of fields){
-    if(f.no===2&&f.wire===2){
-      let audio=f.payload;const af=decodeMessage(audio),ids=af.filter(x=>x.no===2).flatMap(readPacked);
-      if(!ids.some(x=>x===BigInt(index)))audio=join([audio,makeInt(2,index)]);
-      if(s.auto){audio=replaceAll(decodeMessage(audio),3,[makeInt(3,index)]);audio=replaceAll(decodeMessage(audio),11,[makeInt(11,3)]);}
-      out.push(withPayload(f,audio));
-    }else if(f.no===6&&s.auto)continue;else out.push(f.raw);
-  }
-  out.push(makeBytes(1,track));if(s.auto)out.push(makeInt(6,index));return join(out);
+  const eligible=tracks.map(f=>{const fs=decodeMessage(f.payload),url=fromUtf8(findField(fs,1)?.payload||new Uint8Array(),true)||'';return findField(fs,7)?.value===1n&&new RegExp(CAPTION_REGEX).test(url);});
+  let changed=false;const out=fields.map(f=>{
+    if(f.no!==2||f.wire!==2)return f.raw;
+    const af=decodeMessage(f.payload),ids=af.filter(x=>x.no===2).flatMap(readPacked).map(Number).filter(n=>Number.isInteger(n)&&n>=0&&n<tracks.length);
+    const current=findField(af,3);if(current?.wire===0&&ids.includes(Number(current.value)))return f.raw;
+    const chosen=ids.find(n=>eligible[n]);if(chosen===undefined)return f.raw;
+    changed=true;return withPayload(f,replaceAll(af,3,[makeInt(3,chosen)]));
+  });return changed?join(out):raw;
 }
+
 export function editBinary(raw,endpoint,settings,onKeys,trace){
   let type=ROOT[endpoint];if(!type)return raw;
   if(endpoint==='get_watch'){
@@ -152,13 +140,17 @@ function adCard(item,s,trace,depth=0){
   return false;
 }
 function jsonCaptionList(list,s){
-  const tracks=list.captionTracks;if(!s.translate||!Array.isArray(tracks)||!tracks.length||tracks.length>128||tracks.some(t=>t.vssId==='.ytclean.'+s.target))return;
-  const source=tracks.find(t=>t.languageCode==='en'&&t.languageCode!==s.target&&new RegExp(CAPTION_REGEX).test(t.baseUrl||''))||tracks.find(t=>t.languageCode!==s.target&&new RegExp(CAPTION_REGEX).test(t.baseUrl||''));
-  if(!source)return;
-  const track={...source,baseUrl:changeParam(source.baseUrl,'tlang',s.target),vssId:'.ytclean.'+s.target,languageCode:s.target,name:{runs:[{text:label(s.target,s.dual)}]},isTranslatable:true};
-  const index=tracks.push(track)-1;if(s.auto)list.defaultCaptionTrackIndex=index;
-  for(const audio of list.audioTracks||[]){const old=Array.isArray(audio.captionTrackIndices)?audio.captionTrackIndices:[];if(!old.includes(index))audio.captionTrackIndices=[...old,index];if(s.auto){audio.defaultCaptionTrackIndex=index;audio.captionsInitialState=3;}}
+  const tracks=list.captionTracks;if(!s.translate||!s.auto||!Array.isArray(tracks)||!tracks.length||tracks.length>128)return;
+  if(!Array.isArray(list.audioTracks))return;
+  for(const audio of list.audioTracks){
+    if(!Array.isArray(audio.captionTrackIndices))continue;
+    const ids=audio.captionTrackIndices.filter(n=>Number.isInteger(n)&&n>=0&&n<tracks.length);
+    if(ids.includes(audio.defaultCaptionTrackIndex))continue;
+    const chosen=ids.find(n=>tracks[n]?.isTranslatable===true&&new RegExp(CAPTION_REGEX).test(tracks[n]?.baseUrl||''));
+    if(chosen!==undefined)audio.defaultCaptionTrackIndex=chosen;
+  }
 }
+
 export function editJson(document,s,onKeys,trace){
   let budget=70000;
   function traverse(node,nav=false,feed=false){

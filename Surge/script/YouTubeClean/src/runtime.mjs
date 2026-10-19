@@ -1,9 +1,9 @@
 // Copyright 2026 Horatio Xu. MIT. Platform-neutral processing contract.
-import {asBytes,fromUtf8,utf8,safeJson,route,param,changeParam,getHeader,b64,unb64,MAX_BODY,MAX_CAPTION,VERSION} from './data.mjs';
+import {asBytes,fromUtf8,utf8,safeJson,route,getHeader,b64,unb64,MAX_BODY,VERSION} from './data.mjs';
 import {same} from './wire.mjs';
 import {editBinary,editJson} from './edit.mjs';
 import {editStream} from './stream.mjs';
-import {bilingual} from './timeline.mjs';
+import {handleCaption} from './captions.mjs';
 import {unpackHttp} from './body.mjs';
 export const STORE='Horatio.YouTubeClean.session.v1',INTERNAL='X-YouTubeClean-Internal';
 function identity(io){return /music/i.test(getHeader(io.requestHeaders,'User-Agent'))?'music':'video';}
@@ -50,27 +50,17 @@ export async function handle(io,settings){
       const result=target.kind==='api'?requestHeaders(io,settings,target.name):null;
       diagnostic.changed=!!result;diagnostic.reason=result?'request-updated':'request-unchanged';return result;
     }
-    if(status!==200){diagnostic.bypass=true;diagnostic.reason='http-status';return null;}
     if(getHeader(io.responseHeaders,'X-YouTubeClean')){diagnostic.reason='already-processed';return null;}
-    const bytes=asBytes(io.body),limit=target.kind==='caption'?MAX_CAPTION:MAX_BODY;
+    if(target.kind==='caption')return await handleCaption(io,settings,diagnostic,INTERNAL);
+    if(status!==200){diagnostic.bypass=true;diagnostic.reason='http-status';return null;}
+    const bytes=asBytes(io.body),limit=MAX_BODY;
     diagnostic.bytes=bytes.length;diagnostic.outputBytes=bytes.length;
     if(!bytes.length){diagnostic.bypass=true;diagnostic.reason='empty-body';return null;}
     if(bytes.length>limit){diagnostic.bypass=true;diagnostic.reason='body-too-large';return null;}
     diagnostic.compression=bytes[0]===31&&bytes[1]===139?'gzip':'none';
     const unpacked=unpackHttp(bytes,limit),plain=unpacked.bytes;
     let output=plain;
-    if(target.kind==='caption'){
-      diagnostic.format='caption';
-      if(!settings.translate||!settings.dual||param(io.url,'tlang').toLowerCase()!==settings.target.toLowerCase()){diagnostic.reason='caption-not-selected';return null;}
-      const url=changeParam(io.url,'tlang',null);if(route(url)?.kind!=='caption'){diagnostic.bypass=true;diagnostic.reason='caption-scope';return null;}
-      diagnostic.reason='caption-download-failed';
-      const original=await io.download(url,{[INTERNAL]:'1',Accept:getHeader(io.responseHeaders,'Content-Type')||'*/*'});
-      if(Number(original.status)!==200)return null;
-      const rawOriginal=asBytes(original.body);if(rawOriginal.length>MAX_CAPTION)return null;
-      const originalPlain=unpackHttp(rawOriginal,MAX_CAPTION).bytes;
-      const merged=bilingual(fromUtf8(plain),fromUtf8(originalPlain));if(merged)output=utf8(merged);
-      diagnostic.reason='unchanged';
-    }else if(target.kind==='ump'){
+    if(target.kind==='ump'){
       output=editStream(plain,session.key,settings,trace,collect);
       if(trace?.missingKey){diagnostic.reason='key-'+session.state;diagnostic.bypass=true;}
       else if(trace&&trace.metadataParts===0)diagnostic.reason='no-target-metadata';

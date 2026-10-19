@@ -12,8 +12,9 @@ const finiteTime=(n)=>Number.isFinite(n)&&n>=0&&n<1e10;
 function stamp(source){const parts=source.replace(',','.').split(':').map(Number);if(parts.length<2||parts.some(n=>!Number.isFinite(n)))throw Error('caption time');return parts.reduce((n,v)=>n*60+v,0)*1000;}
 export function readTimeline(source){
   if(source.length>MAX_CAPTION)throw Error('caption limit');
-  const leading=source.trimStart();let cues=[],render;
+  const leading=source.trimStart();let cues=[],render,format;
   if(leading.startsWith('{')){
+    format='json3';
     const doc=safeJson(source);if(!Array.isArray(doc.events))throw Error('caption JSON shape');
     const windows=new Map();
     for(let index=0;index<doc.events.length;index++){
@@ -29,6 +30,7 @@ export function readTimeline(source){
       return JSON.stringify(doc);
     };
   }else if(/^(?:<\?xml[^>]*>\s*)?<(?:timedtext|transcript)\b/.test(leading)){
+    format=/<transcript\b/.test(leading)?'srv1':'srv3';
     if(/<!DOCTYPE|<!ENTITY|<!\[CDATA\[/i.test(source))throw Error('caption XML declaration');
     for(const match of source.matchAll(/<(p|text)\b([^>]*)>([\s\S]*?)<\/\1>/g)){
       const attrs={};for(const a of match[2].matchAll(/(\w+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g))attrs[a[1]]=a[2]??a[3];
@@ -43,6 +45,7 @@ export function readTimeline(source){
       }return out;
     };
   }else if(/^\uFEFF?WEBVTT(?:\s|$)/.test(source)){
+    format='vtt';
     const newline=source.includes('\r\n')?'\r\n':'\n',blocks=source.replace(/\r\n/g,'\n').split('\n\n');
     for(let block=0;block<blocks.length;block++){
       const lines=blocks[block].split('\n');if(/^(?:WEBVTT|STYLE|NOTE|REGION)/.test(lines[0]))continue;
@@ -54,10 +57,12 @@ export function readTimeline(source){
     render=replacements=>{for(const [cue,words]of replacements)blocks[cue.block]=cue.lines.slice(0,cue.row+1).concat(escapeText(words)).join('\n');return blocks.join('\n\n').replace(/\n/g,newline);};
   }else throw Error('caption format');
   if(cues.length>20000)throw Error('caption count');
-  cues.sort((a,b)=>a.start-b.start);return{cues,render};
+  cues.sort((a,b)=>a.start-b.start);return{cues,render,format};
 }
-export function bilingual(translated,original){
-  const target=readTimeline(translated),source=readTimeline(original);if(!target.cues.length||!source.cues.length)return null;
+// Render into the document the native player already accepted. Translation may
+// arrive in another supported representation; it never replaces the envelope.
+export function mergeTimelines(target,source,{baseOriginal=false,dual=true}={}){
+  if(!target.cues.length||!source.cues.length)return null;
   const replacements=new Map();
   for(const cue of target.cues){
     let low=0,high=source.cues.length;
@@ -69,7 +74,8 @@ export function bilingual(translated,original){
       if(overlap/shorter>=0.25||Math.abs(candidate.start-cue.start)<=60)words.push(compact(candidate.words));
     }
     const first=[...new Set(words)].filter(Boolean).join(' '),second=compact(cue.words);
-    if(first&&second&&first!==second&&!second.startsWith(first+' '))replacements.set(cue,first+'\n'+cue.words.trim());
+    if(first&&second&&first!==second&&!second.startsWith(first+' '))replacements.set(cue,dual?(baseOriginal?cue.words.trim()+'\n'+first:first+'\n'+cue.words.trim()):first);
   }
   return replacements.size?target.render(replacements):null;
 }
+export function bilingual(translated,original){return mergeTimelines(readTimeline(translated),readTimeline(original));}

@@ -1,5 +1,5 @@
 // Copyright 2026 Horatio Xu. MIT.
-export const VERSION='1.2.4', MAX_BODY=8388608, MAX_CAPTION=1048576;
+export const VERSION='1.2.5', MAX_BODY=8388608, MAX_CAPTION=1048576;
 export function asBytes(value){
   if(typeof value==='string')return utf8(value);
   if(value instanceof Uint8Array)return value;
@@ -27,10 +27,12 @@ export function getHeader(headers,name){
   if(headers&&typeof headers.get==='function')return String(headers.get(name)||'');
   for(const key of Object.keys(headers||{}))if(key.toLowerCase()===name.toLowerCase())return String(headers[key]);return '';
 }
-export function finalizeHeaders(headers){
+export function finalizeHeaders(headers,overrides={}){
   const obsolete=new Set(['content-length','content-encoding','etag','last-modified','content-md5','digest','cache-control']);
-  if(typeof headers?.delete==='function'){for(const name of obsolete)headers.delete(name);headers.set('Cache-Control','no-store');headers.set('X-YouTubeClean',VERSION);return headers;}
-  const result={};for(const [k,v]of Object.entries(headers||{}))if(!obsolete.has(k.toLowerCase()))result[k]=v;
+  if(typeof headers?.delete==='function'){for(const name of obsolete)headers.delete(name);for(const [k,v]of Object.entries(overrides))if(v==null)headers.delete(k);else headers.set(k,v);headers.set('Cache-Control','no-store');headers.set('X-YouTubeClean',VERSION);return headers;}
+  const replaced=new Set(Object.keys(overrides).map(k=>k.toLowerCase()));
+  const result={};for(const [k,v]of Object.entries(headers||{}))if(!obsolete.has(k.toLowerCase())&&!replaced.has(k.toLowerCase()))result[k]=v;
+  for(const [k,v]of Object.entries(overrides))if(v!=null)result[k]=v;
   result['Cache-Control']='no-store';result['X-YouTubeClean']=VERSION;return result;
 }
 export function safeJson(source){

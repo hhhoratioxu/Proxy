@@ -29,7 +29,7 @@ test('UMP framing covers every compact integer boundary and rejects truncation',
 for(const gzip of [false,true])test('authenticated watch metadata gzip='+gzip+' removes ads and keeps video frame bytes',()=>{
   const raw=stream25(gzip),fresh=editStream(raw,key,settings),before=umpFrames(raw),after=umpFrames(fresh),payload=after[1].payload;
   const opened=nodeOpen(at(payload,1),at(payload,2)),plain=gzip?gunzipSync(opened):opened,watch=at(plain,4),p=at(watch,2);
-  assert.equal(inspect(p).some(f=>[7,45,68].includes(f.id)),false);assert.equal(all(at(at(p,10),51621377),1).length,2);
+  assert.equal(inspect(p).some(f=>[7,45,68].includes(f.id)),false);assert.equal(all(at(at(p,10),51621377),1).length,1);
   assert.deepEqual(Buffer.from(after[2].raw),Buffer.from(before[2].raw));assert.deepEqual(Buffer.from(at(payload,499)),Buffer.from(at(before[1].payload,499)));
 });
 test('authenticated legacy player envelope is re-signed and preserves unrelated header fields',()=>{

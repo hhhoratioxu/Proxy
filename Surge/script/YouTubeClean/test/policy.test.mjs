@@ -13,13 +13,13 @@ test('new wire policy clears small legacy and modern player ads and preserves ev
   const raw=player(),out=editBinary(raw,'player',settings),keep=f=>![7,45,68,10].includes(f.id);
   assert.deepEqual(inspect(out).filter(keep).map(f=>f.raw),inspect(raw).filter(keep).map(f=>f.raw));
   assert.equal(inspect(out).some(f=>[7,45,68].includes(f.id)),false);
-  const list=at(at(out,10),51621377),tracks=all(list,1);assert.equal(tracks.length,2);assert.deepEqual(Buffer.from(tracks[0]),Buffer.from(all(at(at(raw,10),51621377),1)[0]));
-  assert.equal(Buffer.from(at(tracks[1],3)).toString(),'.ytclean.zh-Hans');assert.match(Buffer.from(at(tracks[1],1)).toString(),/signature=AB%2BC%2FD&tlang=zh-Hans$/);
+  const list=at(at(out,10),51621377),tracks=all(list,1);assert.equal(tracks.length,1);assert.deepEqual(Buffer.from(list),Buffer.from(at(at(raw,10),51621377)));
+  assert.equal(Buffer.from(at(tracks[0],3)).toString(),'.en');assert.equal(Buffer.from(at(tracks[0],1)).toString(),captionUrl);
   assert.deepEqual(editBinary(out,'player',settings),out);
 });
 for(const ads of [false,true])for(const translation of [false,true])test('player independent switches ads='+ads+' translation='+translation,()=>{
   const s=new Settings({REMOVE_ADS:ads,TRANSLATE_CAPTIONS:translation}),out=editBinary(player(),'player',s);
-  assert.equal(inspect(out).some(f=>f.id===45),!ads);assert.equal(all(at(at(out,10),51621377),1).length,translation?2:1);
+  assert.equal(inspect(out).some(f=>f.id===45),!ads);assert.equal(all(at(at(out,10),51621377),1).length,1);
 });
 for(const upload of [false,true])for(const shorts of [false,true])test('independent bottom switches upload='+upload+' shorts='+shorts+' apply to online and offline bars',()=>{
   const s=new Settings({REMOVE_ADS:false,TRANSLATE_CAPTIONS:false,HIDE_UPLOAD:upload,HIDE_SHORTS:shorts}),raw=guide(),out=editBinary(raw,'guide',s);
