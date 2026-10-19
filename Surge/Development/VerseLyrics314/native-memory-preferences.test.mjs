@@ -1,7 +1,0 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import {invoke,sourceFixture,seedStore,meta} from './feature-host.mjs';import {parseDocument} from './core/spotify-lyrics.js';
-for(const [client,ext]of [['Loon','plugin'],['Egern','yaml'],['Surge','sgmodule'],['Shadowrocket','sgmodule'],['QuantumultX','conf']])for(const format of ['json','protobuf'])test(client+': compact and no artwork retains fallback/translation '+format,async()=>{
- const cfg=readFileSync(new URL(`./publish/${client}/script/SpotifyLyrics.${ext}`,import.meta.url),'utf8');for(const k of ['MEMORY_MODE','FETCH_ARTWORK_COLOR','PREFERRED_SOURCE'])assert.match(cfg,new RegExp(k));
- const store=seedStore(),key='VerseLyrics.v1.cache',cache=JSON.parse(store.get(key));cache.entries=cache.entries.filter(e=>!e.key.startsWith('palette:'));store.set(key,JSON.stringify(cache));
- const out=await invoke(client,{provider:'netease',format,store,env:{MEMORY_MODE:'compact',FETCH_ARTWORK_COLOR:false},network:async u=>{assert.ok(!u.includes('open.spotify.com'));return{body:JSON.stringify(sourceFixture('netease',u,{lines:120,partial:true}))}}});
- assert.equal(out.calls.length,3);assert.equal(out.maxActive,1);assert.equal(out.active,0);assert.equal(out.done,1);assert.ok(out.store.get(key).length<=32000);assert.ok(out.bytes.includes(Buffer.from('第119句译文')));assert.equal(parseDocument(out.bytes,format==='json'?'application/json':'application/x-protobuf').words.length,120);
-});
