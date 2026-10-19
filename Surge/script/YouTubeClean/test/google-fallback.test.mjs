@@ -25,7 +25,7 @@ test('disabling fallback makes no Google request and preserves the native respon
 test('Google translation-only mode preserves native timing and excludes the original words',async()=>{
  const c=context(),out=await handle(c.io,new Settings({TARGET_LANGUAGE:'zh-Hant',BILINGUAL:false}));assert.ok(out?.body);const text=fromUtf8(out.body);assert.ok(text.includes('今天天氣很好。'));assert.ok(!text.includes('안녕하세요'));assert.ok(text.startsWith('<timedtext format="3">'));
 });
-for(const bad of [['only one result'],[null,'second'],[{text:'unrecognized'},'second'],'not an array'])test('invalid/misaligned Google batch retains all original bytes: '+JSON.stringify(bad),async()=>{
+for(const bad of [['only one result'],[42,'second'],[{text:'unrecognized'},'second'],'not an array'])test('invalid/misaligned Google batch retains all original bytes: '+JSON.stringify(bad),async()=>{
  const c=context();c.io.translate=async()=>({status:200,body:utf8(JSON.stringify(bad))});assert.equal(await handle(c.io,settings),null);
 });
 test('Google 429 creates its own cooldown and prevents repeated provider calls',async()=>{

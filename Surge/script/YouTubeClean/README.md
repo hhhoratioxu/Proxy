@@ -1,4 +1,4 @@
-# Horatio YouTube Clean 1.2.6
+# Horatio YouTube Clean 1.2.7
 
 独立编写的 YouTube 去广告、双语字幕与底栏控制脚本。每个支持客户端只提供一个当前安装入口，统一默认开启深层广告过滤，不再提供测试方案选择。
 
@@ -10,7 +10,19 @@
 | Shadowrocket | `Shadowrocket/script/YouTubeClean.sgmodule` |
 | Quantumult X | `QuantumultX/script/YouTubeClean.conf` |
 
-1.2.6 保留原生字幕优先处理，增加 Google 备用翻译：YouTube 译文被限流、超时或不可用时，对已取得的原字幕做一次批量翻译。继续保持每个客户端一个安装入口，去广告和底栏逻辑不变。
+1.2.7 补齐 Google 备用回复的编码与空项处理，并细分 HTTP 200 后的结构诊断。继续使用原生轨道和既有时间轴，每个客户端一个安装入口。
+
+## 1.2.7 备用回复兼容与定位
+
+实际 Loon 1.2.6 日志确认：原韩文字幕可用，YouTube 译文 HTTP 429，Google 备用 HTTP 200，但旧解析器只报 `invalid-batch`，没有生成译文。未取得这次备用回复正文，不能把具体原因断定为压缩、保护前缀或空项。
+
+本版明确请求 `Accept-Encoding: identity`，降低宿主交付未解压 br/deflate 的差异；继续支持通过长度和 CRC 检查的原始 gzip，以及宿主已解压但保留压缩响应头的 JSON。严格 UTF-8 解码后，兼容开头的 BOM 和明确的 `)]}'` 换行保护前缀；不从 HTML 中搜索或截取数组。
+
+回复数组长度仍必须与去重后的提交条数完全一致。空字符串和明确的 null 只保留该位置原字幕，其他有效译文继续合成，不删除数组项、不移动邻近字幕。未知对象、非法条目或数量不符时保留完整原响应，不猜测映射。无任何有效译文时保持原文。
+
+新增的 `captionFallbackRequestItems`、`captionFallbackResponseItems`、`captionFallbackResponseBytes`、`captionFallbackShape`、`captionFallbackEncoding` 与 `captionFallbackContentType` 仅记录数量和固定结构类别。失败原因区分 `html-response`、`invalid-json`、`unexpected-shape`、`item-count`、`invalid-entry`、`invalid-utf8`、`unsupported-encoding`、`invalid-compression` 等；`captionFallbackTranslatedItems` 和 `captionFallbackEmptyItems` 分别记录成功及空项数。不记录字幕文字、原始回复、任意头值或完整 URL。
+
+本版新增 19 项检查，累计 **196 项通过**。实际构建的 Loon 脚本使用 180 条带唯一位置标记的自写韩文 srv3，模拟 YouTube 429 后真实请求 Google，得到 180 条繁体译文；每条原文、译文位置标记和时间轴均核对通过，单次完成。另核对公开服务在 gzip 与 identity 请求下的真实返回。此处是桌面接口模拟加真实备用服务请求；用户视频及 iPhone VPN 验收仍未通过，不能把这批成功当作实际失败原因已查明。
 
 ## 1.2.6 Google 备用翻译
 
@@ -18,7 +30,7 @@
 
 新增默认开启的 `FALLBACK_TRANSLATION` 开关。只有 YouTube 译文失败或处于其本地退避期时，才向 `translate.googleapis.com` 的公开网页翻译接口发送一次表单 POST；无需密钥，没有开通或调用付费账户。这个公开接口可能限流、变化或停用，没有可用性保证。关闭该开关可完全停止备用服务请求。
 
-备用请求只包含规范化的原字幕文字、源语言和目标语言，不含视频 ID、字幕 URL/签名、POT、Cookie、Authorization 或播放密钥。不会持久保存字幕及译文。翻译后的数组必须与提交的独立文字数量精确一致，每项必须是有效文字；不匹配则保留原字幕。重复文字只提交一次，按原位置复用译文。原文、目标语言设置、字幕格式、每条时间及未知字段保持；`BILINGUAL=false` 时仅替换文字。
+备用请求只包含规范化的原字幕文字、源语言和目标语言，不含视频 ID、字幕 URL/签名、POT、Cookie、Authorization 或播放密钥。不会持久保存字幕及译文。翻译后的数组必须与提交的独立文字数量精确一致，每个有效项必须是文字；1.2.7 对明确空项保留原位置，其他结构不匹配时保留原字幕。重复文字只提交一次，按原位置复用译文。原文、目标语言设置、字幕格式、每条时间及未知字段保持；`BILINGUAL=false` 时仅替换文字。
 
 每次原字幕响应最多一次 YouTube 附加下载加一次 Google 批量请求；YouTube 已退避时直接尝试备用服务。字幕网络处理预算 6.5 秒，单次请求最多 4 秒，并受原生脚本 8 秒限制。无并行请求、后台重试或定时轮询。Google HTTP 429 使用独立的 30–300 秒退避，只保存一个到期时间；存储不提供跨执行事务保证。
 
@@ -28,7 +40,7 @@
 
 公开服务验证：两条自写韩文真实请求返回繁体中文；另用 32 条带不同数字标签的自写韩文核验返回顺序，全部对应。通过实际构建的 Loon 适配器，把模拟 YouTube 429 与真实 Google HTTP 200 串起来，验证韩文原文上方/繁体译文下方及原 srv3 时间保持。该验证使用自写字幕和桌面客户端接口模拟，不是用户视频或真实 iPhone VPN 验收。
 
-新增 18 项本地检查；最先加入的 10 项中，4 项在 1.2.5 上失败、6 项保留行为已通过，修复后全部通过。当前共 177 项本地检查通过。
+新增 18 项本地检查；最先加入的 10 项中，4 项在 1.2.5 上失败、6 项保留行为已通过，修复后全部通过。该版共 177 项本地检查通过。
 
 ## 1.2.5 字幕请求修复
 
@@ -110,7 +122,7 @@ node package-native.mjs <40位运行脚本提交SHA> <输出目录>
 
 为五个支持客户端各生成一个入口。运行脚本固定提交，用户无需编译。源码、测试和构建脚本位于独立运行版本分支，主分支只放可导入入口与说明。
 
-2026-10-19：**177 项本地检查通过**，包含播放器、字幕、加密封装、底栏、字节保留、元素/卡片过滤、gzip、密钥状态和诊断隐私。实际生成的唯一 Loon 入口用默认参数执行自包含脚本，验证深层过滤和原生对象参数。字幕请求验证 4000 毫秒超时、HTTP 错误恢复、MIME 修正和一次完成回调，不依赖 clearTimeout。自动检查不等同于真实 iPhone VPN 验收。
+2026-10-19：**196 项本地检查通过**，包含播放器、字幕、加密封装、底栏、字节保留、元素/卡片过滤、gzip、密钥状态和诊断隐私。实际生成的唯一 Loon 入口用默认参数执行自包含脚本，验证深层过滤和原生对象参数。字幕请求验证 4000 毫秒超时、HTTP 错误恢复、MIME 修正和一次完成回调，不依赖 clearTimeout。自动检查不等同于真实 iPhone VPN 验收。
 
 官方核对日期：2026-10-19。依据 [Loon 插件](https://nsloon.app/docs/Plugin/)、[Script](https://nsloon.app/docs/Script/script_v2/) 和 [Script API](https://nsloon.app/docs/Script/script_api/)，最低版本仍为 3.5.1(983)。只使用文档支持的参数、二进制表示和 with 字段。
 
