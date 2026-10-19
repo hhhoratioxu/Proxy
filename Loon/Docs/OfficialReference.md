@@ -58,3 +58,10 @@ input/select 支持 string 或 number，switch 使用 boolean；select 首项是
 2026-10-19 重新核对 [Script](https://nsloon.app/docs/Script/script_v2/)、[Script API](https://nsloon.app/docs/Script/script_api/) 与[插件](https://nsloon.app/docs/Plugin/)。保持原有 URL Guard、原生对象参数、Uint8Array 表示及 3.5.1（983）最低版本。字幕 HTTP 请求使用官方字段：timeout=4000 毫秒、binary-mode=true、auto-cookie=false、auto-redirect=false、insecure=false。只有真实取得合法字幕时，Response Script 才用官方支持的数字 status=200、正文和对应 Content-Type 恢复失败响应；未获取成功时保留原错误状态。
 
 每次字幕响应最多一次附加请求、无自动重试，完成回调仅一次；不依赖 clearTimeout 生效。原字幕、附加字幕与合成结果均限 1 MiB，宿主已经读取的正文仍不受 JavaScript 长度检查限制。HTTP 429 的同步存储只保留一个到期时间和状态，默认退避 60 秒、Retry-After 限制在 30–300 秒；无字幕、签名或账号缓存。读写不具备事务保证，短时并发可能各自发出一次请求；存储失败时保持原字幕处理并放弃跨请求退避。自动检查不能证明真实 iPhone VPN 稳定性或服务端翻译已恢复。
+
+
+## YouTube Clean 1.2.6 备用翻译 POST
+
+2026-10-19 依据已经核对的 Script API HTTP Client post、timeout 毫秒、binary-mode、auto-cookie、auto-redirect、insecure 和 Response 返回约定实现备用表单请求。没有新增宿主字段、权限、MITM 域名、路由或最低版本要求。FALLBACK_TRANSLATION 是原生 boolean switch，通过插件对象参数传入。一次字幕响应最多一个 YouTube GET 和一个 Google POST；按开始时间给网络处理 6.5 秒预算，单次请求上限 4 秒，脚本超时仍为 8 秒；完成只调用一次，不依赖 clearTimeout。
+
+备用只发送已解析字幕文字和语言，不发送账号、签名链接或播放密钥。单批 2048 条/文字 UTF-8 48000 字节/单条 4000 字符/表单 192000 字节，回复和合成结果限 1 MiB。宿主缓冲峰值仍无法用脚本检查保证。两个服务使用各自的短期到期状态，无字幕缓存、后台轮询或并行请求。真实公开服务探针使用自写文字，仍不代表真实 iPhone VPN 和用户视频验收。

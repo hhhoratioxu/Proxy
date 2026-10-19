@@ -23,7 +23,7 @@
 
 ## YouTube Clean · 去广告、双语字幕与底栏控制
 
-**1.2.5**。修复实际日志中的字幕 HTTP 429 失败处理，保留原生字幕轨道，收到原字幕后再翻译；翻译限流时保留原文并短暂退避。各客户端继续保持一个安装入口，保留深层过滤、双语字幕及发布「＋」/Shorts 独立开关。
+**1.2.6**。YouTube 译文被限流或不可用时，使用一次 Google 备用批量翻译；保留原生字幕轨道、时间和格式。备用服务只接收字幕文字和语言，可关闭。各客户端继续保持一个安装入口，保留深层过滤、双语字幕及发布「＋」/Shorts 独立开关。
 
 | 客户端 | 安装入口 |
 | --- | --- |
@@ -35,7 +35,7 @@
 | Clash / Mihomo | [能力说明](./Clash/Docs/YouTubeClean.md) |
 
 
-159 项本地检查通过。打开视频原语言 CC 后处理翻译；译文不可用时保留可用原字幕。服务端持续限流仍可能使字幕不可用。测试数据独立构造，手机效果仍待确认。[源码与验证范围](https://github.com/hhhoratioxu/Proxy/tree/582fda728525294cd632f6213fb407cb7c915b01/Surge/script/YouTubeClean)。
+177 项本地检查通过。自写韩文已通过真实备用服务取得繁体译文，并验证构建脚本可在模拟 YouTube 429 后保留时间生成双语。手机上的用户视频效果仍待确认；服务均不可用或超出边界时保留原文。[源码与验证范围](https://github.com/hhhoratioxu/Proxy/tree/e78e8be9aa072c241653ce25479ba4b54ba62aeb/Surge/script/YouTubeClean)。
 
 ## Spotify 双语歌词 · VerseLyrics
 
@@ -78,7 +78,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 | Shadowrocket | [Rules, scripts and modules](./Shadowrocket/) · [Guide](./Shadowrocket/README.md) |
 | QuanX / Quantumult X | [Rules, scripts and tasks](./QuantumultX/) · [Guide](./QuantumultX/README.md) |
 
-YouTube Clean 1.2.5 fixes caption HTTP 429 handling by preserving native tracks and signed URLs, fetching one companion transcript after original captions load, and retaining originals on translation failure. Enable original-language CC in YouTube. Bounded rate-limit backoff and validated recovery are covered by 159 local checks. Server-side rate limits can still prevent captions or translation. One import per client remains; device acceptance is pending. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
+YouTube Clean 1.2.6 adds one bounded Google Translate batch when YouTube translation is rate-limited or unavailable. Only caption text and language codes are sent; the fallback can be disabled. Native tracks, timing and format remain. All 177 local checks passed, plus real Traditional Chinese translation of self-written Korean through the built Loon adapter. User-video device acceptance remains pending. One import per client. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
 
 VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 3.1.1. Fix Chinese lyrics with Latin names/ad-libs, stale language labels and cached conversions. Check every emitted translation for script-only equivalence; honor service-detected Chinese without repeating the request. Preserve independent foreign-language translations, timed-source upgrades and existing work bounds. Six sources, plugin translations and native highlighting remain. Measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 

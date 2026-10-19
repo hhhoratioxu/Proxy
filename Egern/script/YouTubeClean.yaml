@@ -1,10 +1,10 @@
-# Horatio YouTube Clean 1.2.5; native ESM runtime.
-name: YouTube Clean 1.2.5
+# Horatio YouTube Clean 1.2.6; native ESM runtime.
+name: YouTube Clean 1.2.6
 author: Horatio Xu
 icon: captions.bubble.fill
 homepage: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/YouTubeClean.md
 manual: https://github.com/hhhoratioxu/Proxy/blob/main/Egern/Docs/YouTubeClean.md
-description: 原生字幕优先，翻译限流时保留原文；保留去广告及发布＋、Shorts 独立开关。需 HTTPS 解密。
+description: YouTube 译文限流时使用 Google 备用翻译；保留去广告、双语字幕及底栏独立开关。需 HTTPS 解密。
 env_schema:
   REMOVE_ADS:
     name: 去广告
@@ -18,6 +18,10 @@ env_schema:
     name: 翻译语言
     default_value: "zh-Hans"
     options: ["zh-Hans", "zh-Hant", "en", "ja", "ko"]
+  FALLBACK_TRANSLATION:
+    name: Google 备用翻译
+    default_value: "true"
+    options: ["true", "false"]
   BILINGUAL:
     name: 原文与译文双语
     default_value: "true"
@@ -53,14 +57,14 @@ scriptings:
   - http_request:
       name: YouTube Clean · 底栏与播放配置刷新
       match: "^https://(?:youtubei(?:-att)?\\.googleapis\\.com|(?:www|m)\\.youtube\\.com)(?::443)?/youtubei/v1/(?:browse|guide|log_event)(?:\\?.*)?$"
-      script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/582fda728525294cd632f6213fb407cb7c915b01/Egern/script/YouTubeClean.js
+      script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/e78e8be9aa072c241653ce25479ba4b54ba62aeb/Egern/script/YouTubeClean.js
       body_required: false
       timeout: 8
       update_interval: 86400
   - http_response:
       name: YouTube Clean · 广告字幕与底栏
       match: "(?:^https://(?:youtubei(?:-att)?\\.googleapis\\.com|(?:www|m)\\.youtube\\.com)(?::443)?/youtubei/v1/(?:player(?:/ad_break)?|browse|next|search|guide|navigation/resolve_url|reel/(?:reel_watch_sequence|reel_item_watch)|get_watch|config|log_event)(?:\\?.*)?$|^https://(?:www|m)\\.youtube\\.com(?::443)?/api/timedtext(?:\\?.*)?$|^https://[a-zA-Z0-9-]+\\.googlevideo\\.com(?::443)?/initplayback(?:\\?.*)?$)"
-      script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/582fda728525294cd632f6213fb407cb7c915b01/Egern/script/YouTubeClean.js
+      script_url: https://raw.githubusercontent.com/hhhoratioxu/Proxy/e78e8be9aa072c241653ce25479ba4b54ba62aeb/Egern/script/YouTubeClean.js
       body_required: true
       binary_body: true
       max_size: 8388608
