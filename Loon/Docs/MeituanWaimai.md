@@ -2,7 +2,9 @@
 
 版本：**0.2.0** · 更新日期：2026-10-20
 
-[配置文件](../script/MeituanWaimai.plugin) · [返回客户端入口](../README.md)
+[配置文件](../script/MeituanWaimai.lpx) · [返回客户端入口](../README.md)
+
+2026-10-20：安装入口改用 Loon 专用插件扩展名 `.lpx`。原 `MeituanWaimai.plugin` 地址保留为同内容兼容别名，已有订阅可以继续更新；新安装使用下方 `.lpx` 地址，不要两份同时启用。去广告规则、版本 0.2.0 和固定运行脚本保持不变。
 
 ## 安装或升级
 
@@ -11,10 +13,10 @@
 3. 更新后检查模块说明显示 `v0.2.0`，仅启用一个版本及一套处理相同请求的规则，保存并重新加载。
 4. 彻底退出美团外卖 App 后重新打开；若 App 提供清理缓存入口，可清理旧开屏素材后复测。网络规则无法删除 App 已存储的本地广告。
 
-[直接导入的 Raw 地址](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.plugin)
+[直接导入的 Raw 地址](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.lpx)
 
 ```text
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.plugin
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.lpx
 ```
 
 模块和脚本位于各客户端的 `script/`，路由列表位于 `rule/`。只需导入一个配置文件；固定版本运行脚本会自动下载。

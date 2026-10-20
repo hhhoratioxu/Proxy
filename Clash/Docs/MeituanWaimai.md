@@ -13,7 +13,7 @@ Clash Verge Rev 的扩展脚本用于生成或修改订阅配置，不是处理�
 | 客户端 | 配置与说明 |
 | --- | --- |
 | Egern | [模块](../../Egern/script/MeituanWaimai.yaml) · [安装说明](../../Egern/Docs/MeituanWaimai.md) |
-| Loon | [插件](../../Loon/script/MeituanWaimai.plugin) · [安装说明](../../Loon/Docs/MeituanWaimai.md) |
+| Loon | [插件](../../Loon/script/MeituanWaimai.lpx) · [安装说明](../../Loon/Docs/MeituanWaimai.md) |
 | Surge | [模块](../../Surge/script/MeituanWaimai.sgmodule) · [安装说明](../../Surge/Docs/MeituanWaimai.md) |
 | Shadowrocket | [模块](../../Shadowrocket/script/MeituanWaimai.sgmodule) · [安装说明](../../Shadowrocket/Docs/MeituanWaimai.md) |
 | Quantumult X | [重写资源](../../QuantumultX/script/MeituanWaimai.conf) · [安装说明](../../QuantumultX/Docs/MeituanWaimai.md) |

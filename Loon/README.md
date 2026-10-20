@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | YouTube Clean | [YouTubeClean.lpx](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.lpx) | [设置与验证范围](./Docs/YouTubeClean.md) |
 | Spotify 双语歌词 · VerseLyrics | [SpotifyLyrics.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/SpotifyLyrics.plugin) | [设置与已知限制](./Docs/SpotifyLyrics.md) |
-| 美团外卖去广告 | [MeituanWaimai.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.plugin) | [说明](./Docs/MeituanWaimai.md) |
+| 美团外卖去广告 | [MeituanWaimai.lpx](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.lpx) | [说明](./Docs/MeituanWaimai.md) |
 | 流媒体解锁查询 | [StreamingUnlock.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/StreamingUnlock.plugin) | 导入后使用客户端对应功能 |
 
 每个插件只提供一个当前安装入口。运行依赖由客户端自动下载，主分支不放测试、构建工具、开发压缩包或单独的依赖源码。

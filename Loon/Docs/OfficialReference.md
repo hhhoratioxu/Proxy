@@ -141,3 +141,7 @@ Response Script 只替换明确的广告数组原文范围，成功改写后复�
 2026-10-20 核对 [Loon 官方扩展名说明](https://t.me/LoonNews/1754)（[公开频道上下文](https://t.me/s/LoonNews?before=1773)）：3.3.3(891) 注册 `.lpx`，含义为 Loon Plugin Extension，内部导出文件后续采用这些扩展名。正文语法继续以[官方插件文档](https://nsloon.app/docs/Plugin/)为依据；后缀不新增脚本 API、权限或最低版本能力。
 
 YouTube Clean 正式安装入口改为 `Loon/script/YouTubeClean.lpx`；原 `.plugin` 仅保留已有订阅兼容，生成器在该旧文件存在时同步相同字节，新目录只生成 `.lpx`，避免两个地址变成不同功能版本。两者只启用一个。实际运行脚本仍固定引用已验证的 1.2.9 提交，没有改广告、字幕、参数、内存边界或时间预算；本次只核对生成、原生入口重放及远端字节，不据此宣称手机验收。
+
+## 美团外卖 Loon 安装入口扩展名
+
+2026-10-20 核对 [Loon 官方插件文档](https://nsloon.app/docs/Plugin/)及[官方最新完整配置示例](https://github.com/Loon0x00/LoonExampleConfig/blob/master/example2.lcf)。当前官方示例的插件订阅使用 `.lpx`；美团外卖的文档与索引统一展示 `Loon/script/MeituanWaimai.lpx`。原 `.plugin` 地址保留为字节完全相同的兼容别名，避免已有订阅失效；新安装使用 `.lpx`，两者不要同时启用。原插件内容和固定 JavaScript 均不变，没有修改 Script/Rewrite 语法、宿主 API、最低版本或运行边界。

@@ -1,0 +1,21 @@
+#!name = 美团外卖去广告
+#!desc = v0.2.0 · 广告接口、广告素材与开屏配置缓存处理；实际效果需真机确认。
+#!author = Horatio Xu
+#!homepage = https://github.com/hhhoratioxu/Proxy
+#!loon_version = 3.5.1(983)
+#!date = 2026-10-20
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/wmapi\.meituan\.com(?::(?:80|443))?\/api\/v[0-9]+\/(?:startpicture\/?(?:\?[^#]*)?|openscreen\/?\?(?:[^&#]*&)*ad[A-Za-z0-9_]*(?:=[^&#]*)?(?:&[^#]*)?)$/ then reject_dict(200)
+request if ${url} ~= /^https?:\/\/img\.meituan\.net(?::(?:80|443))?\/bizad\/bizad_brandCpt_[0-9]+\.jpg(?:@[^/?#]+)?(?:\?[^#]*)?$/ then reject_img(200)
+request if ${url} ~= /^https?:\/\/p[0-9]+\.meituan\.net(?::(?:80|443))?\/(?:bizad|brandCpt)\/[A-Za-z0-9_-]+\.jpg(?:@[^/?#]+)?(?:\?[^#]*)?$/ then reject_img(200)
+request if ${url} ~= /^https?:\/\/(?:s3plus|flowplus)\.meituan\.net(?::(?:80|443))?\/v[0-9]+\/[A-Za-z0-9_-]+\/linglong\/[A-Za-z0-9_-]+\.(?:gif|jpg)(?:@[^/?#]+)?(?:\?[^#]*)?$/ then reject_img(200)
+request if ${url} ~= /^https?:\/\/(?:s3plus|flowplus)\.meituan\.net(?::(?:80|443))?\/v[0-9]+\/[A-Za-z0-9_-]+\/linglong\/[A-Za-z0-9_-]+\.mp4(?:\?[^#]*)?$/ then reject(200)
+request if ${url} ~= /^https?:\/\/s3plus\.meituan\.net(?::(?:80|443))?\/v[0-9]+\/mss_[A-Za-z0-9_-]+\/brandcpt-vedio\/[A-Za-z0-9_-]+\.(?:zip|mp4)(?:\?[^#]*)?$/ then reject(200)
+request if ${url} ~= /^https?:\/\/wmapi\.meituan\.com(?::(?:80|443))?\/api\/v[0-9]+\/loadInfo\/?(?:\?[^#]*)?$/ then request.header.del("If-None-Match") | request.header.del("If-Modified-Since") | request.header.set("Cache-Control", "no-cache") | request.header.set("Pragma", "no-cache")
+
+[Script]
+response if ${url} ~= /^https?:\/\/wmapi\.meituan\.com(?::(?:80|443))?\/api\/v[0-9]+\/loadInfo\/?(?:\?[^#]*)?$/ then script("https://raw.githubusercontent.com/hhhoratioxu/Proxy/0ab4530cf4c96408e4d81f5896a6d694a49be571/Loon/script/MeituanWaimai.js") with tag="美团外卖去广告", timeout=8, requires_body=true
+
+[Mitm]
+hostname = wmapi.meituan.com, img.meituan.net, p*.meituan.net, s3plus.meituan.net, flowplus.meituan.net
