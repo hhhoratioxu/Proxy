@@ -7,7 +7,7 @@
 | 插件 | 安装文件原始地址 | 使用说明 |
 | --- | --- | --- |
 | YouTube Clean | [YouTubeClean.lpx](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.lpx) | [设置与验证范围](./Docs/YouTubeClean.md) |
-| Spotify 双语歌词 · VerseLyrics | [SpotifyLyrics.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/SpotifyLyrics.plugin) | [设置与已知限制](./Docs/SpotifyLyrics.md) |
+| Spotify 双语歌词 · VerseLyrics | [SpotifyLyrics.lpx](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/SpotifyLyrics.lpx) | [设置与已知限制](./Docs/SpotifyLyrics.md) |
 | 美团外卖去广告 | [MeituanWaimai.lpx](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.lpx) | [说明](./Docs/MeituanWaimai.md) |
 | 流媒体解锁查询 | [StreamingUnlock.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/StreamingUnlock.plugin) | 导入后使用客户端对应功能 |
 

@@ -12,9 +12,9 @@
 
 ## 安装与更新
 
-[SpotifyLyrics.plugin 原始地址](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/SpotifyLyrics.plugin)
+[SpotifyLyrics.lpx 原始地址](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/SpotifyLyrics.lpx)
 
-1. 在 Loon「插件」中添加上面的远程地址并启用。需要 Loon 3.5.1（983）或更新版本。已安装的用户更新原插件即可。
+1. 在 Loon「插件」中添加上面的远程地址并启用。需要 Loon 3.5.1（983）或更新版本。已订阅旧 `.plugin` 地址的用户请改用本页 `.lpx` 地址，并确认只启用一份。
 2. 使用已安装、信任并开启的 HTTPS 解密证书。仅加入 `spclient.wg.spotify.com` 和 `*-spclient.spotify.com`。
 3. 同时只启用一个 Spotify 歌词处理插件，重新加载代理配置并重新打开 Spotify；切换歌曲后重新进入歌词页。
 
