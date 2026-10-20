@@ -1,0 +1,60 @@
+{
+  "at": "2026-10-20T23:18:07.942Z",
+  "scope": "Self-written Korean/English rows and explicitly seeded failure states, using the reported song ID solely as a cache key. No captured Spotify lyrics or user cache. Both readable cores use the same harness.",
+  "results": [
+    {
+      "version": "baseline",
+      "mode": "stale-identity",
+      "coldChanged": 0,
+      "coldHTTP": 0,
+      "warmChanged": 0,
+      "warmHTTP": 0,
+      "cacheCharacters": 247
+    },
+    {
+      "version": "baseline",
+      "mode": "single-null",
+      "coldChanged": 0,
+      "coldHTTP": 1,
+      "warmChanged": 0,
+      "warmHTTP": 1,
+      "cacheCharacters": 0
+    },
+    {
+      "version": "baseline",
+      "mode": "service-identity",
+      "coldChanged": 0,
+      "coldHTTP": 1,
+      "warmChanged": 0,
+      "warmHTTP": 0,
+      "cacheCharacters": 247
+    },
+    {
+      "version": "candidate",
+      "mode": "stale-identity",
+      "coldChanged": 3,
+      "coldHTTP": 1,
+      "warmChanged": 3,
+      "warmHTTP": 0,
+      "cacheCharacters": 225
+    },
+    {
+      "version": "candidate",
+      "mode": "single-null",
+      "coldChanged": 2,
+      "coldHTTP": 1,
+      "warmChanged": 2,
+      "warmHTTP": 0,
+      "cacheCharacters": 233
+    },
+    {
+      "version": "candidate",
+      "mode": "service-identity",
+      "coldChanged": 0,
+      "coldHTTP": 1,
+      "warmChanged": 0,
+      "warmHTTP": 0,
+      "cacheCharacters": 248
+    }
+  ]
+}
