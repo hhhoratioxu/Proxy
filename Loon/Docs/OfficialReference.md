@@ -49,3 +49,7 @@ input/select 支持 string 或 number，switch 使用 boolean；select 首项是
 ## 照片地图插件入口后缀（2026-10-20）
 
 重新核对 [官方插件文档](https://nsloon.app/docs/Plugin/)：当前文档按内容定义插件，未规定必须使用某一种文件后缀；其链接的 Loon Gallery 历史入口使用 `.plugin`。社区维护者使用 `.lpx` 作为 Loon Plugin Extension 专属命名。本照片地图项目以 `ApplePhotosMapDiagnostic.lpx` 为当前主入口，原 `.plugin` URL 作为相同内容的兼容入口保留。此变更仅涉及文件名和安装说明，仍是诊断版，不代表已完成定位修复或真实设备导入验收。
+
+## 照片地图请求头诊断 0.2.0（2026-10-20）
+
+核对 Script、Script API 与插件官方页面。用户已提供 Loon 3.5.3 (1008) 的旧版 REQUEST 成功记录：GET 到 `/tiles`，URL 没有查询参数。0.2.0 只读检查公开研究中观察到的 maps-tile-x/y/z 和 maps-tile-style；日志仅输出有效性、参数载体、缩放及受限样式，不输出精确坐标或鉴权值。未知、重复、冲突、超限的请求头不能成为可用坐标。增加瓦片响应与非 200 清单响应的头部阶段日志，不缓冲它们的正文。七条 HTTP Script 均有强制 URL 范围；只有 200 清单响应读取二进制正文，最低版本保持 3.5.1 (983)。55 项本地检查通过；真实手机的新版头部识别、位置修正与 VPN 稳定性仍待验证。

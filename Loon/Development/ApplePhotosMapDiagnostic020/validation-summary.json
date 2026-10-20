@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "runtimeCommit": "908df9d75cd5be4b890ccea9ef5fe99e5d278393",
+  "checks": {
+    "uniqueLocalTests": 55,
+    "passed": 55,
+    "failed": 0,
+    "configTestsAfterPin": 7,
+    "configTestsAfterPinPassed": 7
+  },
+  "inputs": "synthetic protocol fixtures plus replay of the known URL/method from the user's record",
+  "deviceEvidence": {
+    "version": "0.1.0",
+    "loon": "3.5.3 (1008)",
+    "environment": "Loon Tunnel",
+    "phase": "request",
+    "method": "GET",
+    "endpoint": "cn-vector-tiles",
+    "queryParameterCount": 0,
+    "completed": true
+  },
+  "unverified": [
+    "0.2.0 native request-header recognition",
+    "0.2.0 tile response hook on iPhone",
+    "native Loon parser import",
+    "iPhone memory or VPN stability"
+  ],
+  "automaticSourceSelection": "not implemented",
+  "photoLocationRepair": "not implemented"
+}
