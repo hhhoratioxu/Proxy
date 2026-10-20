@@ -1,4 +1,4 @@
-/* Apple Photos Map Diagnostic 0.1.0
+/* Apple Photos Map Diagnostic 0.2.0
  * Copyright 2026 Horatio Xu. SPDX-License-Identifier: MIT
  * Read-only Loon diagnostics; this does not implement a location fix.
  * No photo access, request-body access, networking, storage or coordinate logs.
@@ -7,7 +7,7 @@
  */
 (function () {
   "use strict";
-  const VERSION = "0.1.0", MAX_BODY = 1048576, MAX_FIELDS = 20000;
+  const VERSION = "0.2.0", MAX_BODY = 1048576, MAX_FIELDS = 20000;
   function log(record) {
     try { console.log("[ApplePhotosMapDiagnostic] " + JSON.stringify(record)); } catch (_) {}
   }
@@ -55,6 +55,83 @@
       }
     }
     return {keys:[...seen].sort(), unknownKeys, truncated:pairs.length > 128, malformed, options};
+  }
+  function validateXYZ(values, ambiguous) {
+    if (ambiguous) return {state:"ambiguous"};
+    const present = ["x","y","z"].filter(k => values[k] !== undefined);
+    if (!present.length) return {state:"missing"};
+    if (present.length !== 3) return {state:"partial"};
+    const xyz = {};
+    for (const k of ["x","y","z"]) {
+      const v = values[k];
+      if (typeof v !== "string" || v.length > 10 || !/^(?:0|[1-9]\d*)$/.test(v)) return {state:"invalid"};
+      xyz[k] = Number(v);
+    }
+    if (xyz.z > 30 || xyz.x >= Math.pow(2,xyz.z) || xyz.y >= Math.pow(2,xyz.z)) return {state:"invalid"};
+    return {state:"valid", ...xyz};
+  }
+  function queryXYZ(query) {
+    const pairs = query.split("&",129), values = {};
+    if (pairs.length > 128) return {state:"query-limit"};
+    let ambiguous = false;
+    for (const pair of pairs) {
+      const at = pair.indexOf("=");
+      let key;
+      try { key = decodeURIComponent((at < 0 ? pair : pair.slice(0,at)).replace(/\+/g," ")); }
+      catch (_) { return {state:"invalid"}; }
+      if (!["x","y","z"].includes(key)) continue;
+      if (Object.prototype.hasOwnProperty.call(values,key)) ambiguous = true;
+      try { values[key] = at < 0 ? "" : decodeURIComponent(pair.slice(at+1).replace(/\+/g," ")); }
+      catch (_) { return {state:"invalid"}; }
+    }
+    return validateXYZ(values,ambiguous);
+  }
+  function headerTiles(headers) {
+    if (headers == null) return {xyz:{state:"missing"}, style:{state:"missing"}};
+    if (typeof headers !== "object" || Array.isArray(headers)) return {xyz:{state:"invalid"}, style:{state:"invalid"}};
+    const keys = Object.keys(headers);
+    if (keys.length > 128) return {xyz:{state:"header-limit"}, style:{state:"header-limit"}};
+    const values = {}, seen = new Set();
+    let ambiguous = false, styleKey = null, styleDuplicate = false;
+    for (const key of keys) {
+      const name = key.toLowerCase();
+      // Only read these four documented map-header values. Never read auth,
+      // cookies, x-tilekey, account IDs, unknown headers or raw body data.
+      if (["maps-tile-x","maps-tile-y","maps-tile-z"].includes(name)) {
+        const axis = name.slice(-1);
+        if (seen.has(axis)) ambiguous = true;
+        seen.add(axis);
+        values[axis] = headers[key];
+      } else if (name === "maps-tile-style") {
+        if (styleKey !== null) styleDuplicate = true;
+        styleKey = key;
+      }
+    }
+    let style = {state:"missing"};
+    if (styleDuplicate) style = {state:"ambiguous"};
+    else if (styleKey !== null) {
+      const raw = headers[styleKey];
+      if (typeof raw !== "string") style = {state:"invalid"};
+      else if (raw.length > 2048) style = {state:"header-limit"};
+      else style = {state:"present", ...querySummary(raw)};
+    }
+    return {xyz:validateXYZ(values,ambiguous),style};
+  }
+  function tileSummary(query, headers) {
+    const q = queryXYZ(query), h = headerTiles(headers);
+    // Raw XYZ objects stay inside this function. Only states, zoom and safe
+    // style options are copied to the log record. They do not identify a photo.
+    const out = {queryXYZ:q.state, headerXYZ:h.xyz.state, coordinates:"unavailable", carrier:"none", headerStyle:h.style};
+    if (q.state === "valid" && h.xyz.state === "valid") {
+      if (q.x === h.xyz.x && q.y === h.xyz.y && q.z === h.xyz.z) {
+        out.coordinates = "valid"; out.carrier = "both"; out.zoom = q.z;
+      } else { out.coordinates = "conflict"; out.carrier = "both"; }
+    } else if (q.state === "valid" && h.xyz.state === "missing") {
+      out.coordinates = "valid"; out.carrier = "query"; out.zoom = q.z;
+    } else if (h.xyz.state === "valid" && q.state === "missing") {
+      out.coordinates = "valid"; out.carrier = "headers"; out.zoom = h.xyz.z;
+    }
+    return out;
   }
   function varint(bytes, cursor, max) {
     let value = 0, factor = 1;
@@ -147,7 +224,7 @@
     const key = Object.keys(headers).find(k => k.toLowerCase() === "content-type");
     if (!key || typeof headers[key] !== "string") return "absent";
     const type = headers[key].split(";",1)[0].trim().toLowerCase();
-    return ["application/octet-stream","application/protobuf","application/x-protobuf","application/vnd.google.protobuf","text/plain","text/html"].includes(type) ? type : "other";
+    return ["application/octet-stream","application/protobuf","application/x-protobuf","application/vnd.google.protobuf","text/plain","text/html","image/png","image/jpeg","image/webp"].includes(type) ? type : "other";
   }
   try {
     const request = typeof $request === "undefined" ? null : $request;
@@ -155,6 +232,10 @@
     if (!kind) return;
     const response = typeof $response === "undefined" ? null : $response;
     const record = {version:VERSION, phase:response ? "response" : "request", interface:kind, provider:provider(url.host)};
+    if (kind === "vector-tile" || kind === "satellite-tile") {
+      try { record.tile = tileSummary(url.query,request.headers); }
+      catch (_) { record.tile = {coordinates:"unavailable",carrier:"none",parse:"header-read-failed"}; }
+    }
     if (response) {
       record.status = Number.isInteger(response.status) && response.status >= 100 && response.status <= 599 ? response.status : null;
       record.contentType = contentType(response.headers);
