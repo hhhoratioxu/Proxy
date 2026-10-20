@@ -45,3 +45,7 @@ input/select 支持 string 或 number，switch 使用 boolean；select 首项是
 ## VerseLyrics 3.0.0 核对记录
 
 2026-10-19 重新核对 Script、Script API 与插件官方页面。NETWORK_MODE 是插件自有 string select 参数，默认 online，通过现有参数对象传入；cache-only 只控制插件查询，不修改 Loon 路由或 Spotify 本身联网。没有新增宿主 API、计时器或权限，最低版本继续为 3.5.1（983）。请求头继续使用官方原生 Rewrite；不再生成未被导入文件引用的 Loon 请求脚本。存储仍使用文档公开的同步字符串读写，保持原有容量与并发边界，不假设事务或原子交换能力。
+
+## 照片地图插件入口后缀（2026-10-20）
+
+重新核对 [官方插件文档](https://nsloon.app/docs/Plugin/)：当前文档按内容定义插件，未规定必须使用某一种文件后缀；其链接的 Loon Gallery 历史入口使用 `.plugin`。社区维护者使用 `.lpx` 作为 Loon Plugin Extension 专属命名。本照片地图项目以 `ApplePhotosMapDiagnostic.lpx` 为当前主入口，原 `.plugin` URL 作为相同内容的兼容入口保留。此变更仅涉及文件名和安装说明，仍是诊断版，不代表已完成定位修复或真实设备导入验收。

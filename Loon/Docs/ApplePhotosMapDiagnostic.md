@@ -7,7 +7,7 @@
 要求 Loon **3.5.1 (983)** 或更新版本。将下方地址添加到 Loon 的远程插件中并启用；确认 Loon 的 HTTPS 解密和已经安装、信任的 MitM 证书可用。
 
 ```text
-https://raw.githubusercontent.com/hhhoratioxu/Proxy/codex/apple-photos-map-diagnostics/Loon/script/ApplePhotosMapDiagnostic.plugin
+https://raw.githubusercontent.com/hhhoratioxu/Proxy/codex/apple-photos-map-diagnostics/Loon/script/ApplePhotosMapDiagnostic.lpx
 ```
 
 1. 打开“照片”，找一张位置原本正确的中国大陆照片，上滑打开地点小地图，再点开地图并放大。
@@ -18,6 +18,8 @@ https://raw.githubusercontent.com/hhhoratioxu/Proxy/codex/apple-photos-map-diagn
 **只需分享本插件输出的摘要行**，无需发送照片、完整网络记录、抓包文件或整条请求 URL。Loon 的其他网络日志可能包含坐标和令牌，本插件不控制那些日志。若插件没有输出，先查看所打开页面是否使用了缓存，以及对应 HTTPS 请求是否完成解密；不要反复修改照片的位置，也不需要清空照片图库或改动系统定位。
 
 如果其他地图脚本已启用，Loon 每次请求/响应只执行第一条完整命中的 Script，诊断可能没有机会运行。可先记录当前状态，在这次短时排查时停用冲突的地图脚本，结束后恢复。当前插件暂未在真实 Loon/iPhone 中导入验收。
+
+`.lpx` 是本项目当前的安装入口；此前的 `.plugin` 链接保留相同内容以兼容已导入的订阅，二者选择一个即可。
 
 ## 能观察什么
 
