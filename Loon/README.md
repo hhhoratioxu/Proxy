@@ -6,7 +6,7 @@
 
 | 插件 | 安装文件原始地址 | 使用说明 |
 | --- | --- | --- |
-| YouTube Clean | [YouTubeClean.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.plugin) | [设置与验证范围](./Docs/YouTubeClean.md) |
+| YouTube Clean | [YouTubeClean.lpx](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.lpx) | [设置与验证范围](./Docs/YouTubeClean.md) |
 | Spotify 双语歌词 · VerseLyrics | [SpotifyLyrics.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/SpotifyLyrics.plugin) | [设置与已知限制](./Docs/SpotifyLyrics.md) |
 | 美团外卖去广告 | [MeituanWaimai.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/MeituanWaimai.plugin) | [说明](./Docs/MeituanWaimai.md) |
 | 流媒体解锁查询 | [StreamingUnlock.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/StreamingUnlock.plugin) | 导入后使用客户端对应功能 |
@@ -14,3 +14,5 @@
 每个插件只提供一个当前安装入口。运行依赖由客户端自动下载，主分支不放测试、构建工具、开发压缩包或单独的依赖源码。
 
 [Parsec 分流说明](../Clash/Docs/Parsec.md) · [目录说明](../Clash/Docs/Directory-Migration.md) · [返回首页](../README.md)
+
+YouTube Clean 的正式入口使用 `.lpx`；已存在的 `.plugin` 仅兼容旧订阅，与正式入口内容相同，只启用一个。

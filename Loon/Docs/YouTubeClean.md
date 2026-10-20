@@ -2,7 +2,13 @@
 
 一个插件包含去广告、字幕翻译（默认仅译文，可选双语）及发布「＋」/Shorts 独立开关，默认开启深层过滤。此后统一使用下面这一个安装入口更新。
 
-[安装 YouTubeClean.plugin](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.plugin)
+[安装 YouTubeClean.lpx](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/script/YouTubeClean.lpx)
+
+## 插件扩展名与旧地址
+
+正式安装文件采用 `.lpx`，即 Loon Plugin Extension；Loon 官方在 3.3.3(891) 更新说明中公布注册该后缀，并说明内部导出文件将逐步采用它，见[官方扩展名说明](https://t.me/LoonNews/1754)。插件正文继续遵循[官方插件语法](https://nsloon.app/docs/Plugin/)，此次只是安装文件命名调整，运行脚本和功能版本仍为 1.2.9。
+
+旧 `YouTubeClean.plugin` 地址保留为兼容别名，内容与 `.lpx` 完全相同，避免已有远程订阅失效。只需启用其中一个；已经正常使用旧地址的用户可以继续使用，新添加时使用上面的 `.lpx`。生成器在旧文件存在时同步相同内容，新目录只生成正式 `.lpx`。生成器与命名修正见[固定源码](https://github.com/hhhoratioxu/Proxy/tree/3dadc8dc7beece4d2d0a4c9c10a3cdb180f2a849/Surge/script/YouTubeClean)。
 
 ## 1.2.9 译文排版
 
