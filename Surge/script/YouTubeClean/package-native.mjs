@@ -1,5 +1,5 @@
 // Generate native installation entries. Runtime references must be immutable Git SHAs.
-import {mkdir,writeFile} from 'node:fs/promises';
+import {mkdir,writeFile,access} from 'node:fs/promises';
 import {join} from 'node:path';
 import {API_REGEX,CAPTION_REGEX,UMP_REGEX} from './src/data.mjs';
 const [ref,destination]=process.argv.slice(2);
@@ -19,7 +19,16 @@ const title='YouTube Clean 1.2.9';
 const description='译文按标点均衡换行；去广告、字幕翻译及底栏独立开关。需 HTTPS 解密。';
 const runtime=client=>raw+ref+'/'+client+'/script/YouTubeClean.js';
 const manual=client=>'https://github.com/hhhoratioxu/Proxy/blob/main/'+client+'/Docs/YouTubeClean.md';
-async function save(client,extension,content,stem='YouTubeClean'){const dir=join(destination,client,'script');await mkdir(dir,{recursive:true});await writeFile(join(dir,stem+'.'+extension),content+'\n');}
+async function save(client,extension,content,stem='YouTubeClean'){
+  const dir=join(destination,client,'script');await mkdir(dir,{recursive:true});await writeFile(join(dir,stem+'.'+extension),content+'\n');
+  // New destinations get only the registered .lpx entry. If an older .plugin
+  // URL already exists, keep its bytes identical for existing subscriptions.
+  if(client==='Loon'&&extension==='lpx'){
+    const legacy=join(dir,stem+'.plugin');
+    try{await access(legacy);}catch(error){if(error.code==='ENOENT')return;throw error;}
+    await writeFile(legacy,content+'\n');
+  }
+}
 
 const schema=settings.map(([key,value,label])=>'  '+key+':\n    name: '+label+'\n    default_value: '+JSON.stringify(value)+'\n    options: '+(key==='TARGET_LANGUAGE'?'["zh-Hans", "zh-Hant", "en", "ja", "ko"]':'["true", "false"]')).join('\n');
 await save('Egern','yaml',`# Horatio YouTube Clean 1.2.9; native ESM runtime.
@@ -74,7 +83,7 @@ hostname = %APPEND% ${hosts.join(', ')}`);
 const slash=pattern=>pattern.replace(/\//g,'\\/');
 const loonArgs=settings.map(([k,v,label])=>k+' = '+(k==='TARGET_LANGUAGE'?'select,"zh-Hans","zh-Hant","en","ja","ko",type=string':'switch,'+(k==='BILINGUAL'?'false':v)+',type=boolean')+',tag='+label).join('\n');
 const loonPass='{'+settings.map(([k])=>'${'+k+'}').join(', ')+'}';
-await save('Loon','plugin',`#!name = ${title}
+await save('Loon','lpx',`#!name = ${title}
 #!desc = ${description}
 #!author = Horatio Xu
 #!homepage = ${manual('Loon')}

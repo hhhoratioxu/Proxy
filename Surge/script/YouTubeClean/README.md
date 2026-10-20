@@ -5,12 +5,14 @@
 | 客户端 | 安装文件 |
 | --- | --- |
 | Egern | `Egern/script/YouTubeClean.yaml` |
-| Loon | `Loon/script/YouTubeClean.plugin` |
+| Loon | `Loon/script/YouTubeClean.lpx` |
 | Surge | `Surge/script/YouTubeClean.sgmodule` |
 | Shadowrocket | `Shadowrocket/script/YouTubeClean.sgmodule` |
 | Quantumult X | `QuantumultX/script/YouTubeClean.conf` |
 
 1.2.9 新增默认开启的 `CAPTION_LAYOUT`（译文智能换行），继续保留 1.2.8 的分配优化。Loon 默认仅显示译文，其他客户端已有默认与用户保存设置继续生效。
+
+2026-10-20：Loon 正式入口采用官方注册的 `.lpx`（Loon Plugin Extension）后缀，依据 [Loon News 的扩展名说明](https://t.me/LoonNews/1754)。旧 `YouTubeClean.plugin` 地址仅兼容已有订阅；生成器在该旧文件已经存在时同步相同内容，新输出目录只生成 `.lpx`。这是同一版本的地址兼容，不是两个功能版本，只需启用一个。运行脚本、开关和字幕排版版本仍为 1.2.9。
 
 ## 1.2.9 译文排版
 
