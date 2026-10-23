@@ -1,0 +1,46 @@
+{
+  "at": "2026-10-23T16:12:34.646Z",
+  "scope": "Compiled Loon runtime, empty plugin storage, real anonymous public metadata and fallback service requests, simulated official HTTP 404. No actual phone request, protected Spotify lyrics or iPhone/VPN acceptance. Translation disabled for this real-song probe; translation behavior tested separately with self-written rows.",
+  "track": "5gjHrjV4IhqPqoDHQUAriQ",
+  "transport": [
+    {
+      "host": "open.spotify.com",
+      "path": "/embed/track/5gjHrjV4IhqPqoDHQUAriQ",
+      "status": 200,
+      "bytes": 10482,
+      "milliseconds": 867.474959
+    },
+    {
+      "host": "lrclib.net",
+      "path": "/api/get",
+      "error": "curl-28",
+      "milliseconds": 1626.3430839999996
+    },
+    {
+      "host": "c.y.qq.com",
+      "path": "/soso/fcgi-bin/client_search_cp",
+      "status": 200,
+      "bytes": 11012,
+      "milliseconds": 595.942458
+    },
+    {
+      "host": "c.y.qq.com",
+      "path": "/lyric/fcgi-bin/fcg_query_lyric_new.fcg",
+      "status": 200,
+      "bytes": 1860,
+      "milliseconds": 187.37912500000039
+    }
+  ],
+  "lines": 42,
+  "synced": true,
+  "outputSHA256": "a442bfb3d2c875e87677180eae8c249a2ea2dcef4ae230e1fc11b5e7ab788423",
+  "coldHTTP": 4,
+  "warmHTTP": 0,
+  "warmIdentical": true,
+  "done": 1,
+  "active": 0,
+  "maxActive": 1,
+  "cacheCharacters": 1857,
+  "flowMs": 3309.777666,
+  "timingNote": "Flow time includes the warm reopen check; it is not an isolated native phone first-load time."
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "path": "Surge/script/SpotifyLyrics.js",
+    "bytes": 92933,
+    "originalBytes": 161252,
+    "sha": "ed5bd04d378a7c871c0c8d83cb6d7c10c307b96c",
+    "sha256": "dbfa11424a2ec6266cd389e3fa1c3cb4d37f30751153b9631eb0ca08f451c9eb"
+  },
+  {
+    "path": "Surge/script/SpotifyLyrics.Entry.js",
+    "bytes": 30644,
+    "originalBytes": 64153,
+    "sha": "5b71559f3287f5151602297e05fe131fb8ec6855",
+    "sha256": "283fa9f3aafca1266349a441ba162f4969b01f015e90c6b82b125efaa060eb0a"
+  },
+  {
+    "path": "Surge/script/SpotifyLyrics.Request.js",
+    "bytes": 4722,
+    "originalBytes": 7302,
+    "sha": "145f7349e0a03b4131cbe38770b1402a2752170d",
+    "sha256": "45fbe6563a69c7bc4239e2e823e94a23e056cb66c3ed9e1d93fd925cff602859"
+  },
+  {
+    "path": "Loon/script/SpotifyLyrics.js",
+    "bytes": 92960,
+    "originalBytes": 161250,
+    "sha": "c0ceaa0b6b85d58ac11780618d8daca0737f34c0",
+    "sha256": "dfaf7aa450b6a1de9e8f8888b817fc28396be2bec18094580614b1a5fd0cdf93"
+  },
+  {
+    "path": "Loon/script/SpotifyLyrics.Entry.js",
+    "bytes": 30643,
+    "originalBytes": 64151,
+    "sha": "1c490b8caf566130b3d4e031d112673a88a03705",
+    "sha256": "67cb469edee47e1a7b490d32d47a2d08a9a867a7caba41bc353ca245664cc7c5"
+  },
+  {
+    "path": "Shadowrocket/script/SpotifyLyrics.js",
+    "bytes": 92940,
+    "originalBytes": 161266,
+    "sha": "1ea6dc7bb5e703a0a376ce55525009728904ea05",
+    "sha256": "4a7d75ff1e4f81afe4cd03e1697623b5a1403caf12f8bda98a5c9833bf5b3430"
+  },
+  {
+    "path": "Shadowrocket/script/SpotifyLyrics.Entry.js",
+    "bytes": 30651,
+    "originalBytes": 64167,
+    "sha": "28239189f1233fabaf0ce29e0f88bae30035119e",
+    "sha256": "c50c812c9c78e2bd6ffa71a8c8846175e4ca8d9c75dc8d6477c1d256171ef5ea"
+  },
+  {
+    "path": "Shadowrocket/script/SpotifyLyrics.Request.js",
+    "bytes": 4722,
+    "originalBytes": 7309,
+    "sha": "145f7349e0a03b4131cbe38770b1402a2752170d",
+    "sha256": "45fbe6563a69c7bc4239e2e823e94a23e056cb66c3ed9e1d93fd925cff602859"
+  },
+  {
+    "path": "QuantumultX/script/SpotifyLyrics.js",
+    "bytes": 93601,
+    "originalBytes": 161264,
+    "sha": "dc1e802ef337223fc632397a8d6a7bc897de025f",
+    "sha256": "e2ea7c2c8936e9f2d2861e425a9589c26b1cb7bd5754070a4ef20a964b13a1a3"
+  },
+  {
+    "path": "QuantumultX/script/SpotifyLyrics.Entry.js",
+    "bytes": 31145,
+    "originalBytes": 64165,
+    "sha": "0162efe8bc361aed53a86d0d2b86d5848afb151d",
+    "sha256": "baac32210ecbc446fae31f5536aedc10f9729983d5bbdd20977ac48bd5da117a"
+  },
+  {
+    "path": "QuantumultX/script/SpotifyLyrics.Request.js",
+    "bytes": 4878,
+    "originalBytes": 7308,
+    "sha": "2372b4d7a92a423901d5439bb0e2473e085f0fa5",
+    "sha256": "b6ff92e223d3abd25d5d305a69d058ca1502533bbac82feed16453e395d6f6f6"
+  },
+  {
+    "path": "Egern/script/SpotifyLyrics/spotify-lyrics.js",
+    "bytes": 88368,
+    "originalBytes": 151085,
+    "sha": "411fd89b977312501cca9884852a257a779e463d",
+    "sha256": "b31bba5034519e1f4766d764bdfc65c5ead06f567e3c317d7d9faa68684c88d8"
+  },
+  {
+    "path": "Egern/script/SpotifyLyrics/spotify-lyrics-entry.js",
+    "bytes": 27122,
+    "originalBytes": 57127,
+    "sha": "7f824a4ba2b141d7620ea4d5bf8ee56d298b680e",
+    "sha256": "b7b92c65d8bc6f78ed6667ee1366147840b2285db4988358ab42d68aaa94c740"
+  },
+  {
+    "path": "Egern/script/SpotifyLyrics/spotify-lyrics-request.js",
+    "bytes": 2931,
+    "originalBytes": 4139,
+    "sha": "e4793853f9b63a4e290be1cec60686eea0c9474a",
+    "sha256": "5ea8d3902c5044d99a835a3e48858f0ef9bbbfd75f11d6ca7ce5347d888c2449"
+  },
+  {
+    "path": "Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt",
+    "bytes": 1995,
+    "originalBytes": 1995,
+    "sha": "56da58912807030b451a4700687d5bd02c72d6ed",
+    "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+  }
+]

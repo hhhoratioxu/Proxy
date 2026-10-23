@@ -1,0 +1,952 @@
+{
+  "at": "2026-10-24T00:15:10+0800",
+  "scope": "48 fresh macOS JavaScriptCore processes with compiled Loon scripts and identical self-written lyric fixtures, inline source translations and exact or bilingual catalog labels. Six alternating trials per version/case. Bilingual cold baseline cases intentionally miss lyrics; candidate extra work is reported, not represented as a memory reduction. Includes harness/VM/JIT/process overhead, no network latency; not iPhone/VPN acceptance.",
+  "summary": [
+    {
+      "case": "exact-artist-48",
+      "version": "baseline",
+      "milliseconds": 12.013,
+      "sampledPeakFootprint": 7209656.0,
+      "maxRSS": 12599296.0,
+      "calls": 2,
+      "rows": 48,
+      "cacheCharacters": 4255.0
+    },
+    {
+      "case": "exact-artist-48",
+      "version": "candidate",
+      "milliseconds": 12.085999999999999,
+      "sampledPeakFootprint": 7307960.0,
+      "maxRSS": 12697600.0,
+      "calls": 2,
+      "rows": 48,
+      "cacheCharacters": 4255.0
+    },
+    {
+      "case": "bilingual-artist-48",
+      "version": "baseline",
+      "milliseconds": 7.916,
+      "sampledPeakFootprint": 6644408.0,
+      "maxRSS": 12034048.0,
+      "calls": 1,
+      "rows": 0,
+      "cacheCharacters": 544.0
+    },
+    {
+      "case": "bilingual-artist-48",
+      "version": "candidate",
+      "milliseconds": 12.347000000000001,
+      "sampledPeakFootprint": 7381688.0,
+      "maxRSS": 12787712.0,
+      "calls": 2,
+      "rows": 48,
+      "cacheCharacters": 4255.0
+    },
+    {
+      "case": "bilingual-artist-600",
+      "version": "baseline",
+      "milliseconds": 8.318000000000001,
+      "sampledPeakFootprint": 7602872.0,
+      "maxRSS": 12959744.0,
+      "calls": 1,
+      "rows": 0,
+      "cacheCharacters": 545.0
+    },
+    {
+      "case": "bilingual-artist-600",
+      "version": "candidate",
+      "milliseconds": 38.637,
+      "sampledPeakFootprint": 9880272.0,
+      "maxRSS": 15859712.0,
+      "calls": 2,
+      "rows": 600,
+      "cacheCharacters": 48912.0
+    },
+    {
+      "case": "bilingual-warm-48",
+      "version": "baseline",
+      "milliseconds": 8.8795,
+      "sampledPeakFootprint": 6718136.0,
+      "maxRSS": 12107776.0,
+      "calls": 0,
+      "rows": 48,
+      "cacheCharacters": 4255.0
+    },
+    {
+      "case": "bilingual-warm-48",
+      "version": "candidate",
+      "milliseconds": 8.847000000000001,
+      "sampledPeakFootprint": 6775480.0,
+      "maxRSS": 12165120.0,
+      "calls": 0,
+      "rows": 48,
+      "cacheCharacters": 4255.0
+    }
+  ],
+  "runs": [
+    {
+      "trial": 0,
+      "version": "baseline",
+      "case": "exact-artist-48",
+      "sampledPeakFootprint": 7209656,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7193272,
+      "maxRSS": 12599296,
+      "milliseconds": 28.355,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 0,
+      "version": "candidate",
+      "case": "exact-artist-48",
+      "sampledPeakFootprint": 7307960,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7291576,
+      "maxRSS": 12697600,
+      "milliseconds": 14.897,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 0,
+      "version": "baseline",
+      "case": "bilingual-artist-48",
+      "sampledPeakFootprint": 6636216,
+      "beforeFootprint": 1769976,
+      "endFootprint": 6619832,
+      "maxRSS": 12042240,
+      "milliseconds": 8.501,
+      "repeats": 1,
+      "result": {
+        "calls": 1,
+        "bytes": 7,
+        "hash": 3069444615,
+        "rows": 0,
+        "cacheCharacters": 544
+      }
+    },
+    {
+      "trial": 0,
+      "version": "candidate",
+      "case": "bilingual-artist-48",
+      "sampledPeakFootprint": 7422648,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7406264,
+      "maxRSS": 12828672,
+      "milliseconds": 12.279,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 0,
+      "version": "baseline",
+      "case": "bilingual-artist-600",
+      "sampledPeakFootprint": 7586488,
+      "beforeFootprint": 1835512,
+      "endFootprint": 7586488,
+      "maxRSS": 12943360,
+      "milliseconds": 8.329,
+      "repeats": 1,
+      "result": {
+        "calls": 1,
+        "bytes": 7,
+        "hash": 3069444615,
+        "rows": 0,
+        "cacheCharacters": 545
+      }
+    },
+    {
+      "trial": 0,
+      "version": "candidate",
+      "case": "bilingual-artist-600",
+      "sampledPeakFootprint": 9863888,
+      "beforeFootprint": 1835512,
+      "endFootprint": 9863888,
+      "maxRSS": 15843328,
+      "milliseconds": 38.691,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 64965,
+        "hash": 2364749207,
+        "rows": 600,
+        "cacheCharacters": 48912
+      }
+    },
+    {
+      "trial": 0,
+      "version": "baseline",
+      "case": "bilingual-warm-48",
+      "sampledPeakFootprint": 6701752,
+      "beforeFootprint": 1786360,
+      "endFootprint": 6685368,
+      "maxRSS": 12107776,
+      "milliseconds": 8.651,
+      "repeats": 1,
+      "result": {
+        "calls": 0,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 0,
+      "version": "candidate",
+      "case": "bilingual-warm-48",
+      "sampledPeakFootprint": 6767288,
+      "beforeFootprint": 1802744,
+      "endFootprint": 6750904,
+      "maxRSS": 12173312,
+      "milliseconds": 8.836,
+      "repeats": 1,
+      "result": {
+        "calls": 0,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 1,
+      "version": "candidate",
+      "case": "exact-artist-48",
+      "sampledPeakFootprint": 7307960,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7291576,
+      "maxRSS": 12697600,
+      "milliseconds": 12.361,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 1,
+      "version": "baseline",
+      "case": "exact-artist-48",
+      "sampledPeakFootprint": 7258832,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7242448,
+      "maxRSS": 12632064,
+      "milliseconds": 12.083,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 1,
+      "version": "candidate",
+      "case": "bilingual-artist-48",
+      "sampledPeakFootprint": 7389880,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7373496,
+      "maxRSS": 12795904,
+      "milliseconds": 12.401,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 1,
+      "version": "baseline",
+      "case": "bilingual-artist-48",
+      "sampledPeakFootprint": 6619832,
+      "beforeFootprint": 1769976,
+      "endFootprint": 6603448,
+      "maxRSS": 12025856,
+      "milliseconds": 7.982,
+      "repeats": 1,
+      "result": {
+        "calls": 1,
+        "bytes": 7,
+        "hash": 3069444615,
+        "rows": 0,
+        "cacheCharacters": 544
+      }
+    },
+    {
+      "trial": 1,
+      "version": "candidate",
+      "case": "bilingual-artist-600",
+      "sampledPeakFootprint": 9962192,
+      "beforeFootprint": 1851896,
+      "endFootprint": 9962192,
+      "maxRSS": 15876096,
+      "milliseconds": 39.014,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 64965,
+        "hash": 2364749207,
+        "rows": 600,
+        "cacheCharacters": 48912
+      }
+    },
+    {
+      "trial": 1,
+      "version": "baseline",
+      "case": "bilingual-artist-600",
+      "sampledPeakFootprint": 7652048,
+      "beforeFootprint": 1851896,
+      "endFootprint": 7652048,
+      "maxRSS": 12992512,
+      "milliseconds": 8.162,
+      "repeats": 1,
+      "result": {
+        "calls": 1,
+        "bytes": 7,
+        "hash": 3069444615,
+        "rows": 0,
+        "cacheCharacters": 545
+      }
+    },
+    {
+      "trial": 1,
+      "version": "candidate",
+      "case": "bilingual-warm-48",
+      "sampledPeakFootprint": 6800080,
+      "beforeFootprint": 1786360,
+      "endFootprint": 6783696,
+      "maxRSS": 12189696,
+      "milliseconds": 9.205,
+      "repeats": 1,
+      "result": {
+        "calls": 0,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 1,
+      "version": "baseline",
+      "case": "bilingual-warm-48",
+      "sampledPeakFootprint": 6734520,
+      "beforeFootprint": 1786360,
+      "endFootprint": 6718136,
+      "maxRSS": 12140544,
+      "milliseconds": 8.917,
+      "repeats": 1,
+      "result": {
+        "calls": 0,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 2,
+      "version": "baseline",
+      "case": "exact-artist-48",
+      "sampledPeakFootprint": 7209656,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7193272,
+      "maxRSS": 12599296,
+      "milliseconds": 12.044,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 2,
+      "version": "candidate",
+      "case": "exact-artist-48",
+      "sampledPeakFootprint": 7307960,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7291576,
+      "maxRSS": 12697600,
+      "milliseconds": 12.235,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 2,
+      "version": "baseline",
+      "case": "bilingual-artist-48",
+      "sampledPeakFootprint": 6619832,
+      "beforeFootprint": 1769976,
+      "endFootprint": 6603448,
+      "maxRSS": 12025856,
+      "milliseconds": 7.85,
+      "repeats": 1,
+      "result": {
+        "calls": 1,
+        "bytes": 7,
+        "hash": 3069444615,
+        "rows": 0,
+        "cacheCharacters": 544
+      }
+    },
+    {
+      "trial": 2,
+      "version": "candidate",
+      "case": "bilingual-artist-48",
+      "sampledPeakFootprint": 7357112,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7340728,
+      "maxRSS": 12763136,
+      "milliseconds": 12.364,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 2,
+      "version": "baseline",
+      "case": "bilingual-artist-600",
+      "sampledPeakFootprint": 7586488,
+      "beforeFootprint": 1835512,
+      "endFootprint": 7586488,
+      "maxRSS": 12943360,
+      "milliseconds": 8.431,
+      "repeats": 1,
+      "result": {
+        "calls": 1,
+        "bytes": 7,
+        "hash": 3069444615,
+        "rows": 0,
+        "cacheCharacters": 545
+      }
+    },
+    {
+      "trial": 2,
+      "version": "candidate",
+      "case": "bilingual-artist-600",
+      "sampledPeakFootprint": 9765584,
+      "beforeFootprint": 1835512,
+      "endFootprint": 9765584,
+      "maxRSS": 15941632,
+      "milliseconds": 38.529,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 64965,
+        "hash": 2364749207,
+        "rows": 600,
+        "cacheCharacters": 48912
+      }
+    },
+    {
+      "trial": 2,
+      "version": "baseline",
+      "case": "bilingual-warm-48",
+      "sampledPeakFootprint": 6701752,
+      "beforeFootprint": 1786360,
+      "endFootprint": 6685368,
+      "maxRSS": 12107776,
+      "milliseconds": 9.088,
+      "repeats": 1,
+      "result": {
+        "calls": 0,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 2,
+      "version": "candidate",
+      "case": "bilingual-warm-48",
+      "sampledPeakFootprint": 6783720,
+      "beforeFootprint": 1786360,
+      "endFootprint": 6767336,
+      "maxRSS": 12156928,
+      "milliseconds": 8.635,
+      "repeats": 1,
+      "result": {
+        "calls": 0,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 3,
+      "version": "candidate",
+      "case": "exact-artist-48",
+      "sampledPeakFootprint": 7275192,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7258808,
+      "maxRSS": 12664832,
+      "milliseconds": 11.304,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 3,
+      "version": "baseline",
+      "case": "exact-artist-48",
+      "sampledPeakFootprint": 7209656,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7193272,
+      "maxRSS": 12599296,
+      "milliseconds": 11.982,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 3,
+      "version": "candidate",
+      "case": "bilingual-artist-48",
+      "sampledPeakFootprint": 7357112,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7340728,
+      "maxRSS": 12763136,
+      "milliseconds": 12.521,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 3,
+      "version": "baseline",
+      "case": "bilingual-artist-48",
+      "sampledPeakFootprint": 6652648,
+      "beforeFootprint": 1769976,
+      "endFootprint": 6636264,
+      "maxRSS": 12025856,
+      "milliseconds": 7.509,
+      "repeats": 1,
+      "result": {
+        "calls": 1,
+        "bytes": 7,
+        "hash": 3069444615,
+        "rows": 0,
+        "cacheCharacters": 544
+      }
+    },
+    {
+      "trial": 3,
+      "version": "candidate",
+      "case": "bilingual-artist-600",
+      "sampledPeakFootprint": 9814736,
+      "beforeFootprint": 1835512,
+      "endFootprint": 9814736,
+      "maxRSS": 15892480,
+      "milliseconds": 38.583,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 64965,
+        "hash": 2364749207,
+        "rows": 600,
+        "cacheCharacters": 48912
+      }
+    },
+    {
+      "trial": 3,
+      "version": "baseline",
+      "case": "bilingual-artist-600",
+      "sampledPeakFootprint": 7619256,
+      "beforeFootprint": 1835512,
+      "endFootprint": 7619256,
+      "maxRSS": 12976128,
+      "milliseconds": 8.307,
+      "repeats": 1,
+      "result": {
+        "calls": 1,
+        "bytes": 7,
+        "hash": 3069444615,
+        "rows": 0,
+        "cacheCharacters": 545
+      }
+    },
+    {
+      "trial": 3,
+      "version": "candidate",
+      "case": "bilingual-warm-48",
+      "sampledPeakFootprint": 6750904,
+      "beforeFootprint": 1786360,
+      "endFootprint": 6734520,
+      "maxRSS": 12156928,
+      "milliseconds": 8.858,
+      "repeats": 1,
+      "result": {
+        "calls": 0,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 3,
+      "version": "baseline",
+      "case": "bilingual-warm-48",
+      "sampledPeakFootprint": 6701752,
+      "beforeFootprint": 1786360,
+      "endFootprint": 6685368,
+      "maxRSS": 12107776,
+      "milliseconds": 8.842,
+      "repeats": 1,
+      "result": {
+        "calls": 0,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 4,
+      "version": "baseline",
+      "case": "exact-artist-48",
+      "sampledPeakFootprint": 7193272,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7176888,
+      "maxRSS": 12582912,
+      "milliseconds": 11.657,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 4,
+      "version": "candidate",
+      "case": "exact-artist-48",
+      "sampledPeakFootprint": 7307960,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7291576,
+      "maxRSS": 12697600,
+      "milliseconds": 11.937,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 4,
+      "version": "baseline",
+      "case": "bilingual-artist-48",
+      "sampledPeakFootprint": 6652600,
+      "beforeFootprint": 1769976,
+      "endFootprint": 6636216,
+      "maxRSS": 12058624,
+      "milliseconds": 8.043,
+      "repeats": 1,
+      "result": {
+        "calls": 1,
+        "bytes": 7,
+        "hash": 3069444615,
+        "rows": 0,
+        "cacheCharacters": 544
+      }
+    },
+    {
+      "trial": 4,
+      "version": "candidate",
+      "case": "bilingual-artist-48",
+      "sampledPeakFootprint": 7373496,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7357112,
+      "maxRSS": 12779520,
+      "milliseconds": 12.234,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 4,
+      "version": "baseline",
+      "case": "bilingual-artist-600",
+      "sampledPeakFootprint": 7635664,
+      "beforeFootprint": 1835512,
+      "endFootprint": 7635664,
+      "maxRSS": 12976128,
+      "milliseconds": 8.028,
+      "repeats": 1,
+      "result": {
+        "calls": 1,
+        "bytes": 7,
+        "hash": 3069444615,
+        "rows": 0,
+        "cacheCharacters": 545
+      }
+    },
+    {
+      "trial": 4,
+      "version": "candidate",
+      "case": "bilingual-artist-600",
+      "sampledPeakFootprint": 9929424,
+      "beforeFootprint": 1835512,
+      "endFootprint": 9929424,
+      "maxRSS": 15843328,
+      "milliseconds": 39.29,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 64965,
+        "hash": 2364749207,
+        "rows": 600,
+        "cacheCharacters": 48912
+      }
+    },
+    {
+      "trial": 4,
+      "version": "baseline",
+      "case": "bilingual-warm-48",
+      "sampledPeakFootprint": 6734568,
+      "beforeFootprint": 1786360,
+      "endFootprint": 6718184,
+      "maxRSS": 12107776,
+      "milliseconds": 9.056,
+      "repeats": 1,
+      "result": {
+        "calls": 0,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 4,
+      "version": "candidate",
+      "case": "bilingual-warm-48",
+      "sampledPeakFootprint": 6718136,
+      "beforeFootprint": 1786360,
+      "endFootprint": 6701752,
+      "maxRSS": 12124160,
+      "milliseconds": 8.99,
+      "repeats": 1,
+      "result": {
+        "calls": 0,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 5,
+      "version": "candidate",
+      "case": "exact-artist-48",
+      "sampledPeakFootprint": 7275192,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7258808,
+      "maxRSS": 12664832,
+      "milliseconds": 11.748,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 5,
+      "version": "baseline",
+      "case": "exact-artist-48",
+      "sampledPeakFootprint": 7226040,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7209656,
+      "maxRSS": 12615680,
+      "milliseconds": 11.882,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 5,
+      "version": "candidate",
+      "case": "bilingual-artist-48",
+      "sampledPeakFootprint": 7389880,
+      "beforeFootprint": 1769976,
+      "endFootprint": 7373496,
+      "maxRSS": 12795904,
+      "milliseconds": 12.33,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 5,
+      "version": "baseline",
+      "case": "bilingual-artist-48",
+      "sampledPeakFootprint": 6652600,
+      "beforeFootprint": 1769976,
+      "endFootprint": 6636216,
+      "maxRSS": 12058624,
+      "milliseconds": 7.794,
+      "repeats": 1,
+      "result": {
+        "calls": 1,
+        "bytes": 7,
+        "hash": 3069444615,
+        "rows": 0,
+        "cacheCharacters": 544
+      }
+    },
+    {
+      "trial": 5,
+      "version": "candidate",
+      "case": "bilingual-artist-600",
+      "sampledPeakFootprint": 9896656,
+      "beforeFootprint": 1835512,
+      "endFootprint": 9896656,
+      "maxRSS": 15810560,
+      "milliseconds": 37.933,
+      "repeats": 1,
+      "result": {
+        "calls": 2,
+        "bytes": 64965,
+        "hash": 2364749207,
+        "rows": 600,
+        "cacheCharacters": 48912
+      }
+    },
+    {
+      "trial": 5,
+      "version": "baseline",
+      "case": "bilingual-artist-600",
+      "sampledPeakFootprint": 7586488,
+      "beforeFootprint": 1819128,
+      "endFootprint": 7586488,
+      "maxRSS": 12943360,
+      "milliseconds": 8.488,
+      "repeats": 1,
+      "result": {
+        "calls": 1,
+        "bytes": 7,
+        "hash": 3069444615,
+        "rows": 0,
+        "cacheCharacters": 545
+      }
+    },
+    {
+      "trial": 5,
+      "version": "candidate",
+      "case": "bilingual-warm-48",
+      "sampledPeakFootprint": 6783672,
+      "beforeFootprint": 1786360,
+      "endFootprint": 6767288,
+      "maxRSS": 12189696,
+      "milliseconds": 8.617,
+      "repeats": 1,
+      "result": {
+        "calls": 0,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    },
+    {
+      "trial": 5,
+      "version": "baseline",
+      "case": "bilingual-warm-48",
+      "sampledPeakFootprint": 6783696,
+      "beforeFootprint": 1786360,
+      "endFootprint": 6767312,
+      "maxRSS": 12173312,
+      "milliseconds": 8.481,
+      "repeats": 1,
+      "result": {
+        "calls": 0,
+        "bytes": 5355,
+        "hash": 2508302334,
+        "rows": 48,
+        "cacheCharacters": 4255
+      }
+    }
+  ]
+}

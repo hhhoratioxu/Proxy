@@ -1,0 +1,21 @@
+{
+  "version": "3.1.9",
+  "baseline": "3.1.8",
+  "baselineSourceCommit": "dce3a071f048bd3a58711dc0440aa10c8c0b5401",
+  "tests": 2097,
+  "addedTests": 107,
+  "newNativeClientFormatTests": 60,
+  "nodeFreshProcesses": 408,
+  "jscFreshProcesses": 48,
+  "mixedNativeResponses": 4800,
+  "warmHTTP": 0,
+  "peakMockHTTP": 1,
+  "arrivalPressureProcesses": 16,
+  "mockAdmissionTimers": 0,
+  "publicTargetTimedLines": 42,
+  "publicSourceHTTPIncludingMetadata": 4,
+  "protectedSpotifyLyricResponseCaptured": false,
+  "phoneUIAndVPNAcceptance": false,
+  "runtimeHashes": "bench-runtime-sha256.json",
+  "fullMeasurements": "MEASUREMENTS.md"
+}
