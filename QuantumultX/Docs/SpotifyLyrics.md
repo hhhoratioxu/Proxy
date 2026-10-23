@@ -1,10 +1,10 @@
 # Spotify 双语歌词 · VerseLyrics · Quantumult X
 
-当前发布 **3.1.8**（原生适配 15）。修复韩语、英文等旧原文缓存阻止翻译的问题；回复数量严格对齐时保留其他行的有效译文，异常或未译行使用 30 秒重试间隔。保留语气词过滤、中文夹英文翻译、简繁不互译、六源补词和静态歌词替换开关。
+当前发布 **3.1.9**（原生适配 15）。修复备用源以韩文、中文或日文附英文全名时，原匹配把双语名拼成另一位艺人而拒绝歌词的问题。只比较来源明确给出的完整名称，仍核对全部艺人、歌名、时长、录音版本与候选唯一性；旧无词记录按来源修订失效，成功歌词和译文继续复用。
 
 保留六源补词、插件翻译、原生时间轴与高亮。缓存和网络都有明确上限；未收录的歌曲仍不能凭空补全。本地自动测试与 macOS JavaScriptCore 测量不等于 iPhone Loon 实机 VPN 验收，不能保证所有设备都不会被系统终止。
 
-核心 **3.1.8**，客户端适配 **15**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
+核心 **3.1.9**，客户端适配 **15**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -55,10 +55,10 @@ Quantumult X 的响应体重写在原响应体为空时不会执行，所以空�
 
 ## 运行版本与接口
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/dce3a071f048bd3a58711dc0440aa10c8c0b5401/QuantumultX/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/dce3a071f048bd3a58711dc0440aa10c8c0b5401/Surge/Development/VerseLyrics318)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/6392d31a69b9c6f5044827d24055ac4dd6222319/QuantumultX/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/6392d31a69b9c6f5044827d24055ac4dd6222319/Surge/Development/VerseLyrics319)
 
 原始核心和适配逻辑为独立编写。Unicode Unihan 数据许可随运行脚本完整附带。[官方二进制脚本示例](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample-bytes-rewrite.js) · [官方 HTTP 示例](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample-task.js) · [空响应体限制](https://github.com/crossutility/Quantumult-X/blob/af6fb594233ec4a3ec6d4ccb3601e9c36b75ea2d/sample.conf#L290)
 
 [其他客户端](../../README.md) · [返回 Quantumult X](../README.md)
 
-2026-10-21：1990 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
+2026-10-24：2097 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
