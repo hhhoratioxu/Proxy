@@ -1,28 +1,26 @@
 # NAME: Spotify
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 33
-# SOURCE: Horatio existing + blackmatrix7 Spotify + v2fly cross-check
-# NOTE: App/web/API/media/CDN and known Spotify endpoint coverage.
-
-no_resolve: true
+# FORMAT: Egern YAML remote rule set
+# UPDATED: 2026-10-25
+# RULES: 30 (8 exact domains, 21 suffix domains, 1 User-Agent rule)
+# SOURCES: v2fly/domain-list-community, MetaCubeX/meta-rules-dat, blackmatrix7/ios_rule_script
+# NOTE: Domain-only routing is prioritized for accuracy; broad keywords and legacy literal IPs removed.
+# NOTE: Choose the US policy/node when importing; rule lists do not enforce a country.
+# NOTE: Spotify may change endpoints; real-device traffic and account region are not verified here.
+# NOTE: User-Agent matching requires observable HTTP request metadata.
 
 domain_set:
+  - "audio-ak-spotify-com.akamaized.net"
   - "audio4-ak-spotify-com.akamaized.net"
   - "cdn-spotify-experiments.conductrics.com"
   - "heads-ak-spotify-com.akamaized.net"
+  - "heads4-ak-spotify-com.akamaized.net"
   - "spotify.com.edgesuite.net"
   - "spotify.map.fastly.net"
   - "spotify.map.fastlylb.net"
 
-domain_keyword_set:
-  - "spotify"
-
 domain_suffix_set:
-  - "audio-ak-spotify-com.akamaized.net"
   - "byspotify.com"
-  - "heads4-ak-spotify-com.akamaized.net"
   - "lifeatspotify.com"
   - "pscdn.co"
   - "scdn.co"
@@ -46,8 +44,3 @@ domain_suffix_set:
 
 user_agent_set:
   - "Spotify*"
-
-ip_cidr_set:
-  - "104.154.127.126/32"
-  - "35.186.224.47/32"
-
