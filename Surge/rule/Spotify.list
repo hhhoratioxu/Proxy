@@ -1,29 +1,23 @@
-# FORMAT: Surge Remote Rule Set
-# UPDATED: 2026-10-16
-# RULES: 33
-# PORTED FROM: https://raw.githubusercontent.com/hhhoratioxu/Proxy/73e99eb3e2c36920768328b65bbf60b8eed3281f/Loon/rule/Spotify.lsr
-# POLICY: Assign a policy when importing this URL as RULE-SET in Surge.
-# All source rule entries and their order are retained.
-# USER-AGENT requires request metadata visible to Surge's HTTP engine.
-#
 # NAME: Spotify
 # AUTHOR: Horatio
-# SOURCE FORMAT: Loon Rule Set
-# SOURCE UPDATED: 2026-09-25
-# TOTAL: 33
-# SOURCE: Horatio existing + blackmatrix7 Spotify + v2fly cross-check
-# NOTE: App/web/API/media/CDN and known Spotify endpoint coverage.
+# FORMAT: Surge remote rule set
+# UPDATED: 2026-10-25
+# RULES: 30 (8 exact domains, 21 suffix domains, 1 User-Agent rule)
+# SOURCES: v2fly/domain-list-community, MetaCubeX/meta-rules-dat, blackmatrix7/ios_rule_script
+# NOTE: Domain-only routing is prioritized for accuracy; broad keywords and legacy literal IPs removed.
+# NOTE: Choose the US policy/node when importing; rule lists do not enforce a country.
+# NOTE: Spotify may change endpoints; real-device traffic and account region are not verified here.
+# NOTE: User-Agent matching requires observable HTTP request metadata.
 
+DOMAIN,audio-ak-spotify-com.akamaized.net
 DOMAIN,audio4-ak-spotify-com.akamaized.net
 DOMAIN,cdn-spotify-experiments.conductrics.com
 DOMAIN,heads-ak-spotify-com.akamaized.net
+DOMAIN,heads4-ak-spotify-com.akamaized.net
 DOMAIN,spotify.com.edgesuite.net
 DOMAIN,spotify.map.fastly.net
 DOMAIN,spotify.map.fastlylb.net
-DOMAIN-KEYWORD,spotify
-DOMAIN-SUFFIX,audio-ak-spotify-com.akamaized.net
 DOMAIN-SUFFIX,byspotify.com
-DOMAIN-SUFFIX,heads4-ak-spotify-com.akamaized.net
 DOMAIN-SUFFIX,lifeatspotify.com
 DOMAIN-SUFFIX,pscdn.co
 DOMAIN-SUFFIX,scdn.co
@@ -45,5 +39,3 @@ DOMAIN-SUFFIX,spotifynewsroom.jp
 DOMAIN-SUFFIX,spotilocal.com
 DOMAIN-SUFFIX,tospotify.com
 USER-AGENT,Spotify*
-IP-CIDR,104.154.127.126/32,no-resolve
-IP-CIDR,35.186.224.47/32,no-resolve
