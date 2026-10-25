@@ -1,10 +1,16 @@
 # NAME: Parsec
-# AUTHOR: Horatio Xu
-# FORMAT: Quantumult X Remote Filter
+# AUTHOR: Horatio
+# FORMAT: Quantumult X filter_remote
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 3
+# SOURCE: Loon/rule/Parsec.lsr (same repository)
+# USE: [filter_remote] with force-policy=<policy>.
+# PROVENANCE / EXISTING NOTES:
 # VERSION: 1.0.0
-# UPDATED: 2026-10-08
-# ASSIGN POLICY: force-policy=your proxy / TAG
-# API/WebSocket and owned domains.
+# POLICY: Choose PROXY (TAG or your proxy policy) when subscribing.
+# PURPOSE: Parsec login, API, WebSocket, downloads and profile resources.
+# IMPORTANT: Subscribe to ParsecP2P.lsr as DIRECT, BEFORE this proxy set.
+# NOTE: Policy names do not belong inside Loon remote rule-set files.
 
 HOST-SUFFIX,parsec.app
 HOST-SUFFIX,parsecgaming.com

@@ -1,10 +1,13 @@
 # NAME: Meta
 # AUTHOR: Horatio
-# FORMAT: Shadowrocket Rule Set
-# SOURCE: Loon/rule/Meta.lsr
-# UPDATED: 2026-09-27
-# TOTAL: 622
-# NOTE: Import with RULE-SET and assign the desired policy in Shadowrocket.
+# FORMAT: Shadowrocket rule set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 622
+# SOURCE: Loon/rule/Meta.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
+# Converted from the matching comprehensive Egern Meta rule set.
+# Keep this file aligned with Egern/rule for dual-client use.
 
 DOMAIN,developers.facebook.com
 DOMAIN,fbcdn-a.akamaihd.net

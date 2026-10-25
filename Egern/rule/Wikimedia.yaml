@@ -1,39 +1,34 @@
 # NAME: Wikimedia
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-20
-# TOTAL: 22
-#
-# Covers Wikimedia Foundation projects and related infrastructure:
-# Wikipedia, Wikimedia Commons, Wikidata, Wikifunctions, Wikispecies,
-# Wiktionary, Wikibooks, Wikiquote, Wikisource, Wikiversity,
-# Wikivoyage, Wikinews, MediaWiki, Toolforge and Wikimedia Cloud.
-#
-# WikiLeaks is intentionally excluded because it is not a Wikimedia project.
-#
-# Use this URL as an Egern rule_set match and select the desired policy
-# in your main Egern configuration. All conditions in this file are OR-matched.
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 22
+# SOURCE: Loon/rule/Wikimedia.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# PROVENANCE / EXISTING NOTES:
+# Converted from the matching comprehensive Egern Wikimedia rule set.
+# Keep this file aligned with Egern/rule for dual-client use.
 
 domain_suffix_set:
-  - mediawiki.org
-  - toolforge.org
-  - w.wiki
-  - wikibooks.org
-  - wikidata.org
-  - wikifunctions.org
-  - wikimedia.com
-  - wikimedia.org
-  - wikimediacloud.org
-  - wikimediafoundation.org
-  - wikinews.org
-  - wikipedia.com
-  - wikipedia.org
-  - wikiquote.org
-  - wikisource.org
-  - wikispecies.org
-  - wikiversity.org
-  - wikivoyage.org
-  - wiktionary.org
-  - wmcloud.org
-  - wmflabs.org
-  - wmfusercontent.org
+  - "mediawiki.org"
+  - "toolforge.org"
+  - "w.wiki"
+  - "wikibooks.org"
+  - "wikidata.org"
+  - "wikifunctions.org"
+  - "wikimedia.com"
+  - "wikimedia.org"
+  - "wikimediacloud.org"
+  - "wikimediafoundation.org"
+  - "wikinews.org"
+  - "wikipedia.com"
+  - "wikipedia.org"
+  - "wikiquote.org"
+  - "wikisource.org"
+  - "wikispecies.org"
+  - "wikiversity.org"
+  - "wikivoyage.org"
+  - "wiktionary.org"
+  - "wmcloud.org"
+  - "wmflabs.org"
+  - "wmfusercontent.org"

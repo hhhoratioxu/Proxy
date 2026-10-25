@@ -1,25 +1,23 @@
 # NAME: SiriAI
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-24
-# TOTAL: 6
-#
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 6
+# SOURCE: Loon/rule/SiriAI.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# PROVENANCE / EXISTING NOTES:
 # Apple Siri / Apple Intelligence core routing.
 # Based on Apple's current enterprise network requirements.
-#
-# Use this URL as an Egern rule_set match and select the desired policy
-# in your main Egern configuration. All conditions in this file are OR-matched.
+# Siri / Dictation
+# Siri / Spotlight / Search services
+# Apple Intelligence / Private Cloud Compute
 
 domain_set:
-  # Siri / Dictation
-  - guzzoni.apple.com
-
-  # Apple Intelligence / Private Cloud Compute
-  - apple-relay.cloudflare.com
-  - apple-relay.fastly-edge.com
-  - cp4.cloudflare.com
-  - apple-relay.apple.com
+  - "guzzoni.apple.com"
+  - "apple-relay.cloudflare.com"
+  - "apple-relay.fastly-edge.com"
+  - "cp4.cloudflare.com"
+  - "apple-relay.apple.com"
 
 domain_suffix_set:
-  # Siri / Spotlight / Search services
-  - smoot.apple.com
+  - "smoot.apple.com"

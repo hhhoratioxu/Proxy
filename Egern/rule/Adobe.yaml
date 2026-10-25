@@ -1,8 +1,11 @@
 # NAME: Adobe
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 274
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 274
+# SOURCE: Loon/rule/Adobe.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community (Adobe, Adobe Activation, Typekit)
 # NOTE: Comprehensive Adobe/Creative Cloud/Acrobat/Behance/Typekit/Marketo/Magento routing set.
 
@@ -283,4 +286,3 @@ domain_suffix_set:
   - "votolia.com"
   - "worldsecureemail.com"
   - "worldsecuresystems.com"
-

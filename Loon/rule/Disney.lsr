@@ -1,8 +1,11 @@
 # NAME: Disney
 # AUTHOR: Horatio
-# FORMAT: Loon Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 245
+# FORMAT: Loon remote .lsr (policy-less)
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 245
+# SOURCE: Loon/rule/Disney.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community Disney ecosystem (Disney/BAMTech/ESPN/Hotstar/Hulu/Marvel/NatGeo/Star)
 # NOTE: Comprehensive Disney streaming and first-party ecosystem routing set.
 

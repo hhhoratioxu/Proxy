@@ -1,8 +1,11 @@
 # NAME: Netflix
 # AUTHOR: Horatio
-# FORMAT: Loon Rule Set
-# UPDATED: 2026-09-22
-#
+# FORMAT: Loon remote .lsr (policy-less)
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 1157
+# SOURCE: Loon/rule/Netflix.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # Converted from the matching comprehensive Egern Netflix rule set.
 # Keep this file aligned with Egern/rule for dual-client use.
 

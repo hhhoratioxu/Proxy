@@ -1,8 +1,12 @@
 # NAME: Parsec
-# AUTHOR: Horatio Xu
-# FORMAT: Loon Remote Rule Set
+# AUTHOR: Horatio
+# FORMAT: Loon remote .lsr (policy-less)
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 3
+# SOURCE: Loon/rule/Parsec.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # VERSION: 1.0.0
-# UPDATED: 2026-10-08
 # POLICY: Choose PROXY (TAG or your proxy policy) when subscribing.
 # PURPOSE: Parsec login, API, WebSocket, downloads and profile resources.
 # IMPORTANT: Subscribe to ParsecP2P.lsr as DIRECT, BEFORE this proxy set.

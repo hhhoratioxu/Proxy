@@ -1,11 +1,13 @@
 # NAME: GitHub
 # AUTHOR: Horatio
-# FORMAT: Shadowrocket Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 64
+# FORMAT: Shadowrocket rule set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 64
+# SOURCE: Loon/rule/GitHub.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community (GitHub, Copilot, npm)
 # NOTE: Covers GitHub web/API/assets/releases/Actions/Container Registry/Copilot and GitHub-owned npm services.
-# NOTE: Import with RULE-SET and assign the desired policy.
 
 DOMAIN,copilot-proxy.githubusercontent.com
 DOMAIN,copilot-telemetry-service.githubusercontent.com

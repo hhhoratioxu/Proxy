@@ -1,10 +1,13 @@
 # NAME: GitHub
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/GitHub.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
 # RULES: 64
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,GitHub,POLICY
+# SOURCE: Loon/rule/GitHub.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: Horatio existing + v2fly/domain-list-community (GitHub, Copilot, npm)
+# NOTE: Covers GitHub web/API/assets/releases/Actions/Container Registry/Copilot and GitHub-owned npm services.
 
 payload:
   - 'DOMAIN,copilot-proxy.githubusercontent.com'

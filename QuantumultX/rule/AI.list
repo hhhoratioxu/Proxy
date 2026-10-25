@@ -1,11 +1,11 @@
 # NAME: AI
 # AUTHOR: Horatio
-# FORMAT: Quantumult X Remote Filter
-# SOURCE: Loon/rule/AI.lsr
-# UPDATED: 2026-09-24
-# TOTAL: 476
-# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
-#
+# FORMAT: Quantumult X filter_remote
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 476
+# SOURCE: Loon/rule/AI.lsr (same repository)
+# USE: [filter_remote] with force-policy=<policy>.
+# PROVENANCE / EXISTING NOTES:
 # Combined AI routing rules for global and mainland-China AI services.
 # Coverage: assistants/search, foundation-model APIs, coding/agents, image/video/audio,
 # productivity/writing/meeting AI, model hosting/inference and major China AI platforms.
@@ -13,6 +13,9 @@
 # + Repcz/Tool + selected official service domains.
 # Shared third-party/CDN/analytics domains are intentionally excluded when they would
 # over-match unrelated traffic. Place this AI rule before generic Google/Microsoft/GitHub/Meta rules.
+# Exact AI endpoints on shared infrastructure
+# Dynamic AI endpoint keywords
+# AI first-party/service domains
 
 HOST,ai.developer.meta.com
 HOST,ai.meta.com

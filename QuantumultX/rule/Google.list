@@ -1,10 +1,14 @@
 # NAME: Google
 # AUTHOR: Horatio
-# FORMAT: Quantumult X Remote Filter
-# SOURCE: Loon/rule/Google.lsr
-# UPDATED: 2026-09-23
-# TOTAL: 887
-# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+# FORMAT: Quantumult X filter_remote
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 887
+# SOURCE: Loon/rule/Google.lsr (same repository)
+# USE: [filter_remote] with force-policy=<policy>.
+# PROVENANCE / EXISTING NOTES:
+# Combined Google + YouTube rule set.
+# YouTube domains are intentionally included in this Google policy.
+# Place AI rules before this file if Gemini/Google AI should use a separate AI policy.
 
 HOST,voice.telephony.goog
 HOST,yt3.googleusercontent.com
@@ -878,11 +882,11 @@ HOST-SUFFIX,yt.be
 HOST-SUFFIX,ytimg.com
 HOST-SUFFIX,zukunftswerkstatt.de
 HOST-SUFFIX,zynamics.com
-IP-CIDR,172.110.32.0/21
-IP-CIDR,173.194.0.0/16
-IP-CIDR,216.73.80.0/20
-IP-CIDR,74.125.0.0/16
-IP6-CIDR,2620:120:e000::/40
+IP-CIDR,172.110.32.0/21,no-resolve
+IP-CIDR,173.194.0.0/16,no-resolve
+IP-CIDR,216.73.80.0/20,no-resolve
+IP-CIDR,74.125.0.0/16,no-resolve
+IP6-CIDR,2620:120:e000::/40,no-resolve
 USER-AGENT,%E4%BA%91%E7%AB%AF%E7%A1%AC%E7%9B%98*
 USER-AGENT,*YouTubeMusic*
 USER-AGENT,*com.google.Drive*

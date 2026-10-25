@@ -1,8 +1,11 @@
 # NAME: Weverse
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 14
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 14
+# SOURCE: Loon/rule/Weverse.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio observed Weverse/NAVER endpoints + current public Weverse media host cross-checks
 # NOTE: Weverse, Weverse Shop, static/media CDN, NAVER APIs and live/resource delivery hosts.
 
@@ -23,4 +26,3 @@ domain_suffix_set:
   - "weversecdn.com"
   - "weverseshop.io"
   - "wevpstatic.net"
-

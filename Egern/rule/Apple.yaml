@@ -1,24 +1,26 @@
-# NAME: Apple Full
+# NAME: Apple
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# CONVERTED: 2026-09-20 UTC
-# SOURCE: https://github.com/hhhoratioxu/Proxy/blob/main/Loon/rule/Apple.lsr
-# ORIGINAL UPDATED: 2026-09-11 12:48:05 UTC
-# TOTAL: 1765
-# domain_set: 138
-# domain_keyword_set: 7
-# domain_suffix_set: 1571
-# user_agent_set: 23
-# ip_cidr_set: 16
-# ip_cidr6_set: 10
-#
-# Use this URL as an Egern rule_set match and select the desired policy
-# in your main Egern configuration. All conditions in this file are OR-matched.
-# Egern applies no_resolve to the whole remote rule set; it is enabled because
-# the source contains IP rules marked no-resolve, avoiding unnecessary DNS lookups.
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 1761
+# SOURCE: Loon/rule/Apple.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# COMPAT: no_resolve is a rule-set-wide flag in Egern.
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: blackmatrix7 Apple_All + Apple official enterprise network requirements + Horatio curated rules
+# Apple official reference: https://support.apple.com/101555
+# APNs reference: https://support.apple.com/102266
+# NOTE: PROCESS-NAME entries are excluded because they are not part of Loon Remote Rule syntax.
+# NOTE: broad DOMAIN-SUFFIX,akadns.net is excluded to avoid matching unrelated Akamai customers.
+# DOMAIN: 138
+# DOMAIN-SUFFIX: 1571
+# DOMAIN-KEYWORD: 7
+# USER-AGENT: 23
+# IP-CIDR: 16
+# IP-CIDR6: 10
 # Covers Apple Intelligence, Siri, APNs Push, iCloud, Private Relay, Apple ID,
 # App Store, TestFlight, Music, TV, News, Maps, Find My, Wallet, system updates,
-# developer services, China Apple/iCloud domains, Apple CDN/CNAMEs and legacy domains.
+# developer services, China Apple/iCloud domains, Apple CDN/CNAMEs and legacy Apple domains.
 
 no_resolve: true
 
@@ -1780,7 +1782,6 @@ ip_cidr_set:
   - "205.180.175.0/24"
   - "63.92.224.0/19"
   - "65.199.22.0/23"
-  - "17.0.0.0/8"
   - "17.249.0.0/16"
   - "17.252.0.0/16"
   - "17.57.144.0/22"
@@ -1788,9 +1789,6 @@ ip_cidr_set:
   - "17.188.20.0/23"
 
 ip_cidr6_set:
-  - "2403:300::/32"
-  - "2620:149::/32"
-  - "2a01:b740::/32"
   - "2403:300::/32"
   - "2620:149::/32"
   - "2a01:b740::/32"

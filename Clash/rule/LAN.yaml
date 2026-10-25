@@ -1,10 +1,14 @@
 # NAME: LAN
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/LAN.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
 # RULES: 145
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,LAN,POLICY
+# SOURCE: Loon/rule/LAN.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: Horatio existing + blackmatrix7 Lan
+# NOTE: Private/local networks, reverse-DNS zones, router hostnames and local service domains.
+# NOTE: Usually assign this rule set to DIRECT.
 
 payload:
   - 'DOMAIN,asusrouter.com'

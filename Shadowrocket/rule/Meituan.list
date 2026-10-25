@@ -1,8 +1,11 @@
 # NAME: Meituan
 # AUTHOR: Horatio
-# FORMAT: Shadowrocket Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 24
+# FORMAT: Shadowrocket rule set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 24
+# SOURCE: Loon/rule/Meituan.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community Meituan/DDMaicai
 # NOTE: Covers Meituan, Dianping, Keeta, Maoyan and Dingdong grocery ecosystem domains.
 

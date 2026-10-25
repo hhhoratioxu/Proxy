@@ -1,11 +1,15 @@
 # NAME: Microsoft
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/Microsoft.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
 # RULES: 812
-# NOTE: 3 USER-AGENT entries omitted (unsupported by Mihomo).
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,Microsoft,POLICY
+# SOURCE: Loon/rule/Microsoft.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# COMPAT: omitted 3 USER-AGENT rules (not supported by Mihomo).
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: Horatio existing + v2fly/domain-list-community Microsoft/Azure/Bing/Dev/PKI/MSN/OneDrive/Xbox
+# NOTE: GitHub stays in the separate GitHub rule; Copilot stays in the separate AI rule.
+# NOTE: Covers Microsoft web/services, Azure, Windows Update, Office/OneDrive, Bing, Xbox, VS Code and PKI/CDN endpoints.
 
 payload:
   - 'DOMAIN,az764295.vo.msecnd.net'

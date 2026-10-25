@@ -1,26 +1,19 @@
-# FORMAT: Surge Remote Rule Set
-# UPDATED: 2026-10-16
-# RULES: 6
-# PORTED FROM: https://raw.githubusercontent.com/hhhoratioxu/Proxy/73e99eb3e2c36920768328b65bbf60b8eed3281f/Loon/rule/SiriAI.lsr
-# POLICY: Assign a policy when importing this URL as RULE-SET in Surge.
-# All source rule entries and their order are retained.
-#
 # NAME: SiriAI
 # AUTHOR: Horatio
-# SOURCE FORMAT: Loon Rule Set
-# SOURCE UPDATED: 2026-09-24
-# TOTAL: 6
-#
+# FORMAT: Surge external RULE-SET
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 6
+# SOURCE: Loon/rule/SiriAI.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # Apple Siri / Apple Intelligence core routing.
 # Based on Apple's current enterprise network requirements.
-
 # Siri / Dictation
-DOMAIN,guzzoni.apple.com
-
 # Siri / Spotlight / Search services
-DOMAIN-SUFFIX,smoot.apple.com
-
 # Apple Intelligence / Private Cloud Compute
+
+DOMAIN,guzzoni.apple.com
+DOMAIN-SUFFIX,smoot.apple.com
 DOMAIN,apple-relay.cloudflare.com
 DOMAIN,apple-relay.fastly-edge.com
 DOMAIN,cp4.cloudflare.com

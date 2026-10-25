@@ -1,16 +1,11 @@
-# FORMAT: Surge Remote Rule Set
-# UPDATED: 2026-10-16
-# RULES: 476
-# PORTED FROM: https://raw.githubusercontent.com/hhhoratioxu/Proxy/73e99eb3e2c36920768328b65bbf60b8eed3281f/Loon/rule/AI.lsr
-# POLICY: Assign a policy when importing this URL as RULE-SET in Surge.
-# All source rule entries and their order are retained.
-#
 # NAME: AI
 # AUTHOR: Horatio
-# SOURCE FORMAT: Loon Rule Set
-# SOURCE UPDATED: 2026-09-24
-# TOTAL: 476
-#
+# FORMAT: Surge external RULE-SET
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 476
+# SOURCE: Loon/rule/AI.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # Combined AI routing rules for global and mainland-China AI services.
 # Coverage: assistants/search, foundation-model APIs, coding/agents, image/video/audio,
 # productivity/writing/meeting AI, model hosting/inference and major China AI platforms.
@@ -18,8 +13,10 @@
 # + Repcz/Tool + selected official service domains.
 # Shared third-party/CDN/analytics domains are intentionally excluded when they would
 # over-match unrelated traffic. Place this AI rule before generic Google/Microsoft/GitHub/Meta rules.
-
 # Exact AI endpoints on shared infrastructure
+# Dynamic AI endpoint keywords
+# AI first-party/service domains
+
 DOMAIN,ai.developer.meta.com
 DOMAIN,ai.meta.com
 DOMAIN,ai.zhaomi.cn
@@ -70,11 +67,7 @@ DOMAIN,qodercn-jb.oss-cn-hangzhou.aliyuncs.com
 DOMAIN,servd-anthropic-website.b-cdn.net
 DOMAIN,sydney.bing.com
 DOMAIN,webchannel-alkalimakersuite-pa.clients6.google.com
-
-# Dynamic AI endpoint keywords
 DOMAIN-KEYWORD,chatgpt-async-webps-prod-
-
-# AI first-party/service domains
 DOMAIN-SUFFIX,01.ai
 DOMAIN-SUFFIX,abtestvm-sg.bytedance.com
 DOMAIN-SUFFIX,agentclientprotocol.com

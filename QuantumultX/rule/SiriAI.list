@@ -1,10 +1,16 @@
 # NAME: SiriAI
 # AUTHOR: Horatio
-# FORMAT: Quantumult X Remote Filter
-# SOURCE: Loon/rule/SiriAI.lsr
-# UPDATED: 2026-09-24
-# TOTAL: 6
-# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+# FORMAT: Quantumult X filter_remote
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 6
+# SOURCE: Loon/rule/SiriAI.lsr (same repository)
+# USE: [filter_remote] with force-policy=<policy>.
+# PROVENANCE / EXISTING NOTES:
+# Apple Siri / Apple Intelligence core routing.
+# Based on Apple's current enterprise network requirements.
+# Siri / Dictation
+# Siri / Spotlight / Search services
+# Apple Intelligence / Private Cloud Compute
 
 HOST,guzzoni.apple.com
 HOST-SUFFIX,smoot.apple.com

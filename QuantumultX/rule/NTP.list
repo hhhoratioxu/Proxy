@@ -1,11 +1,13 @@
 # NAME: NTP
 # AUTHOR: Horatio
-# FORMAT: Quantumult X Remote Filter
-# UPDATED: 2026-09-25
-# TOTAL: 85
+# FORMAT: Quantumult X filter_remote
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 85
+# SOURCE: Loon/rule/NTP.lsr (same repository)
+# USE: [filter_remote] with force-policy=<policy>.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + blackmatrix7 NTPService
 # NOTE: Comprehensive NTP/time-service routing set including Apple, Google, Microsoft, Cloudflare, Aliyun, Tencent and public pools.
-# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
 HOST-SUFFIX,cn.ntp.org.cn
 HOST-SUFFIX,de.ntp.org.cn

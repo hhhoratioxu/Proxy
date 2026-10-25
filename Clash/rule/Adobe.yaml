@@ -1,10 +1,13 @@
 # NAME: Adobe
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/Adobe.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
 # RULES: 274
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,Adobe,POLICY
+# SOURCE: Loon/rule/Adobe.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: Horatio existing + v2fly/domain-list-community (Adobe, Adobe Activation, Typekit)
+# NOTE: Comprehensive Adobe/Creative Cloud/Acrobat/Behance/Typekit/Marketo/Magento routing set.
 
 payload:
   - 'DOMAIN,3dns-1.adobe.com'

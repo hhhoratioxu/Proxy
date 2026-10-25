@@ -1,8 +1,12 @@
 # NAME: Bilibili
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 133
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 133
+# SOURCE: Loon/rule/Bilibili.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# COMPAT: no_resolve is a rule-set-wide flag in Egern.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community (Bilibili/CDN/Game)
 
 no_resolve: true
@@ -147,4 +151,3 @@ ip_cidr_set:
   - "120.92.153.217/32"
   - "134.175.207.130/32"
   - "203.107.1.0/24"
-

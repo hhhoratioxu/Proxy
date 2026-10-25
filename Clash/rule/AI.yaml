@@ -1,10 +1,21 @@
 # NAME: AI
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/AI.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
 # RULES: 476
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,AI,POLICY
+# SOURCE: Loon/rule/AI.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# PROVENANCE / EXISTING NOTES:
+# Combined AI routing rules for global and mainland-China AI services.
+# Coverage: assistants/search, foundation-model APIs, coding/agents, image/video/audio,
+# productivity/writing/meeting AI, model hosting/inference and major China AI platforms.
+# Sources: existing Horatio rules + v2fly/domain-list-community + VPSDance/ai-proxy-rules
+# + Repcz/Tool + selected official service domains.
+# Shared third-party/CDN/analytics domains are intentionally excluded when they would
+# over-match unrelated traffic. Place this AI rule before generic Google/Microsoft/GitHub/Meta rules.
+# Exact AI endpoints on shared infrastructure
+# Dynamic AI endpoint keywords
+# AI first-party/service domains
 
 payload:
   - 'DOMAIN,ai.developer.meta.com'

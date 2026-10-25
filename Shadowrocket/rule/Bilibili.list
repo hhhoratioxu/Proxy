@@ -1,10 +1,12 @@
 # NAME: Bilibili
 # AUTHOR: Horatio
-# FORMAT: Shadowrocket Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 133
+# FORMAT: Shadowrocket rule set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 133
+# SOURCE: Loon/rule/Bilibili.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community (Bilibili/CDN/Game)
-# NOTE: Import with RULE-SET and assign the desired policy.
 
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com

@@ -1,10 +1,13 @@
 # NAME: Infuse
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/Infuse.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
 # RULES: 13
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,Infuse,POLICY
+# SOURCE: Loon/rule/Infuse.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: Firecore/Infuse services + TMDB + Trakt + OpenSubtitles + observed Infuse sync endpoint + Horatio custom media domains
+# NOTE: TMDB is Infuse's current primary online metadata source.
 
 payload:
   - 'DOMAIN,infuse-sync.s3-accelerate.amazonaws.com'

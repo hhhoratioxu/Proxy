@@ -1,11 +1,13 @@
 # NAME: Infuse
 # AUTHOR: Horatio
-# FORMAT: Quantumult X Remote Filter
-# UPDATED: 2026-09-25
-# TOTAL: 13
+# FORMAT: Quantumult X filter_remote
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 13
+# SOURCE: Loon/rule/Infuse.lsr (same repository)
+# USE: [filter_remote] with force-policy=<policy>.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Firecore/Infuse services + TMDB + Trakt + OpenSubtitles + observed Infuse sync endpoint + Horatio custom media domains
 # NOTE: TMDB is Infuse's current primary online metadata source.
-# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
 HOST,infuse-sync.s3-accelerate.amazonaws.com
 HOST-SUFFIX,firecore.com

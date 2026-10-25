@@ -1,8 +1,11 @@
 # NAME: Adobe
 # AUTHOR: Horatio
-# FORMAT: Loon Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 274
+# FORMAT: Loon remote .lsr (policy-less)
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 274
+# SOURCE: Loon/rule/Adobe.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community (Adobe, Adobe Activation, Typekit)
 # NOTE: Comprehensive Adobe/Creative Cloud/Acrobat/Behance/Typekit/Marketo/Magento routing set.
 

@@ -1,10 +1,13 @@
 # NAME: TikTok
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/TikTok.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
 # RULES: 38
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,TikTok,POLICY
+# SOURCE: Loon/rule/TikTok.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# PROVENANCE / EXISTING NOTES:
+# TikTok global service rule set.
+# Includes TikTok app/web, media/CDN and related delivery domains from v2fly/domain-list-community.
 
 payload:
   - 'DOMAIN,p16-tiktokcdn-com.akamaized.net'

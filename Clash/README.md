@@ -8,7 +8,7 @@
 
 共用图标及导入入口：[Icons](../Icons/)。
 
-本目录包含 **26 组** `classical` 格式的远程分流规则。原有 Loon / Egern / Quantumult X / Shadowrocket 内容未受影响。
+本目录包含 **26 组** `classical` 格式的远程分流规则。六个客户端的分流规则现按各自格式统一维护，详情见 [全库规则格式审核](../Docs/Rule-Format-Compliance.md)。
 
 ## 最方便的方式：扩展脚本
 
@@ -87,7 +87,7 @@ rules:
 - 保留此前已有的 Parsec / ParsecP2P 原版 Clash 文件。所有文件须使用 `behavior: classical`，不能用 `behavior: domain`。
 - 实际路由效果还取决于 DNS、TUN、进程匹配和节点 UDP 支持；建议用 Clash Verge Rev 的连接与日志页面确认。
 
-更新时间：2026-10-10。
+更新时间：2026-10-25。
 
 ## 相关说明
 

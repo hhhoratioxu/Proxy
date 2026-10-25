@@ -1,8 +1,12 @@
 # NAME: Telegram
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 57
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 52
+# SOURCE: Loon/rule/Telegram.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# COMPAT: no_resolve is a rule-set-wide flag in Egern.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + blackmatrix7 Telegram + v2fly/domain-list-community Telegram
 # NOTE: Telegram app/web/CDN, related official services, IPv4/IPv6 and Telegram ASNs.
 
@@ -67,13 +71,7 @@ ip_cidr6_set:
 
 asn_set:
   - "211157"
-  - "211157"
-  - "44907"
   - "44907"
   - "59930"
-  - "59930"
-  - "62014"
   - "62014"
   - "62041"
-  - "62041"
-

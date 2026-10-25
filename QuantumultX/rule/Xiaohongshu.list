@@ -1,12 +1,14 @@
-# NAME: Xiaohongshu / REDnote
+# NAME: Xiaohongshu
 # AUTHOR: Horatio
-# FORMAT: Quantumult X Remote Filter
-# UPDATED: 2026-09-25
-# TOTAL: 29
+# FORMAT: Quantumult X filter_remote
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 29
+# SOURCE: Loon/rule/Xiaohongshu.lsr (same repository)
+# USE: [filter_remote] with force-policy=<policy>.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly current REDnote domains + Xiaohongshu/行吟备案域名 cross-check
 # NOTE: Covers Xiaohongshu/REDnote app/web/CDN/short-link/legacy and related first-party domains.
 # NOTE: AskDiandian AI domains stay in the separate AI rule to avoid policy overlap.
-# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
 HOST-SUFFIX,cdnxhs.com
 HOST-SUFFIX,fengkongcloud.com

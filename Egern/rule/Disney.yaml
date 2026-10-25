@@ -1,8 +1,11 @@
 # NAME: Disney
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 245
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 245
+# SOURCE: Loon/rule/Disney.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community Disney ecosystem (Disney/BAMTech/ESPN/Hotstar/Hulu/Marvel/NatGeo/Star)
 # NOTE: Comprehensive Disney streaming and first-party ecosystem routing set.
 
@@ -256,4 +259,3 @@ domain_suffix_set:
 
 user_agent_set:
   - "Disney+*"
-

@@ -1,8 +1,11 @@
 # NAME: Weverse
 # AUTHOR: Horatio
-# FORMAT: Shadowrocket Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 14
+# FORMAT: Shadowrocket rule set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 14
+# SOURCE: Loon/rule/Weverse.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio observed Weverse/NAVER endpoints + current public Weverse media host cross-checks
 # NOTE: Weverse, Weverse Shop, static/media CDN, NAVER APIs and live/resource delivery hosts.
 

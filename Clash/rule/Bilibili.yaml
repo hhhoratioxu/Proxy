@@ -1,11 +1,13 @@
 # NAME: Bilibili
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/Bilibili.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
 # RULES: 129
-# NOTE: 4 USER-AGENT entries omitted (unsupported by Mihomo).
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,Bilibili,POLICY
+# SOURCE: Loon/rule/Bilibili.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# COMPAT: omitted 4 USER-AGENT rules (not supported by Mihomo).
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: Horatio existing + v2fly/domain-list-community (Bilibili/CDN/Game)
 
 payload:
   - 'DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com'

@@ -1,11 +1,13 @@
 # NAME: Disney
 # AUTHOR: Horatio
-# FORMAT: Quantumult X Remote Filter
-# UPDATED: 2026-09-25
-# TOTAL: 245
+# FORMAT: Quantumult X filter_remote
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 245
+# SOURCE: Loon/rule/Disney.lsr (same repository)
+# USE: [filter_remote] with force-policy=<policy>.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community Disney ecosystem (Disney/BAMTech/ESPN/Hotstar/Hulu/Marvel/NatGeo/Star)
 # NOTE: Comprehensive Disney streaming and first-party ecosystem routing set.
-# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
 HOST,disney.my.sentry.io
 HOST,disneyplus.com.ssl.sc.omtrdc.net

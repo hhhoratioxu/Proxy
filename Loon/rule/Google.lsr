@@ -1,9 +1,11 @@
-# NAME: Google + YouTube
+# NAME: Google
 # AUTHOR: Horatio
-# FORMAT: Loon Rule Set
-# UPDATED: 2026-09-22
-# TOTAL: 887
-#
+# FORMAT: Loon remote .lsr (policy-less)
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 887
+# SOURCE: Loon/rule/Google.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # Combined Google + YouTube rule set.
 # YouTube domains are intentionally included in this Google policy.
 # Place AI rules before this file if Gemini/Google AI should use a separate AI policy.

@@ -1,8 +1,11 @@
-# NAME: Xiaohongshu / REDnote
+# NAME: Xiaohongshu
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 29
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 29
+# SOURCE: Loon/rule/Xiaohongshu.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly current REDnote domains + Xiaohongshu/行吟备案域名 cross-check
 # NOTE: Covers Xiaohongshu/REDnote app/web/CDN/short-link/legacy and related first-party domains.
 # NOTE: AskDiandian AI domains stay in the separate AI rule to avoid policy overlap.
@@ -37,4 +40,3 @@ domain_suffix_set:
   - "yuukoo.com.cn"
   - "yuukoo.net"
   - "yuukoo.red"
-

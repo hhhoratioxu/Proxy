@@ -1,8 +1,11 @@
 # NAME: Telegram
 # AUTHOR: Horatio
-# FORMAT: Loon Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 57
+# FORMAT: Loon remote .lsr (policy-less)
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 52
+# SOURCE: Loon/rule/Telegram.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + blackmatrix7 Telegram + v2fly/domain-list-community Telegram
 # NOTE: Telegram app/web/CDN, related official services, IPv4/IPv6 and Telegram ASNs.
 
@@ -54,12 +57,7 @@ IP-CIDR6,2001:b28:f23c::/47,no-resolve
 IP-CIDR6,2001:b28:f23f::/48,no-resolve
 IP-CIDR6,2a0a:f280::/29,no-resolve
 IP-ASN,211157
-IP-ASN,211157,no-resolve
 IP-ASN,44907
-IP-ASN,44907,no-resolve
 IP-ASN,59930
-IP-ASN,59930,no-resolve
 IP-ASN,62014
-IP-ASN,62014,no-resolve
 IP-ASN,62041
-IP-ASN,62041,no-resolve

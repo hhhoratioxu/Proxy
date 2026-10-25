@@ -1,14 +1,17 @@
 # NAME: Spotify
 # AUTHOR: Horatio
-# FORMAT: Mihomo/Clash classical YAML rule-provider (behavior: classical)
-# UPDATED: 2026-10-25
-# RULES: 29 (8 exact domains, 21 suffix domains)
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 29
+# SOURCE: Loon/rule/Spotify.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# COMPAT: omitted 1 USER-AGENT rules (not supported by Mihomo).
+# PROVENANCE / EXISTING NOTES:
 # SOURCES: v2fly/domain-list-community, MetaCubeX/meta-rules-dat, blackmatrix7/ios_rule_script
 # NOTE: Domain-only routing is prioritized for accuracy; broad keywords and legacy literal IPs removed.
 # NOTE: Choose the US policy/node when importing; rule lists do not enforce a country.
 # NOTE: Spotify may change endpoints; real-device traffic and account region are not verified here.
-
-# NOTE: User-Agent rules are not available in Mihomo classical rule providers.
+# NOTE: User-Agent matching requires observable HTTP request metadata.
 
 payload:
   - 'DOMAIN,audio-ak-spotify-com.akamaized.net'

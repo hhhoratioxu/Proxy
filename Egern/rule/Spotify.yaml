@@ -1,8 +1,11 @@
 # NAME: Spotify
 # AUTHOR: Horatio
-# FORMAT: Egern YAML remote rule set
-# UPDATED: 2026-10-25
-# RULES: 30 (8 exact domains, 21 suffix domains, 1 User-Agent rule)
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 30
+# SOURCE: Loon/rule/Spotify.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# PROVENANCE / EXISTING NOTES:
 # SOURCES: v2fly/domain-list-community, MetaCubeX/meta-rules-dat, blackmatrix7/ios_rule_script
 # NOTE: Domain-only routing is prioritized for accuracy; broad keywords and legacy literal IPs removed.
 # NOTE: Choose the US policy/node when importing; rule lists do not enforce a country.

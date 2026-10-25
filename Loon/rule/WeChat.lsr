@@ -1,8 +1,11 @@
-# NAME: Weixin + WeChat
+# NAME: WeChat
 # AUTHOR: Horatio
-# FORMAT: Loon Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 334
+# FORMAT: Loon remote .lsr (policy-less)
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 333
+# SOURCE: Loon/rule/WeChat.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio comprehensive rules + blackmatrix7 WeChat cross-check
 # NOTE: Mainland Weixin and international WeChat domains, direct-IP patterns, IPv4/IPv6, ASN and user agents.
 
@@ -339,4 +342,3 @@ IP-CIDR6,240e:f7:a070:100::/60,no-resolve
 IP-CIDR6,240e:ff:9018:100::/60,no-resolve
 IP-CIDR6,240e:ff:f100::/44,no-resolve
 IP-ASN,132203
-IP-ASN,132203,no-resolve

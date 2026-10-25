@@ -1,8 +1,11 @@
-# NAME: Xiaohongshu / REDnote
+# NAME: Xiaohongshu
 # AUTHOR: Horatio
-# FORMAT: Loon Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 29
+# FORMAT: Loon remote .lsr (policy-less)
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 29
+# SOURCE: Loon/rule/Xiaohongshu.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly current REDnote domains + Xiaohongshu/行吟备案域名 cross-check
 # NOTE: Covers Xiaohongshu/REDnote app/web/CDN/short-link/legacy and related first-party domains.
 # NOTE: AskDiandian AI domains stay in the separate AI rule to avoid policy overlap.

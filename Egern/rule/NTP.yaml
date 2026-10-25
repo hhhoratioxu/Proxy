@@ -1,8 +1,11 @@
 # NAME: NTP
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 85
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 85
+# SOURCE: Loon/rule/NTP.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + blackmatrix7 NTPService
 # NOTE: Comprehensive NTP/time-service routing set including Apple, Google, Microsoft, Cloudflare, Aliyun, Tencent and public pools.
 
@@ -92,4 +95,3 @@ domain_suffix_set:
   - "time7.apple.com"
   - "tw.ntp.org.cn"
   - "us.ntp.org.cn"
-

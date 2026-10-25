@@ -1,11 +1,14 @@
 # NAME: WeChat
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/WeChat.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
-# RULES: 332
-# NOTE: 2 USER-AGENT entries omitted (unsupported by Mihomo).
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,WeChat,POLICY
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 331
+# SOURCE: Loon/rule/WeChat.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# COMPAT: omitted 2 USER-AGENT rules (not supported by Mihomo).
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: Horatio comprehensive rules + blackmatrix7 WeChat cross-check
+# NOTE: Mainland Weixin and international WeChat domains, direct-IP patterns, IPv4/IPv6, ASN and user agents.
 
 payload:
   - 'DOMAIN,apd-pcdnwxlogin.teg.tencent-cloud.net'
@@ -339,4 +342,3 @@ payload:
   - 'IP-CIDR6,240e:ff:9018:100::/60,no-resolve'
   - 'IP-CIDR6,240e:ff:f100::/44,no-resolve'
   - 'IP-ASN,132203'
-  - 'IP-ASN,132203,no-resolve'

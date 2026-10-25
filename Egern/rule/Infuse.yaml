@@ -1,8 +1,11 @@
 # NAME: Infuse
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 13
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 13
+# SOURCE: Loon/rule/Infuse.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Firecore/Infuse services + TMDB + Trakt + OpenSubtitles + observed Infuse sync endpoint + Horatio custom media domains
 # NOTE: TMDB is Infuse's current primary online metadata source.
 
@@ -22,4 +25,3 @@ domain_suffix_set:
   - "themoviedb.org"
   - "tmdb.org"
   - "trakt.tv"
-

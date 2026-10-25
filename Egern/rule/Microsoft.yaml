@@ -1,9 +1,12 @@
 # NAME: Microsoft
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 815
-# SOURCE: Loon/rule/Microsoft.lsr
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 815
+# SOURCE: Loon/rule/Microsoft.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: Horatio existing + v2fly/domain-list-community Microsoft/Azure/Bing/Dev/PKI/MSN/OneDrive/Xbox
 # NOTE: GitHub stays in the separate GitHub rule; Copilot stays in the separate AI rule.
 # NOTE: Covers Microsoft web/services, Azure, Windows Update, Office/OneDrive, Bing, Xbox, VS Code and PKI/CDN endpoints.
 
@@ -829,4 +832,3 @@ user_agent_set:
   - "Microsoft*"
   - "OneDrive*"
   - "OneDriveiOSApp*"
-

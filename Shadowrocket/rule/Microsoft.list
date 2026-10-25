@@ -1,12 +1,14 @@
 # NAME: Microsoft
 # AUTHOR: Horatio
-# FORMAT: Shadowrocket Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 815
-# SOURCE: Loon/rule/Microsoft.lsr
+# FORMAT: Shadowrocket rule set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 815
+# SOURCE: Loon/rule/Microsoft.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: Horatio existing + v2fly/domain-list-community Microsoft/Azure/Bing/Dev/PKI/MSN/OneDrive/Xbox
 # NOTE: GitHub stays in the separate GitHub rule; Copilot stays in the separate AI rule.
 # NOTE: Covers Microsoft web/services, Azure, Windows Update, Office/OneDrive, Bing, Xbox, VS Code and PKI/CDN endpoints.
-# NOTE: Import with RULE-SET and assign the desired policy.
 
 DOMAIN,az764295.vo.msecnd.net
 DOMAIN,azure.microsoft.com

@@ -1,10 +1,12 @@
 # NAME: HBOMAX
 # AUTHOR: Horatio
-# FORMAT: Loon Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 90
+# FORMAT: Loon remote .lsr (policy-less)
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 90
+# SOURCE: Loon/rule/HBOMAX.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: blackmatrix7 HBO/HBOUSA + v2fly domain-list-community hbo + existing Horatio rules
-#
 # Covers Max, HBO Max, HBO NOW, HBO GO, Cinemax and HBO regional/legacy infrastructure.
 
 DOMAIN-SUFFIX,bcbolthboa-a.akamaihd.net

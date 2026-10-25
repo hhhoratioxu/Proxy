@@ -1,15 +1,11 @@
-# FORMAT: Surge Remote Rule Set
-# UPDATED: 2026-10-16
-# RULES: 13
-# PORTED FROM: https://raw.githubusercontent.com/hhhoratioxu/Proxy/73e99eb3e2c36920768328b65bbf60b8eed3281f/Loon/rule/Infuse.lsr
-# POLICY: Assign a policy when importing this URL as RULE-SET in Surge.
-# All source rule entries and their order are retained.
-#
 # NAME: Infuse
 # AUTHOR: Horatio
-# SOURCE FORMAT: Loon Rule Set
-# SOURCE UPDATED: 2026-09-25
-# TOTAL: 13
+# FORMAT: Surge external RULE-SET
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 13
+# SOURCE: Loon/rule/Infuse.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Firecore/Infuse services + TMDB + Trakt + OpenSubtitles + observed Infuse sync endpoint + Horatio custom media domains
 # NOTE: TMDB is Infuse's current primary online metadata source.
 

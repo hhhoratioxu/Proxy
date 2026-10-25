@@ -1,10 +1,25 @@
 # NAME: Apple
 # AUTHOR: Horatio
-# FORMAT: Quantumult X Remote Filter
-# SOURCE: Loon/rule/Apple.lsr
-# UPDATED: 2026-09-23
-# TOTAL: 1765
-# NOTE: Import under [filter_remote] and assign policy with force-policy in Quantumult X.
+# FORMAT: Quantumult X filter_remote
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 1761
+# SOURCE: Loon/rule/Apple.lsr (same repository)
+# USE: [filter_remote] with force-policy=<policy>.
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: blackmatrix7 Apple_All + Apple official enterprise network requirements + Horatio curated rules
+# Apple official reference: https://support.apple.com/101555
+# APNs reference: https://support.apple.com/102266
+# NOTE: PROCESS-NAME entries are excluded because they are not part of Loon Remote Rule syntax.
+# NOTE: broad DOMAIN-SUFFIX,akadns.net is excluded to avoid matching unrelated Akamai customers.
+# DOMAIN: 138
+# DOMAIN-SUFFIX: 1571
+# DOMAIN-KEYWORD: 7
+# USER-AGENT: 23
+# IP-CIDR: 16
+# IP-CIDR6: 10
+# Covers Apple Intelligence, Siri, APNs Push, iCloud, Private Relay, Apple ID,
+# App Store, TestFlight, Music, TV, News, Maps, Find My, Wallet, system updates,
+# developer services, China Apple/iCloud domains, Apple CDN/CNAMEs and legacy Apple domains.
 
 HOST,guzzoni.apple.com
 HOST-SUFFIX,smoot.apple.com
@@ -1755,19 +1770,15 @@ HOST-SUFFIX,icloud.com.akadns.net
 HOST-SUFFIX,apple.com.edgekey.net
 HOST-SUFFIX,apple.org
 HOST-SUFFIX,apple
-IP-CIDR,17.0.0.0/8
-IP6-CIDR,2403:300::/32
-IP6-CIDR,2620:149::/32
-IP6-CIDR,2a01:b740::/32
-IP-CIDR,17.249.0.0/16
-IP-CIDR,17.252.0.0/16
-IP-CIDR,17.57.144.0/22
-IP-CIDR,17.188.128.0/18
-IP-CIDR,17.188.20.0/23
-IP6-CIDR,2620:149:a44::/48
-IP6-CIDR,2403:300:a42::/48
-IP6-CIDR,2403:300:a51::/48
-IP6-CIDR,2a01:b740:a42::/48
+IP-CIDR,17.249.0.0/16,no-resolve
+IP-CIDR,17.252.0.0/16,no-resolve
+IP-CIDR,17.57.144.0/22,no-resolve
+IP-CIDR,17.188.128.0/18,no-resolve
+IP-CIDR,17.188.20.0/23,no-resolve
+IP6-CIDR,2620:149:a44::/48,no-resolve
+IP6-CIDR,2403:300:a42::/48,no-resolve
+IP6-CIDR,2403:300:a51::/48,no-resolve
+IP6-CIDR,2a01:b740:a42::/48,no-resolve
 HOST-SUFFIX,icloud.apple.com
 HOST-SUFFIX,gc.apple.com
 HOST-SUFFIX,iwork.apple.com

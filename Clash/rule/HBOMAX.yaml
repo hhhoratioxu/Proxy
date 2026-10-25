@@ -1,11 +1,14 @@
 # NAME: HBOMAX
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/HBOMAX.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
 # RULES: 88
-# NOTE: 2 USER-AGENT entries omitted (unsupported by Mihomo).
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,HBOMAX,POLICY
+# SOURCE: Loon/rule/HBOMAX.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# COMPAT: omitted 2 USER-AGENT rules (not supported by Mihomo).
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: blackmatrix7 HBO/HBOUSA + v2fly domain-list-community hbo + existing Horatio rules
+# Covers Max, HBO Max, HBO NOW, HBO GO, Cinemax and HBO regional/legacy infrastructure.
 
 payload:
   - 'DOMAIN-SUFFIX,bcbolthboa-a.akamaihd.net'

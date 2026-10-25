@@ -1,15 +1,11 @@
-# FORMAT: Surge Remote Rule Set
-# UPDATED: 2026-10-16
-# RULES: 145
-# PORTED FROM: https://raw.githubusercontent.com/hhhoratioxu/Proxy/73e99eb3e2c36920768328b65bbf60b8eed3281f/Loon/rule/LAN.lsr
-# POLICY: Assign a policy when importing this URL as RULE-SET in Surge.
-# All source rule entries and their order are retained.
-#
 # NAME: LAN
 # AUTHOR: Horatio
-# SOURCE FORMAT: Loon Rule Set
-# SOURCE UPDATED: 2026-09-25
-# TOTAL: 145
+# FORMAT: Surge external RULE-SET
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 145
+# SOURCE: Loon/rule/LAN.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + blackmatrix7 Lan
 # NOTE: Private/local networks, reverse-DNS zones, router hostnames and local service domains.
 # NOTE: Usually assign this rule set to DIRECT.

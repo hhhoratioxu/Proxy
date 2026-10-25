@@ -1,11 +1,15 @@
 # NAME: Google
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/Google.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
 # RULES: 877
-# NOTE: 10 USER-AGENT entries omitted (unsupported by Mihomo).
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,Google,POLICY
+# SOURCE: Loon/rule/Google.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# COMPAT: omitted 10 USER-AGENT rules (not supported by Mihomo).
+# PROVENANCE / EXISTING NOTES:
+# Combined Google + YouTube rule set.
+# YouTube domains are intentionally included in this Google policy.
+# Place AI rules before this file if Gemini/Google AI should use a separate AI policy.
 
 payload:
   - 'DOMAIN,voice.telephony.goog'

@@ -9,6 +9,8 @@
 
 各客户端的 `rule/` 存放分流规则，`script/` 只放可直接使用的当前插件、模块、重写或任务资源；`Docs/` 放安装与使用说明。共用图标统一保存在根目录 [Icons](./Icons/)。
 
+[六客户端分流格式与全库兼容性审核（2026-10-25）](./Docs/Rule-Format-Compliance.md)。规则数据保持原有分类，格式与冗余条目已进行全量规范化；真实设备连通性仍需验证。
+
 ## 客户端入口
 
 | 客户端 | 内容 |
@@ -66,6 +68,8 @@ Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **3.1.9**，识�
 A personal collection of rules, modules, scripts and icon configurations organized by six clients.
 
 Each client keeps routing lists in `rule/` and current installable resources in `script/`. `Docs/` contains installation and usage guides. All shared icons live in the root [Icons](./Icons/) directory.
+
+[Full rule-format compliance audit for six clients (2026-10-25)](./Docs/Rule-Format-Compliance.md). All rule sets were normalized; real-device connectivity remains unverified.
 
 ## Client directories
 

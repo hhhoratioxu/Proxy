@@ -1,10 +1,25 @@
 # NAME: Apple
 # AUTHOR: Horatio
-# FORMAT: Shadowrocket Rule Set
-# SOURCE: Loon/rule/Apple.lsr
-# UPDATED: 2026-09-23
-# TOTAL: 1765
-# NOTE: Import with RULE-SET and assign the desired policy in Shadowrocket.
+# FORMAT: Shadowrocket rule set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 1761
+# SOURCE: Loon/rule/Apple.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: blackmatrix7 Apple_All + Apple official enterprise network requirements + Horatio curated rules
+# Apple official reference: https://support.apple.com/101555
+# APNs reference: https://support.apple.com/102266
+# NOTE: PROCESS-NAME entries are excluded because they are not part of Loon Remote Rule syntax.
+# NOTE: broad DOMAIN-SUFFIX,akadns.net is excluded to avoid matching unrelated Akamai customers.
+# DOMAIN: 138
+# DOMAIN-SUFFIX: 1571
+# DOMAIN-KEYWORD: 7
+# USER-AGENT: 23
+# IP-CIDR: 16
+# IP-CIDR6: 10
+# Covers Apple Intelligence, Siri, APNs Push, iCloud, Private Relay, Apple ID,
+# App Store, TestFlight, Music, TV, News, Maps, Find My, Wallet, system updates,
+# developer services, China Apple/iCloud domains, Apple CDN/CNAMEs and legacy Apple domains.
 
 DOMAIN,guzzoni.apple.com
 DOMAIN-SUFFIX,smoot.apple.com
@@ -1755,10 +1770,6 @@ DOMAIN-SUFFIX,icloud.com.akadns.net
 DOMAIN-SUFFIX,apple.com.edgekey.net
 DOMAIN-SUFFIX,apple.org
 DOMAIN-SUFFIX,apple
-IP-CIDR,17.0.0.0/8,no-resolve
-IP-CIDR6,2403:300::/32,no-resolve
-IP-CIDR6,2620:149::/32,no-resolve
-IP-CIDR6,2a01:b740::/32,no-resolve
 IP-CIDR,17.249.0.0/16,no-resolve
 IP-CIDR,17.252.0.0/16,no-resolve
 IP-CIDR,17.57.144.0/22,no-resolve

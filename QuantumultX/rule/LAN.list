@@ -1,11 +1,14 @@
 # NAME: LAN
 # AUTHOR: Horatio
-# FORMAT: Quantumult X Remote Filter
-# UPDATED: 2026-09-25
-# TOTAL: 145
+# FORMAT: Quantumult X filter_remote
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 145
+# SOURCE: Loon/rule/LAN.lsr (same repository)
+# USE: [filter_remote] with force-policy=<policy>.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + blackmatrix7 Lan
 # NOTE: Private/local networks, reverse-DNS zones, router hostnames and local service domains.
-# NOTE: Import under [filter_remote] and assign DIRECT/desired policy.
+# NOTE: Usually assign this rule set to DIRECT.
 
 HOST,asusrouter.com
 HOST,instant.arubanetworks.com
@@ -132,23 +135,23 @@ HOST-SUFFIX,tplogin.cn
 HOST-SUFFIX,ts.net
 HOST-SUFFIX,wifi.cmcc
 HOST-SUFFIX,zte.home
-IP-CIDR,0.0.0.0/8
-IP-CIDR,10.0.0.0/8
-IP-CIDR,100.64.0.0/10
-IP-CIDR,127.0.0.0/8
-IP-CIDR,169.254.0.0/16
-IP-CIDR,172.16.0.0/12
-IP-CIDR,192.0.0.0/24
-IP-CIDR,192.0.2.0/24
-IP-CIDR,192.168.0.0/16
-IP-CIDR,192.88.99.0/24
-IP-CIDR,198.18.0.0/15
-IP-CIDR,198.51.100.0/24
-IP-CIDR,203.0.113.0/24
-IP-CIDR,224.0.0.0/3
-IP-CIDR,224.0.0.0/4
-IP-CIDR,255.255.255.255/32
-IP6-CIDR,::/127
-IP6-CIDR,fc00::/7
-IP6-CIDR,fe80::/10
-IP6-CIDR,ff00::/8
+IP-CIDR,0.0.0.0/8,no-resolve
+IP-CIDR,10.0.0.0/8,no-resolve
+IP-CIDR,100.64.0.0/10,no-resolve
+IP-CIDR,127.0.0.0/8,no-resolve
+IP-CIDR,169.254.0.0/16,no-resolve
+IP-CIDR,172.16.0.0/12,no-resolve
+IP-CIDR,192.0.0.0/24,no-resolve
+IP-CIDR,192.0.2.0/24,no-resolve
+IP-CIDR,192.168.0.0/16,no-resolve
+IP-CIDR,192.88.99.0/24,no-resolve
+IP-CIDR,198.18.0.0/15,no-resolve
+IP-CIDR,198.51.100.0/24,no-resolve
+IP-CIDR,203.0.113.0/24,no-resolve
+IP-CIDR,224.0.0.0/3,no-resolve
+IP-CIDR,224.0.0.0/4,no-resolve
+IP-CIDR,255.255.255.255/32,no-resolve
+IP6-CIDR,::/127,no-resolve
+IP6-CIDR,fc00::/7,no-resolve
+IP6-CIDR,fe80::/10,no-resolve
+IP6-CIDR,ff00::/8,no-resolve

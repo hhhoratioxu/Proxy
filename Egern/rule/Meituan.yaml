@@ -1,8 +1,11 @@
 # NAME: Meituan
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 24
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 24
+# SOURCE: Loon/rule/Meituan.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community Meituan/DDMaicai
 # NOTE: Covers Meituan, Dianping, Keeta, Maoyan and Dingdong grocery ecosystem domains.
 
@@ -31,4 +34,3 @@ domain_suffix_set:
   - "neixin.cn"
   - "sankuai.com"
   - "zhenguo.com"
-

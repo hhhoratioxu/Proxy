@@ -1,10 +1,15 @@
 # NAME: LAN
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 145
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 145
+# SOURCE: Loon/rule/LAN.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# COMPAT: no_resolve is a rule-set-wide flag in Egern.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + blackmatrix7 Lan
 # NOTE: Private/local networks, reverse-DNS zones, router hostnames and local service domains.
+# NOTE: Usually assign this rule set to DIRECT.
 
 no_resolve: true
 
@@ -160,4 +165,3 @@ ip_cidr6_set:
   - "fc00::/7"
   - "fe80::/10"
   - "ff00::/8"
-

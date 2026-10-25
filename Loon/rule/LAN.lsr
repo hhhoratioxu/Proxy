@@ -1,8 +1,11 @@
 # NAME: LAN
 # AUTHOR: Horatio
-# FORMAT: Loon Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 145
+# FORMAT: Loon remote .lsr (policy-less)
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 145
+# SOURCE: Loon/rule/LAN.lsr (same repository)
+# USE: Remote rule set; select policy in the client (not in this file).
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + blackmatrix7 Lan
 # NOTE: Private/local networks, reverse-DNS zones, router hostnames and local service domains.
 # NOTE: Usually assign this rule set to DIRECT.

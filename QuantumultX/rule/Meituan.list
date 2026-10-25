@@ -1,11 +1,13 @@
 # NAME: Meituan
 # AUTHOR: Horatio
-# FORMAT: Quantumult X Remote Filter
-# UPDATED: 2026-09-25
-# TOTAL: 24
+# FORMAT: Quantumult X filter_remote
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 24
+# SOURCE: Loon/rule/Meituan.lsr (same repository)
+# USE: [filter_remote] with force-policy=<policy>.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community Meituan/DDMaicai
 # NOTE: Covers Meituan, Dianping, Keeta, Maoyan and Dingdong grocery ecosystem domains.
-# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
 HOST-SUFFIX,100.me
 HOST-SUFFIX,51ping.com

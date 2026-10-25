@@ -1,10 +1,14 @@
 # NAME: Xiaohongshu
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/Xiaohongshu.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
 # RULES: 29
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,Xiaohongshu,POLICY
+# SOURCE: Loon/rule/Xiaohongshu.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: Horatio existing + v2fly current REDnote domains + Xiaohongshu/行吟备案域名 cross-check
+# NOTE: Covers Xiaohongshu/REDnote app/web/CDN/short-link/legacy and related first-party domains.
+# NOTE: AskDiandian AI domains stay in the separate AI rule to avoid policy overlap.
 
 payload:
   - 'DOMAIN-SUFFIX,cdnxhs.com'

@@ -1,8 +1,12 @@
-# NAME: Weixin + WeChat
+# NAME: WeChat
 # AUTHOR: Horatio
-# FORMAT: Egern Remote Rule Set
-# UPDATED: 2026-09-25
-# TOTAL: 334
+# FORMAT: Egern YAML rule_set
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 333
+# SOURCE: Loon/rule/WeChat.lsr (same repository)
+# USE: reference this URL from a rule_set with an assigned policy.
+# COMPAT: no_resolve is a rule-set-wide flag in Egern.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio comprehensive rules + blackmatrix7 WeChat cross-check
 # NOTE: Mainland Weixin and international WeChat domains, direct-IP patterns, IPv4/IPv6, ASN and user agents.
 
@@ -354,5 +358,3 @@ ip_cidr6_set:
 
 asn_set:
   - "132203"
-  - "132203"
-

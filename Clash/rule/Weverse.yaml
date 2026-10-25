@@ -1,10 +1,13 @@
 # NAME: Weverse
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/Weverse.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
+# FORMAT: Mihomo classical YAML rule-provider
+# FORMAT-VERIFIED: 2026-10-25
 # RULES: 14
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,Weverse,POLICY
+# SOURCE: Loon/rule/Weverse.lsr (same repository)
+# USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
+# PROVENANCE / EXISTING NOTES:
+# SOURCE: Horatio observed Weverse/NAVER endpoints + current public Weverse media host cross-checks
+# NOTE: Weverse, Weverse Shop, static/media CDN, NAVER APIs and live/resource delivery hosts.
 
 payload:
   - 'DOMAIN,apis.naver.com'

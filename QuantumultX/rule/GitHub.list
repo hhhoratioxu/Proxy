@@ -1,11 +1,13 @@
 # NAME: GitHub
 # AUTHOR: Horatio
-# FORMAT: Quantumult X Remote Filter
-# UPDATED: 2026-09-25
-# TOTAL: 64
+# FORMAT: Quantumult X filter_remote
+# FORMAT-VERIFIED: 2026-10-25
+# RULES: 64
+# SOURCE: Loon/rule/GitHub.lsr (same repository)
+# USE: [filter_remote] with force-policy=<policy>.
+# PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community (GitHub, Copilot, npm)
 # NOTE: Covers GitHub web/API/assets/releases/Actions/Container Registry/Copilot and GitHub-owned npm services.
-# NOTE: Import under [filter_remote] and assign policy with force-policy.
 
 HOST,copilot-proxy.githubusercontent.com
 HOST,copilot-telemetry-service.githubusercontent.com
