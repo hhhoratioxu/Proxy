@@ -1,23 +1,25 @@
 # NAME: Spotify
 # AUTHOR: Horatio
-# FORMAT: Mihomo / Clash Verge Rev classical rule-provider
-# SOURCE: Loon/rule/Spotify.lsr (hhhoratioxu/Proxy)
-# UPDATED: 2026-10-10
-# RULES: 32
-# NOTE: 1 USER-AGENT entries omitted (unsupported by Mihomo).
-# USAGE: rule-providers -> behavior: classical; rules -> RULE-SET,Spotify,POLICY
+# FORMAT: Mihomo/Clash classical YAML rule-provider (behavior: classical)
+# UPDATED: 2026-10-25
+# RULES: 29 (8 exact domains, 21 suffix domains)
+# SOURCES: v2fly/domain-list-community, MetaCubeX/meta-rules-dat, blackmatrix7/ios_rule_script
+# NOTE: Domain-only routing is prioritized for accuracy; broad keywords and legacy literal IPs removed.
+# NOTE: Choose the US policy/node when importing; rule lists do not enforce a country.
+# NOTE: Spotify may change endpoints; real-device traffic and account region are not verified here.
+
+# NOTE: User-Agent rules are not available in Mihomo classical rule providers.
 
 payload:
+  - 'DOMAIN,audio-ak-spotify-com.akamaized.net'
   - 'DOMAIN,audio4-ak-spotify-com.akamaized.net'
   - 'DOMAIN,cdn-spotify-experiments.conductrics.com'
   - 'DOMAIN,heads-ak-spotify-com.akamaized.net'
+  - 'DOMAIN,heads4-ak-spotify-com.akamaized.net'
   - 'DOMAIN,spotify.com.edgesuite.net'
   - 'DOMAIN,spotify.map.fastly.net'
   - 'DOMAIN,spotify.map.fastlylb.net'
-  - 'DOMAIN-KEYWORD,spotify'
-  - 'DOMAIN-SUFFIX,audio-ak-spotify-com.akamaized.net'
   - 'DOMAIN-SUFFIX,byspotify.com'
-  - 'DOMAIN-SUFFIX,heads4-ak-spotify-com.akamaized.net'
   - 'DOMAIN-SUFFIX,lifeatspotify.com'
   - 'DOMAIN-SUFFIX,pscdn.co'
   - 'DOMAIN-SUFFIX,scdn.co'
@@ -38,5 +40,3 @@ payload:
   - 'DOMAIN-SUFFIX,spotifynewsroom.jp'
   - 'DOMAIN-SUFFIX,spotilocal.com'
   - 'DOMAIN-SUFFIX,tospotify.com'
-  - 'IP-CIDR,104.154.127.126/32,no-resolve'
-  - 'IP-CIDR,35.186.224.47/32,no-resolve'
