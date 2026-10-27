@@ -15,8 +15,8 @@ const response='(?:'+[API_REGEX,CAPTION_REGEX,UMP_REGEX].join('|')+')';
 const request='^https://(?:youtubei(?:-att)?\\.googleapis\\.com|(?:www|m)\\.youtube\\.com)(?::443)?/youtubei/v1/(?:browse|guide|log_event)(?:\\?.*)?$';
 const hosts=['youtubei.googleapis.com','youtubei-att.googleapis.com','www.youtube.com','m.youtube.com','*.googlevideo.com'];
 const defaults=settings.map(([k,v])=>k+'='+v).join('&');
-const title='YouTube Clean 1.2.9';
-const description='译文按标点均衡换行；去广告、字幕翻译及底栏独立开关。需 HTTPS 解密。';
+const title='YouTube Clean 1.2.10';
+const description='补齐新版主页内容容器过滤；字幕翻译与底栏独立开关。需 HTTPS 解密。';
 const runtime=client=>raw+ref+'/'+client+'/script/YouTubeClean.js';
 const manual=client=>'https://github.com/hhhoratioxu/Proxy/blob/main/'+client+'/Docs/YouTubeClean.md';
 async function save(client,extension,content,stem='YouTubeClean'){
@@ -31,7 +31,7 @@ async function save(client,extension,content,stem='YouTubeClean'){
 }
 
 const schema=settings.map(([key,value,label])=>'  '+key+':\n    name: '+label+'\n    default_value: '+JSON.stringify(value)+'\n    options: '+(key==='TARGET_LANGUAGE'?'["zh-Hans", "zh-Hant", "en", "ja", "ko"]':'["true", "false"]')).join('\n');
-await save('Egern','yaml',`# Horatio YouTube Clean 1.2.9; native ESM runtime.
+await save('Egern','yaml',`# Horatio YouTube Clean 1.2.10; native ESM runtime.
 name: ${title}
 author: Horatio Xu
 icon: captions.bubble.fill
@@ -88,7 +88,7 @@ await save('Loon','lpx',`#!name = ${title}
 #!author = Horatio Xu
 #!homepage = ${manual('Loon')}
 #!loon_version = 3.5.1(983)
-#!date = 2026-10-20
+#!date = 2026-10-28
 
 [Argument]
 ${loonArgs}

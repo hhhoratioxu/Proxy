@@ -1,4 +1,4 @@
-# Horatio YouTube Clean 1.2.9
+# Horatio YouTube Clean 1.2.10
 
 独立编写的 YouTube 去广告、双语字幕与底栏控制脚本。每个支持客户端只提供一个当前安装入口，统一默认开启深层广告过滤，不再提供测试方案选择。
 
@@ -13,6 +13,30 @@
 1.2.9 新增默认开启的 `CAPTION_LAYOUT`（译文智能换行），继续保留 1.2.8 的分配优化。Loon 默认仅显示译文，其他客户端已有默认与用户保存设置继续生效。
 
 2026-10-20：Loon 正式入口采用官方注册的 `.lpx`（Loon Plugin Extension）后缀，依据 [Loon News 的扩展名说明](https://t.me/LoonNews/1754)。旧 `YouTubeClean.plugin` 地址仅兼容已有订阅；生成器在该旧文件已经存在时同步相同内容，新输出目录只生成 `.lpx`。这是同一版本的地址兼容，不是两个功能版本，只需启用一个。运行脚本、开关和字幕排版版本仍为 1.2.9。
+
+## 1.2.10 新主页内容容器
+
+2026-10-28 用户的 Loon 3.5.3(1011) 真实日志确认：1.2.9 命中 browse RESPONSE、HTTP 200、protobuf 1009463 字节，去广告及深层过滤均开启，但只识别 1 个 feedCard，templates 为空，unknownRendererTags 为 `[474376530]`，正文没有改动。旧路径没有遍历这个扩展，旧单卡深扫还对大于 512 KiB 的卡片直接保留。该日志没有响应正文，不能据此给它的内部字段编造类型，或断言里面所有内容均是广告。
+
+本版只在已进入主页卡片的位置，对这个实际观察到的字段补上受限结构遍历：验证原有 native Element/newElement/componentType/template URI 路径，删除明确广告模板对应的节点，或已由 MIT 协议声明确认的广告 renderer 字段。保持邻近普通视频、分隔项、分页、未知字段与外部全局资源的原始字节。该容器不再因为一个后代是广告就被整体删除；普通标题、URL 和 JSON 样式文字不作为匹配依据。`REMOVE_ADS=false` 或 `DEEP_FILTER=false` 时不运行此扩展处理。
+
+所有新容器在同一响应内共享 **8192 个解析节点、24 MiB 累计访问字节、24 层深度**，单节点最多 2048 个字段；沿用 8 MiB 正文限制。预算用尽时撤回当前容器尚未提交的修改，其他已完成结果保留。不增加请求、并发、缓存或宿主 API，保留 1.2.9 字幕排版、Loon 仅译文默认和底栏开关。这是脚本工作量边界，不是宿主峰值内存保证。
+
+诊断新增 `feedEnvelopeFields`、`feedEnvelopeNodes`、`feedEnvelopeElements`、`feedEnvelopeBypasses` 和 `feedEnvelopeShapes`。后者最多 3 组，每组仅记录外层大小与前 12 项字段号/线型/长度；不输出字段值、文字、URL 或原始字节。字段出现证明走到了新容器，元素次数与模板列表说明识别情况；changed/removedParts 说明实际改动，bypasses 大于零表示有容器被预算保护保留。不能只凭脚本执行完成认定广告已清除。
+
+最先加入的 15 项检查在旧版上 11 项失败，补齐后通过；含两种分页位置、三种独立构造的内层写法、超过 512 KiB 的混合容器、正常内容/外部资源保留、开关与幂等。再补共享预算、传统广告字段和五客户端实际构建脚本检查，共 **282 项通过**。内层夹具是独立构造，不能称为取得了用户的真实响应。匿名 iOS 21.42.4 公开 browse 样本为 769233 字节，没有投放的广告，也没有本次字段；在其真实外层插入自写新容器后，移除自写广告并逐字节保留其他内容，见[公开外层混合验证](./test/evidence/home-envelope-2026-10-28.json)。
+
+### 桌面处理开销
+
+12 次交错独立 Node/V8 进程（2 个自写场景，每版各 3 次）核对预期输出、正常内容保留、零网络请求和单次完成。约 963 KiB 的既有原生主页路径峰值 RSS 中位数 79.70 → 80.22 MiB、22.29 → 22.10 ms；约 949 KiB 新混合容器原来被直接跳过，修复后会真实解析和过滤，63.13 → 85.89 MiB、9.53 → 19.25 ms。因此不能宣称本次继续降低内存，也不能用旧版未处理的输出当作相同工作量。
+
+这些是包含 Node/V8、接口模拟和输入的桌面整进程数值，**不是 Loon/iPhone 内存或 VPN 验收**。原始记录见 [feed-envelope-1.2.10.json](./bench/feed-envelope-1.2.10.json)。用[固定 1.2.9 回调脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/06b0b47bb86f0e326d83a1fc04f5606f53ec8710/Loon/script/YouTubeClean.js)作为基线后，可复现：
+
+```sh
+node bench/feed-envelope.mjs /tmp/youtube-clean-1.2.9.js dist/clients.js /tmp/youtube-clean-feed-cost
+```
+
+用户设备上的实际投放结果仍需更新后的 browse 日志和主页显示确认；本版不承诺所有服务端实验或内嵌口播广告均已清除。
 
 ## 1.2.9 译文排版
 

@@ -1,4 +1,4 @@
-Horatio YouTube Clean 1.2.9
+Horatio YouTube Clean 1.2.10
 Copyright (c) 2026 Horatio Xu. MIT License.
 
 The protobuf wire editor, advertisement policies, subtitle parser and alignment,
@@ -37,3 +37,5 @@ The advertising classification of eleven complete video, image, carousel and bra
 1.2.8 reduces allocations with exactly sized UTF-8 encoding, a lazy 4096-unit synchronous UTF-16 scratch buffer, allocation-free opaque-text classification, explicit JSON mutation tracking, forward XML subtitle rendering and incremental HMAC updates. All parsing, advertisement policies, caption fallback, privacy and size/time boundaries remain. Performance evidence is a desktop Node/V8 interface simulation, not native Loon/iPhone memory or VPN acceptance.
 
 1.2.9 adds independently written translation text layout: two bounded forward scans, punctuation-aware balanced wrapping and a native CAPTION_LAYOUT toggle. It does not change player fonts, backgrounds, screen position, subtitle timing, request counts or caches. Native target-only JSON3 append groups retain their original layout. Previously recorded memory measurements apply specifically to 1.2.8, not to this layout release.
+
+1.2.10 adds independent, bounded parsing inside the homepage field 474376530 observed in a real Loon diagnostic on 2026-10-28. Its undocumented inner schema is not assigned a guessed type: only verified native Element template paths and protocol-declared ad renderers are filtered, preserving neighboring entries. All new envelopes share a limit of 8192 parsed nodes and 24 MiB of cumulative input visits, at depth 24. These are work limits, not native host memory guarantees. The user response body was not provided; synthetic matching-envelope and public-envelope checks do not establish device-side ad removal.

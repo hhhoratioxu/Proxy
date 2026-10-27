@@ -86,7 +86,7 @@ export async function handle(io,settings){
     return null;
   }finally{
     if(trace&&typeof io.report==='function')try{
-      io.report({...diagnostic,removedParts:diagnostic.changed?trace.removed:0,feedCards:trace.feedCards,templates:[...trace.templates],matchedAdTemplates:[...trace.matchedAdTemplates],unknownRendererTags:[...trace.unknown],...(trace.rootFields?{rootFields:trace.rootFields}:{}),...(trace.umpFrames!==undefined?{umpFrames:trace.umpFrames,umpTypes:trace.umpTypes,umpHeaderTypes:trace.umpHeaderTypes,metadataParts:trace.metadataParts,changedMetadataParts:diagnostic.changed?trace.changedMetadataParts:0}:{})});
+      io.report({...diagnostic,removedParts:diagnostic.changed?trace.removed:0,feedCards:trace.feedCards,templates:[...trace.templates],matchedAdTemplates:[...trace.matchedAdTemplates],unknownRendererTags:[...trace.unknown],...(trace.feedEnvelopeFields?{feedEnvelopeFields:[...trace.feedEnvelopeFields],feedEnvelopeNodes:trace.feedEnvelopeNodes,feedEnvelopeElements:trace.feedEnvelopeElements,feedEnvelopeBypasses:trace.feedEnvelopeBypasses,feedEnvelopeShapes:trace.feedEnvelopeShapes||[]}:{}),...(trace.rootFields?{rootFields:trace.rootFields}:{}),...(trace.umpFrames!==undefined?{umpFrames:trace.umpFrames,umpTypes:trace.umpTypes,umpHeaderTypes:trace.umpHeaderTypes,metadataParts:trace.metadataParts,changedMetadataParts:diagnostic.changed?trace.changedMetadataParts:0}:{})});
     }catch{}
   }
 }

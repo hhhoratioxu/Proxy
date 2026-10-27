@@ -34,6 +34,15 @@ export function promotionalTemplate(name,deep=false){
   return deep&&(/(?:^|[_./-])(?:promo|promotion|upsell)(?:$|[_./-])/.test(name)||/^(?:statement_banner|brand_banner|premium_offer)(?:$|[_./-])/.test(name));
 }
 function component(raw){const type=child(raw,1);return type?child(type,COMPONENT_TYPE):null;}
+// Match only the already verified native Element/ElementRenderer discriminants.
+// An unknown feed envelope is never itself evidence that all its entries are ads.
+export function embeddedElementAd(fs,settings,trace){
+  let c;try{
+    const wrapped=findField(fs,NEW_ELEMENT),root=wrapped?.wire===2?fields(wrapped.payload):fs,type=findField(root,1);
+    if(type?.wire!==2)return null;c=child(type.payload,COMPONENT_TYPE);
+  }catch{return null;}if(!c)return null;
+  return inspectComponent(c,settings,trace);
+}
 function inspectComponent(c,settings,trace){
   const config=child(c,3),uri=config&&child(config,URI_CONFIG),label=uri&&child(uri,1);
   const name=label&&label.length<=720?templateName(fromUtf8(label,true)):'';remember(trace,name);

@@ -1,0 +1,27 @@
+{
+  "scope": "anonymous public browse envelope plus self-written new-wrapper entries; no captured user response or real delivered advertisement",
+  "date": "2026-10-28",
+  "clientVersion": "21.42.4",
+  "publicResponseBytes": 769233,
+  "publicResponseInitiallyUnchanged": true,
+  "rows": [
+    {
+      "case": "small-mixed-envelope",
+      "inputBytes": 769519,
+      "outputBytes": 769436,
+      "selfWrittenAdRemoved": 1,
+      "selfWrittenOrdinaryEntryPreserved": true,
+      "publicRemainderMatchesExpectedBytes": true
+    },
+    {
+      "case": "large-mixed-envelope",
+      "inputBytes": 1309536,
+      "outputBytes": 1309455,
+      "selfWrittenAdRemoved": 1,
+      "selfWrittenOrdinaryEntryPreserved": true,
+      "publicRemainderMatchesExpectedBytes": true
+    }
+  ],
+  "outsideUnknownFieldPreserved": true,
+  "deviceAcceptance": false
+}

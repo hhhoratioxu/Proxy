@@ -3,6 +3,7 @@ import {decodeMessage,nested,findField,join,withPayload,makeBytes,makeInt,replac
 import {fromUtf8,isOpaqueText,CAPTION_REGEX,unb64} from './data.mjs';
 import {graph,rendererAds} from './protocol.mjs';
 import {editElementRenderer,deepCardAd,jsonElementAd} from './elements.mjs';
+import {FEED_ENVELOPE,editFeedEnvelope} from './feed-envelope.mjs';
 const NS='.youtube.api.innertube.';
 const ROOT={player:'PlayerResponse',browse:'BrowseResponse',next:'WatchNextResponse',search:'SearchResponse',guide:'GuideResponse',get_watch:'WatchBatch',config:'ConfigResponse',log_event:'ConfigResponse','player/ad_break':'AdBreakResponse','navigation/resolve_url':'ResolveUrlResponse','reel/reel_item_watch':'ReelItemWatchResponse','reel/reel_watch_sequence':'ReelSequenceResponse'};
 const extra={
@@ -72,7 +73,10 @@ function visit(raw,type,s,state,feedCard=false){
   const fields=decodeMessage(raw);state.remaining-=fields.length;if(state.remaining<0)throw Error('message count');
   if(state.trace&&state.depth===0)state.trace.rootFields=fields.slice(0,16).map(f=>f.no);
   if(feedCard&&state.trace)state.trace.feedCards=(state.trace.feedCards||0)+1;
-  if(feedCard&&deepCardAd(raw,s,state.trace)){if(state.trace)state.trace.removed++;return new Uint8Array();}
+  const feedEnvelope=feedCard&&fields.some(f=>f.no===FEED_ENVELOPE&&f.wire===2);
+  // A new wrapper may contain an entire mixed feed; never discard it because
+  // one descendant is an advertisement. Edit validated entries individually.
+  if(feedCard&&!feedEnvelope&&deepCardAd(raw,s,state.trace)){if(state.trace)state.trace.removed++;return new Uint8Array();}
   if(type===NS+'ElementRenderer')return editElementRenderer(raw,s,state.trace);
   if(type===NS+'OnesieHotConfig'&&state.onKeys){
     const key=findField(fields,1),encrypted=findField(fields,2),expiry=findField(fields,3);
@@ -95,6 +99,10 @@ function visit(raw,type,s,state,feedCard=false){
       if(hidden(navIdentity(f.payload),s)){modified=true;continue;}
     }
     let payload=f.payload;
+    if(feedEnvelope&&f.no===FEED_ENVELOPE&&f.wire===2){
+      payload=editFeedEnvelope(f.payload,s,state.trace,state.feedEnvelopeBudget??={nodes:0,bytes:0});
+      if(!same(payload,f.payload)){modified=true;if(payload.length)output.push(withPayload(f,payload));continue;}
+    }
     if(f.wire===2&&edges[f.no]){
       const previousRemoved=state.trace?.removed;
       state.depth++;try{payload=visit(f.payload,edges[f.no],s,state,type===NS+'ItemSectionRenderer'&&f.no===1);}catch(error){
@@ -108,7 +116,7 @@ function visit(raw,type,s,state,feedCard=false){
         if(f.no===1)keptContent=true;output.push(withPayload(f,payload));continue;
       }
     }
-    else if(feedCard&&f.wire===2&&f.no>=1000&&state.trace?.unknown&&state.trace.unknown.size<12)state.trace.unknown.add(f.no);
+    else if(feedCard&&f.wire===2&&f.no>=1000&&!(f.no===FEED_ENVELOPE&&s.ads&&s.deep)&&state.trace?.unknown&&state.trace.unknown.size<12)state.trace.unknown.add(f.no);
     if(f.no===1)keptContent=true;
     output.push(f.raw);
   }
