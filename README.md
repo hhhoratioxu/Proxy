@@ -11,6 +11,10 @@
 
 [六客户端分流格式与全库兼容性审核（2026-10-25）](./Docs/Rule-Format-Compliance.md)。规则数据保持原有分类，格式与冗余条目已进行全量规范化；真实设备连通性仍需验证。
 
+## AI 分流更新
+
+**2026-10-28：六个客户端统一 971 条，新增 495 条。** 合并主流社区来源并按官方页面补充模型、编程、研究、会议、图像/视频/3D 和云端 AI 服务，保留原订阅地址。[全部订阅、覆盖与边界](./Docs/AI-Routing.md) · [来源、官网与授权](./Docs/AI-Sources.md)。
+
 ## 客户端入口
 
 | 客户端 | 内容 |
@@ -70,6 +74,8 @@ A personal collection of rules, modules, scripts and icon configurations organiz
 Each client keeps routing lists in `rule/` and current installable resources in `script/`. `Docs/` contains installation and usage guides. All shared icons live in the root [Icons](./Icons/) directory.
 
 [Full rule-format compliance audit for six clients (2026-10-25)](./Docs/Rule-Format-Compliance.md). All rule sets were normalized; real-device connectivity remains unverified.
+
+AI routing updated on **2026-10-28**: all six clients now have **971 conditions**, with the original 476 retained and 495 additions. Existing subscription URLs are unchanged. [Subscriptions and coverage](./Docs/AI-Routing.md) · [Pinned sources and license notices](./Docs/AI-Sources.md).
 
 ## Client directories
 

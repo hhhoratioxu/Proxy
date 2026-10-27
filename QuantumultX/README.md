@@ -2,6 +2,8 @@
 
 [分流规则](./rule/) · [可导入插件](./script/) · [共用图标](../Icons/)
 
+**AI 分流已更新（2026-10-28）：971 条。** [直接订阅 AI.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/rule/AI.list) · [覆盖范围与使用说明](../Docs/AI-Routing.md) · [固定来源与授权](../Docs/AI-Sources.md)。原订阅地址继续使用，更新远程规则即可。
+
 Spotify 歌词及美团外卖 `.conf` 添加到「重写 → 引用」；流媒体 `.json` 添加到「任务 → 资源库」。两者都通过对应资源入口导入，不用复制配置片段或另行安装 JS。
 
 | 插件 | 安装文件原始地址 | 使用说明 |

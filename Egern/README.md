@@ -2,6 +2,8 @@
 
 [分流规则](./rule/) · [可导入插件](./script/) · [共用图标](../Icons/)
 
+**AI 分流已更新（2026-10-28）：971 条。** [直接订阅 AI.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Egern/rule/AI.yaml) · [覆盖范围与使用说明](../Docs/AI-Routing.md) · [固定来源与授权](../Docs/AI-Sources.md)。原订阅地址继续使用，更新远程规则即可。
+
 在 Egern「模块」中新增远程模块，粘贴对应安装文件的原始地址并启用。模块会自动下载运行依赖；涉及 HTTPS 改写的模块需要已安装并信任的 HTTPS 解密证书。
 
 | 插件 | 安装文件原始地址 | 使用说明 |

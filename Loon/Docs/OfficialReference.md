@@ -161,3 +161,9 @@ YouTube Clean 正式安装入口改为 `Loon/script/YouTubeClean.lpx`；原 `.pl
 共享匹配先保留原有完整艺人名比较；仅遇到明确的单层“东亚文字名 (拉丁字母名)”或反向标签才核对两个完整名称。每组最多 32 位艺人，合作者必须一一对应，重叠别名、同文字系统修饰、嵌套括号、成员或翻唱说明不参与别名匹配；标题、全部艺人、时长、专辑/录音版本和候选唯一性检查继续。只使用来源实际给出的名称，不联网猜译艺人名，不增加目录搜索。来源修订 8 使旧无词记录重新检查，成功歌词与翻译缓存保留。
 
 真实公开 Spotify 元数据与 QQ 歌词回放确认此修复可恢复 KimYeji 的 Burn It Down；编译 Loon 脚本的真实网络查询也取得同步歌词。自动测试、桌面 Node/JavaScriptCore 测量和公开服务请求均不等于真实 iPhone 界面或 VPN 稳定性验收；原有 256 KiB 歌词正文、96 KiB 服务回复、12 次来源请求、256 KiB 累计来源字节与标准/compact 缓存上限保持。
+
+## AI 分流数据扩充（2026-10-28）
+
+2026-10-28 重新核对 [Loon 官方总览](https://nsloon.app/docs/intro/)、[域名规则](https://nsloon.app/docs/Rule/domain_rule/) 与[订阅规则](https://nsloon.app/docs/Rule/sub_rule/)。`Loon/rule/AI.lsr` 保持逐行、不包含策略的原生 `DOMAIN`、`DOMAIN-SUFFIX`、`DOMAIN-KEYWORD` 格式；本次仅扩充服务主机数据，六端统一 971 条，原 476 条条件及顺序保留。
+
+新增来源中的进程名、共享 IP/ASN、通用身份验证及含义过宽的关键词没有直接移植到 Loon；没有新增 Script、Rewrite、宿主 API、最低版本、MITM、网络请求或后台任务。来源许可、官网核对和原始条件的一致性见 [AI 数据来源](../../Docs/AI-Sources.md)。静态格式及下载字节验证与真实 iPhone/Loon VPN、具体 AI 账号和节点可用性分开报告。

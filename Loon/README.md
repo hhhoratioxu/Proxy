@@ -2,6 +2,8 @@
 
 [分流规则](./rule/) · [可导入插件](./script/) · [共用图标](../Icons/)
 
+**AI 分流已更新（2026-10-28）：971 条。** [直接订阅 AI.lsr](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/rule/AI.lsr) · [覆盖范围与使用说明](../Docs/AI-Routing.md) · [固定来源与授权](../Docs/AI-Sources.md)。原订阅地址继续使用，更新远程规则即可。
+
 在 Loon「插件」中新增远程插件，粘贴对应安装文件的原始地址并启用。美团外卖插件要求 Loon 3.5.1 (983) 或更新版本，并启用对应 MitM；流媒体插件在查询入口中运行。
 
 | 插件 | 安装文件原始地址 | 使用说明 |

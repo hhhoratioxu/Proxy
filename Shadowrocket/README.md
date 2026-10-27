@@ -2,6 +2,8 @@
 
 [分流规则](./rule/) · [可导入插件](./script/) · [共用图标](../Icons/)
 
+**AI 分流已更新（2026-10-28）：971 条。** [直接订阅 AI.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Shadowrocket/rule/AI.list) · [覆盖范围与使用说明](../Docs/AI-Routing.md) · [固定来源与授权](../Docs/AI-Sources.md)。原订阅地址继续使用，更新远程规则即可。
+
 在 Shadowrocket 的模块管理中添加下方远程模块并启用；美团外卖模块需要已配置的 HTTPS 解密证书。
 
 | 插件 | 安装文件原始地址 | 使用说明 |

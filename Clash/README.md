@@ -2,6 +2,8 @@
 
 [分流规则](./rule/) · [扩展脚本](./script/) · [说明文档](./Docs/)
 
+**AI 分流已更新（2026-10-28）：971 条。** [直接订阅 AI.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/AI.yaml) · [覆盖范围与使用说明](../Docs/AI-Routing.md) · [固定来源与授权](../Docs/AI-Sources.md)。原订阅地址继续使用，更新远程规则即可。
+
 [YouTube Clean 去广告、双语字幕与底栏能力说明](./Docs/YouTubeClean.md)：安装入口及当前核心限制见说明。
 
 [Spotify 歌词插件能力说明](./Docs/SpotifyLyrics.md)：Clash / Mihomo 无响应体脚本版本；其他客户端入口见说明。

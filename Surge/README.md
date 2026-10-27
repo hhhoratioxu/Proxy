@@ -2,13 +2,15 @@
 
 [分流规则](./rule/) · [可导入插件](./script/) · [共用图标](../Icons/)
 
+**AI 分流已更新（2026-10-28）：971 条。** [直接订阅 AI.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/AI.list) · [覆盖范围与使用说明](../Docs/AI-Routing.md) · [固定来源与授权](../Docs/AI-Sources.md)。原订阅地址继续使用，更新远程规则即可。
+
 ## 分流规则订阅
 
 本目录现有 **26 组** Surge 原生 `RULE-SET` 分流规则。下表均为可直接订阅的原始地址；策略在 Surge 引用规则集时选择，规则文件内不写入节点或策略组名称。
 
 | 分流规则 | 条目数 | 直接订阅地址 |
 | --- | ---: | --- |
-| AI | 476 | [AI.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/AI.list) |
+| AI | 971 | [AI.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/AI.list) |
 | Adobe | 274 | [Adobe.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/Adobe.list) |
 | Apple | 1765 | [Apple.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/Apple.list) |
 | 哔哩哔哩 | 133 | [Bilibili.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/Bilibili.list) |
