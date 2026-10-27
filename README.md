@@ -45,7 +45,7 @@
 
 ## Spotify 双语歌词 · VerseLyrics
 
-Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **3.1.9**，识别来源完整双语艺人名，恢复被误拒绝的同步歌词；旧无词缓存自动重查。 保留六源补词、插件翻译与原生高亮。性能测量范围见固定源码，未做 iPhone VPN 验收。Shadowrocket 完整官方脚本规范尚未取得，其兼容适配未标为官方验证。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
+Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **3.2.0**，原生歌词入口同步完成，减少 Spotify 重开时脚本和正文缓冲堆积。 保留六源补词、插件翻译与原生高亮。性能测量范围见固定源码，未做 iPhone VPN 验收。Shadowrocket 完整官方脚本规范尚未取得，其兼容适配未标为官方验证。用户已确认《那页夏天》在 Loon 可显示补充歌词。Egern 的无词问题尚未解决，补源仍受客户端行为与来源收录限制。
 
 | 客户端 | 安装入口 | 设置与限制 |
 | --- | --- | --- |
@@ -90,7 +90,7 @@ AI routing updated on **2026-10-28**: all six clients now have **971 conditions*
 
 YouTube Clean 1.2.9 adds punctuation-aware balanced translation wrapping with a native toggle, preserving all text and cue times. All 259 checks pass, including built bundles for five clients and both translation providers. Twelve isolated desktop caption trials preserve short-cue output, request counts and single completion; layout adds small processing overhead. Loon keeps translation-only defaults and one import. Fonts and positioning belong to the native player; device visuals remain unverified. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
 
-VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 3.1.9. Recognize explicit bilingual artist labels without dropping performer, title, duration or recording checks; invalidate old negative source records while preserving successful lyrics and translations. Six sources, plugin translations and native highlighting remain. Measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
+VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 3.2.0. Complete native local entry processing synchronously to reduce response and script retention during Spotify relaunch bursts. Keep Egern native streams and all fallback/translation behavior. Six sources, plugin translations and native highlighting remain. Measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
 Each plugin has one current installation entry. Clients automatically load any required runtime from a pinned version; no separate JavaScript download, build or test run is needed.
 

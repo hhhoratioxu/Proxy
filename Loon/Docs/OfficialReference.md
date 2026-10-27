@@ -1,6 +1,6 @@
 # Loon 官方文档适配记录
 
-核对日期：2026-10-24。用户指定本分类后续项目优先采用这些官方资料。本文件记录实现要点和仓库工程约定；涉及新能力时重新核对原页。
+核对日期：2026-10-28。用户指定本分类后续项目优先采用这些官方资料。本文件记录实现要点和仓库工程约定；涉及新能力时重新核对原页。
 
 | 官方入口 | 使用时机 |
 | --- | --- |
@@ -167,3 +167,11 @@ YouTube Clean 正式安装入口改为 `Loon/script/YouTubeClean.lpx`；原 `.pl
 2026-10-28 重新核对 [Loon 官方总览](https://nsloon.app/docs/intro/)、[域名规则](https://nsloon.app/docs/Rule/domain_rule/) 与[订阅规则](https://nsloon.app/docs/Rule/sub_rule/)。`Loon/rule/AI.lsr` 保持逐行、不包含策略的原生 `DOMAIN`、`DOMAIN-SUFFIX`、`DOMAIN-KEYWORD` 格式；本次仅扩充服务主机数据，六端统一 971 条，原 476 条条件及顺序保留。
 
 新增来源中的进程名、共享 IP/ASN、通用身份验证及含义过宽的关键词没有直接移植到 Loon；没有新增 Script、Rewrite、宿主 API、最低版本、MITM、网络请求或后台任务。来源许可、官网核对和原始条件的一致性见 [AI 数据来源](../../Docs/AI-Sources.md)。静态格式及下载字节验证与真实 iPhone/Loon VPN、具体 AI 账号和节点可用性分开报告。
+
+## VerseLyrics 3.2.0 Spotify 重开入口负担
+
+2026-10-28 重新核对官方 [Script](https://nsloon.app/docs/Script/script_v2/) 的完整正文执行时机与 [Script API](https://nsloon.app/docs/Script/script_api/) 的 Uint8Array、同步字符串存储和单次完成约定。requires_body=true 已使 Response Script 在正文完整取得后执行，因此纯本地入口不需要再经异步 arrayBuffer/Promise 流程。原生入口使用内部 boundedBytes 直接验证现有正文，完成元数据、批量标记、卡片与配置改写后在当前调用中 $done；无网络、无计时器或等待队列。适配为 16，最低版本仍为 3.5.1（983），语法、宿主 API、参数、输入/缓存上限保持。
+
+Loon、Surge、Shadowrocket 和 Quantumult X 各自的原生入口采用同步路径；Egern 的原生 Response/流接口继续异步读取，未移植其他客户端的正文模型。实际补词和翻译保留异步网络回调完成后再单次结束的约定，不因入口同步改造提前结束任何 HTTP 工作。
+
+以划掉 Spotify 后重新打开时的多接口返回为目标进行脚本突发回归；模拟同轮调度中的未完成入口数、正文持有量、桌面 V8/JavaScriptCore 测量与真实 iPhone 的调度、总 VPN 内存和断开原因分别报告。未取得本次手机进程崩溃或 Jetsam 记录，不能把模拟改善称为实机断开已经根治。
