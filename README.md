@@ -29,7 +29,7 @@
 
 ## YouTube Clean · 去广告、双语字幕与底栏控制
 
-**1.2.9**。译文按标点与长度均衡换行，短句保持一行，保留全部文字与字幕时间；新增「译文智能换行」开关。保留 1.2.8 的分配优化、去广告及发布「＋」/Shorts 独立开关。Loon 默认仅显示译文；每个客户端仍为一个安装入口。
+**1.2.10**。根据实际 Loon 主页日志，补齐新内容容器的受限逐项过滤，保留普通视频、分页、字幕翻译和底栏开关。Loon 默认仅显示译文，每个客户端仍为一个正式安装入口。
 
 | 客户端 | 安装入口 |
 | --- | --- |
@@ -41,7 +41,7 @@
 | Clash / Mihomo | [能力说明](./Clash/Docs/YouTubeClean.md) |
 
 
-259 项自动检查通过，覆盖四种字幕格式与五客户端构建脚本中的 YouTube/Google 译文路径；12 次独立桌面字幕检查保留原短句输出、请求次数和单次完成。新排版有少量处理开销，没有增加网络请求或缓存；字体、底色及位置仍由原生 CC 控制。1.2.8 的历史内存数据不作为 1.2.9 或手机内存结论。用户已确认 1.2.7 中韩双语显示；本版最终手机排版仍待确认。[源码与检查记录](https://github.com/hhhoratioxu/Proxy/tree/06b0b47bb86f0e326d83a1fc04f5606f53ec8710/Surge/script/YouTubeClean)。
+282 项自动检查通过，覆盖新主页容器、预算保护和五客户端构建脚本。12 次独立桌面测量核对输出、零附加网络请求和单次完成；新容器由旧版跳过改为实际处理，有额外解析开销。已验证匿名公开响应加自写广告的混合场景，尚未取得本次用户原始响应及修复后的手机结果。[源码、完整数据与范围](https://github.com/hhhoratioxu/Proxy/tree/93350b250060655935a904d88b77d41e1fa42c32/Surge/script/YouTubeClean)。
 
 ## Spotify 双语歌词 · VerseLyrics
 
@@ -88,7 +88,7 @@ AI routing updated on **2026-10-28**: all six clients now have **971 conditions*
 | Shadowrocket | [Rules, scripts and modules](./Shadowrocket/) · [Guide](./Shadowrocket/README.md) |
 | QuanX / Quantumult X | [Rules, scripts and tasks](./QuantumultX/) · [Guide](./QuantumultX/README.md) |
 
-YouTube Clean 1.2.9 adds punctuation-aware balanced translation wrapping with a native toggle, preserving all text and cue times. All 259 checks pass, including built bundles for five clients and both translation providers. Twelve isolated desktop caption trials preserve short-cue output, request counts and single completion; layout adds small processing overhead. Loon keeps translation-only defaults and one import. Fonts and positioning belong to the native player; device visuals remain unverified. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
+YouTube Clean 1.2.10 adds bounded traversal for the new homepage envelope observed in a real Loon diagnostic, filtering validated ad entries while preserving ordinary content and pagination. All 282 checks pass, including five compiled client adapters. Twelve desktop trials verify expected output, no additional network calls and single completion; parsing a previously skipped envelope has measurable cost. Translation-only Loon defaults and caption layout remain. Public-envelope checks use self-written ads; device ad removal remains unverified. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
 
 VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 3.2.0. Complete native local entry processing synchronously to reduce response and script retention during Spotify relaunch bursts. Keep Egern native streams and all fallback/translation behavior. Six sources, plugin translations and native highlighting remain. Measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
