@@ -1,19 +1,19 @@
 {
   "repository": "hhhoratioxu/Proxy",
   "branch": "main",
-  "commit": "cbaf0eec44d50b08c49263ea06e74fc8dfa03a43",
-  "tree": "40a95dc3dc0583e2557170ae57177400459c9a17",
-  "checkedAt": "2026-10-28T15:31:09.685Z",
+  "commit": "82b0fd47f7417e7b2709d42e53ffbce1f52f769e",
+  "tree": "f65416da152a720d8249b1ca8d7648f18330b1b7",
+  "checkedAt": "2026-10-28T15:31:29.523Z",
   "files": [
-    {
-      "path": "Clash/rule/AI.yaml",
-      "sha": "8455127146e4d9f97e03b40dce7083764e19de49",
-      "size": 42057
-    },
     {
       "path": "Clash/rule/Adobe.yaml",
       "sha": "6e7141bfa5da935df9c3334cc2270cebd1306202",
       "size": 10647
+    },
+    {
+      "path": "Clash/rule/AI.yaml",
+      "sha": "8455127146e4d9f97e03b40dce7083764e19de49",
+      "size": 42057
     },
     {
       "path": "Clash/rule/Apple.yaml",
@@ -71,14 +71,14 @@
       "size": 30796
     },
     {
-      "path": "Clash/rule/NTP.yaml",
-      "sha": "51a7f41fe108a139e8c842758dc7a0312fcbc46e",
-      "size": 3683
-    },
-    {
       "path": "Clash/rule/Netflix.yaml",
       "sha": "ead73b92d243a31cd1fca6499a1203fed180e52f",
       "size": 47527
+    },
+    {
+      "path": "Clash/rule/NTP.yaml",
+      "sha": "51a7f41fe108a139e8c842758dc7a0312fcbc46e",
+      "size": 3683
     },
     {
       "path": "Clash/rule/Parsec.yaml",
@@ -136,14 +136,14 @@
       "size": 1529
     },
     {
-      "path": "Egern/rule/AI.yaml",
-      "sha": "70beca9c958555394d8c78a4ae2ac5678d51db7c",
-      "size": 31197
-    },
-    {
       "path": "Egern/rule/Adobe.yaml",
       "sha": "f3acfcf073daec5a8a35815935dc33be6f5857cf",
       "size": 7790
+    },
+    {
+      "path": "Egern/rule/AI.yaml",
+      "sha": "70beca9c958555394d8c78a4ae2ac5678d51db7c",
+      "size": 31197
     },
     {
       "path": "Egern/rule/Apple.yaml",
@@ -201,14 +201,14 @@
       "size": 20012
     },
     {
-      "path": "Egern/rule/NTP.yaml",
-      "sha": "ab98a1c8411eda47dbf857b0ece7d1c642871413",
-      "size": 2486
-    },
-    {
       "path": "Egern/rule/Netflix.yaml",
       "sha": "72cc298b92f0c227bca30487f23cb91b4283ca3d",
       "size": 25855
+    },
+    {
+      "path": "Egern/rule/NTP.yaml",
+      "sha": "ab98a1c8411eda47dbf857b0ece7d1c642871413",
+      "size": 2486
     },
     {
       "path": "Egern/rule/Parsec.yaml",
@@ -266,14 +266,14 @@
       "size": 1116
     },
     {
-      "path": "Loon/rule/AI.lsr",
-      "sha": "171021b267a9ee93f75c2596652c02b1bf23d31e",
-      "size": 36200
-    },
-    {
       "path": "Loon/rule/Adobe.lsr",
       "sha": "910a9c078f8cdf1fb12ef832c0faabebc0389f9c",
       "size": 8993
+    },
+    {
+      "path": "Loon/rule/AI.lsr",
+      "sha": "171021b267a9ee93f75c2596652c02b1bf23d31e",
+      "size": 36200
     },
     {
       "path": "Loon/rule/Apple.lsr",
@@ -331,14 +331,14 @@
       "size": 25920
     },
     {
-      "path": "Loon/rule/NTP.lsr",
-      "sha": "f3ee24b2025b7431bed793ed14ef005f44c70d4e",
-      "size": 3163
-    },
-    {
       "path": "Loon/rule/Netflix.lsr",
       "sha": "2095b52c75dc67f42b90c138f4c8dea19f3a2358",
       "size": 40534
+    },
+    {
+      "path": "Loon/rule/NTP.lsr",
+      "sha": "f3ee24b2025b7431bed793ed14ef005f44c70d4e",
+      "size": 3163
     },
     {
       "path": "Loon/rule/Parsec.lsr",
@@ -396,14 +396,14 @@
       "size": 1345
     },
     {
-      "path": "QuantumultX/rule/AI.list",
-      "sha": "c3b902c84718424a40f7a192569f2dea8b83ca28",
-      "size": 34254
-    },
-    {
       "path": "QuantumultX/rule/Adobe.list",
       "sha": "526c05a9d85fc6e604a764ae1b04bff54d2c6b7a",
       "size": 8420
+    },
+    {
+      "path": "QuantumultX/rule/AI.list",
+      "sha": "c3b902c84718424a40f7a192569f2dea8b83ca28",
+      "size": 34254
     },
     {
       "path": "QuantumultX/rule/Apple.list",
@@ -461,14 +461,14 @@
       "size": 24271
     },
     {
-      "path": "QuantumultX/rule/NTP.list",
-      "sha": "96860bbeb539636900222f277dfdfe6fab4ba4c3",
-      "size": 2968
-    },
-    {
       "path": "QuantumultX/rule/Netflix.list",
       "sha": "56902a67a412f3046b95caede35735913c5b978e",
       "size": 40435
+    },
+    {
+      "path": "QuantumultX/rule/NTP.list",
+      "sha": "96860bbeb539636900222f277dfdfe6fab4ba4c3",
+      "size": 2968
     },
     {
       "path": "QuantumultX/rule/Parsec.list",
@@ -526,14 +526,14 @@
       "size": 1262
     },
     {
-      "path": "Shadowrocket/rule/AI.list",
-      "sha": "6dbed63d871496964492778b00db02400c006157",
-      "size": 36222
-    },
-    {
       "path": "Shadowrocket/rule/Adobe.list",
       "sha": "3c69fdb57cef1a944edd466d4d0d578028d4c58a",
       "size": 8984
+    },
+    {
+      "path": "Shadowrocket/rule/AI.list",
+      "sha": "6dbed63d871496964492778b00db02400c006157",
+      "size": 36222
     },
     {
       "path": "Shadowrocket/rule/Apple.list",
@@ -591,14 +591,14 @@
       "size": 25911
     },
     {
-      "path": "Shadowrocket/rule/NTP.list",
-      "sha": "443a054475eb1f121c1ca84262211c3f59dd65ac",
-      "size": 3154
-    },
-    {
       "path": "Shadowrocket/rule/Netflix.list",
       "sha": "abfc908daee390ed18afdf967b5d44f6e113ac8d",
       "size": 40525
+    },
+    {
+      "path": "Shadowrocket/rule/NTP.list",
+      "sha": "443a054475eb1f121c1ca84262211c3f59dd65ac",
+      "size": 3154
     },
     {
       "path": "Shadowrocket/rule/Parsec.list",
@@ -656,14 +656,14 @@
       "size": 1336
     },
     {
-      "path": "Surge/rule/AI.list",
-      "sha": "64fbd40c767830d0266d14c370cb4f461fb6b53b",
-      "size": 36213
-    },
-    {
       "path": "Surge/rule/Adobe.list",
       "sha": "69e00af0fe88365b8049a552a234839f89191c57",
       "size": 8986
+    },
+    {
+      "path": "Surge/rule/AI.list",
+      "sha": "64fbd40c767830d0266d14c370cb4f461fb6b53b",
+      "size": 36213
     },
     {
       "path": "Surge/rule/Apple.list",
@@ -721,14 +721,14 @@
       "size": 25977
     },
     {
-      "path": "Surge/rule/NTP.list",
-      "sha": "f4e23bec582938d0c34cfdcac15f3673a0ab33cd",
-      "size": 3156
-    },
-    {
       "path": "Surge/rule/Netflix.list",
       "sha": "2103f9b18a7e27e79a57c938d62da35c7eb4a990",
       "size": 40591
+    },
+    {
+      "path": "Surge/rule/NTP.list",
+      "sha": "f4e23bec582938d0c34cfdcac15f3673a0ab33cd",
+      "size": 3156
     },
     {
       "path": "Surge/rule/Parsec.list",
