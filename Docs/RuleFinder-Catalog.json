@@ -1,0 +1,789 @@
+{
+  "repository": "hhhoratioxu/Proxy",
+  "branch": "main",
+  "commit": "cbaf0eec44d50b08c49263ea06e74fc8dfa03a43",
+  "tree": "40a95dc3dc0583e2557170ae57177400459c9a17",
+  "checkedAt": "2026-10-28T15:31:09.685Z",
+  "files": [
+    {
+      "path": "Clash/rule/AI.yaml",
+      "sha": "8455127146e4d9f97e03b40dce7083764e19de49",
+      "size": 42057
+    },
+    {
+      "path": "Clash/rule/Adobe.yaml",
+      "sha": "6e7141bfa5da935df9c3334cc2270cebd1306202",
+      "size": 10647
+    },
+    {
+      "path": "Clash/rule/Apple.yaml",
+      "sha": "c887a320ffa1b0385c5e3993371c1f02c4b102a3",
+      "size": 66284
+    },
+    {
+      "path": "Clash/rule/Bilibili.yaml",
+      "sha": "551caf56cc27d2699e49e61e6fe1a6de48c321fc",
+      "size": 5611
+    },
+    {
+      "path": "Clash/rule/Disney.yaml",
+      "sha": "6967239ba16dbac3f52c15b9b8b6ff1bcbd5b79f",
+      "size": 9507
+    },
+    {
+      "path": "Clash/rule/GitHub.yaml",
+      "sha": "cb22c4448ff1e15e523f76d3bc28f23e27855591",
+      "size": 3388
+    },
+    {
+      "path": "Clash/rule/Google.yaml",
+      "sha": "d29b041e147f96d1e83f7bd9f997bbe5bad3360a",
+      "size": 30229
+    },
+    {
+      "path": "Clash/rule/HBOMAX.yaml",
+      "sha": "690f2a1eac82d880f9d9b6391d5f45022ea3a694",
+      "size": 3643
+    },
+    {
+      "path": "Clash/rule/Infuse.yaml",
+      "sha": "77dcd7a7383c76c9e13462888387f8d20f7aa4ee",
+      "size": 935
+    },
+    {
+      "path": "Clash/rule/LAN.yaml",
+      "sha": "9b2928ac76af1a2947fa56de25e2f369c80c906c",
+      "size": 6055
+    },
+    {
+      "path": "Clash/rule/Meituan.yaml",
+      "sha": "c317c561e6109b5bec0d0c84133c04606fde3f9f",
+      "size": 1202
+    },
+    {
+      "path": "Clash/rule/Meta.yaml",
+      "sha": "f7fb340ce91d6a9371e5e8534526223cec4d75e2",
+      "size": 22931
+    },
+    {
+      "path": "Clash/rule/Microsoft.yaml",
+      "sha": "aa6e42111fed29c4f9e10e843fe1671ccb019c9b",
+      "size": 30796
+    },
+    {
+      "path": "Clash/rule/NTP.yaml",
+      "sha": "51a7f41fe108a139e8c842758dc7a0312fcbc46e",
+      "size": 3683
+    },
+    {
+      "path": "Clash/rule/Netflix.yaml",
+      "sha": "ead73b92d243a31cd1fca6499a1203fed180e52f",
+      "size": 47527
+    },
+    {
+      "path": "Clash/rule/Parsec.yaml",
+      "sha": "75219f06c45d607f665cdc77fe11858306971841",
+      "size": 691
+    },
+    {
+      "path": "Clash/rule/ParsecP2P.yaml",
+      "sha": "eca6e07e8c4fdb354ab5aa96a439f56edb274eac",
+      "size": 605
+    },
+    {
+      "path": "Clash/rule/SiriAI.yaml",
+      "sha": "81a0bc5b51698dfa5391ef9b15703d29223dd2fd",
+      "size": 702
+    },
+    {
+      "path": "Clash/rule/Spotify.yaml",
+      "sha": "c164bfc6e9ce19fcdd42e35a829537a36949a24b",
+      "size": 1918
+    },
+    {
+      "path": "Clash/rule/Telegram.yaml",
+      "sha": "62ad47da8613085e37adbf0770280fcb744a9531",
+      "size": 2175
+    },
+    {
+      "path": "Clash/rule/TikTok.yaml",
+      "sha": "9086a3dcd28cca795d0ee732e99279ac3ec8ad6f",
+      "size": 1851
+    },
+    {
+      "path": "Clash/rule/Twitter.yaml",
+      "sha": "27c28a6f900ce8ffcc54bd0d722e052f499c9ed9",
+      "size": 1553
+    },
+    {
+      "path": "Clash/rule/WeChat.yaml",
+      "sha": "8fb44b306143b5a9630715de7d0e433bd89d06a2",
+      "size": 12413
+    },
+    {
+      "path": "Clash/rule/Weverse.yaml",
+      "sha": "8409416d7ecef3fa187693d7bd0cda46e16d2e3f",
+      "size": 975
+    },
+    {
+      "path": "Clash/rule/Wikimedia.yaml",
+      "sha": "c2b4efb3db6eb708b4213f95e29f102357122258",
+      "size": 1183
+    },
+    {
+      "path": "Clash/rule/Xiaohongshu.yaml",
+      "sha": "cdb06e45a83b454bd5c6c5295e7d05db85611da9",
+      "size": 1529
+    },
+    {
+      "path": "Egern/rule/AI.yaml",
+      "sha": "70beca9c958555394d8c78a4ae2ac5678d51db7c",
+      "size": 31197
+    },
+    {
+      "path": "Egern/rule/Adobe.yaml",
+      "sha": "f3acfcf073daec5a8a35815935dc33be6f5857cf",
+      "size": 7790
+    },
+    {
+      "path": "Egern/rule/Apple.yaml",
+      "sha": "4f237f40c18db1b969575c7156e6f5b53f5c6bc1",
+      "size": 43450
+    },
+    {
+      "path": "Egern/rule/Bilibili.yaml",
+      "sha": "21f07fa7eb15262bb143da2e19435623f9ae3b8f",
+      "size": 4248
+    },
+    {
+      "path": "Egern/rule/Disney.yaml",
+      "sha": "04f7acc568200c48eef86ea340222c003e565a2c",
+      "size": 6107
+    },
+    {
+      "path": "Egern/rule/GitHub.yaml",
+      "sha": "18d67be477b3785650f91b3e5ea42d0f00286b9a",
+      "size": 2722
+    },
+    {
+      "path": "Egern/rule/Google.yaml",
+      "sha": "22e687a6b4585bb6d10402e4dcda9e5f97fc6e5a",
+      "size": 18276
+    },
+    {
+      "path": "Egern/rule/HBOMAX.yaml",
+      "sha": "75a8be164254a6830fbb9b25cb1ed5d9d6613a39",
+      "size": 2388
+    },
+    {
+      "path": "Egern/rule/Infuse.yaml",
+      "sha": "952acb78c101d548b6808c0e260fec85d749b66d",
+      "size": 766
+    },
+    {
+      "path": "Egern/rule/LAN.yaml",
+      "sha": "0f75273661d7c0bdc1e4cef9432aec9ba4593aea",
+      "size": 4085
+    },
+    {
+      "path": "Egern/rule/Meituan.yaml",
+      "sha": "4226abb930238fb3c505bd6d53c1d0322df1d3b6",
+      "size": 859
+    },
+    {
+      "path": "Egern/rule/Meta.yaml",
+      "sha": "bd0e45671e897c8bd66f820e96fec953e26bcbb4",
+      "size": 14176
+    },
+    {
+      "path": "Egern/rule/Microsoft.yaml",
+      "sha": "b38c8e9f8080e904e9219d63b94bf16fde4921c6",
+      "size": 20012
+    },
+    {
+      "path": "Egern/rule/NTP.yaml",
+      "sha": "ab98a1c8411eda47dbf857b0ece7d1c642871413",
+      "size": 2486
+    },
+    {
+      "path": "Egern/rule/Netflix.yaml",
+      "sha": "72cc298b92f0c227bca30487f23cb91b4283ca3d",
+      "size": 25855
+    },
+    {
+      "path": "Egern/rule/Parsec.yaml",
+      "sha": "cf4730ed5870d592b0c080de0c293c3385765f8f",
+      "size": 642
+    },
+    {
+      "path": "Egern/rule/ParsecP2P.yaml",
+      "sha": "3dbe3ef1e3d9f0f1f536263b54635a98e42ae4bd",
+      "size": 421
+    },
+    {
+      "path": "Egern/rule/SiriAI.yaml",
+      "sha": "22d28f2bd618dd7a4924e6468c3b3aba63fb244b",
+      "size": 659
+    },
+    {
+      "path": "Egern/rule/Spotify.yaml",
+      "sha": "d8590c0d3e8acfaca79c921b8c648ed16b2c4407",
+      "size": 1542
+    },
+    {
+      "path": "Egern/rule/Telegram.yaml",
+      "sha": "b83abda42d8f85b90f4d7b83b18ec4edc94c4b8c",
+      "size": 1583
+    },
+    {
+      "path": "Egern/rule/TikTok.yaml",
+      "sha": "eb5094366c27bc04affef721896cbab0a8bdc40e",
+      "size": 1387
+    },
+    {
+      "path": "Egern/rule/Twitter.yaml",
+      "sha": "976825c4e971b0277d781d8844beeede35636472",
+      "size": 1164
+    },
+    {
+      "path": "Egern/rule/WeChat.yaml",
+      "sha": "9cea3c08bd33e020d72dace9b4908c17a7da0c6e",
+      "size": 7338
+    },
+    {
+      "path": "Egern/rule/Weverse.yaml",
+      "sha": "518342ccca34829689e8aa56056650d285130fa5",
+      "size": 855
+    },
+    {
+      "path": "Egern/rule/Wikimedia.yaml",
+      "sha": "46788316df6a22995e7c980c104aaf292ceb6007",
+      "size": 868
+    },
+    {
+      "path": "Egern/rule/Xiaohongshu.yaml",
+      "sha": "e3445e5cfad4c8185883e5bfc883062b926719e2",
+      "size": 1116
+    },
+    {
+      "path": "Loon/rule/AI.lsr",
+      "sha": "171021b267a9ee93f75c2596652c02b1bf23d31e",
+      "size": 36200
+    },
+    {
+      "path": "Loon/rule/Adobe.lsr",
+      "sha": "910a9c078f8cdf1fb12ef832c0faabebc0389f9c",
+      "size": 8993
+    },
+    {
+      "path": "Loon/rule/Apple.lsr",
+      "sha": "794556a4ecd03113eabc9e1e9f4e5b2ae05371b9",
+      "size": 56328
+    },
+    {
+      "path": "Loon/rule/Bilibili.lsr",
+      "sha": "834ffa02a91d070d101fc87e7a16eb60be48b9c2",
+      "size": 4842
+    },
+    {
+      "path": "Loon/rule/Disney.lsr",
+      "sha": "897e2e80a495393ce6bcefd66a1baa8e290103e1",
+      "size": 7989
+    },
+    {
+      "path": "Loon/rule/GitHub.lsr",
+      "sha": "f9e832fe5f750635419c530db0d535e2ede2b0fa",
+      "size": 2994
+    },
+    {
+      "path": "Loon/rule/Google.lsr",
+      "sha": "7602988873404bd07ee52ded0db43b7236c91890",
+      "size": 25204
+    },
+    {
+      "path": "Loon/rule/HBOMAX.lsr",
+      "sha": "13175f31f7968db6997a14b9b14f3ff4798ef5e8",
+      "size": 3082
+    },
+    {
+      "path": "Loon/rule/Infuse.lsr",
+      "sha": "254110da0fa8af92e26bf21e4be76a9d86b1f7f1",
+      "size": 847
+    },
+    {
+      "path": "Loon/rule/LAN.lsr",
+      "sha": "5a11defec93736134d532d887e5c58f413a45502",
+      "size": 5175
+    },
+    {
+      "path": "Loon/rule/Meituan.lsr",
+      "sha": "e8b15306afbe339b6b8ca05aa58a8bea0386047e",
+      "size": 1048
+    },
+    {
+      "path": "Loon/rule/Meta.lsr",
+      "sha": "12eefd11c2ce72a4d81e07185b39e8e98f195385",
+      "size": 19189
+    },
+    {
+      "path": "Loon/rule/Microsoft.lsr",
+      "sha": "69aacd5d483b2d939b910f9b6834988e01026c23",
+      "size": 25920
+    },
+    {
+      "path": "Loon/rule/NTP.lsr",
+      "sha": "f3ee24b2025b7431bed793ed14ef005f44c70d4e",
+      "size": 3163
+    },
+    {
+      "path": "Loon/rule/Netflix.lsr",
+      "sha": "2095b52c75dc67f42b90c138f4c8dea19f3a2358",
+      "size": 40534
+    },
+    {
+      "path": "Loon/rule/Parsec.lsr",
+      "sha": "b602c67c8a46cd05e21ee0566ca4c94d619e99d4",
+      "size": 663
+    },
+    {
+      "path": "Loon/rule/ParsecP2P.lsr",
+      "sha": "a2ab2bbf9252ef6d0c9f4f5e5fe26b897d881100",
+      "size": 467
+    },
+    {
+      "path": "Loon/rule/SiriAI.lsr",
+      "sha": "ad5e94c05288927944624b3ac5a76ab438b47d6e",
+      "size": 656
+    },
+    {
+      "path": "Loon/rule/Spotify.lsr",
+      "sha": "7ab1b2f3b5c9d4b5c32460bb5aaf5a7e44f68efc",
+      "size": 1690
+    },
+    {
+      "path": "Loon/rule/Telegram.lsr",
+      "sha": "ede70d7e01a783643bd47d7744fe2ab1b4f63d9e",
+      "size": 1853
+    },
+    {
+      "path": "Loon/rule/TikTok.lsr",
+      "sha": "4b64481b054d9a703b68358ae3686667af26cdd2",
+      "size": 1613
+    },
+    {
+      "path": "Loon/rule/Twitter.lsr",
+      "sha": "86bb4b4480fd121091cff9b01cee164b078fd7ff",
+      "size": 1339
+    },
+    {
+      "path": "Loon/rule/WeChat.lsr",
+      "sha": "65da4ecd688c5f98635738d05f85079abf1107ce",
+      "size": 10399
+    },
+    {
+      "path": "Loon/rule/Weverse.lsr",
+      "sha": "57c4a092ee77bc61f93a9dd1a3bfec350efb5888",
+      "size": 881
+    },
+    {
+      "path": "Loon/rule/Wikimedia.lsr",
+      "sha": "d0181ac4612056411804c5e2b0284f18c3b01ece",
+      "size": 1041
+    },
+    {
+      "path": "Loon/rule/Xiaohongshu.lsr",
+      "sha": "614277db713a0d3bffe8f74cc34b01b8a724a0c6",
+      "size": 1345
+    },
+    {
+      "path": "QuantumultX/rule/AI.list",
+      "sha": "c3b902c84718424a40f7a192569f2dea8b83ca28",
+      "size": 34254
+    },
+    {
+      "path": "QuantumultX/rule/Adobe.list",
+      "sha": "526c05a9d85fc6e604a764ae1b04bff54d2c6b7a",
+      "size": 8420
+    },
+    {
+      "path": "QuantumultX/rule/Apple.list",
+      "sha": "1df4122235d4f5645e673e9c3806c1815ffafddf",
+      "size": 52871
+    },
+    {
+      "path": "QuantumultX/rule/Bilibili.list",
+      "sha": "610d18e68c99c0196b068af3d6437131c360259e",
+      "size": 4575
+    },
+    {
+      "path": "QuantumultX/rule/Disney.list",
+      "sha": "b67bd50239f69f0431e168f70473960a2d5a9472",
+      "size": 7476
+    },
+    {
+      "path": "QuantumultX/rule/GitHub.list",
+      "sha": "2d46c6261117c23c53e0e5e45aff8e12e87808d2",
+      "size": 2841
+    },
+    {
+      "path": "QuantumultX/rule/Google.list",
+      "sha": "9d2b2a2b299b6e005ec813797e4f3ee9d610babc",
+      "size": 23435
+    },
+    {
+      "path": "QuantumultX/rule/HBOMAX.list",
+      "sha": "84fd524add2b91ec44b10fdd27d7fca0e670d18f",
+      "size": 2881
+    },
+    {
+      "path": "QuantumultX/rule/Infuse.list",
+      "sha": "3c1889339679789169c44dce82b54a63025e3731",
+      "size": 796
+    },
+    {
+      "path": "QuantumultX/rule/LAN.list",
+      "sha": "7455aaf195cfcbf8a54fdce586e62d54484a7237",
+      "size": 4900
+    },
+    {
+      "path": "QuantumultX/rule/Meituan.list",
+      "sha": "eaab44055b9e7844a8ecd4614ee25944281e332e",
+      "size": 975
+    },
+    {
+      "path": "QuantumultX/rule/Meta.list",
+      "sha": "3e7fef97ad82c80032b09deac7229a03520132ef",
+      "size": 18014
+    },
+    {
+      "path": "QuantumultX/rule/Microsoft.list",
+      "sha": "1e3ca3d52daeabc06716fc106aeafc8a7983ba2e",
+      "size": 24271
+    },
+    {
+      "path": "QuantumultX/rule/NTP.list",
+      "sha": "96860bbeb539636900222f277dfdfe6fab4ba4c3",
+      "size": 2968
+    },
+    {
+      "path": "QuantumultX/rule/Netflix.list",
+      "sha": "56902a67a412f3046b95caede35735913c5b978e",
+      "size": 40435
+    },
+    {
+      "path": "QuantumultX/rule/Parsec.list",
+      "sha": "61ac3b3c0df6c089582b8dc4c7581224d719a57d",
+      "size": 632
+    },
+    {
+      "path": "QuantumultX/rule/ParsecP2P.list",
+      "sha": "b22714257c24ba6b36f8f3be549da09f59b9ed60",
+      "size": 439
+    },
+    {
+      "path": "QuantumultX/rule/SiriAI.list",
+      "sha": "c410272998bf78884f45e2a8c65d0cf2e8fd8045",
+      "size": 619
+    },
+    {
+      "path": "QuantumultX/rule/Spotify.list",
+      "sha": "cc474b9b0afbbcc04fe597199db314a2e02779c4",
+      "size": 1607
+    },
+    {
+      "path": "QuantumultX/rule/Telegram.list",
+      "sha": "0f7c3b7902fbb2050d65ea42f54f90d39f19992d",
+      "size": 1758
+    },
+    {
+      "path": "QuantumultX/rule/TikTok.list",
+      "sha": "36a5c279dd6b755b89b18e2ebbe49ab961082b52",
+      "size": 1512
+    },
+    {
+      "path": "QuantumultX/rule/Twitter.list",
+      "sha": "f7a7524fca10447088125ddd797036c53ece244f",
+      "size": 1260
+    },
+    {
+      "path": "QuantumultX/rule/WeChat.list",
+      "sha": "a4f922cea9a56aa4d4d9cbc1a3ae1f5d7f8aac95",
+      "size": 9848
+    },
+    {
+      "path": "QuantumultX/rule/Weverse.list",
+      "sha": "cc10c331864b56841b479e393914e38baf844f2e",
+      "size": 828
+    },
+    {
+      "path": "QuantumultX/rule/Wikimedia.list",
+      "sha": "2225fc62aa642f041d85e4b7909d5c0f6516a9cb",
+      "size": 972
+    },
+    {
+      "path": "QuantumultX/rule/Xiaohongshu.list",
+      "sha": "e8d285b125bf30f60eed696909bcc1c7826ca0c2",
+      "size": 1262
+    },
+    {
+      "path": "Shadowrocket/rule/AI.list",
+      "sha": "6dbed63d871496964492778b00db02400c006157",
+      "size": 36222
+    },
+    {
+      "path": "Shadowrocket/rule/Adobe.list",
+      "sha": "3c69fdb57cef1a944edd466d4d0d578028d4c58a",
+      "size": 8984
+    },
+    {
+      "path": "Shadowrocket/rule/Apple.list",
+      "sha": "6f7c048c8362b50fa3e7d860dc482ccafcf7845d",
+      "size": 56319
+    },
+    {
+      "path": "Shadowrocket/rule/Bilibili.list",
+      "sha": "a40330ebc42e0777b20fdc9bcad53da48652326c",
+      "size": 4833
+    },
+    {
+      "path": "Shadowrocket/rule/Disney.list",
+      "sha": "d5b91410d631bd1991d71411d260de3ade3adc71",
+      "size": 7980
+    },
+    {
+      "path": "Shadowrocket/rule/GitHub.list",
+      "sha": "a4497135a9f3758ad8c46fac5e965557d3cb4fee",
+      "size": 2985
+    },
+    {
+      "path": "Shadowrocket/rule/Google.list",
+      "sha": "5a8e32a11178e5130051466593117fd22e4038b6",
+      "size": 25195
+    },
+    {
+      "path": "Shadowrocket/rule/HBOMAX.list",
+      "sha": "7af665e85c8d8ec29a23bdec2c1a5cb249512728",
+      "size": 3073
+    },
+    {
+      "path": "Shadowrocket/rule/Infuse.list",
+      "sha": "a9ca466b6b7e4de483d7286b089675387a81b54b",
+      "size": 838
+    },
+    {
+      "path": "Shadowrocket/rule/LAN.list",
+      "sha": "26613fd3730f95649be1d83e87665bb2b6cb34b4",
+      "size": 5166
+    },
+    {
+      "path": "Shadowrocket/rule/Meituan.list",
+      "sha": "8a1979d651a5566a446fd02c9550b5682ff2d70e",
+      "size": 1039
+    },
+    {
+      "path": "Shadowrocket/rule/Meta.list",
+      "sha": "e2691919412683476fad44558862103f45341a67",
+      "size": 19180
+    },
+    {
+      "path": "Shadowrocket/rule/Microsoft.list",
+      "sha": "935693e095ec238835956bdb6f0e0ac6d3af4315",
+      "size": 25911
+    },
+    {
+      "path": "Shadowrocket/rule/NTP.list",
+      "sha": "443a054475eb1f121c1ca84262211c3f59dd65ac",
+      "size": 3154
+    },
+    {
+      "path": "Shadowrocket/rule/Netflix.list",
+      "sha": "abfc908daee390ed18afdf967b5d44f6e113ac8d",
+      "size": 40525
+    },
+    {
+      "path": "Shadowrocket/rule/Parsec.list",
+      "sha": "3a6cc420dfa895c6c5b1c47d3f6075250756ccc5",
+      "size": 654
+    },
+    {
+      "path": "Shadowrocket/rule/ParsecP2P.list",
+      "sha": "9d630180a53d375784c026bbde2f02327d8ac2ca",
+      "size": 425
+    },
+    {
+      "path": "Shadowrocket/rule/SiriAI.list",
+      "sha": "9910609c2a804208f052bdb7d436b8957897ba58",
+      "size": 647
+    },
+    {
+      "path": "Shadowrocket/rule/Spotify.list",
+      "sha": "1ad0158f6c21d78691800778eba8c669cc74f22b",
+      "size": 1681
+    },
+    {
+      "path": "Shadowrocket/rule/Telegram.list",
+      "sha": "4051be3baaffbac6099574d43b4519a025e97944",
+      "size": 1844
+    },
+    {
+      "path": "Shadowrocket/rule/TikTok.list",
+      "sha": "ab614c4211befb7af8b6396199b6bf1baef1b98a",
+      "size": 1604
+    },
+    {
+      "path": "Shadowrocket/rule/Twitter.list",
+      "sha": "a74d02b044f0d3f5e98d366fbf6f0e65528f92b7",
+      "size": 1330
+    },
+    {
+      "path": "Shadowrocket/rule/WeChat.list",
+      "sha": "9716d82878572a2b7158f5b11aa0bd085916eaf5",
+      "size": 10390
+    },
+    {
+      "path": "Shadowrocket/rule/Weverse.list",
+      "sha": "5dd7e7f32f771bc906ad87311232140845ef80d4",
+      "size": 872
+    },
+    {
+      "path": "Shadowrocket/rule/Wikimedia.list",
+      "sha": "6a07341f997b8a64aeb96f395161cbad18a3e090",
+      "size": 1032
+    },
+    {
+      "path": "Shadowrocket/rule/Xiaohongshu.list",
+      "sha": "5a305be6c3092981c45652649a11e6d04f16bbbb",
+      "size": 1336
+    },
+    {
+      "path": "Surge/rule/AI.list",
+      "sha": "64fbd40c767830d0266d14c370cb4f461fb6b53b",
+      "size": 36213
+    },
+    {
+      "path": "Surge/rule/Adobe.list",
+      "sha": "69e00af0fe88365b8049a552a234839f89191c57",
+      "size": 8986
+    },
+    {
+      "path": "Surge/rule/Apple.list",
+      "sha": "2b4d54db60d2f2448e1baa47c0b95d7d798fe955",
+      "size": 56385
+    },
+    {
+      "path": "Surge/rule/Bilibili.list",
+      "sha": "44ab93ba04bd94390b82b24c5e63504781852f56",
+      "size": 4899
+    },
+    {
+      "path": "Surge/rule/Disney.list",
+      "sha": "39509e620a22ddb1ea4dd66d527f1da1bdbe51cf",
+      "size": 8046
+    },
+    {
+      "path": "Surge/rule/GitHub.list",
+      "sha": "9fe96d4bf9bac1a96af64a81848ce51ac2240da4",
+      "size": 2987
+    },
+    {
+      "path": "Surge/rule/Google.list",
+      "sha": "82b5f2deee62e7127e94487066121398103114d0",
+      "size": 25261
+    },
+    {
+      "path": "Surge/rule/HBOMAX.list",
+      "sha": "e5ca40051edc0f52a4b94018bf8e42a64396cd72",
+      "size": 3139
+    },
+    {
+      "path": "Surge/rule/Infuse.list",
+      "sha": "045e5ac5706c651da1c2f6cb5c4528bbaf96ea75",
+      "size": 840
+    },
+    {
+      "path": "Surge/rule/LAN.list",
+      "sha": "69cd8e0f87661176e68fb2c242095c6743d5c713",
+      "size": 5168
+    },
+    {
+      "path": "Surge/rule/Meituan.list",
+      "sha": "29fb9b1fd410275dc9fc441d1d7a1589643249c3",
+      "size": 1041
+    },
+    {
+      "path": "Surge/rule/Meta.list",
+      "sha": "c59e6cdcc509b1adf145a55f6fce38d15c03dffb",
+      "size": 19182
+    },
+    {
+      "path": "Surge/rule/Microsoft.list",
+      "sha": "a43cda404037f86af134a80c0b5f74d8876a02da",
+      "size": 25977
+    },
+    {
+      "path": "Surge/rule/NTP.list",
+      "sha": "f4e23bec582938d0c34cfdcac15f3673a0ab33cd",
+      "size": 3156
+    },
+    {
+      "path": "Surge/rule/Netflix.list",
+      "sha": "2103f9b18a7e27e79a57c938d62da35c7eb4a990",
+      "size": 40591
+    },
+    {
+      "path": "Surge/rule/Parsec.list",
+      "sha": "173266829d8ca85853b0241fa8abea837035fcd0",
+      "size": 656
+    },
+    {
+      "path": "Surge/rule/ParsecP2P.list",
+      "sha": "db0c71fc0c736f5ad4dfc57394513a1e390e8a6d",
+      "size": 498
+    },
+    {
+      "path": "Surge/rule/SiriAI.list",
+      "sha": "12893ea69d67863a33a0aee41bc78b8666343ba9",
+      "size": 649
+    },
+    {
+      "path": "Surge/rule/Spotify.list",
+      "sha": "e97abb84837594abe851812733793c6ad261f24e",
+      "size": 1747
+    },
+    {
+      "path": "Surge/rule/Telegram.list",
+      "sha": "09ef8a4b9b82c9c4c910f5d145be485ae32050ee",
+      "size": 1846
+    },
+    {
+      "path": "Surge/rule/TikTok.list",
+      "sha": "a850453409d6c54dd44ba7210c84c4e9d2660b6a",
+      "size": 1606
+    },
+    {
+      "path": "Surge/rule/Twitter.list",
+      "sha": "2bcc103e839552c75a5fe9561bfb27b93feaaf78",
+      "size": 1332
+    },
+    {
+      "path": "Surge/rule/WeChat.list",
+      "sha": "0e67de991940bd352aa4581fb53caabd71a02c36",
+      "size": 10456
+    },
+    {
+      "path": "Surge/rule/Weverse.list",
+      "sha": "bee064857b31919594c9ffbc853cac37cfc450f0",
+      "size": 874
+    },
+    {
+      "path": "Surge/rule/Wikimedia.list",
+      "sha": "495b0aa495e9b77424415c0f378b1d5e8176e544",
+      "size": 1034
+    },
+    {
+      "path": "Surge/rule/Xiaohongshu.list",
+      "sha": "1ccf8290197f6401b8bafdca62f6ebc80883c0dc",
+      "size": 1338
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+name: Update Rule Finder catalog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Loon/rule/**'
+      - 'Surge/rule/**'
+      - 'Clash/rule/**'
+      - 'Egern/rule/**'
+      - 'Shadowrocket/rule/**'
+      - 'QuantumultX/rule/**'
+      - '.github/scripts/build-rule-catalog.mjs'
+      - '.github/workflows/rule-catalog.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+concurrency:
+  group: rule-finder-catalog
+  cancel-in-progress: false
+
+jobs:
+  catalog:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24'
+      - name: Regenerate the public directory without editing rule files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            node .github/scripts/build-rule-catalog.mjs
+            git add -- Docs/RuleFinder-Catalog.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Refresh public Rule Finder catalog [skip ci]'
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          echo 'main advanced during each attempt; no rule files were changed.' >&2
+          exit 1
