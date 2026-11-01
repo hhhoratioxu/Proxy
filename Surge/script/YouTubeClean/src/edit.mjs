@@ -1,5 +1,5 @@
 // Copyright 2026 Horatio Xu. MIT. YouTube policies and edits are implemented here.
-import {decodeMessage,nested,findField,join,withPayload,makeBytes,makeInt,replaceAll,readPacked,same} from './wire.mjs';
+import {decodeMessage,nested,findField,join,withPayload,makeBytes,makeInt,replaceAll,readPacked,same,planMessage,materializeMessage,changedMessage} from './wire.mjs';
 import {fromUtf8,isOpaqueText,CAPTION_REGEX,unb64} from './data.mjs';
 import {graph,rendererAds} from './protocol.mjs';
 import {editElementRenderer,deepCardAd,jsonElementAd} from './elements.mjs';
@@ -65,9 +65,9 @@ export function editBinary(raw,endpoint,settings,onKeys,trace){
     if(direct)type='GetWatchResponse';
   }
   const state={remaining:70000,depth:0,onKeys,trace};
-  return visit(raw,NS+type,settings,state);
+  return materializeMessage(visit(raw,NS+type,settings,state));
 }
-export function editWatchPart(raw,settings,onKeys,trace){return visit(raw,NS+'GetWatchResponse',settings,{remaining:70000,depth:0,onKeys,trace});}
+export function editWatchPart(raw,settings,onKeys,trace){return materializeMessage(visit(raw,NS+'GetWatchResponse',settings,{remaining:70000,depth:0,onKeys,trace}));}
 function visit(raw,type,s,state,feedCard=false){
   if(state.depth>48)throw Error('message depth');
   const fields=decodeMessage(raw);state.remaining-=fields.length;if(state.remaining<0)throw Error('message count');
@@ -83,7 +83,8 @@ function visit(raw,type,s,state,feedCard=false){
     if(key?.payload?.length===32&&encrypted?.payload?.length)state.onKeys({key:key.payload,encrypted:encrypted.payload,ttl:Number(expiry?.value||3600n)});
   }
   if(type===NS+'CaptionList')return captionList(raw,s);
-  const edges=extra[type]||graph[type]||{},output=[];let modified=false,lostContent=false,keptContent=false;
+  const edges=extra[type]||graph[type]||{};let edits=null,lostContent=false,keptContent=false;
+  const change=(field,payload=null)=>(edits??=[]).push({field,payload});
   for(const f of fields){
     if(type===NS+'GlobalConfigGroup'&&state.onKeys&&(f.no===3||f.no===7)&&f.wire===2){
       // The documented hot-config field can contain either serialized base64url or raw protobuf.
@@ -93,15 +94,15 @@ function visit(raw,type,s,state,feedCard=false){
         state.depth++;try{visit(hot,NS+'HotConfigGroup',s,state);}finally{state.depth--;}
       }catch{}
     }
-    if(s.ads&&((type===NS+'PlayerResponse'&&PLAYER_ADS.has(f.no))||(type===NS+'AdBreakResponse'&&BREAK_ADS.has(f.no)))){modified=true;if(state.trace)state.trace.removed++;continue;}
-    if(s.ads&&f.wire===2&&rendererAds[f.no]&&(edges[f.no]||/Renderer(?:s)?$/.test(type))){modified=true;if(state.trace)state.trace.removed++;continue;}
+    if(s.ads&&((type===NS+'PlayerResponse'&&PLAYER_ADS.has(f.no))||(type===NS+'AdBreakResponse'&&BREAK_ADS.has(f.no)))){change(f);if(state.trace)state.trace.removed++;continue;}
+    if(s.ads&&f.wire===2&&rendererAds[f.no]&&(edges[f.no]||/Renderer(?:s)?$/.test(type))){change(f);if(state.trace)state.trace.removed++;continue;}
     if(type===NS+'PivotBar'&&f.no===1&&f.wire===2&&(s.hideCreate||s.hideShorts)){
-      if(hidden(navIdentity(f.payload),s)){modified=true;continue;}
+      if(hidden(navIdentity(f.payload),s)){change(f);continue;}
     }
     let payload=f.payload;
     if(feedEnvelope&&f.no===FEED_ENVELOPE&&f.wire===2){
-      payload=editFeedEnvelope(f.payload,s,state.trace,state.feedEnvelopeBudget??={nodes:0,bytes:0});
-      if(!same(payload,f.payload)){modified=true;if(payload.length)output.push(withPayload(f,payload));continue;}
+      payload=editFeedEnvelope(f.payload,s,state.trace,state.feedEnvelopeBudget??={nodes:0,bytes:0},true);
+      if(changedMessage(payload,f.payload)){change(f,payload);continue;}
     }
     if(f.wire===2&&edges[f.no]){
       const previousRemoved=state.trace?.removed;
@@ -111,18 +112,17 @@ function visit(raw,type,s,state,feedCard=false){
         if(state.trace)state.trace.removed=previousRemoved;
         payload=f.payload;
       }finally{state.depth--;}
-      if(!same(payload,f.payload)){
-        modified=true;if(!payload.length){if(f.no===1)lostContent=true;continue;}
-        if(f.no===1)keptContent=true;output.push(withPayload(f,payload));continue;
+      if(changedMessage(payload,f.payload)){
+        change(f,payload);if(!payload.length){if(f.no===1)lostContent=true;continue;}
+        if(f.no===1)keptContent=true;continue;
       }
     }
     else if(feedCard&&f.wire===2&&f.no>=1000&&!(f.no===FEED_ENVELOPE&&s.ads&&s.deep)&&state.trace?.unknown&&state.trace.unknown.size<12)state.trace.unknown.add(f.no);
     if(f.no===1)keptContent=true;
-    output.push(f.raw);
   }
   // Drop an ad-only section including its tracking metadata, avoiding a blank card.
   if(s.ads&&type===NS+'ItemSectionRenderer'&&lostContent&&!keptContent)return new Uint8Array();
-  return modified?join(output):raw;
+  return planMessage(raw,edits);
 }
 
 function camel(s){return s.replace(/_([a-z])/g,(_,c)=>c.toUpperCase());}

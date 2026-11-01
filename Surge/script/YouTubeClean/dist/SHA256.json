@@ -1,10 +1,10 @@
 {
   "egern.js": {
-    "bytes": 131152,
-    "sha256": "21b2d2ed27fe5269567abfc31dd0897fdc93295384345b28c34bbb01e0aa4591"
+    "bytes": 132704,
+    "sha256": "9a0e65983f91e4b0b4d5a05af6eb9234d070488c01cbede2ac05829f62251ab2"
   },
   "clients.js": {
-    "bytes": 131630,
-    "sha256": "5d79fc1b9ef92a0ae67043ddd382622b3147d308796b0af3973e3228eb2a45d3"
+    "bytes": 133342,
+    "sha256": "c655dfcf23e041d370bfa0f89ec689fb604bba0d47c1d2532631bfe3d78f7918"
   }
 }

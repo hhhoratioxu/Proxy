@@ -37,13 +37,29 @@ function requestHeaders(io,settings,endpoint){
   if(typeof headers?.delete==='function'){for(const name of changes)headers.delete(name);if(refresh)headers.set('Cache-Control','no-cache');return{headers};}
   const out={};for(const [k,v]of Object.entries(headers||{}))if(!changes.includes(k.toLowerCase()))out[k]=v;if(refresh)out['Cache-Control']='no-cache';return{headers:out};
 }
-export async function handle(io,settings){
+export function handle(io,settings){
   const target=route(io.url);if(!target||getHeader(io.requestHeaders,INTERNAL))return null;
   const trace=settings.debug?{removed:0,templates:new Set(),matchedAdTemplates:new Set(),unknown:new Set(),feedCards:0}:null;
   const status=Number(io.status),session=sessionKey(io);
   const diagnostic={version:VERSION,profile:settings.profile,endpoint:target.name||(target.kind==='ump'?'initplayback':'timedtext'),phase:io.phase==='request'?'request':'response',adRemoval:settings.ads,deepFilter:settings.deep,format:target.kind==='ump'?'ump':'unknown',bytes:0,outputBytes:0,compression:'none',keyState:session.state,keySaved:false,changed:false,bypass:false,reason:'unchanged'};
   if(Number.isInteger(status)&&status>=100&&status<=599)diagnostic.status=status;
   const collect=value=>{if(save(io,value))diagnostic.keySaved=true;};
+  let captionPending=false;
+  function failed(error){
+    diagnostic.bypass=true;
+    const message=error?.message;
+    if(message==='UMP authentication'||message==='UMP crypto dimensions'){clear(io);diagnostic.keyState='missing';diagnostic.reason='stream-auth-failed';}
+    else if(message==='body too large')diagnostic.reason='body-too-large';
+    else if(message==='body representation')diagnostic.reason='body-representation';
+    else if(message==='UMP compression'||message==='UMP gzip marker')diagnostic.reason='stream-compression-unsupported';
+    else if(diagnostic.reason!=='caption-download-failed')diagnostic.reason='decode-failed';
+    return null;
+  }
+  function reportResult(){
+    if(trace&&typeof io.report==='function')try{
+      io.report({...diagnostic,removedParts:diagnostic.changed?trace.removed:0,feedCards:trace.feedCards,templates:[...trace.templates],matchedAdTemplates:[...trace.matchedAdTemplates],unknownRendererTags:[...trace.unknown],...(trace.feedEnvelopeFields?{feedEnvelopeFields:[...trace.feedEnvelopeFields],feedEnvelopeNodes:trace.feedEnvelopeNodes,feedEnvelopeElements:trace.feedEnvelopeElements,feedEnvelopeBypasses:trace.feedEnvelopeBypasses,feedEnvelopeShapes:trace.feedEnvelopeShapes||[]}:{}),...(trace.rootFields?{rootFields:trace.rootFields}:{}),...(trace.umpFrames!==undefined?{umpFrames:trace.umpFrames,umpTypes:trace.umpTypes,umpHeaderTypes:trace.umpHeaderTypes,metadataParts:trace.metadataParts,changedMetadataParts:diagnostic.changed?trace.changedMetadataParts:0}:{})});
+    }catch{}
+  }
   try{
     if(!settings.active){diagnostic.reason='disabled';return null;}
     if(io.phase==='request'){
@@ -51,7 +67,10 @@ export async function handle(io,settings){
       diagnostic.changed=!!result;diagnostic.reason=result?'request-updated':'request-unchanged';return result;
     }
     if(getHeader(io.responseHeaders,'X-YouTubeClean')){diagnostic.reason='already-processed';return null;}
-    if(target.kind==='caption')return await handleCaption(io,settings,diagnostic,INTERNAL);
+    if(target.kind==='caption'){
+      const pending=handleCaption(io,settings,diagnostic,INTERNAL);captionPending=true;
+      return pending.catch(failed).finally(reportResult);
+    }
     if(status!==200){diagnostic.bypass=true;diagnostic.reason='http-status';return null;}
     const bytes=asBytes(io.body),limit=MAX_BODY;
     diagnostic.bytes=bytes.length;diagnostic.outputBytes=bytes.length;
@@ -75,18 +94,6 @@ export async function handle(io,settings){
     if(same(output,plain))return null;
     diagnostic.changed=true;diagnostic.bypass=false;diagnostic.reason='modified';diagnostic.outputBytes=output.length;
     return{body:output};
-  }catch(error){
-    diagnostic.bypass=true;
-    const message=error?.message;
-    if(message==='UMP authentication'||message==='UMP crypto dimensions'){clear(io);diagnostic.keyState='missing';diagnostic.reason='stream-auth-failed';}
-    else if(message==='body too large')diagnostic.reason='body-too-large';
-    else if(message==='body representation')diagnostic.reason='body-representation';
-    else if(message==='UMP compression'||message==='UMP gzip marker')diagnostic.reason='stream-compression-unsupported';
-    else if(diagnostic.reason!=='caption-download-failed')diagnostic.reason='decode-failed';
-    return null;
-  }finally{
-    if(trace&&typeof io.report==='function')try{
-      io.report({...diagnostic,removedParts:diagnostic.changed?trace.removed:0,feedCards:trace.feedCards,templates:[...trace.templates],matchedAdTemplates:[...trace.matchedAdTemplates],unknownRendererTags:[...trace.unknown],...(trace.feedEnvelopeFields?{feedEnvelopeFields:[...trace.feedEnvelopeFields],feedEnvelopeNodes:trace.feedEnvelopeNodes,feedEnvelopeElements:trace.feedEnvelopeElements,feedEnvelopeBypasses:trace.feedEnvelopeBypasses,feedEnvelopeShapes:trace.feedEnvelopeShapes||[]}:{}),...(trace.rootFields?{rootFields:trace.rootFields}:{}),...(trace.umpFrames!==undefined?{umpFrames:trace.umpFrames,umpTypes:trace.umpTypes,umpHeaderTypes:trace.umpHeaderTypes,metadataParts:trace.metadataParts,changedMetadataParts:diagnostic.changed?trace.changedMetadataParts:0}:{})});
-    }catch{}
-  }
+  }catch(error){return failed(error);}
+  finally{if(!captionPending)reportResult();}
 }

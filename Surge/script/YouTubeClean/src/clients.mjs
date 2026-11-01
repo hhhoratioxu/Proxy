@@ -18,21 +18,28 @@ async function send(request,timeoutMs=4000){
 const download=(url,headers)=>send({url,headers});
 const translate=(request,timeoutMs)=>send({...request,method:'POST'},timeoutMs);
 
-async function execute(){
+function execute(){
   const input=isQX?(typeof $environment==='undefined'?{}:$environment.variables||{}):(typeof $argument==='undefined'?{}:$argument);
   const settings=new Settings(input);
   diagnostics=settings.debug;
-  const result=await handle({
+  const result=handle({
     url:request.url||'',phase:response?'response':'request',status:response?.statusCode??response?.status,
     requestHeaders:request.headers||{},responseHeaders:response?.headers||{},body:response?.bodyBytes??response?.body,
     store:{read,write},download,translate,report,captionRecovery:!isQX
   },settings);
+  return result&&typeof result.then==='function'?result.then(formatResult):formatResult(result);
+}
+function formatResult(result){
   if(!result)return{};
   if(result.body){const data=asBytes(result.body),headers=finalizeHeaders(response.headers,result.headers),status=result.status==null?{}:{status:isQX?'HTTP/1.1 '+result.status+' OK':result.status};return isQX?{bodyBytes:data.buffer.slice(data.byteOffset,data.byteOffset+data.byteLength),headers,...status}:{body:data,headers,...status};}
   return result;
 }
-execute().then(result=>$done(result),()=>{
+
+let completed=false;
+function finish(result){if(!completed){completed=true;$done(result);}}
+function failed(){
   const target=route(request.url||'');
   if(diagnostics&&target)report({version:VERSION,endpoint:target.name||(target.kind==='ump'?'initplayback':'timedtext'),phase:response?'response':'request',changed:false,bypass:true,reason:'adapter-error'});
-  $done({});
-});
+  finish({});
+}
+try{const result=execute();if(result&&typeof result.then==='function')result.then(finish,failed);else finish(result);}catch{failed();}
