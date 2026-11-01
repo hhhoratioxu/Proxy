@@ -29,7 +29,7 @@
 
 ## YouTube Clean · 去广告、双语字幕与底栏控制
 
-**1.2.11**。降低二进制主页字段分配和嵌套正文复制，纯本地响应同步完成，保留已由用户确认有效的 1.2.10 主页广告过滤、字幕翻译和底栏开关。Loon 默认仅显示译文，每个客户端仍为一个正式安装入口。
+**Loon 1.2.12；其他客户端 1.2.11**。Loon 按接口只加载需要的代码，并减少字幕对齐数据保留；继续保留主页去广告、字幕翻译、仅译文、智能换行及底栏开关。每个客户端仍只有一个正式安装入口。
 
 | 客户端 | 安装入口 |
 | --- | --- |
@@ -41,7 +41,7 @@
 | Clash / Mihomo | [能力说明](./Clash/Docs/YouTubeClean.md) |
 
 
-302 项自动检查通过。13 个场景、130 次独立桌面进程对比中，输出字节、请求数与单次完成一致；新版主页容器峰值 RSS 中位数 86.06 → 65.45 MiB（-23.9%），嵌套容器 100.38 → 65.59 MiB（-34.7%），字幕基本持平。用户已确认 1.2.10 在其 Loon 主页信息流去广告生效；1.2.11 的内存数据是桌面模拟，手机内存与 VPN 稳定性仍需实机确认。[源码、完整数据与范围](https://github.com/hhhoratioxu/Proxy/tree/6dd4f61ae35043ddc2299b8ea28c9b0c29f46bb8/Surge/script/YouTubeClean)。
+315 项自动检查通过。15 个自写场景完成 150 次 Node/V8 和 90 次 macOS JavaScriptCore 独立进程对比，输出正文、请求头结果、网络次数与单次完成均与 1.2.11 一致。JSC 请求头处理峰值 RSS 中位数 14.30 → 10.33 MiB（-27.8%），新版主页 21.70 → 20.41 MiB（-6.0%），Google 备用翻译 15.38 → 12.77 MiB（-17.0%）。用户已确认 1.2.10 的 Loon 主页去广告；新版内存是桌面测量，手机内存与 VPN 稳定性尚未验收。[源码、完整数据与范围](https://github.com/hhhoratioxu/Proxy/tree/53e4351e1cbd892803554b698ef3e5fe46767d9a/Surge/script/YouTubeClean)。
 
 ## Spotify 双语歌词 · VerseLyrics
 
@@ -88,7 +88,7 @@ AI routing updated on **2026-10-28**: all six clients now have **971 conditions*
 | Shadowrocket | [Rules, scripts and modules](./Shadowrocket/) · [Guide](./Shadowrocket/README.md) |
 | QuanX / Quantumult X | [Rules, scripts and tasks](./QuantumultX/) · [Guide](./QuantumultX/README.md) |
 
-YouTube Clean 1.2.11 reduces protobuf allocations and nested-body copies, and finishes local callback-client processing synchronously. All 302 checks pass. Across 130 isolated desktop trials, all 13 scenarios preserve output bytes, request counts and single completion against 1.2.10; homepage-envelope peak RSS falls 23.9%, and nested-envelope RSS falls 34.7%, while captions are essentially unchanged. The user confirmed Loon homepage ad removal on 1.2.10; 1.2.11 device memory and VPN stability remain unverified. Translation-only Loon defaults, caption layout and one entry per client remain. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
+YouTube Clean 1.2.12 specializes the single Loon plugin by endpoint and retains only text/timing for alignment-only caption tracks. Other client entries remain pinned to 1.2.11. All 315 checks pass; 150 Node/V8 and 90 desktop JavaScriptCore trials preserve body bytes, request-header results, network counts and single completion across 15 independent cases. JSC peak RSS decreases 27.8% for request headers, 6.0% for the new homepage envelope and 17.0% for fallback captions. These are desktop fixture-host measurements, not iPhone/Loon memory or VPN acceptance. Homepage filtering, translation-only defaults, caption layout and navigation switches remain. [Compatibility guide](./Clash/Docs/YouTubeClean.md).
 
 VerseLyrics entries for Egern, Surge, Loon, Shadowrocket and Quantumult X are listed above. All five clients now use core 3.2.1. Complete local lyric paths synchronously in Loon, Surge, Shadowrocket and Quantumult X; Egern keeps native asynchronous streams. Translate only English songs when the target is Chinese. Preserve fallback lyrics and native timing. Six sources, plugin translations and native highlighting remain. Measurements do not establish iPhone VPN stability. Complete official Shadowrocket scripting documentation was not found; its compatibility adapter is not claimed to be officially verified. The user confirmed fallback lyrics for one previously missing track in Loon. The Egern issue remains unresolved, and coverage still depends on the client and lyric sources.
 
