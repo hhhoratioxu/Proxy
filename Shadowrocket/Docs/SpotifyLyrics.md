@@ -1,12 +1,12 @@
 # Spotify 双语歌词 · VerseLyrics · Shadowrocket
 
-当前发布 **3.2.1**（原生适配 17）。Loon、Surge、Shadowrocket 和 Quantumult X 的歌词本地路径在当前调用内完成，仅在真实 HTTP 请求期间挂起；修复已复现的歌词脚本异步排队滞留。Egern 保持原生异步流接口。保留六源和同步歌词替换。中文目标仅翻译英语歌曲，中文或其他语言歌曲里的英文不单独翻译，旧译文也不会绕过歌曲语言判断。
+当前发布 **3.2.2**（原生适配 18）。在线备用源及匹配表仅在取得处理名额、实际查词时初始化；已有补词缓存和繁忙返回跳过初始化。英语歌词路径减少重复语言检查。临时补词忙碌或失败时保留真实状态、类型和正文，清除缓存校验标记并使用 no-store。没有增加后台任务、并发、缓存容量或超时。桌面测量有改善也有回退，不能保证每种首次加载都更省内存。
 
 保留六源补词、插件翻译、原生时间轴与高亮。缓存和网络都有明确上限；未收录的歌曲仍不能凭空补全。本地自动测试与 macOS JavaScriptCore 测量不等于 iPhone Loon 实机 VPN 验收，不能保证所有设备都不会被系统终止。
 
 中文翻译按整首歌词判断：中文、日语、韩语等歌曲即使夹英文也不翻译；旧官方、来源及缓存译文均受此规则限制。英语歌曲仍过滤 oh 等语气词。来源未给语言时只接受有明确英文用词且无其他文字体系的歌词，不确定时保留原词；此轻量判断不是权威语言检测。用户手动选择非中文目标时保留原有翻译行为。
 
-核心 **3.2.1**，客户端适配 **17**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
+核心 **3.2.2**，客户端适配 **18**。在 Spotify 原生歌词结构中写入插件译文，保留原词、时间轴及排版。
 
 补词优先核对同专辑。列表搜索中的跨专辑结果要求歌名、歌手一致、时长差不超过 1 秒且结果唯一（LRCLIB 完全相同的重复歌词可合并）；LRCLIB 签名接口直接返回的候选经相同身份、时长与版本校验后可用，不要求 Spotify 提供专辑名，但不代表已证明全库唯一，排除混淆的现场、混音及翻唱版本。酷狗不提供专辑信息，仅接受同名、同歌手、时长吻合且录音时长唯一的结果；同一录音的重复歌词上传可合并候选。酷我的长标题只缩短搜索关键词，最终仍核对完整曲名和所有歌手。旧版本的失败缓存会自动失效，已有成功缓存继续使用。
 
@@ -55,10 +55,10 @@
 
 ## 运行版本与接口
 
-[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/d76f8aa7785e023b9901dbf97e44e274295a0ed8/Shadowrocket/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/d76f8aa7785e023b9901dbf97e44e274295a0ed8/Surge/Development/VerseLyrics321)
+[固定运行脚本](https://raw.githubusercontent.com/hhhoratioxu/Proxy/10049053ce86bd992e3ebb6511ffb28312ba86fb/Shadowrocket/script/SpotifyLyrics.js) · [适配源码与构建记录](https://github.com/hhhoratioxu/Proxy/tree/10049053ce86bd992e3ebb6511ffb28312ba86fb/Surge/Development/VerseLyrics322)
 
 原始核心和适配逻辑为独立编写。Unicode Unihan 数据许可随运行脚本完整附带。[开发者网站](https://shadowlaunch.com/)；使用 Shadowrocket 的模块与脚本兼容接口，尚未在客户端完成导入或播放验证。
 
 [其他客户端](../../README.md) · [返回 Shadowrocket](../README.md)
 
-2026-11-01：2214 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
+2026-11-01：2248 项自动测试通过。每版实际改动、完整测量数据和重现命令见固定源码 README；测试不等同于 iPhone 实机 VPN 验收。
