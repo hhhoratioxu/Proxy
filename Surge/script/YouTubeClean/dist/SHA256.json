@@ -1,10 +1,26 @@
 {
   "egern.js": {
-    "bytes": 132704,
-    "sha256": "9a0e65983f91e4b0b4d5a05af6eb9234d070488c01cbede2ac05829f62251ab2"
+    "bytes": 132876,
+    "sha256": "6bb0b76e6f26e5d177e770c5856677d696b76efeb826cfb734d7753d93304eb5"
   },
   "clients.js": {
-    "bytes": 133342,
-    "sha256": "c655dfcf23e041d370bfa0f89ec689fb604bba0d47c1d2532631bfe3d78f7918"
+    "bytes": 133514,
+    "sha256": "dee47013745586993e1ec857d0b7e8a2cccdbd435ad63629a1dfc17e23270828"
+  },
+  "loon-request.js": {
+    "bytes": 20301,
+    "sha256": "4208a8360bbedef902db787ce6006c37633c1005e8e44ee00d6ca77758ee81b3"
+  },
+  "loon-api.js": {
+    "bytes": 96392,
+    "sha256": "4eed072b24e9ca905ab23deaf048c168f934982f76fca6accea23ec83f9d970f"
+  },
+  "loon-caption.js": {
+    "bytes": 42790,
+    "sha256": "5aaab47d9ee94e10d36be19d68df27799ed75333281fd38575822799619852e5"
+  },
+  "loon-playback.js": {
+    "bytes": 116409,
+    "sha256": "061bb511aa65130634aa7d557c75e17c19c8427b6c534542697a8d2ca07e5312"
   }
 }

@@ -9,7 +9,7 @@ import {VERSION} from '../src/data.mjs';
 import {combine,binary,string,opaque,homeFirstPage,homeSection,homeContents} from './fixtures.mjs';
 const dir=await mkdtemp(join(tmpdir(),'youtube-clean-entry-'));
 execFileSync(process.execPath,['package-native.mjs','f'.repeat(40),dir]);
-const code=await readFile(new URL('../dist/clients.js',import.meta.url),'utf8');
+const code=await readFile(new URL('../dist/loon-api.js',import.meta.url),'utf8');
 function parameters(plugin){
   const text=plugin.split('[Argument]\n')[1].split('\n[Script]')[0],out={};
   for(const line of text.trim().split('\n')){const m=/^(\w+) = (switch|select),([^,]+)/.exec(line);assert.ok(m,line);out[m[1]]=m[2]==='switch'?m[3]==='true':JSON.parse(m[3]);}
@@ -23,7 +23,7 @@ function element(name){
 test('the sole Loon entry runs the bundled code with deep filtering and typed object arguments',async()=>{
   const plugin=await readFile(join(dir,'Loon/script/YouTubeClean.lpx'),'utf8'),args=parameters(plugin),logs=[];
   assert.equal(args.PROFILE,undefined);assert.equal(args.DEEP_FILTER,true);assert.equal(args.DIAGNOSTICS,true);assert.equal(args.CAPTION_LAYOUT,true);assert.equal(args.BILINGUAL,false);assert.ok(plugin.includes(VERSION));
-  for(const line of plugin.split('\n').filter(l=>/^(?:request|response) if /.test(l))){const raw=line.slice(line.indexOf('~= /')+4,line.indexOf('/ then script'));assert.ok(new RegExp(raw).test('https://youtubei.googleapis.com:443/youtubei/v1/browse?alt=proto'));const passed=[...line.matchAll(/\$\{(\w+)\}/g)].map(m=>m[1]).filter(k=>k!=='url');assert.deepEqual(new Set(passed),new Set(Object.keys(args)));}
+  for(const line of plugin.split('\n').filter(l=>/^(?:request|response) if /.test(l))){const raw=line.slice(line.indexOf('~= /')+4,line.indexOf('/ then script'));assert.ok(raw.startsWith('^https:'));if(line.includes('YouTubeClean.request.js')||line.includes('YouTubeClean.api.js'))assert.ok(new RegExp(raw).test('https://youtubei.googleapis.com:443/youtubei/v1/browse?alt=proto'));const passed=[...line.matchAll(/\$\{(\w+)\}/g)].map(m=>m[1]).filter(k=>k!=='url');assert.deepEqual(new Set(passed),new Set(Object.keys(args)));}
   const ordinary=[homeSection([element('cell_divider')]),...Array.from({length:8},()=>homeSection([element('video_lockup_with_attachment')]))];
   const body=homeFirstPage([ordinary[0],homeSection([element('full_width_square_image_layout')]),homeSection([element('video_display_full_buttoned_layout')]),...ordinary.slice(1)]);
   let finish;const done=new Promise(resolve=>finish=resolve);let calls=0;

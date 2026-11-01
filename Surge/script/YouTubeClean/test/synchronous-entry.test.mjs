@@ -4,6 +4,7 @@ import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 import {combine,binary,string,homeFirstPage,homeSection,originalCaptions,translatedCaptions,captionUrl} from './fixtures.mjs';
 const code=new vm.Script(await readFile(new URL('../dist/clients.js',import.meta.url),'utf8'));
+const loonCode=Object.fromEntries(await Promise.all(['request','api','caption'].map(async lane=>[lane,new vm.Script(await readFile(new URL('../dist/loon-'+lane+'.js',import.meta.url),'utf8'))])));
 const element=name=>binary(153515154,binary(172660663,binary(1,binary(168777401,binary(3,binary(172035250,string(1,name+'.eml-fe|fixture')))))));
 const normal=element('video_lockup_with_attachment'),ad=element('full_width_square_image_layout');
 const make=ads=>homeFirstPage([homeSection([binary(474376530,combine(binary(1,normal),...(ads?[binary(1,ad)]:[])))])]);
@@ -14,7 +15,7 @@ function environment(client,options={}){
   const ctx={Uint8Array,ArrayBuffer,DataView,setTimeout:(fn,ms)=>setTimeout(fn,ms).unref(),$argument:settings,$request:{url:options.url||url,headers:{}},...(!options.request?{$response:response}:{}),$persistentStore:{read:()=>null,write:()=>true},$done:r=>{calls++;result=r;},$httpClient:{get:(req,cb)=>{requests++;callback=cb;},post:()=>{throw Error('unexpected fallback');}},console:{log:s=>logs.push(JSON.parse(s.slice(15)))}};
   if(client==='Loon')ctx.$loon='independent desktop fixture';
   if(qx){ctx.$environment={variables:settings};ctx.$prefs={valueForKey:()=>null,setValueForKey:()=>true};ctx.$task={fetch:()=>{requests++;return new Promise(resolve=>resolveFetch=resolve);}};}
-  return{run:()=>code.runInNewContext(ctx),get calls(){return calls;},get requests(){return requests;},get result(){return result;},logs,reply:(data,status=200)=>qx?resolveFetch({statusCode:status,headers:{},bodyBytes:data}):callback(null,{status,headers:{}},data),output:()=>Buffer.from(qx?result.bodyBytes:result.body)};
+  return{run:()=>(client==='Loon'?loonCode[options.request?'request':(options.url||url).includes('/api/timedtext')?'caption':'api']:code).runInNewContext(ctx),get calls(){return calls;},get requests(){return requests;},get result(){return result;},logs,reply:(data,status=200)=>qx?resolveFetch({statusCode:status,headers:{},bodyBytes:data}):callback(null,{status,headers:{}},data),output:()=>Buffer.from(qx?result.bodyBytes:result.body)};
 }
 for(const client of ['Loon','Surge','Shadowrocket','QuantumultX']){
   test(client+' finishes local success, pass-through and failure before returning to the host',()=>{

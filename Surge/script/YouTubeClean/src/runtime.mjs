@@ -39,6 +39,8 @@ function requestHeaders(io,settings,endpoint){
 }
 export function handle(io,settings){
   const target=route(io.url);if(!target||getHeader(io.requestHeaders,INTERNAL))return null;
+  // Build-time specialization: wrong-lane invocations always pass through.
+  if(typeof __YT_LANE__!=='undefined'&&__YT_LANE__!=='all'&&(__YT_LANE__==='request'?io.phase!=='request':io.phase==='request'||target.kind!==(__YT_LANE__==='playback'?'ump':__YT_LANE__)))return null;
   const trace=settings.debug?{removed:0,templates:new Set(),matchedAdTemplates:new Set(),unknown:new Set(),feedCards:0}:null;
   const status=Number(io.status),session=sessionKey(io);
   const diagnostic={version:VERSION,profile:settings.profile,endpoint:target.name||(target.kind==='ump'?'initplayback':'timedtext'),phase:io.phase==='request'?'request':'response',adRemoval:settings.ads,deepFilter:settings.deep,format:target.kind==='ump'?'ump':'unknown',bytes:0,outputBytes:0,compression:'none',keyState:session.state,keySaved:false,changed:false,bypass:false,reason:'unchanged'};
@@ -62,15 +64,16 @@ export function handle(io,settings){
   }
   try{
     if(!settings.active){diagnostic.reason='disabled';return null;}
-    if(io.phase==='request'){
+    if((typeof __YT_REQUEST__==='undefined'||__YT_REQUEST__)&&io.phase==='request'){
       const result=target.kind==='api'?requestHeaders(io,settings,target.name):null;
       diagnostic.changed=!!result;diagnostic.reason=result?'request-updated':'request-unchanged';return result;
     }
     if(getHeader(io.responseHeaders,'X-YouTubeClean')){diagnostic.reason='already-processed';return null;}
-    if(target.kind==='caption'){
+    if((typeof __YT_CAPTION__==='undefined'||__YT_CAPTION__)&&target.kind==='caption'){
       const pending=handleCaption(io,settings,diagnostic,INTERNAL);captionPending=true;
       return pending.catch(failed).finally(reportResult);
     }
+    if(typeof __YT_API__==='undefined'||__YT_API__||__YT_PLAYBACK__){
     if(status!==200){diagnostic.bypass=true;diagnostic.reason='http-status';return null;}
     const bytes=asBytes(io.body),limit=MAX_BODY;
     diagnostic.bytes=bytes.length;diagnostic.outputBytes=bytes.length;
@@ -79,11 +82,11 @@ export function handle(io,settings){
     diagnostic.compression=bytes[0]===31&&bytes[1]===139?'gzip':'none';
     const unpacked=unpackHttp(bytes,limit),plain=unpacked.bytes;
     let output=plain;
-    if(target.kind==='ump'){
+    if((typeof __YT_PLAYBACK__==='undefined'||__YT_PLAYBACK__)&&target.kind==='ump'){
       output=editStream(plain,session.key,settings,trace,collect);
       if(trace?.missingKey){diagnostic.reason='key-'+session.state;diagnostic.bypass=true;}
       else if(trace&&trace.metadataParts===0)diagnostic.reason='no-target-metadata';
-    }else{
+    }else if(typeof __YT_API__==='undefined'||__YT_API__){
       const first=fromUtf8(plain.subarray(0,40));
       const isJson=/json/i.test(getHeader(io.responseHeaders,'Content-Type'))||/^\s*\{/.test(first);
       diagnostic.format=isJson?'json':'protobuf';
@@ -94,6 +97,8 @@ export function handle(io,settings){
     if(same(output,plain))return null;
     diagnostic.changed=true;diagnostic.bypass=false;diagnostic.reason='modified';diagnostic.outputBytes=output.length;
     return{body:output};
+    }
+    return null;
   }catch(error){return failed(error);}
   finally{if(!captionPending)reportResult();}
 }

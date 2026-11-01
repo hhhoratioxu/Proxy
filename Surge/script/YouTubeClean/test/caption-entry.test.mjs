@@ -4,6 +4,7 @@ import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 import {utf8,VERSION} from '../src/data.mjs';
 const code=await readFile(new URL('../dist/clients.js',import.meta.url),'utf8');
+const loonCode=await readFile(new URL('../dist/loon-caption.js',import.meta.url),'utf8');
 const url='https://www.youtube.com/api/timedtext?v=SELF-WRITTEN&lang=ko&tlang=zh-Hant&format=srv3';
 const source='<timedtext format="3"><body><p t="1000" d="2000"><s>한국어 원문</s></p></body></timedtext>';
 async function callback(client,options={}){
@@ -12,7 +13,7 @@ async function callback(client,options={}){
   context.$httpClient={get:(request,complete)=>{requests.push(request);if(options.timeout)setTimeout(()=>complete(null,{status:200},utf8(source)),15);else complete(null,{status:options.downloadStatus||200,headers:{'Content-Type':'application/xml'}},utf8(source));}};
   if(client==='Loon')context.$loon='self-written Loon 3.5.3(1008) fixture';
   if(qx){context.$environment={variables:{TARGET_LANGUAGE:'zh-Hant'}};context.$task={fetch:async request=>{requests.push(request);return{statusCode:options.downloadStatus||200,bodyBytes:utf8(source).buffer,headers:{}};}};context.$prefs={valueForKey:k=>storage.get(k),setValueForKey:(v,k)=>{storage.set(k,v);return true;}};}
-  vm.runInNewContext(code,context,{timeout:3000});const result=await done;if(options.timeout)await new Promise(resolve=>setTimeout(resolve,30));
+  vm.runInNewContext(client==='Loon'?loonCode:code,context,{timeout:3000});const result=await done;if(options.timeout)await new Promise(resolve=>setTimeout(resolve,30));
   assert.equal(completed.length,1);assert.equal(logs.length,1);return{result,requests,report:JSON.parse(logs[0].slice(15)),storage};
 }
 for(const client of ['Loon','Surge','Shadowrocket'])test(client+' bundled adapter changes 429 to 200 only after receiving a real original transcript',async()=>{

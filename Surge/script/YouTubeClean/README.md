@@ -1,4 +1,4 @@
-# Horatio YouTube Clean 1.2.11
+# Horatio YouTube Clean 1.2.12 · Loon
 
 独立编写的 YouTube 去广告、双语字幕与底栏控制脚本。每个支持客户端只提供一个当前安装入口，统一默认开启深层广告过滤，不再提供测试方案选择。
 
@@ -13,6 +13,56 @@
 1.2.9 新增默认开启的 `CAPTION_LAYOUT`（译文智能换行），继续保留 1.2.8 的分配优化。Loon 默认仅显示译文，其他客户端已有默认与用户保存设置继续生效。
 
 2026-10-20：Loon 正式入口采用官方注册的 `.lpx`（Loon Plugin Extension）后缀，依据 [Loon News 的扩展名说明](https://t.me/LoonNews/1754)。旧 `YouTubeClean.plugin` 地址仅兼容已有订阅；生成器在该旧文件已经存在时同步相同内容，新输出目录只生成 `.lpx`。这是同一版本的地址兼容，不是两个功能版本，只需启用一个。运行脚本、开关和字幕排版版本仍为 1.2.9。
+
+## 1.2.12 Loon 加载与字幕内存
+
+2026-11-01：本轮只发布 Loon 入口优化；其他客户端的主分支入口继续固定引用 1.2.11。仍安装一个 YouTubeClean.lpx，内部按请求头、API 响应、字幕和播放封装四类选择编译脚本，三个 Response URL Guard 互不重叠，覆盖集合与 1.2.11 相同。每次响应只运行对应一条，没有动态下载/执行代码，没有新增请求或关闭任何广告、翻译功能。
+
+各脚本来自同一源码的编译时裁剪；构建记录和检查确认请求头入口不包含协议图、广告处理、字幕、gzip 或播放解密模块，字幕入口不包含主页协议图和 AES/HMAC，API 入口不包含字幕和播放解密。原统一回调脚本为 133342 字节；新 Loon 请求头 20301、API 96392、字幕 42790、播放 116409 字节（包含许可文本）。**脚本体积减少不等于内存按同样比例下降**。见 [构建组成](./dist/composition.json) 和 [校验和](./dist/SHA256.json)。
+
+正常字幕对齐只从附加轨道保留开始/结束时间和文字，不再保存其 XML 属性、JSON 事件对象、VTT 块及渲染闭包。实际输出仍使用原生字幕完整包络；需要恢复原字幕或调用 Google 备用时保留可渲染数据，避免恢复功能丢失。字幕文本、时轴、原文/译文选择、智能换行和失败保留原文规则不变。
+
+315 项自动检查通过，含新增 13 项编译组成、672 个 URL 组合的唯一匹配、同一密钥存储、错误入口放行、四种字幕格式的精简数据与输出一致性检查。既有 Loon 去广告、字幕、延迟/重复回调检查已切换为实际分入口构建脚本，其他客户端仍跑原生兼容回归。原有正文 8 MiB、字幕 1 MiB、新容器共享 8192 节点/24 MiB 累计访问/24 层/2048 字段、8 秒脚本超时和 6.5 秒字幕网络预算保持，最低仍为 Loon 3.5.1（983）。没有新增并发、持久缓存或宿主 API。
+
+### 桌面内存证据
+
+以已发布的 1.2.11 回调脚本为基线，15 个自写场景分别进行 Node/V8 每版 5 次（150 次）和 macOS JavaScriptCore 每版 3 次（90 次）独立进程交错测量。两种引擎全部输出正文 SHA-256、请求头结果、网络次数和单次完成一致，JSC 输出也与 Node 核对。以下为整进程峰值 RSS 的中位数。
+
+macOS JavaScriptCore（macOS 27.2 / arm64）：
+
+| 场景 | 1.2.11 | 1.2.12 | 变化 |
+| --- | ---: | ---: | ---: |
+| 主页请求头处理 | 14.30 MiB | 10.33 MiB | -27.8% |
+| 新版主页容器 | 21.70 MiB | 20.41 MiB | -6.0% |
+| 嵌套主页容器 | 21.75 MiB | 20.39 MiB | -6.2% |
+| 2500 句仅译文字幕 | 25.56 MiB | 24.44 MiB | -4.4% |
+| Google 备用翻译 | 15.38 MiB | 12.77 MiB | -17.0% |
+| 1500 句 JSON3 字幕 | 30.50 MiB | 29.16 MiB | -4.4% |
+
+Node v24.22.1 / arm64：
+
+| 场景 | 1.2.11 | 1.2.12 | 变化 |
+| --- | ---: | ---: | ---: |
+| 主页请求头处理 | 62.53 MiB | 54.50 MiB | -12.8% |
+| 新版主页容器 | 65.73 MiB | 64.11 MiB | -2.5% |
+| 嵌套主页容器 | 65.92 MiB | 64.14 MiB | -2.7% |
+| 2500 句仅译文字幕 | 73.00 MiB | 71.62 MiB | -1.9% |
+| Google 备用翻译 | 63.72 MiB | 61.38 MiB | -3.7% |
+| 1500 句 JSON3 字幕 | 81.16 MiB | 77.17 MiB | -4.9% |
+
+Node 的修改 JSON/gzip JSON 约 +0.1%/0.0%，加密 protobuf 约 -0.1%，没有证明这些路径有显著改善；其他原始数值和时间也完整保留。JSC 播放封装约 -0.2% 至 -0.4%，同样不宣称明显降低。
+
+这些数值分别包含 Swift/JavaScriptCore 或 Node/V8、输入和模拟接口，**不是 Loon/iPhone 进程内存或 VPN 稳定性验收**。JSC 夹具 HTTP 立即返回自写回复，计时器不触发，不模拟 Loon 的宿主缓冲和网络调度。峰值与计时在输出哈希之前取值，不发布原始用户数据。15 个夹具由独立准备进程生成，未取得手机的实际响应体。1.2.10 的 Loon 主页去广告已由用户确认；1.2.12 的手机内存和显示仍待确认。
+
+原始记录：[Node](./bench/memory-loon-1.2.12.node.json)、[JavaScriptCore](./bench/memory-loon-1.2.12.jsc.json)。基线固定为 `6dd4f61ae35043ddc2299b8ea28c9b0c29f46bb8/Loon/script/YouTubeClean.js`，SHA-256 `c655dfcf23e041d370bfa0f89ec689fb604bba0d47c1d2532631bfe3d78f7918`。复现：
+
+```sh
+node bench/run-loon-memory.mjs /tmp/youtube-clean-1.2.11.js dist /tmp/youtube-loon-memory 5
+xcrun swiftc -O bench/loon-jsc-worker.swift -o /tmp/youtube-loon-jsc
+node bench/run-loon-jsc.mjs /tmp/youtube-clean-1.2.11.js dist /tmp/youtube-loon-memory/fixtures /tmp/youtube-loon-jsc /tmp/youtube-loon-jsc.json 3
+```
+
+发布 Loon 使用 `node package-native.mjs <40位源码提交> <主分支目录> --loon-only`。最低版本、原生类型参数、单次完成和 URL Guard 已按 2026-11-01 的 [Loon Script](https://nsloon.app/docs/Script/script_v2/)、[Script API](https://nsloon.app/docs/Script/script_api/) 与[插件文档](https://nsloon.app/docs/Plugin/) 核对；没有使用未公开的内存上限或取消请求接口。
 
 ## 1.2.11 内存优化
 

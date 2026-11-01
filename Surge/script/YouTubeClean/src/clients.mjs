@@ -1,8 +1,8 @@
 // Copyright 2026 Horatio Xu. MIT. Proxy clients with callback-style script interfaces.
 import {Settings,asBytes,finalizeHeaders,MAX_CAPTION,VERSION,route} from './data.mjs';
 import {handle} from './runtime.mjs';
-const isQX=typeof $task!=='undefined';
-const isLoon=typeof $loon!=='undefined';
+const isQX=(typeof __YT_LOON__==='undefined'||!__YT_LOON__)&&typeof $task!=='undefined';
+const isLoon=typeof __YT_LOON__!=='undefined'&&__YT_LOON__||typeof $loon!=='undefined';
 const request=typeof $request==='undefined'?{}:$request,response=typeof $response==='undefined'?null:$response;
 let diagnostics=true;
 function report(data){try{if(typeof console!=='undefined'&&typeof console.log==='function')console.log('[YouTubeClean] '+JSON.stringify(data));}catch{}}
@@ -25,7 +25,7 @@ function execute(){
   const result=handle({
     url:request.url||'',phase:response?'response':'request',status:response?.statusCode??response?.status,
     requestHeaders:request.headers||{},responseHeaders:response?.headers||{},body:response?.bodyBytes??response?.body,
-    store:{read,write},download,translate,report,captionRecovery:!isQX
+    store:{read,write},download:(typeof __YT_CAPTION__==='undefined'||__YT_CAPTION__)?download:undefined,translate:(typeof __YT_CAPTION__==='undefined'||__YT_CAPTION__)?translate:undefined,report,captionRecovery:!isQX
   },settings);
   return result&&typeof result.then==='function'?result.then(formatResult):formatResult(result);
 }

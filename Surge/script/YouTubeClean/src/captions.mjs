@@ -23,7 +23,7 @@ function companionUrl(url,target){
   if(url.includes('#')||['sparams','lsparams'].some(key=>param(url,key).split(',').includes('tlang')))return null;
   const next=changeParam(url,'tlang',target);return route(next)?.kind==='caption'?next:null;
 }
-function timeline(bytes){return readTimeline(fromUtf8(unpackHttp(bytes,MAX_CAPTION).bytes));}
+function timeline(bytes,renderable=true){return readTimeline(fromUtf8(unpackHttp(bytes,MAX_CAPTION).bytes),{renderable});}
 function contentType(format){return format==='json3'?'application/json; charset=utf-8':format==='vtt'?'text/vtt; charset=utf-8':'application/xml; charset=utf-8';}
 function headers(io,internal){
   const out={[internal]:'1',Accept:'*/*'};
@@ -87,7 +87,7 @@ export async function handleCaption(io,settings,diagnostic,internal){
     bytes=asBytes(response.body);d.captionDownloadBytes=bytes.length;
     if(bytes.length>MAX_CAPTION){d.reason='caption-download-too-large';return base?await backup(base):null;}
     if(!bytes.length){d.reason='caption-download-empty';return base?await backup(base):null;}
-    companion=timeline(bytes);if(!companion.cues.length){d.reason='caption-download-empty';return base?await backup(base):null;}
+    companion=timeline(bytes,recovering);if(!companion.cues.length){d.reason='caption-download-empty';return base?await backup(base):null;}
   }catch{d.reason='caption-download-invalid';return base?await backup(base):null;}
   let body;
   if(recovering){

@@ -2,7 +2,8 @@
 import {mkdir,writeFile,access} from 'node:fs/promises';
 import {join} from 'node:path';
 import {API_REGEX,CAPTION_REGEX,UMP_REGEX} from './src/data.mjs';
-const [ref,destination]=process.argv.slice(2);
+const [ref,destination,scope]=process.argv.slice(2);
+if(scope&&scope!=='--loon-only')throw Error('Unknown packaging scope');
 if(!/^[a-f0-9]{40}$/.test(ref||'')||!destination)throw Error('Usage: node package-native.mjs <runtime commit SHA> <output directory>');
 const raw='https://raw.githubusercontent.com/hhhoratioxu/Proxy/';
 const settings=[
@@ -15,11 +16,12 @@ const response='(?:'+[API_REGEX,CAPTION_REGEX,UMP_REGEX].join('|')+')';
 const request='^https://(?:youtubei(?:-att)?\\.googleapis\\.com|(?:www|m)\\.youtube\\.com)(?::443)?/youtubei/v1/(?:browse|guide|log_event)(?:\\?.*)?$';
 const hosts=['youtubei.googleapis.com','youtubei-att.googleapis.com','www.youtube.com','m.youtube.com','*.googlevideo.com'];
 const defaults=settings.map(([k,v])=>k+'='+v).join('&');
-const title='YouTube Clean 1.2.11';
-const description='降低主页解析与嵌套正文复制开销；去广告、字幕翻译与底栏开关。需 HTTPS 解密。';
+const title='YouTube Clean 1.2.12';
+const description='按接口精简脚本加载与字幕对齐内存；去广告、翻译与底栏开关。需 HTTPS 解密。';
 const runtime=client=>raw+ref+'/'+client+'/script/YouTubeClean.js';
 const manual=client=>'https://github.com/hhhoratioxu/Proxy/blob/main/'+client+'/Docs/YouTubeClean.md';
 async function save(client,extension,content,stem='YouTubeClean'){
+  if(scope==='--loon-only'&&client!=='Loon')return;
   const dir=join(destination,client,'script');await mkdir(dir,{recursive:true});await writeFile(join(dir,stem+'.'+extension),content+'\n');
   // New destinations get only the registered .lpx entry. If an older .plugin
   // URL already exists, keep its bytes identical for existing subscriptions.
@@ -31,7 +33,7 @@ async function save(client,extension,content,stem='YouTubeClean'){
 }
 
 const schema=settings.map(([key,value,label])=>'  '+key+':\n    name: '+label+'\n    default_value: '+JSON.stringify(value)+'\n    options: '+(key==='TARGET_LANGUAGE'?'["zh-Hans", "zh-Hant", "en", "ja", "ko"]':'["true", "false"]')).join('\n');
-await save('Egern','yaml',`# Horatio YouTube Clean 1.2.11; native ESM runtime.
+await save('Egern','yaml',`# Horatio YouTube Clean 1.2.12; native ESM runtime.
 name: ${title}
 author: Horatio Xu
 icon: captions.bubble.fill
@@ -82,6 +84,7 @@ hostname = %APPEND% ${hosts.join(', ')}`);
 }
 const slash=pattern=>pattern.replace(/\//g,'\\/');
 const loonArgs=settings.map(([k,v,label])=>k+' = '+(k==='TARGET_LANGUAGE'?'select,"zh-Hans","zh-Hant","en","ja","ko",type=string':'switch,'+(k==='BILINGUAL'?'false':v)+',type=boolean')+',tag='+label).join('\n');
+const loonRuntime=lane=>raw+ref+'/Loon/script/YouTubeClean.'+lane+'.js';
 const loonPass='{'+settings.map(([k])=>'${'+k+'}').join(', ')+'}';
 await save('Loon','lpx',`#!name = ${title}
 #!desc = ${description}
@@ -94,8 +97,10 @@ await save('Loon','lpx',`#!name = ${title}
 ${loonArgs}
 
 [Script]
-request if \${url} ~= /${slash(request)}/ then script("${runtime('Loon')}", ${loonPass}) with tag="${title} 请求", timeout=8
-response if \${url} ~= /${slash(response)}/ then script("${runtime('Loon')}", ${loonPass}) with tag="${title} 响应", timeout=8, requires_body=true, binary_body_mode=true
+request if \${url} ~= /${slash(request)}/ then script("${loonRuntime('request')}", ${loonPass}) with tag="${title} 请求", timeout=8
+response if \${url} ~= /${slash(API_REGEX)}/ then script("${loonRuntime('api')}", ${loonPass}) with tag="${title} 广告与底栏", timeout=8, requires_body=true, binary_body_mode=true
+response if \${url} ~= /${slash(CAPTION_REGEX)}/ then script("${loonRuntime('caption')}", ${loonPass}) with tag="${title} 字幕翻译", timeout=8, requires_body=true, binary_body_mode=true
+response if \${url} ~= /${slash(UMP_REGEX)}/ then script("${loonRuntime('playback')}", ${loonPass}) with tag="${title} 播放元数据", timeout=8, requires_body=true, binary_body_mode=true
 
 [Mitm]
 hostname = ${hosts.join(', ')}`);
