@@ -1,0 +1,223 @@
+# Loon 官方文档适配记录
+
+核对日期：2026-11-01。用户指定本分类后续项目优先采用这些官方资料。本文件记录实现要点和仓库工程约定；涉及新能力时重新核对原页。
+
+| 官方入口 | 使用时机 |
+| --- | --- |
+| [总览](https://nsloon.app/docs/intro/) | 确认产品范围和文档入口 |
+| [Script](https://nsloon.app/docs/Script/script_v2/) | 声明触发条件、脚本参数和运行选项 |
+| [Script API](https://nsloon.app/docs/Script/script_api/) | 实现网络、存储、二进制和完成回调 |
+| [Rewrite](https://nsloon.app/docs/Rewrite/rewrite_v2/) | 原生请求头、响应头、正文与 URL 修改 |
+| [插件](https://nsloon.app/docs/Plugin/) | 组织插件、用户可选参数和最低版本 |
+
+## Script
+
+新版语法从 3.5.1（983）开始。每条 HTTP Script 只有一个 script Action；请求与响应各自按顺序选第一条完整命中的规则。Response 必须有覆盖所有成功分支的 URL Guard。声明 requires_body 才读取正文；binary_body_mode 仅选择表示方式。仅使用文档列明的 with 字段，不能移植其他客户端的 engine 或 max_size。Header 条件值为字符串或 null；不使用未支持的大小比较或 Body 条件。Script 条件不提供 Rewrite 的命名捕获。见 [官方 Script](https://nsloon.app/docs/Script/script_v2/)。
+
+## Script API
+
+每次执行只完成一次；异步回调结束后再调用 $done。HTTP timeout 单位为毫秒，二进制使用 Uint8Array；文本模式仍可能返回二进制。存储读写为同步字符串接口；remove 会清空全部脚本存储，不能用于单个插件的清理。不要依赖可靠的 clearTimeout/clearInterval，setInterval 也不是周期循环。gzip、AES 和 DNS 新 API 有 Build 988 要求。DNS 查询的超时与脚本总超时分别控制。见 [官方 API](https://nsloon.app/docs/Script/script_api/)。
+
+## Rewrite
+
+新版语法从 3.5.1（978）开始。多个匹配规则按顺序执行，Action 管道从左到右处理。条件捕获与 Action 内正则捕获有不同作用域。URL 替换需要唯一必选 URL 条件。响应 Mock 在请求阶段生成，不能依赖尚不存在的响应值。修改 Body 可能使对应 Script 不再执行，设计组合时需检查冲突；仅修改请求头不会新增这种禁用。见 [官方 Rewrite](https://nsloon.app/docs/Rewrite/rewrite_v2/) 和 [Script 执行顺序](https://nsloon.app/docs/Script/script_v2/)。
+
+## 插件
+
+input/select 支持 string 或 number，switch 使用 boolean；select 首项是默认值。类型必须显式匹配使用位置。script 的对象参数只引用当前插件已声明的参数，保持原类型。用户保存值优先于声明默认值，参数更改经配置重载发布。minimum version 取实际使用能力的最高要求，不照抄模板。见 [官方插件文档](https://nsloon.app/docs/Plugin/)。
+
+## 本仓库的工程约定
+
+以下是项目实践，不是官方提供的内存保证：
+
+- 只改请求头时优先评估原生 Rewrite，避免额外脚本实例；需要解析正文时按格式设置读取范围。
+- 对输入、缓存、请求数和总处理时间设上限；避免并行抓取、轮询等待及不必要的字符串/字节数组副本。
+- 原生网络回调可能已持有完整响应，JavaScript 内的长度检查不等于限制宿主进程的峰值内存。
+- 保留原始 Headers 与未修改字段；超限、未知格式和失败路径应有测试。
+- 验证真实发布配置中的参数传递、重复回调、超时、连续请求和失败恢复；桌面模拟测试不能称为 iPhone VPN 验收。
+- 发布时提供固定版本源码与测量证据，并核对主分支导入文件实际字节。
+
+
+## VerseLyrics 3.0.0 核对记录
+
+2026-10-19 重新核对 Script、Script API 与插件官方页面。NETWORK_MODE 是插件自有 string select 参数，默认 online，通过现有参数对象传入；cache-only 只控制插件查询，不修改 Loon 路由或 Spotify 本身联网。没有新增宿主 API、计时器或权限，最低版本继续为 3.5.1（983）。请求头继续使用官方原生 Rewrite；不再生成未被导入文件引用的 Loon 请求脚本。存储仍使用文档公开的同步字符串读写，保持原有容量与并发边界，不假设事务或原子交换能力。
+
+
+## VerseLyrics 3.1.0 共享歌词行为
+
+2026-10-19 核对 Script API 的异步完成与二进制约定。本次只改共享歌词判断与来源选择，不改 Loon 语法、宿主 API、最低版本或参数。简繁中文原词不互译；官方 UNSYNCED 静态歌词可在原有串行查询和容量边界内换为身份核对通过的真实同步歌词，无匹配则保留原词。无时间轴搜索结果与完全无词结果使用不同的短期缓存键，避免相互阻断。完整自动测试和 macOS 测量见对应版本固定源码；仍不能作为 iPhone VPN 稳定性结论。
+
+
+## VerseLyrics 3.1.1 简繁输出拦截
+
+2026-10-19：仅修改共享翻译判断，不新增或改变 Loon 语法、宿主 API、参数、最低版本或原生超时。中文夹英文与注音保留原句；缓存、来源和网络结果输出前再核对简繁与排版等价，服务明确识别为中文的结果复用原文身份记录。没有新增计时器、并行查询或缓存容量。保持异步回调结束后再完成脚本；本地编译产物回归与 iPhone VPN 实机结论继续分开报告。
+
+
+## YouTube Clean 1.2.5 字幕恢复
+
+2026-10-19 重新核对 [Script](https://nsloon.app/docs/Script/script_v2/)、[Script API](https://nsloon.app/docs/Script/script_api/) 与[插件](https://nsloon.app/docs/Plugin/)。保持原有 URL Guard、原生对象参数、Uint8Array 表示及 3.5.1（983）最低版本。字幕 HTTP 请求使用官方字段：timeout=4000 毫秒、binary-mode=true、auto-cookie=false、auto-redirect=false、insecure=false。只有真实取得合法字幕时，Response Script 才用官方支持的数字 status=200、正文和对应 Content-Type 恢复失败响应；未获取成功时保留原错误状态。
+
+每次字幕响应最多一次附加请求、无自动重试，完成回调仅一次；不依赖 clearTimeout 生效。原字幕、附加字幕与合成结果均限 1 MiB，宿主已经读取的正文仍不受 JavaScript 长度检查限制。HTTP 429 的同步存储只保留一个到期时间和状态，默认退避 60 秒、Retry-After 限制在 30–300 秒；无字幕、签名或账号缓存。读写不具备事务保证，短时并发可能各自发出一次请求；存储失败时保持原字幕处理并放弃跨请求退避。自动检查不能证明真实 iPhone VPN 稳定性或服务端翻译已恢复。
+
+
+## YouTube Clean 1.2.6 备用翻译 POST
+
+2026-10-19 依据已经核对的 Script API HTTP Client post、timeout 毫秒、binary-mode、auto-cookie、auto-redirect、insecure 和 Response 返回约定实现备用表单请求。没有新增宿主字段、权限、MITM 域名、路由或最低版本要求。FALLBACK_TRANSLATION 是原生 boolean switch，通过插件对象参数传入。一次字幕响应最多一个 YouTube GET 和一个 Google POST；按开始时间给网络处理 6.5 秒预算，单次请求上限 4 秒，脚本超时仍为 8 秒；完成只调用一次，不依赖 clearTimeout。
+
+备用只发送已解析字幕文字和语言，不发送账号、签名链接或播放密钥。单批 2048 条/文字 UTF-8 48000 字节/单条 4000 字符/表单 192000 字节，回复和合成结果限 1 MiB。宿主缓冲峰值仍无法用脚本检查保证。两个服务使用各自的短期到期状态，无字幕缓存、后台轮询或并行请求。真实公开服务探针使用自写文字，仍不代表真实 iPhone VPN 和用户视频验收。
+
+
+## VerseLyrics 3.1.2 混合句纠正
+
+2026-10-19 重新阅读官方 Script API 与插件页面。前述 3.1.1 将中文夹英文整行保留的策略已由本版纠正：提取英文片段合批翻译，再放回原位置，中文和标点保持原样；纯中文不简繁互译。有效旧译文复用，旧混合句身份或转换缓存按行重查；本次实际查询无译文的证明保存在原有受限记录中，避免反复联网。每个原词行仍占一个 q，多个英文片段不拆成独立请求；片段数量不符时不猜测拼接。没有增加 Loon 语法、宿主 API、参数、最低版本、并发、计时器或缓存容量。异步 HTTP 回调结束后单次完成的官方约定保持。自动测试与 macOS 测量不能代替 iPhone VPN 实机验收。
+
+
+## YouTube Clean 1.2.7 备用回复兼容
+
+2026-10-19 重新核对官方 [Script API](https://nsloon.app/docs/Script/script_api/) 与 [Script](https://nsloon.app/docs/Script/script_v2/)。仅通过公开 headers 对象设置 Accept-Encoding: identity，不新增宿主字段、参数、MITM 域名、路由或最低版本。继续使用 Uint8Array、毫秒超时和异步结束后单次完成，不依赖 clearTimeout。宿主已解压的正文可保留旧压缩响应头；脚本按实际字节解码已支持的 gzip，并在 1 MiB 边界内验证回复。
+
+只在数组长度严格对应时保留空项位置，未知结构不猜测。诊断仅增加请求/回复数量、字节数和固定编码/类型类别，区分压缩、JSON、HTML、条数和条目错误，不输出实际字幕、回复或任意 Header 内容。没有增加请求数量、并发、缓存或计时器，仍受既有 6.5 秒预算和 8 秒原生脚本超时约束。196 项自动检查与 180 条自写字幕的真实备用请求不代表用户视频或 iPhone VPN 已验收；实际 1.2.6 invalid-batch 的具体回复未取得。
+
+
+## VerseLyrics 3.1.3 首次加载与切歌处理
+
+2026-10-19 重新阅读官方 Script 与 Script API。仍使用原生 Rewrite、两个 Response Script、Uint8Array、同步字符串存储和回调结束后单次完成；最低版本 3.5.1（983）、参数、超时、权限与并发不变。共享实现将中文匹配表改为按平面延迟载入的 16 项小块索引，保留完整 6447 项映射，不创建整表解压缓冲区或运行时映射字典。同批重复英文只提交一次 q，再按各行原词拼接，仍限制 64 个原词行、6800 字符 URL 和原有字数/正文/时间预算。副歌译文按唯一句核对，纯中文快速保留；缓存写入后旧记录按实际读取需要解码。保留补词、中英夹杂翻译、简繁过滤和原生高亮。没有增加计时器、并行请求或缓存容量；完整模拟测量分别报告改善和退化，不能作为 iPhone VPN 保证。
+
+本版也将非 JSON 的成功 HTTP 服务回复写入既有 15 秒宿主退避记录，不增加计时器或存储键，不把异常当成无词；连续切歌不会续期，有效缓存与其他来源仍可用，到期允许重试。查询去重单独按需调用，普通外语歌词继续使用原先的原位批处理，避免候选实现中测出的首次内存回退。
+
+## VerseLyrics 3.1.4 静态歌词开关与语气词
+
+2026-10-19 重新核对官方[插件参数文档](https://nsloon.app/docs/Plugin/)。REPLACE_UNSYNCED 是插件自有 boolean switch，默认 true，经官方原生对象参数传入歌词 Response Script；用户保存的 false 值保留类型，原生桥同时接受其他客户端传入的字符串 false。关闭后跳过官方静态歌词的来源和缓存替换，完全无词的补词与翻译继续；开启只接受身份核对通过的真实同步时间轴，未命中保留原词。Loon 入口运行脚本不读取此参数。最低版本仍为 3.5.1（983），没有增加宿主 API、并发、计时器、缓存容量或网络预算。
+
+共享翻译只过滤由明确语气词组成的整行，以及中文混排中的独立语气片段，保留原词和中文，实际含义的英文继续翻译。旧缓存、来源译文和官方译文不能绕过过滤。没有新增正则分词数组或全局词典；语气词用逐 token 扫描，避免重复量词嵌套。自动测试覆盖实际编译的五客户端和 JSON/protobuf，不能作为 iPhone VPN 实机验收。
+
+## VerseLyrics 3.1.5 分配优化与静态歌词升级修正
+
+2026-10-19 重新阅读官方 Script API 的 Uint8Array、同步存储与异步完成约定。本次没有新增宿主 API、Loon 配置字段或参数，原生桥仍为适配 15，最低版本保持 3.5.1（983）。复用至多 4097 个 UTF-16 单元（8194 字节）的脚本内解码缓冲，返回值是已复制的字符串，缓冲不跨 await 暴露；各解码同步完成后才可复用。短 varint 直接读取，长值、溢出、截断、未知字段和原始时间轴的边界继续检查。语气词与拉丁片段扫描器延迟初始化、同步复用，普通英文提前拒绝无可能的语气词，资格判断不构造服务查询字符串。
+
+用户给出的《后会无期》公开元数据与 QQ 目录核对发现完整艺人英文名和明确插曲说明造成匹配失败。采用有公开依据的精确艺人别名、只剥离明确影视宣传后缀，仍核对全部艺人、时长、专辑/录音版本与唯一性；没有歌曲 ID 特判或额外别名联网。静态升级继续检查同一来源已核对的后续候选；同步未命中与普通无词的来源记录分开保存在同一受限缓存，旧负记录按来源版本失效，成功缓存保留。明确标成同步但多行时间全部为零时也能进入升级，未知或不合法的时间结构不据此推断无词。原有替换开关、补词、中英混排、简繁与语气词过滤保留。真实来源请求、五端重放、桌面内存/耗时与 iPhone VPN 实机验收分别报告，不保证原生宿主峰值或 VPN 稳定性。
+
+
+## YouTube Clean 1.2.8 分配优化
+
+2026-10-19 重新核对官方 [Script API](https://nsloon.app/docs/Script/script_api/) 的 Uint8Array、同步存储、异步完成与定时器约定，以及 [Script](https://nsloon.app/docs/Script/script_v2/) 的正文声明。本次仅修改共享 JavaScript 实现，保留最低版本 3.5.1（983）、原生对象参数、Loon 仅译文默认、URL Guard、MITM、8 秒脚本超时、6.5 秒网络预算和单次完成。没有新增宿主 API、字段、请求、并发、退避记录或持久缓存，不依赖可靠的 clearTimeout 或未公开的请求取消能力。
+
+同步 UTF-8 解码按需复用最多 4096 个 UTF-16 单元（8192 字节），返回字符串已复制，不将临时视图暴露给异步调用；编码一次分配精确长度。JSON 显式记录语义变化，避免为比较而序列化；卡片文字只做字节分类；XML 按源位置一次拼接；HMAC 分段处理。原有数据、深度、节点、大小和时间边界保留。215 项自动检查通过，9 个自写场景共 54 个独立 Node/V8 桌面进程核对输出字节与峰值 RSS。部分路径下降，原生 protobuf 主页内存持平，超限放行耗时轻微增加；数据及方法保存在固定源码的 bench/。这些结果不代表 Loon/iPhone 或 VPN 稳定性，脚本大小检查也不能限制宿主已经持有的完整正文。
+
+## VerseLyrics 3.1.6 缓存读取与原型回退
+
+2026-10-19 重新核对官方 [Script](https://nsloon.app/docs/Script/script_v2/) 与 [Script API](https://nsloon.app/docs/Script/script_api/) 的 Uint8Array、同步字符串存储和异步结束后单次完成约定。没有新增 Loon 字段、宿主 API、参数、权限、超时或最低版本要求；适配仍为 15、最低版本 3.5.1（983）。
+
+索引缓存的普通键由排除控制字符、引号与反斜杠的 JSON 字符串模式验证后直接读取，带转义的旧键继续用 JSON.parse；值和写入校验、缓存格式、TTL、并发合并及容量都不变。Map/WeakMap 记账容器按需创建；歌曲后缀和语言前缀只在筛选需要时生成一次，读取前后的 translations/translate 范围开关仍生效。纯中文快速保留与不访问缓存的卡片不会创建这些容器。
+
+逐行范围解析原型虽然减少字节视图，却在 600 行混排、满缓存的独立 Node 进程中反复增加堆占用；拆分对比确认后已撤回，实际发布继续使用 3.1.5 的严格 protobuf/UTF-8 解析和至多 8194 字节解码暂存。未采用该原型的计数作为最终收益。所有补词、混排翻译、简繁与语气词过滤、静态替换开关、颜色和时间轴保留。完整改善与退化数据在固定源码中公开；桌面检查不能证明 iPhone 原生缓冲峰值或 VPN 稳定性。
+
+
+## YouTube Clean 1.2.9 译文智能换行
+
+2026-10-20 重新核对官方[插件参数](https://nsloon.app/docs/Plugin/)的 boolean switch 与原生对象传参。`CAPTION_LAYOUT = switch,true,type=boolean` 是插件自有文本处理开关，经已声明的参数对象传入两条 Script；不假设任何未公开的 CC 样式字段。最低版本仍为 3.5.1（983），没有新增宿主 API、MITM 域名、路由、请求、并发、缓存或计时器，保留 8 秒超时、6.5 秒网络预算、4 秒单次请求及一次完成。
+
+短句快速保留；长译文在原 1 MiB 边界内前向扫描两次，按标点与词边界插入至多一个换行。正文内容、简繁及字幕起止时间保留，特别长的句子由原生播放器继续折行。仅译文模式已有目标译文可本地处理，不取伴随轨道；JSON3 追加组不因纯排版而合并事件。259 项自动检查和 12 次字幕桌面开销检查与真实 iPhone CC 效果、宿主缓冲峰值及 VPN 稳定性分别报告，1.2.8 的测量继续固定在历史版本。
+
+## 美团外卖 0.2.0 广告素材与配置刷新
+
+2026-10-20 重新核对官方 [总览](https://nsloon.app/docs/intro/)、[Script](https://nsloon.app/docs/Script/script_v2/)、[Script API](https://nsloon.app/docs/Script/script_api/)、[Rewrite](https://nsloon.app/docs/Rewrite/rewrite_v2/) 和[插件](https://nsloon.app/docs/Plugin/)。最低版本继续为 3.5.1（983）。Loon 使用 request 阶段的 reject_dict(200)、reject_img(200)、reject(200) 拦截独立广告，使用 request.header.del/set 移除 loadInfo 条件缓存头并请求 no-cache；只有 loadInfo 进入 Response Script，保持每个成功分支均经过 URL Guard，timeout=8、requires_body=true 为原生字段。没有引入其他客户端的 max_size、engine 或 requires-body 写法。
+
+Response Script 只替换明确的广告数组原文范围，成功改写后复制其他响应头，删除旧 ETag/Last-Modified/Content-MD5/Digest，设置 no-store；Content-Length、Transfer-Encoding 和 Content-Encoding 按官方约定交给 Loon 处理。非 200、未知结构、歧义重复键、畸形/超限正文均原样放行，304 不伪装为成功。请求头刷新仅作用于实际发出的请求，无法清除 App 本地缓存。
+
+共享 JavaScript 限 2097152 个 UTF-16 单元、64 层、50000 个扫描节点及扫描中 250 毫秒软预算；没有额外网络请求、持久缓存、并发任务或计时器，仅同步结束后调用一次 $done。宿主缓冲已经发生，脚本检查不保证原生峰值内存。广告图片只按 bizad/brandCpt/linglong 等已公开路径匹配，MITM 增加对应素材主机而非整个美团后缀。687 项实际生成配置与脚本的本地断言通过，不代表 Loon 解析器导入、iPhone 真实流量或 VPN 稳定性验收。
+
+## VerseLyrics 3.1.7 语气词与语种边界
+
+2026-10-20 重新核对官方 [Script API](https://nsloon.app/docs/Script/script_api/) 的 Uint8Array、同步字符串存储与异步结束后单次完成约定。本次只修改共享歌词判断和翻译请求内容，适配 15、原生 Rewrite、两个 Response Script、对象参数及最低 3.5.1（983）保持，没有新增宿主字段、API、权限、计时器、存储键或并发。
+
+中文/英文中的整行语气词以及中文混排中的独立语气片段不生成译文；连写重复词与隐藏格式字符只参与识别，原词本身不改写。固定重复单元避免嵌套可变长量词，扫描器仍按需复用。明确其他语种时不把 na/la/oh 等按英文语气词过滤；支持的明确源语言可用于既有翻译请求，中文/拉丁混排片段继续使用 auto。中文简繁输出保护和有意义的英文片段翻译保留。已有缓存、来源译文、官方译文均在输出路径核对，无需清空全部缓存。
+
+继续保留每批至多 64 个原词行、6800 字符 URL、96 KiB 翻译回复及 2.5 秒翻译窗口，标准 128 条/64000 字符与 compact 64 条/32000 字符缓存不变。其他语种以前被误跳过的行恢复请求属于本次行为修正，仍受原预算限制。自动编译产物测试、公开服务自写短词探针与 iPhone 原生 VPN 稳定性分别报告。
+
+
+## YouTube Clean 插件扩展名
+
+2026-10-20 核对 [Loon 官方扩展名说明](https://t.me/LoonNews/1754)（[公开频道上下文](https://t.me/s/LoonNews?before=1773)）：3.3.3(891) 注册 `.lpx`，含义为 Loon Plugin Extension，内部导出文件后续采用这些扩展名。正文语法继续以[官方插件文档](https://nsloon.app/docs/Plugin/)为依据；后缀不新增脚本 API、权限或最低版本能力。
+
+YouTube Clean 正式安装入口改为 `Loon/script/YouTubeClean.lpx`；原 `.plugin` 仅保留已有订阅兼容，生成器在该旧文件存在时同步相同字节，新目录只生成 `.lpx`，避免两个地址变成不同功能版本。两者只启用一个。实际运行脚本仍固定引用已验证的 1.2.9 提交，没有改广告、字幕、参数、内存边界或时间预算；本次只核对生成、原生入口重放及远端字节，不据此宣称手机验收。
+
+## 美团外卖 Loon 安装入口扩展名
+
+2026-10-20 核对 [Loon 官方插件文档](https://nsloon.app/docs/Plugin/)及[官方最新完整配置示例](https://github.com/Loon0x00/LoonExampleConfig/blob/master/example2.lcf)。当前官方示例的插件订阅使用 `.lpx`；美团外卖的文档与索引统一展示 `Loon/script/MeituanWaimai.lpx`。原 `.plugin` 地址保留为字节完全相同的兼容别名，避免已有订阅失效；新安装使用 `.lpx`，两者不要同时启用。原插件内容和固定 JavaScript 均不变，没有修改 Script/Rewrite 语法、宿主 API、最低版本或运行边界。
+
+
+## VerseLyrics 3.1.8 韩英歌词翻译恢复
+
+2026-10-21 重新核对官方 [Script API](https://nsloon.app/docs/Script/script_api/) 的同步字符串存储、HTTP 毫秒超时和异步回调完成约定。Loon 继续采用原生 Rewrite、两个 Response Script、适配 15、3.5.1（983）最低版本和 .lpx 入口；没有新增宿主 API、参数、计时器、请求并发或容量。修复旧韩语/英文原文缓存被当作成功译文而永久阻止查询的路径；已取得的原文原样结果及位置明确的无效单行使用现有受限翻译记录内的 30 秒重试时间，时间到后只重查未成功行。有效译文继续缓存复用。
+
+回复条数必须严格对应，未知或错位结构仍不猜测；条数正确时按行保留有效译文，单行空值、畸形值或片段对齐失败不再丢弃其他行。仍保持 64 原词行、6800 URL 字符、96 KiB 回复、2.5 秒翻译窗口、600 歌词行和既有缓存上限；异步回调结束后单次完成。五端 JSON/protobuf 回归、公开自写文本请求和桌面测量与真实 iPhone/UI/VPN 验收分别报告。
+
+
+## VerseLyrics 3.1.9 双语艺人名补词
+
+2026-10-24 重新核对官方 [Script API](https://nsloon.app/docs/Script/script_api/) 的同步字符串存储、HTTP 毫秒超时与异步结束后单次完成约定。Loon 仍使用原生 Rewrite、两个 Response Script、适配 15、.lpx 入口和 3.5.1（983）最低版本，没有新增宿主 API、参数、后台任务、请求并发或容量。
+
+共享匹配先保留原有完整艺人名比较；仅遇到明确的单层“东亚文字名 (拉丁字母名)”或反向标签才核对两个完整名称。每组最多 32 位艺人，合作者必须一一对应，重叠别名、同文字系统修饰、嵌套括号、成员或翻唱说明不参与别名匹配；标题、全部艺人、时长、专辑/录音版本和候选唯一性检查继续。只使用来源实际给出的名称，不联网猜译艺人名，不增加目录搜索。来源修订 8 使旧无词记录重新检查，成功歌词与翻译缓存保留。
+
+真实公开 Spotify 元数据与 QQ 歌词回放确认此修复可恢复 KimYeji 的 Burn It Down；编译 Loon 脚本的真实网络查询也取得同步歌词。自动测试、桌面 Node/JavaScriptCore 测量和公开服务请求均不等于真实 iPhone 界面或 VPN 稳定性验收；原有 256 KiB 歌词正文、96 KiB 服务回复、12 次来源请求、256 KiB 累计来源字节与标准/compact 缓存上限保持。
+
+## AI 分流数据扩充（2026-10-28）
+
+2026-10-28 重新核对 [Loon 官方总览](https://nsloon.app/docs/intro/)、[域名规则](https://nsloon.app/docs/Rule/domain_rule/) 与[订阅规则](https://nsloon.app/docs/Rule/sub_rule/)。`Loon/rule/AI.lsr` 保持逐行、不包含策略的原生 `DOMAIN`、`DOMAIN-SUFFIX`、`DOMAIN-KEYWORD` 格式；本次仅扩充服务主机数据，六端统一 971 条，原 476 条条件及顺序保留。
+
+新增来源中的进程名、共享 IP/ASN、通用身份验证及含义过宽的关键词没有直接移植到 Loon；没有新增 Script、Rewrite、宿主 API、最低版本、MITM、网络请求或后台任务。来源许可、官网核对和原始条件的一致性见 [AI 数据来源](../../Docs/AI-Sources.md)。静态格式及下载字节验证与真实 iPhone/Loon VPN、具体 AI 账号和节点可用性分开报告。
+
+## VerseLyrics 3.2.0 Spotify 重开入口负担
+
+2026-10-28 重新核对官方 [Script](https://nsloon.app/docs/Script/script_v2/) 的完整正文执行时机与 [Script API](https://nsloon.app/docs/Script/script_api/) 的 Uint8Array、同步字符串存储和单次完成约定。requires_body=true 已使 Response Script 在正文完整取得后执行，因此纯本地入口不需要再经异步 arrayBuffer/Promise 流程。原生入口使用内部 boundedBytes 直接验证现有正文，完成元数据、批量标记、卡片与配置改写后在当前调用中 $done；无网络、无计时器或等待队列。适配为 16，最低版本仍为 3.5.1（983），语法、宿主 API、参数、输入/缓存上限保持。
+
+Loon、Surge、Shadowrocket 和 Quantumult X 各自的原生入口采用同步路径；Egern 的原生 Response/流接口继续异步读取，未移植其他客户端的正文模型。实际补词和翻译保留异步网络回调完成后再单次结束的约定，不因入口同步改造提前结束任何 HTTP 工作。
+
+以划掉 Spotify 后重新打开时的多接口返回为目标进行脚本突发回归；模拟同轮调度中的未完成入口数、正文持有量、桌面 V8/JavaScriptCore 测量与真实 iPhone 的调度、总 VPN 内存和断开原因分别报告。未取得本次手机进程崩溃或 Jetsam 记录，不能把模拟改善称为实机断开已经根治。
+
+
+## YouTube Clean 1.2.10 主页新容器
+
+2026-10-28 重新阅读官方 [Script](https://nsloon.app/docs/Script/script_v2/) 与 [Script API](https://nsloon.app/docs/Script/script_api/) 的响应正文、Uint8Array、参数和单次完成约定。保持 .lpx 正式入口及同字节 .plugin 兼容别名，最低版本 3.5.1（983），原生对象参数、requires_body/binary_body_mode、MITM、8 秒脚本超时和字幕 6.5 秒网络预算均保持；没有新增宿主字段、API、请求、缓存或计时器。
+
+实际 Loon 3.5.3(1011) 日志发现主页字段 474376530 未进入旧图路径。仅在已进入的主页卡片中增加受限结构遍历，不给未取得的内层响应臆造字段类型；验证现有 Element 模板路径或协议声明的广告 renderer 后逐项移除，混合容器保留。所有新容器在同一 browse 响应共享 8192 解析节点、24 MiB 累计访问字节、24 层深度和单节点 2048 字段限制，沿用正文 8 MiB 边界；预算耗尽撤回当前容器修改，保留其他结果。这些是脚本工作预算，不能限制宿主已经持有的缓冲峰值。
+
+282 项自动检查、匿名真实外层加自写广告的混合验证和 12 次独立桌面成本检查分别记录；旧版跳过的新容器改为解析后增加处理开销，不能算作同等工作量下的内存回退或手机峰值。该轮未取得用户原始响应；用户随后确认 1.2.10 的 Loon 主页广告已消失。诊断仅输出固定状态及有限字段号/线型/长度，不含字幕、标题、URL、账号或原始字节。
+
+
+## VerseLyrics 3.2.1 歌词本地路径与歌曲语言规则
+
+2026-11-01 重新核对官方 Script、Script API、Rewrite 与插件文档。requires_body 的完整原生响应可以同步读取；仅在真实 HTTP 回调完成后继续异步工作，单次 $done。构建器只将主流程、翻译与配色等包含本地命中的路径转为同步到真实 Promise 的执行方式；本地命中、繁忙、拒绝处理不再滞留 Promise 任务。底层 HTTP API、单位、二进制、两个 Response hook、原生 Rewrite、最低 3.5.1（983）、全部参数及容量边界均不变。其他原生客户端使用各自 API；Egern 保留原生异步流。
+
+中文目标按整首歌曲限制为英语歌曲；非英语歌曲中的英文不单独翻译。判断在读取旧译文之前完成，不清空补词缓存。无语言标签的备用歌词仅在无其他文字体系且有英文用词证据时允许翻译，模糊结果保留原词；该方法不等于可靠语言识别模型。此规则覆盖之前中文夹英文片段翻译的要求。
+
+同批 72 个歌词响应与缓存、失败、网络回调释放分别测试；桌面 Node 和 macOS JavaScriptCore 数据不代表 iPhone 的宿主缓冲峰值或 VPN 已通过实机验收。本次用户仍报告自动断连，尚无手机终止记录，不能把推测内存不足写成已确认原因。
+
+
+## YouTube Clean 1.2.11 分配与完成时机
+
+2026-11-01 重新核对官方 [Script](https://nsloon.app/docs/Script/script_v2/) 与 [Script API](https://nsloon.app/docs/Script/script_api/)。requires_body=true 在完整响应正文取得后执行，本地 protobuf/JSON/播放封装处理可以完成后立即单次 $done；字幕的真实 HTTP 工作继续在异步回调结束后完成，未提前结束网络任务。Egern 保持原生异步流，其他客户端使用各自接口。未新增宿主 API、配置字段、权限或最低版本，继续为 3.5.1（983），保留 8 秒脚本超时与 6.5 秒字幕网络预算。
+
+原始二进制字段只保存偏移；32 位标签与长度避免 BigInt 临时分配，64 位值保持原精度。常规 protobuf 与新主页容器先记录改动范围，在处理成功后集中写出，减少逐层整段复制；所有既有输入、遍历、退避及请求数边界保持。同步完成检查覆盖四个回调客户端的成功、放行、失败、每个 32 次连续入口，以及字幕延迟/重复回调；Egern 原生流和字幕回归继续通过。
+
+302 项本地检查和 130 次桌面进程测量分别记录，13 个场景输出字节、请求数与单次完成均与 1.2.10 一致。此前用户确认 1.2.10 Loon 主页信息流广告已消失；本次桌面内存改善不能推断 iPhone 宿主缓冲峰值或 VPN 稳定性，1.2.11 设备内存仍待确认。安装继续采用单一 .lpx 入口和同字节 .plugin 兼容别名。
+
+
+## YouTube Clean 1.2.12 Loon 按接口编译
+
+2026-11-01 重新核对官方 [Script](https://nsloon.app/docs/Script/script_v2/)、[Script API](https://nsloon.app/docs/Script/script_api/) 与[插件](https://nsloon.app/docs/Plugin/)。一个 .lpx 含一个 Request 与三个互斥 Response URL Guard，匹配范围与旧组合 Guard 等价，每次响应由原生规则选择第一条完整命中。每条仍只有一个 script Action；请求头不读取正文，响应继续 requires_body=true、binary_body_mode=true，四个脚本都固定到同一不可变提交。保留全部 11 项原生参数和默认值、MITM、3.5.1（983）最低版本、8 秒超时及原有预算。
+
+脚本由相同源码在构建时去除各入口不需要的依赖，没有动态下载/执行代码或新增宿主 API。纯本地处理继续同步单次完成，字幕继续等待异步 HTTP 回调；没有依赖可靠取消定时器或新增并行请求。不同入口使用原有同名同步存储和退避键，不清理或迁移用户缓存/参数。附加字幕仅用于对齐时保留文字与时间，需要恢复原文的路径保留可渲染数据。
+
+315 项检查覆盖编译组成、672 个 URL 组合的唯一匹配、密钥共享、错误入口、四字幕格式及原有去广告/翻译/超时完成回归；150 次 Node 与 90 次 macOS JavaScriptCore 桌面进程检查分别记录。桌面 JSC 夹具的 HTTP 立即返回且计时器不触发，不能等同于 Loon/iPhone 的缓冲、调度或 VPN 验收。本版只发布 Loon，其他客户端主分支入口保持 1.2.11；正式 .lpx 和旧 .plugin 继续同字节，用户只启用一个。
+
+## VerseLyrics 3.2.2 首次歌词加载与临时无词缓存
+
+2026-11-01 重新核对官方 [Script](https://nsloon.app/docs/Script/script_v2/) 与 [Script API](https://nsloon.app/docs/Script/script_api/)。适配 18 只调整普通 JavaScript 初始化和完成流程，仍使用原生 Rewrite、两个 Response Script、Uint8Array、同步字符串存储及真实异步回调后单次完成。最低 3.5.1（983）、原生超时和所有参数不变；没有增加宿主字段、后台任务、计时器、请求并发、存储键或缓存容量。
+
+备用源和匹配表使用脚本内静态词法作用域，仅在取得网络处理名额且需要实际查询元数据或备用源时初始化；已有补词缓存及繁忙返回不初始化在线来源；不使用动态代码或下载其他运行库。通过整首歌曲判断后，英语翻中文不再重复执行已不适用的中文混排/简繁检查；五端仍覆盖旧缓存、来源译文和官方译文。保留既有本地同步完成流程，真实 HTTP 仍等待回调后完成。
+
+官方无词且备用词尚未取得时，保留 HTTP 状态、原 MIME 类型与正文，删除 Cache-Control、Expires、ETag、Last-Modified 后设置 Cache-Control: no-store；不伪造 200，不写入临时失败的长期无词记录。已有严格完整查无结果仍用原有受限内部 TTL。它只能防止 HTTP 缓存复用这次失败，不能命令 Spotify 自动重发请求；忙碌期间没有请求队列。
+
+逐 token 校验旧缓存值的原型虽减少临时对象，却拖慢带缓存的首次加载，已撤回，未发布。最终保留原生 JSON 解析与原有缓存布局。对最终运行文件冻结哈希，分别测量空缓存、已有缓存、延迟 HTTP 与连续切歌；桌面 Node/macOS JavaScriptCore 不等于 iPhone 峰值或 VPN 稳定性证明。requires_body 仍可能先由宿主持有完整响应，脚本容量限制无法约束该原生缓冲。

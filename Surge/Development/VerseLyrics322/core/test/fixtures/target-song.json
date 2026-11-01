@@ -1,0 +1,27 @@
+{
+  "captured_at": "2026-10-15",
+  "track_id": "76XUZSb13QUuj1HECY4Hvo",
+  "track_hex": "e9b099ff35ac4a9ab73e0e14d20b67a6",
+  "spotify_url": "https://open.spotify.com/track/76XUZSb13QUuj1HECY4Hvo",
+  "spotify_metadata_source": "Spotify metadata/4 public response using an anonymous embed session; no user credentials",
+  "metadata_sha256": "8b374b3ac5290cd6aefcab5ee2ba6b93b6aead0d2eccdee712410399b5ca1c78",
+  "metadata_base64": "ChDpsJn/NaxKmrc+DhTSC2emEgzpgqPpobXlpI/lpKkavAEKEHtHQk4rEknio2U46/jSQxMSA1dKSxodChAOzWn8JHNLjK0a9aixrMl/Egnnjovkv4rlh7EgASoBLzIHCNQfEA4YEIoBYAoeChSrZ2FtAAAeAnYsO+qGxX4Ye6Z+XRAAGNgEINgECh4KFKtnYW0AAEhRdiw76obFfhh7pn5dEAEYgAEggAEKHgoUq2dhbQAAsnN2LDvqhsV+GHumfl0QAhiACiCACsoBEgoQamRexV9XTe264VtoxGKMLSIdChAOzWn8JHNLjK0a9aixrMl/Egnnjovkv4rlh7EoIDACOKaFHkAsUhQKBGlzcmMSDEhLRDAxMjk5NTgxMloaGgAqBGZyZWUqB3ByZW1pdW0qB3NodWZmbGWIAYDlrtYGqgESChBqZF7FX1dN7brhW2jEYowtsgECemjCARQKELLFt8YE0Uv4seA7EKmkQ+EQAdoBDOmCo+mhteWkj+WkqYICHwoQDs1p/CRzS4ytGvWosazJfxIJ546L5L+K5YexGAGiAiRzcG90aWZ5OnRyYWNrOjc2WFVaU2IxM1FVdWoxSEVDWTRIdm+6Ai4KLBgDUigKJDZhNjQ1ZWM1LTVmNTctNGRlZC1iYWUxLTViNjhjNDYyOGMyZBADygIWChQKELLFt8YE0Uv4seA7EKmkQ+EQAdgCAOICDhIMCJnvotYGEMC9rKMC",
+  "expected": {
+    "title": "那页夏天",
+    "album": "WJK",
+    "artists": [
+      "王俊凱"
+    ],
+    "duration": 246.099,
+    "has_lyrics_field": false
+  },
+  "qq_candidate": {
+    "id": "002ungyc33fb7x",
+    "title": "那页夏天",
+    "album": "WJK",
+    "artists": [
+      "王俊凯"
+    ],
+    "duration": 246
+  }
+}
