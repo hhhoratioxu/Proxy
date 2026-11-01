@@ -1,0 +1,36 @@
+{
+  "baseline": {
+    "Egern/script/SpotifyLyrics/spotify-lyrics-request.js": "6fb9e3a23e2b918c30dcb2237cbf5fd7e1662f64cf1774c2db9974be8d463752",
+    "Egern/script/SpotifyLyrics/spotify-lyrics-entry.js": "25198d98ee8178ab0e056a4f818201e0ddabef7d4bae280889dbed2b473b4615",
+    "Egern/script/SpotifyLyrics/spotify-lyrics.js": "d8fc70dce3f8132bd4a65472539403f1ca91450f700b87783037b58bbbd5368b",
+    "Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
+    "Shadowrocket/script/SpotifyLyrics.Entry.js": "75cd03c0ab5ad67ab2273bb5d146b2a756fa51516851c67b59a3e0d0dba12138",
+    "Shadowrocket/script/SpotifyLyrics.js": "a9c3be770b7c733a74083f8b073a355839663e3503450347395afb5fcdbb9154",
+    "Shadowrocket/script/SpotifyLyrics.Request.js": "7123f2f98ec9ddbaa334edfe3b80378c634b78511f314c713c9b635573e68aad",
+    "Surge/script/SpotifyLyrics.Entry.js": "22fc034a87fde90dbd2a1623b3f00eedb5d97d25fe35b35e502b4088420681aa",
+    "Surge/script/SpotifyLyrics.js": "b3a0d1f5b039a43abfccac1e92aa34746d451bea4c8537477e8340851d17c710",
+    "Surge/script/SpotifyLyrics.Request.js": "7123f2f98ec9ddbaa334edfe3b80378c634b78511f314c713c9b635573e68aad",
+    "Loon/script/SpotifyLyrics.Entry.js": "c691b9ccdd8732235136af49b8f243f3635b405cc94491b129c15b0d767de02e",
+    "Loon/script/SpotifyLyrics.js": "ec149ede65dec4d90ff46643b5faae007961322255557a4d90ec85bedac90cd6",
+    "QuantumultX/script/SpotifyLyrics.Entry.js": "e1228d37e3e9e16cc446c17183264ba854751ccc7bd3484b0bf08dd63cec0ba8",
+    "QuantumultX/script/SpotifyLyrics.js": "c8546e61408e97ddfe2d184e2160e5d7cf87e424e32bf550a55d1973d29341a7",
+    "QuantumultX/script/SpotifyLyrics.Request.js": "33b1432a664f056c175c9bd0e009b5e81226ddbf83c3f55772565ff5d0fb8e59"
+  },
+  "candidate": {
+    "Egern/script/SpotifyLyrics/spotify-lyrics-request.js": "650e3629c7133f9a07263f925dadf88f6a3a5a5da85493951d40fd71429189b8",
+    "Egern/script/SpotifyLyrics/spotify-lyrics-entry.js": "b11615d811ffa3f1640608a03ff8dd551afcb512431bd506fcd8aa64ec5a5ab3",
+    "Egern/script/SpotifyLyrics/spotify-lyrics.js": "e243a1d29bcd3017999dd534f75ff1f83d0dbeec3d2147f10a2a1315dd5a5b9e",
+    "Egern/script/SpotifyLyrics/NOTICE-UNICODE.txt": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
+    "Shadowrocket/script/SpotifyLyrics.Entry.js": "4f1bf95eefb4c941222f1ce200147717c41d2c55f923c6ecf3a8d5ea4b765fec",
+    "Shadowrocket/script/SpotifyLyrics.js": "84014ccc6b218b63ca1e90f76e8e843612d080b208a1c34a568f0c8b4dd1711d",
+    "Shadowrocket/script/SpotifyLyrics.Request.js": "be2dd0ba046fb772fce7623b75c3a442a323c5db6ee2ac977c7390bb9c69f62a",
+    "Surge/script/SpotifyLyrics.Entry.js": "d66b14e357c3fdc75b414db5fe302e35ea2d768f775e0d32146291543fac20ea",
+    "Surge/script/SpotifyLyrics.js": "0691829cf101bec15bc21b3e31eaa1232ac35f2b0ae61630f4e90ba88f3aafd9",
+    "Surge/script/SpotifyLyrics.Request.js": "be2dd0ba046fb772fce7623b75c3a442a323c5db6ee2ac977c7390bb9c69f62a",
+    "Loon/script/SpotifyLyrics.Entry.js": "00157b523c4be385ddcc34af458f67471b91c43bcaf8d4ba036ece99fa1f4a89",
+    "Loon/script/SpotifyLyrics.js": "7dbbd0036d60e0979d94f9c06329cfe64f99c8abfdbcaef96294154dd078fa30",
+    "QuantumultX/script/SpotifyLyrics.Entry.js": "a9a8de303b7ba713a4339c7734496994a6f6eb38d6d5de5115dfbd62447908a1",
+    "QuantumultX/script/SpotifyLyrics.js": "7d20909eaf3cc0ad24248a374562f306c4f61c7832e845c955e9a2a1dcb1983d",
+    "QuantumultX/script/SpotifyLyrics.Request.js": "3a25982fa7f4b4beb40ecc57350dca18e763b70c0b834a25d6d95a572c1eb88b"
+  }
+}

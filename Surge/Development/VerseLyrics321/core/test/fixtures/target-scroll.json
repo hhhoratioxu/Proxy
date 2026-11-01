@@ -1,0 +1,15 @@
+{
+  "captured_at": "2026-10-15",
+  "track_id": "76XUZSb13QUuj1HECY4Hvo",
+  "endpoint": "https://spclient.wg.spotify.com/scrollsita/v1/scroll/spotify:track:76XUZSb13QUuj1HECY4Hvo",
+  "http_status": 200,
+  "content_type": "application/x-protobuf",
+  "request_platform": "iOS",
+  "request_spotify_version": "9.1.92.3058",
+  "session": "anonymous public embed session; credentials retained only in process memory",
+  "raw_response_bytes": 247,
+  "raw_response_sha256": "dc913a154b5b95f269ee739c3d9a29225a390a0acdf18bb1f9aa662779b00efe",
+  "fixture_scope": "Only the original structure field; response_info and its generated request identifier removed. Contains public track/artist/section URIs. Not captured on a physical iPhone.",
+  "structure_field_base64": "CswBCskBIpsBCiRzcG90aWZ5OnRyYWNrOjc2WFVaU2IxM1FVdWoxSEVDWTRIdm8SJXNwb3RpZnk6YXJ0aXN0OjByVkx5djR4b3VYOU00R0NxM1Z1UDUSJXNwb3RpZnk6YXJ0aXN0OjdhY3JRemNwY1hxTnlIYk5ZTnJtbGMSJXNwb3RpZnk6YXJ0aXN0OjZYNjZQRDBOdGQzTkFKRnFCSFBiNXa6ASgKJnNwb3RpZnk6c2VjdGlvbjowSlE1REI2czNjc3NXNUJvNmNHcTFP",
+  "structure_field_sha256": "2f069c91c62e5b251a360af41f1e96c667477780d74821796da17ea7e06c021c"
+}
