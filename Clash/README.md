@@ -91,7 +91,7 @@ rules:
 - 保留 Parsec 控制连接代理及 ParsecP2P 的 STUN/进程 UDP；原来源埠 9000 方式移到[可选文件](./rule/optional/ParsecP2P-Port9000.yaml)，需要额外引用，不自动启用。所有文件须使用 `behavior: classical`，不能用 `behavior: domain`。
 - 实际路由效果还取决于 DNS、TUN、进程匹配和节点 UDP 支持；建议用 Clash Verge Rev 的连接与日志页面确认。
 
-分流与扩展脚本复核：2026-11-13。
+分流与扩展脚本复核：2026-11-13。当前范围见[本轮优化与验证](../Docs/Official-Optimization-2026-11-13.md)，维护者复跑方法见[开发说明](../Docs/Development.md)。
 
 ## 相关说明
 

@@ -49,14 +49,12 @@ RULE-SET,https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/AI.
 
 将 `POLICY` 替换为你现有的策略组名称；`update-interval=86400` 表示每 24 小时检查更新。这些文件应通过 `RULE-SET` 引用，格式包含域名、IP、ASN 及 User-Agent 等多种规则。
 
-需要分别指定策略时，AI 应排在 Google、Microsoft、GitHub、Meta 之前，SiriAI 和 NTP 应排在 Apple 等通用服务规则之前。局域网 LAN 通常选择 `DIRECT`；Parsec P2P 按原说明选择 `DIRECT` 并排在 Parsec 之前。
-
-规则顺序建议：SiriAI 先于 AI；AI 先于一般平台；NTP、ParsecP2P 先于各自的通用或控制集合；GitHub 专属云主机先于 Microsoft；Apple/Disney 的具名 Adobe 租户先于 Adobe。不要清空现有策略；主配置绑定方式见[开发说明](../Docs/Development.md)。
+需要分别指定策略时，LAN、ParsecP2P、NTP 通常靠前；SiriAI 先于 AI，AI 先于一般平台；GitHub 等服务专用端点先于 Google、Apple、Microsoft 通用集合；Apple/Disney 的具名 Adobe 租户先于 Adobe。ParsecP2P 绑定 DIRECT 并排在 Parsec 控制连接代理之前；保留现有节点与策略选择。跨端 DNS 与协议边界见[开发与验证说明](../Docs/Development.md)。
 
 ### 来源与验证范围
 
-- 本次补齐 24 组规则，来源为仓库 `73e99eb3e2c36920768328b65bbf60b8eed3281f` 提交的 `Loon/rule/`，保留原规则条目、顺序、`no-resolve` 标记、作者和来源说明；每个新文件注明固定版本的源文件地址。
-- 原有 `Parsec.list`、`ParsecP2P.list` 保持原样，具体平台能力与使用条件见 [Parsec 分流说明](../Clash/Docs/Parsec.md)。
+- 最初补齐的 24 组规则来自仓库 `73e99eb3e2c36920768328b65bbf60b8eed3281f` 提交的 `Loon/rule/`，固定来源与作者说明继续保留。2026-11-13 已修正过宽匹配、历史重复及 DNS 选项，历史来源统计不代表当前内容；当前条数见表格，修改依据与范围见[优化报告](../Docs/Official-Optimization-2026-11-13.md)。
+- Parsec 控制连接代理与 P2P 两类继续保留；默认 P2P 列表使用 STUN，以及仅适用于 Surge Mac 的进程 UDP 条件。旧来源埠 9000 兼容方式移至[独立可选列表](./rule/optional/ParsecP2P-Port9000.list)，需要额外引用并绑定 DIRECT，不会自动启用。平台与版本要求见[Parsec 分流说明](../Clash/Docs/Parsec.md)。
 - Surge 使用原生 `DOMAIN`、`DOMAIN-SUFFIX`、`IP-CIDR`、`IP-CIDR6`、`IP-ASN` 和 `USER-AGENT`。User-Agent 规则需要 Surge 的 HTTP 引擎能读取对应请求头；保留规则不代表任意 HTTPS 流量都能命中。
 - 已检查文件语法、IP 网段、来源条目一致性和发布链接；尚未在实际 Surge 客户端完成导入及流量命中验收。
 
