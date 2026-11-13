@@ -2,12 +2,13 @@
 # AUTHOR: Horatio
 # FORMAT: Egern YAML rule_set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 85
+# RULES: 84
 # SOURCE: Loon/rule/NTP.lsr (same repository)
 # USE: reference this URL from a rule_set with an assigned policy.
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + blackmatrix7 NTPService
 # NOTE: Comprehensive NTP/time-service routing set including Apple, Google, Microsoft, Cloudflare, Aliyun, Tencent and public pools.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 domain_suffix_set:
   - "cn.ntp.org.cn"
@@ -41,7 +42,6 @@ domain_suffix_set:
   - "ntp7.cloud.aliyuncs.com"
   - "ntp8.cloud.aliyuncs.com"
   - "ntp9.cloud.aliyuncs.com"
-  - "pool.ntp.org"
   - "s1a.time.edu.cn"
   - "s1b.time.edu.cn"
   - "s1c.time.edu.cn"

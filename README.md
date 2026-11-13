@@ -13,7 +13,7 @@
 
 ## AI 分流更新
 
-**2026-10-28：六个客户端统一 971 条，新增 495 条。** 合并主流社区来源并按官方页面补充模型、编程、研究、会议、图像/视频/3D 和云端 AI 服务，保留原订阅地址。[全部订阅、覆盖与边界](./Docs/AI-Routing.md) · [来源、官网与授权](./Docs/AI-Sources.md)。
+**2026-11-13：六个客户端 AI 各 961 条，全库保留 26 类。** 按官方资料缩小共享范围、清理冗余及修正规则优先级，保留原订阅地址。[本轮优化与验证](./Docs/Official-Optimization-2026-11-13.md)。[全部订阅、覆盖与边界](./Docs/AI-Routing.md) · [来源、官网与授权](./Docs/AI-Sources.md)。
 
 ## 客户端入口
 
@@ -60,7 +60,7 @@ Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **3.2.2**，备�
 
 [共用图标库与导入入口](./Icons/) · [目录用途与迁移说明](./Clash/Docs/Directory-Migration.md)。Parsec 分流文档保存在 `Clash/Docs/`。
 
-测试、构建工具、验证记录和开发压缩包已从主分支移除。各客户端 README 直接列出安装文件和使用方法。
+维护工具及重复验证命令见[开发说明](./Docs/Development.md)，本轮依据与记录见[优化报告](./Docs/Official-Optimization-2026-11-13.md)。各客户端 README 保留当前安装文件与使用方法；安装插件无需运行维护工具。
 
 > 配置仅供个人使用，请根据客户端版本和实际网络环境调整。图标及品牌名称归各自权利人所有。
 
@@ -75,7 +75,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 
 [Full rule-format compliance audit for six clients (2026-10-25)](./Docs/Rule-Format-Compliance.md). All rule sets were normalized; real-device connectivity remains unverified.
 
-AI routing updated on **2026-10-28**: all six clients now have **971 conditions**, with the original 476 retained and 495 additions. Existing subscription URLs are unchanged. [Subscriptions and coverage](./Docs/AI-Routing.md) · [Pinned sources and license notices](./Docs/AI-Sources.md).
+AI routing reviewed on **2026-11-13**: all six clients have **961 AI conditions** and retain the existing 26 categories. Shared namespaces, redundant matchers and policy precedence were reviewed against official sources. Existing subscription URLs remain unchanged. [Changes and validation](./Docs/Official-Optimization-2026-11-13.md). [Subscriptions and coverage](./Docs/AI-Routing.md) · [Pinned sources and license notices](./Docs/AI-Sources.md).
 
 ## Client directories
 
@@ -96,7 +96,7 @@ Each plugin has one current installation entry. Clients automatically load any r
 
 [Shared icons and import links](./Icons/) · [Directory and migration guide](./Clash/Docs/Directory-Migration.md). The Parsec routing guide is in `Clash/Docs/`.
 
-Tests, build tools, validation records and development archives have been removed from the default branch. Each client README lists its installation files and usage guides.
+Maintainer checks and repeatable commands are in the [development guide](./Docs/Development.md), with findings in the [optimization report](./Docs/Official-Optimization-2026-11-13.md). Each client README retains current installation files and usage guides; installing plugins does not require these tools.
 
 > These configurations are for personal use. Adjust them for your client version and network environment. All icons and brand names belong to their respective owners.
 

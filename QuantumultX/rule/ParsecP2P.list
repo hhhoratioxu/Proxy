@@ -2,11 +2,11 @@
 # AUTHOR: Horatio Xu
 # FORMAT: Quantumult X filter_remote
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 3
+# RULES: 2
 # POLICY: DIRECT when importing; place before Parsec proxy rule set.
-# COMPAT: SRC-PORT depends on client support; may match non-Parsec traffic using local port 9000.
+# COMPAT: Current developer reference does not document SRC-PORT; STUN hostnames only.
 # WARNING: These rules cannot guarantee a P2P connection through CGNAT or restrictive firewalls.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 HOST,stun.parsec.app
 HOST,stun6.parsec.app
-SRC-PORT,9000

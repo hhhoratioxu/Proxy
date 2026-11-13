@@ -2,14 +2,14 @@
 # AUTHOR: Horatio
 # FORMAT: Shadowrocket rule set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 34
+# RULES: 33
 # SOURCE: Loon/rule/Twitter.lsr (same repository)
 # USE: Remote rule set; select policy in the client (not in this file).
 # PROVENANCE / EXISTING NOTES:
 # Converted from the matching comprehensive Egern Twitter rule set.
 # Keep this file aligned with Egern/rule for dual-client use.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
-DOMAIN-KEYWORD,twitter
 DOMAIN-SUFFIX,ads-twitter.com
 DOMAIN-SUFFIX,cms-twdigitalassets.com
 DOMAIN-SUFFIX,grok.com

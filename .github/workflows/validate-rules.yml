@@ -1,0 +1,43 @@
+name: Validate routing rules and install entries
+
+on:
+  pull_request:
+  push:
+    paths:
+      - '**/rule/**'
+      - '**/script/**'
+      - 'tools/**'
+      - 'tests/**'
+      - 'requirements-dev.txt'
+      - '.github/workflows/validate-rules.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24'
+      - name: Install validation dependency in an isolated environment
+        run: |
+          python3 -m venv .venv
+          .venv/bin/python -m pip install -r requirements-dev.txt
+      - name: Check all native rule files and routing fixtures
+        run: |
+          .venv/bin/python tools/validate_rules.py
+          .venv/bin/python tools/optimize_rules.py --check
+          .venv/bin/python tools/check_domain_overlaps.py
+          .venv/bin/python -m unittest discover -s tests -p 'test_*.py' -v
+          .venv/bin/python tools/check_repository_links.py
+      - name: Check extension behavior and exact pinned runtime objects
+        run: |
+          node --test tests/verge-rev.test.mjs
+          .venv/bin/python tools/check_script_references.py --node "$(command -v node)"

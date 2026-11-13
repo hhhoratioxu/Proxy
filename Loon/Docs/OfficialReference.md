@@ -1,6 +1,6 @@
 # Loon 官方文档适配记录
 
-核对日期：2026-11-01。用户指定本分类后续项目优先采用这些官方资料。本文件记录实现要点和仓库工程约定；涉及新能力时重新核对原页。
+核对日期：2026-11-13。用户指定本分类后续项目优先采用这些官方资料。本文件记录实现要点和仓库工程约定；涉及新能力时重新核对原页。
 
 | 官方入口 | 使用时机 |
 | --- | --- |
@@ -221,3 +221,27 @@ Loon、Surge、Shadowrocket 和 Quantumult X 各自的原生入口采用同步�
 官方无词且备用词尚未取得时，保留 HTTP 状态、原 MIME 类型与正文，删除 Cache-Control、Expires、ETag、Last-Modified 后设置 Cache-Control: no-store；不伪造 200，不写入临时失败的长期无词记录。已有严格完整查无结果仍用原有受限内部 TTL。它只能防止 HTTP 缓存复用这次失败，不能命令 Spotify 自动重发请求；忙碌期间没有请求队列。
 
 逐 token 校验旧缓存值的原型虽减少临时对象，却拖慢带缓存的首次加载，已撤回，未发布。最终保留原生 JSON 解析与原有缓存布局。对最终运行文件冻结哈希，分别测量空缓存、已有缓存、延迟 HTTP 与连续切歌；桌面 Node/macOS JavaScriptCore 不等于 iPhone 峰值或 VPN 稳定性证明。requires_body 仍可能先由宿主持有完整响应，脚本容量限制无法约束该原生缓冲。
+
+## 跨客户端分流审计（2026-11-13，第一阶段快照）
+
+重新核对官方 [规则优先级](https://nsloon.app/docs/Rule/)、[域名](https://nsloon.app/docs/Rule/domain_rule/)、[IP](https://nsloon.app/docs/Rule/ip_rule/)、[逻辑规则](https://nsloon.app/docs/Rule/logic_rule/)与[订阅规则](https://nsloon.app/docs/Rule/sub_rule/)，并复查上述 Script、Script API、Rewrite 和 Plugin 页面。只调整分流数据，Loon 继续使用原生无策略规则行；未增加运行时 API、插件参数、脚本请求、计时器、并发、缓存、MITM 或最低版本。
+
+按域名标签边界保留专用后缀，移除已确认的共享服务误归类及将 IP 片段作为 DOMAIN-KEYWORD 的规则，不从这些片段推断网段。Parsec 的 AND/PROTOCOL/SRC-PORT 条件保留，源端口仍有非 Parsec UDP 误命中的边界。Loon 3.0.3+ 的域名优先、规则来源优先级不能简化为所有客户端都严格逐行匹配，其他客户端独立按其规则能力核对。
+
+23 个正式导入入口所引用的 31 份固定运行文件通过 Git 对象和 JavaScript 语法检查；既有 VerseLyrics 3.2.2 的 2248 项与 YouTube Clean 1.2.12 的 315 项回归重新通过。脚本版本与固定引用未更改。规则、DNS、IPv4/IPv6、UDP/QUIC 的离线案例及 Mihomo 语法检查不代表 iPhone/Loon VPN、实际线路或省电效果已验收。完整范围见 [本轮审计](../../Docs/Audit-2026-11-13.md)。
+
+
+## 官方规则优化复核（2026-11-13，提交前复核）
+
+按 [IP](https://nsloon.app/docs/Rule/ip_rule/)、[逻辑](https://nsloon.app/docs/Rule/logic_rule/)、[端口](https://nsloon.app/docs/Rule/port_rule/)、[进程](https://nsloon.app/docs/Rule/process_rule/)与[订阅](https://nsloon.app/docs/Rule/sub_rule/)官方页面处理。ParsecP2P 默认保留 STUN，新增原生 `AND,((PROCESS-NAME,parsecd),(PROTOCOL,UDP))`，只在 macOS 可取得进程信息时生效；iOS/tvOS 忽略含进程子条件的整条组合规则。AND 与端口规则的文档最低版本为 3.1.7；未猜测进程规则另有最低版本。
+
+本轮也按官方区分进程名称不区分大小写、完整路径和目录前缀区分大小写；离线案例与 Surge 的区分大小写规则分别处理。
+
+旧 UDP 来源埠 9000 条件移到 `rule/optional/ParsecP2P-Port9000.lsr`，必须明确额外引用并绑定 DIRECT；不再默认识别任意占用同来源埠的程序。纯 IP 匹配统一使用官方 `no-resolve`，减少仅为比较这些 IP 条件而触发的额外 DNS；没有修改用户 DNS、IPv6、UDP 或嗅探设置。保留域名优先与本地/插件/订阅的原生来源优先级。
+
+去掉无标签边界关键词和没有服务专属依据的共享云/CDN 条件；同组内只移除被现有后缀或同旗标父网段完整覆盖的条目，不合并相邻网段，不通过 IP 片段推断范围。现行 Script、Rewrite、Plugin、Script API 参数与所有固定运行文件保持原值，没有新增宿主 API、MITM、缓存、并发或计时器。此前第一阶段的端口默认与 DNS 混合旗标说明已由本节取代；实际修改和外部验证边界见[第二阶段报告](../../Docs/Official-Optimization-2026-11-13.md)。
+
+
+## 提交前官方复核（2026-11-13）
+
+重新获取官方总览、Script、Script API、Rewrite、Plugin、规则优先级、IP、进程与逻辑规则页面。保持已记录的 3.5.1（983）脚本要求及原生参数；Parsec AND/端口条件按 3.1.7+，Mac 进程与移动平台忽略行为按各自官方规则。未增加宿主 API、取消能力、正文或缓存上限推测。当前实际规则、正式导入文件和固定运行对象再次校验，原有脚本回归通过；手机 VPN、耗电和原生导入仍分别列为未验收。

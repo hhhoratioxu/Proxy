@@ -2,20 +2,13 @@
 # AUTHOR: Horatio
 # FORMAT: Egern YAML rule_set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 245
+# RULES: 232
 # SOURCE: Loon/rule/Disney.lsr (same repository)
 # USE: reference this URL from a rule_set with an assigned policy.
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community Disney ecosystem (Disney/BAMTech/ESPN/Hotstar/Hulu/Marvel/NatGeo/Star)
 # NOTE: Comprehensive Disney streaming and first-party ecosystem routing set.
-
-domain_set:
-  - "disney.my.sentry.io"
-  - "disneyplus.com.ssl.sc.omtrdc.net"
-  - "espn.api.edge.bamgrid.com"
-  - "espn.hb.omtrdc.net"
-  - "espndotcom.tt.omtrdc.net"
-  - "hulu.playback.edge.bamgrid.com"
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 domain_suffix_set:
   - "112263.com"
@@ -27,7 +20,6 @@ domain_suffix_set:
   - "abc.com"
   - "abcnews.com"
   - "abcnews.edgesuite.net"
-  - "adobedtm.com"
   - "adventuresbydisney.com"
   - "babble.com"
   - "babyzone.com"
@@ -37,7 +29,6 @@ domain_suffix_set:
   - "beautyandthebeastmusical.co.uk"
   - "braze.com"
   - "callhulu.com"
-  - "cdn.optimizely.com"
   - "conviva.com"
   - "d9.flashtalking.com"
   - "detpress.com"
@@ -153,7 +144,6 @@ domain_suffix_set:
   - "espncdn.com"
   - "espndotcom.tt.omtrdc.net"
   - "espnqa.com"
-  - "execute-api.us-east-1.amazonaws.com"
   - "findyourlimits.com"
   - "freeform.com"
   - "freehulu.com"
@@ -236,10 +226,6 @@ domain_suffix_set:
   - "spaindisney.com"
   - "star-brasil.com"
   - "star-latam.com"
-  - "star.api.edge.bamgrid.com"
-  - "star.connections.edge.bamgrid.com"
-  - "star.content.edge.bamgrid.com"
-  - "star.playback.edge.bamgrid.com"
   - "starott.com"
   - "starplus.com"
   - "starwars.com"

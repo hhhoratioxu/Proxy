@@ -2,11 +2,12 @@
 # AUTHOR: Horatio
 # FORMAT: Shadowrocket rule set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 133
+# RULES: 124
 # SOURCE: Loon/rule/Bilibili.lsr (same repository)
 # USE: Remote rule set; select policy in the client (not in this file).
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community (Bilibili/CDN/Game)
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com
 DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com
@@ -61,7 +62,6 @@ DOMAIN,p-bstarstatic.akamaized.net
 DOMAIN,p.bstarstatic.com
 DOMAIN,upos-bstar-mirrorakam.akamaized.net
 DOMAIN,upos-bstar1-mirrorakam.akamaized.net
-DOMAIN,upos-hz-mirrorakam.akamaized.net
 DOMAIN-SUFFIX,acg.tv
 DOMAIN-SUFFIX,acgvideo.com
 DOMAIN-SUFFIX,animetamashi.cn
@@ -133,11 +133,3 @@ USER-AGENT,*bili*
 USER-AGENT,bili-inter*
 USER-AGENT,bili*
 USER-AGENT,Bilibili*
-IP-CIDR,106.75.74.76/32,no-resolve
-IP-CIDR,111.206.25.147/32,no-resolve
-IP-CIDR,119.3.238.64/32,no-resolve
-IP-CIDR,120.92.108.182/32,no-resolve
-IP-CIDR,120.92.113.99/32,no-resolve
-IP-CIDR,120.92.153.217/32,no-resolve
-IP-CIDR,134.175.207.130/32,no-resolve
-IP-CIDR,203.107.1.0/24,no-resolve

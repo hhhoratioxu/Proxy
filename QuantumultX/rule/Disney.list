@@ -2,19 +2,14 @@
 # AUTHOR: Horatio
 # FORMAT: Quantumult X filter_remote
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 245
+# RULES: 232
 # SOURCE: Loon/rule/Disney.lsr (same repository)
 # USE: [filter_remote] with force-policy=<policy>.
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community Disney ecosystem (Disney/BAMTech/ESPN/Hotstar/Hulu/Marvel/NatGeo/Star)
 # NOTE: Comprehensive Disney streaming and first-party ecosystem routing set.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
-HOST,disney.my.sentry.io
-HOST,disneyplus.com.ssl.sc.omtrdc.net
-HOST,espn.api.edge.bamgrid.com
-HOST,espn.hb.omtrdc.net
-HOST,espndotcom.tt.omtrdc.net
-HOST,hulu.playback.edge.bamgrid.com
 HOST-SUFFIX,112263.com
 HOST-SUFFIX,20thcenturystudios.com
 HOST-SUFFIX,20thcenturystudios.com.au
@@ -24,7 +19,6 @@ HOST-SUFFIX,abc-studios.com
 HOST-SUFFIX,abc.com
 HOST-SUFFIX,abcnews.com
 HOST-SUFFIX,abcnews.edgesuite.net
-HOST-SUFFIX,adobedtm.com
 HOST-SUFFIX,adventuresbydisney.com
 HOST-SUFFIX,babble.com
 HOST-SUFFIX,babyzone.com
@@ -34,7 +28,6 @@ HOST-SUFFIX,bamtech.net
 HOST-SUFFIX,beautyandthebeastmusical.co.uk
 HOST-SUFFIX,braze.com
 HOST-SUFFIX,callhulu.com
-HOST-SUFFIX,cdn.optimizely.com
 HOST-SUFFIX,conviva.com
 HOST-SUFFIX,d9.flashtalking.com
 HOST-SUFFIX,detpress.com
@@ -150,7 +143,6 @@ HOST-SUFFIX,espn.net
 HOST-SUFFIX,espncdn.com
 HOST-SUFFIX,espndotcom.tt.omtrdc.net
 HOST-SUFFIX,espnqa.com
-HOST-SUFFIX,execute-api.us-east-1.amazonaws.com
 HOST-SUFFIX,findyourlimits.com
 HOST-SUFFIX,freeform.com
 HOST-SUFFIX,freehulu.com
@@ -233,10 +225,6 @@ HOST-SUFFIX,sorcerersarena.com
 HOST-SUFFIX,spaindisney.com
 HOST-SUFFIX,star-brasil.com
 HOST-SUFFIX,star-latam.com
-HOST-SUFFIX,star.api.edge.bamgrid.com
-HOST-SUFFIX,star.connections.edge.bamgrid.com
-HOST-SUFFIX,star.content.edge.bamgrid.com
-HOST-SUFFIX,star.playback.edge.bamgrid.com
 HOST-SUFFIX,starott.com
 HOST-SUFFIX,starplus.com
 HOST-SUFFIX,starwars.com

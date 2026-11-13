@@ -2,25 +2,15 @@
 # AUTHOR: Horatio
 # FORMAT: Quantumult X filter_remote
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 622
+# RULES: 572
 # SOURCE: Loon/rule/Meta.lsr (same repository)
 # USE: [filter_remote] with force-policy=<policy>.
 # PROVENANCE / EXISTING NOTES:
 # Converted from the matching comprehensive Egern Meta rule set.
 # Keep this file aligned with Egern/rule for dual-client use.
+# DATA-AUDITED: 2026-11-13; see Docs/Audit-2026-11-13.md.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
-HOST,developers.facebook.com
-HOST,fbcdn-a.akamaihd.net
-HOST,graph-fallback.instagram.com
-HOST,graph.facebook.com
-HOST,graph.instagram.com
-HOST,graph.whatsapp.com
-HOST,graph.whatsapp.net
-HOST,imagine.meta.com
-HOST-KEYWORD,facebook
-HOST-KEYWORD,fbcdn
-HOST-KEYWORD,instagram
-HOST-KEYWORD,whatsapp
 HOST-SUFFIX,aboutfacebook.com
 HOST-SUFFIX,accessfacebookfromschool.com
 HOST-SUFFIX,accountkit.com
@@ -31,7 +21,6 @@ HOST-SUFFIX,acheter-followers-instagram.com
 HOST-SUFFIX,acheterdesfollowersinstagram.com
 HOST-SUFFIX,acheterfollowersinstagram.com
 HOST-SUFFIX,advancediddetection.com
-HOST-SUFFIX,analytics.facebook.com
 HOST-SUFFIX,askfacebook.net
 HOST-SUFFIX,askfacebook.org
 HOST-SUFFIX,atdmt2.com
@@ -58,7 +47,6 @@ HOST-SUFFIX,como-hackearfacebook.com
 HOST-SUFFIX,componentkit.org
 HOST-SUFFIX,crowdtangle.com
 HOST-SUFFIX,dacebook.com
-HOST-SUFFIX,developers.facebook.com
 HOST-SUFFIX,dlfacebook.com
 HOST-SUFFIX,dotfacebook.com
 HOST-SUFFIX,dotfacebook.net
@@ -409,10 +397,6 @@ HOST-SUFFIX,futureofbusinesssurvey.org
 HOST-SUFFIX,gacebook.com
 HOST-SUFFIX,gameroom.com
 HOST-SUFFIX,gfacecbook.com
-HOST-SUFFIX,graph-fallback.instagram.com
-HOST-SUFFIX,graph.instagram.com
-HOST-SUFFIX,graph.whatsapp.com
-HOST-SUFFIX,graph.whatsapp.net
 HOST-SUFFIX,groups.com
 HOST-SUFFIX,hackerfacebook.com
 HOST-SUFFIX,hackfacebook.com
@@ -533,7 +517,6 @@ HOST-SUFFIX,opencreate.org
 HOST-SUFFIX,opengraphprotocol.com
 HOST-SUFFIX,opengraphprotocol.org
 HOST-SUFFIX,parse.com
-HOST-SUFFIX,pixel.facebook.com
 HOST-SUFFIX,powersunitedvr.com
 HOST-SUFFIX,pyrobot.org
 HOST-SUFFIX,reachtheworldonfacebook.com
@@ -584,50 +567,19 @@ HOST-SUFFIX,wwwmfacebook.com
 HOST-SUFFIX,yogalayout.com
 HOST-SUFFIX,zuckerberg.com
 HOST-SUFFIX,zuckerberg.net
-IP-CIDR,103.4.96.0/22,no-resolve
-IP-CIDR,108.168.176.192/26,no-resolve
-IP-CIDR,108.168.177.0/27,no-resolve
-IP-CIDR,108.168.180.96/27,no-resolve
-IP-CIDR,108.168.254.65/32,no-resolve
-IP-CIDR,108.168.255.224/32,no-resolve
-IP-CIDR,108.168.255.227/32,no-resolve
-IP-CIDR,108.177.8.0/21,no-resolve
-IP-CIDR,119.235.224.0/24,no-resolve
-IP-CIDR,119.235.232.0/24,no-resolve
-IP-CIDR,119.235.236.0/24,no-resolve
-IP-CIDR,119.235.237.0/24,no-resolve
-IP-CIDR,129.134.0.0/17,no-resolve
-IP-CIDR,157.240.0.0/17,no-resolve
-IP-CIDR,158.85.224.160/27,no-resolve
-IP-CIDR,158.85.46.128/27,no-resolve
-IP-CIDR,158.85.5.192/27,no-resolve
-IP-CIDR,169.45.248.118/32,no-resolve
-IP-CIDR,173.192.222.160/27,no-resolve
-IP-CIDR,173.192.231.32/27,no-resolve
-IP-CIDR,173.252.64.0/19,no-resolve
-IP-CIDR,173.252.96.0/19,no-resolve
-IP-CIDR,179.60.192.0/22,no-resolve
-IP-CIDR,18.194.0.0/15,no-resolve
-IP-CIDR,184.173.128.0/17,no-resolve
-IP-CIDR,185.60.216.0/22,no-resolve
-IP-CIDR,204.15.20.0/22,no-resolve
-IP-CIDR,208.43.122.128/27,no-resolve
-IP-CIDR,3.123.36.126/32,no-resolve
-IP-CIDR,31.13.24.0/21,no-resolve
-IP-CIDR,31.13.64.0/18,no-resolve
-IP-CIDR,34.224.0.0/12,no-resolve
-IP-CIDR,35.157.215.84/32,no-resolve
-IP-CIDR,35.157.217.255/32,no-resolve
-IP-CIDR,45.64.40.0/22,no-resolve
-IP-CIDR,50.22.198.204/30,no-resolve
-IP-CIDR,52.58.209.134/32,no-resolve
-IP-CIDR,54.162.243.80/32,no-resolve
-IP-CIDR,54.173.34.141/32,no-resolve
-IP-CIDR,54.235.23.242/32,no-resolve
-IP-CIDR,54.242.0.0/15,no-resolve
-IP-CIDR,54.93.124.31/32,no-resolve
-IP-CIDR,66.220.144.0/20,no-resolve
-IP-CIDR,69.171.224.0/19,no-resolve
-IP-CIDR,69.63.176.0/20,no-resolve
-IP-CIDR,74.119.76.0/22,no-resolve
+IP-CIDR,103.4.96.0/22
+IP-CIDR,129.134.0.0/17
+IP-CIDR,157.240.0.0/17
+IP-CIDR,173.252.64.0/19
+IP-CIDR,173.252.96.0/19
+IP-CIDR,179.60.192.0/22
+IP-CIDR,185.60.216.0/22
+IP-CIDR,204.15.20.0/22
+IP-CIDR,31.13.24.0/21
+IP-CIDR,31.13.64.0/18
+IP-CIDR,45.64.40.0/22
+IP-CIDR,66.220.144.0/20
+IP-CIDR,69.171.224.0/19
+IP-CIDR,69.63.176.0/20
+IP-CIDR,74.119.76.0/22
 IP-ASN,32934

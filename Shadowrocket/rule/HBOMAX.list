@@ -2,12 +2,13 @@
 # AUTHOR: Horatio
 # FORMAT: Shadowrocket rule set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 90
+# RULES: 88
 # SOURCE: Loon/rule/HBOMAX.lsr (same repository)
 # USE: Remote rule set; select policy in the client (not in this file).
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: blackmatrix7 HBO/HBOUSA + v2fly domain-list-community hbo + existing Horatio rules
 # Covers Max, HBO Max, HBO NOW, HBO GO, Cinemax and HBO regional/legacy infrastructure.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 DOMAIN-SUFFIX,bcbolthboa-a.akamaihd.net
 DOMAIN-SUFFIX,beforeigners.com
@@ -17,8 +18,6 @@ DOMAIN-SUFFIX,cinemax.com
 DOMAIN-SUFFIX,dai3fd1oh325y.cloudfront.net
 DOMAIN-SUFFIX,discomax.com
 DOMAIN-SUFFIX,elpionero.es
-DOMAIN-SUFFIX,execute-api.ap-southeast-1.amazonaws.com
-DOMAIN-SUFFIX,execute-api.us-east-1.amazonaws.com
 DOMAIN-SUFFIX,forthethrone.com
 DOMAIN-SUFFIX,h264.io
 DOMAIN-SUFFIX,hbo-europe.com

@@ -1,0 +1,1775 @@
+{
+  "schema": 1,
+  "checked_at": "2026-11-13",
+  "sources": {
+    "loon-rules": "https://nsloon.app/docs/Rule/",
+    "loon-ip": "https://nsloon.app/docs/Rule/ip_rule/",
+    "loon-process": "https://nsloon.app/docs/Rule/process_rule/",
+    "loon-logic": "https://nsloon.app/docs/Rule/logic_rule/",
+    "surge-rules": "https://manual.nssurge.com/rules/overview.html",
+    "surge-process": "https://manual.nssurge.com/rules/process.html",
+    "egern-rules": "https://egernapp.com/docs/configuration/rules/",
+    "qx-sample": "https://github.com/crossutility/Quantumult-X/blob/master/sample.conf",
+    "qx-readme": "https://github.com/crossutility/Quantumult-X/blob/master/README.md",
+    "mihomo-rules": "https://wiki.metacubex.one/config/rules/",
+    "shadowrocket-official": "https://shadowlaunch.com/",
+    "netflix-domains": "https://openconnect.netflix.com/mobiledeliverydomains.txt",
+    "netflix-faq": "https://openconnect.netflix.com/en/faq",
+    "netflix-peering": "https://openconnect.netflix.com/en/peering/",
+    "aws-ip": "https://docs.aws.amazon.com/vpc/latest/userguide/aws-ip-ranges.html",
+    "aws-ip-feed": "https://ip-ranges.amazonaws.com/ip-ranges.json",
+    "aws-gateway": "https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-call-api.html",
+    "akamai-hostnames": "https://techdocs.akamai.com/delivery-mgr/docs/shared-service-hostname-settings",
+    "azure-domains": "https://learn.microsoft.com/en-us/azure/security/fundamentals/azure-domains",
+    "adobe-demdex": "https://experienceleague.adobe.com/en/docs/audience-manager/user-guide/reference/demdex-calls",
+    "apple-network": "https://support.apple.com/101555",
+    "firebase-crashlytics": "https://firebase.google.com/docs/crashlytics",
+    "nicegram": "https://nicegram.me/features",
+    "nicegram-appstore": "https://apps.apple.com/us/app/nicegram-ai-for-telegram/id1608870673",
+    "openai-network": "https://help.openai.com/en/articles/9247338-network-recommendations-for-chatgpt-errors-on-web-and-apps",
+    "coze-api": "https://www.coze.com/open/docs/developer_guides/coze_api_overview",
+    "disney-site": "https://www.disneyplus.com/",
+    "muse-meta": "https://platform.muse.ai/terms",
+    "parsec-network": "https://support.parsec.app/hc/en-us/articles/32381460716180-Parsec-Connectivity-Requirements",
+    "parsec-process": "https://support.parsec.app/hc/en-us/articles/32381836182932-Run-Parsec-App-From-Command-Line",
+    "optimizely-cdn": "https://docs.optimizely.com/web-experimentation/docs/implement-the-one-line-javascript-snippet",
+    "telegram-cidrs": "https://core.telegram.org/resources/cidr.txt",
+    "google-ipranges": "https://www.gstatic.com/ipranges/goog.json",
+    "arin-whois": "https://www.arin.net/resources/registry/whois/rws/",
+    "iana-rdap-ipv4": "https://data.iana.org/rdap/ipv4.json",
+    "iana-rdap-ipv6": "https://data.iana.org/rdap/ipv6.json",
+    "iana-rdap-asn": "https://data.iana.org/rdap/asn.json",
+    "google-cloud-ipranges": "https://www.gstatic.com/ipranges/cloud.json"
+  },
+  "remove_domain_keywords": {
+    "AI": [
+      "chatgpt-async-webps-prod-"
+    ],
+    "Apple": [
+      "apple-support.akadns.net",
+      "apple.com.akadns.net",
+      "apple.com.edgekey.net",
+      "buy.itunes.apple.com",
+      "smp-device",
+      "testflight",
+      "icloud.com.akadns.net"
+    ],
+    "Netflix": [
+      "apiproxy-device-prod-nlb-",
+      "dualstack.apiproxy-",
+      "dualstack.ichnaea-web-",
+      "netflixdnstest"
+    ],
+    "Telegram": [
+      "nicegram",
+      "telegram"
+    ],
+    "TikTok": [
+      "tiktok"
+    ],
+    "Twitter": [
+      "twitter"
+    ]
+  },
+  "remove_matchers": [
+    {
+      "group": "AI",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "byteoversea.com",
+      "reason": "The complete platform root lacks product-specific official AI attribution; preserve existing scoped Coze domains.",
+      "sources": [
+        "coze-api"
+      ]
+    },
+    {
+      "group": "Apple",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "crashlytics.com",
+      "reason": "Google Firebase product, not an Apple-specific namespace.",
+      "sources": [
+        "firebase-crashlytics"
+      ]
+    },
+    {
+      "group": "Disney",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "execute-api.us-east-1.amazonaws.com",
+      "reason": "AWS API Gateway region covers different customer APIs.",
+      "sources": [
+        "aws-gateway"
+      ]
+    },
+    {
+      "group": "HBOMAX",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "execute-api.us-east-1.amazonaws.com",
+      "reason": "AWS API Gateway region covers different customer APIs.",
+      "sources": [
+        "aws-gateway"
+      ]
+    },
+    {
+      "group": "HBOMAX",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "execute-api.ap-southeast-1.amazonaws.com",
+      "reason": "AWS API Gateway region covers different customer APIs.",
+      "sources": [
+        "aws-gateway"
+      ]
+    },
+    {
+      "group": "Disney",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "adobedtm.com",
+      "reason": "Shared Adobe tag-delivery root is not Disney-specific; preserve Adobe fallback.",
+      "sources": [
+        "adobe-demdex"
+      ]
+    },
+    {
+      "group": "Microsoft",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "akadns.net",
+      "reason": "Akamai DNS/delivery namespace covers unrelated customers; preserve named Microsoft hosts.",
+      "sources": [
+        "akamai-hostnames"
+      ]
+    },
+    {
+      "group": "Microsoft",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "b.akamaiedge.net",
+      "reason": "Akamai DNS/delivery namespace covers unrelated customers; preserve named Microsoft hosts.",
+      "sources": [
+        "akamai-hostnames"
+      ]
+    },
+    {
+      "group": "Microsoft",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "edgesuite.net",
+      "reason": "Akamai DNS/delivery namespace covers unrelated customers; preserve named Microsoft hosts.",
+      "sources": [
+        "akamai-hostnames"
+      ]
+    },
+    {
+      "group": "AI",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "sf16-short-sg.bytedapm.com",
+      "reason": "No official product-specific evidence establishes this shared monitoring host as AI-only; keep the existing platform match outside AI.",
+      "sources": [
+        "coze-api"
+      ]
+    },
+    {
+      "group": "Disney",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "cdn.optimizely.com",
+      "reason": "Shared experimentation CDN is not a Disney-specific namespace.",
+      "sources": [
+        "optimizely-cdn"
+      ]
+    },
+    {
+      "group": "Microsoft",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "optimizely.com",
+      "reason": "Independent shared experimentation platform, not Microsoft-owned service identity.",
+      "sources": [
+        "optimizely-cdn"
+      ]
+    },
+    {
+      "group": "Apple",
+      "kind": "IP-CIDR",
+      "value": "205.180.175.0/24",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/205.180.175.0/24"
+      ]
+    },
+    {
+      "group": "Bilibili",
+      "kind": "IP-CIDR",
+      "value": "106.75.74.76/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/106.75.74.76/32"
+      ]
+    },
+    {
+      "group": "Bilibili",
+      "kind": "IP-CIDR",
+      "value": "111.206.25.147/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/111.206.25.147/32"
+      ]
+    },
+    {
+      "group": "Bilibili",
+      "kind": "IP-CIDR",
+      "value": "119.3.238.64/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/119.3.238.64/32"
+      ]
+    },
+    {
+      "group": "Bilibili",
+      "kind": "IP-CIDR",
+      "value": "120.92.108.182/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/120.92.108.182/32"
+      ]
+    },
+    {
+      "group": "Bilibili",
+      "kind": "IP-CIDR",
+      "value": "120.92.113.99/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/120.92.113.99/32"
+      ]
+    },
+    {
+      "group": "Bilibili",
+      "kind": "IP-CIDR",
+      "value": "120.92.153.217/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/120.92.153.217/32"
+      ]
+    },
+    {
+      "group": "Bilibili",
+      "kind": "IP-CIDR",
+      "value": "134.175.207.130/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/134.175.207.130/32"
+      ]
+    },
+    {
+      "group": "Bilibili",
+      "kind": "IP-CIDR",
+      "value": "203.107.1.0/24",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/203.107.1.0/24"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "108.168.176.192/26",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/108.168.176.192/26"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "108.168.177.0/27",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/108.168.177.0/27"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "108.168.180.96/27",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/108.168.180.96/27"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "108.168.254.65/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/108.168.254.65/32"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "108.168.255.224/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/108.168.255.224/32"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "108.168.255.227/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/108.168.255.227/32"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "108.177.8.0/21",
+      "reason": "Current Google first-party address feed covers this range; it is not a Meta-specific range.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/108.177.8.0/21"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "119.235.224.0/24",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/119.235.224.0/24"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "119.235.232.0/24",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/119.235.232.0/24"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "119.235.236.0/24",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/119.235.236.0/24"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "119.235.237.0/24",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/119.235.237.0/24"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "158.85.224.160/27",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/158.85.224.160"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "158.85.46.128/27",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/158.85.46.128"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "158.85.5.192/27",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/158.85.5.192"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "169.45.248.118/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/169.45.248.118/32"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "173.192.222.160/27",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/173.192.222.160/27"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "173.192.231.32/27",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/173.192.231.32/27"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "18.194.0.0/15",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/18.194.0.0/15"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "184.173.128.0/17",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/184.173.128.0/17"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "208.43.122.128/27",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/208.43.122.128"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "3.123.36.126/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/3.123.36.126"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "34.224.0.0/12",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/34.224.0.0/12"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "35.157.215.84/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/35.157.215.84/32"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "35.157.217.255/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/35.157.217.255/32"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "50.22.198.204/30",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://whois.arin.net/rest/ip/50.22.198.204.json"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "52.58.209.134/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/52.58.209.134/32"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "54.162.243.80/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/54.162.243.80/32"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "54.173.34.141/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/54.173.34.141/32"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "54.235.23.242/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/54.235.23.242/32"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "54.242.0.0/15",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/54.242.0.0/15"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "IP-CIDR",
+      "value": "54.93.124.31/32",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.arin.net/registry/ip/54.93.124.31/32"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "139.59.210.98/32",
+      "reason": "Replace broad or non-feed legacy ranges with the current official Telegram CIDR feed; retain separately verified Telegram allocation/ASNs.",
+      "sources": [
+        "https://core.telegram.org/resources/cidr.txt"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "194.221.250.50/32",
+      "reason": "Replace broad or non-feed legacy ranges with the current official Telegram CIDR feed; retain separately verified Telegram allocation/ASNs.",
+      "sources": [
+        "https://core.telegram.org/resources/cidr.txt"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "196.55.216.167/32",
+      "reason": "Replace broad or non-feed legacy ranges with the current official Telegram CIDR feed; retain separately verified Telegram allocation/ASNs.",
+      "sources": [
+        "https://core.telegram.org/resources/cidr.txt"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "5.28.192.0/18",
+      "reason": "Replace broad or non-feed legacy ranges with the current official Telegram CIDR feed; retain separately verified Telegram allocation/ASNs.",
+      "sources": [
+        "https://core.telegram.org/resources/cidr.txt"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "91.108.0.0/16",
+      "reason": "Replace broad or non-feed legacy ranges with the current official Telegram CIDR feed; retain separately verified Telegram allocation/ASNs.",
+      "sources": [
+        "https://core.telegram.org/resources/cidr.txt"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR6",
+      "value": "2001:b28:f23c::/47",
+      "reason": "Replace broad or non-feed legacy ranges with the current official Telegram CIDR feed; retain separately verified Telegram allocation/ASNs.",
+      "sources": [
+        "https://core.telegram.org/resources/cidr.txt"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR6",
+      "value": "2a0a:f280::/29",
+      "reason": "Replace broad or non-feed legacy ranges with the current official Telegram CIDR feed; retain separately verified Telegram allocation/ASNs.",
+      "sources": [
+        "https://core.telegram.org/resources/cidr.txt"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR",
+      "value": "111.30.160.0/20",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/111.30.160.0/20"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR",
+      "value": "112.53.11.0/24",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/112.53.11.0/24"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR",
+      "value": "112.53.20.0/24",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/112.53.20.0/24"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2402:4e00:1020:10fb:0:9466::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2402:4e00:1020:10fb:0:9466::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2402:4e00:1430:2264:0:9467::/96",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2402:4e00:1430:2264:0:9467::/96"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2402:4e00:1900:1700:0:9554:1ad0:140a/128",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2402:4e00:1900:1700:0:9554:1ad0:140a/128"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2402:4e00:8010::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2402:4e00:8010::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2402:4e00:8020:101::2:0/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2402:4e00:8020:101::2:0/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2408:80f1:21::/48",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2408:80f1:21::/48"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2408:80f1:31::/48",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2408:80f1:31::/48"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2408:8711:10:10::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2408:8711:10:10::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2408:8752:0:10::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2408:8752:0:10::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2408:8752:0:2:30::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2408:8752:0:2:30::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2408:8752:0:30::/64",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2408:8752:0:30::/64"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2408:8752:0:f::/64",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2408:8752:0:f::/64"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2408:8756:2cf2:19::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2408:8756:2cf2:19::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2408:8756:2cff:10::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2408:8756:2cff:10::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2408:8756:3af0:10::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2408:8756:3af0:10::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2408:8756:3af0:2013::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2408:8756:3af0:2013::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2408:8756:f50::/48",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2408:8756:f50::/48"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2408:8763:0:200::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2408:8763:0:200::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8702:4860:10::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8702:4860:10::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8754:f111::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8754:f111::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c02:24c:45::/72",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c02:24c:45::/72"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c1e:75b0:1010::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c1e:75b0:1010::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c1e:75b0:13::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c1e:75b0:13::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c1e:8f60::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c1e:8f60::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c1e:8f60:bb::/72",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c1e:8f60:bb::/72"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c1e:8fd0::/56",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c1e:8fd0::/56"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c20:818:110::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c20:818:110::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c34:2220:20::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c34:2220:20::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c34:22a0:10::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c34:22a0:10::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c34:d00:200::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c34:d00:200::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c38:80:150::/72",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c38:80:150::/72"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c50:2400::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c50:2400::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c50:a00:2122::/72",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c50:a00:2122::/72"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c54:1003:10::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c54:1003:10::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c54:1003:1019::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c54:1003:1019::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c54:1050:10::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c54:1050:10::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c54:1801:10::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c54:1801:10::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c54:1821:70::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c54:1821:70::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c54:2000:400::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c54:2000:400::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c54:2800:9110::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c54:2800:9110::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c54:5100::/56",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c54:5100::/56"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c54:810:208:2d::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c54:810:208:2d::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c54:871::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c54:871::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "2409:8c5c:110:63::/72",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/2409:8c5c:110:63::/72"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:928:1400:10::/112",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:928:1400:10::/112"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:93c:8:10::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:93c:8:10::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:95c:2003:20::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:95c:2003:20::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:965:802:620::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:965:802:620::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:96c:6400:700::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:96c:6400:700::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:97c:18:601::/64",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:97c:18:601::/64"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:97c:18:910::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:97c:18:910::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:97c:2f::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:97c:2f::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:97d:2010:100::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:97d:2010:100::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:97d:4:1e00::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:97d:4:1e00::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:97f:3000:1102::/64",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:97f:3000:1102::/64"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:cf:8800::/56",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:cf:8800::/56"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:e1:a800::/46",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:e1:a800::/46"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:e1:a900::/48",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:e1:a900::/48"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:e1:aa00::/48",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:e1:aa00::/48"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:e9:6003::/48",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:e9:6003::/48"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:f7:4f00:1f10::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:f7:4f00:1f10::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:f7:a070:100::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:f7:a070:100::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:ff:9018:100::/60",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:ff:9018:100::/60"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-CIDR6",
+      "value": "240e:ff:f100::/44",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/ip/240e:ff:f100::/44"
+      ]
+    },
+    {
+      "group": "WeChat",
+      "kind": "IP-ASN",
+      "value": "132203",
+      "reason": "Legacy allocation lacks a current service-specific first-party binding; cloud/ISP registration alone is insufficient. This is not a claim that the address has never served this product.",
+      "sources": [
+        "https://rdap.apnic.net/autnum/132203"
+      ]
+    }
+  ],
+  "add_matchers": [
+    {
+      "group": "Telegram",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "nicegram.me",
+      "sources": [
+        "nicegram",
+        "nicegram-appstore"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "nicegram.app",
+      "sources": [
+        "nicegram-appstore"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "91.108.56.0/22",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "91.108.4.0/22",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "91.108.8.0/22",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "91.108.16.0/22",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "91.108.12.0/22",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "149.154.160.0/20",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "91.105.192.0/23",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "91.108.20.0/22",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR",
+      "value": "185.76.151.0/24",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR6",
+      "value": "2001:b28:f23d::/48",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR6",
+      "value": "2001:b28:f23f::/48",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR6",
+      "value": "2001:67c:4e8::/48",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR6",
+      "value": "2001:b28:f23c::/48",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Telegram",
+      "kind": "IP-CIDR6",
+      "value": "2a0a:f280::/32",
+      "sources": [
+        "telegram-cidrs"
+      ]
+    }
+  ],
+  "netflix": {
+    "official_domain_feed": [
+      "netflix.com",
+      "nflxext.com",
+      "nflximg.net",
+      "nflximg.com",
+      "nflxsearch.net",
+      "nflxso.net",
+      "nflxvideo.net"
+    ],
+    "official_domain_feed_sha256": "ba406a4225cd496d1366634d93bd61a85c5146da76ecbdb25aa0a10aba31a148",
+    "verified_existing_networks": [
+      {
+        "cidr": "108.175.32.0/20",
+        "registry_url": "https://rdap.arin.net/registry/ip/108.175.32.0",
+        "registry_network_name": "SSI-CDN-1",
+        "response_sha256": "5e6ca9bfca14c3199e7b3e3944e280814c7de9d2b605668a83f36c46c74f3a47"
+      },
+      {
+        "cidr": "185.2.220.0/22",
+        "registry_url": "https://rdap.db.ripe.net/ip/185.2.220.0/22",
+        "registry_network_name": "US-NETFLIX1-20120918",
+        "response_sha256": "38cd5156733b7588cbbf3f6b50f0bc1313968fe5c6a56557973d76bb9434462d"
+      },
+      {
+        "cidr": "185.9.188.0/22",
+        "registry_url": "https://rdap.db.ripe.net/ip/185.9.188.0",
+        "registry_network_name": "NL-NETFLIX-20121112",
+        "response_sha256": "fdb8d025c52f683a82095d56c58d24706dd8303ebaa87de7a71dc624f68794e5"
+      },
+      {
+        "cidr": "192.173.64.0/18",
+        "registry_url": "https://rdap.arin.net/registry/ip/192.173.64.0",
+        "registry_network_name": "NETFLIX-SS-2",
+        "response_sha256": "5dace86b4966f10da371005e096af02a8b5d0e4a7ac6ee1754c2c448ece5922a"
+      },
+      {
+        "cidr": "198.38.96.0/19",
+        "registry_url": "https://rdap.arin.net/registry/ip/198.38.96.0",
+        "registry_network_name": "SSI-CDN-2",
+        "response_sha256": "83ea4af23a1b1099544b5fd83bd2e7ea1a35b12612755c69c34bb61285e512f5"
+      },
+      {
+        "cidr": "198.45.48.0/20",
+        "registry_url": "https://rdap.arin.net/registry/ip/198.45.48.0",
+        "registry_network_name": "SSI-IPV4-1",
+        "response_sha256": "f77aad53c903c18b553d8ac11ab43b2329685cc6d953b73db8f063689ecb216d"
+      },
+      {
+        "cidr": "207.45.72.0/22",
+        "registry_url": "https://rdap.arin.net/registry/ip/207.45.72.0/22",
+        "registry_network_name": "DVD-NETFLIX",
+        "response_sha256": "02b719fff0f3bbd9ed7de1ce48a53b7d19baa02eac962f87fb3c2ac839ccf200"
+      },
+      {
+        "cidr": "208.75.76.0/22",
+        "registry_url": "https://rdap.arin.net/registry/ip/208.75.76.0",
+        "registry_network_name": "NETFL-NET",
+        "response_sha256": "1bc4a04cc5335964af9d2aaf36a22851b5dbf8a292d97b8a9b1f45fc82740f36"
+      },
+      {
+        "cidr": "23.246.0.0/18",
+        "registry_url": "https://rdap.arin.net/registry/ip/23.246.0.0",
+        "registry_network_name": "NETFLIX-SS-3",
+        "response_sha256": "6548ee5819b6d982982afce34b42859163d55b6d1da044a7bb989aee040a4d36"
+      },
+      {
+        "cidr": "37.77.184.0/21",
+        "registry_url": "https://rdap.db.ripe.net/ip/37.77.184.0/21",
+        "registry_network_name": "US-NETFLIX1-20120203",
+        "response_sha256": "1d905493f19c34e4e89604b2ef6378d32d9125798c5e9b551d977f4cafa465c3"
+      },
+      {
+        "cidr": "45.57.0.0/17",
+        "registry_url": "https://rdap.arin.net/registry/ip/45.57.0.0",
+        "registry_network_name": "SS-CDN-4",
+        "response_sha256": "271993460336b631b158132948e2f3f7efa4716c45d4dd80b8931132524594c8"
+      },
+      {
+        "cidr": "64.120.128.0/17",
+        "registry_url": "https://rdap.arin.net/registry/ip/64.120.128.0",
+        "registry_network_name": "SS-144",
+        "response_sha256": "e0d5fad5f5b874c4235d6552a921669b422d9781a9c86f9b036853a9fb271eef"
+      },
+      {
+        "cidr": "66.197.128.0/17",
+        "registry_url": "https://rdap.arin.net/registry/ip/66.197.128.0/17",
+        "registry_network_name": "SS-144",
+        "response_sha256": "53ee696a4eaa98ca93aac769ecd917f1447f644f853f180d055207331e2a68f9"
+      },
+      {
+        "cidr": "69.53.224.0/19",
+        "registry_url": "https://rdap.arin.net/registry/ip/69.53.224.0",
+        "registry_network_name": "NETFLIX-INC",
+        "response_sha256": "f016e8587d26c1d4384fc0af07dc99e7bd9bad71a8776eb43f28032425c6c140"
+      },
+      {
+        "cidr": "2607:fb10::/32",
+        "registry_url": "https://rdap.arin.net/registry/ip/2607:fb10::",
+        "registry_network_name": "NETFLIX-V6-HUB",
+        "response_sha256": "964490b0d3a69d3dc85967d5ccb01a61cbe51ed0f74ca41aea09779c4266e2be"
+      },
+      {
+        "cidr": "2620:10c:7000::/44",
+        "registry_url": "https://rdap.arin.net/registry/ip/2620:10c:7000::",
+        "registry_network_name": "SSI-NF-V6",
+        "response_sha256": "1da28b65fb20946c1b6812ed122b108263eafb5242ebb6f4987fdaa1bf269e0f"
+      },
+      {
+        "cidr": "2a00:86c0::/32",
+        "registry_url": "https://rdap.db.ripe.net/ip/2a00:86c0::/32",
+        "registry_network_name": "US-NETFLIX1-20120130",
+        "response_sha256": "00e8545462c551b5e69185efd3ca408c8c1e9fe61e1baf2bbf6a21faca74234d"
+      },
+      {
+        "cidr": "2a03:5640::/32",
+        "registry_url": "https://rdap.db.ripe.net/ip/2a03:5640::/32",
+        "registry_network_name": "NL-NETFLIX-20121112",
+        "response_sha256": "50b9fba40d79c1b60590915df68aa0069271d236e4bc342a679dedf30f153d6f"
+      }
+    ],
+    "aws_snapshot_sha256": "ac1f32940c6e559e06b556b66a87dd5e0376b4f903e66daa324d1262481a7242",
+    "aws_snapshot_create_date": "2026-11-12-22-57-05"
+  },
+  "ip_resolution": {
+    "Loon": "no-resolve",
+    "Surge": "no-resolve",
+    "Egern": "no_resolve",
+    "Clash": "no-resolve",
+    "Shadowrocket": "no-resolve-for-CIDR; preserve unflagged ASN",
+    "QuantumultX": "native-default"
+  },
+  "native_caveats": {
+    "Shadowrocket": "Official developer identity verified; no complete public rule/API specification found. Keep the existing rule vocabulary and existing option syntax; add no new rule type or API. Preserve its original unflagged IP-ASN shape instead of adding an undocumented option combination.",
+    "QuantumultX": "Use documented filter vocabulary. Omit SRC-PORT and no-resolve because the developer reference does not document them; preserve native IP/ASN values.",
+    "Egern": "Use documented set-wide no_resolve; align pure-IP lookup policy where the option is documented or already used."
+  },
+  "telegram": {
+    "official_cidrs": [
+      "91.108.56.0/22",
+      "91.108.4.0/22",
+      "91.108.8.0/22",
+      "91.108.16.0/22",
+      "91.108.12.0/22",
+      "149.154.160.0/20",
+      "91.105.192.0/23",
+      "91.108.20.0/22",
+      "185.76.151.0/24",
+      "2001:b28:f23d::/48",
+      "2001:b28:f23f::/48",
+      "2001:67c:4e8::/48",
+      "2001:b28:f23c::/48",
+      "2a0a:f280::/32"
+    ],
+    "official_feed_sha256": "3ecd072cedf72eceee6961b18a51e37f905d5ce4a656a5d24cf5fea63e6ec651",
+    "retained_registered_network": "109.239.140.0/24",
+    "retained_registered_asns": [
+      "211157",
+      "44907",
+      "59930",
+      "62014",
+      "62041"
+    ]
+  },
+  "google_ipranges_sha256": "29fbea0295d7684ce85001f3964cfcf4b0a3641c1e5bc30019b114e7881898c4",
+  "reviewed_service_networks": {
+    "Apple": [
+      {
+        "kind": "IP-CIDR",
+        "value": "139.178.128.0/18"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "144.178.0.0/19"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "144.178.36.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "144.178.48.0/20"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "17.0.0.0/8"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "192.35.50.0/24"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "198.183.17.0/24"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "63.92.224.0/19"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "65.199.22.0/23"
+      },
+      {
+        "kind": "IP-CIDR6",
+        "value": "2403:300::/32"
+      },
+      {
+        "kind": "IP-CIDR6",
+        "value": "2620:149::/32"
+      },
+      {
+        "kind": "IP-CIDR6",
+        "value": "2a01:b740::/32"
+      }
+    ],
+    "Google": [
+      {
+        "kind": "IP-CIDR",
+        "value": "172.110.32.0/21"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "173.194.0.0/16"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "216.73.80.0/20"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "74.125.0.0/16"
+      },
+      {
+        "kind": "IP-CIDR6",
+        "value": "2620:120:e000::/40"
+      }
+    ],
+    "Meta": [
+      {
+        "kind": "IP-CIDR",
+        "value": "103.4.96.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "129.134.0.0/17"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "157.240.0.0/17"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "173.252.64.0/19"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "173.252.96.0/19"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "179.60.192.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "185.60.216.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "204.15.20.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "31.13.24.0/21"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "31.13.64.0/18"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "45.64.40.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "66.220.144.0/20"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "69.171.224.0/19"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "69.63.176.0/20"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "74.119.76.0/22"
+      },
+      {
+        "kind": "IP-ASN",
+        "value": "32934"
+      }
+    ],
+    "Telegram": [
+      {
+        "kind": "IP-CIDR",
+        "value": "91.108.56.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "91.108.4.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "91.108.8.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "91.108.16.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "91.108.12.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "149.154.160.0/20"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "91.105.192.0/23"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "91.108.20.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "185.76.151.0/24"
+      },
+      {
+        "kind": "IP-CIDR6",
+        "value": "2001:b28:f23d::/48"
+      },
+      {
+        "kind": "IP-CIDR6",
+        "value": "2001:b28:f23f::/48"
+      },
+      {
+        "kind": "IP-CIDR6",
+        "value": "2001:67c:4e8::/48"
+      },
+      {
+        "kind": "IP-CIDR6",
+        "value": "2001:b28:f23c::/48"
+      },
+      {
+        "kind": "IP-CIDR6",
+        "value": "2a0a:f280::/32"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "109.239.140.0/24"
+      },
+      {
+        "kind": "IP-ASN",
+        "value": "211157"
+      },
+      {
+        "kind": "IP-ASN",
+        "value": "44907"
+      },
+      {
+        "kind": "IP-ASN",
+        "value": "59930"
+      },
+      {
+        "kind": "IP-ASN",
+        "value": "62014"
+      },
+      {
+        "kind": "IP-ASN",
+        "value": "62041"
+      }
+    ],
+    "Twitter": [
+      {
+        "kind": "IP-CIDR",
+        "value": "69.195.160.0/19"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "192.133.76.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "199.59.148.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "199.96.56.0/21"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "202.160.128.0/22"
+      },
+      {
+        "kind": "IP-CIDR",
+        "value": "209.237.192.0/19"
+      },
+      {
+        "kind": "IP-ASN",
+        "value": "13414"
+      }
+    ],
+    "Bilibili": [],
+    "WeChat": []
+  },
+  "google_cloud_overlap_review": {
+    "response_sha256": "81e9db0944883fecfd36e3d6672e4aa6a6507ac55ed4f540a2674a0941113022",
+    "created": "2026-11-12T18:05:59.643473",
+    "existing_google_prefixes_checked": 5,
+    "overlapping_prefixes": []
+  }
+}

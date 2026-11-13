@@ -1,13 +1,17 @@
-# NAME: ParsecP2P
+# NAME: Parsec P2P
 # AUTHOR: Horatio Xu
-# FORMAT: Surge external RULE-SET
-# FORMAT-VERIFIED: 2026-10-25
-# RULES: 4
-# POLICY: DIRECT when importing; place before Parsec proxy rule set.
-# COMPAT: PROCESS-NAME is Surge Mac only; SRC-PORT 9000 can match unrelated UDP traffic.
-# WARNING: These rules cannot guarantee a P2P connection through CGNAT or restrictive firewalls.
+# FORMAT: Surge Remote Rule Set
+# RULES: 3
+# VERSION: 1.0.0
+# UPDATED: 2026-10-08
+# ASSIGN POLICY: DIRECT
+# Put before Parsec proxy rule set.
+# PROCESS-NAME parsecd applies on Surge Mac; iOS ignores process rules.
+# PORT-FALLBACK: Explicit opt-in at rule/optional/ParsecP2P-Port9000.list.
+# Rule matching does not guarantee P2P can traverse NAT/firewalls.
+# DATA-AUDITED: 2026-11-13; see Docs/Audit-2026-11-13.md.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 DOMAIN,stun.parsec.app
 DOMAIN,stun6.parsec.app
 AND,((PROCESS-NAME,parsecd),(PROTOCOL,UDP))
-AND,((SRC-PORT,9000),(PROTOCOL,UDP))

@@ -1,0 +1,11 @@
+# NAME: ParsecP2P-Port9000 (optional)
+# AUTHOR: Horatio Xu
+# FORMAT: Loon remote .lsr (policy-less)
+# RULES: 1
+# OFFICIAL-REVIEW: 2026-11-13
+# USE: Explicit opt-in only; assign DIRECT. Requires Loon 3.1.7+.
+# Requires Parsec Client Port 9000. Also matches unrelated UDP using source port 9000.
+# SOURCE: https://nsloon.app/docs/Rule/logic_rule/
+# SOURCE: https://nsloon.app/docs/Rule/port_rule/
+
+AND,((PROTOCOL,UDP),(SRC-PORT,9000))

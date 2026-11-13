@@ -2,12 +2,13 @@
 # AUTHOR: Horatio
 # FORMAT: Egern YAML rule_set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 90
+# RULES: 88
 # SOURCE: Loon/rule/HBOMAX.lsr (same repository)
 # USE: reference this URL from a rule_set with an assigned policy.
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: blackmatrix7 HBO/HBOUSA + v2fly domain-list-community hbo + existing Horatio rules
 # Covers Max, HBO Max, HBO NOW, HBO GO, Cinemax and HBO regional/legacy infrastructure.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 domain_suffix_set:
   - "bcbolthboa-a.akamaihd.net"
@@ -18,8 +19,6 @@ domain_suffix_set:
   - "dai3fd1oh325y.cloudfront.net"
   - "discomax.com"
   - "elpionero.es"
-  - "execute-api.ap-southeast-1.amazonaws.com"
-  - "execute-api.us-east-1.amazonaws.com"
   - "forthethrone.com"
   - "h264.io"
   - "hbo-europe.com"

@@ -2,12 +2,13 @@
 # AUTHOR: Horatio
 # FORMAT: Shadowrocket rule set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 38
+# RULES: 36
 # SOURCE: Loon/rule/TikTok.lsr (same repository)
 # USE: Remote rule set; select policy in the client (not in this file).
 # PROVENANCE / EXISTING NOTES:
 # TikTok global service rule set.
 # Includes TikTok app/web, media/CDN and related delivery domains from v2fly/domain-list-community.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 DOMAIN,p16-tiktokcdn-com.akamaized.net
 DOMAIN,p16-tiktok-dm-sticker-sign-sg.ibyteimg.com
@@ -15,7 +16,6 @@ DOMAIN,roovza-launches.appsflyersdk.com
 DOMAIN,roovza.inapps.appsflyersdk.com
 DOMAIN,roovza.launches.appsflyersdk.com
 DOMAIN,roovza.skadsdk.appsflyersdk.com
-DOMAIN-KEYWORD,tiktok
 DOMAIN-SUFFIX,bytedapm.com
 DOMAIN-SUFFIX,muscdn.com
 DOMAIN-SUFFIX,musical.ly
@@ -46,4 +46,3 @@ DOMAIN-SUFFIX,tiktokcdn.com.akamaized.net
 DOMAIN-SUFFIX,tiktokcdn.com.edgesuite.net
 DOMAIN-SUFFIX,tiktokv.com.edgekey.net
 DOMAIN-SUFFIX,tiktokv.com.edgesuite.net
-DOMAIN-SUFFIX,analytics.tiktok.com

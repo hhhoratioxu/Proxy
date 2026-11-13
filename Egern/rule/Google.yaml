@@ -2,7 +2,7 @@
 # AUTHOR: Horatio
 # FORMAT: Egern YAML rule_set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 887
+# RULES: 865
 # SOURCE: Loon/rule/Google.lsr (same repository)
 # USE: reference this URL from a rule_set with an assigned policy.
 # COMPAT: no_resolve is a rule-set-wide flag in Egern.
@@ -10,20 +10,13 @@
 # Combined Google + YouTube rule set.
 # YouTube domains are intentionally included in this Google policy.
 # Place AI rules before this file if Gemini/Google AI should use a separate AI policy.
+# DATA-AUDITED: 2026-11-13; see Docs/Audit-2026-11-13.md.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 no_resolve: true
 
 domain_set:
   - "voice.telephony.goog"
-  - "yt3.googleusercontent.com"
-
-domain_keyword_set:
-  - "appspot"
-  - "blogspot"
-  - "gmail"
-  - "google"
-  - "recaptcha"
-  - "youtube"
 
 domain_suffix_set:
   - "0emm.com"
@@ -38,7 +31,6 @@ domain_suffix_set:
   - "admeld.com"
   - "admob-cn.com"
   - "admob.com"
-  - "ads.youtube.com"
   - "adsense.com"
   - "adsensecustomsearchads.com"
   - "adsenseformobileapps.com"
@@ -76,9 +68,6 @@ domain_suffix_set:
   - "baselinestudy.org"
   - "bazel.build"
   - "bdn.dev"
-  - "beacons.gvt2.com"
-  - "beacons2.gvt2.com"
-  - "beacons3.gvt2.com"
   - "beatthatquote.com"
   - "blink.org"
   - "blog.google"
@@ -243,7 +232,6 @@ domain_suffix_set:
   - "g.dev"
   - "g.page"
   - "gateway.dev"
-  - "gcp.gvt2.com"
   - "gcr.io"
   - "gerritcodereview.com"
   - "get.app"
@@ -628,10 +616,6 @@ domain_suffix_set:
   - "recaptcha-cn.net"
   - "recaptcha.net"
   - "redhotlabs.com"
-  - "redirector.gcpcdn.gvt1.com"
-  - "redirector.gvt1.com"
-  - "redirector.offline-maps.gvt1.com"
-  - "redirector.snap.gvt1.com"
   - "registry.google"
   - "revolv.com"
   - "ridepenguin.com"
@@ -682,7 +666,6 @@ domain_suffix_set:
   - "verilystudyhub.com"
   - "verilystudywatch.com"
   - "verilystudywatch.org"
-  - "video.google.com"
   - "wallet.com"
   - "waveprotocol.org"
   - "waymo.com"
@@ -695,7 +678,6 @@ domain_suffix_set:
   - "webrtc.org"
   - "weltweitwachsen.de"
   - "whatbrowser.org"
-  - "wide-youtube.l.google.com"
   - "widevine.com"
   - "withgoogle.com"
   - "withyoutube.com"
@@ -720,7 +702,6 @@ domain_suffix_set:
   - "youtu.be"
   - "youtube"
   - "youtube-nocookie.com"
-  - "youtube-ui.l.google.com"
   - "youtube.ae"
   - "youtube.al"
   - "youtube.am"
@@ -816,7 +797,6 @@ domain_suffix_set:
   - "youtube.fi"
   - "youtube.fr"
   - "youtube.ge"
-  - "youtube.googleapis.com"
   - "youtube.gr"
   - "youtube.gt"
   - "youtube.hk"
@@ -874,7 +854,6 @@ domain_suffix_set:
   - "youtube.uy"
   - "youtube.vn"
   - "youtubeeducation.com"
-  - "youtubeembeddedplayer.googleapis.com"
   - "youtubefanfest.com"
   - "youtubegaming.com"
   - "youtubego.co.id"
@@ -883,7 +862,6 @@ domain_suffix_set:
   - "youtubego.com.br"
   - "youtubego.id"
   - "youtubego.in"
-  - "youtubei.googleapis.com"
   - "youtubekids.com"
   - "youtubemobilesupport.com"
   - "yt.be"

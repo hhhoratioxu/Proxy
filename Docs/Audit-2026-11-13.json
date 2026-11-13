@@ -1,0 +1,1861 @@
+{
+  "date": "2026-11-13",
+  "status": "local-unpublished",
+  "remote_base": "181022e2f3275228df06447df3531e36998b6859",
+  "branch": "codex/audit-2026-11-13",
+  "intake": {
+    "original_manifest_files": 570,
+    "original_root_files_backed_up": 178,
+    "remote_files": 581,
+    "missing_files_restored": 514,
+    "matching_existing_files": 33,
+    "existing_different_files": 34,
+    "missing_rule_files_restored": 125,
+    "concurrent_independent_worktrees": [
+      "MapKit",
+      "WeatherKit"
+    ],
+    "original_files_missing_at_completion": 0,
+    "original_root_files_changed_by_this_work": 20
+  },
+  "before_after": {
+    "conditions_after_missing_file_recovery": 47067,
+    "current_conditions": 45548,
+    "removed_conditions_from_recovered_workspace": 1519,
+    "removed_conditions_relative_to_remote_main": 1506,
+    "initial_validation_findings": 145
+  },
+  "rules": {
+    "schema": 1,
+    "files": 156,
+    "groups": 26,
+    "conditions": 45548,
+    "fixture_assertions": 762,
+    "problems": [],
+    "inventory": {
+      "Loon/rule/AI.lsr": {
+        "rules": 971,
+        "types": {
+          "DOMAIN": 388,
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 582
+        }
+      },
+      "Loon/rule/Adobe.lsr": {
+        "rules": 274,
+        "types": {
+          "DOMAIN": 139,
+          "DOMAIN-SUFFIX": 135
+        }
+      },
+      "Loon/rule/Apple.lsr": {
+        "rules": 1761,
+        "types": {
+          "DOMAIN": 138,
+          "DOMAIN-KEYWORD": 7,
+          "DOMAIN-SUFFIX": 1571,
+          "IP-CIDR": 15,
+          "IP-CIDR6": 7,
+          "USER-AGENT": 23
+        }
+      },
+      "Loon/rule/Bilibili.lsr": {
+        "rules": 133,
+        "types": {
+          "DOMAIN": 54,
+          "DOMAIN-SUFFIX": 67,
+          "IP-CIDR": 8,
+          "USER-AGENT": 4
+        }
+      },
+      "Loon/rule/Disney.lsr": {
+        "rules": 245,
+        "types": {
+          "DOMAIN": 6,
+          "DOMAIN-SUFFIX": 238,
+          "USER-AGENT": 1
+        }
+      },
+      "Loon/rule/GitHub.lsr": {
+        "rules": 64,
+        "types": {
+          "DOMAIN": 32,
+          "DOMAIN-SUFFIX": 32
+        }
+      },
+      "Loon/rule/Google.lsr": {
+        "rules": 881,
+        "types": {
+          "DOMAIN": 2,
+          "DOMAIN-SUFFIX": 864,
+          "IP-CIDR": 4,
+          "IP-CIDR6": 1,
+          "USER-AGENT": 10
+        }
+      },
+      "Loon/rule/HBOMAX.lsr": {
+        "rules": 90,
+        "types": {
+          "DOMAIN-SUFFIX": 88,
+          "USER-AGENT": 2
+        }
+      },
+      "Loon/rule/Infuse.lsr": {
+        "rules": 13,
+        "types": {
+          "DOMAIN": 1,
+          "DOMAIN-SUFFIX": 12
+        }
+      },
+      "Loon/rule/LAN.lsr": {
+        "rules": 145,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 117,
+          "IP-CIDR": 16,
+          "IP-CIDR6": 4
+        }
+      },
+      "Loon/rule/Meituan.lsr": {
+        "rules": 24,
+        "types": {
+          "DOMAIN-SUFFIX": 24
+        }
+      },
+      "Loon/rule/Meta.lsr": {
+        "rules": 618,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 563,
+          "IP-ASN": 1,
+          "IP-CIDR": 46
+        }
+      },
+      "Loon/rule/Microsoft.lsr": {
+        "rules": 811,
+        "types": {
+          "DOMAIN": 79,
+          "DOMAIN-SUFFIX": 729,
+          "USER-AGENT": 3
+        }
+      },
+      "Loon/rule/NTP.lsr": {
+        "rules": 85,
+        "types": {
+          "DOMAIN-SUFFIX": 85
+        }
+      },
+      "Loon/rule/Netflix.lsr": {
+        "rules": 1154,
+        "types": {
+          "DOMAIN": 3,
+          "DOMAIN-KEYWORD": 4,
+          "DOMAIN-SUFFIX": 27,
+          "IP-CIDR": 1115,
+          "IP-CIDR6": 4,
+          "USER-AGENT": 1
+        }
+      },
+      "Loon/rule/Parsec.lsr": {
+        "rules": 3,
+        "types": {
+          "DOMAIN-SUFFIX": 3
+        }
+      },
+      "Loon/rule/ParsecP2P.lsr": {
+        "rules": 3,
+        "types": {
+          "AND": 1,
+          "DOMAIN": 2
+        }
+      },
+      "Loon/rule/SiriAI.lsr": {
+        "rules": 6,
+        "types": {
+          "DOMAIN": 5,
+          "DOMAIN-SUFFIX": 1
+        }
+      },
+      "Loon/rule/Spotify.lsr": {
+        "rules": 30,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 21,
+          "USER-AGENT": 1
+        }
+      },
+      "Loon/rule/Telegram.lsr": {
+        "rules": 51,
+        "types": {
+          "DOMAIN": 3,
+          "DOMAIN-KEYWORD": 2,
+          "DOMAIN-SUFFIX": 29,
+          "IP-ASN": 5,
+          "IP-CIDR": 8,
+          "IP-CIDR6": 4
+        }
+      },
+      "Loon/rule/TikTok.lsr": {
+        "rules": 38,
+        "types": {
+          "DOMAIN": 6,
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 31
+        }
+      },
+      "Loon/rule/Twitter.lsr": {
+        "rules": 34,
+        "types": {
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 26,
+          "IP-ASN": 1,
+          "IP-CIDR": 6
+        }
+      },
+      "Loon/rule/WeChat.lsr": {
+        "rules": 100,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 22,
+          "IP-ASN": 1,
+          "IP-CIDR": 3,
+          "IP-CIDR6": 64,
+          "USER-AGENT": 2
+        }
+      },
+      "Loon/rule/Weverse.lsr": {
+        "rules": 14,
+        "types": {
+          "DOMAIN": 10,
+          "DOMAIN-SUFFIX": 4
+        }
+      },
+      "Loon/rule/Wikimedia.lsr": {
+        "rules": 22,
+        "types": {
+          "DOMAIN-SUFFIX": 22
+        }
+      },
+      "Loon/rule/Xiaohongshu.lsr": {
+        "rules": 29,
+        "types": {
+          "DOMAIN-SUFFIX": 29
+        }
+      },
+      "Surge/rule/AI.list": {
+        "rules": 971,
+        "types": {
+          "DOMAIN": 388,
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 582
+        }
+      },
+      "Surge/rule/Adobe.list": {
+        "rules": 274,
+        "types": {
+          "DOMAIN": 139,
+          "DOMAIN-SUFFIX": 135
+        }
+      },
+      "Surge/rule/Apple.list": {
+        "rules": 1761,
+        "types": {
+          "DOMAIN": 138,
+          "DOMAIN-KEYWORD": 7,
+          "DOMAIN-SUFFIX": 1571,
+          "IP-CIDR": 15,
+          "IP-CIDR6": 7,
+          "USER-AGENT": 23
+        }
+      },
+      "Surge/rule/Bilibili.list": {
+        "rules": 133,
+        "types": {
+          "DOMAIN": 54,
+          "DOMAIN-SUFFIX": 67,
+          "IP-CIDR": 8,
+          "USER-AGENT": 4
+        }
+      },
+      "Surge/rule/Disney.list": {
+        "rules": 245,
+        "types": {
+          "DOMAIN": 6,
+          "DOMAIN-SUFFIX": 238,
+          "USER-AGENT": 1
+        }
+      },
+      "Surge/rule/GitHub.list": {
+        "rules": 64,
+        "types": {
+          "DOMAIN": 32,
+          "DOMAIN-SUFFIX": 32
+        }
+      },
+      "Surge/rule/Google.list": {
+        "rules": 881,
+        "types": {
+          "DOMAIN": 2,
+          "DOMAIN-SUFFIX": 864,
+          "IP-CIDR": 4,
+          "IP-CIDR6": 1,
+          "USER-AGENT": 10
+        }
+      },
+      "Surge/rule/HBOMAX.list": {
+        "rules": 90,
+        "types": {
+          "DOMAIN-SUFFIX": 88,
+          "USER-AGENT": 2
+        }
+      },
+      "Surge/rule/Infuse.list": {
+        "rules": 13,
+        "types": {
+          "DOMAIN": 1,
+          "DOMAIN-SUFFIX": 12
+        }
+      },
+      "Surge/rule/LAN.list": {
+        "rules": 145,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 117,
+          "IP-CIDR": 16,
+          "IP-CIDR6": 4
+        }
+      },
+      "Surge/rule/Meituan.list": {
+        "rules": 24,
+        "types": {
+          "DOMAIN-SUFFIX": 24
+        }
+      },
+      "Surge/rule/Meta.list": {
+        "rules": 618,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 563,
+          "IP-ASN": 1,
+          "IP-CIDR": 46
+        }
+      },
+      "Surge/rule/Microsoft.list": {
+        "rules": 811,
+        "types": {
+          "DOMAIN": 79,
+          "DOMAIN-SUFFIX": 729,
+          "USER-AGENT": 3
+        }
+      },
+      "Surge/rule/NTP.list": {
+        "rules": 85,
+        "types": {
+          "DOMAIN-SUFFIX": 85
+        }
+      },
+      "Surge/rule/Netflix.list": {
+        "rules": 1154,
+        "types": {
+          "DOMAIN": 3,
+          "DOMAIN-KEYWORD": 4,
+          "DOMAIN-SUFFIX": 27,
+          "IP-CIDR": 1115,
+          "IP-CIDR6": 4,
+          "USER-AGENT": 1
+        }
+      },
+      "Surge/rule/Parsec.list": {
+        "rules": 3,
+        "types": {
+          "DOMAIN-SUFFIX": 3
+        }
+      },
+      "Surge/rule/ParsecP2P.list": {
+        "rules": 4,
+        "types": {
+          "AND": 2,
+          "DOMAIN": 2
+        }
+      },
+      "Surge/rule/SiriAI.list": {
+        "rules": 6,
+        "types": {
+          "DOMAIN": 5,
+          "DOMAIN-SUFFIX": 1
+        }
+      },
+      "Surge/rule/Spotify.list": {
+        "rules": 30,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 21,
+          "USER-AGENT": 1
+        }
+      },
+      "Surge/rule/Telegram.list": {
+        "rules": 51,
+        "types": {
+          "DOMAIN": 3,
+          "DOMAIN-KEYWORD": 2,
+          "DOMAIN-SUFFIX": 29,
+          "IP-ASN": 5,
+          "IP-CIDR": 8,
+          "IP-CIDR6": 4
+        }
+      },
+      "Surge/rule/TikTok.list": {
+        "rules": 38,
+        "types": {
+          "DOMAIN": 6,
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 31
+        }
+      },
+      "Surge/rule/Twitter.list": {
+        "rules": 34,
+        "types": {
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 26,
+          "IP-ASN": 1,
+          "IP-CIDR": 6
+        }
+      },
+      "Surge/rule/WeChat.list": {
+        "rules": 100,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 22,
+          "IP-ASN": 1,
+          "IP-CIDR": 3,
+          "IP-CIDR6": 64,
+          "USER-AGENT": 2
+        }
+      },
+      "Surge/rule/Weverse.list": {
+        "rules": 14,
+        "types": {
+          "DOMAIN": 10,
+          "DOMAIN-SUFFIX": 4
+        }
+      },
+      "Surge/rule/Wikimedia.list": {
+        "rules": 22,
+        "types": {
+          "DOMAIN-SUFFIX": 22
+        }
+      },
+      "Surge/rule/Xiaohongshu.list": {
+        "rules": 29,
+        "types": {
+          "DOMAIN-SUFFIX": 29
+        }
+      },
+      "Egern/rule/AI.yaml": {
+        "rules": 971,
+        "types": {
+          "DOMAIN": 388,
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 582
+        }
+      },
+      "Egern/rule/Adobe.yaml": {
+        "rules": 274,
+        "types": {
+          "DOMAIN": 139,
+          "DOMAIN-SUFFIX": 135
+        }
+      },
+      "Egern/rule/Apple.yaml": {
+        "rules": 1761,
+        "types": {
+          "DOMAIN": 138,
+          "DOMAIN-KEYWORD": 7,
+          "DOMAIN-SUFFIX": 1571,
+          "IP-CIDR": 15,
+          "IP-CIDR6": 7,
+          "USER-AGENT": 23
+        }
+      },
+      "Egern/rule/Bilibili.yaml": {
+        "rules": 133,
+        "types": {
+          "DOMAIN": 54,
+          "DOMAIN-SUFFIX": 67,
+          "IP-CIDR": 8,
+          "USER-AGENT": 4
+        }
+      },
+      "Egern/rule/Disney.yaml": {
+        "rules": 245,
+        "types": {
+          "DOMAIN": 6,
+          "DOMAIN-SUFFIX": 238,
+          "USER-AGENT": 1
+        }
+      },
+      "Egern/rule/GitHub.yaml": {
+        "rules": 64,
+        "types": {
+          "DOMAIN": 32,
+          "DOMAIN-SUFFIX": 32
+        }
+      },
+      "Egern/rule/Google.yaml": {
+        "rules": 881,
+        "types": {
+          "DOMAIN": 2,
+          "DOMAIN-SUFFIX": 864,
+          "IP-CIDR": 4,
+          "IP-CIDR6": 1,
+          "USER-AGENT": 10
+        }
+      },
+      "Egern/rule/HBOMAX.yaml": {
+        "rules": 90,
+        "types": {
+          "DOMAIN-SUFFIX": 88,
+          "USER-AGENT": 2
+        }
+      },
+      "Egern/rule/Infuse.yaml": {
+        "rules": 13,
+        "types": {
+          "DOMAIN": 1,
+          "DOMAIN-SUFFIX": 12
+        }
+      },
+      "Egern/rule/LAN.yaml": {
+        "rules": 145,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 117,
+          "IP-CIDR": 16,
+          "IP-CIDR6": 4
+        }
+      },
+      "Egern/rule/Meituan.yaml": {
+        "rules": 24,
+        "types": {
+          "DOMAIN-SUFFIX": 24
+        }
+      },
+      "Egern/rule/Meta.yaml": {
+        "rules": 618,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 563,
+          "IP-ASN": 1,
+          "IP-CIDR": 46
+        }
+      },
+      "Egern/rule/Microsoft.yaml": {
+        "rules": 811,
+        "types": {
+          "DOMAIN": 79,
+          "DOMAIN-SUFFIX": 729,
+          "USER-AGENT": 3
+        }
+      },
+      "Egern/rule/NTP.yaml": {
+        "rules": 85,
+        "types": {
+          "DOMAIN-SUFFIX": 85
+        }
+      },
+      "Egern/rule/Netflix.yaml": {
+        "rules": 1154,
+        "types": {
+          "DOMAIN": 3,
+          "DOMAIN-KEYWORD": 4,
+          "DOMAIN-SUFFIX": 27,
+          "IP-CIDR": 1115,
+          "IP-CIDR6": 4,
+          "USER-AGENT": 1
+        }
+      },
+      "Egern/rule/Parsec.yaml": {
+        "rules": 3,
+        "types": {
+          "DOMAIN-SUFFIX": 3
+        }
+      },
+      "Egern/rule/ParsecP2P.yaml": {
+        "rules": 2,
+        "types": {
+          "DOMAIN": 2
+        }
+      },
+      "Egern/rule/SiriAI.yaml": {
+        "rules": 6,
+        "types": {
+          "DOMAIN": 5,
+          "DOMAIN-SUFFIX": 1
+        }
+      },
+      "Egern/rule/Spotify.yaml": {
+        "rules": 30,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 21,
+          "USER-AGENT": 1
+        }
+      },
+      "Egern/rule/Telegram.yaml": {
+        "rules": 51,
+        "types": {
+          "DOMAIN": 3,
+          "DOMAIN-KEYWORD": 2,
+          "DOMAIN-SUFFIX": 29,
+          "IP-ASN": 5,
+          "IP-CIDR": 8,
+          "IP-CIDR6": 4
+        }
+      },
+      "Egern/rule/TikTok.yaml": {
+        "rules": 38,
+        "types": {
+          "DOMAIN": 6,
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 31
+        }
+      },
+      "Egern/rule/Twitter.yaml": {
+        "rules": 34,
+        "types": {
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 26,
+          "IP-ASN": 1,
+          "IP-CIDR": 6
+        }
+      },
+      "Egern/rule/WeChat.yaml": {
+        "rules": 100,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 22,
+          "IP-ASN": 1,
+          "IP-CIDR": 3,
+          "IP-CIDR6": 64,
+          "USER-AGENT": 2
+        }
+      },
+      "Egern/rule/Weverse.yaml": {
+        "rules": 14,
+        "types": {
+          "DOMAIN": 10,
+          "DOMAIN-SUFFIX": 4
+        }
+      },
+      "Egern/rule/Wikimedia.yaml": {
+        "rules": 22,
+        "types": {
+          "DOMAIN-SUFFIX": 22
+        }
+      },
+      "Egern/rule/Xiaohongshu.yaml": {
+        "rules": 29,
+        "types": {
+          "DOMAIN-SUFFIX": 29
+        }
+      },
+      "QuantumultX/rule/AI.list": {
+        "rules": 971,
+        "types": {
+          "DOMAIN": 388,
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 582
+        }
+      },
+      "QuantumultX/rule/Adobe.list": {
+        "rules": 274,
+        "types": {
+          "DOMAIN": 139,
+          "DOMAIN-SUFFIX": 135
+        }
+      },
+      "QuantumultX/rule/Apple.list": {
+        "rules": 1761,
+        "types": {
+          "DOMAIN": 138,
+          "DOMAIN-KEYWORD": 7,
+          "DOMAIN-SUFFIX": 1571,
+          "IP-CIDR": 15,
+          "IP-CIDR6": 7,
+          "USER-AGENT": 23
+        }
+      },
+      "QuantumultX/rule/Bilibili.list": {
+        "rules": 133,
+        "types": {
+          "DOMAIN": 54,
+          "DOMAIN-SUFFIX": 67,
+          "IP-CIDR": 8,
+          "USER-AGENT": 4
+        }
+      },
+      "QuantumultX/rule/Disney.list": {
+        "rules": 245,
+        "types": {
+          "DOMAIN": 6,
+          "DOMAIN-SUFFIX": 238,
+          "USER-AGENT": 1
+        }
+      },
+      "QuantumultX/rule/GitHub.list": {
+        "rules": 64,
+        "types": {
+          "DOMAIN": 32,
+          "DOMAIN-SUFFIX": 32
+        }
+      },
+      "QuantumultX/rule/Google.list": {
+        "rules": 881,
+        "types": {
+          "DOMAIN": 2,
+          "DOMAIN-SUFFIX": 864,
+          "IP-CIDR": 4,
+          "IP-CIDR6": 1,
+          "USER-AGENT": 10
+        }
+      },
+      "QuantumultX/rule/HBOMAX.list": {
+        "rules": 90,
+        "types": {
+          "DOMAIN-SUFFIX": 88,
+          "USER-AGENT": 2
+        }
+      },
+      "QuantumultX/rule/Infuse.list": {
+        "rules": 13,
+        "types": {
+          "DOMAIN": 1,
+          "DOMAIN-SUFFIX": 12
+        }
+      },
+      "QuantumultX/rule/LAN.list": {
+        "rules": 145,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 117,
+          "IP-CIDR": 16,
+          "IP-CIDR6": 4
+        }
+      },
+      "QuantumultX/rule/Meituan.list": {
+        "rules": 24,
+        "types": {
+          "DOMAIN-SUFFIX": 24
+        }
+      },
+      "QuantumultX/rule/Meta.list": {
+        "rules": 618,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 563,
+          "IP-ASN": 1,
+          "IP-CIDR": 46
+        }
+      },
+      "QuantumultX/rule/Microsoft.list": {
+        "rules": 811,
+        "types": {
+          "DOMAIN": 79,
+          "DOMAIN-SUFFIX": 729,
+          "USER-AGENT": 3
+        }
+      },
+      "QuantumultX/rule/NTP.list": {
+        "rules": 85,
+        "types": {
+          "DOMAIN-SUFFIX": 85
+        }
+      },
+      "QuantumultX/rule/Netflix.list": {
+        "rules": 1154,
+        "types": {
+          "DOMAIN": 3,
+          "DOMAIN-KEYWORD": 4,
+          "DOMAIN-SUFFIX": 27,
+          "IP-CIDR": 1115,
+          "IP-CIDR6": 4,
+          "USER-AGENT": 1
+        }
+      },
+      "QuantumultX/rule/Parsec.list": {
+        "rules": 3,
+        "types": {
+          "DOMAIN-SUFFIX": 3
+        }
+      },
+      "QuantumultX/rule/ParsecP2P.list": {
+        "rules": 3,
+        "types": {
+          "DOMAIN": 2,
+          "SRC-PORT": 1
+        }
+      },
+      "QuantumultX/rule/SiriAI.list": {
+        "rules": 6,
+        "types": {
+          "DOMAIN": 5,
+          "DOMAIN-SUFFIX": 1
+        }
+      },
+      "QuantumultX/rule/Spotify.list": {
+        "rules": 30,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 21,
+          "USER-AGENT": 1
+        }
+      },
+      "QuantumultX/rule/Telegram.list": {
+        "rules": 51,
+        "types": {
+          "DOMAIN": 3,
+          "DOMAIN-KEYWORD": 2,
+          "DOMAIN-SUFFIX": 29,
+          "IP-ASN": 5,
+          "IP-CIDR": 8,
+          "IP-CIDR6": 4
+        }
+      },
+      "QuantumultX/rule/TikTok.list": {
+        "rules": 38,
+        "types": {
+          "DOMAIN": 6,
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 31
+        }
+      },
+      "QuantumultX/rule/Twitter.list": {
+        "rules": 34,
+        "types": {
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 26,
+          "IP-ASN": 1,
+          "IP-CIDR": 6
+        }
+      },
+      "QuantumultX/rule/WeChat.list": {
+        "rules": 100,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 22,
+          "IP-ASN": 1,
+          "IP-CIDR": 3,
+          "IP-CIDR6": 64,
+          "USER-AGENT": 2
+        }
+      },
+      "QuantumultX/rule/Weverse.list": {
+        "rules": 14,
+        "types": {
+          "DOMAIN": 10,
+          "DOMAIN-SUFFIX": 4
+        }
+      },
+      "QuantumultX/rule/Wikimedia.list": {
+        "rules": 22,
+        "types": {
+          "DOMAIN-SUFFIX": 22
+        }
+      },
+      "QuantumultX/rule/Xiaohongshu.list": {
+        "rules": 29,
+        "types": {
+          "DOMAIN-SUFFIX": 29
+        }
+      },
+      "Shadowrocket/rule/AI.list": {
+        "rules": 971,
+        "types": {
+          "DOMAIN": 388,
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 582
+        }
+      },
+      "Shadowrocket/rule/Adobe.list": {
+        "rules": 274,
+        "types": {
+          "DOMAIN": 139,
+          "DOMAIN-SUFFIX": 135
+        }
+      },
+      "Shadowrocket/rule/Apple.list": {
+        "rules": 1761,
+        "types": {
+          "DOMAIN": 138,
+          "DOMAIN-KEYWORD": 7,
+          "DOMAIN-SUFFIX": 1571,
+          "IP-CIDR": 15,
+          "IP-CIDR6": 7,
+          "USER-AGENT": 23
+        }
+      },
+      "Shadowrocket/rule/Bilibili.list": {
+        "rules": 133,
+        "types": {
+          "DOMAIN": 54,
+          "DOMAIN-SUFFIX": 67,
+          "IP-CIDR": 8,
+          "USER-AGENT": 4
+        }
+      },
+      "Shadowrocket/rule/Disney.list": {
+        "rules": 245,
+        "types": {
+          "DOMAIN": 6,
+          "DOMAIN-SUFFIX": 238,
+          "USER-AGENT": 1
+        }
+      },
+      "Shadowrocket/rule/GitHub.list": {
+        "rules": 64,
+        "types": {
+          "DOMAIN": 32,
+          "DOMAIN-SUFFIX": 32
+        }
+      },
+      "Shadowrocket/rule/Google.list": {
+        "rules": 881,
+        "types": {
+          "DOMAIN": 2,
+          "DOMAIN-SUFFIX": 864,
+          "IP-CIDR": 4,
+          "IP-CIDR6": 1,
+          "USER-AGENT": 10
+        }
+      },
+      "Shadowrocket/rule/HBOMAX.list": {
+        "rules": 90,
+        "types": {
+          "DOMAIN-SUFFIX": 88,
+          "USER-AGENT": 2
+        }
+      },
+      "Shadowrocket/rule/Infuse.list": {
+        "rules": 13,
+        "types": {
+          "DOMAIN": 1,
+          "DOMAIN-SUFFIX": 12
+        }
+      },
+      "Shadowrocket/rule/LAN.list": {
+        "rules": 145,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 117,
+          "IP-CIDR": 16,
+          "IP-CIDR6": 4
+        }
+      },
+      "Shadowrocket/rule/Meituan.list": {
+        "rules": 24,
+        "types": {
+          "DOMAIN-SUFFIX": 24
+        }
+      },
+      "Shadowrocket/rule/Meta.list": {
+        "rules": 618,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 563,
+          "IP-ASN": 1,
+          "IP-CIDR": 46
+        }
+      },
+      "Shadowrocket/rule/Microsoft.list": {
+        "rules": 811,
+        "types": {
+          "DOMAIN": 79,
+          "DOMAIN-SUFFIX": 729,
+          "USER-AGENT": 3
+        }
+      },
+      "Shadowrocket/rule/NTP.list": {
+        "rules": 85,
+        "types": {
+          "DOMAIN-SUFFIX": 85
+        }
+      },
+      "Shadowrocket/rule/Netflix.list": {
+        "rules": 1154,
+        "types": {
+          "DOMAIN": 3,
+          "DOMAIN-KEYWORD": 4,
+          "DOMAIN-SUFFIX": 27,
+          "IP-CIDR": 1115,
+          "IP-CIDR6": 4,
+          "USER-AGENT": 1
+        }
+      },
+      "Shadowrocket/rule/Parsec.list": {
+        "rules": 3,
+        "types": {
+          "DOMAIN-SUFFIX": 3
+        }
+      },
+      "Shadowrocket/rule/ParsecP2P.list": {
+        "rules": 2,
+        "types": {
+          "DOMAIN": 2
+        }
+      },
+      "Shadowrocket/rule/SiriAI.list": {
+        "rules": 6,
+        "types": {
+          "DOMAIN": 5,
+          "DOMAIN-SUFFIX": 1
+        }
+      },
+      "Shadowrocket/rule/Spotify.list": {
+        "rules": 30,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 21,
+          "USER-AGENT": 1
+        }
+      },
+      "Shadowrocket/rule/Telegram.list": {
+        "rules": 51,
+        "types": {
+          "DOMAIN": 3,
+          "DOMAIN-KEYWORD": 2,
+          "DOMAIN-SUFFIX": 29,
+          "IP-ASN": 5,
+          "IP-CIDR": 8,
+          "IP-CIDR6": 4
+        }
+      },
+      "Shadowrocket/rule/TikTok.list": {
+        "rules": 38,
+        "types": {
+          "DOMAIN": 6,
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 31
+        }
+      },
+      "Shadowrocket/rule/Twitter.list": {
+        "rules": 34,
+        "types": {
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 26,
+          "IP-ASN": 1,
+          "IP-CIDR": 6
+        }
+      },
+      "Shadowrocket/rule/WeChat.list": {
+        "rules": 100,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 22,
+          "IP-ASN": 1,
+          "IP-CIDR": 3,
+          "IP-CIDR6": 64,
+          "USER-AGENT": 2
+        }
+      },
+      "Shadowrocket/rule/Weverse.list": {
+        "rules": 14,
+        "types": {
+          "DOMAIN": 10,
+          "DOMAIN-SUFFIX": 4
+        }
+      },
+      "Shadowrocket/rule/Wikimedia.list": {
+        "rules": 22,
+        "types": {
+          "DOMAIN-SUFFIX": 22
+        }
+      },
+      "Shadowrocket/rule/Xiaohongshu.list": {
+        "rules": 29,
+        "types": {
+          "DOMAIN-SUFFIX": 29
+        }
+      },
+      "Clash/rule/AI.yaml": {
+        "rules": 971,
+        "types": {
+          "DOMAIN": 388,
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 582
+        }
+      },
+      "Clash/rule/Adobe.yaml": {
+        "rules": 274,
+        "types": {
+          "DOMAIN": 139,
+          "DOMAIN-SUFFIX": 135
+        }
+      },
+      "Clash/rule/Apple.yaml": {
+        "rules": 1738,
+        "types": {
+          "DOMAIN": 138,
+          "DOMAIN-KEYWORD": 7,
+          "DOMAIN-SUFFIX": 1571,
+          "IP-CIDR": 15,
+          "IP-CIDR6": 7
+        }
+      },
+      "Clash/rule/Bilibili.yaml": {
+        "rules": 129,
+        "types": {
+          "DOMAIN": 54,
+          "DOMAIN-SUFFIX": 67,
+          "IP-CIDR": 8
+        }
+      },
+      "Clash/rule/Disney.yaml": {
+        "rules": 244,
+        "types": {
+          "DOMAIN": 6,
+          "DOMAIN-SUFFIX": 238
+        }
+      },
+      "Clash/rule/GitHub.yaml": {
+        "rules": 64,
+        "types": {
+          "DOMAIN": 32,
+          "DOMAIN-SUFFIX": 32
+        }
+      },
+      "Clash/rule/Google.yaml": {
+        "rules": 871,
+        "types": {
+          "DOMAIN": 2,
+          "DOMAIN-SUFFIX": 864,
+          "IP-CIDR": 4,
+          "IP-CIDR6": 1
+        }
+      },
+      "Clash/rule/HBOMAX.yaml": {
+        "rules": 88,
+        "types": {
+          "DOMAIN-SUFFIX": 88
+        }
+      },
+      "Clash/rule/Infuse.yaml": {
+        "rules": 13,
+        "types": {
+          "DOMAIN": 1,
+          "DOMAIN-SUFFIX": 12
+        }
+      },
+      "Clash/rule/LAN.yaml": {
+        "rules": 145,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 117,
+          "IP-CIDR": 16,
+          "IP-CIDR6": 4
+        }
+      },
+      "Clash/rule/Meituan.yaml": {
+        "rules": 24,
+        "types": {
+          "DOMAIN-SUFFIX": 24
+        }
+      },
+      "Clash/rule/Meta.yaml": {
+        "rules": 618,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 563,
+          "IP-ASN": 1,
+          "IP-CIDR": 46
+        }
+      },
+      "Clash/rule/Microsoft.yaml": {
+        "rules": 808,
+        "types": {
+          "DOMAIN": 79,
+          "DOMAIN-SUFFIX": 729
+        }
+      },
+      "Clash/rule/NTP.yaml": {
+        "rules": 85,
+        "types": {
+          "DOMAIN-SUFFIX": 85
+        }
+      },
+      "Clash/rule/Netflix.yaml": {
+        "rules": 1153,
+        "types": {
+          "DOMAIN": 3,
+          "DOMAIN-KEYWORD": 4,
+          "DOMAIN-SUFFIX": 27,
+          "IP-CIDR": 1115,
+          "IP-CIDR6": 4
+        }
+      },
+      "Clash/rule/Parsec.yaml": {
+        "rules": 3,
+        "types": {
+          "DOMAIN-SUFFIX": 3
+        }
+      },
+      "Clash/rule/ParsecP2P.yaml": {
+        "rules": 5,
+        "types": {
+          "AND": 3,
+          "DOMAIN": 2
+        }
+      },
+      "Clash/rule/SiriAI.yaml": {
+        "rules": 6,
+        "types": {
+          "DOMAIN": 5,
+          "DOMAIN-SUFFIX": 1
+        }
+      },
+      "Clash/rule/Spotify.yaml": {
+        "rules": 29,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 21
+        }
+      },
+      "Clash/rule/Telegram.yaml": {
+        "rules": 51,
+        "types": {
+          "DOMAIN": 3,
+          "DOMAIN-KEYWORD": 2,
+          "DOMAIN-SUFFIX": 29,
+          "IP-ASN": 5,
+          "IP-CIDR": 8,
+          "IP-CIDR6": 4
+        }
+      },
+      "Clash/rule/TikTok.yaml": {
+        "rules": 38,
+        "types": {
+          "DOMAIN": 6,
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 31
+        }
+      },
+      "Clash/rule/Twitter.yaml": {
+        "rules": 34,
+        "types": {
+          "DOMAIN-KEYWORD": 1,
+          "DOMAIN-SUFFIX": 26,
+          "IP-ASN": 1,
+          "IP-CIDR": 6
+        }
+      },
+      "Clash/rule/WeChat.yaml": {
+        "rules": 98,
+        "types": {
+          "DOMAIN": 8,
+          "DOMAIN-SUFFIX": 22,
+          "IP-ASN": 1,
+          "IP-CIDR": 3,
+          "IP-CIDR6": 64
+        }
+      },
+      "Clash/rule/Weverse.yaml": {
+        "rules": 14,
+        "types": {
+          "DOMAIN": 10,
+          "DOMAIN-SUFFIX": 4
+        }
+      },
+      "Clash/rule/Wikimedia.yaml": {
+        "rules": 22,
+        "types": {
+          "DOMAIN-SUFFIX": 22
+        }
+      },
+      "Clash/rule/Xiaohongshu.yaml": {
+        "rules": 29,
+        "types": {
+          "DOMAIN-SUFFIX": 29
+        }
+      }
+    },
+    "egern_resolution_differences": {
+      "Apple": {
+        "no_resolve": true,
+        "conditions_with_different_resolution_behavior": 13
+      },
+      "Meta": {
+        "no_resolve": true,
+        "conditions_with_different_resolution_behavior": 1
+      },
+      "Telegram": {
+        "no_resolve": true,
+        "conditions_with_different_resolution_behavior": 5
+      },
+      "Twitter": {
+        "no_resolve": true,
+        "conditions_with_different_resolution_behavior": 1
+      },
+      "WeChat": {
+        "no_resolve": true,
+        "conditions_with_different_resolution_behavior": 1
+      }
+    },
+    "remaining_keywords": {
+      "AI": [
+        "chatgpt-async-webps-prod-"
+      ],
+      "Apple": [
+        "apple-support.akadns.net",
+        "apple.com.akadns.net",
+        "apple.com.edgekey.net",
+        "buy.itunes.apple.com",
+        "smp-device",
+        "testflight",
+        "icloud.com.akadns.net"
+      ],
+      "Netflix": [
+        "apiproxy-device-prod-nlb-",
+        "dualstack.apiproxy-",
+        "dualstack.ichnaea-web-",
+        "netflixdnstest"
+      ],
+      "Telegram": [
+        "nicegram",
+        "telegram"
+      ],
+      "TikTok": [
+        "tiktok"
+      ],
+      "Twitter": [
+        "twitter"
+      ]
+    },
+    "domain_conditions_covered_by_same_group_suffix": {
+      "AI": 7,
+      "Adobe": 132,
+      "Apple": 147,
+      "Bilibili": 1,
+      "Disney": 10,
+      "GitHub": 5,
+      "Google": 16,
+      "Meta": 15,
+      "Microsoft": 93,
+      "NTP": 1,
+      "Netflix": 1,
+      "Telegram": 2,
+      "TikTok": 1
+    },
+    "domain_overlap_counts": {
+      "AI -> Adobe": 2,
+      "AI -> Apple": 1,
+      "AI -> GitHub": 5,
+      "AI -> Google": 69,
+      "AI -> Meta": 8,
+      "AI -> Microsoft": 16,
+      "AI -> TikTok": 1,
+      "AI -> Twitter": 2,
+      "Adobe -> Disney": 1,
+      "Apple -> Adobe": 3,
+      "Apple -> Google": 1,
+      "Apple -> Microsoft": 6,
+      "Apple -> NTP": 1,
+      "Apple -> SiriAI": 1,
+      "Disney -> Adobe": 8,
+      "Disney -> HBOMAX": 1,
+      "Disney -> Microsoft": 2,
+      "GitHub -> AI": 1,
+      "GitHub -> Microsoft": 21,
+      "Google -> AI": 1,
+      "Google -> Apple": 1,
+      "HBOMAX -> Disney": 1,
+      "HBOMAX -> Microsoft": 1,
+      "Meta -> AI": 4,
+      "NTP -> Apple": 9,
+      "NTP -> Google": 5,
+      "NTP -> Microsoft": 1,
+      "Netflix -> Microsoft": 2,
+      "ParsecP2P -> Parsec": 2,
+      "SiriAI -> Apple": 4,
+      "Spotify -> Microsoft": 1,
+      "TikTok -> Microsoft": 3,
+      "Twitter -> AI": 1
+    }
+  },
+  "validation": {
+    "python_tests": 14,
+    "clash_extension_tests": 8,
+    "spotify_passed": 2248,
+    "youtube_passed": 315,
+    "native_mihomo_version": "Mihomo Meta v1.19.34 darwin arm64 with go1.26.11 Wed Nov 11 06:51:28 UTC 2026\nUse tags: with_gvisor",
+    "native_mihomo_checks": [
+      {
+        "name": "providers",
+        "returncode": 0
+      },
+      {
+        "name": "inline",
+        "returncode": 0
+      }
+    ],
+    "script_runtime_objects": 31,
+    "install_entries": 23,
+    "node_version": "24.22.3",
+    "python_version": "3.9.6",
+    "pyyaml_version": "6.0.3",
+    "phone_acceptance": false,
+    "github_actions_executed": false,
+    "repository_links_checked": 291,
+    "repository_link_problems": 0,
+    "diff_whitespace_problems": 0,
+    "remote_main_rechecked_unchanged": true
+  },
+  "runtime_references": {
+    "entries": [
+      "Clash/script/VergeRev.js",
+      "Egern/script/LAN-Bypass.yaml",
+      "Egern/script/MeituanWaimai.yaml",
+      "Egern/script/NetworkInfo.yaml",
+      "Egern/script/SpotifyLyrics.yaml",
+      "Egern/script/StreamingUnlock.yaml",
+      "Egern/script/YouTubeClean.yaml",
+      "Loon/script/MeituanWaimai.lpx",
+      "Loon/script/MeituanWaimai.plugin",
+      "Loon/script/SpotifyLyrics.lpx",
+      "Loon/script/StreamingUnlock.plugin",
+      "Loon/script/YouTubeClean.lpx",
+      "Loon/script/YouTubeClean.plugin",
+      "QuantumultX/script/MeituanWaimai.conf",
+      "QuantumultX/script/SpotifyLyrics.conf",
+      "QuantumultX/script/StreamingUnlock.json",
+      "QuantumultX/script/YouTubeClean.conf",
+      "Shadowrocket/script/MeituanWaimai.sgmodule",
+      "Shadowrocket/script/SpotifyLyrics.sgmodule",
+      "Shadowrocket/script/YouTubeClean.sgmodule",
+      "Surge/script/MeituanWaimai.sgmodule",
+      "Surge/script/SpotifyLyrics.sgmodule",
+      "Surge/script/YouTubeClean.sgmodule"
+    ],
+    "runtime_objects": {
+      "0ab4530cf4c96408e4d81f5896a6d694a49be571:Egern/script/MeituanWaimai.js": {
+        "bytes": 9575,
+        "sha256": "e40fa67696a5c5e2b0fd0c3027e3532df59a84d08fa4b648fe8a9df61810781b",
+        "entries": [
+          "Egern/script/MeituanWaimai.yaml",
+          "Egern/script/MeituanWaimai.yaml"
+        ],
+        "syntax_checked": true
+      },
+      "fdb2f8cfc2701a7959d7ee58c1f2ab01ce368fc1:Egern/script/NetworkInfo.js": {
+        "bytes": 38932,
+        "sha256": "757299a63c252a0cd1be32cb67958df9c1784f2db8229de46e96162a178a630b",
+        "entries": [
+          "Egern/script/NetworkInfo.yaml",
+          "Egern/script/NetworkInfo.yaml"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:Egern/script/SpotifyLyrics/spotify-lyrics-request.js": {
+        "bytes": 2931,
+        "sha256": "d5531a4ce9555006e2f5aef54d0fe6e1df0074bea75f44a193ac23c6ee75a1bd",
+        "entries": [
+          "Egern/script/SpotifyLyrics.yaml"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:Egern/script/SpotifyLyrics/spotify-lyrics.js": {
+        "bytes": 86686,
+        "sha256": "8a0b541538d262e920f12155b7d7c7c3c1115b2b2529139ae86b4c0cd9826461",
+        "entries": [
+          "Egern/script/SpotifyLyrics.yaml"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:Egern/script/SpotifyLyrics/spotify-lyrics-entry.js": {
+        "bytes": 27122,
+        "sha256": "d295b39dd87e961572c676178157852de518013e617fb2178fd5b3590ba6869e",
+        "entries": [
+          "Egern/script/SpotifyLyrics.yaml"
+        ],
+        "syntax_checked": true
+      },
+      "fdb2f8cfc2701a7959d7ee58c1f2ab01ce368fc1:Egern/script/StreamingUnlock.js": {
+        "bytes": 23414,
+        "sha256": "e54335b9408ea073acd1a13ec632e184f745ba7f47aee55104c5460da4e793b7",
+        "entries": [
+          "Egern/script/StreamingUnlock.yaml"
+        ],
+        "syntax_checked": true
+      },
+      "6dd4f61ae35043ddc2299b8ea28c9b0c29f46bb8:Egern/script/YouTubeClean.js": {
+        "bytes": 132704,
+        "sha256": "9a0e65983f91e4b0b4d5a05af6eb9234d070488c01cbede2ac05829f62251ab2",
+        "entries": [
+          "Egern/script/YouTubeClean.yaml",
+          "Egern/script/YouTubeClean.yaml"
+        ],
+        "syntax_checked": true
+      },
+      "0ab4530cf4c96408e4d81f5896a6d694a49be571:Loon/script/MeituanWaimai.js": {
+        "bytes": 8586,
+        "sha256": "a30eaceea536f9bfc5ef5ce69397be29776eeae9afb5b29100989e4c976f71a0",
+        "entries": [
+          "Loon/script/MeituanWaimai.lpx",
+          "Loon/script/MeituanWaimai.plugin"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:Loon/script/SpotifyLyrics.js": {
+        "bytes": 90747,
+        "sha256": "8ddea05e3bfbaeda162bfe31cd887207cab7813c169e58795f1f8b9318d11b94",
+        "entries": [
+          "Loon/script/SpotifyLyrics.lpx"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:Loon/script/SpotifyLyrics.Entry.js": {
+        "bytes": 29689,
+        "sha256": "961f106f4d2d069911c56a47b15ce80bd681ee616de13e3f2fae997aad092d64",
+        "entries": [
+          "Loon/script/SpotifyLyrics.lpx"
+        ],
+        "syntax_checked": true
+      },
+      "fdb2f8cfc2701a7959d7ee58c1f2ab01ce368fc1:Loon/script/StreamingUnlock.js": {
+        "bytes": 35977,
+        "sha256": "c67ab815e4c1e20abc57e129ce71837b64a1cae07d11385cf50e82ae461a1883",
+        "entries": [
+          "Loon/script/StreamingUnlock.plugin"
+        ],
+        "syntax_checked": true
+      },
+      "53e4351e1cbd892803554b698ef3e5fe46767d9a:Loon/script/YouTubeClean.request.js": {
+        "bytes": 20301,
+        "sha256": "4208a8360bbedef902db787ce6006c37633c1005e8e44ee00d6ca77758ee81b3",
+        "entries": [
+          "Loon/script/YouTubeClean.lpx",
+          "Loon/script/YouTubeClean.plugin"
+        ],
+        "syntax_checked": true
+      },
+      "53e4351e1cbd892803554b698ef3e5fe46767d9a:Loon/script/YouTubeClean.api.js": {
+        "bytes": 96392,
+        "sha256": "4eed072b24e9ca905ab23deaf048c168f934982f76fca6accea23ec83f9d970f",
+        "entries": [
+          "Loon/script/YouTubeClean.lpx",
+          "Loon/script/YouTubeClean.plugin"
+        ],
+        "syntax_checked": true
+      },
+      "53e4351e1cbd892803554b698ef3e5fe46767d9a:Loon/script/YouTubeClean.caption.js": {
+        "bytes": 42790,
+        "sha256": "5aaab47d9ee94e10d36be19d68df27799ed75333281fd38575822799619852e5",
+        "entries": [
+          "Loon/script/YouTubeClean.lpx",
+          "Loon/script/YouTubeClean.plugin"
+        ],
+        "syntax_checked": true
+      },
+      "53e4351e1cbd892803554b698ef3e5fe46767d9a:Loon/script/YouTubeClean.playback.js": {
+        "bytes": 116409,
+        "sha256": "061bb511aa65130634aa7d557c75e17c19c8427b6c534542697a8d2ca07e5312",
+        "entries": [
+          "Loon/script/YouTubeClean.lpx",
+          "Loon/script/YouTubeClean.plugin"
+        ],
+        "syntax_checked": true
+      },
+      "0ab4530cf4c96408e4d81f5896a6d694a49be571:QuantumultX/script/MeituanWaimai.js": {
+        "bytes": 8586,
+        "sha256": "a30eaceea536f9bfc5ef5ce69397be29776eeae9afb5b29100989e4c976f71a0",
+        "entries": [
+          "QuantumultX/script/MeituanWaimai.conf",
+          "QuantumultX/script/MeituanWaimai.conf"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:QuantumultX/script/SpotifyLyrics.Request.js": {
+        "bytes": 4853,
+        "sha256": "f9615506ff41006f6109c480c2314e0e921465c95122b53f4f9aa9ddabb93f40",
+        "entries": [
+          "QuantumultX/script/SpotifyLyrics.conf"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:QuantumultX/script/SpotifyLyrics.js": {
+        "bytes": 91522,
+        "sha256": "f09d17caeb812fb43f3edfd04d3e2a5dd600a608ba9216d2ea74a1689fa347ae",
+        "entries": [
+          "QuantumultX/script/SpotifyLyrics.conf"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:QuantumultX/script/SpotifyLyrics.Entry.js": {
+        "bytes": 30320,
+        "sha256": "1ff5e60c020177002af7bbd918be4f760bd2ccd735af591e0e60365ed059c1d3",
+        "entries": [
+          "QuantumultX/script/SpotifyLyrics.conf"
+        ],
+        "syntax_checked": true
+      },
+      "fdb2f8cfc2701a7959d7ee58c1f2ab01ce368fc1:QuantumultX/script/StreamingUnlockNative.js": {
+        "bytes": 18838,
+        "sha256": "766844fbf969e3f670b0380dacaf5e396e9220e6e54c48a2331154772a013a91",
+        "entries": [
+          "QuantumultX/script/StreamingUnlock.json"
+        ],
+        "syntax_checked": true
+      },
+      "6dd4f61ae35043ddc2299b8ea28c9b0c29f46bb8:QuantumultX/script/YouTubeClean.js": {
+        "bytes": 133342,
+        "sha256": "c655dfcf23e041d370bfa0f89ec689fb604bba0d47c1d2532631bfe3d78f7918",
+        "entries": [
+          "QuantumultX/script/YouTubeClean.conf",
+          "QuantumultX/script/YouTubeClean.conf"
+        ],
+        "syntax_checked": true
+      },
+      "0ab4530cf4c96408e4d81f5896a6d694a49be571:Shadowrocket/script/MeituanWaimai.js": {
+        "bytes": 8586,
+        "sha256": "a30eaceea536f9bfc5ef5ce69397be29776eeae9afb5b29100989e4c976f71a0",
+        "entries": [
+          "Shadowrocket/script/MeituanWaimai.sgmodule",
+          "Shadowrocket/script/MeituanWaimai.sgmodule"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:Shadowrocket/script/SpotifyLyrics.Request.js": {
+        "bytes": 4697,
+        "sha256": "5c0728f789804d0bb291c39140d14b1d7006fd5125847e2778cff2a317fff07d",
+        "entries": [
+          "Shadowrocket/script/SpotifyLyrics.sgmodule"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:Shadowrocket/script/SpotifyLyrics.js": {
+        "bytes": 90727,
+        "sha256": "0ce686dc47f9aa327189af0763f58148352c684edb977a4aa74a2a39c8ad8b9d",
+        "entries": [
+          "Shadowrocket/script/SpotifyLyrics.sgmodule"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:Shadowrocket/script/SpotifyLyrics.Entry.js": {
+        "bytes": 29697,
+        "sha256": "64acd7e282e16a1abb3f8ee3537b99dd640db1f326759177116da29ea8c76159",
+        "entries": [
+          "Shadowrocket/script/SpotifyLyrics.sgmodule"
+        ],
+        "syntax_checked": true
+      },
+      "6dd4f61ae35043ddc2299b8ea28c9b0c29f46bb8:Shadowrocket/script/YouTubeClean.js": {
+        "bytes": 133342,
+        "sha256": "c655dfcf23e041d370bfa0f89ec689fb604bba0d47c1d2532631bfe3d78f7918",
+        "entries": [
+          "Shadowrocket/script/YouTubeClean.sgmodule",
+          "Shadowrocket/script/YouTubeClean.sgmodule"
+        ],
+        "syntax_checked": true
+      },
+      "0ab4530cf4c96408e4d81f5896a6d694a49be571:Surge/script/MeituanWaimai.js": {
+        "bytes": 8586,
+        "sha256": "a30eaceea536f9bfc5ef5ce69397be29776eeae9afb5b29100989e4c976f71a0",
+        "entries": [
+          "Surge/script/MeituanWaimai.sgmodule",
+          "Surge/script/MeituanWaimai.sgmodule"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:Surge/script/SpotifyLyrics.Request.js": {
+        "bytes": 4697,
+        "sha256": "5c0728f789804d0bb291c39140d14b1d7006fd5125847e2778cff2a317fff07d",
+        "entries": [
+          "Surge/script/SpotifyLyrics.sgmodule"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:Surge/script/SpotifyLyrics.js": {
+        "bytes": 90720,
+        "sha256": "c5c5e1692677229c18b6050882e653f3c1a28711ca58c12fb50f7eafdffc96d3",
+        "entries": [
+          "Surge/script/SpotifyLyrics.sgmodule"
+        ],
+        "syntax_checked": true
+      },
+      "10049053ce86bd992e3ebb6511ffb28312ba86fb:Surge/script/SpotifyLyrics.Entry.js": {
+        "bytes": 29690,
+        "sha256": "f4de4f049d158adebe03088bde81418b982b00fbd105c63c6d9199e647cbe584",
+        "entries": [
+          "Surge/script/SpotifyLyrics.sgmodule"
+        ],
+        "syntax_checked": true
+      },
+      "6dd4f61ae35043ddc2299b8ea28c9b0c29f46bb8:Surge/script/YouTubeClean.js": {
+        "bytes": 133342,
+        "sha256": "c655dfcf23e041d370bfa0f89ec689fb604bba0d47c1d2532631bfe3d78f7918",
+        "entries": [
+          "Surge/script/YouTubeClean.sgmodule",
+          "Surge/script/YouTubeClean.sgmodule"
+        ],
+        "syntax_checked": true
+      }
+    },
+    "problems": []
+  },
+  "rule_sha256": {
+    "Clash/rule/AI.yaml": "797a0dbaa7e2ff38d5256aa4aef606e86e8039de01fc303b8a3ef98d332ca4a0",
+    "Clash/rule/Adobe.yaml": "db5cf3ac9540b81273f4763ab4b779eb3a01ac71602f13a46e250dbd45ff8558",
+    "Clash/rule/Apple.yaml": "63e1cc7f87adbce00fbf64a601b6b7a17097d3887d66969645f130026f83a5df",
+    "Clash/rule/Bilibili.yaml": "5d00d4582c5673fb335445000f1a87f0724b4bff487f902f91c5f65bc934fa8c",
+    "Clash/rule/Disney.yaml": "c89f34dff1bb805dec3e62fd59ce6a7da04272df87d25839fe29e90693578800",
+    "Clash/rule/GitHub.yaml": "c2b8e30a96e49297a4a92a33f60402eadb7aebf1c03045e131e2a6b10e92ad78",
+    "Clash/rule/Google.yaml": "1faeee04b6238a407d5cdd0ba81de893a3119bebb150a362d05e1e68a77e9066",
+    "Clash/rule/HBOMAX.yaml": "d5d65d4cd8bb6b1810a15e1ccef5541410d88b87d6dabc7f173fcbd1ebee1f66",
+    "Clash/rule/Infuse.yaml": "c1fb801cb8098513fde5ce5efccae25dca0acf31d65a5897c896727e3207613f",
+    "Clash/rule/LAN.yaml": "e26dadaeddbdfd08bf05ffbaea82e572bd50df36a7ce24f9e5a756ac4707b391",
+    "Clash/rule/Meituan.yaml": "607a5861d541d24876d13a733d6b40406cf5ef5854866ed33c273113c478f003",
+    "Clash/rule/Meta.yaml": "368c9d71e0ec3b8f691fe7e7654921feb0c2287a379bbcc8e22eca588887afde",
+    "Clash/rule/Microsoft.yaml": "c98f9112ccfe774830a3b9f4a093069c3ab064e70fff1073800f0516cd26487a",
+    "Clash/rule/NTP.yaml": "b2bb6dfd91d8b9f4082e9ff436a9eb11736b7e6f7a8d3023771927904f0ef839",
+    "Clash/rule/Netflix.yaml": "176b0941bd0955200355c5b5a65cb2a8f435f43bd8f8135bd77f8a933a5c22e0",
+    "Clash/rule/Parsec.yaml": "1303dd9df00bb50f44f7e777d08fe5cd826e536c1d8edfe08a4357d9ec0bf11b",
+    "Clash/rule/ParsecP2P.yaml": "f34006aaba90950dd696dc4204f8faae558bafb20f781082fb30af437f5faf0e",
+    "Clash/rule/SiriAI.yaml": "7a43e55b6b94d043e6f984c12c5f258a8b4dd1db0f2475b7f91963dbe02992a4",
+    "Clash/rule/Spotify.yaml": "471765dbaed6452b184cdc1faac6d4dbad7d26319f3530363fb830a54f77027e",
+    "Clash/rule/Telegram.yaml": "0944934d705a6e0ad7b6e79669c84247dd7c18f887531f356b67c2124ef2c53a",
+    "Clash/rule/TikTok.yaml": "9815ac3b64e7a8f8e2b0a0db068c3560dc0a7925764b5da3b453cabd0cb04b01",
+    "Clash/rule/Twitter.yaml": "72cd57198a98eaf8d39e7d8a09f0e880c87dcfd7c41c51d2371861168ea4a1ba",
+    "Clash/rule/WeChat.yaml": "b71de4ab5d0b5aee6450df4324f9bb668d52dd9189a5b57029877a55458846a4",
+    "Clash/rule/Weverse.yaml": "8de2a15983966a4d1720833ab5dd86eaa2e13742818f074c5eedfa5ff4d0a719",
+    "Clash/rule/Wikimedia.yaml": "74f65b26ee5f6df9a14e47e86eb9773f0363a9f212177dc39c009c3b666d07df",
+    "Clash/rule/Xiaohongshu.yaml": "5f74bbf4cb988f708df75de058b36fc648474233de1cba1c4eec70feaac59878",
+    "Egern/rule/AI.yaml": "b38be5f448a3efc44a9692a62dd4e2c6b2dbcd4b231fe13389c15d93daacd40c",
+    "Egern/rule/Adobe.yaml": "6294aef79f43385a1cabfef64a2d5ca6857c33ce84fa8bb9dac6d2300ae5124d",
+    "Egern/rule/Apple.yaml": "0a6627dc13b5fd9c712325e6a4db8bb373f20afd018bf3405d98ba3ffbbfb778",
+    "Egern/rule/Bilibili.yaml": "ec62a3b801033af50a3e390c85afdb9447cbe18c98a9ee49b85f2b30cd698449",
+    "Egern/rule/Disney.yaml": "519b963c893703dd591f9ee1f359c10e74913ddbc245d7de4b08877d0901bdf1",
+    "Egern/rule/GitHub.yaml": "75f7295af1a64e8565ba8fe35a52946cf7000ecc94d5eadac6d90e1d9c256efb",
+    "Egern/rule/Google.yaml": "91d956dd00bf0f2755fdfe9623a1268f911d4f8d258fc5d240ea42f5dd6130c2",
+    "Egern/rule/HBOMAX.yaml": "0f56bd19541c745f44e35e80289e4694c72b3df09646d3a623ed40d2f247e4f6",
+    "Egern/rule/Infuse.yaml": "315560ac50f88f4f55e7d70186c8576478e71ef7c6d6756ffafcbb00e012367b",
+    "Egern/rule/LAN.yaml": "b3178cf68c8aae17d8fd8ebb6dd3df5fb421f6fe5ac6a83503441ce4723f1c36",
+    "Egern/rule/Meituan.yaml": "1485890105f717627393e4811d4eeddec0f0984dc8f57f796c73d997a1e620c4",
+    "Egern/rule/Meta.yaml": "64d41a429cd4ea12854eb4f4c0bd14c9d9295f6b0fad2ca686f2afb2dde1a8da",
+    "Egern/rule/Microsoft.yaml": "637a80f0b1b37c57cbd42b5447f1cd2c0a42172707194cc78a00635570304466",
+    "Egern/rule/NTP.yaml": "365d4e65f51e4eba0b2a75fbee3a43c61c988250a02cce5c2b7787293d50d0f9",
+    "Egern/rule/Netflix.yaml": "560e793ed7e4fda4335f2a038d2adefabf52aaf43ac4d80a3c7fe6afcb8074e0",
+    "Egern/rule/Parsec.yaml": "6994866cd7cbf9f640506cca408ea5d202755e4b4048e375d9fcb761f5916d6b",
+    "Egern/rule/ParsecP2P.yaml": "ffcffe203bccbcf7ebf9d605e91e4f88b5a4d44bf2b25e08b7b01bed41e302ed",
+    "Egern/rule/SiriAI.yaml": "2eb9767c06ea9c892b7e49fd15ef89b44f0d48059b557bc63a91940f2d18f696",
+    "Egern/rule/Spotify.yaml": "ea6dd63acfc05159eb3733dbb55ade0b9cd2cc095d1f01d948588ba8b1fdddd4",
+    "Egern/rule/Telegram.yaml": "486b9c831f200fbf5bef3f58d1cba17c5c8de147d203948b7a654a250a4025f5",
+    "Egern/rule/TikTok.yaml": "3a039d14e2fd16e3e165869838ba4b86ea5ad00de30953342e6d6c3407c8184d",
+    "Egern/rule/Twitter.yaml": "f0b24fff407ffbbda33b562ccf3913ebda63daed9f4d1d65e34285c053b71f78",
+    "Egern/rule/WeChat.yaml": "c85dc81ea38e2dc193ddfc406232b07edc44debcc9c140ec7103de2b504d2f8b",
+    "Egern/rule/Weverse.yaml": "78495f07c55787cf11ac4c603b3621cca1885534247c16a54bf8178fa337f240",
+    "Egern/rule/Wikimedia.yaml": "15f46e9cf6608a6e6887d3ba5ac4134dc7e979170e0b125c87a797a8f09bcc5d",
+    "Egern/rule/Xiaohongshu.yaml": "ad8df1f58877c1c9f68ad415d2da857f731de83a8b88778154847406c8413f48",
+    "Loon/rule/AI.lsr": "c7fe0e16cf34d9ca7a51ba3f0827f7bfb74d90b955b3fc721b6225486132146c",
+    "Loon/rule/Adobe.lsr": "01a4348a463b2d8faa0b63fa846ed59aa5924796011598d33ed95d34ba3c6df7",
+    "Loon/rule/Apple.lsr": "371fdcc5fbcfe142ec8e644a3cb17891fc8bb85e21949827839feb819fa003ab",
+    "Loon/rule/Bilibili.lsr": "4ac1d88aa662dd7e04d3c3e8548c3f1b7813f1cabf5f5c60f0d12e4fcbfa3ec4",
+    "Loon/rule/Disney.lsr": "0ffa577d2ec9b83d59b708c2bd22829dfbdcbca8350868cf35061c87c6e258f9",
+    "Loon/rule/GitHub.lsr": "77c1b77ac5701d653232d4f7d79469eda252886513ee02f40c7613c6c55e7456",
+    "Loon/rule/Google.lsr": "9a8ebb4c43c683f59ff2844a95ac96f003a4e4dc73b85e71c3b3269bd3fe4796",
+    "Loon/rule/HBOMAX.lsr": "04fab5c4d17cfc8747d48c7a9928f4908fa661458d25870dbb37fcfec8ebc887",
+    "Loon/rule/Infuse.lsr": "a09b2729fae7fccd0d5e828550b516f3f24960fb644a5e2598dd411e9857203b",
+    "Loon/rule/LAN.lsr": "4817fd5be92ac67fcbe3f5c8da5b96fb59bbe5e430579403c498b4a8597495cb",
+    "Loon/rule/Meituan.lsr": "5a05ab40e98ddcd23f3801e5305e2ec06cff33d568fa901353e28d3d1c8dd36e",
+    "Loon/rule/Meta.lsr": "f17cbb5fc9f29c490a7860826678262758687b57c3cc4cb6d9d763a9273e6365",
+    "Loon/rule/Microsoft.lsr": "79abe83b26536561542a88a8501f579d0b0859b942e5de7d9a863d9e72548cb3",
+    "Loon/rule/NTP.lsr": "099087e8600076acd69860e7adafed33da7fe137364a460223911c548b86bcc6",
+    "Loon/rule/Netflix.lsr": "f62c76381ee226f4ce2c21b12b9c5b966cb41a56e602a4e3c774c4913ebd2702",
+    "Loon/rule/Parsec.lsr": "a2b79ccb066c9d6cd71f514fb4156738955c9e575c59e5111f8bdaae35f2c719",
+    "Loon/rule/ParsecP2P.lsr": "727031a26ce4afec22583ebf984975a93f9190bd5e85a7d4699440ff1b067e4b",
+    "Loon/rule/SiriAI.lsr": "eb739fcb3a22ac326bbe967295f9dd494e4279e68fe4aff4854f3f009604730c",
+    "Loon/rule/Spotify.lsr": "d5e52484939469c83d051201c20fe610a38cb9cb204197a85a8fb219b2173a53",
+    "Loon/rule/Telegram.lsr": "ef6a967345c261baf27b3077d1e1601f9142ca2576abce3b3bcfb653dc6db616",
+    "Loon/rule/TikTok.lsr": "60a459b983587c636b099b2735e5552aed1de7735ab3b4657e51c620474ef109",
+    "Loon/rule/Twitter.lsr": "c7b79696bb229ff4f8a8a456ec6fd6763a04187e3885c95db5151ebf1ca0bd36",
+    "Loon/rule/WeChat.lsr": "0950fdf62f98db9903e855974611b922ab5d202829f6a74367b9a8a1ddfe6a61",
+    "Loon/rule/Weverse.lsr": "a01a044840d60be3f624b48e3170fbf2636d213034f3128982b43ffba163074b",
+    "Loon/rule/Wikimedia.lsr": "3b421e33cd338891749d788ae8258d4551f2e64028fa7d4a50a8db2cee922331",
+    "Loon/rule/Xiaohongshu.lsr": "249f3f7a8ce8d9cedc5bb478bddc731e44328b6623ade65a5e45b069e632b187",
+    "QuantumultX/rule/AI.list": "7f028a69f9fa95bc137e9e2bd458339c0aa5ff0624f1fce47b0aa556610e05a4",
+    "QuantumultX/rule/Adobe.list": "2346c41fbc9f3688e3876a4eb3e04e1a0d219a58d2b6daff665d0c9399563419",
+    "QuantumultX/rule/Apple.list": "202ac711ab005989ac0a8c235bf38031ab34347f69549becdaa23c0fdf31f8cc",
+    "QuantumultX/rule/Bilibili.list": "4ea965ca192e0bb4bc9092bd0d8d493de9f97e56d9980ff209b466d54cdf26ff",
+    "QuantumultX/rule/Disney.list": "18cc34e4fd328e45f6f43250d823cb82bc3d27bebf3f1afd399895b8e7f40650",
+    "QuantumultX/rule/GitHub.list": "c42c9bf813ff3f7c262dc4becf858e3b5266569beddc504333e4616e413cb0e2",
+    "QuantumultX/rule/Google.list": "1957bfc1fe02b52369d1a77311562e38ba53e72d777881730c988f655254684a",
+    "QuantumultX/rule/HBOMAX.list": "2ecacd9f4ff8f5464c22a0d88858c1e9d477b85ad99162c56d61495c916c7d38",
+    "QuantumultX/rule/Infuse.list": "15811250a37596a3ae144dbd7a5021498586dfde318e38c2fe48f3cef570fce2",
+    "QuantumultX/rule/LAN.list": "6656c837a9f22c82d1cfecd64729a05d5f494a47556831120b2ccbbaf713153d",
+    "QuantumultX/rule/Meituan.list": "7abf555d63a5fc4011f01f2924ec7dfa806482b5410a0d4ccedff72effb5ba53",
+    "QuantumultX/rule/Meta.list": "ecb0abe5fa409461c68d9af872dbcc41ac667b0cf541bc6b891e7d96c1994116",
+    "QuantumultX/rule/Microsoft.list": "7e2c9ab32700eead089b82d181af978852a6fd974f4e85776a05a3a26f180626",
+    "QuantumultX/rule/NTP.list": "8d64800970f1d4520869a1454738be9eba51548a8ae21b38350c9ed4c73ab05f",
+    "QuantumultX/rule/Netflix.list": "708e4c7878cea4aa4b2923051c6b8448700eefa5028861f46314fb7c25ed438c",
+    "QuantumultX/rule/Parsec.list": "82a1d406e826324c1f5b1f9a8492fce9e5de8e4be16f54e7fde7846f3095fb96",
+    "QuantumultX/rule/ParsecP2P.list": "6300908100fb7f364a8a6665e62a4f718c18689ba8ef9e1b11502bc8b10835b0",
+    "QuantumultX/rule/SiriAI.list": "c2719cd335f84e62d838929e4e912bcdf987741fa49d3b23ca01bffb89bf840c",
+    "QuantumultX/rule/Spotify.list": "48bd4efbc7b1962302500914ef5872af3f36a699cdc8c599d991dbc1600e3eb4",
+    "QuantumultX/rule/Telegram.list": "435640c31e6fe83dfde16f3ce43090d9cb8eec018578cae8ccbbd95563adc04d",
+    "QuantumultX/rule/TikTok.list": "137fa4d51d44285e80fb907c213c4ca405897984c14bf2cbd6eb782ad96014d9",
+    "QuantumultX/rule/Twitter.list": "3d6a9d9fb6fc7f0a4b7ae0a47703055f950763f96e12a3b73b0a543b9998c584",
+    "QuantumultX/rule/WeChat.list": "2fb88c918d0bb2afb1d8010f0ba1baf7639a98e1dd7bbd5284a926b9004af3da",
+    "QuantumultX/rule/Weverse.list": "e21bbb876737c60507b7cb1b22b75e4aab11e27b39a73a979f264508a829e39c",
+    "QuantumultX/rule/Wikimedia.list": "9d4df881c116a817107b7ee316fb3a4c63224d6ffde46d1f3dd4f940d46c8b43",
+    "QuantumultX/rule/Xiaohongshu.list": "59c8b71aad7c9d1ce8c4b29158c83bd9122dc039ca771a7993093b8953e9b472",
+    "Shadowrocket/rule/AI.list": "10b014d904a01ba10cd1cd17f179b8fc94ce8739aee7435b076743147a851782",
+    "Shadowrocket/rule/Adobe.list": "523ab3932b76c8cc0c205ef5aae9ca3cd415f62aa2e6b06af8116cc9a2fffdb0",
+    "Shadowrocket/rule/Apple.list": "f3fd1087b98cad7398a71d4fddeaeed348627e07518b7aeeb7711ceed8b327ff",
+    "Shadowrocket/rule/Bilibili.list": "1b36375abdf2711a94c6538cc4e5defc95032807583600c7270ecb2da54f966f",
+    "Shadowrocket/rule/Disney.list": "6d1f88ea1a233926cf932c1f092e8fc13b17ffd632b066baefaf501c22d8ab46",
+    "Shadowrocket/rule/GitHub.list": "657757720322c250b781af6de710269a4f08a413bb5d8255a0901c6b052322e1",
+    "Shadowrocket/rule/Google.list": "c27f86759404f154e88d32ec9fedd0733764e5e7cc04bfbaf1edbb8ca5f0121a",
+    "Shadowrocket/rule/HBOMAX.list": "dc720df841b2b63ad91378e4dd118f173b2bf5901f8f3ec872d1491fad3c72f8",
+    "Shadowrocket/rule/Infuse.list": "d7e8d9cd8ab3905f8634ac788dc75ce57ed59bec2b419ef46baaea95515874a4",
+    "Shadowrocket/rule/LAN.list": "12d704d1a4c27ea7809f5b5ce3518c04efbe3f8a4313a8d6df50b75d8b932d12",
+    "Shadowrocket/rule/Meituan.list": "7b5c474c158ac7166b659052e06e5cd5ed3be8d89de36f27fee5bf2eff4be9b4",
+    "Shadowrocket/rule/Meta.list": "00c637d3232a2f57ceb63ffe93b6701bbcbde40cb5d090ad3ae26e0914c008ae",
+    "Shadowrocket/rule/Microsoft.list": "73bac4f1498dd2e89a2f3a185b21c62023256b2bd2c8cbe65fbbe1a4fdd848c9",
+    "Shadowrocket/rule/NTP.list": "fce9c493832159ea4267404817e07937048342802d9b153d7a04cee9f3a94ba1",
+    "Shadowrocket/rule/Netflix.list": "8d42a7bfa8ad790ebcd5bdd52f803d633014662296389454a0bd7a2069773268",
+    "Shadowrocket/rule/Parsec.list": "adfb77187583a84165ebdff4dedc536fdb569ee049cc481a1f99f73b4696ec7f",
+    "Shadowrocket/rule/ParsecP2P.list": "4b8bd6be58f88ce19571196290f18053af32c1317bfbf7adcfa3cc900e5e2495",
+    "Shadowrocket/rule/SiriAI.list": "c00c04b3d87800e038eac7ab9f643bd277c1524871fda0a3664dcc1b4f4fb6dd",
+    "Shadowrocket/rule/Spotify.list": "9f5dc776ea3602aa16e8ef6ad0945099e03c234e2add78205c8333278d48cdbb",
+    "Shadowrocket/rule/Telegram.list": "b9a824fc0a04df461e8bedd53dab6c1a3e2e6808ade765d48c4f19e3e1c33336",
+    "Shadowrocket/rule/TikTok.list": "fafba28695120f39ea5bd63b2e5ea0d76bc7e6112b0fa1ea1af1c414f254698b",
+    "Shadowrocket/rule/Twitter.list": "9c16c4c9ab0833d340ad7cdaab08573576926970c834279926699e3e9f9c4a4d",
+    "Shadowrocket/rule/WeChat.list": "578c10bddadb743c9cdd9a9310b301db52198c6d2d2f606888818068aabca7a6",
+    "Shadowrocket/rule/Weverse.list": "ad9620c55d87f00431fe7b6c509aa2ed1e262e9d66c0ec8737355784bbb4e76c",
+    "Shadowrocket/rule/Wikimedia.list": "f02f30018e7122e46a2daf1589f9633c504c3cd4246937c65be148d6a3cc841d",
+    "Shadowrocket/rule/Xiaohongshu.list": "b111b625cd62082234ff116deceacc75757a5c633cc7549f7387978c41292602",
+    "Surge/rule/AI.list": "30088ec2968e6fff7fdcb26a168c1a0d7baaad4966589bd30e309f32a6eb7c15",
+    "Surge/rule/Adobe.list": "7fcb8e91760097e65f11fa82d8bdc2cbc8ec4eb0ae3b8968d3319c734c721193",
+    "Surge/rule/Apple.list": "8a7a76acfecd6c09003b35ef44635dff42a3df70ad555b4c7a42401fbb3c0489",
+    "Surge/rule/Bilibili.list": "5286765c0f35799d2e152c9ff0508102880bda57dbfca457a7f3fc26033d6930",
+    "Surge/rule/Disney.list": "8c9836fa44c3d6f88b95332cd067efc93189b7db142027b5168788ea1fd57658",
+    "Surge/rule/GitHub.list": "7168f8f8bb31db273726334f5d59bd4ce4c2e9928466e705f7a07d45059b8f40",
+    "Surge/rule/Google.list": "47d7833e986fc77d38c0da4a0cfaca3ec69681ad037c43edb5bb1d65438d8e60",
+    "Surge/rule/HBOMAX.list": "bcba0aed55121ed4ebbc4574aa1fe40dafee107079bb8e3b87f2c6d3af134a69",
+    "Surge/rule/Infuse.list": "8edac54fae89dfe43b520e368594df2b1abba7a2cf1c470e2d9badcc91a6ddee",
+    "Surge/rule/LAN.list": "da2d9b021b56a91426cad8fbf38db632a3cb4a8806d4e6b6bb2b773919f01b4d",
+    "Surge/rule/Meituan.list": "3b4612b7086a8ae94afb9482046a6835ed97ac04c951c276fde0b47186f0023c",
+    "Surge/rule/Meta.list": "91d588ce782de9fd04cda3627788bc783f41cf8518c5c946ce290f2d32b56aa7",
+    "Surge/rule/Microsoft.list": "34b44ed9ebc9a58b8b4e2005dc22f6794588cc10a391b4d027d29edc5c3cdc8e",
+    "Surge/rule/NTP.list": "27ab4cf0e4dbb7e85a25e4a04e41fbd45c334a70bfe4f6e792f85dcade4d6d2a",
+    "Surge/rule/Netflix.list": "69a4d1cd62215b1a3d59587d9aa3f44bf09e7151510a11ea7e6d505d4f212790",
+    "Surge/rule/Parsec.list": "e579984e513f9902ebbd48b5b174997c32982852238a15735e298af7471330f3",
+    "Surge/rule/ParsecP2P.list": "42c2c87ea5c15bc48cf22233f91c780048ae302cbe0d9aabe3705c83649c0d07",
+    "Surge/rule/SiriAI.list": "c455188e857076370ab1e7ac499e3d8a3c7c64e5501154c12eaaf9f71e04e485",
+    "Surge/rule/Spotify.list": "425ef6b71cb8ac9a5f36d222597c88800a38ab934c11ea03f72137977ff40df3",
+    "Surge/rule/Telegram.list": "d4f10680a10246d820fcb8353e000d78672200b753dbf31ce3cc40f858ecad5b",
+    "Surge/rule/TikTok.list": "f8a2123909160e4130b5b9eaed20f18ae43b19607e470bb7f487f78a4f32a185",
+    "Surge/rule/Twitter.list": "3e85e0f134658f02db73e94ebb954c728c03bd31478f2253f41f3ae36f056b3e",
+    "Surge/rule/WeChat.list": "8eea9f9da864ba9a0478a78aaac6c187e3f74047dfc3398eb746f1f3b0200208",
+    "Surge/rule/Weverse.list": "24eaab59b001c54dc72cb563fe4c2189728fd9459aaf2fe117e1411b37fc086e",
+    "Surge/rule/Wikimedia.list": "a6ff69f93cd09a4787dc8f0374da8ab1803920517c299558e57c72c4f87023f5",
+    "Surge/rule/Xiaohongshu.list": "17997d75b4f18d747f7c44da902946003bf50ee898624d7dafec29a601b7f7be"
+  }
+}

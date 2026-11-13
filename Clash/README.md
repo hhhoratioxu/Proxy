@@ -1,8 +1,10 @@
 # Clash Verge Rev / Mihomo
 
+2026-11-13 分流复核：保留 **26 类、5,881 条**默认条件，规则、跨端差异与验证结果见[官方依据优化报告](../Docs/Official-Optimization-2026-11-13.md)。原有订阅地址及安装入口继续使用。
+
 [分流规则](./rule/) · [扩展脚本](./script/) · [说明文档](./Docs/)
 
-**AI 分流已更新（2026-10-28）：971 条。** [直接订阅 AI.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/AI.yaml) · [覆盖范围与使用说明](../Docs/AI-Routing.md) · [固定来源与授权](../Docs/AI-Sources.md)。原订阅地址继续使用，更新远程规则即可。
+**AI 分流复核（2026-11-13）：961 条。** [直接订阅 AI.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/AI.yaml) · [覆盖范围与使用说明](../Docs/AI-Routing.md) · [固定来源与授权](../Docs/AI-Sources.md)。原订阅地址继续使用，更新远程规则即可。
 
 [YouTube Clean 去广告、双语字幕与底栏能力说明](./Docs/YouTubeClean.md)：安装入口及当前核心限制见说明。
 
@@ -21,7 +23,7 @@
 
 注意：这个 JS 是**扩展脚本的源码**，不是代理节点订阅 URL，也不能直接当作 Mihomo YAML 导入。Clash Verge Rev 的扩展配置与扩展脚本是两个不同入口。
 
-脚本会自动识别一个已有代理组作为默认代理策略；如果存在名字为 `TAG` 的节点或代理组，`Meta` 与 `Parsec` 优先走它，否则退回默认代理组。可直接编辑 `POLICY_OVERRIDES`。
+脚本会自动识别一个已有代理组作为默认代理策略；如果存在名字为 `TAG` 的节点或代理组，`Meta` 与 `Parsec` 优先走它，否则退回默认代理组。可直接编辑 `POLICY_OVERRIDES`。已有同名提供者的下载选项、原有绑定策略和自订规则会保留。
 
 | 策略 | 分类 |
 | --- | --- |
@@ -29,7 +31,7 @@
 | TAG（若存在） | Meta、Parsec |
 | 默认代理组 | 其他规则，包括 Apple、Google、Microsoft、AI、Netflix 等 |
 
-**优先级：** LAN 与 ParsecP2P 在前，AI 优先于 Google、Microsoft、Meta；现有订阅规则被保留在新规则之后，原始 MATCH 仍位于末尾。Parsec 的 UDP P2P 需要 TUN 和/或进程匹配能够正确识别；仅使用直连规则不保证复杂 NAT 下必然成功建立 P2P。
+**优先级：** LAN 与 ParsecP2P 在前，SiriAI 先于 AI，AI 先于一般平台；服务专用集合先于 Google/Apple/Microsoft，Apple/Disney 具名 Adobe 租户先于 Adobe；现有订阅规则被保留在新规则之后，原始 MATCH 仍位于末尾。Parsec 的 UDP P2P 需要 TUN 和/或进程匹配能够正确识别；仅使用直连规则不保证复杂 NAT 下必然成功建立 P2P。
 
 ## 手动接入一组规则
 
@@ -84,12 +86,12 @@ rules:
 
 ## 转换说明
 
-- 根据仓库原版 Loon 分流集转换，保留 DOMAIN、DOMAIN-SUFFIX、DOMAIN-KEYWORD、IP-CIDR、IP-CIDR6、IP-ASN 及 `no-resolve`，并去除重复的完全相同条目。
+- 根据仓库原版 Loon 分流集转换，使用 DOMAIN、DOMAIN-SUFFIX、IP-CIDR、IP-CIDR6、IP-ASN 及原生 `no-resolve`；无边界关键词、共享设施误归类与同组完整覆盖的冗余已经清理。
 - Mihomo 不支持旧版 `USER-AGENT` 规则，因此共跳过 47 条；每份受影响文件顶部也有说明。不是百分之百语义等效，但其余支持的原规则得以保留。
-- 保留此前已有的 Parsec / ParsecP2P 原版 Clash 文件。所有文件须使用 `behavior: classical`，不能用 `behavior: domain`。
+- 保留 Parsec 控制连接代理及 ParsecP2P 的 STUN/进程 UDP；原来源埠 9000 方式移到[可选文件](./rule/optional/ParsecP2P-Port9000.yaml)，需要额外引用，不自动启用。所有文件须使用 `behavior: classical`，不能用 `behavior: domain`。
 - 实际路由效果还取决于 DNS、TUN、进程匹配和节点 UDP 支持；建议用 Clash Verge Rev 的连接与日志页面确认。
 
-更新时间：2026-10-25。
+分流与扩展脚本复核：2026-11-13。
 
 ## 相关说明
 

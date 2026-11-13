@@ -4,9 +4,11 @@
 # FORMAT-VERIFIED: 2026-10-25
 # RULES: 3
 # POLICY: DIRECT when importing; place before Parsec proxy rule set.
-# COMPAT: Loon 3.1.7+ for AND/PROTOCOL/SRC-PORT. Port 9000 also matches unrelated UDP traffic.
+# COMPAT: PROCESS-NAME applies on macOS only; iOS/tvOS ignore the complete process conjunction.
+# PORT-FALLBACK: Explicit opt-in at rule/optional/ParsecP2P-Port9000.lsr.
 # WARNING: These rules cannot guarantee a P2P connection through CGNAT or restrictive firewalls.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 DOMAIN,stun.parsec.app
 DOMAIN,stun6.parsec.app
-AND,((PROTOCOL,UDP),(SRC-PORT,9000))
+AND,((PROCESS-NAME,parsecd),(PROTOCOL,UDP))

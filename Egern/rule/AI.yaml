@@ -3,7 +3,7 @@
 # FORMAT: Egern YAML rule_set
 # UPDATED: 2026-10-28
 # FORMAT-VERIFIED: 2026-10-28
-# RULES: 971
+# RULES: 961
 # SOURCE: existing Horatio rules + pinned MIT community sources + official service documentation.
 # SOURCE-REVISIONS: v2fly/domain-list-community@1b81d3cd3409; VPSDance/ai-proxy-rules@ecc2c57b3eef; Repcz/Tool@8e35d49e060b
 # SOURCES-AND-LICENSES: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Docs/AI-Sources.md
@@ -37,6 +37,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 domain_set:
   - "ai.developer.meta.com"
@@ -51,15 +52,11 @@ domain_set:
   - "antigravity-pa.googleapis.com"
   - "antigravity.googleapis.com"
   - "api.hunyuan.cloud.tencent.com"
-  - "api.jetbrains.ai"
-  - "api.minimax.io"
-  - "api.minimaxi.com"
   - "ark.cn-beijing.volces.com"
   - "aws-language-servers.us-east-1.amazonaws.com"
   - "aws-toolkit-language-servers.amazonaws.com"
   - "bailian.console.aliyun.com"
   - "cloudaicompanion.googleapis.com"
-  - "cloudcode-pa.googleapis.com"
   - "codewhisperer.us-east-1.amazonaws.com"
   - "copilot-proxy.githubusercontent.com"
   - "copilot-workspace.githubnext.com"
@@ -427,6 +424,7 @@ domain_set:
   - "us-south1-aiplatform.googleapis.com"
   - "us-west1-aiplatform.googleapis.com"
   - "us-west4-aiplatform.googleapis.com"
+
 domain_suffix_set:
   - "01.ai"
   - "abtestvm-sg.bytedance.com"
@@ -474,7 +472,6 @@ domain_suffix_set:
   - "butterfly-static.cn"
   - "butterflyai.cn"
   - "bytegate-sg.byteintlapi.com"
-  - "byteoversea.com"
   - "cerebras.ai"
   - "character.ai"
   - "chat.com"
@@ -587,7 +584,6 @@ domain_suffix_set:
   - "flow.google.com"
   - "g.ai"
   - "gamma.app"
-  - "gateway.ai.cloudflare.com"
   - "geller-pa.googleapis.com"
   - "gemini.google"
   - "gemini.google.com"
@@ -610,7 +606,6 @@ domain_suffix_set:
   - "haiper.ai"
   - "happyhorse.cn"
   - "happyshrimp.cn"
-  - "hermes-agent.nousresearch.com"
   - "heygen.com"
   - "hf.co"
   - "hf.space"
@@ -783,7 +778,6 @@ domain_suffix_set:
   - "seaart.ai"
   - "sensechat.cn"
   - "sensenova.cn"
-  - "sf16-short-sg.bytedapm.com"
   - "shunjing.xin"
   - "sider.ai"
   - "siliconflow.cn"
@@ -816,7 +810,6 @@ domain_suffix_set:
   - "together.xyz"
   - "tongyi.aliyun.com"
   - "tongyi.com"
-  - "trae-api-sg.mchost.guru"
   - "trae.ai"
   - "trae.cn"
   - "trae.com.cn"
@@ -1010,5 +1003,3 @@ domain_suffix_set:
   - "wan.video"
   - "wellsaid.io"
   - "zhiwen.xfyun.cn"
-domain_keyword_set:
-  - "chatgpt-async-webps-prod-"

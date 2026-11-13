@@ -2,22 +2,17 @@
 # AUTHOR: Horatio
 # FORMAT: Quantumult X filter_remote
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 887
+# RULES: 865
 # SOURCE: Loon/rule/Google.lsr (same repository)
 # USE: [filter_remote] with force-policy=<policy>.
 # PROVENANCE / EXISTING NOTES:
 # Combined Google + YouTube rule set.
 # YouTube domains are intentionally included in this Google policy.
 # Place AI rules before this file if Gemini/Google AI should use a separate AI policy.
+# DATA-AUDITED: 2026-11-13; see Docs/Audit-2026-11-13.md.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 HOST,voice.telephony.goog
-HOST,yt3.googleusercontent.com
-HOST-KEYWORD,appspot
-HOST-KEYWORD,blogspot
-HOST-KEYWORD,gmail
-HOST-KEYWORD,google
-HOST-KEYWORD,recaptcha
-HOST-KEYWORD,youtube
 HOST-SUFFIX,0emm.com
 HOST-SUFFIX,1e100.net
 HOST-SUFFIX,1ucrs.com
@@ -30,7 +25,6 @@ HOST-SUFFIX,adgoogle.net
 HOST-SUFFIX,admeld.com
 HOST-SUFFIX,admob-cn.com
 HOST-SUFFIX,admob.com
-HOST-SUFFIX,ads.youtube.com
 HOST-SUFFIX,adsense.com
 HOST-SUFFIX,adsensecustomsearchads.com
 HOST-SUFFIX,adsenseformobileapps.com
@@ -68,9 +62,6 @@ HOST-SUFFIX,baselinestudy.com
 HOST-SUFFIX,baselinestudy.org
 HOST-SUFFIX,bazel.build
 HOST-SUFFIX,bdn.dev
-HOST-SUFFIX,beacons.gvt2.com
-HOST-SUFFIX,beacons2.gvt2.com
-HOST-SUFFIX,beacons3.gvt2.com
 HOST-SUFFIX,beatthatquote.com
 HOST-SUFFIX,blink.org
 HOST-SUFFIX,blog.google
@@ -235,7 +226,6 @@ HOST-SUFFIX,g.co
 HOST-SUFFIX,g.dev
 HOST-SUFFIX,g.page
 HOST-SUFFIX,gateway.dev
-HOST-SUFFIX,gcp.gvt2.com
 HOST-SUFFIX,gcr.io
 HOST-SUFFIX,gerritcodereview.com
 HOST-SUFFIX,get.app
@@ -620,10 +610,6 @@ HOST-SUFFIX,quiksee.com
 HOST-SUFFIX,recaptcha-cn.net
 HOST-SUFFIX,recaptcha.net
 HOST-SUFFIX,redhotlabs.com
-HOST-SUFFIX,redirector.gcpcdn.gvt1.com
-HOST-SUFFIX,redirector.gvt1.com
-HOST-SUFFIX,redirector.offline-maps.gvt1.com
-HOST-SUFFIX,redirector.snap.gvt1.com
 HOST-SUFFIX,registry.google
 HOST-SUFFIX,revolv.com
 HOST-SUFFIX,ridepenguin.com
@@ -674,7 +660,6 @@ HOST-SUFFIX,verilylifesciences.com
 HOST-SUFFIX,verilystudyhub.com
 HOST-SUFFIX,verilystudywatch.com
 HOST-SUFFIX,verilystudywatch.org
-HOST-SUFFIX,video.google.com
 HOST-SUFFIX,wallet.com
 HOST-SUFFIX,waveprotocol.org
 HOST-SUFFIX,waymo.com
@@ -687,7 +672,6 @@ HOST-SUFFIX,webpkgcache.com
 HOST-SUFFIX,webrtc.org
 HOST-SUFFIX,weltweitwachsen.de
 HOST-SUFFIX,whatbrowser.org
-HOST-SUFFIX,wide-youtube.l.google.com
 HOST-SUFFIX,widevine.com
 HOST-SUFFIX,withgoogle.com
 HOST-SUFFIX,withyoutube.com
@@ -712,7 +696,6 @@ HOST-SUFFIX,xplr.co
 HOST-SUFFIX,youtu.be
 HOST-SUFFIX,youtube
 HOST-SUFFIX,youtube-nocookie.com
-HOST-SUFFIX,youtube-ui.l.google.com
 HOST-SUFFIX,youtube.ae
 HOST-SUFFIX,youtube.al
 HOST-SUFFIX,youtube.am
@@ -808,7 +791,6 @@ HOST-SUFFIX,youtube.es
 HOST-SUFFIX,youtube.fi
 HOST-SUFFIX,youtube.fr
 HOST-SUFFIX,youtube.ge
-HOST-SUFFIX,youtube.googleapis.com
 HOST-SUFFIX,youtube.gr
 HOST-SUFFIX,youtube.gt
 HOST-SUFFIX,youtube.hk
@@ -866,7 +848,6 @@ HOST-SUFFIX,youtube.ug
 HOST-SUFFIX,youtube.uy
 HOST-SUFFIX,youtube.vn
 HOST-SUFFIX,youtubeeducation.com
-HOST-SUFFIX,youtubeembeddedplayer.googleapis.com
 HOST-SUFFIX,youtubefanfest.com
 HOST-SUFFIX,youtubegaming.com
 HOST-SUFFIX,youtubego.co.id
@@ -875,18 +856,17 @@ HOST-SUFFIX,youtubego.com
 HOST-SUFFIX,youtubego.com.br
 HOST-SUFFIX,youtubego.id
 HOST-SUFFIX,youtubego.in
-HOST-SUFFIX,youtubei.googleapis.com
 HOST-SUFFIX,youtubekids.com
 HOST-SUFFIX,youtubemobilesupport.com
 HOST-SUFFIX,yt.be
 HOST-SUFFIX,ytimg.com
 HOST-SUFFIX,zukunftswerkstatt.de
 HOST-SUFFIX,zynamics.com
-IP-CIDR,172.110.32.0/21,no-resolve
-IP-CIDR,173.194.0.0/16,no-resolve
-IP-CIDR,216.73.80.0/20,no-resolve
-IP-CIDR,74.125.0.0/16,no-resolve
-IP6-CIDR,2620:120:e000::/40,no-resolve
+IP-CIDR,172.110.32.0/21
+IP-CIDR,173.194.0.0/16
+IP-CIDR,216.73.80.0/20
+IP-CIDR,74.125.0.0/16
+IP6-CIDR,2620:120:e000::/40
 USER-AGENT,%E4%BA%91%E7%AB%AF%E7%A1%AC%E7%9B%98*
 USER-AGENT,*YouTubeMusic*
 USER-AGENT,*com.google.Drive*

@@ -1,0 +1,12 @@
+# NAME: ParsecP2P-Port9000 (optional)
+# AUTHOR: Horatio Xu
+# FORMAT: Surge external RULE-SET (policy-less)
+# RULES: 1
+# OFFICIAL-REVIEW: 2026-11-13
+# USE: Explicit opt-in only; assign DIRECT.
+# REQUIRES: Surge iOS 5.8.4+ or Surge Mac 5.4.4+ for SRC-PORT.
+# Requires Parsec Client Port 9000. Also matches unrelated UDP using source port 9000.
+# SOURCE: https://manual.nssurge.com/rules/logical.html
+# SOURCE: https://manual.nssurge.com/rules/source-and-port.html
+
+AND,((SRC-PORT,9000),(PROTOCOL,UDP))

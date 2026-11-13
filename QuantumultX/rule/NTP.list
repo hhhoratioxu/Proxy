@@ -2,12 +2,13 @@
 # AUTHOR: Horatio
 # FORMAT: Quantumult X filter_remote
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 85
+# RULES: 84
 # SOURCE: Loon/rule/NTP.lsr (same repository)
 # USE: [filter_remote] with force-policy=<policy>.
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + blackmatrix7 NTPService
 # NOTE: Comprehensive NTP/time-service routing set including Apple, Google, Microsoft, Cloudflare, Aliyun, Tencent and public pools.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 HOST-SUFFIX,cn.ntp.org.cn
 HOST-SUFFIX,de.ntp.org.cn
@@ -40,7 +41,6 @@ HOST-SUFFIX,ntp7.aliyun.com
 HOST-SUFFIX,ntp7.cloud.aliyuncs.com
 HOST-SUFFIX,ntp8.cloud.aliyuncs.com
 HOST-SUFFIX,ntp9.cloud.aliyuncs.com
-HOST-SUFFIX,pool.ntp.org
 HOST-SUFFIX,s1a.time.edu.cn
 HOST-SUFFIX,s1b.time.edu.cn
 HOST-SUFFIX,s1c.time.edu.cn

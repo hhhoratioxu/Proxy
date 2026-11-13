@@ -1,0 +1,9 @@
+.DS_Store
+__pycache__/
+.venv/
+node_modules/
+*.local.yaml
+*.local.yml
+# Separate repositories kept locally beside the Proxy distribution files.
+/MapKit/
+/WeatherKit/

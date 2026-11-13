@@ -1,16 +1,12 @@
 # NAME: Parsec
-# AUTHOR: Horatio
-# FORMAT: Surge external RULE-SET
-# FORMAT-VERIFIED: 2026-10-25
+# AUTHOR: Horatio Xu
+# FORMAT: Surge Remote Rule Set
 # RULES: 3
-# SOURCE: Loon/rule/Parsec.lsr (same repository)
-# USE: Remote rule set; select policy in the client (not in this file).
-# PROVENANCE / EXISTING NOTES:
 # VERSION: 1.0.0
-# POLICY: Choose PROXY (TAG or your proxy policy) when subscribing.
-# PURPOSE: Parsec login, API, WebSocket, downloads and profile resources.
-# IMPORTANT: Subscribe to ParsecP2P.lsr as DIRECT, BEFORE this proxy set.
-# NOTE: Policy names do not belong inside Loon remote rule-set files.
+# UPDATED: 2026-10-08
+# ASSIGN POLICY: your proxy policy / TAG
+# Set RULE-SET policy in [Rule].
+# DATA-AUDITED: 2026-11-13; see Docs/Audit-2026-11-13.md.
 
 DOMAIN-SUFFIX,parsec.app
 DOMAIN-SUFFIX,parsecgaming.com

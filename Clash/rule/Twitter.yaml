@@ -2,15 +2,15 @@
 # AUTHOR: Horatio
 # FORMAT: Mihomo classical YAML rule-provider
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 34
+# RULES: 33
 # SOURCE: Loon/rule/Twitter.lsr (same repository)
 # USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
 # PROVENANCE / EXISTING NOTES:
 # Converted from the matching comprehensive Egern Twitter rule set.
 # Keep this file aligned with Egern/rule for dual-client use.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 payload:
-  - 'DOMAIN-KEYWORD,twitter'
   - 'DOMAIN-SUFFIX,ads-twitter.com'
   - 'DOMAIN-SUFFIX,cms-twdigitalassets.com'
   - 'DOMAIN-SUFFIX,grok.com'
@@ -43,4 +43,4 @@ payload:
   - 'IP-CIDR,199.96.56.0/21,no-resolve'
   - 'IP-CIDR,202.160.128.0/22,no-resolve'
   - 'IP-CIDR,209.237.192.0/19,no-resolve'
-  - 'IP-ASN,13414'
+  - 'IP-ASN,13414,no-resolve'

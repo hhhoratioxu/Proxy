@@ -1,0 +1,2972 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13",
+  "scope": "Literal domain intersections across the existing 26 groups. Expected winners describe this repository recommended order and the Verge extension; other clients bind and order sets in their own profiles.",
+  "decisions": [
+    "SiriAI precedes AI and Apple for the existing dedicated Siri and Apple Intelligence relay hosts.",
+    "AI-specific hosts precede general provider groups, including GitHub Copilot, Grok, Gemini, Meta AI and Adobe Firefly.",
+    "Apple and Disney named Adobe tenant hosts precede the general Adobe namespace.",
+    "GitHub named Azure storage tenants precede the general Microsoft cloud namespaces.",
+    "NTP and Parsec STUN precede their vendor/control-plane fallback groups."
+  ],
+  "intersections": [
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "ai.azure.com"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "azure.com"
+        }
+      ],
+      "hosts": [
+        "ai.azure.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "ai.developer.meta.com"
+        },
+        {
+          "group": "Meta",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "meta.com"
+        }
+      ],
+      "hosts": [
+        "ai.developer.meta.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "ai.meta.com"
+        },
+        {
+          "group": "Meta",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "meta.com"
+        }
+      ],
+      "hosts": [
+        "ai.meta.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "aidemos.meta.com"
+        },
+        {
+          "group": "Meta",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "meta.com"
+        }
+      ],
+      "hosts": [
+        "aidemos.meta.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "alkalicore-pa.clients6.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "alkalicore-pa.clients6.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "alkalimakersuite-pa.clients6.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "alkalimakersuite-pa.clients6.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "antigravity-pa.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "antigravity-pa.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "antigravity.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "antigravity.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "apple-relay.apple.com"
+        },
+        {
+          "group": "Apple",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "apple.com"
+        }
+      ],
+      "hosts": [
+        "apple-relay.apple.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "apple-relay.apple.com"
+        },
+        {
+          "group": "SiriAI",
+          "kind": "DOMAIN",
+          "value": "apple-relay.apple.com"
+        }
+      ],
+      "hosts": [
+        "apple-relay.apple.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "apple-relay.cloudflare.com"
+        },
+        {
+          "group": "Apple",
+          "kind": "DOMAIN",
+          "value": "apple-relay.cloudflare.com"
+        }
+      ],
+      "hosts": [
+        "apple-relay.cloudflare.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "apple-relay.cloudflare.com"
+        },
+        {
+          "group": "SiriAI",
+          "kind": "DOMAIN",
+          "value": "apple-relay.cloudflare.com"
+        }
+      ],
+      "hosts": [
+        "apple-relay.cloudflare.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "apple-relay.fastly-edge.com"
+        },
+        {
+          "group": "Apple",
+          "kind": "DOMAIN",
+          "value": "apple-relay.fastly-edge.com"
+        }
+      ],
+      "hosts": [
+        "apple-relay.fastly-edge.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "apple-relay.fastly-edge.com"
+        },
+        {
+          "group": "SiriAI",
+          "kind": "DOMAIN",
+          "value": "apple-relay.fastly-edge.com"
+        }
+      ],
+      "hosts": [
+        "apple-relay.fastly-edge.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "appsgenaiserver-pa.clients.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "appsgenaiserver-pa.clients.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "appsgenaiserver-pa.clients6.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "appsgenaiserver-pa.clients6.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "appsgenaiserver-pa.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "appsgenaiserver-pa.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "asia-east1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "asia-east1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "asia-east2-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "asia-east2-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "asia-northeast1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "asia-northeast1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "asia-northeast3-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "asia-northeast3-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "asia-south1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "asia-south1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "asia-southeast1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "asia-southeast1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "australia-southeast1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "australia-southeast1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "cloudaicompanion.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "cloudaicompanion.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "copilot-proxy.githubusercontent.com"
+        },
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "githubusercontent.com"
+        }
+      ],
+      "hosts": [
+        "copilot-proxy.githubusercontent.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "copilot-telemetry-service.githubusercontent.com"
+        },
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "githubusercontent.com"
+        }
+      ],
+      "hosts": [
+        "copilot-telemetry-service.githubusercontent.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "copilot-telemetry.githubusercontent.com"
+        },
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "githubusercontent.com"
+        }
+      ],
+      "hosts": [
+        "copilot-telemetry.githubusercontent.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "copilot-workspace.githubnext.com"
+        },
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "githubnext.com"
+        }
+      ],
+      "hosts": [
+        "copilot-workspace.githubnext.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "copilotprodattachments.blob.core.windows.net"
+        },
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "copilotprodattachments.blob.core.windows.net"
+        }
+      ],
+      "hosts": [
+        "copilotprodattachments.blob.core.windows.net"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "copilotprodattachments.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "copilotprodattachments.blob.core.windows.net"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "cp4.cloudflare.com"
+        },
+        {
+          "group": "Apple",
+          "kind": "DOMAIN",
+          "value": "cp4.cloudflare.com"
+        }
+      ],
+      "hosts": [
+        "cp4.cloudflare.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "cp4.cloudflare.com"
+        },
+        {
+          "group": "SiriAI",
+          "kind": "DOMAIN",
+          "value": "cp4.cloudflare.com"
+        }
+      ],
+      "hosts": [
+        "cp4.cloudflare.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "daily-cloudcode-pa.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "daily-cloudcode-pa.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "europe-central2-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "europe-central2-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "europe-north1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "europe-north1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "europe-southwest1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "europe-southwest1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "europe-west1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "europe-west1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "europe-west2-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "europe-west2-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "europe-west3-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "europe-west3-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "europe-west4-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "europe-west4-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "europe-west6-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "europe-west6-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "europe-west8-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "europe-west8-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "europe-west9-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "europe-west9-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "gateway.bingviz.microsoft.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "microsoft.net"
+        }
+      ],
+      "hosts": [
+        "gateway.bingviz.microsoft.net"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "gateway.bingviz.microsoftapp.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "microsoftapp.net"
+        }
+      ],
+      "hosts": [
+        "gateway.bingviz.microsoftapp.net"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "geminiweb-pa.clients.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "geminiweb-pa.clients.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "geminiweb-pa.clients6.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "geminiweb-pa.clients6.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "llama.developer.meta.com"
+        },
+        {
+          "group": "Meta",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "meta.com"
+        }
+      ],
+      "hosts": [
+        "llama.developer.meta.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "me-central1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "me-central1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "me-central2-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "me-central2-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "me-west1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "me-west1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "northamerica-northeast1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "northamerica-northeast1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "notebooklm-pa.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "notebooklm-pa.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "notebooklm.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "notebooklm.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "openaiassets.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "openaiassets.blob.core.windows.net"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "azurefd.net"
+        }
+      ],
+      "hosts": [
+        "openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "openaicomproductionae4b.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "openaicomproductionae4b.blob.core.windows.net"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "production-openaicom-storage.azureedge.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "azureedge.net"
+        }
+      ],
+      "hosts": [
+        "production-openaicom-storage.azureedge.net"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "southamerica-east1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "southamerica-east1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "sydney.bing.com"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "bing.com"
+        }
+      ],
+      "hosts": [
+        "sydney.bing.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "us-central1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "us-central1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "us-east1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "us-east1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "us-east4-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "us-east4-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "us-east5-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "us-east5-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "us-south1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "us-south1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "us-west1-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "us-west1-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "us-west4-aiplatform.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "us-west4-aiplatform.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN",
+          "value": "webchannel-alkalimakersuite-pa.clients6.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "webchannel-alkalimakersuite-pa.clients6.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "ai.google.dev"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.dev"
+        }
+      ],
+      "hosts": [
+        "ai.google.dev",
+        "probe.ai.google.dev"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "aicode.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "aicode.googleapis.com",
+        "probe.aicode.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "aida.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "aida.googleapis.com",
+        "probe.aida.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "aisandbox-pa.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "aisandbox-pa.googleapis.com",
+        "probe.aisandbox-pa.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "aistudio.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "aistudio.google.com",
+        "probe.aistudio.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "antigravity.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "antigravity.google.com",
+        "probe.antigravity.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "bard.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "bard.google.com",
+        "probe.bard.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "cloudcode-pa.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "cloudcode-pa.googleapis.com",
+        "probe.cloudcode-pa.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "coderabbit.gallery.vsassets.io"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "vsassets.io"
+        }
+      ],
+      "hosts": [
+        "coderabbit.gallery.vsassets.io",
+        "probe.coderabbit.gallery.vsassets.io"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "cognitiveservices.azure.com"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "azure.com"
+        }
+      ],
+      "hosts": [
+        "cognitiveservices.azure.com",
+        "probe.cognitiveservices.azure.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "copilot.cloud.microsoft"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "microsoft"
+        }
+      ],
+      "hosts": [
+        "copilot.cloud.microsoft",
+        "probe.copilot.cloud.microsoft"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "copilot.microsoft.com"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "microsoft.com"
+        }
+      ],
+      "hosts": [
+        "copilot.microsoft.com",
+        "probe.copilot.microsoft.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "deepmind.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "deepmind.com"
+        }
+      ],
+      "hosts": [
+        "deepmind.com",
+        "probe.deepmind.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "firefly.adobe.com"
+        },
+        {
+          "group": "Adobe",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "adobe.com"
+        }
+      ],
+      "hosts": [
+        "firefly.adobe.com",
+        "probe.firefly.adobe.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "firefly.adobe.io"
+        },
+        {
+          "group": "Adobe",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "adobe.io"
+        }
+      ],
+      "hosts": [
+        "firefly.adobe.io",
+        "probe.firefly.adobe.io"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "flow.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "flow.google.com",
+        "probe.flow.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "geller-pa.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "geller-pa.googleapis.com",
+        "probe.geller-pa.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "gemini.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "gemini.google.com",
+        "probe.gemini.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "gemini.gstatic.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "gstatic.com"
+        }
+      ],
+      "hosts": [
+        "gemini.gstatic.com",
+        "probe.gemini.gstatic.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "generativelanguage.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "generativelanguage.googleapis.com",
+        "probe.generativelanguage.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "githubcopilot.com"
+        },
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "githubcopilot.com"
+        }
+      ],
+      "hosts": [
+        "githubcopilot.com",
+        "probe.githubcopilot.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "grok.com"
+        },
+        {
+          "group": "Twitter",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "grok.com"
+        }
+      ],
+      "hosts": [
+        "grok.com",
+        "probe.grok.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "grok.x.com"
+        },
+        {
+          "group": "Twitter",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "x.com"
+        }
+      ],
+      "hosts": [
+        "grok.x.com",
+        "probe.grok.x.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "jules.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "jules.google.com",
+        "probe.jules.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "labs.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "labs.google.com",
+        "probe.labs.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "labstailwind.pa.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "labstailwind.pa.googleapis.com",
+        "probe.labstailwind.pa.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "llama.com"
+        },
+        {
+          "group": "Meta",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "llama.com"
+        }
+      ],
+      "hosts": [
+        "llama.com",
+        "probe.llama.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "makersuite.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "makersuite.google.com",
+        "probe.makersuite.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "meta.ai"
+        },
+        {
+          "group": "Meta",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "meta.ai"
+        }
+      ],
+      "hosts": [
+        "meta.ai",
+        "probe.meta.ai"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "metaaivm.com"
+        },
+        {
+          "group": "Meta",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "metaaivm.com"
+        }
+      ],
+      "hosts": [
+        "metaaivm.com",
+        "probe.metaaivm.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "muse.ai"
+        },
+        {
+          "group": "Meta",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "muse.ai"
+        }
+      ],
+      "hosts": [
+        "muse.ai",
+        "probe.muse.ai"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "notebook.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "notebook.google.com",
+        "probe.notebook.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "notebooklm.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "notebooklm.google.com",
+        "probe.notebooklm.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "opal.google.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        }
+      ],
+      "hosts": [
+        "opal.google.com",
+        "probe.opal.google.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "openai.azure.com"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "azure.com"
+        }
+      ],
+      "hosts": [
+        "openai.azure.com",
+        "probe.openai.azure.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "openaiapi-site.azureedge.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "azureedge.net"
+        }
+      ],
+      "hosts": [
+        "openaiapi-site.azureedge.net",
+        "probe.openaiapi-site.azureedge.net"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "proactivebackend-pa.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "proactivebackend-pa.googleapis.com",
+        "probe.proactivebackend-pa.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "robinfrontend-pa.googleapis.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "googleapis.com"
+        }
+      ],
+      "hosts": [
+        "robinfrontend-pa.googleapis.com",
+        "probe.robinfrontend-pa.googleapis.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "services.ai.azure.com"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "azure.com"
+        }
+      ],
+      "hosts": [
+        "services.ai.azure.com",
+        "probe.services.ai.azure.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "AI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "stitch.withgoogle.com"
+        },
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "withgoogle.com"
+        }
+      ],
+      "hosts": [
+        "stitch.withgoogle.com",
+        "probe.stitch.withgoogle.com"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Adobe",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "demdex.net"
+        },
+        {
+          "group": "Disney",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "disney.demdex.net"
+        }
+      ],
+      "hosts": [
+        "disney.demdex.net",
+        "probe.disney.demdex.net"
+      ],
+      "expected_group": "Disney"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Adobe",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "omtrdc.net"
+        },
+        {
+          "group": "Apple",
+          "kind": "DOMAIN",
+          "value": "appleworldwidedeveloper.hb-api.omtrdc.net"
+        }
+      ],
+      "hosts": [
+        "appleworldwidedeveloper.hb-api.omtrdc.net"
+      ],
+      "expected_group": "Apple"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Adobe",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "omtrdc.net"
+        },
+        {
+          "group": "Apple",
+          "kind": "DOMAIN",
+          "value": "appleworldwidedeveloper.sc.omtrdc.net"
+        }
+      ],
+      "hosts": [
+        "appleworldwidedeveloper.sc.omtrdc.net"
+      ],
+      "expected_group": "Apple"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Adobe",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "omtrdc.net"
+        },
+        {
+          "group": "Apple",
+          "kind": "DOMAIN",
+          "value": "beatselectronicsllc.tt.omtrdc.net"
+        }
+      ],
+      "hosts": [
+        "beatselectronicsllc.tt.omtrdc.net"
+      ],
+      "expected_group": "Apple"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Adobe",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "omtrdc.net"
+        },
+        {
+          "group": "Disney",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "disneyplus.com.ssl.sc.omtrdc.net"
+        }
+      ],
+      "hosts": [
+        "disneyplus.com.ssl.sc.omtrdc.net",
+        "probe.disneyplus.com.ssl.sc.omtrdc.net"
+      ],
+      "expected_group": "Disney"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Adobe",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "omtrdc.net"
+        },
+        {
+          "group": "Disney",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "espn.hb.omtrdc.net"
+        }
+      ],
+      "hosts": [
+        "espn.hb.omtrdc.net",
+        "probe.espn.hb.omtrdc.net"
+      ],
+      "expected_group": "Disney"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Adobe",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "omtrdc.net"
+        },
+        {
+          "group": "Disney",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "espndotcom.tt.omtrdc.net"
+        }
+      ],
+      "hosts": [
+        "espndotcom.tt.omtrdc.net",
+        "probe.espndotcom.tt.omtrdc.net"
+      ],
+      "expected_group": "Disney"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN",
+          "value": "apple-relay.cloudflare.com"
+        },
+        {
+          "group": "SiriAI",
+          "kind": "DOMAIN",
+          "value": "apple-relay.cloudflare.com"
+        }
+      ],
+      "hosts": [
+        "apple-relay.cloudflare.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN",
+          "value": "apple-relay.fastly-edge.com"
+        },
+        {
+          "group": "SiriAI",
+          "kind": "DOMAIN",
+          "value": "apple-relay.fastly-edge.com"
+        }
+      ],
+      "hosts": [
+        "apple-relay.fastly-edge.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN",
+          "value": "cp4.cloudflare.com"
+        },
+        {
+          "group": "SiriAI",
+          "kind": "DOMAIN",
+          "value": "cp4.cloudflare.com"
+        }
+      ],
+      "hosts": [
+        "cp4.cloudflare.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "apple.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time.apple.com"
+        }
+      ],
+      "hosts": [
+        "time.apple.com",
+        "probe.time.apple.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "apple.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time.asia.apple.com"
+        }
+      ],
+      "hosts": [
+        "time.asia.apple.com",
+        "probe.time.asia.apple.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "apple.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time1.apple.com"
+        }
+      ],
+      "hosts": [
+        "time1.apple.com",
+        "probe.time1.apple.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "apple.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time2.apple.com"
+        }
+      ],
+      "hosts": [
+        "time2.apple.com",
+        "probe.time2.apple.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "apple.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time3.apple.com"
+        }
+      ],
+      "hosts": [
+        "time3.apple.com",
+        "probe.time3.apple.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "apple.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time4.apple.com"
+        }
+      ],
+      "hosts": [
+        "time4.apple.com",
+        "probe.time4.apple.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "apple.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time5.apple.com"
+        }
+      ],
+      "hosts": [
+        "time5.apple.com",
+        "probe.time5.apple.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "apple.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time6.apple.com"
+        }
+      ],
+      "hosts": [
+        "time6.apple.com",
+        "probe.time6.apple.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "apple.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time7.apple.com"
+        }
+      ],
+      "hosts": [
+        "time7.apple.com",
+        "probe.time7.apple.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "apple.com"
+        },
+        {
+          "group": "SiriAI",
+          "kind": "DOMAIN",
+          "value": "apple-relay.apple.com"
+        }
+      ],
+      "hosts": [
+        "apple-relay.apple.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "apple.com"
+        },
+        {
+          "group": "SiriAI",
+          "kind": "DOMAIN",
+          "value": "guzzoni.apple.com"
+        }
+      ],
+      "hosts": [
+        "guzzoni.apple.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Apple",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "apple.com"
+        },
+        {
+          "group": "SiriAI",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "smoot.apple.com"
+        }
+      ],
+      "hosts": [
+        "smoot.apple.com",
+        "probe.smoot.apple.com"
+      ],
+      "expected_group": "SiriAI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "copilotprodattachments.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "copilotprodattachments.blob.core.windows.net"
+      ],
+      "expected_group": "AI"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa0.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa0.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa1.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa1.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa10.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa10.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa11.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa11.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa12.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa12.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa13.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa13.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa14.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa14.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa15.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa15.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa16.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa16.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa17.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa17.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa18.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa18.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa19.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa19.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa2.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa2.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa3.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa3.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa4.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa4.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa5.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa5.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa6.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa6.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa7.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa7.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa8.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa8.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "GitHub",
+          "kind": "DOMAIN",
+          "value": "productionresultssa9.blob.core.windows.net"
+        },
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.net"
+        }
+      ],
+      "hosts": [
+        "productionresultssa9.blob.core.windows.net"
+      ],
+      "expected_group": "GitHub"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time.google.com"
+        }
+      ],
+      "hosts": [
+        "time.google.com",
+        "probe.time.google.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time1.google.com"
+        }
+      ],
+      "hosts": [
+        "time1.google.com",
+        "probe.time1.google.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time2.google.com"
+        }
+      ],
+      "hosts": [
+        "time2.google.com",
+        "probe.time2.google.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time3.google.com"
+        }
+      ],
+      "hosts": [
+        "time3.google.com",
+        "probe.time3.google.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Google",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "google.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time4.google.com"
+        }
+      ],
+      "hosts": [
+        "time4.google.com",
+        "probe.time4.google.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Microsoft",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "windows.com"
+        },
+        {
+          "group": "NTP",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "time.windows.com"
+        }
+      ],
+      "hosts": [
+        "time.windows.com",
+        "probe.time.windows.com"
+      ],
+      "expected_group": "NTP"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Parsec",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "parsec.app"
+        },
+        {
+          "group": "ParsecP2P",
+          "kind": "DOMAIN",
+          "value": "stun.parsec.app"
+        }
+      ],
+      "hosts": [
+        "stun.parsec.app"
+      ],
+      "expected_group": "ParsecP2P"
+    },
+    {
+      "matchers": [
+        {
+          "group": "Parsec",
+          "kind": "DOMAIN-SUFFIX",
+          "value": "parsec.app"
+        },
+        {
+          "group": "ParsecP2P",
+          "kind": "DOMAIN",
+          "value": "stun6.parsec.app"
+        }
+      ],
+      "hosts": [
+        "stun6.parsec.app"
+      ],
+      "expected_group": "ParsecP2P"
+    }
+  ]
+}

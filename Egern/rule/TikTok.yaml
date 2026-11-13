@@ -2,12 +2,13 @@
 # AUTHOR: Horatio
 # FORMAT: Egern YAML rule_set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 38
+# RULES: 36
 # SOURCE: Loon/rule/TikTok.lsr (same repository)
 # USE: reference this URL from a rule_set with an assigned policy.
 # PROVENANCE / EXISTING NOTES:
 # TikTok global service rule set.
 # Includes TikTok app/web, media/CDN and related delivery domains from v2fly/domain-list-community.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 domain_set:
   - "p16-tiktokcdn-com.akamaized.net"
@@ -16,9 +17,6 @@ domain_set:
   - "roovza.inapps.appsflyersdk.com"
   - "roovza.launches.appsflyersdk.com"
   - "roovza.skadsdk.appsflyersdk.com"
-
-domain_keyword_set:
-  - "tiktok"
 
 domain_suffix_set:
   - "bytedapm.com"
@@ -51,4 +49,3 @@ domain_suffix_set:
   - "tiktokcdn.com.edgesuite.net"
   - "tiktokv.com.edgekey.net"
   - "tiktokv.com.edgesuite.net"
-  - "analytics.tiktok.com"

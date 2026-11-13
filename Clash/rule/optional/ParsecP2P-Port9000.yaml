@@ -1,0 +1,11 @@
+# NAME: ParsecP2P-Port9000 (optional)
+# AUTHOR: Horatio Xu
+# FORMAT: Mihomo classical YAML rule-provider
+# RULES: 1
+# OFFICIAL-REVIEW: 2026-11-13
+# USE: Explicit opt-in only; behavior classical, format yaml; assign DIRECT.
+# Requires Parsec Client Port 9000. Also matches unrelated UDP using source port 9000.
+# SOURCE: https://wiki.metacubex.one/config/rules/
+
+payload:
+  - 'AND,((SRC-PORT,9000),(NETWORK,udp))'

@@ -3,7 +3,7 @@
 # FORMAT: Quantumult X filter_remote
 # UPDATED: 2026-10-28
 # FORMAT-VERIFIED: 2026-10-28
-# RULES: 971
+# RULES: 961
 # SOURCE: existing Horatio rules + pinned MIT community sources + official service documentation.
 # SOURCE-REVISIONS: v2fly/domain-list-community@1b81d3cd3409; VPSDance/ai-proxy-rules@ecc2c57b3eef; Repcz/Tool@8e35d49e060b
 # SOURCES-AND-LICENSES: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Docs/AI-Sources.md
@@ -37,6 +37,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 HOST,ai.developer.meta.com
 HOST,ai.meta.com
@@ -50,15 +51,11 @@ HOST,anthropic.com.cdn.cloudflare.net
 HOST,antigravity-pa.googleapis.com
 HOST,antigravity.googleapis.com
 HOST,api.hunyuan.cloud.tencent.com
-HOST,api.jetbrains.ai
-HOST,api.minimax.io
-HOST,api.minimaxi.com
 HOST,ark.cn-beijing.volces.com
 HOST,aws-language-servers.us-east-1.amazonaws.com
 HOST,aws-toolkit-language-servers.amazonaws.com
 HOST,bailian.console.aliyun.com
 HOST,cloudaicompanion.googleapis.com
-HOST,cloudcode-pa.googleapis.com
 HOST,codewhisperer.us-east-1.amazonaws.com
 HOST,copilot-proxy.githubusercontent.com
 HOST,copilot-workspace.githubnext.com
@@ -88,7 +85,6 @@ HOST,qodercn-jb.oss-cn-hangzhou.aliyuncs.com
 HOST,servd-anthropic-website.b-cdn.net
 HOST,sydney.bing.com
 HOST,webchannel-alkalimakersuite-pa.clients6.google.com
-HOST-KEYWORD,chatgpt-async-webps-prod-
 HOST-SUFFIX,01.ai
 HOST-SUFFIX,abtestvm-sg.bytedance.com
 HOST-SUFFIX,agentclientprotocol.com
@@ -135,7 +131,6 @@ HOST-SUFFIX,building.fun
 HOST-SUFFIX,butterfly-static.cn
 HOST-SUFFIX,butterflyai.cn
 HOST-SUFFIX,bytegate-sg.byteintlapi.com
-HOST-SUFFIX,byteoversea.com
 HOST-SUFFIX,cerebras.ai
 HOST-SUFFIX,character.ai
 HOST-SUFFIX,chat.com
@@ -248,7 +243,6 @@ HOST-SUFFIX,flow.google
 HOST-SUFFIX,flow.google.com
 HOST-SUFFIX,g.ai
 HOST-SUFFIX,gamma.app
-HOST-SUFFIX,gateway.ai.cloudflare.com
 HOST-SUFFIX,geller-pa.googleapis.com
 HOST-SUFFIX,gemini.google
 HOST-SUFFIX,gemini.google.com
@@ -271,7 +265,6 @@ HOST-SUFFIX,hailuoai.com
 HOST-SUFFIX,haiper.ai
 HOST-SUFFIX,happyhorse.cn
 HOST-SUFFIX,happyshrimp.cn
-HOST-SUFFIX,hermes-agent.nousresearch.com
 HOST-SUFFIX,heygen.com
 HOST-SUFFIX,hf.co
 HOST-SUFFIX,hf.space
@@ -444,7 +437,6 @@ HOST-SUFFIX,sarvam.ai
 HOST-SUFFIX,seaart.ai
 HOST-SUFFIX,sensechat.cn
 HOST-SUFFIX,sensenova.cn
-HOST-SUFFIX,sf16-short-sg.bytedapm.com
 HOST-SUFFIX,shunjing.xin
 HOST-SUFFIX,sider.ai
 HOST-SUFFIX,siliconflow.cn
@@ -477,7 +469,6 @@ HOST-SUFFIX,together.ai
 HOST-SUFFIX,together.xyz
 HOST-SUFFIX,tongyi.aliyun.com
 HOST-SUFFIX,tongyi.com
-HOST-SUFFIX,trae-api-sg.mchost.guru
 HOST-SUFFIX,trae.ai
 HOST-SUFFIX,trae.cn
 HOST-SUFFIX,trae.com.cn

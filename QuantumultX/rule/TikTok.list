@@ -2,12 +2,13 @@
 # AUTHOR: Horatio
 # FORMAT: Quantumult X filter_remote
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 38
+# RULES: 36
 # SOURCE: Loon/rule/TikTok.lsr (same repository)
 # USE: [filter_remote] with force-policy=<policy>.
 # PROVENANCE / EXISTING NOTES:
 # TikTok global service rule set.
 # Includes TikTok app/web, media/CDN and related delivery domains from v2fly/domain-list-community.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 HOST,p16-tiktokcdn-com.akamaized.net
 HOST,p16-tiktok-dm-sticker-sign-sg.ibyteimg.com
@@ -15,7 +16,6 @@ HOST,roovza-launches.appsflyersdk.com
 HOST,roovza.inapps.appsflyersdk.com
 HOST,roovza.launches.appsflyersdk.com
 HOST,roovza.skadsdk.appsflyersdk.com
-HOST-KEYWORD,tiktok
 HOST-SUFFIX,bytedapm.com
 HOST-SUFFIX,muscdn.com
 HOST-SUFFIX,musical.ly
@@ -46,4 +46,3 @@ HOST-SUFFIX,tiktokcdn.com.akamaized.net
 HOST-SUFFIX,tiktokcdn.com.edgesuite.net
 HOST-SUFFIX,tiktokv.com.edgekey.net
 HOST-SUFFIX,tiktokv.com.edgesuite.net
-HOST-SUFFIX,analytics.tiktok.com

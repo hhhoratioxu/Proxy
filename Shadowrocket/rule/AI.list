@@ -3,7 +3,7 @@
 # FORMAT: Shadowrocket external rule set (policy-less)
 # UPDATED: 2026-10-28
 # FORMAT-VERIFIED: 2026-10-28
-# RULES: 971
+# RULES: 961
 # SOURCE: existing Horatio rules + pinned MIT community sources + official service documentation.
 # SOURCE-REVISIONS: v2fly/domain-list-community@1b81d3cd3409; VPSDance/ai-proxy-rules@ecc2c57b3eef; Repcz/Tool@8e35d49e060b
 # SOURCES-AND-LICENSES: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Docs/AI-Sources.md
@@ -37,6 +37,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 DOMAIN,ai.developer.meta.com
 DOMAIN,ai.meta.com
@@ -50,15 +51,11 @@ DOMAIN,anthropic.com.cdn.cloudflare.net
 DOMAIN,antigravity-pa.googleapis.com
 DOMAIN,antigravity.googleapis.com
 DOMAIN,api.hunyuan.cloud.tencent.com
-DOMAIN,api.jetbrains.ai
-DOMAIN,api.minimax.io
-DOMAIN,api.minimaxi.com
 DOMAIN,ark.cn-beijing.volces.com
 DOMAIN,aws-language-servers.us-east-1.amazonaws.com
 DOMAIN,aws-toolkit-language-servers.amazonaws.com
 DOMAIN,bailian.console.aliyun.com
 DOMAIN,cloudaicompanion.googleapis.com
-DOMAIN,cloudcode-pa.googleapis.com
 DOMAIN,codewhisperer.us-east-1.amazonaws.com
 DOMAIN,copilot-proxy.githubusercontent.com
 DOMAIN,copilot-workspace.githubnext.com
@@ -88,7 +85,6 @@ DOMAIN,qodercn-jb.oss-cn-hangzhou.aliyuncs.com
 DOMAIN,servd-anthropic-website.b-cdn.net
 DOMAIN,sydney.bing.com
 DOMAIN,webchannel-alkalimakersuite-pa.clients6.google.com
-DOMAIN-KEYWORD,chatgpt-async-webps-prod-
 DOMAIN-SUFFIX,01.ai
 DOMAIN-SUFFIX,abtestvm-sg.bytedance.com
 DOMAIN-SUFFIX,agentclientprotocol.com
@@ -135,7 +131,6 @@ DOMAIN-SUFFIX,building.fun
 DOMAIN-SUFFIX,butterfly-static.cn
 DOMAIN-SUFFIX,butterflyai.cn
 DOMAIN-SUFFIX,bytegate-sg.byteintlapi.com
-DOMAIN-SUFFIX,byteoversea.com
 DOMAIN-SUFFIX,cerebras.ai
 DOMAIN-SUFFIX,character.ai
 DOMAIN-SUFFIX,chat.com
@@ -248,7 +243,6 @@ DOMAIN-SUFFIX,flow.google
 DOMAIN-SUFFIX,flow.google.com
 DOMAIN-SUFFIX,g.ai
 DOMAIN-SUFFIX,gamma.app
-DOMAIN-SUFFIX,gateway.ai.cloudflare.com
 DOMAIN-SUFFIX,geller-pa.googleapis.com
 DOMAIN-SUFFIX,gemini.google
 DOMAIN-SUFFIX,gemini.google.com
@@ -271,7 +265,6 @@ DOMAIN-SUFFIX,hailuoai.com
 DOMAIN-SUFFIX,haiper.ai
 DOMAIN-SUFFIX,happyhorse.cn
 DOMAIN-SUFFIX,happyshrimp.cn
-DOMAIN-SUFFIX,hermes-agent.nousresearch.com
 DOMAIN-SUFFIX,heygen.com
 DOMAIN-SUFFIX,hf.co
 DOMAIN-SUFFIX,hf.space
@@ -444,7 +437,6 @@ DOMAIN-SUFFIX,sarvam.ai
 DOMAIN-SUFFIX,seaart.ai
 DOMAIN-SUFFIX,sensechat.cn
 DOMAIN-SUFFIX,sensenova.cn
-DOMAIN-SUFFIX,sf16-short-sg.bytedapm.com
 DOMAIN-SUFFIX,shunjing.xin
 DOMAIN-SUFFIX,sider.ai
 DOMAIN-SUFFIX,siliconflow.cn
@@ -477,7 +469,6 @@ DOMAIN-SUFFIX,together.ai
 DOMAIN-SUFFIX,together.xyz
 DOMAIN-SUFFIX,tongyi.aliyun.com
 DOMAIN-SUFFIX,tongyi.com
-DOMAIN-SUFFIX,trae-api-sg.mchost.guru
 DOMAIN-SUFFIX,trae.ai
 DOMAIN-SUFFIX,trae.cn
 DOMAIN-SUFFIX,trae.com.cn

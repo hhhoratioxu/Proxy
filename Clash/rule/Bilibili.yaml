@@ -2,12 +2,13 @@
 # AUTHOR: Horatio
 # FORMAT: Mihomo classical YAML rule-provider
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 129
+# RULES: 120
 # SOURCE: Loon/rule/Bilibili.lsr (same repository)
 # USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
 # COMPAT: omitted 4 USER-AGENT rules (not supported by Mihomo).
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community (Bilibili/CDN/Game)
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 payload:
   - 'DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com'
@@ -63,7 +64,6 @@ payload:
   - 'DOMAIN,p.bstarstatic.com'
   - 'DOMAIN,upos-bstar-mirrorakam.akamaized.net'
   - 'DOMAIN,upos-bstar1-mirrorakam.akamaized.net'
-  - 'DOMAIN,upos-hz-mirrorakam.akamaized.net'
   - 'DOMAIN-SUFFIX,acg.tv'
   - 'DOMAIN-SUFFIX,acgvideo.com'
   - 'DOMAIN-SUFFIX,animetamashi.cn'
@@ -131,11 +131,3 @@ payload:
   - 'DOMAIN-SUFFIX,upos-hz-mirrorakam.akamaized.net'
   - 'DOMAIN-SUFFIX,uposdash-302-bilivideo.yfcdn.net'
   - 'DOMAIN-SUFFIX,yo9.com'
-  - 'IP-CIDR,106.75.74.76/32,no-resolve'
-  - 'IP-CIDR,111.206.25.147/32,no-resolve'
-  - 'IP-CIDR,119.3.238.64/32,no-resolve'
-  - 'IP-CIDR,120.92.108.182/32,no-resolve'
-  - 'IP-CIDR,120.92.113.99/32,no-resolve'
-  - 'IP-CIDR,120.92.153.217/32,no-resolve'
-  - 'IP-CIDR,134.175.207.130/32,no-resolve'
-  - 'IP-CIDR,203.107.1.0/24,no-resolve'

@@ -2,17 +2,14 @@
 # AUTHOR: Horatio
 # FORMAT: Loon remote .lsr (policy-less)
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 64
+# RULES: 59
 # SOURCE: Loon/rule/GitHub.lsr (same repository)
 # USE: Remote rule set; select policy in the client (not in this file).
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community (GitHub, Copilot, npm)
 # NOTE: Covers GitHub web/API/assets/releases/Actions/Container Registry/Copilot and GitHub-owned npm services.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
-DOMAIN,copilot-proxy.githubusercontent.com
-DOMAIN,copilot-telemetry-service.githubusercontent.com
-DOMAIN,copilot-telemetry.githubusercontent.com
-DOMAIN,copilot-workspace.githubnext.com
 DOMAIN,copilotprodattachments.blob.core.windows.net
 DOMAIN,github-api.arkoselabs.com
 DOMAIN,github-cloud.s3.amazonaws.com
@@ -42,7 +39,6 @@ DOMAIN,productionresultssa7.blob.core.windows.net
 DOMAIN,productionresultssa8.blob.core.windows.net
 DOMAIN,productionresultssa9.blob.core.windows.net
 DOMAIN-SUFFIX,atom.io
-DOMAIN-SUFFIX,collector.github.com
 DOMAIN-SUFFIX,dependabot.com
 DOMAIN-SUFFIX,gh.io
 DOMAIN-SUFFIX,ghcr.io

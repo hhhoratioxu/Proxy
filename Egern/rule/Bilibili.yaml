@@ -2,14 +2,13 @@
 # AUTHOR: Horatio
 # FORMAT: Egern YAML rule_set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 133
+# RULES: 124
 # SOURCE: Loon/rule/Bilibili.lsr (same repository)
 # USE: reference this URL from a rule_set with an assigned policy.
 # COMPAT: no_resolve is a rule-set-wide flag in Egern.
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community (Bilibili/CDN/Game)
-
-no_resolve: true
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 domain_set:
   - "0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com"
@@ -65,7 +64,6 @@ domain_set:
   - "p.bstarstatic.com"
   - "upos-bstar-mirrorakam.akamaized.net"
   - "upos-bstar1-mirrorakam.akamaized.net"
-  - "upos-hz-mirrorakam.akamaized.net"
 
 domain_suffix_set:
   - "acg.tv"
@@ -141,13 +139,3 @@ user_agent_set:
   - "bili-inter*"
   - "bili*"
   - "Bilibili*"
-
-ip_cidr_set:
-  - "106.75.74.76/32"
-  - "111.206.25.147/32"
-  - "119.3.238.64/32"
-  - "120.92.108.182/32"
-  - "120.92.113.99/32"
-  - "120.92.153.217/32"
-  - "134.175.207.130/32"
-  - "203.107.1.0/24"

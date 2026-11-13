@@ -1,0 +1,2031 @@
+[
+  {
+    "name": "AI retains chatgpt.com",
+    "group": "AI",
+    "sample": {
+      "host": "chatgpt.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains api.openai.com",
+    "group": "AI",
+    "sample": {
+      "host": "api.openai.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains cdn.oaistatic.com",
+    "group": "AI",
+    "sample": {
+      "host": "cdn.oaistatic.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains files.oaiusercontent.com",
+    "group": "AI",
+    "sample": {
+      "host": "files.oaiusercontent.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains sora.com",
+    "group": "AI",
+    "sample": {
+      "host": "sora.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains claude.ai",
+    "group": "AI",
+    "sample": {
+      "host": "claude.ai"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains api.anthropic.com",
+    "group": "AI",
+    "sample": {
+      "host": "api.anthropic.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains gemini.google.com",
+    "group": "AI",
+    "sample": {
+      "host": "gemini.google.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains generativelanguage.googleapis.com",
+    "group": "AI",
+    "sample": {
+      "host": "generativelanguage.googleapis.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains aistudio.google.com",
+    "group": "AI",
+    "sample": {
+      "host": "aistudio.google.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains notebooklm.google.com",
+    "group": "AI",
+    "sample": {
+      "host": "notebooklm.google.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains grok.com",
+    "group": "AI",
+    "sample": {
+      "host": "grok.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains api.x.ai",
+    "group": "AI",
+    "sample": {
+      "host": "api.x.ai"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains api.githubcopilot.com",
+    "group": "AI",
+    "sample": {
+      "host": "api.githubcopilot.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains copilot.microsoft.com",
+    "group": "AI",
+    "sample": {
+      "host": "copilot.microsoft.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI retains bedrock-runtime.us-west-2.amazonaws.com",
+    "group": "AI",
+    "sample": {
+      "host": "bedrock-runtime.us-west-2.amazonaws.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Apple retains www.apple.com",
+    "group": "Apple",
+    "sample": {
+      "host": "www.apple.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Apple retains p01-setup.icloud.com",
+    "group": "Apple",
+    "sample": {
+      "host": "p01-setup.icloud.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Apple retains api.push.apple.com",
+    "group": "Apple",
+    "sample": {
+      "host": "api.push.apple.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Apple retains testflight.apple.com",
+    "group": "Apple",
+    "sample": {
+      "host": "testflight.apple.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Google retains www.google.com",
+    "group": "Google",
+    "sample": {
+      "host": "www.google.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Google retains mail.google.com",
+    "group": "Google",
+    "sample": {
+      "host": "mail.google.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Google retains www.youtube.com",
+    "group": "Google",
+    "sample": {
+      "host": "www.youtube.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Google retains youtubei.googleapis.com",
+    "group": "Google",
+    "sample": {
+      "host": "youtubei.googleapis.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Google retains rr1.example.googlevideo.com",
+    "group": "Google",
+    "sample": {
+      "host": "rr1.example.googlevideo.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Google retains i.ytimg.com",
+    "group": "Google",
+    "sample": {
+      "host": "i.ytimg.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Google retains yt3.ggpht.com",
+    "group": "Google",
+    "sample": {
+      "host": "yt3.ggpht.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Meta retains www.instagram.com",
+    "group": "Meta",
+    "sample": {
+      "host": "www.instagram.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Meta retains scontent.cdninstagram.com",
+    "group": "Meta",
+    "sample": {
+      "host": "scontent.cdninstagram.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Meta retains www.facebook.com",
+    "group": "Meta",
+    "sample": {
+      "host": "www.facebook.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Meta retains static.xx.fbcdn.net",
+    "group": "Meta",
+    "sample": {
+      "host": "static.xx.fbcdn.net"
+    },
+    "match": true
+  },
+  {
+    "name": "Meta retains web.whatsapp.com",
+    "group": "Meta",
+    "sample": {
+      "host": "web.whatsapp.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Microsoft retains login.microsoftonline.com",
+    "group": "Microsoft",
+    "sample": {
+      "host": "login.microsoftonline.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Microsoft retains outlook.office.com",
+    "group": "Microsoft",
+    "sample": {
+      "host": "outlook.office.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Microsoft retains onedrive.live.com",
+    "group": "Microsoft",
+    "sample": {
+      "host": "onedrive.live.com"
+    },
+    "match": true
+  },
+  {
+    "name": "GitHub retains github.com",
+    "group": "GitHub",
+    "sample": {
+      "host": "github.com"
+    },
+    "match": true
+  },
+  {
+    "name": "GitHub retains api.github.com",
+    "group": "GitHub",
+    "sample": {
+      "host": "api.github.com"
+    },
+    "match": true
+  },
+  {
+    "name": "GitHub retains raw.githubusercontent.com",
+    "group": "GitHub",
+    "sample": {
+      "host": "raw.githubusercontent.com"
+    },
+    "match": true
+  },
+  {
+    "name": "GitHub retains objects.githubusercontent.com",
+    "group": "GitHub",
+    "sample": {
+      "host": "objects.githubusercontent.com"
+    },
+    "match": true
+  },
+  {
+    "name": "GitHub retains ghcr.io",
+    "group": "GitHub",
+    "sample": {
+      "host": "ghcr.io"
+    },
+    "match": true
+  },
+  {
+    "name": "GitHub retains registry.npmjs.org",
+    "group": "GitHub",
+    "sample": {
+      "host": "registry.npmjs.org"
+    },
+    "match": true
+  },
+  {
+    "name": "Spotify retains open.spotify.com",
+    "group": "Spotify",
+    "sample": {
+      "host": "open.spotify.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Spotify retains spclient.wg.spotify.com",
+    "group": "Spotify",
+    "sample": {
+      "host": "spclient.wg.spotify.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Spotify retains audio-ak-spotify-com.akamaized.net",
+    "group": "Spotify",
+    "sample": {
+      "host": "audio-ak-spotify-com.akamaized.net"
+    },
+    "match": true
+  },
+  {
+    "name": "Spotify retains heads4-ak-spotify-com.akamaized.net",
+    "group": "Spotify",
+    "sample": {
+      "host": "heads4-ak-spotify-com.akamaized.net"
+    },
+    "match": true
+  },
+  {
+    "name": "Spotify retains i.scdn.co",
+    "group": "Spotify",
+    "sample": {
+      "host": "i.scdn.co"
+    },
+    "match": true
+  },
+  {
+    "name": "Spotify retains seed-mix-image.spotifycdn.com",
+    "group": "Spotify",
+    "sample": {
+      "host": "seed-mix-image.spotifycdn.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Netflix retains www.netflix.com",
+    "group": "Netflix",
+    "sample": {
+      "host": "www.netflix.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Netflix retains api-global.netflix.com",
+    "group": "Netflix",
+    "sample": {
+      "host": "api-global.netflix.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Netflix retains ipv4.example.nflxvideo.net",
+    "group": "Netflix",
+    "sample": {
+      "host": "ipv4.example.nflxvideo.net"
+    },
+    "match": true
+  },
+  {
+    "name": "Netflix retains assets.nflxext.com",
+    "group": "Netflix",
+    "sample": {
+      "host": "assets.nflxext.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Netflix retains fast.com",
+    "group": "Netflix",
+    "sample": {
+      "host": "fast.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Disney retains www.disneyplus.com",
+    "group": "Disney",
+    "sample": {
+      "host": "www.disneyplus.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Disney retains disney.api.edge.bamgrid.com",
+    "group": "Disney",
+    "sample": {
+      "host": "disney.api.edge.bamgrid.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram retains api.telegram.org",
+    "group": "Telegram",
+    "sample": {
+      "host": "api.telegram.org"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram retains t.me",
+    "group": "Telegram",
+    "sample": {
+      "host": "t.me"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram retains telegram.org",
+    "group": "Telegram",
+    "sample": {
+      "host": "telegram.org"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram retains cdn4.telegram-cdn.org",
+    "group": "Telegram",
+    "sample": {
+      "host": "cdn4.telegram-cdn.org"
+    },
+    "match": true
+  },
+  {
+    "name": "SiriAI retains guzzoni.apple.com",
+    "group": "SiriAI",
+    "sample": {
+      "host": "guzzoni.apple.com"
+    },
+    "match": true
+  },
+  {
+    "name": "SiriAI retains api.smoot.apple.com",
+    "group": "SiriAI",
+    "sample": {
+      "host": "api.smoot.apple.com"
+    },
+    "match": true
+  },
+  {
+    "name": "SiriAI retains apple-relay.apple.com",
+    "group": "SiriAI",
+    "sample": {
+      "host": "apple-relay.apple.com"
+    },
+    "match": true
+  },
+  {
+    "name": "SiriAI retains apple-relay.cloudflare.com",
+    "group": "SiriAI",
+    "sample": {
+      "host": "apple-relay.cloudflare.com"
+    },
+    "match": true
+  },
+  {
+    "name": "SiriAI retains apple-relay.fastly-edge.com",
+    "group": "SiriAI",
+    "sample": {
+      "host": "apple-relay.fastly-edge.com"
+    },
+    "match": true
+  },
+  {
+    "name": "SiriAI retains cp4.cloudflare.com",
+    "group": "SiriAI",
+    "sample": {
+      "host": "cp4.cloudflare.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Parsec retains api.parsec.app",
+    "group": "Parsec",
+    "sample": {
+      "host": "api.parsec.app"
+    },
+    "match": true
+  },
+  {
+    "name": "Parsec retains parsecgaming.com",
+    "group": "Parsec",
+    "sample": {
+      "host": "parsecgaming.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Parsec retains parsecusercontent.com",
+    "group": "Parsec",
+    "sample": {
+      "host": "parsecusercontent.com"
+    },
+    "match": true
+  },
+  {
+    "name": "ParsecP2P retains stun.parsec.app",
+    "group": "ParsecP2P",
+    "sample": {
+      "host": "stun.parsec.app"
+    },
+    "match": true
+  },
+  {
+    "name": "ParsecP2P retains stun6.parsec.app",
+    "group": "ParsecP2P",
+    "sample": {
+      "host": "stun6.parsec.app"
+    },
+    "match": true
+  },
+  {
+    "name": "Adobe retains www.adobe.com",
+    "group": "Adobe",
+    "sample": {
+      "host": "www.adobe.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Bilibili retains www.bilibili.com",
+    "group": "Bilibili",
+    "sample": {
+      "host": "www.bilibili.com"
+    },
+    "match": true
+  },
+  {
+    "name": "HBOMAX retains www.hbomax.com",
+    "group": "HBOMAX",
+    "sample": {
+      "host": "www.hbomax.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Infuse retains firecore.com",
+    "group": "Infuse",
+    "sample": {
+      "host": "firecore.com"
+    },
+    "match": true
+  },
+  {
+    "name": "LAN retains router.asus.com",
+    "group": "LAN",
+    "sample": {
+      "host": "router.asus.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Meituan retains www.meituan.com",
+    "group": "Meituan",
+    "sample": {
+      "host": "www.meituan.com"
+    },
+    "match": true
+  },
+  {
+    "name": "NTP retains time.apple.com",
+    "group": "NTP",
+    "sample": {
+      "host": "time.apple.com"
+    },
+    "match": true
+  },
+  {
+    "name": "TikTok retains www.tiktok.com",
+    "group": "TikTok",
+    "sample": {
+      "host": "www.tiktok.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Twitter retains api.x.com",
+    "group": "Twitter",
+    "sample": {
+      "host": "api.x.com"
+    },
+    "match": true
+  },
+  {
+    "name": "WeChat retains weixin.qq.com",
+    "group": "WeChat",
+    "sample": {
+      "host": "weixin.qq.com"
+    },
+    "match": true
+  },
+  {
+    "name": "WeChat retains www.wechat.com",
+    "group": "WeChat",
+    "sample": {
+      "host": "www.wechat.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Weverse retains weverse.io",
+    "group": "Weverse",
+    "sample": {
+      "host": "weverse.io"
+    },
+    "match": true
+  },
+  {
+    "name": "Wikimedia retains en.wikipedia.org",
+    "group": "Wikimedia",
+    "sample": {
+      "host": "en.wikipedia.org"
+    },
+    "match": true
+  },
+  {
+    "name": "Xiaohongshu retains www.xiaohongshu.com",
+    "group": "Xiaohongshu",
+    "sample": {
+      "host": "www.xiaohongshu.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes api.github.com",
+    "group": "AI",
+    "sample": {
+      "host": "api.github.com"
+    },
+    "match": false
+  },
+  {
+    "name": "AI excludes api.cloudflare.com",
+    "group": "AI",
+    "sample": {
+      "host": "api.cloudflare.com"
+    },
+    "match": false
+  },
+  {
+    "name": "AI excludes storage.googleapis.com",
+    "group": "AI",
+    "sample": {
+      "host": "storage.googleapis.com"
+    },
+    "match": false
+  },
+  {
+    "name": "AI excludes auth0.com",
+    "group": "AI",
+    "sample": {
+      "host": "auth0.com"
+    },
+    "match": false
+  },
+  {
+    "name": "AI excludes stripe.com",
+    "group": "AI",
+    "sample": {
+      "host": "stripe.com"
+    },
+    "match": false
+  },
+  {
+    "name": "AI excludes sentry.io",
+    "group": "AI",
+    "sample": {
+      "host": "sentry.io"
+    },
+    "match": false
+  },
+  {
+    "name": "AI excludes dynamodb.us-west-2.amazonaws.com",
+    "group": "AI",
+    "sample": {
+      "host": "dynamodb.us-west-2.amazonaws.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Spotify excludes spotify.example.org",
+    "group": "Spotify",
+    "sample": {
+      "host": "spotify.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Spotify excludes unrelated.akamaized.net",
+    "group": "Spotify",
+    "sample": {
+      "host": "unrelated.akamaized.net"
+    },
+    "match": false
+  },
+  {
+    "name": "Spotify excludes unrelated.fastly.net",
+    "group": "Spotify",
+    "sample": {
+      "host": "unrelated.fastly.net"
+    },
+    "match": false
+  },
+  {
+    "name": "Spotify excludes spotify.com.attacker.invalid",
+    "group": "Spotify",
+    "sample": {
+      "host": "spotify.com.attacker.invalid"
+    },
+    "match": false
+  },
+  {
+    "name": "Netflix excludes dynamodb.us-west-2.amazonaws.com",
+    "group": "Netflix",
+    "sample": {
+      "host": "dynamodb.us-west-2.amazonaws.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Netflix excludes example.s3.us-west-2.amazonaws.com",
+    "group": "Netflix",
+    "sample": {
+      "host": "example.s3.us-west-2.amazonaws.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Netflix excludes cdn.cookielaw.org",
+    "group": "Netflix",
+    "sample": {
+      "host": "cdn.cookielaw.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Netflix excludes geolocation.onetrust.com",
+    "group": "Netflix",
+    "sample": {
+      "host": "geolocation.onetrust.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Netflix excludes unrelated.cloudfront.net",
+    "group": "Netflix",
+    "sample": {
+      "host": "unrelated.cloudfront.net"
+    },
+    "match": false
+  },
+  {
+    "name": "Telegram excludes api.mixpanel.com",
+    "group": "Telegram",
+    "sample": {
+      "host": "api.mixpanel.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Google excludes google.example.org",
+    "group": "Google",
+    "sample": {
+      "host": "google.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Google excludes youtube.example.org",
+    "group": "Google",
+    "sample": {
+      "host": "youtube.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Google excludes mygmail.example.org",
+    "group": "Google",
+    "sample": {
+      "host": "mygmail.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Google excludes blogspot.example.org",
+    "group": "Google",
+    "sample": {
+      "host": "blogspot.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Google excludes appspot.example.org",
+    "group": "Google",
+    "sample": {
+      "host": "appspot.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Google excludes recaptcha.example.org",
+    "group": "Google",
+    "sample": {
+      "host": "recaptcha.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta excludes facebook.example.org",
+    "group": "Meta",
+    "sample": {
+      "host": "facebook.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta excludes instagram.example.org",
+    "group": "Meta",
+    "sample": {
+      "host": "instagram.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta excludes fbcdn.example.org",
+    "group": "Meta",
+    "sample": {
+      "host": "fbcdn.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta excludes whatsapp.example.org",
+    "group": "Meta",
+    "sample": {
+      "host": "whatsapp.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Microsoft excludes microsoft.example.org",
+    "group": "Microsoft",
+    "sample": {
+      "host": "microsoft.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Microsoft excludes onedrive.example.org",
+    "group": "Microsoft",
+    "sample": {
+      "host": "onedrive.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Microsoft excludes skydrive.example.org",
+    "group": "Microsoft",
+    "sample": {
+      "host": "skydrive.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Microsoft excludes 1drv.example.org",
+    "group": "Microsoft",
+    "sample": {
+      "host": "1drv.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "WeChat excludes cache.101.226.129.example.org",
+    "group": "WeChat",
+    "sample": {
+      "host": "cache.101.226.129.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "WeChat excludes origin.61.241.49.example.org",
+    "group": "WeChat",
+    "sample": {
+      "host": "origin.61.241.49.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "ParsecP2P excludes api.parsec.app",
+    "group": "ParsecP2P",
+    "sample": {
+      "host": "api.parsec.app"
+    },
+    "match": false
+  },
+  {
+    "name": "ParsecP2P excludes other-stun.example.org",
+    "group": "ParsecP2P",
+    "sample": {
+      "host": "other-stun.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "LAN retains literal 192.168.1.1",
+    "group": "LAN",
+    "sample": {
+      "ip": "192.168.1.1"
+    },
+    "match": true
+  },
+  {
+    "name": "LAN retains literal fd00::1",
+    "group": "LAN",
+    "sample": {
+      "ip": "fd00::1"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram retains literal 149.154.167.91",
+    "group": "Telegram",
+    "sample": {
+      "ip": "149.154.167.91"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram retains literal 2001:b28:f23d::1",
+    "group": "Telegram",
+    "sample": {
+      "ip": "2001:b28:f23d::1"
+    },
+    "match": true
+  },
+  {
+    "name": "unrelated Spotify cloud IPv4 does not identify Spotify",
+    "group": "Spotify",
+    "sample": {
+      "ip": "104.154.127.126"
+    },
+    "match": false
+  },
+  {
+    "name": "default Parsec list does not bypass unrelated source port 9000",
+    "group": "ParsecP2P",
+    "sample": {
+      "network": "udp",
+      "source_port": 9000
+    },
+    "match": false
+  },
+  {
+    "name": "TCP source port is not UDP fallback",
+    "group": "ParsecP2P",
+    "sample": {
+      "network": "tcp",
+      "source_port": 9000
+    },
+    "match": false,
+    "clients": [
+      "Loon",
+      "Surge",
+      "Clash"
+    ]
+  },
+  {
+    "name": "QX default does not infer Parsec from TCP source port",
+    "group": "ParsecP2P",
+    "sample": {
+      "network": "tcp",
+      "source_port": 9000
+    },
+    "match": false,
+    "clients": [
+      "QuantumultX"
+    ]
+  },
+  {
+    "name": "generic UDP 3478 is not a Parsec identity",
+    "group": "ParsecP2P",
+    "sample": {
+      "network": "udp",
+      "source_port": 54321,
+      "dest_port": 3478
+    },
+    "match": false
+  },
+  {
+    "name": "generic destination 9000 is not a Parsec identity",
+    "group": "ParsecP2P",
+    "sample": {
+      "network": "udp",
+      "source_port": 54321,
+      "dest_port": 9000
+    },
+    "match": false
+  },
+  {
+    "name": "native process UDP",
+    "group": "ParsecP2P",
+    "sample": {
+      "process": "parsecd",
+      "network": "udp",
+      "platform": "macos"
+    },
+    "match": true,
+    "clients": [
+      "Surge",
+      "Clash"
+    ]
+  },
+  {
+    "name": "native process TCP stays in control path",
+    "group": "ParsecP2P",
+    "sample": {
+      "process": "parsecd",
+      "network": "tcp",
+      "platform": "macos"
+    },
+    "match": false,
+    "clients": [
+      "Surge",
+      "Clash"
+    ]
+  },
+  {
+    "name": "AI excludes reviewed shared or misleading hostname chatgpt-async-webps-prod-not-owned.example.org",
+    "group": "AI",
+    "sample": {
+      "host": "chatgpt-async-webps-prod-not-owned.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "AI excludes reviewed shared or misleading hostname unrelated.byteoversea.com",
+    "group": "AI",
+    "sample": {
+      "host": "unrelated.byteoversea.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Apple excludes reviewed shared or misleading hostname testflight.example.org",
+    "group": "Apple",
+    "sample": {
+      "host": "testflight.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Apple excludes reviewed shared or misleading hostname smp-device.example.org",
+    "group": "Apple",
+    "sample": {
+      "host": "smp-device.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Apple excludes reviewed shared or misleading hostname apple.com.akadns.net.unrelated.invalid",
+    "group": "Apple",
+    "sample": {
+      "host": "apple.com.akadns.net.unrelated.invalid"
+    },
+    "match": false
+  },
+  {
+    "name": "Apple excludes reviewed shared or misleading hostname crashlytics.com",
+    "group": "Apple",
+    "sample": {
+      "host": "crashlytics.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Telegram excludes reviewed shared or misleading hostname telegram.example.org",
+    "group": "Telegram",
+    "sample": {
+      "host": "telegram.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Telegram excludes reviewed shared or misleading hostname nicegram.example.org",
+    "group": "Telegram",
+    "sample": {
+      "host": "nicegram.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "TikTok excludes reviewed shared or misleading hostname tiktok.example.org",
+    "group": "TikTok",
+    "sample": {
+      "host": "tiktok.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Twitter excludes reviewed shared or misleading hostname twitter.example.org",
+    "group": "Twitter",
+    "sample": {
+      "host": "twitter.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Netflix excludes reviewed shared or misleading hostname apiproxy-device-prod-nlb-unrelated.example.org",
+    "group": "Netflix",
+    "sample": {
+      "host": "apiproxy-device-prod-nlb-unrelated.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Netflix excludes reviewed shared or misleading hostname dualstack.apiproxy-unrelated.example.org",
+    "group": "Netflix",
+    "sample": {
+      "host": "dualstack.apiproxy-unrelated.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Netflix excludes reviewed shared or misleading hostname netflixdnstest.example.org",
+    "group": "Netflix",
+    "sample": {
+      "host": "netflixdnstest.example.org"
+    },
+    "match": false
+  },
+  {
+    "name": "Disney excludes reviewed shared or misleading hostname other.execute-api.us-east-1.amazonaws.com",
+    "group": "Disney",
+    "sample": {
+      "host": "other.execute-api.us-east-1.amazonaws.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Disney excludes reviewed shared or misleading hostname adobedtm.com",
+    "group": "Disney",
+    "sample": {
+      "host": "adobedtm.com"
+    },
+    "match": false
+  },
+  {
+    "name": "HBOMAX excludes reviewed shared or misleading hostname other.execute-api.us-east-1.amazonaws.com",
+    "group": "HBOMAX",
+    "sample": {
+      "host": "other.execute-api.us-east-1.amazonaws.com"
+    },
+    "match": false
+  },
+  {
+    "name": "HBOMAX excludes reviewed shared or misleading hostname other.execute-api.ap-southeast-1.amazonaws.com",
+    "group": "HBOMAX",
+    "sample": {
+      "host": "other.execute-api.ap-southeast-1.amazonaws.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Microsoft excludes reviewed shared or misleading hostname unrelated.edgesuite.net",
+    "group": "Microsoft",
+    "sample": {
+      "host": "unrelated.edgesuite.net"
+    },
+    "match": false
+  },
+  {
+    "name": "Microsoft excludes reviewed shared or misleading hostname unrelated.akadns.net",
+    "group": "Microsoft",
+    "sample": {
+      "host": "unrelated.akadns.net"
+    },
+    "match": false
+  },
+  {
+    "name": "Microsoft excludes reviewed shared or misleading hostname unrelated.b.akamaiedge.net",
+    "group": "Microsoft",
+    "sample": {
+      "host": "unrelated.b.akamaiedge.net"
+    },
+    "match": false
+  },
+  {
+    "name": "Nicegram bounded compatibility nicegram.me",
+    "group": "Telegram",
+    "sample": {
+      "host": "nicegram.me"
+    },
+    "match": true
+  },
+  {
+    "name": "Nicegram bounded compatibility api.nicegram.app",
+    "group": "Telegram",
+    "sample": {
+      "host": "api.nicegram.app"
+    },
+    "match": true
+  },
+  {
+    "name": "Netflix excludes non-Netflix registry network 103.87.204.1",
+    "group": "Netflix",
+    "sample": {
+      "ip": "103.87.204.1"
+    },
+    "match": false
+  },
+  {
+    "name": "Netflix excludes non-Netflix registry network 203.116.0.1",
+    "group": "Netflix",
+    "sample": {
+      "ip": "203.116.0.1"
+    },
+    "match": false
+  },
+  {
+    "name": "Netflix excludes non-Netflix registry network 203.75.84.1",
+    "group": "Netflix",
+    "sample": {
+      "ip": "203.75.84.1"
+    },
+    "match": false
+  },
+  {
+    "name": "Netflix excludes non-Netflix registry network 23.78.0.1",
+    "group": "Netflix",
+    "sample": {
+      "ip": "23.78.0.1"
+    },
+    "match": false
+  },
+  {
+    "name": "Netflix excludes non-Netflix registry network 54.0.0.1",
+    "group": "Netflix",
+    "sample": {
+      "ip": "54.0.0.1"
+    },
+    "match": false
+  },
+  {
+    "name": "Netflix excludes non-Netflix registry network 107.23.255.1",
+    "group": "Netflix",
+    "sample": {
+      "ip": "107.23.255.1"
+    },
+    "match": false
+  },
+  {
+    "name": "verified Netflix first 108.175.32.0/20",
+    "group": "Netflix",
+    "sample": {
+      "ip": "108.175.32.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 108.175.32.0/20",
+    "group": "Netflix",
+    "sample": {
+      "ip": "108.175.47.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 185.2.220.0/22",
+    "group": "Netflix",
+    "sample": {
+      "ip": "185.2.220.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 185.2.220.0/22",
+    "group": "Netflix",
+    "sample": {
+      "ip": "185.2.223.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 185.9.188.0/22",
+    "group": "Netflix",
+    "sample": {
+      "ip": "185.9.188.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 185.9.188.0/22",
+    "group": "Netflix",
+    "sample": {
+      "ip": "185.9.191.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 192.173.64.0/18",
+    "group": "Netflix",
+    "sample": {
+      "ip": "192.173.64.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 192.173.64.0/18",
+    "group": "Netflix",
+    "sample": {
+      "ip": "192.173.127.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 198.38.96.0/19",
+    "group": "Netflix",
+    "sample": {
+      "ip": "198.38.96.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 198.38.96.0/19",
+    "group": "Netflix",
+    "sample": {
+      "ip": "198.38.127.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 198.45.48.0/20",
+    "group": "Netflix",
+    "sample": {
+      "ip": "198.45.48.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 198.45.48.0/20",
+    "group": "Netflix",
+    "sample": {
+      "ip": "198.45.63.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 207.45.72.0/22",
+    "group": "Netflix",
+    "sample": {
+      "ip": "207.45.72.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 207.45.72.0/22",
+    "group": "Netflix",
+    "sample": {
+      "ip": "207.45.75.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 208.75.76.0/22",
+    "group": "Netflix",
+    "sample": {
+      "ip": "208.75.76.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 208.75.76.0/22",
+    "group": "Netflix",
+    "sample": {
+      "ip": "208.75.79.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 23.246.0.0/18",
+    "group": "Netflix",
+    "sample": {
+      "ip": "23.246.0.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 23.246.0.0/18",
+    "group": "Netflix",
+    "sample": {
+      "ip": "23.246.63.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 37.77.184.0/21",
+    "group": "Netflix",
+    "sample": {
+      "ip": "37.77.184.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 37.77.184.0/21",
+    "group": "Netflix",
+    "sample": {
+      "ip": "37.77.191.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 45.57.0.0/17",
+    "group": "Netflix",
+    "sample": {
+      "ip": "45.57.0.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 45.57.0.0/17",
+    "group": "Netflix",
+    "sample": {
+      "ip": "45.57.127.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 64.120.128.0/17",
+    "group": "Netflix",
+    "sample": {
+      "ip": "64.120.128.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 64.120.128.0/17",
+    "group": "Netflix",
+    "sample": {
+      "ip": "64.120.255.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 66.197.128.0/17",
+    "group": "Netflix",
+    "sample": {
+      "ip": "66.197.128.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 66.197.128.0/17",
+    "group": "Netflix",
+    "sample": {
+      "ip": "66.197.255.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 69.53.224.0/19",
+    "group": "Netflix",
+    "sample": {
+      "ip": "69.53.224.0"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 69.53.224.0/19",
+    "group": "Netflix",
+    "sample": {
+      "ip": "69.53.255.255"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 2607:fb10::/32",
+    "group": "Netflix",
+    "sample": {
+      "ip": "2607:fb10::"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 2607:fb10::/32",
+    "group": "Netflix",
+    "sample": {
+      "ip": "2607:fb10:ffff:ffff:ffff:ffff:ffff:ffff"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 2620:10c:7000::/44",
+    "group": "Netflix",
+    "sample": {
+      "ip": "2620:10c:7000::"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 2620:10c:7000::/44",
+    "group": "Netflix",
+    "sample": {
+      "ip": "2620:10c:700f:ffff:ffff:ffff:ffff:ffff"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 2a00:86c0::/32",
+    "group": "Netflix",
+    "sample": {
+      "ip": "2a00:86c0::"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 2a00:86c0::/32",
+    "group": "Netflix",
+    "sample": {
+      "ip": "2a00:86c0:ffff:ffff:ffff:ffff:ffff:ffff"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix first 2a03:5640::/32",
+    "group": "Netflix",
+    "sample": {
+      "ip": "2a03:5640::"
+    },
+    "match": true
+  },
+  {
+    "name": "verified Netflix last 2a03:5640::/32",
+    "group": "Netflix",
+    "sample": {
+      "ip": "2a03:5640:ffff:ffff:ffff:ffff:ffff:ffff"
+    },
+    "match": true
+  },
+  {
+    "name": "Loon macOS identifies Parsec UDP",
+    "group": "ParsecP2P",
+    "sample": {
+      "process": "parsecd",
+      "platform": "macos",
+      "network": "udp"
+    },
+    "match": true,
+    "clients": [
+      "Loon"
+    ]
+  },
+  {
+    "name": "Loon iOS ignores process-only conditions",
+    "group": "ParsecP2P",
+    "sample": {
+      "process": "parsecd",
+      "platform": "ios",
+      "network": "udp"
+    },
+    "match": false,
+    "clients": [
+      "Loon"
+    ]
+  },
+  {
+    "name": "Surge iOS ignores process-only conditions",
+    "group": "ParsecP2P",
+    "sample": {
+      "process": "parsecd",
+      "platform": "ios",
+      "network": "udp"
+    },
+    "match": false,
+    "clients": [
+      "Surge"
+    ]
+  },
+  {
+    "name": "Clash Windows identifies parsecd.exe UDP",
+    "group": "ParsecP2P",
+    "sample": {
+      "process": "parsecd.exe",
+      "platform": "windows",
+      "network": "udp"
+    },
+    "match": true,
+    "clients": [
+      "Clash"
+    ]
+  },
+  {
+    "name": "explicit optional port 9000 udp",
+    "group": "ParsecP2P-Port9000",
+    "sample": {
+      "source_port": 9000,
+      "network": "udp"
+    },
+    "match": true,
+    "clients": [
+      "Loon",
+      "Surge",
+      "Clash"
+    ]
+  },
+  {
+    "name": "explicit optional port 9000 tcp",
+    "group": "ParsecP2P-Port9000",
+    "sample": {
+      "source_port": 9000,
+      "network": "tcp"
+    },
+    "match": false,
+    "clients": [
+      "Loon",
+      "Surge",
+      "Clash"
+    ]
+  },
+  {
+    "name": "Disney: shared cdn.optimizely.com is not service-exclusive",
+    "group": "Disney",
+    "sample": {
+      "host": "cdn.optimizely.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Microsoft: shared cdn.optimizely.com is not service-exclusive",
+    "group": "Microsoft",
+    "sample": {
+      "host": "cdn.optimizely.com"
+    },
+    "match": false
+  },
+  {
+    "name": "AI: shared sf16-short-sg.bytedapm.com is not service-exclusive",
+    "group": "AI",
+    "sample": {
+      "host": "sf16-short-sg.bytedapm.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Telegram official 91.108.56.0/22 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.108.56.0"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 91.108.56.0/22 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.108.59.255"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 91.108.4.0/22 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.108.4.0"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 91.108.4.0/22 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.108.7.255"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 91.108.8.0/22 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.108.8.0"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 91.108.8.0/22 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.108.11.255"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 91.108.16.0/22 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.108.16.0"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 91.108.16.0/22 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.108.19.255"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 91.108.12.0/22 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.108.12.0"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 91.108.12.0/22 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.108.15.255"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 149.154.160.0/20 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "149.154.160.0"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 149.154.160.0/20 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "149.154.175.255"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 91.105.192.0/23 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.105.192.0"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 91.105.192.0/23 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.105.193.255"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 91.108.20.0/22 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.108.20.0"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 91.108.20.0/22 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.108.23.255"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 185.76.151.0/24 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "185.76.151.0"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 185.76.151.0/24 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "185.76.151.255"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 2001:b28:f23d::/48 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "2001:b28:f23d::"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 2001:b28:f23d::/48 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "2001:b28:f23d:ffff:ffff:ffff:ffff:ffff"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 2001:b28:f23f::/48 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "2001:b28:f23f::"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 2001:b28:f23f::/48 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "2001:b28:f23f:ffff:ffff:ffff:ffff:ffff"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 2001:67c:4e8::/48 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "2001:67c:4e8::"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 2001:67c:4e8::/48 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "2001:67c:4e8:ffff:ffff:ffff:ffff:ffff"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 2001:b28:f23c::/48 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "2001:b28:f23c::"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 2001:b28:f23c::/48 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "2001:b28:f23c:ffff:ffff:ffff:ffff:ffff"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 2a0a:f280::/32 first address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "2a0a:f280::"
+    },
+    "match": true
+  },
+  {
+    "name": "Telegram official 2a0a:f280::/32 last address",
+    "group": "Telegram",
+    "sample": {
+      "ip": "2a0a:f280:ffff:ffff:ffff:ffff:ffff:ffff"
+    },
+    "match": true
+  },
+  {
+    "name": "Meta rejects shared or unlisted legacy network 108.177.8.1",
+    "group": "Meta",
+    "sample": {
+      "ip": "108.177.8.1"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta rejects shared or unlisted legacy network 18.194.0.1",
+    "group": "Meta",
+    "sample": {
+      "ip": "18.194.0.1"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta rejects shared or unlisted legacy network 34.224.1.1",
+    "group": "Meta",
+    "sample": {
+      "ip": "34.224.1.1"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta rejects shared or unlisted legacy network 119.235.224.1",
+    "group": "Meta",
+    "sample": {
+      "ip": "119.235.224.1"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta rejects shared or unlisted legacy network 184.173.128.1",
+    "group": "Meta",
+    "sample": {
+      "ip": "184.173.128.1"
+    },
+    "match": false
+  },
+  {
+    "name": "Apple rejects shared or unlisted legacy network 205.180.175.1",
+    "group": "Apple",
+    "sample": {
+      "ip": "205.180.175.1"
+    },
+    "match": false
+  },
+  {
+    "name": "Bilibili rejects shared or unlisted legacy network 203.107.1.1",
+    "group": "Bilibili",
+    "sample": {
+      "ip": "203.107.1.1"
+    },
+    "match": false
+  },
+  {
+    "name": "Bilibili rejects shared or unlisted legacy network 106.75.74.76",
+    "group": "Bilibili",
+    "sample": {
+      "ip": "106.75.74.76"
+    },
+    "match": false
+  },
+  {
+    "name": "WeChat rejects shared or unlisted legacy network 240e:e1:a800::1",
+    "group": "WeChat",
+    "sample": {
+      "ip": "240e:e1:a800::1"
+    },
+    "match": false
+  },
+  {
+    "name": "WeChat rejects shared or unlisted legacy network 132203",
+    "group": "WeChat",
+    "sample": {
+      "asn": 132203
+    },
+    "match": false
+  },
+  {
+    "name": "Telegram rejects shared or unlisted legacy network 91.108.40.1",
+    "group": "Telegram",
+    "sample": {
+      "ip": "91.108.40.1"
+    },
+    "match": false
+  },
+  {
+    "name": "Telegram rejects shared or unlisted legacy network 2a0a:f281::1",
+    "group": "Telegram",
+    "sample": {
+      "ip": "2a0a:f281::1"
+    },
+    "match": false
+  },
+  {
+    "name": "Loon executable names ignore case per official process reference",
+    "group": "ParsecP2P",
+    "clients": [
+      "Loon"
+    ],
+    "sample": {
+      "platform": "macos",
+      "process": "ParsecD",
+      "network": "UDP"
+    },
+    "match": true
+  },
+  {
+    "name": "Surge executable names retain case per official process reference",
+    "group": "ParsecP2P",
+    "clients": [
+      "Surge"
+    ],
+    "sample": {
+      "platform": "macos",
+      "process": "ParsecD",
+      "network": "UDP"
+    },
+    "match": false
+  }
+]

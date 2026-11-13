@@ -2,12 +2,13 @@
 # AUTHOR: Horatio
 # FORMAT: Mihomo classical YAML rule-provider
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 38
+# RULES: 36
 # SOURCE: Loon/rule/TikTok.lsr (same repository)
 # USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
 # PROVENANCE / EXISTING NOTES:
 # TikTok global service rule set.
 # Includes TikTok app/web, media/CDN and related delivery domains from v2fly/domain-list-community.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 payload:
   - 'DOMAIN,p16-tiktokcdn-com.akamaized.net'
@@ -16,7 +17,6 @@ payload:
   - 'DOMAIN,roovza.inapps.appsflyersdk.com'
   - 'DOMAIN,roovza.launches.appsflyersdk.com'
   - 'DOMAIN,roovza.skadsdk.appsflyersdk.com'
-  - 'DOMAIN-KEYWORD,tiktok'
   - 'DOMAIN-SUFFIX,bytedapm.com'
   - 'DOMAIN-SUFFIX,muscdn.com'
   - 'DOMAIN-SUFFIX,musical.ly'
@@ -47,4 +47,3 @@ payload:
   - 'DOMAIN-SUFFIX,tiktokcdn.com.edgesuite.net'
   - 'DOMAIN-SUFFIX,tiktokv.com.edgekey.net'
   - 'DOMAIN-SUFFIX,tiktokv.com.edgesuite.net'
-  - 'DOMAIN-SUFFIX,analytics.tiktok.com'

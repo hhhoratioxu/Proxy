@@ -2,12 +2,13 @@
 # AUTHOR: Horatio
 # FORMAT: Mihomo classical YAML rule-provider
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 85
+# RULES: 84
 # SOURCE: Loon/rule/NTP.lsr (same repository)
 # USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + blackmatrix7 NTPService
 # NOTE: Comprehensive NTP/time-service routing set including Apple, Google, Microsoft, Cloudflare, Aliyun, Tencent and public pools.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 payload:
   - 'DOMAIN-SUFFIX,cn.ntp.org.cn'
@@ -41,7 +42,6 @@ payload:
   - 'DOMAIN-SUFFIX,ntp7.cloud.aliyuncs.com'
   - 'DOMAIN-SUFFIX,ntp8.cloud.aliyuncs.com'
   - 'DOMAIN-SUFFIX,ntp9.cloud.aliyuncs.com'
-  - 'DOMAIN-SUFFIX,pool.ntp.org'
   - 'DOMAIN-SUFFIX,s1a.time.edu.cn'
   - 'DOMAIN-SUFFIX,s1b.time.edu.cn'
   - 'DOMAIN-SUFFIX,s1c.time.edu.cn'

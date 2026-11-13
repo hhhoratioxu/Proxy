@@ -2,14 +2,15 @@
 # AUTHOR: Horatio Xu
 # FORMAT: Mihomo classical YAML rule-provider
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 5
+# RULES: 4
 # POLICY: DIRECT when importing; place before Parsec proxy rule set.
-# COMPAT: Process detection must be enabled; SRC-PORT fallback may match unrelated UDP connections.
+# COMPAT: Process detection must be enabled for application UDP matching.
+# PORT-FALLBACK: Explicit opt-in at rule/optional/ParsecP2P-Port9000.yaml.
 # WARNING: These rules cannot guarantee a P2P connection through CGNAT or restrictive firewalls.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 payload:
   - 'DOMAIN,stun.parsec.app'
   - 'DOMAIN,stun6.parsec.app'
   - 'AND,((PROCESS-NAME,parsecd),(NETWORK,udp))'
   - 'AND,((PROCESS-NAME,parsecd.exe),(NETWORK,udp))'
-  - 'AND,((SRC-PORT,9000),(NETWORK,udp))'

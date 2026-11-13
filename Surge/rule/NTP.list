@@ -1,13 +1,18 @@
+# FORMAT: Surge Remote Rule Set
+# UPDATED: 2026-10-16
+# RULES: 84
+# PORTED FROM: https://raw.githubusercontent.com/hhhoratioxu/Proxy/73e99eb3e2c36920768328b65bbf60b8eed3281f/Loon/rule/NTP.lsr
+# POLICY: Assign a policy when importing this URL as RULE-SET in Surge.
+# All source rule entries and their order are retained.
+#
 # NAME: NTP
 # AUTHOR: Horatio
-# FORMAT: Surge external RULE-SET
-# FORMAT-VERIFIED: 2026-10-25
-# RULES: 85
-# SOURCE: Loon/rule/NTP.lsr (same repository)
-# USE: Remote rule set; select policy in the client (not in this file).
-# PROVENANCE / EXISTING NOTES:
+# SOURCE FORMAT: Loon Rule Set
+# SOURCE UPDATED: 2026-09-25
+# TOTAL: 85
 # SOURCE: Horatio existing + blackmatrix7 NTPService
 # NOTE: Comprehensive NTP/time-service routing set including Apple, Google, Microsoft, Cloudflare, Aliyun, Tencent and public pools.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 DOMAIN-SUFFIX,cn.ntp.org.cn
 DOMAIN-SUFFIX,de.ntp.org.cn
@@ -40,7 +45,6 @@ DOMAIN-SUFFIX,ntp7.aliyun.com
 DOMAIN-SUFFIX,ntp7.cloud.aliyuncs.com
 DOMAIN-SUFFIX,ntp8.cloud.aliyuncs.com
 DOMAIN-SUFFIX,ntp9.cloud.aliyuncs.com
-DOMAIN-SUFFIX,pool.ntp.org
 DOMAIN-SUFFIX,s1a.time.edu.cn
 DOMAIN-SUFFIX,s1b.time.edu.cn
 DOMAIN-SUFFIX,s1c.time.edu.cn

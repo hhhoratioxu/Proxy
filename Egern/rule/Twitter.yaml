@@ -2,18 +2,16 @@
 # AUTHOR: Horatio
 # FORMAT: Egern YAML rule_set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 34
+# RULES: 33
 # SOURCE: Loon/rule/Twitter.lsr (same repository)
 # USE: reference this URL from a rule_set with an assigned policy.
 # COMPAT: no_resolve is a rule-set-wide flag in Egern.
 # PROVENANCE / EXISTING NOTES:
 # Converted from the matching comprehensive Egern Twitter rule set.
 # Keep this file aligned with Egern/rule for dual-client use.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 no_resolve: true
-
-domain_keyword_set:
-  - "twitter"
 
 domain_suffix_set:
   - "ads-twitter.com"

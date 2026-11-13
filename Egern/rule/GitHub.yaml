@@ -2,18 +2,15 @@
 # AUTHOR: Horatio
 # FORMAT: Egern YAML rule_set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 64
+# RULES: 59
 # SOURCE: Loon/rule/GitHub.lsr (same repository)
 # USE: reference this URL from a rule_set with an assigned policy.
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community (GitHub, Copilot, npm)
 # NOTE: Covers GitHub web/API/assets/releases/Actions/Container Registry/Copilot and GitHub-owned npm services.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 domain_set:
-  - "copilot-proxy.githubusercontent.com"
-  - "copilot-telemetry-service.githubusercontent.com"
-  - "copilot-telemetry.githubusercontent.com"
-  - "copilot-workspace.githubnext.com"
   - "copilotprodattachments.blob.core.windows.net"
   - "github-api.arkoselabs.com"
   - "github-cloud.s3.amazonaws.com"
@@ -45,7 +42,6 @@ domain_set:
 
 domain_suffix_set:
   - "atom.io"
-  - "collector.github.com"
   - "dependabot.com"
   - "gh.io"
   - "ghcr.io"

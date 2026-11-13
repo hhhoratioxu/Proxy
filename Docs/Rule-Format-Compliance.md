@@ -1,5 +1,13 @@
 # 规则格式兼容性与全库规范化记录 / Rule Format Compliance
 
+当前复核：**2026-11-13**。保留 26 类 × 6 端，另有 3 份明确选用的 Parsec 来源埠文件。当前默认无无边界关键词；Quantumult X 不使用公开开发者参考未记载的 SRC-PORT/no-resolve，Egern 用集合级 no_resolve，Shadowrocket 保留既有 ASN 无选项形状，Loon/Surge 的进程组合只按 Mac 原生能力使用。没有找到完整公开的 Shadowrocket 官方语法规范，不把社区材料当成同等官方证明。
+
+默认条件 35,513 条，245 个案例/1418 项断言、28 项 Python、9 项扩展脚本测试与三种 Mihomo 原生语法检查通过。第一阶段的 Egern 21 项混合旗标差异已处理，仍不代表六端 DNS 调度等价。当前格式依据、详细清单与设备验证边界见[第二阶段优化报告](./Official-Optimization-2026-11-13.md)，复跑见[开发说明](./Development.md)。
+
+## 历史格式审核记录
+
+以下保留 2026-10-25、10-28 与第一阶段审计快照；旧条数、端口条件与混合旗标说明已由上方当前记录取代。
+
 最后审核：**2026-10-25**。仓库共 **26 个规则类别 × 6 个客户端 = 156 个分流文件**。
 
 这次审核的是**远程规则文件格式**，不是订阅配置文件，也不代表所有域名、IP 地址实时可用。以现有 Loon 规则数据为转换基准，保持匹配类型和原始匹配值（但去掉被前序同匹配条件完全覆盖的冗余规则）；对 ParsecP2P 采用客户端专属版本。客户端安装及代理策略仍由用户单独指定。
@@ -27,7 +35,7 @@
 - [Surge 官方 Rule Sets](https://manual.nssurge.com/rules/ruleset.html) · [规则类型](https://manual.nssurge.com/rules/overview.html)
 - [Quantumult X 开发者 sample.conf](https://github.com/crossutility/Quantumult-X/blob/master/sample.conf)
 - [Mihomo 官方 Rule Providers](https://wiki.metacubex.one/en/config/rule-providers/) · [classical 内容规范](https://wiki.metacubex.one/en/config/rule-providers/content/)
-- [Shadowrocket 社区规则语法参考](https://doc.repcz.link/shadowrocket/rule/)
+- [Shadowrocket 开发者网站](https://shadowlaunch.com/)（未找到完整公开语法规范；当前只沿用既有语法）
 
 ## 验证范围与限制
 
@@ -36,3 +44,7 @@
 ## AI 数据更新（2026-10-28）
 
 六个 `AI` 规则文件现为每端 971 条：保留原 476 条并新增 495 条。沿用本记录中的原生格式，其他 25 个类别和各客户端专属 ParsecP2P 条件不变。本次新增采用域名精确匹配及专用后缀，保留原有一条受范围限制的动态端点关键词；六端条件已作一致性核对。完整内容、使用顺序及边界见 [AI 分流说明](./AI-Routing.md)。这次数据扩充不把历史格式审核提升为真实客户端或全部服务的连通性验收。
+
+## 第一阶段持续维护校验快照（2026-11-13，当时未发布）
+
+26 类 × 6 端继续保留。本轮完成全部原生文件解析、匹配对象与可表达旗标一致性核对、130 个分流案例，以及固定版本运行脚本核验。Egern 的集合级 `no_resolve` 仍无法逐项还原混合旗标；校验报告明确列出该差异。Mihomo 原生语法检查、脚本模拟和真实设备验收分别记录。重复执行方法见 [开发说明](./Development.md)，具体改动、条数及待处理风险见 [完整审计](./Audit-2026-11-13.md)。

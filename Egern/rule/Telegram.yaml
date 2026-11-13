@@ -9,18 +9,13 @@
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + blackmatrix7 Telegram + v2fly/domain-list-community Telegram
 # NOTE: Telegram app/web/CDN, related official services, IPv4/IPv6 and Telegram ASNs.
+# DATA-AUDITED: 2026-11-13; see Docs/Audit-2026-11-13.md.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 no_resolve: true
 
 domain_set:
-  - "api.imem.app"
-  - "api.mixpanel.com"
-  - "api.swiftgram.app"
   - "events-gateway.ncdev.site"
-
-domain_keyword_set:
-  - "nicegram"
-  - "telegram"
 
 domain_suffix_set:
   - "cdn-telegram.org"
@@ -52,22 +47,27 @@ domain_suffix_set:
   - "tx.me"
   - "usercontent.dev"
   - "walletbot.me"
+  - "nicegram.me"
+  - "nicegram.app"
 
 ip_cidr_set:
   - "109.239.140.0/24"
-  - "139.59.210.98/32"
   - "149.154.160.0/20"
   - "185.76.151.0/24"
-  - "194.221.250.50/32"
-  - "196.55.216.167/32"
-  - "5.28.192.0/18"
-  - "91.108.0.0/16"
+  - "91.108.56.0/22"
+  - "91.108.4.0/22"
+  - "91.108.8.0/22"
+  - "91.108.16.0/22"
+  - "91.108.12.0/22"
+  - "91.105.192.0/23"
+  - "91.108.20.0/22"
 
 ip_cidr6_set:
   - "2001:67c:4e8::/48"
-  - "2001:b28:f23c::/47"
   - "2001:b28:f23f::/48"
-  - "2a0a:f280::/29"
+  - "2001:b28:f23d::/48"
+  - "2001:b28:f23c::/48"
+  - "2a0a:f280::/32"
 
 asn_set:
   - "211157"

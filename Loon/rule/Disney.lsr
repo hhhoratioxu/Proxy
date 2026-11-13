@@ -2,19 +2,14 @@
 # AUTHOR: Horatio
 # FORMAT: Loon remote .lsr (policy-less)
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 245
+# RULES: 232
 # SOURCE: Loon/rule/Disney.lsr (same repository)
 # USE: Remote rule set; select policy in the client (not in this file).
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community Disney ecosystem (Disney/BAMTech/ESPN/Hotstar/Hulu/Marvel/NatGeo/Star)
 # NOTE: Comprehensive Disney streaming and first-party ecosystem routing set.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
-DOMAIN,disney.my.sentry.io
-DOMAIN,disneyplus.com.ssl.sc.omtrdc.net
-DOMAIN,espn.api.edge.bamgrid.com
-DOMAIN,espn.hb.omtrdc.net
-DOMAIN,espndotcom.tt.omtrdc.net
-DOMAIN,hulu.playback.edge.bamgrid.com
 DOMAIN-SUFFIX,112263.com
 DOMAIN-SUFFIX,20thcenturystudios.com
 DOMAIN-SUFFIX,20thcenturystudios.com.au
@@ -24,7 +19,6 @@ DOMAIN-SUFFIX,abc-studios.com
 DOMAIN-SUFFIX,abc.com
 DOMAIN-SUFFIX,abcnews.com
 DOMAIN-SUFFIX,abcnews.edgesuite.net
-DOMAIN-SUFFIX,adobedtm.com
 DOMAIN-SUFFIX,adventuresbydisney.com
 DOMAIN-SUFFIX,babble.com
 DOMAIN-SUFFIX,babyzone.com
@@ -34,7 +28,6 @@ DOMAIN-SUFFIX,bamtech.net
 DOMAIN-SUFFIX,beautyandthebeastmusical.co.uk
 DOMAIN-SUFFIX,braze.com
 DOMAIN-SUFFIX,callhulu.com
-DOMAIN-SUFFIX,cdn.optimizely.com
 DOMAIN-SUFFIX,conviva.com
 DOMAIN-SUFFIX,d9.flashtalking.com
 DOMAIN-SUFFIX,detpress.com
@@ -150,7 +143,6 @@ DOMAIN-SUFFIX,espn.net
 DOMAIN-SUFFIX,espncdn.com
 DOMAIN-SUFFIX,espndotcom.tt.omtrdc.net
 DOMAIN-SUFFIX,espnqa.com
-DOMAIN-SUFFIX,execute-api.us-east-1.amazonaws.com
 DOMAIN-SUFFIX,findyourlimits.com
 DOMAIN-SUFFIX,freeform.com
 DOMAIN-SUFFIX,freehulu.com
@@ -233,10 +225,6 @@ DOMAIN-SUFFIX,sorcerersarena.com
 DOMAIN-SUFFIX,spaindisney.com
 DOMAIN-SUFFIX,star-brasil.com
 DOMAIN-SUFFIX,star-latam.com
-DOMAIN-SUFFIX,star.api.edge.bamgrid.com
-DOMAIN-SUFFIX,star.connections.edge.bamgrid.com
-DOMAIN-SUFFIX,star.content.edge.bamgrid.com
-DOMAIN-SUFFIX,star.playback.edge.bamgrid.com
 DOMAIN-SUFFIX,starott.com
 DOMAIN-SUFFIX,starplus.com
 DOMAIN-SUFFIX,starwars.com

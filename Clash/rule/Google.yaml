@@ -2,7 +2,7 @@
 # AUTHOR: Horatio
 # FORMAT: Mihomo classical YAML rule-provider
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 877
+# RULES: 855
 # SOURCE: Loon/rule/Google.lsr (same repository)
 # USE: behavior: classical; format: yaml; RULE-SET,provider,POLICY.
 # COMPAT: omitted 10 USER-AGENT rules (not supported by Mihomo).
@@ -10,16 +10,11 @@
 # Combined Google + YouTube rule set.
 # YouTube domains are intentionally included in this Google policy.
 # Place AI rules before this file if Gemini/Google AI should use a separate AI policy.
+# DATA-AUDITED: 2026-11-13; see Docs/Audit-2026-11-13.md.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 payload:
   - 'DOMAIN,voice.telephony.goog'
-  - 'DOMAIN,yt3.googleusercontent.com'
-  - 'DOMAIN-KEYWORD,appspot'
-  - 'DOMAIN-KEYWORD,blogspot'
-  - 'DOMAIN-KEYWORD,gmail'
-  - 'DOMAIN-KEYWORD,google'
-  - 'DOMAIN-KEYWORD,recaptcha'
-  - 'DOMAIN-KEYWORD,youtube'
   - 'DOMAIN-SUFFIX,0emm.com'
   - 'DOMAIN-SUFFIX,1e100.net'
   - 'DOMAIN-SUFFIX,1ucrs.com'
@@ -32,7 +27,6 @@ payload:
   - 'DOMAIN-SUFFIX,admeld.com'
   - 'DOMAIN-SUFFIX,admob-cn.com'
   - 'DOMAIN-SUFFIX,admob.com'
-  - 'DOMAIN-SUFFIX,ads.youtube.com'
   - 'DOMAIN-SUFFIX,adsense.com'
   - 'DOMAIN-SUFFIX,adsensecustomsearchads.com'
   - 'DOMAIN-SUFFIX,adsenseformobileapps.com'
@@ -70,9 +64,6 @@ payload:
   - 'DOMAIN-SUFFIX,baselinestudy.org'
   - 'DOMAIN-SUFFIX,bazel.build'
   - 'DOMAIN-SUFFIX,bdn.dev'
-  - 'DOMAIN-SUFFIX,beacons.gvt2.com'
-  - 'DOMAIN-SUFFIX,beacons2.gvt2.com'
-  - 'DOMAIN-SUFFIX,beacons3.gvt2.com'
   - 'DOMAIN-SUFFIX,beatthatquote.com'
   - 'DOMAIN-SUFFIX,blink.org'
   - 'DOMAIN-SUFFIX,blog.google'
@@ -237,7 +228,6 @@ payload:
   - 'DOMAIN-SUFFIX,g.dev'
   - 'DOMAIN-SUFFIX,g.page'
   - 'DOMAIN-SUFFIX,gateway.dev'
-  - 'DOMAIN-SUFFIX,gcp.gvt2.com'
   - 'DOMAIN-SUFFIX,gcr.io'
   - 'DOMAIN-SUFFIX,gerritcodereview.com'
   - 'DOMAIN-SUFFIX,get.app'
@@ -622,10 +612,6 @@ payload:
   - 'DOMAIN-SUFFIX,recaptcha-cn.net'
   - 'DOMAIN-SUFFIX,recaptcha.net'
   - 'DOMAIN-SUFFIX,redhotlabs.com'
-  - 'DOMAIN-SUFFIX,redirector.gcpcdn.gvt1.com'
-  - 'DOMAIN-SUFFIX,redirector.gvt1.com'
-  - 'DOMAIN-SUFFIX,redirector.offline-maps.gvt1.com'
-  - 'DOMAIN-SUFFIX,redirector.snap.gvt1.com'
   - 'DOMAIN-SUFFIX,registry.google'
   - 'DOMAIN-SUFFIX,revolv.com'
   - 'DOMAIN-SUFFIX,ridepenguin.com'
@@ -676,7 +662,6 @@ payload:
   - 'DOMAIN-SUFFIX,verilystudyhub.com'
   - 'DOMAIN-SUFFIX,verilystudywatch.com'
   - 'DOMAIN-SUFFIX,verilystudywatch.org'
-  - 'DOMAIN-SUFFIX,video.google.com'
   - 'DOMAIN-SUFFIX,wallet.com'
   - 'DOMAIN-SUFFIX,waveprotocol.org'
   - 'DOMAIN-SUFFIX,waymo.com'
@@ -689,7 +674,6 @@ payload:
   - 'DOMAIN-SUFFIX,webrtc.org'
   - 'DOMAIN-SUFFIX,weltweitwachsen.de'
   - 'DOMAIN-SUFFIX,whatbrowser.org'
-  - 'DOMAIN-SUFFIX,wide-youtube.l.google.com'
   - 'DOMAIN-SUFFIX,widevine.com'
   - 'DOMAIN-SUFFIX,withgoogle.com'
   - 'DOMAIN-SUFFIX,withyoutube.com'
@@ -714,7 +698,6 @@ payload:
   - 'DOMAIN-SUFFIX,youtu.be'
   - 'DOMAIN-SUFFIX,youtube'
   - 'DOMAIN-SUFFIX,youtube-nocookie.com'
-  - 'DOMAIN-SUFFIX,youtube-ui.l.google.com'
   - 'DOMAIN-SUFFIX,youtube.ae'
   - 'DOMAIN-SUFFIX,youtube.al'
   - 'DOMAIN-SUFFIX,youtube.am'
@@ -810,7 +793,6 @@ payload:
   - 'DOMAIN-SUFFIX,youtube.fi'
   - 'DOMAIN-SUFFIX,youtube.fr'
   - 'DOMAIN-SUFFIX,youtube.ge'
-  - 'DOMAIN-SUFFIX,youtube.googleapis.com'
   - 'DOMAIN-SUFFIX,youtube.gr'
   - 'DOMAIN-SUFFIX,youtube.gt'
   - 'DOMAIN-SUFFIX,youtube.hk'
@@ -868,7 +850,6 @@ payload:
   - 'DOMAIN-SUFFIX,youtube.uy'
   - 'DOMAIN-SUFFIX,youtube.vn'
   - 'DOMAIN-SUFFIX,youtubeeducation.com'
-  - 'DOMAIN-SUFFIX,youtubeembeddedplayer.googleapis.com'
   - 'DOMAIN-SUFFIX,youtubefanfest.com'
   - 'DOMAIN-SUFFIX,youtubegaming.com'
   - 'DOMAIN-SUFFIX,youtubego.co.id'
@@ -877,7 +858,6 @@ payload:
   - 'DOMAIN-SUFFIX,youtubego.com.br'
   - 'DOMAIN-SUFFIX,youtubego.id'
   - 'DOMAIN-SUFFIX,youtubego.in'
-  - 'DOMAIN-SUFFIX,youtubei.googleapis.com'
   - 'DOMAIN-SUFFIX,youtubekids.com'
   - 'DOMAIN-SUFFIX,youtubemobilesupport.com'
   - 'DOMAIN-SUFFIX,yt.be'

@@ -2,14 +2,14 @@
 # AUTHOR: Horatio
 # FORMAT: Quantumult X filter_remote
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 34
+# RULES: 33
 # SOURCE: Loon/rule/Twitter.lsr (same repository)
 # USE: [filter_remote] with force-policy=<policy>.
 # PROVENANCE / EXISTING NOTES:
 # Converted from the matching comprehensive Egern Twitter rule set.
 # Keep this file aligned with Egern/rule for dual-client use.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
-HOST-KEYWORD,twitter
 HOST-SUFFIX,ads-twitter.com
 HOST-SUFFIX,cms-twdigitalassets.com
 HOST-SUFFIX,grok.com
@@ -36,10 +36,10 @@ HOST-SUFFIX,twttr.net
 HOST-SUFFIX,twvid.com
 HOST-SUFFIX,vine.co
 HOST-SUFFIX,x.com
-IP-CIDR,69.195.160.0/19,no-resolve
-IP-CIDR,192.133.76.0/22,no-resolve
-IP-CIDR,199.59.148.0/22,no-resolve
-IP-CIDR,199.96.56.0/21,no-resolve
-IP-CIDR,202.160.128.0/22,no-resolve
-IP-CIDR,209.237.192.0/19,no-resolve
+IP-CIDR,69.195.160.0/19
+IP-CIDR,192.133.76.0/22
+IP-CIDR,199.59.148.0/22
+IP-CIDR,199.96.56.0/21
+IP-CIDR,202.160.128.0/22
+IP-CIDR,209.237.192.0/19
 IP-ASN,13414

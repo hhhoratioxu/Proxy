@@ -2,17 +2,14 @@
 # AUTHOR: Horatio
 # FORMAT: Quantumult X filter_remote
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 64
+# RULES: 59
 # SOURCE: Loon/rule/GitHub.lsr (same repository)
 # USE: [filter_remote] with force-policy=<policy>.
 # PROVENANCE / EXISTING NOTES:
 # SOURCE: Horatio existing + v2fly/domain-list-community (GitHub, Copilot, npm)
 # NOTE: Covers GitHub web/API/assets/releases/Actions/Container Registry/Copilot and GitHub-owned npm services.
+# OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
-HOST,copilot-proxy.githubusercontent.com
-HOST,copilot-telemetry-service.githubusercontent.com
-HOST,copilot-telemetry.githubusercontent.com
-HOST,copilot-workspace.githubnext.com
 HOST,copilotprodattachments.blob.core.windows.net
 HOST,github-api.arkoselabs.com
 HOST,github-cloud.s3.amazonaws.com
@@ -42,7 +39,6 @@ HOST,productionresultssa7.blob.core.windows.net
 HOST,productionresultssa8.blob.core.windows.net
 HOST,productionresultssa9.blob.core.windows.net
 HOST-SUFFIX,atom.io
-HOST-SUFFIX,collector.github.com
 HOST-SUFFIX,dependabot.com
 HOST-SUFFIX,gh.io
 HOST-SUFFIX,ghcr.io
