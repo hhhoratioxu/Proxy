@@ -251,3 +251,9 @@ Loon、Surge、Shadowrocket 和 Quantumult X 各自的原生入口采用同步�
 重新核对官方 [Script](https://nsloon.app/docs/Script/script_v2/)、[Script API](https://nsloon.app/docs/Script/script_api/) 与 [Plugin](https://nsloon.app/docs/Plugin/)。本地 Mac 候选使用 `#!system = macOS`、`request.method` 的等值条件及布尔/字符串插件参数对象；保留单条 Script Action、每个 Response 分支的 URL Guard 和 Uint8Array。实际导入 Loon Mac 0.5.0 (1011)，没有将这个实测版本臆定为最低兼容版本，也没有修改手机正式入口的 3.5.1（983）要求。
 
 Mac 候选沿用 3.2.2 的原生 HTTP 超时、缓存和补词预算，新增显示步骤仅在完整回调后同步执行；不新增生产网络查询、计时器或缓存。临时结构核对只向本机回环地址发送无凭据、无正文的结构摘要，timeout=300 毫秒，等待其原生回调后再单次完成；不是发布功能。未假设宿主可取消请求或限制已缓冲正文峰值。自动测试、Mac 双语短测、尚未成功的 Mac 无词入口和未验证的 iPhone/Surge/长时间稳定性分别记录在 [Mac 开发记录](../Development/SpotifyMac20261114/README.md)。
+
+## VerseLyrics 原订阅平台选择（2026-11-14）
+
+重新核对官方 [Script](https://nsloon.app/docs/Script/script_v2/)、[Plugin](https://nsloon.app/docs/Plugin/) 与 [Script API](https://nsloon.app/docs/Script/script_api/)。`CLIENT_PLATFORM` 是插件自有 string select（默认 mobile，可选 macOS），通过原生条件表达式选择固定完整 Git 提交的运行脚本；没有使用未公开的系统条件变量。原有十二个参数的默认值与类型不变，歌词脚本继续只接收原有参数对象。手机仍使用三条原生 Rewrite 和两条响应脚本，不运行 Mac 请求脚本；Mac 不命中手机 Rewrite，使用已测试的三份 Mac 脚本。
+
+配置保留原有 URL Guard、Content-Length 范围、状态和内部请求条件、Uint8Array、原生超时和单次完成；没有修改宿主 API、最低版本、解密域名或 iOS 缓存容量。公开运行链无回环服务器、诊断上传、动态下载执行器。原生配置导入、Mac 短测、桌面内存筛查与 iOS 50 MB 整体峰值验收分别报告；Mac 完全无词入口仍未完成。

@@ -1,0 +1,1 @@
+{"name":"verselyrics-subscription-update","private":true,"type":"module","scripts":{"test":"node --test subscription.test.mjs","artifacts":"node build-subscription.mjs artifacts"}}

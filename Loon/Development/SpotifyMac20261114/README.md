@@ -2,6 +2,8 @@
 
 日期：2026-11-14。作者：Horatio。这里是基于正常工作的 **VerseLyrics 3.2.2 / 原生适配 18** 的本地 Mac 开发候选，不是正式发布，也不替换手机插件。
 
+后续订阅更新：本目录保留原始本地实测材料；不含诊断的三份运行脚本现已接入原 `SpotifyLyrics.lpx` 的 `macOS` 选项，不需要本地服务器。[统一订阅与构建记录](../SpotifySubscription20261114/README.md)。下文“本地未发布”和正式入口未改动描述的是这次订阅更新前的测试阶段。手机运行核心未替换，Mac 完全无词入口仍未完成；`verification.json` 的 publication 字段也只记录当时测试状态。
+
 恢复基线为 `10049053ce86bd992e3ebb6511ffb28312ba86fb:Surge/Development/VerseLyrics322`。构建时从 Git 对象读取既有源码，保留六源、翻译、匹配标准、时间轴、颜色、缓存和所有 12 个默认参数。没有使用 `SpotifyLyricsPlus/src` 的实验核心，也没有关闭正常补词来源。
 
 手机版另有用户指定的严格低于 50 MB 运行峰值要求，[独立内存验收记录](../SpotifyMobileMemory20261114/README.md)管理该约束；Mac 产品不受此上限限制。Mac 双语 JSON 显示转换不合并进手机版，以免额外复制正文影响手机内存预算。

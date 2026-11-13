@@ -17,6 +17,8 @@
 
 每个插件只提供一个当前安装入口。运行依赖由客户端自动下载，维护校验位于 `tools/` 与 `tests/`，不参与客户端运行；重复验证方法见[开发说明](../Docs/Development.md)。
 
+Spotify 订阅配置已更新至 **2026.11.14**，原地址不变。手机的运行平台保持 `mobile`；Mac 在插件参数选择 `macOS` 使用桌面逐行双语显示。Mac 完全无词入口仍未完成，手机 50 MB 峰值仍待实机验收；核心保持正常的 3.2.2。[更新与平台设置](./Docs/SpotifyLyrics.md)。
+
 [Parsec 分流说明](../Clash/Docs/Parsec.md) · [目录说明](../Clash/Docs/Directory-Migration.md) · [返回首页](../README.md)
 
 YouTube Clean 的正式入口使用 `.lpx`；已存在的 `.plugin` 仅兼容旧订阅，与正式入口内容相同，只启用一个。

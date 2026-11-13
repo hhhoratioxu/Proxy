@@ -56,6 +56,8 @@ Egern、Surge、Loon、Shadowrocket、Quantumult X 已统一为 **3.2.2**，备�
 | Quantumult X | [SpotifyLyrics.conf](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/QuantumultX/script/SpotifyLyrics.conf) | [说明](./QuantumultX/Docs/SpotifyLyrics.md) |
 | Clash / Mihomo | 无可用的响应体脚本插件 | [能力说明](./Clash/Docs/SpotifyLyrics.md) |
 
+Loon 的原 Spotify 安装入口已更新为配置 **2026.11.14**：手机保持 `mobile`，Mac 在插件参数选择 `macOS`；核心仍为 3.2.2。Mac 已有逐行双语显示，完全无词入口仍未完成；手机整体峰值低于 50 MB 尚待实机验收。[Loon 更新说明](./Loon/Docs/SpotifyLyrics.md)。其他客户端继续现有版本，本次没有将 Loon 代码套用到 Surge。
+
 每个插件只保留一个当前安装入口。需要的运行脚本由客户端自动从固定版本加载，无需另外下载 JS、编译或运行测试。
 
 [共用图标库与导入入口](./Icons/) · [目录用途与迁移说明](./Clash/Docs/Directory-Migration.md)。Parsec 分流文档保存在 `Clash/Docs/`。
