@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {assessPeak,assessDesktopScreen,policy} from './budget.mjs';
+test('mobile budget is strictly below 50 decimal MB',()=>{assert.equal(policy.mobile.maxPeakBytesExclusive,50000000);assert.equal(assessPeak(49999999).status,'below-limit');assert.equal(assessPeak(50000000).status,'over-limit');assert.equal(assessPeak(52428800).status,'over-limit');});
+test('negative, fractional and missing peaks cannot pass',()=>{for(const b of [undefined,null,NaN,Infinity,-1,123.5,'1000'])assert.equal(assessPeak(b).status,'invalid-measurement');});
+test('Mac product has no mobile 50 MB ceiling',()=>assert.equal(assessPeak(200000000,'mac-product').status,'not-applicable'));
+test('a desktop pass never becomes a phone acceptance',()=>{const a=assessDesktopScreen({scope:'macOS-JSC-mobile-runtime-screen',runs:[{measurement:{peakFootprintSupported:true,peakFootprintBytes:8000000,peakResidentBytes:16000000}}]});assert.equal(a.screen,'below-mobile-reference');assert.equal(a.releaseEligible,false);assert.match(a.mobileAcceptance,/unverified/);});
+test('unsampled or unsupported physical peak cannot pass',()=>{const a=assessDesktopScreen({scope:'macOS-JSC-mobile-runtime-screen',runs:[{measurement:{peakFootprintSupported:false,peakFootprintBytes:1000,peakResidentBytes:1000}}]});assert.equal(a.screen,'needs-investigation');});
+test('resident peak is also screened, not cherry-picked away',()=>assert.equal(assessDesktopScreen({scope:'macOS-JSC-mobile-runtime-screen',runs:[{measurement:{peakFootprintSupported:true,peakFootprintBytes:8000000,peakResidentBytes:50000000}}]}).screen,'needs-investigation'));
+test('an empty report cannot be accepted',()=>assert.equal(assessDesktopScreen({scope:'macOS-JSC-mobile-runtime-screen',runs:[]}).screen,'invalid'));
+test('a malformed run cannot crash the gate or pass',()=>assert.equal(assessDesktopScreen({scope:'macOS-JSC-mobile-runtime-screen',runs:[{}]}).screen,'needs-investigation'));

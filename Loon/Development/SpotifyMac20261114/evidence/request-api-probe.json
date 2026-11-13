@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-14",
+  "input": "self-authored protobuf with public test track and synthetic cache validator; no login credentials",
+  "upstreamStatus": 401,
+  "records": [
+    {
+      "phase": "cache-probe",
+      "route": "metadata-cache",
+      "method": "POST",
+      "bytes": 66,
+      "outputBytes": 44,
+      "flags": [
+        {
+          "path": "queries",
+          "value": 1
+        },
+        {
+          "path": "removed",
+          "value": 1
+        },
+        {
+          "path": "headerHook",
+          "value": true
+        },
+        {
+          "path": "responseGlobal",
+          "value": false
+        },
+        {
+          "path": "body.view",
+          "value": true
+        },
+        {
+          "path": "body.type",
+          "value": "object"
+        },
+        {
+          "path": "url.type",
+          "value": "string"
+        }
+      ]
+    }
+  ]
+}

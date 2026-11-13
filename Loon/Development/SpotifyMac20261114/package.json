@@ -1,0 +1,8 @@
+{
+  "name": "verselyrics-mac-local-check",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {"build": "node build-mac.mjs", "test": "node --test *.test.mjs"},
+  "devDependencies": {"terser": "5.51.2"}
+}

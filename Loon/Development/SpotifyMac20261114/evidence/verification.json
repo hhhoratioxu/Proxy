@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-14",
+  "baselineCommit": "10049053ce86bd992e3ebb6511ffb28312ba86fb",
+  "automated": {
+    "originalCore": {
+      "tests": 2248,
+      "failures": 0
+    },
+    "macCandidate": {
+      "tests": 73,
+      "failures": 0
+    },
+    "loopbackServerSmoke": "passed"
+  },
+  "realMac": {
+    "spotify": "1.3.9.2055",
+    "loon": "0.5.0 (1011)",
+    "bilingualTakeOnMe": {
+      "status": "observed",
+      "hanTextRows": 37
+    },
+    "seekForwardMs": 90000,
+    "seekBackwardMs": 10000,
+    "afterSeekHanTextRows": 37,
+    "nativePerfect": "observed with lyrics plugin disabled",
+    "missingNayeSummer": "not passed",
+    "wordTimeline": "not verified",
+    "surgeMac": "not installed or verified",
+    "longDurationStability": "not verified"
+  },
+  "cacheClear": {
+    "status": "not performed; user confirmation pending",
+    "hypothesisOnly": true
+  },
+  "publication": {
+    "pushed": false,
+    "released": false
+  },
+  "cleanup": {
+    "temporaryProfilesDisabled": true,
+    "temporaryServerStopped": true,
+    "spotifyPaused": true,
+    "spotifyVolumePercent": 0,
+    "cacheNotCleared": true
+  }
+}

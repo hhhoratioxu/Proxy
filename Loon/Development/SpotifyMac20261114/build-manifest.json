@@ -1,0 +1,67 @@
+{
+  "baseline": "10049053ce86bd992e3ebb6511ffb28312ba86fb",
+  "provenance": [
+    {
+      "file": "build.mjs",
+      "sha256": "aa029963d9fec1ca6cfabe86d048049624980b5e91ed9a0bd5b87870749ff41f"
+    },
+    {
+      "file": "native-flow.mjs",
+      "sha256": "d88b432395b5db0bc22ee652ffd06f37f0419b8a4e595d4681208a4ee9d39e0f"
+    },
+    {
+      "file": "native-adapter.js",
+      "sha256": "6b1bb8fc6b869f0bfc66d2e1184807a1a89e6416fe5f0a931fe71bdc0c5b2670"
+    },
+    {
+      "file": "core/spotify-lyrics.js",
+      "sha256": "bb3c9f0b18fd678ebbb8e912ea2bab00b4c09074db0802fdca12918664e6fda2"
+    },
+    {
+      "file": "core/NOTICE-UNICODE.txt",
+      "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "runtime/SpotifyLyrics.Request.js",
+      "bytes": 4772,
+      "sha256": "3585ce6c6fed44a65f7efa091932e509cd6426388d06da55e08da7cd24b738a2",
+      "unchangedOfficial": false
+    },
+    {
+      "file": "runtime/SpotifyLyrics.js",
+      "bytes": 90747,
+      "sha256": "8ddea05e3bfbaeda162bfe31cd887207cab7813c169e58795f1f8b9318d11b94",
+      "unchangedOfficial": true
+    },
+    {
+      "file": "runtime/SpotifyLyrics.Mac.js",
+      "bytes": 96763,
+      "sha256": "df875afd50ef5f578c7079fff14ed6c7c2edd13b93ad05533ace86dd4ef96bd4",
+      "unchangedOfficial": false
+    },
+    {
+      "file": "runtime/SpotifyLyrics.Entry.js",
+      "bytes": 29689,
+      "sha256": "961f106f4d2d069911c56a47b15ce80bd681ee616de13e3f2fae997aad092d64",
+      "unchangedOfficial": true
+    },
+    {
+      "file": "runtime/SpotifyLyrics.Entry.Mac.js",
+      "bytes": 29698,
+      "sha256": "82c63d549cb90a014d043b89fec9421cd57d8bf85fa34ab8b722b465e9a25e5f",
+      "unchangedOfficial": false
+    },
+    {
+      "file": "Mac.lpx",
+      "bytes": 6313,
+      "sha256": "ee00621ac715cba52b8365283da37b04ae28e9ba1af2ee8cf420da54d1a5ed76"
+    },
+    {
+      "file": "DisplayMac.lpx",
+      "bytes": 6355,
+      "sha256": "f7760af9fd15d75edfd7f5a341bdcc93ee4b1cb24295cf6710cde012cd44756d"
+    }
+  ]
+}

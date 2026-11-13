@@ -1,0 +1,120 @@
+{
+  "date": "2026-11-14",
+  "scope": "sanitized protocol structure only",
+  "records": [
+    {
+      "phase": "entry-enter",
+      "route": "runtime",
+      "method": "PUT",
+      "status": 200,
+      "bytes": 40575,
+      "flags": [
+        {
+          "path": "body.json",
+          "value": false
+        },
+        {
+          "path": "body.gzip",
+          "value": false
+        },
+        {
+          "path": "body.view",
+          "value": true
+        },
+        {
+          "path": "header.json",
+          "value": false
+        },
+        {
+          "path": "header.protobuf",
+          "value": false
+        },
+        {
+          "path": "header.encoding",
+          "value": "other-or-absent"
+        },
+        {
+          "path": "header.shape",
+          "value": "object"
+        },
+        {
+          "path": "header.type",
+          "value": "absent-or-other"
+        },
+        {
+          "path": "root.fields",
+          "value": "1:0,2:2,3:2,4:2,5:2,6:0,8:0,9:0,10:0,11:0,13:0"
+        },
+        {
+          "path": "track-uri.3.2",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.7.1",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.7.3.2",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.7.3.2",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.20.1",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.20.3.2",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.20.3.2",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.20.1",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.20.3.2",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.20.3.2",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.20.1",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.20.3.2",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.20.3.2",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.20.1",
+          "value": true
+        },
+        {
+          "path": "track-uri.3.20.3.2",
+          "value": true
+        }
+      ]
+    },
+    {
+      "phase": "entry",
+      "route": "runtime",
+      "method": "PUT",
+      "status": 200,
+      "bytes": 40575,
+      "format": "bytes",
+      "outputBytes": 41595
+    }
+  ]
+}

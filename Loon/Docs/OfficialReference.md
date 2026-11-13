@@ -245,3 +245,9 @@ Loon、Surge、Shadowrocket 和 Quantumult X 各自的原生入口采用同步�
 ## 提交前官方复核（2026-11-13）
 
 重新获取官方总览、Script、Script API、Rewrite、Plugin、规则优先级、IP、进程与逻辑规则页面。保持已记录的 3.5.1（983）脚本要求及原生参数；Parsec AND/端口条件按 3.1.7+，Mac 进程与移动平台忽略行为按各自官方规则。未增加宿主 API、取消能力、正文或缓存上限推测。当前实际规则、正式导入文件和固定运行对象再次校验，原有脚本回归通过；手机 VPN、耗电和原生导入仍分别列为未验收。
+
+## VerseLyrics Mac 本地候选（2026-11-14）
+
+重新核对官方 [Script](https://nsloon.app/docs/Script/script_v2/)、[Script API](https://nsloon.app/docs/Script/script_api/) 与 [Plugin](https://nsloon.app/docs/Plugin/)。本地 Mac 候选使用 `#!system = macOS`、`request.method` 的等值条件及布尔/字符串插件参数对象；保留单条 Script Action、每个 Response 分支的 URL Guard 和 Uint8Array。实际导入 Loon Mac 0.5.0 (1011)，没有将这个实测版本臆定为最低兼容版本，也没有修改手机正式入口的 3.5.1（983）要求。
+
+Mac 候选沿用 3.2.2 的原生 HTTP 超时、缓存和补词预算，新增显示步骤仅在完整回调后同步执行；不新增生产网络查询、计时器或缓存。临时结构核对只向本机回环地址发送无凭据、无正文的结构摘要，timeout=300 毫秒，等待其原生回调后再单次完成；不是发布功能。未假设宿主可取消请求或限制已缓冲正文峰值。自动测试、Mac 双语短测、尚未成功的 Mac 无词入口和未验证的 iPhone/Surge/长时间稳定性分别记录在 [Mac 开发记录](../Development/SpotifyMac20261114/README.md)。

@@ -1,0 +1,103 @@
+{
+  "source": "/Applications/Spotify.app/Contents/MacOS/Spotify",
+  "sha256": "5d60fba777e022f157889d92493b1be5cbea657df967d67b48ead29050520e2f",
+  "descriptorCount": 874,
+  "facts": [
+    {
+      "file": "extended_metadata.proto",
+      "package": "spotify.extendedmetadata",
+      "message": "ExtensionQuery",
+      "fields": [
+        {
+          "name": "extension_kind",
+          "number": 1,
+          "type": 14,
+          "typeName": ".spotify.extendedmetadata.ExtensionKind"
+        },
+        {
+          "name": "etag",
+          "number": 2,
+          "type": 9,
+          "typeName": ""
+        }
+      ]
+    },
+    {
+      "file": "extended_metadata.proto",
+      "package": "spotify.extendedmetadata",
+      "message": "EntityRequest",
+      "fields": [
+        {
+          "name": "entity_uri",
+          "number": 1,
+          "type": 9,
+          "typeName": ""
+        },
+        {
+          "name": "query",
+          "number": 2,
+          "type": 11,
+          "typeName": ".spotify.extendedmetadata.ExtensionQuery"
+        }
+      ]
+    },
+    {
+      "file": "extended_metadata.proto",
+      "package": "spotify.extendedmetadata",
+      "message": "BatchedEntityRequest",
+      "fields": [
+        {
+          "name": "header",
+          "number": 1,
+          "type": 11,
+          "typeName": ".spotify.extendedmetadata.BatchedEntityRequestHeader"
+        },
+        {
+          "name": "entity_request",
+          "number": 2,
+          "type": 11,
+          "typeName": ".spotify.extendedmetadata.EntityRequest"
+        }
+      ]
+    },
+    {
+      "file": "metadata/track_metadata.proto",
+      "package": "spotify.cosmos_util.proto",
+      "message": "TrackMetadata",
+      "fields": [
+        {
+          "name": "has_lyrics",
+          "number": 13,
+          "type": 8,
+          "typeName": ""
+        }
+      ]
+    },
+    {
+      "file": "policy/track_decoration_policy.proto",
+      "package": "spotify.cosmos_util.proto",
+      "message": "TrackDecorationPolicy",
+      "fields": [
+        {
+          "name": "has_lyrics",
+          "number": 1,
+          "type": 8,
+          "typeName": ""
+        }
+      ]
+    },
+    {
+      "file": "metadata.proto",
+      "package": "spotify.metadata",
+      "message": "Track",
+      "fields": [
+        {
+          "name": "has_lyrics",
+          "number": 18,
+          "type": 8,
+          "typeName": ""
+        }
+      ]
+    }
+  ]
+}

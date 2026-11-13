@@ -1,0 +1,17 @@
+{
+  "updated": "2026-11-14",
+  "basis": "User deployment requirement; not a universal client memory limit claim",
+  "mobile": {
+    "maxPeakBytesExclusive": 50000000,
+    "unit": "decimal MB",
+    "acceptanceScope": "native iOS proxy network-extension runtime peak, including host and network buffering",
+    "nativeDeviceEvidenceRequired": true,
+    "requiredScenarios": ["cold-start", "native-lyrics", "fallback-success", "fallback-failure", "translation", "large-input", "filled-cache", "rapid-track-switch", "slow-or-failed-network", "repeated-playback"]
+  },
+  "macProduct": {"maxPeakBytesExclusive": null},
+  "desktopScreen": {
+    "target": "unchanged mobile Loon and Surge runtimes on macOS JavaScriptCore",
+    "compareBothPhysicalAndResidentPeaks": true,
+    "canEstablishMobileAcceptance": false
+  }
+}

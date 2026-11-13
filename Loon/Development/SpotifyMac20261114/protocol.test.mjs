@@ -1,0 +1,12 @@
+import {availabilityMapPaths} from './protocol-shape.mjs';
+import test from 'node:test';
+import assert from 'node:assert/strict';
+const varint=v=>{const b=[];do{b.push((v&127)|(v>127?128:0));v=Math.floor(v/128);}while(v);return b;};
+const field=(n,b)=>new Uint8Array([...varint(n*8+2),...varint(b.length),...b]);
+const text=(n,s)=>field(n,Buffer.from(s));
+const map=v=>new Uint8Array([...text(1,'has_lyrics'),...text(2,v)]);
+test('literal availability maps only, numeric paths and booleans',()=>assert.deepEqual(availabilityMapPaths(field(3,field(7,field(3,map('false'))))),[{path:'3.7.3',value:false}]));
+test('no raw strings, unrelated fields or token values captured',()=>assert.equal(JSON.stringify(availabilityMapPaths(field(3,text(1,'PRIVATE-CANARY')))),'[]'));
+test('unknown availability values are ignored',()=>assert.deepEqual(availabilityMapPaths(map('unknown')),[]));
+test('malformed or oversize bodies fail closed in diagnostics',()=>{for(const v of [new Uint8Array([10,255]),new Uint8Array(131073),new Uint8Array([255])])assert.deepEqual(availabilityMapPaths(v),[]);});
+test('input never mutated',()=>{const b=field(3,map('true')),before=b.slice();assert.deepEqual(availabilityMapPaths(b),[{path:'3',value:true}]);assert.deepEqual(b,before);});

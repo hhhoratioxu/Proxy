@@ -1,0 +1,1 @@
+{"name":"verselyrics-mobile-memory-audit","private":true,"type":"module","scripts":{"test":"node --test budget.test.mjs","screen":"node run-screen.mjs","release-check":"node check-budget.mjs --release"}}
