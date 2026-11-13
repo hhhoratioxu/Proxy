@@ -1,49 +1,49 @@
 {
   "repository": "hhhoratioxu/Proxy",
   "branch": "main",
-  "commit": "82b0fd47f7417e7b2709d42e53ffbce1f52f769e",
-  "tree": "f65416da152a720d8249b1ca8d7648f18330b1b7",
-  "checkedAt": "2026-10-28T15:31:29.523Z",
+  "commit": "6e855f1fa657c350c859dddbb5c4d33e342079f7",
+  "tree": "e22d9441b25b98e5407be536bcccfa8127c7ad19",
+  "checkedAt": "2026-11-13T16:03:25.942Z",
   "files": [
     {
       "path": "Clash/rule/Adobe.yaml",
-      "sha": "6e7141bfa5da935df9c3334cc2270cebd1306202",
-      "size": 10647
+      "sha": "90b5e739734ee345493daebfd917d3744c9eddcb",
+      "size": 5666
     },
     {
       "path": "Clash/rule/AI.yaml",
-      "sha": "8455127146e4d9f97e03b40dce7083764e19de49",
-      "size": 42057
+      "sha": "2ac7befa0ce3d124adbe28b674150d6e1ed6cce5",
+      "size": 41730
     },
     {
       "path": "Clash/rule/Apple.yaml",
-      "sha": "c887a320ffa1b0385c5e3993371c1f02c4b102a3",
-      "size": 66284
+      "sha": "511e21fc36787171503a1a34c527264ee6588835",
+      "size": 60630
     },
     {
       "path": "Clash/rule/Bilibili.yaml",
-      "sha": "551caf56cc27d2699e49e61e6fe1a6de48c321fc",
-      "size": 5611
+      "sha": "ef25cbad89d5e723c021fc9556438dfb69ac8f8d",
+      "size": 5300
     },
     {
       "path": "Clash/rule/Disney.yaml",
-      "sha": "6967239ba16dbac3f52c15b9b8b6ff1bcbd5b79f",
-      "size": 9507
+      "sha": "2244b4dc301f221bc9f303caeaefb36d8d362b9f",
+      "size": 9018
     },
     {
       "path": "Clash/rule/GitHub.yaml",
-      "sha": "cb22c4448ff1e15e523f76d3bc28f23e27855591",
-      "size": 3388
+      "sha": "d1693b3b6e431071513bfa95f1546d09201e3861",
+      "size": 3210
     },
     {
       "path": "Clash/rule/Google.yaml",
-      "sha": "d29b041e147f96d1e83f7bd9f997bbe5bad3360a",
-      "size": 30229
+      "sha": "488b563c0ef3bacfd5e99066b7da8153b8f958a6",
+      "size": 29508
     },
     {
       "path": "Clash/rule/HBOMAX.yaml",
-      "sha": "690f2a1eac82d880f9d9b6391d5f45022ea3a694",
-      "size": 3643
+      "sha": "514b082026cc83b3c7754c6a2c53c87acd207a0a",
+      "size": 3598
     },
     {
       "path": "Clash/rule/Infuse.yaml",
@@ -52,8 +52,8 @@
     },
     {
       "path": "Clash/rule/LAN.yaml",
-      "sha": "9b2928ac76af1a2947fa56de25e2f369c80c906c",
-      "size": 6055
+      "sha": "d1425dfe29ba4a1a2ec10b80a751fff8cf74e56f",
+      "size": 6046
     },
     {
       "path": "Clash/rule/Meituan.yaml",
@@ -62,23 +62,23 @@
     },
     {
       "path": "Clash/rule/Meta.yaml",
-      "sha": "f7fb340ce91d6a9371e5e8534526223cec4d75e2",
-      "size": 22931
+      "sha": "7ad72e33653baa3843c0a6adbab78a961153c8e0",
+      "size": 21086
     },
     {
       "path": "Clash/rule/Microsoft.yaml",
-      "sha": "aa6e42111fed29c4f9e10e843fe1671ccb019c9b",
-      "size": 30796
+      "sha": "fb52b397e32c38aa7d9a5c5e4bb60c16674ad12d",
+      "size": 26623
     },
     {
       "path": "Clash/rule/Netflix.yaml",
-      "sha": "ead73b92d243a31cd1fca6499a1203fed180e52f",
-      "size": 47527
+      "sha": "d271c6962442bd4b7aaa3457717739513a37ffb9",
+      "size": 2407
     },
     {
       "path": "Clash/rule/NTP.yaml",
-      "sha": "51a7f41fe108a139e8c842758dc7a0312fcbc46e",
-      "size": 3683
+      "sha": "28142d0735edfbba0afbd888e160d28c4dcadf62",
+      "size": 3722
     },
     {
       "path": "Clash/rule/Parsec.yaml",
@@ -87,8 +87,8 @@
     },
     {
       "path": "Clash/rule/ParsecP2P.yaml",
-      "sha": "eca6e07e8c4fdb354ab5aa96a439f56edb274eac",
-      "size": 605
+      "sha": "409b95c26ce4e9727775c11cd1261efe7007c224",
+      "size": 684
     },
     {
       "path": "Clash/rule/SiriAI.yaml",
@@ -102,23 +102,23 @@
     },
     {
       "path": "Clash/rule/Telegram.yaml",
-      "sha": "62ad47da8613085e37adbf0770280fcb744a9531",
-      "size": 2175
+      "sha": "cbfc0d15f9cec33a90553d8bdf2f2486620529f7",
+      "size": 2396
     },
     {
       "path": "Clash/rule/TikTok.yaml",
-      "sha": "9086a3dcd28cca795d0ee732e99279ac3ec8ad6f",
-      "size": 1851
+      "sha": "25601209cc3a2fd2defe0b2b13081671a1b73734",
+      "size": 1854
     },
     {
       "path": "Clash/rule/Twitter.yaml",
-      "sha": "27c28a6f900ce8ffcc54bd0d722e052f499c9ed9",
-      "size": 1553
+      "sha": "59efacadc1eac242dd794632d3bc19a8f58e2f36",
+      "size": 1607
     },
     {
       "path": "Clash/rule/WeChat.yaml",
-      "sha": "8fb44b306143b5a9630715de7d0e433bd89d06a2",
-      "size": 12413
+      "sha": "3cbe8c7cacb183c9fb8cfbaf90cdfa5f6589d8b2",
+      "size": 1652
     },
     {
       "path": "Clash/rule/Weverse.yaml",
@@ -137,43 +137,43 @@
     },
     {
       "path": "Egern/rule/Adobe.yaml",
-      "sha": "f3acfcf073daec5a8a35815935dc33be6f5857cf",
-      "size": 7790
+      "sha": "3d05d4ffbbd91885708c87af1513a0491b34e96b",
+      "size": 3740
     },
     {
       "path": "Egern/rule/AI.yaml",
-      "sha": "70beca9c958555394d8c78a4ae2ac5678d51db7c",
-      "size": 31197
+      "sha": "37101d3b1fa81648062d9eaea57a637e359c2ea1",
+      "size": 30964
     },
     {
       "path": "Egern/rule/Apple.yaml",
-      "sha": "4f237f40c18db1b969575c7156e6f5b53f5c6bc1",
-      "size": 43450
+      "sha": "fb3366653ae41d877605166a2e480e30c20f8229",
+      "size": 39114
     },
     {
       "path": "Egern/rule/Bilibili.yaml",
-      "sha": "21f07fa7eb15262bb143da2e19435623f9ae3b8f",
-      "size": 4248
+      "sha": "2db8fe75bf5497b16cfa9d2a0063c008924b487d",
+      "size": 4064
     },
     {
       "path": "Egern/rule/Disney.yaml",
-      "sha": "04f7acc568200c48eef86ea340222c003e565a2c",
-      "size": 6107
+      "sha": "9faa24aa745dde7394c56e4b9aa5ff1c7c018f11",
+      "size": 5745
     },
     {
       "path": "Egern/rule/GitHub.yaml",
-      "sha": "18d67be477b3785650f91b3e5ea42d0f00286b9a",
-      "size": 2722
+      "sha": "1ebb99903e3863f49c2c39916678ecd7309ef19a",
+      "size": 2586
     },
     {
       "path": "Egern/rule/Google.yaml",
-      "sha": "22e687a6b4585bb6d10402e4dcda9e5f97fc6e5a",
-      "size": 18276
+      "sha": "dba07778f666797f949aaced6ed3c884780751ea",
+      "size": 17841
     },
     {
       "path": "Egern/rule/HBOMAX.yaml",
-      "sha": "75a8be164254a6830fbb9b25cb1ed5d9d6613a39",
-      "size": 2388
+      "sha": "6b329cb0248a0412d19afb9f95c008eef7a163ef",
+      "size": 2371
     },
     {
       "path": "Egern/rule/Infuse.yaml",
@@ -182,8 +182,8 @@
     },
     {
       "path": "Egern/rule/LAN.yaml",
-      "sha": "0f75273661d7c0bdc1e4cef9432aec9ba4593aea",
-      "size": 4085
+      "sha": "3d55d6ccb4036b07a15d9c3da4936d6fdf8efa2d",
+      "size": 4114
     },
     {
       "path": "Egern/rule/Meituan.yaml",
@@ -192,23 +192,23 @@
     },
     {
       "path": "Egern/rule/Meta.yaml",
-      "sha": "bd0e45671e897c8bd66f820e96fec953e26bcbb4",
-      "size": 14176
+      "sha": "176859d34d575686704e9e45e99caab78763d74b",
+      "size": 13089
     },
     {
       "path": "Egern/rule/Microsoft.yaml",
-      "sha": "b38c8e9f8080e904e9219d63b94bf16fde4921c6",
-      "size": 20012
+      "sha": "99934b451267cf586beb899e82ece8243ea4b515",
+      "size": 16662
     },
     {
       "path": "Egern/rule/Netflix.yaml",
-      "sha": "72cc298b92f0c227bca30487f23cb91b4283ca3d",
-      "size": 25855
+      "sha": "95820565e0b8edda15bbf7220d36ed4bd424d9b5",
+      "size": 1742
     },
     {
       "path": "Egern/rule/NTP.yaml",
-      "sha": "ab98a1c8411eda47dbf857b0ece7d1c642871413",
-      "size": 2486
+      "sha": "a41b934f89048fd5357824004318b47c9d77555b",
+      "size": 2539
     },
     {
       "path": "Egern/rule/Parsec.yaml",
@@ -232,23 +232,23 @@
     },
     {
       "path": "Egern/rule/Telegram.yaml",
-      "sha": "b83abda42d8f85b90f4d7b83b18ec4edc94c4b8c",
-      "size": 1583
+      "sha": "4bef6cff94ea06130545f9bfa809cc6e43258f0e",
+      "size": 1693
     },
     {
       "path": "Egern/rule/TikTok.yaml",
-      "sha": "eb5094366c27bc04affef721896cbab0a8bdc40e",
-      "size": 1387
+      "sha": "6140a40e5714bf2b4532a193954c129b565bb0da",
+      "size": 1398
     },
     {
       "path": "Egern/rule/Twitter.yaml",
-      "sha": "976825c4e971b0277d781d8844beeede35636472",
-      "size": 1164
+      "sha": "f2880719f316eed9328f31efa59ebebc535210af",
+      "size": 1201
     },
     {
       "path": "Egern/rule/WeChat.yaml",
-      "sha": "9cea3c08bd33e020d72dace9b4908c17a7da0c6e",
-      "size": 7338
+      "sha": "31017ccbfd9cc8f020ef66a86094d3a694c02ae2",
+      "size": 1338
     },
     {
       "path": "Egern/rule/Weverse.yaml",
@@ -267,43 +267,43 @@
     },
     {
       "path": "Loon/rule/Adobe.lsr",
-      "sha": "910a9c078f8cdf1fb12ef832c0faabebc0389f9c",
-      "size": 8993
+      "sha": "a813fa30106d873c13d5c8b0d517f1996a65d5c6",
+      "size": 4804
     },
     {
       "path": "Loon/rule/AI.lsr",
-      "sha": "171021b267a9ee93f75c2596652c02b1bf23d31e",
-      "size": 36200
+      "sha": "7c7472ca1e5e21982bc4051ffe65e7028421177b",
+      "size": 35933
     },
     {
       "path": "Loon/rule/Apple.lsr",
-      "sha": "794556a4ecd03113eabc9e1e9f4e5b2ae05371b9",
-      "size": 56328
+      "sha": "6be6407a514857a222bc766f7e0a1a569c042a61",
+      "size": 51664
     },
     {
       "path": "Loon/rule/Bilibili.lsr",
-      "sha": "834ffa02a91d070d101fc87e7a16eb60be48b9c2",
-      "size": 4842
+      "sha": "486eddd3bee8092f30e42fe9b1989040cc50985f",
+      "size": 4585
     },
     {
       "path": "Loon/rule/Disney.lsr",
-      "sha": "897e2e80a495393ce6bcefd66a1baa8e290103e1",
-      "size": 7989
+      "sha": "ff13b410d66ae85bf9336802b5d34e03644fa9e4",
+      "size": 7578
     },
     {
       "path": "Loon/rule/GitHub.lsr",
-      "sha": "f9e832fe5f750635419c530db0d535e2ede2b0fa",
-      "size": 2994
+      "sha": "580a67a80cbb7fefe4df583ca4c025927964d9b0",
+      "size": 2846
     },
     {
       "path": "Loon/rule/Google.lsr",
-      "sha": "7602988873404bd07ee52ded0db43b7236c91890",
-      "size": 25204
+      "sha": "3f3ba09bdad9748865c021995f1bce3d1f917a06",
+      "size": 24615
     },
     {
       "path": "Loon/rule/HBOMAX.lsr",
-      "sha": "13175f31f7968db6997a14b9b14f3ff4798ef5e8",
-      "size": 3082
+      "sha": "b727ba96dcbf120e6a8f3fdeedefedead5080143",
+      "size": 3049
     },
     {
       "path": "Loon/rule/Infuse.lsr",
@@ -312,8 +312,8 @@
     },
     {
       "path": "Loon/rule/LAN.lsr",
-      "sha": "5a11defec93736134d532d887e5c58f413a45502",
-      "size": 5175
+      "sha": "2ddaa9916dcdb83cbcee170f382b448113ae13d8",
+      "size": 5178
     },
     {
       "path": "Loon/rule/Meituan.lsr",
@@ -322,23 +322,23 @@
     },
     {
       "path": "Loon/rule/Meta.lsr",
-      "sha": "12eefd11c2ce72a4d81e07185b39e8e98f195385",
-      "size": 19189
+      "sha": "996856d85a1b13ceefe3ab92c523bc11567a66ec",
+      "size": 17644
     },
     {
       "path": "Loon/rule/Microsoft.lsr",
-      "sha": "69aacd5d483b2d939b910f9b6834988e01026c23",
-      "size": 25920
+      "sha": "a5afadaba052fc24a0f6358cf37abf5bf49307a7",
+      "size": 22341
     },
     {
       "path": "Loon/rule/Netflix.lsr",
-      "sha": "2095b52c75dc67f42b90c138f4c8dea19f3a2358",
-      "size": 40534
+      "sha": "58c33809a1436a7b67eae5f90b1ce7cd98658cc8",
+      "size": 2068
     },
     {
       "path": "Loon/rule/NTP.lsr",
-      "sha": "f3ee24b2025b7431bed793ed14ef005f44c70d4e",
-      "size": 3163
+      "sha": "0d3b9eb28854cfd041332900f72595990b806ab7",
+      "size": 3208
     },
     {
       "path": "Loon/rule/Parsec.lsr",
@@ -347,8 +347,8 @@
     },
     {
       "path": "Loon/rule/ParsecP2P.lsr",
-      "sha": "a2ab2bbf9252ef6d0c9f4f5e5fe26b897d881100",
-      "size": 467
+      "sha": "1a03e2e9d46b204878be8cecb585bff8636887fb",
+      "size": 621
     },
     {
       "path": "Loon/rule/SiriAI.lsr",
@@ -362,23 +362,23 @@
     },
     {
       "path": "Loon/rule/Telegram.lsr",
-      "sha": "ede70d7e01a783643bd47d7744fe2ab1b4f63d9e",
-      "size": 1853
+      "sha": "1de619c36e880c0ba56cf126137cea7d36dc36ed",
+      "size": 2074
     },
     {
       "path": "Loon/rule/TikTok.lsr",
-      "sha": "4b64481b054d9a703b68358ae3686667af26cdd2",
-      "size": 1613
+      "sha": "bd2869e7560d4b02831dd781e4417a0ed51cc000",
+      "size": 1628
     },
     {
       "path": "Loon/rule/Twitter.lsr",
-      "sha": "86bb4b4480fd121091cff9b01cee164b078fd7ff",
-      "size": 1339
+      "sha": "ba2dee738067b1fd037a24c01b50244bf086dece",
+      "size": 1399
     },
     {
       "path": "Loon/rule/WeChat.lsr",
-      "sha": "65da4ecd688c5f98635738d05f85079abf1107ce",
-      "size": 10399
+      "sha": "a8637801f875aec8735c073578a13eab7c8eb84c",
+      "size": 1444
     },
     {
       "path": "Loon/rule/Weverse.lsr",
@@ -397,43 +397,43 @@
     },
     {
       "path": "QuantumultX/rule/Adobe.list",
-      "sha": "526c05a9d85fc6e604a764ae1b04bff54d2c6b7a",
-      "size": 8420
+      "sha": "eb1560687a65b8d6698c21002d8eebababf3460d",
+      "size": 4495
     },
     {
       "path": "QuantumultX/rule/AI.list",
-      "sha": "c3b902c84718424a40f7a192569f2dea8b83ca28",
-      "size": 34254
+      "sha": "853d5899a4f6f17d00db5228977d7b8651b5033c",
+      "size": 34007
     },
     {
       "path": "QuantumultX/rule/Apple.list",
-      "sha": "1df4122235d4f5645e673e9c3806c1815ffafddf",
-      "size": 52871
+      "sha": "7bf77248d423abe686c405b396e69c99d8628228",
+      "size": 48385
     },
     {
       "path": "QuantumultX/rule/Bilibili.list",
-      "sha": "610d18e68c99c0196b068af3d6437131c360259e",
-      "size": 4575
+      "sha": "f1ef28e69b526d5130f2c83c01a1e768194182d3",
+      "size": 4320
     },
     {
       "path": "QuantumultX/rule/Disney.list",
-      "sha": "b67bd50239f69f0431e168f70473960a2d5a9472",
-      "size": 7476
+      "sha": "c5cac4c714373abaafb7bc5da448fc4f34826826",
+      "size": 7091
     },
     {
       "path": "QuantumultX/rule/GitHub.list",
-      "sha": "2d46c6261117c23c53e0e5e45aff8e12e87808d2",
-      "size": 2841
+      "sha": "4270b8bd035cd4fc74d5ba0d85d5383bfa4c5f68",
+      "size": 2703
     },
     {
       "path": "QuantumultX/rule/Google.list",
-      "sha": "9d2b2a2b299b6e005ec813797e4f3ee9d610babc",
-      "size": 23435
+      "sha": "ce55df3ff62b143c7084e215471bd31fb51f0e92",
+      "size": 22835
     },
     {
       "path": "QuantumultX/rule/HBOMAX.list",
-      "sha": "84fd524add2b91ec44b10fdd27d7fca0e670d18f",
-      "size": 2881
+      "sha": "07c7b7c5eb859712ea0ea185e51697f073dab51e",
+      "size": 2852
     },
     {
       "path": "QuantumultX/rule/Infuse.list",
@@ -442,8 +442,8 @@
     },
     {
       "path": "QuantumultX/rule/LAN.list",
-      "sha": "7455aaf195cfcbf8a54fdce586e62d54484a7237",
-      "size": 4900
+      "sha": "7fbb5dcb4a6a45eec62cfe0fccbd9b6c4f4f119d",
+      "size": 4705
     },
     {
       "path": "QuantumultX/rule/Meituan.list",
@@ -452,23 +452,23 @@
     },
     {
       "path": "QuantumultX/rule/Meta.list",
-      "sha": "3e7fef97ad82c80032b09deac7229a03520132ef",
-      "size": 18014
+      "sha": "d2f61474a2b6128259518fa1128035100c4264ec",
+      "size": 16331
     },
     {
       "path": "QuantumultX/rule/Microsoft.list",
-      "sha": "1e3ca3d52daeabc06716fc106aeafc8a7983ba2e",
-      "size": 24271
+      "sha": "76ac53324a6206e333647e4af60da57f3314a0d7",
+      "size": 20890
     },
     {
       "path": "QuantumultX/rule/Netflix.list",
-      "sha": "56902a67a412f3046b95caede35735913c5b978e",
-      "size": 40435
+      "sha": "e43aee366360587b5cc13228d19768cca1d90bde",
+      "size": 1787
     },
     {
       "path": "QuantumultX/rule/NTP.list",
-      "sha": "96860bbeb539636900222f277dfdfe6fab4ba4c3",
-      "size": 2968
+      "sha": "c55d43a832928b5b318183e283f7fd4b176aadc9",
+      "size": 3015
     },
     {
       "path": "QuantumultX/rule/Parsec.list",
@@ -477,8 +477,8 @@
     },
     {
       "path": "QuantumultX/rule/ParsecP2P.list",
-      "sha": "b22714257c24ba6b36f8f3be549da09f59b9ed60",
-      "size": 439
+      "sha": "28e6f947206d41d717571ad35cc1bd3fd49d9b17",
+      "size": 486
     },
     {
       "path": "QuantumultX/rule/SiriAI.list",
@@ -492,23 +492,23 @@
     },
     {
       "path": "QuantumultX/rule/Telegram.list",
-      "sha": "0f7c3b7902fbb2050d65ea42f54f90d39f19992d",
-      "size": 1758
+      "sha": "29d030e41d561133c1baaf469411ace182db8003",
+      "size": 1765
     },
     {
       "path": "QuantumultX/rule/TikTok.list",
-      "sha": "36a5c279dd6b755b89b18e2ebbe49ab961082b52",
-      "size": 1512
+      "sha": "f52868fa0629687fcaef57d694f435793d434947",
+      "size": 1531
     },
     {
       "path": "QuantumultX/rule/Twitter.list",
-      "sha": "f7a7524fca10447088125ddd797036c53ece244f",
-      "size": 1260
+      "sha": "389125e61b3d1705d8f3d6eb4c94c569eb337758",
+      "size": 1245
     },
     {
       "path": "QuantumultX/rule/WeChat.list",
-      "sha": "a4f922cea9a56aa4d4d9cbc1a3ae1f5d7f8aac95",
-      "size": 9848
+      "sha": "7621bbd64ccc400c5ebd4177f43a00de81405399",
+      "size": 1359
     },
     {
       "path": "QuantumultX/rule/Weverse.list",
@@ -527,43 +527,43 @@
     },
     {
       "path": "Shadowrocket/rule/Adobe.list",
-      "sha": "3c69fdb57cef1a944edd466d4d0d578028d4c58a",
-      "size": 8984
+      "sha": "324302354ffefd9571dd0c770d4daa0847958527",
+      "size": 4795
     },
     {
       "path": "Shadowrocket/rule/AI.list",
-      "sha": "6dbed63d871496964492778b00db02400c006157",
-      "size": 36222
+      "sha": "e37988f23b6542b289eedaeeae21795855eb1b4e",
+      "size": 35955
     },
     {
       "path": "Shadowrocket/rule/Apple.list",
-      "sha": "6f7c048c8362b50fa3e7d860dc482ccafcf7845d",
-      "size": 56319
+      "sha": "54f20ee2489d69ac9288b287ee665b72b5e0f89c",
+      "size": 51655
     },
     {
       "path": "Shadowrocket/rule/Bilibili.list",
-      "sha": "a40330ebc42e0777b20fdc9bcad53da48652326c",
-      "size": 4833
+      "sha": "a5e3d58cedc9e5fa5ea37a7787aef3d1d18351ec",
+      "size": 4576
     },
     {
       "path": "Shadowrocket/rule/Disney.list",
-      "sha": "d5b91410d631bd1991d71411d260de3ade3adc71",
-      "size": 7980
+      "sha": "2b872bf53bfc386e4e413120f506ebf2057d833f",
+      "size": 7569
     },
     {
       "path": "Shadowrocket/rule/GitHub.list",
-      "sha": "a4497135a9f3758ad8c46fac5e965557d3cb4fee",
-      "size": 2985
+      "sha": "43608480e1fe70c3ba2cc3be955a7f44f253ed87",
+      "size": 2837
     },
     {
       "path": "Shadowrocket/rule/Google.list",
-      "sha": "5a8e32a11178e5130051466593117fd22e4038b6",
-      "size": 25195
+      "sha": "c14a32f0d37cd488aacd46d8f4b9d8a7a02a5f8b",
+      "size": 24606
     },
     {
       "path": "Shadowrocket/rule/HBOMAX.list",
-      "sha": "7af665e85c8d8ec29a23bdec2c1a5cb249512728",
-      "size": 3073
+      "sha": "bcadae8ca5568b5e6139d01cf1d5b5752fa44e38",
+      "size": 3040
     },
     {
       "path": "Shadowrocket/rule/Infuse.list",
@@ -572,8 +572,8 @@
     },
     {
       "path": "Shadowrocket/rule/LAN.list",
-      "sha": "26613fd3730f95649be1d83e87665bb2b6cb34b4",
-      "size": 5166
+      "sha": "09c21fdebda7d4fd04777ec1323d6b80f6285af9",
+      "size": 5169
     },
     {
       "path": "Shadowrocket/rule/Meituan.list",
@@ -582,23 +582,23 @@
     },
     {
       "path": "Shadowrocket/rule/Meta.list",
-      "sha": "e2691919412683476fad44558862103f45341a67",
-      "size": 19180
+      "sha": "f1501e9bb1bc85d8415ef3ac4dfced7747379fe1",
+      "size": 17624
     },
     {
       "path": "Shadowrocket/rule/Microsoft.list",
-      "sha": "935693e095ec238835956bdb6f0e0ac6d3af4315",
-      "size": 25911
+      "sha": "2f2cb4923ecf33dbcb84f17bbe59f01e92fab372",
+      "size": 22332
     },
     {
       "path": "Shadowrocket/rule/Netflix.list",
-      "sha": "abfc908daee390ed18afdf967b5d44f6e113ac8d",
-      "size": 40525
+      "sha": "36a17b58a229909abc807897422f010b6a76d5f5",
+      "size": 2059
     },
     {
       "path": "Shadowrocket/rule/NTP.list",
-      "sha": "443a054475eb1f121c1ca84262211c3f59dd65ac",
-      "size": 3154
+      "sha": "c4b49e0709ac429ea7f3cdc03c6872b62b1818c9",
+      "size": 3199
     },
     {
       "path": "Shadowrocket/rule/Parsec.list",
@@ -622,23 +622,23 @@
     },
     {
       "path": "Shadowrocket/rule/Telegram.list",
-      "sha": "4051be3baaffbac6099574d43b4519a025e97944",
-      "size": 1844
+      "sha": "5f2fffc6af85cf92e1331d0657b8dac4fdb724ec",
+      "size": 2010
     },
     {
       "path": "Shadowrocket/rule/TikTok.list",
-      "sha": "ab614c4211befb7af8b6396199b6bf1baef1b98a",
-      "size": 1604
+      "sha": "de0dc76edf434a03932e3c99634c7a1ac45574da",
+      "size": 1619
     },
     {
       "path": "Shadowrocket/rule/Twitter.list",
-      "sha": "a74d02b044f0d3f5e98d366fbf6f0e65528f92b7",
-      "size": 1330
+      "sha": "025d595116f156eaa49118cfb958b87c5ba8408d",
+      "size": 1379
     },
     {
       "path": "Shadowrocket/rule/WeChat.list",
-      "sha": "9716d82878572a2b7158f5b11aa0bd085916eaf5",
-      "size": 10390
+      "sha": "f729d40eefd7c239bf83735c661153f65b8971c3",
+      "size": 1435
     },
     {
       "path": "Shadowrocket/rule/Weverse.list",
@@ -657,133 +657,133 @@
     },
     {
       "path": "Surge/rule/Adobe.list",
-      "sha": "69e00af0fe88365b8049a552a234839f89191c57",
-      "size": 8986
+      "sha": "831827889d42907cb447660056675a132244288e",
+      "size": 4967
     },
     {
       "path": "Surge/rule/AI.list",
-      "sha": "64fbd40c767830d0266d14c370cb4f461fb6b53b",
-      "size": 36213
+      "sha": "4b9fed72f480868b8c9dff84ea04f2f115d2373a",
+      "size": 35946
     },
     {
       "path": "Surge/rule/Apple.list",
-      "sha": "2b4d54db60d2f2448e1baa47c0b95d7d798fe955",
-      "size": 56385
+      "sha": "a9368f899aedfc3c57deae8e6a489409c29196dd",
+      "size": 51980
     },
     {
       "path": "Surge/rule/Bilibili.list",
-      "sha": "44ab93ba04bd94390b82b24c5e63504781852f56",
-      "size": 4899
+      "sha": "a942f8a73ee6caea5e808b24011f9b0844acf0c8",
+      "size": 4819
     },
     {
       "path": "Surge/rule/Disney.list",
-      "sha": "39509e620a22ddb1ea4dd66d527f1da1bdbe51cf",
-      "size": 8046
+      "sha": "df31218b851ffea19b6b3924419063a91db92593",
+      "size": 7812
     },
     {
       "path": "Surge/rule/GitHub.list",
-      "sha": "9fe96d4bf9bac1a96af64a81848ce51ac2240da4",
-      "size": 2987
+      "sha": "dcd414bd6c35914d2929794e2975cb5e19dd7f1e",
+      "size": 3008
     },
     {
       "path": "Surge/rule/Google.list",
-      "sha": "82b5f2deee62e7127e94487066121398103114d0",
-      "size": 25261
+      "sha": "0e737d197c8bb70e63a023c00b3ac718a1d5de0c",
+      "size": 24861
     },
     {
       "path": "Surge/rule/HBOMAX.list",
-      "sha": "e5ca40051edc0f52a4b94018bf8e42a64396cd72",
-      "size": 3139
+      "sha": "8983c71b043195ed4d794167d0af8645b2968e41",
+      "size": 3284
     },
     {
       "path": "Surge/rule/Infuse.list",
-      "sha": "045e5ac5706c651da1c2f6cb5c4528bbaf96ea75",
-      "size": 840
+      "sha": "ecc1da1aa49f97bdb6bf772e43c8e6a48f7fa103",
+      "size": 1009
     },
     {
       "path": "Surge/rule/LAN.list",
-      "sha": "69cd8e0f87661176e68fb2c242095c6743d5c713",
-      "size": 5168
+      "sha": "38b0f3e5c318a7213a56eaf0bd84d5fc6bb6a4f1",
+      "size": 5341
     },
     {
       "path": "Surge/rule/Meituan.list",
-      "sha": "29fb9b1fd410275dc9fc441d1d7a1589643249c3",
-      "size": 1041
+      "sha": "649ee8bc7bfdd72aa07971bc3173b0efba2c7eb2",
+      "size": 1210
     },
     {
       "path": "Surge/rule/Meta.list",
-      "sha": "c59e6cdcc509b1adf145a55f6fce38d15c03dffb",
-      "size": 19182
+      "sha": "f03b5f2a35354733a402d9f7d03734c7c96d1cdf",
+      "size": 17796
     },
     {
       "path": "Surge/rule/Microsoft.list",
-      "sha": "a43cda404037f86af134a80c0b5f74d8876a02da",
-      "size": 25977
+      "sha": "ca9603b88eb90ef2063fb406c9d02460148086b2",
+      "size": 22575
     },
     {
       "path": "Surge/rule/Netflix.list",
-      "sha": "2103f9b18a7e27e79a57c938d62da35c7eb4a990",
-      "size": 40591
+      "sha": "ac6ccf4ba32b9f11cf43e70e04c9e80a5fcf4555",
+      "size": 2291
     },
     {
       "path": "Surge/rule/NTP.list",
-      "sha": "f4e23bec582938d0c34cfdcac15f3673a0ab33cd",
-      "size": 3156
+      "sha": "ba1915488d42d2c8ddbe9f639beba5342af56621",
+      "size": 3370
     },
     {
       "path": "Surge/rule/Parsec.list",
-      "sha": "173266829d8ca85853b0241fa8abea837035fcd0",
-      "size": 656
+      "sha": "35509918c88b72c33e43a921dfec4fcc34db1390",
+      "size": 343
     },
     {
       "path": "Surge/rule/ParsecP2P.list",
-      "sha": "db0c71fc0c736f5ad4dfc57394513a1e390e8a6d",
-      "size": 498
+      "sha": "66de83af15533e057f37bfe560c728cf44d545f7",
+      "size": 618
     },
     {
       "path": "Surge/rule/SiriAI.list",
-      "sha": "12893ea69d67863a33a0aee41bc78b8666343ba9",
-      "size": 649
+      "sha": "15240b5bd0b6ca8e5650d34092da96e697b4c7a9",
+      "size": 821
     },
     {
       "path": "Surge/rule/Spotify.list",
-      "sha": "e97abb84837594abe851812733793c6ad261f24e",
-      "size": 1747
+      "sha": "6011bc1290859d80a7a58ada04a6bca1066ec07f",
+      "size": 1661
     },
     {
       "path": "Surge/rule/Telegram.list",
-      "sha": "09ef8a4b9b82c9c4c910f5d145be485ae32050ee",
-      "size": 1846
+      "sha": "9927ee4c6262584de75c2273bf727d97f62f3d59",
+      "size": 2236
     },
     {
       "path": "Surge/rule/TikTok.list",
-      "sha": "a850453409d6c54dd44ba7210c84c4e9d2660b6a",
-      "size": 1606
+      "sha": "8fe87c6b1f22e488054a6ea3159604dca010a80c",
+      "size": 1792
     },
     {
       "path": "Surge/rule/Twitter.list",
-      "sha": "2bcc103e839552c75a5fe9561bfb27b93feaaf78",
-      "size": 1332
+      "sha": "25881f8b03d38fa665f8145fb4953b1706d43228",
+      "size": 1551
     },
     {
       "path": "Surge/rule/WeChat.list",
-      "sha": "0e67de991940bd352aa4581fb53caabd71a02c36",
-      "size": 10456
+      "sha": "bcc20748e7cf0b5dfe3b0992e639bd4c8723d919",
+      "size": 1687
     },
     {
       "path": "Surge/rule/Weverse.list",
-      "sha": "bee064857b31919594c9ffbc853cac37cfc450f0",
-      "size": 874
+      "sha": "f20d7d06983a511d9cfffd4c5d9f7a6928438f1b",
+      "size": 1043
     },
     {
       "path": "Surge/rule/Wikimedia.list",
-      "sha": "495b0aa495e9b77424415c0f378b1d5e8176e544",
-      "size": 1034
+      "sha": "1672f896d0a48157c1289c6b3ff88b33b84fbb21",
+      "size": 1193
     },
     {
       "path": "Surge/rule/Xiaohongshu.list",
-      "sha": "1ccf8290197f6401b8bafdca62f6ebc80883c0dc",
-      "size": 1338
+      "sha": "9a4726dd7aa10ba68f7baa2f4356b5cc4f4fe0a3",
+      "size": 1517
     }
   ]
 }
