@@ -2,7 +2,7 @@
 # AUTHOR: Horatio
 # FORMAT: Egern YAML rule_set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 572
+# RULES: 574
 # SOURCE: Loon/rule/Meta.lsr (same repository)
 # USE: reference this URL from a rule_set with an assigned policy.
 # COMPAT: no_resolve is a rule-set-wide flag in Egern.
@@ -11,6 +11,7 @@
 # Keep this file aligned with Egern/rule for dual-client use.
 # DATA-AUDITED: 2026-11-13; see Docs/Audit-2026-11-13.md.
 # OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
+# ROUTING-UPDATE: 2026-11-25; Meta AI, Muse and Llama are exclusively covered by this set.
 
 no_resolve: true
 
@@ -478,6 +479,7 @@ domain_suffix_set:
   - "liverail.com"
   - "liverail.tv"
   - "llama.com"
+  - "llamameta.net"
   - "lnstagram-help.com"
   - "login-account.net"
   - "m.me"
@@ -489,6 +491,7 @@ domain_suffix_set:
   - "messengerdevelopers.com"
   - "meta.ai"
   - "meta.com"
+  - "metaaiusercontent.com"
   - "metaaivm.com"
   - "midentsolutions.com"
   - "mobilefacebook.com"

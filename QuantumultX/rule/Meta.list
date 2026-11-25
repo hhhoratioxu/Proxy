@@ -2,7 +2,7 @@
 # AUTHOR: Horatio
 # FORMAT: Quantumult X filter_remote
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 572
+# RULES: 574
 # SOURCE: Loon/rule/Meta.lsr (same repository)
 # USE: [filter_remote] with force-policy=<policy>.
 # PROVENANCE / EXISTING NOTES:
@@ -10,6 +10,7 @@
 # Keep this file aligned with Egern/rule for dual-client use.
 # DATA-AUDITED: 2026-11-13; see Docs/Audit-2026-11-13.md.
 # OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
+# ROUTING-UPDATE: 2026-11-25; Meta AI, Muse and Llama are exclusively covered by this set.
 
 HOST-SUFFIX,aboutfacebook.com
 HOST-SUFFIX,accessfacebookfromschool.com
@@ -474,6 +475,7 @@ HOST-SUFFIX,klik.me
 HOST-SUFFIX,liverail.com
 HOST-SUFFIX,liverail.tv
 HOST-SUFFIX,llama.com
+HOST-SUFFIX,llamameta.net
 HOST-SUFFIX,lnstagram-help.com
 HOST-SUFFIX,login-account.net
 HOST-SUFFIX,m.me
@@ -485,6 +487,7 @@ HOST-SUFFIX,messenger.com
 HOST-SUFFIX,messengerdevelopers.com
 HOST-SUFFIX,meta.ai
 HOST-SUFFIX,meta.com
+HOST-SUFFIX,metaaiusercontent.com
 HOST-SUFFIX,metaaivm.com
 HOST-SUFFIX,midentsolutions.com
 HOST-SUFFIX,mobilefacebook.com

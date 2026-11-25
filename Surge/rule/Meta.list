@@ -1,6 +1,6 @@
 # FORMAT: Surge Remote Rule Set
-# UPDATED: 2026-10-16
-# RULES: 572
+# UPDATED: 2026-11-25
+# RULES: 574
 # PORTED FROM: https://raw.githubusercontent.com/hhhoratioxu/Proxy/73e99eb3e2c36920768328b65bbf60b8eed3281f/Loon/rule/Meta.lsr
 # POLICY: Assign a policy when importing this URL as RULE-SET in Surge.
 # All source rule entries and their order are retained.
@@ -14,6 +14,7 @@
 # Keep this file aligned with Egern/rule for dual-client use.
 # DATA-AUDITED: 2026-11-13; see Docs/Audit-2026-11-13.md.
 # OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
+# ROUTING-UPDATE: 2026-11-25; Meta AI, Muse and Llama are exclusively covered by this set.
 
 DOMAIN-SUFFIX,aboutfacebook.com
 DOMAIN-SUFFIX,accessfacebookfromschool.com
@@ -478,6 +479,7 @@ DOMAIN-SUFFIX,klik.me
 DOMAIN-SUFFIX,liverail.com
 DOMAIN-SUFFIX,liverail.tv
 DOMAIN-SUFFIX,llama.com
+DOMAIN-SUFFIX,llamameta.net
 DOMAIN-SUFFIX,lnstagram-help.com
 DOMAIN-SUFFIX,login-account.net
 DOMAIN-SUFFIX,m.me
@@ -489,6 +491,7 @@ DOMAIN-SUFFIX,messenger.com
 DOMAIN-SUFFIX,messengerdevelopers.com
 DOMAIN-SUFFIX,meta.ai
 DOMAIN-SUFFIX,meta.com
+DOMAIN-SUFFIX,metaaiusercontent.com
 DOMAIN-SUFFIX,metaaivm.com
 DOMAIN-SUFFIX,midentsolutions.com
 DOMAIN-SUFFIX,mobilefacebook.com

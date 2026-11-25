@@ -1,8 +1,8 @@
 # AI 分流覆盖与订阅
 
-当前规则复核：**2026-11-25**，六端 AI 各 **958 条**。保留既有分类、订阅地址和策略；移除无边界动态关键词、缺少 AI 专属依据的平台范围与同组完整覆盖的冗余，当前不含 DOMAIN-KEYWORD / HOST-KEYWORD。详细依据与全库优先级见[官方优化报告](./Official-Optimization-2026-11-13.md)。
+当前规则复核：**2026-11-25**，六端 AI 各 **951 条**、Meta 各 **574 条**。保留既有分类、订阅地址和策略；移除无边界动态关键词、缺少 AI 专属依据的平台范围与同组完整覆盖的冗余，当前不含 DOMAIN-KEYWORD / HOST-KEYWORD。详细依据与全库优先级见[官方优化报告](./Official-Optimization-2026-11-13.md)。
 
-下面的公共 main 地址保持不变；本次提交进入 main 后，在客户端更新远程规则即可获取当前规则。SiriAI 独立策略先于 AI，AI 先于一般 Google/Microsoft/GitHub/Meta 等集合。Muse 专属后缀 `muse.ai`、`metaaivm.com` 及共享 API 后缀 `meta.ai` 仅由 Meta 集合匹配（包括 `auth.muse.ai`、`hatch-api.meta.ai`、`hatch.metaaivm.com`）；`shortwave.facebook.com` 已由 Meta 的 `facebook.com` 后缀覆盖。其他 AI 规则与策略顺序保持不变。原生导入、真实账号与设备流量仍需按客户端验收。
+下面的公共 main 地址保持不变；本次提交进入 main 后，在客户端更新远程规则即可获取当前规则。SiriAI 独立策略先于 AI，AI 先于一般 Google/Microsoft/GitHub/Meta 等集合。Meta Platforms 旗下所有已收录服务（Facebook、Instagram、WhatsApp、Messenger、Threads、Quest / Oculus、Meta AI、Muse、Llama）统一由 Meta 分流；AI 集合不再包含任何已核实的 Meta 服务域名，两个集合的字面域名匹配交集为零。`meta.com`、`meta.ai`、`muse.ai`、`metaaivm.com`、`llama.com`、`llamameta.net`、`metaaiusercontent.com` 等后缀由 Meta 覆盖。秘塔科技（`meta.law`、`metaso.cn`）、Ollama 和独立第三方模型/API 服务保留在 AI，Manus 恢复独立运营后亦保留。其他 AI 规则与策略顺序保持不变。原生导入、真实账号与设备流量仍需按客户端验收。
 
 ## 2026-10-28 发布记录
 
@@ -29,7 +29,7 @@
 
 | 类别 | 代表服务 |
 | --- | --- |
-| 通用助手、模型与搜索 | OpenAI / ChatGPT / Codex / Sora、Claude、Gemini / AI Studio / NotebookLM、Grok、Copilot、Perplexity、Meta AI、Mistral、Cohere、Poe、Character.AI |
+| 通用助手、模型与搜索 | OpenAI / ChatGPT / Codex / Sora、Claude、Gemini / AI Studio / NotebookLM、Grok、Copilot、Perplexity、Mistral、Cohere、Poe、Character.AI |
 | 国内模型与助手 | DeepSeek、通义千问 / Qwen、豆包、Kimi、智谱 / GLM、MiniMax、腾讯元宝 / 混元 / ima、讯飞星火、阶跃、百度文心、秘塔、纳米、面壁 |
 | 编程与智能体 | Cursor、Windsurf、Trae、Qoder、Augment、Devin、Kiro、Cline、Kilo、OpenCode、Sourcegraph / Amp、v0、Bolt、Lovable、Dify、Coze、Manus、OpenClaw、n8n、Gumloop、Lindy、Botpress、Voiceflow |
 | 图像、视频与 3D | Midjourney、FLUX / BFL、Stable Diffusion、Runway、Pika、Kling、Hailuo、Jimeng / Dreamina、Wan、Vidu、Krea、PixVerse、Higgsfield、Meshy、Hyper3D、CSM、Sloyd、Topaz |

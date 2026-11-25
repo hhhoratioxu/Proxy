@@ -14,6 +14,10 @@ class DomainOverlapReview(unittest.TestCase):
     def test_all_current_intersections_have_a_reviewed_policy(self):
         self.assertEqual(audit()["problems"], [])
 
+    def test_ai_and_meta_never_intersect(self):
+        actual = intersections()
+        self.assertFalse([pair for pair in actual if {item[0] for item in pair} == {"AI", "Meta"}])
+
     def test_exact_duplicates_and_nested_suffixes_are_detected_with_label_boundaries(self):
         data = {
             "A": [Rule("DOMAIN", "tenant.example.com"), Rule("DOMAIN", "same.test")],

@@ -4,11 +4,11 @@
   "scope": "Literal domain intersections across the existing 26 groups. Expected winners describe this repository recommended order and the Verge extension; other clients bind and order sets in their own profiles.",
   "decisions": [
     "SiriAI precedes AI and Apple for the existing dedicated Siri and Apple Intelligence relay hosts.",
-    "AI-specific hosts precede general provider groups, including GitHub Copilot, Grok, Gemini, Meta AI and Adobe Firefly.",
+    "AI-specific hosts precede general provider groups, including GitHub Copilot, Grok, Gemini and Adobe Firefly.",
     "Apple and Disney named Adobe tenant hosts precede the general Adobe namespace.",
     "GitHub named Azure storage tenants precede the general Microsoft cloud namespaces.",
     "NTP and Parsec STUN precede their vendor/control-plane fallback groups.",
-    "Muse and its shared meta.ai API namespace use Meta, not AI (2026-11-25); other AI-specific host precedence is unchanged."
+    "All Meta Platforms service domains (including Meta AI, Muse and Llama) use Meta exclusively; AI/Meta domain intersections are forbidden (2026-11-25). Other AI-specific host precedence is unchanged."
   ],
   "intersections": [
     {
@@ -26,60 +26,6 @@
       ],
       "hosts": [
         "ai.azure.com"
-      ],
-      "expected_group": "AI"
-    },
-    {
-      "matchers": [
-        {
-          "group": "AI",
-          "kind": "DOMAIN",
-          "value": "ai.developer.meta.com"
-        },
-        {
-          "group": "Meta",
-          "kind": "DOMAIN-SUFFIX",
-          "value": "meta.com"
-        }
-      ],
-      "hosts": [
-        "ai.developer.meta.com"
-      ],
-      "expected_group": "AI"
-    },
-    {
-      "matchers": [
-        {
-          "group": "AI",
-          "kind": "DOMAIN",
-          "value": "ai.meta.com"
-        },
-        {
-          "group": "Meta",
-          "kind": "DOMAIN-SUFFIX",
-          "value": "meta.com"
-        }
-      ],
-      "hosts": [
-        "ai.meta.com"
-      ],
-      "expected_group": "AI"
-    },
-    {
-      "matchers": [
-        {
-          "group": "AI",
-          "kind": "DOMAIN",
-          "value": "aidemos.meta.com"
-        },
-        {
-          "group": "Meta",
-          "kind": "DOMAIN-SUFFIX",
-          "value": "meta.com"
-        }
-      ],
-      "hosts": [
-        "aidemos.meta.com"
       ],
       "expected_group": "AI"
     },
@@ -890,24 +836,6 @@
       ],
       "hosts": [
         "geminiweb-pa.clients6.google.com"
-      ],
-      "expected_group": "AI"
-    },
-    {
-      "matchers": [
-        {
-          "group": "AI",
-          "kind": "DOMAIN",
-          "value": "llama.developer.meta.com"
-        },
-        {
-          "group": "Meta",
-          "kind": "DOMAIN-SUFFIX",
-          "value": "meta.com"
-        }
-      ],
-      "hosts": [
-        "llama.developer.meta.com"
       ],
       "expected_group": "AI"
     },
@@ -1762,25 +1690,6 @@
       "hosts": [
         "labstailwind.pa.googleapis.com",
         "probe.labstailwind.pa.googleapis.com"
-      ],
-      "expected_group": "AI"
-    },
-    {
-      "matchers": [
-        {
-          "group": "AI",
-          "kind": "DOMAIN-SUFFIX",
-          "value": "llama.com"
-        },
-        {
-          "group": "Meta",
-          "kind": "DOMAIN-SUFFIX",
-          "value": "llama.com"
-        }
-      ],
-      "hosts": [
-        "llama.com",
-        "probe.llama.com"
       ],
       "expected_group": "AI"
     },

@@ -3,7 +3,7 @@
 # FORMAT: Egern YAML rule_set
 # UPDATED: 2026-11-25
 # FORMAT-VERIFIED: 2026-10-28
-# RULES: 958
+# RULES: 951
 # SOURCE: existing Horatio rules + pinned MIT community sources + official service documentation.
 # SOURCE-REVISIONS: v2fly/domain-list-community@1b81d3cd3409; VPSDance/ai-proxy-rules@ecc2c57b3eef; Repcz/Tool@8e35d49e060b
 # SOURCES-AND-LICENSES: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Docs/AI-Sources.md
@@ -11,7 +11,7 @@
 # Coverage includes mainland China and overseas AI services in ONE policy-less set.
 # Put specific per-service overrides before this set, then general Google/Microsoft/GitHub/Meta/Apple sets.
 # Original AI coverage is retained except for reviewed exclusions. Shared cloud roots, broad ASNs and generic telemetry are excluded.
-# ROUTING-EXCEPTION: Muse and its shared meta.ai API namespace belong to Meta, not AI.
+# ROUTING-EXCEPTION: All Meta Platforms service domains, including Muse, Meta AI and Llama, belong exclusively to Meta.
 # Domain data and static format verification do not establish service availability or device acceptance.
 #
 # The following MIT notice applies to adapted third-party source data.
@@ -41,10 +41,7 @@
 # OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
 
 domain_set:
-  - "ai.developer.meta.com"
-  - "ai.meta.com"
   - "ai.zhaomi.cn"
-  - "aidemos.meta.com"
   - "alkalicore-pa.clients6.google.com"
   - "alkalimakersuite-pa.clients6.google.com"
   - "anthropic-com.ghost.io"
@@ -71,7 +68,6 @@ domain_set:
   - "hunyuan.tencentcloudapi.com"
   - "idetoolkits-hostedfiles.amazonaws.com"
   - "idetoolkits.amazonwebservices.com"
-  - "llama.developer.meta.com"
   - "notebooklm-pa.googleapis.com"
   - "notebooklm.googleapis.com"
   - "openai-api.arkoselabs.com"
@@ -650,8 +646,6 @@ domain_suffix_set:
   - "lingyiwanwu.com"
   - "linka2a.net"
   - "liveperson.net"
-  - "llama.com"
-  - "llamameta.net"
   - "lmarena.ai"
   - "lmstudio.ai"
   - "lovable.dev"
@@ -942,7 +936,6 @@ domain_suffix_set:
   - "litellm.ai"
   - "magnific.com"
   - "meshy.ai"
-  - "metaaiusercontent.com"
   - "modelbest.cn"
   - "monica.im"
   - "n8n.io"

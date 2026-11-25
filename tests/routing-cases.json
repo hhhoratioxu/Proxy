@@ -2155,5 +2155,405 @@
       "host": "shortwave.facebook.com"
     },
     "match": true
+  },
+  {
+    "name": "AI excludes Meta service ai.developer.meta.com",
+    "group": "AI",
+    "sample": {
+      "host": "ai.developer.meta.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service ai.developer.meta.com",
+    "group": "Meta",
+    "sample": {
+      "host": "ai.developer.meta.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service ai.meta.com",
+    "group": "AI",
+    "sample": {
+      "host": "ai.meta.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service ai.meta.com",
+    "group": "Meta",
+    "sample": {
+      "host": "ai.meta.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service aidemos.meta.com",
+    "group": "AI",
+    "sample": {
+      "host": "aidemos.meta.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service aidemos.meta.com",
+    "group": "Meta",
+    "sample": {
+      "host": "aidemos.meta.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service llama.developer.meta.com",
+    "group": "AI",
+    "sample": {
+      "host": "llama.developer.meta.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service llama.developer.meta.com",
+    "group": "Meta",
+    "sample": {
+      "host": "llama.developer.meta.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service llama.com",
+    "group": "AI",
+    "sample": {
+      "host": "llama.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service llama.com",
+    "group": "Meta",
+    "sample": {
+      "host": "llama.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service llamameta.net",
+    "group": "AI",
+    "sample": {
+      "host": "llamameta.net"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service llamameta.net",
+    "group": "Meta",
+    "sample": {
+      "host": "llamameta.net"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service metaaiusercontent.com",
+    "group": "AI",
+    "sample": {
+      "host": "metaaiusercontent.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service metaaiusercontent.com",
+    "group": "Meta",
+    "sample": {
+      "host": "metaaiusercontent.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service api.llama.com",
+    "group": "AI",
+    "sample": {
+      "host": "api.llama.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service api.llama.com",
+    "group": "Meta",
+    "sample": {
+      "host": "api.llama.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service dev.meta.ai",
+    "group": "AI",
+    "sample": {
+      "host": "dev.meta.ai"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service dev.meta.ai",
+    "group": "Meta",
+    "sample": {
+      "host": "dev.meta.ai"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service auth.meta.com",
+    "group": "AI",
+    "sample": {
+      "host": "auth.meta.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service auth.meta.com",
+    "group": "Meta",
+    "sample": {
+      "host": "auth.meta.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service accountscenter.meta.com",
+    "group": "AI",
+    "sample": {
+      "host": "accountscenter.meta.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service accountscenter.meta.com",
+    "group": "Meta",
+    "sample": {
+      "host": "accountscenter.meta.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service www.instagram.com",
+    "group": "AI",
+    "sample": {
+      "host": "www.instagram.com"
+    },
+    "match": false
+  },
+  {
+    "name": "AI excludes Meta service web.whatsapp.com",
+    "group": "AI",
+    "sample": {
+      "host": "web.whatsapp.com"
+    },
+    "match": false
+  },
+  {
+    "name": "AI excludes Meta service www.facebook.com",
+    "group": "AI",
+    "sample": {
+      "host": "www.facebook.com"
+    },
+    "match": false
+  },
+  {
+    "name": "AI excludes Meta service www.threads.net",
+    "group": "AI",
+    "sample": {
+      "host": "www.threads.net"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service www.threads.net",
+    "group": "Meta",
+    "sample": {
+      "host": "www.threads.net"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service www.messenger.com",
+    "group": "AI",
+    "sample": {
+      "host": "www.messenger.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service www.messenger.com",
+    "group": "Meta",
+    "sample": {
+      "host": "www.messenger.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service www.oculus.com",
+    "group": "AI",
+    "sample": {
+      "host": "www.oculus.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service www.oculus.com",
+    "group": "Meta",
+    "sample": {
+      "host": "www.oculus.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service probe.llamameta.net",
+    "group": "AI",
+    "sample": {
+      "host": "probe.llamameta.net"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service probe.llamameta.net",
+    "group": "Meta",
+    "sample": {
+      "host": "probe.llamameta.net"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Meta service probe.metaaiusercontent.com",
+    "group": "AI",
+    "sample": {
+      "host": "probe.metaaiusercontent.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Meta service probe.metaaiusercontent.com",
+    "group": "Meta",
+    "sample": {
+      "host": "probe.metaaiusercontent.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Meta excludes independent AI service chatgpt.com",
+    "group": "Meta",
+    "sample": {
+      "host": "chatgpt.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta excludes independent AI service claude.ai",
+    "group": "Meta",
+    "sample": {
+      "host": "claude.ai"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta excludes independent AI service gemini.google.com",
+    "group": "Meta",
+    "sample": {
+      "host": "gemini.google.com"
+    },
+    "match": false
+  },
+  {
+    "name": "AI routes independent AI service ollama.com",
+    "group": "AI",
+    "sample": {
+      "host": "ollama.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Meta excludes independent AI service ollama.com",
+    "group": "Meta",
+    "sample": {
+      "host": "ollama.com"
+    },
+    "match": false
+  },
+  {
+    "name": "AI routes independent AI service meta.law",
+    "group": "AI",
+    "sample": {
+      "host": "meta.law"
+    },
+    "match": true
+  },
+  {
+    "name": "Meta excludes independent AI service meta.law",
+    "group": "Meta",
+    "sample": {
+      "host": "meta.law"
+    },
+    "match": false
+  },
+  {
+    "name": "AI routes independent AI service metaso.cn",
+    "group": "AI",
+    "sample": {
+      "host": "metaso.cn"
+    },
+    "match": true
+  },
+  {
+    "name": "Meta excludes independent AI service metaso.cn",
+    "group": "Meta",
+    "sample": {
+      "host": "metaso.cn"
+    },
+    "match": false
+  },
+  {
+    "name": "AI routes independent AI service manus.im",
+    "group": "AI",
+    "sample": {
+      "host": "manus.im"
+    },
+    "match": true
+  },
+  {
+    "name": "Meta excludes independent AI service manus.im",
+    "group": "Meta",
+    "sample": {
+      "host": "manus.im"
+    },
+    "match": false
+  },
+  {
+    "name": "AI routes independent AI service manuscdn.com",
+    "group": "AI",
+    "sample": {
+      "host": "manuscdn.com"
+    },
+    "match": true
+  },
+  {
+    "name": "Meta excludes independent AI service manuscdn.com",
+    "group": "Meta",
+    "sample": {
+      "host": "manuscdn.com"
+    },
+    "match": false
+  },
+  {
+    "name": "AI routes independent AI service monica.im",
+    "group": "AI",
+    "sample": {
+      "host": "monica.im"
+    },
+    "match": true
+  },
+  {
+    "name": "Meta excludes independent AI service monica.im",
+    "group": "Meta",
+    "sample": {
+      "host": "monica.im"
+    },
+    "match": false
   }
 ]

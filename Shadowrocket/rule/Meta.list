@@ -2,7 +2,7 @@
 # AUTHOR: Horatio
 # FORMAT: Shadowrocket rule set
 # FORMAT-VERIFIED: 2026-10-25
-# RULES: 572
+# RULES: 574
 # SOURCE: Loon/rule/Meta.lsr (same repository)
 # USE: Remote rule set; select policy in the client (not in this file).
 # PROVENANCE / EXISTING NOTES:
@@ -10,6 +10,7 @@
 # Keep this file aligned with Egern/rule for dual-client use.
 # DATA-AUDITED: 2026-11-13; see Docs/Audit-2026-11-13.md.
 # OFFICIAL-REVIEW: 2026-11-13; Docs/Official-Optimization-2026-11-13.md
+# ROUTING-UPDATE: 2026-11-25; Meta AI, Muse and Llama are exclusively covered by this set.
 
 DOMAIN-SUFFIX,aboutfacebook.com
 DOMAIN-SUFFIX,accessfacebookfromschool.com
@@ -474,6 +475,7 @@ DOMAIN-SUFFIX,klik.me
 DOMAIN-SUFFIX,liverail.com
 DOMAIN-SUFFIX,liverail.tv
 DOMAIN-SUFFIX,llama.com
+DOMAIN-SUFFIX,llamameta.net
 DOMAIN-SUFFIX,lnstagram-help.com
 DOMAIN-SUFFIX,login-account.net
 DOMAIN-SUFFIX,m.me
@@ -485,6 +487,7 @@ DOMAIN-SUFFIX,messenger.com
 DOMAIN-SUFFIX,messengerdevelopers.com
 DOMAIN-SUFFIX,meta.ai
 DOMAIN-SUFFIX,meta.com
+DOMAIN-SUFFIX,metaaiusercontent.com
 DOMAIN-SUFFIX,metaaivm.com
 DOMAIN-SUFFIX,midentsolutions.com
 DOMAIN-SUFFIX,mobilefacebook.com
