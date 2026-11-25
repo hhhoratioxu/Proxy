@@ -1,9 +1,9 @@
 {
   "repository": "hhhoratioxu/Proxy",
   "branch": "main",
-  "commit": "6e855f1fa657c350c859dddbb5c4d33e342079f7",
-  "tree": "e22d9441b25b98e5407be536bcccfa8127c7ad19",
-  "checkedAt": "2026-11-13T16:03:25.942Z",
+  "commit": "7881b213e3bf841e1a3b9b1544d7e4c192d2bef2",
+  "tree": "4eb5583946de3746890efd3bf6ca1ee6f157a47f",
+  "checkedAt": "2026-11-25T15:51:11.964Z",
   "files": [
     {
       "path": "Clash/rule/Adobe.yaml",
@@ -12,8 +12,8 @@
     },
     {
       "path": "Clash/rule/AI.yaml",
-      "sha": "2ac7befa0ce3d124adbe28b674150d6e1ed6cce5",
-      "size": 41730
+      "sha": "2a39bc870109f849fe59ff22e90af84d1b09ff2d",
+      "size": 41750
     },
     {
       "path": "Clash/rule/Apple.yaml",
@@ -142,8 +142,8 @@
     },
     {
       "path": "Egern/rule/AI.yaml",
-      "sha": "37101d3b1fa81648062d9eaea57a637e359c2ea1",
-      "size": 30964
+      "sha": "cf35befd31b35b75962de8ecd287255324de6895",
+      "size": 31026
     },
     {
       "path": "Egern/rule/Apple.yaml",
@@ -272,8 +272,8 @@
     },
     {
       "path": "Loon/rule/AI.lsr",
-      "sha": "7c7472ca1e5e21982bc4051ffe65e7028421177b",
-      "size": 35933
+      "sha": "db4edea7bb2321ea6fdfe101c67d3caff497424c",
+      "size": 35971
     },
     {
       "path": "Loon/rule/Apple.lsr",
@@ -402,8 +402,8 @@
     },
     {
       "path": "QuantumultX/rule/AI.list",
-      "sha": "853d5899a4f6f17d00db5228977d7b8651b5033c",
-      "size": 34007
+      "sha": "9b589abbc8d732dd8575cebac3c7013dfc058f48",
+      "size": 34051
     },
     {
       "path": "QuantumultX/rule/Apple.list",
@@ -532,8 +532,8 @@
     },
     {
       "path": "Shadowrocket/rule/AI.list",
-      "sha": "e37988f23b6542b289eedaeeae21795855eb1b4e",
-      "size": 35955
+      "sha": "1ddb6143b2d7239def3bff036f02d81bc903e4bd",
+      "size": 35993
     },
     {
       "path": "Shadowrocket/rule/Apple.list",
@@ -662,8 +662,8 @@
     },
     {
       "path": "Surge/rule/AI.list",
-      "sha": "4b9fed72f480868b8c9dff84ea04f2f115d2373a",
-      "size": 35946
+      "sha": "0b8878005f6c87e044abca5f9dbea7aef127e504",
+      "size": 35984
     },
     {
       "path": "Surge/rule/Apple.list",
