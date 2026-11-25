@@ -2027,5 +2027,133 @@
       "network": "UDP"
     },
     "match": false
+  },
+  {
+    "name": "AI excludes Muse endpoint muse.ai",
+    "group": "AI",
+    "sample": {
+      "host": "muse.ai"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Muse endpoint muse.ai",
+    "group": "Meta",
+    "sample": {
+      "host": "muse.ai"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Muse endpoint auth.muse.ai",
+    "group": "AI",
+    "sample": {
+      "host": "auth.muse.ai"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Muse endpoint auth.muse.ai",
+    "group": "Meta",
+    "sample": {
+      "host": "auth.muse.ai"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Muse endpoint platform.muse.ai",
+    "group": "AI",
+    "sample": {
+      "host": "platform.muse.ai"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Muse endpoint platform.muse.ai",
+    "group": "Meta",
+    "sample": {
+      "host": "platform.muse.ai"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Muse endpoint meta.ai",
+    "group": "AI",
+    "sample": {
+      "host": "meta.ai"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Muse endpoint meta.ai",
+    "group": "Meta",
+    "sample": {
+      "host": "meta.ai"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Muse endpoint hatch-api.meta.ai",
+    "group": "AI",
+    "sample": {
+      "host": "hatch-api.meta.ai"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Muse endpoint hatch-api.meta.ai",
+    "group": "Meta",
+    "sample": {
+      "host": "hatch-api.meta.ai"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Muse endpoint metaaivm.com",
+    "group": "AI",
+    "sample": {
+      "host": "metaaivm.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Muse endpoint metaaivm.com",
+    "group": "Meta",
+    "sample": {
+      "host": "metaaivm.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Muse endpoint hatch.metaaivm.com",
+    "group": "AI",
+    "sample": {
+      "host": "hatch.metaaivm.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Muse endpoint hatch.metaaivm.com",
+    "group": "Meta",
+    "sample": {
+      "host": "hatch.metaaivm.com"
+    },
+    "match": true
+  },
+  {
+    "name": "AI excludes Muse endpoint shortwave.facebook.com",
+    "group": "AI",
+    "sample": {
+      "host": "shortwave.facebook.com"
+    },
+    "match": false
+  },
+  {
+    "name": "Meta routes Muse endpoint shortwave.facebook.com",
+    "group": "Meta",
+    "sample": {
+      "host": "shortwave.facebook.com"
+    },
+    "match": true
   }
 ]

@@ -1,16 +1,17 @@
 # NAME: AI
 # AUTHOR: Horatio
 # FORMAT: Egern YAML rule_set
-# UPDATED: 2026-10-28
+# UPDATED: 2026-11-25
 # FORMAT-VERIFIED: 2026-10-28
-# RULES: 961
+# RULES: 958
 # SOURCE: existing Horatio rules + pinned MIT community sources + official service documentation.
 # SOURCE-REVISIONS: v2fly/domain-list-community@1b81d3cd3409; VPSDance/ai-proxy-rules@ecc2c57b3eef; Repcz/Tool@8e35d49e060b
 # SOURCES-AND-LICENSES: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Docs/AI-Sources.md
 # USE: Reference this URL from rule_set and assign a policy.
 # Coverage includes mainland China and overseas AI services in ONE policy-less set.
 # Put specific per-service overrides before this set, then general Google/Microsoft/GitHub/Meta/Apple sets.
-# Existing 476 conditions are preserved. New shared cloud roots, broad ASNs and generic telemetry are excluded.
+# Original AI coverage is retained except for reviewed exclusions. Shared cloud roots, broad ASNs and generic telemetry are excluded.
+# ROUTING-EXCEPTION: Muse and its shared meta.ai API namespace belong to Meta, not AI.
 # Domain data and static format verification do not establish service availability or device acceptance.
 #
 # The following MIT notice applies to adapted third-party source data.
@@ -671,7 +672,6 @@ domain_suffix_set:
   - "mchost.guru"
   - "mcprev.cn"
   - "mcpworld.com"
-  - "meta.ai"
   - "meta.law"
   - "metaso.cn"
   - "miaibox.com"
@@ -943,10 +943,8 @@ domain_suffix_set:
   - "magnific.com"
   - "meshy.ai"
   - "metaaiusercontent.com"
-  - "metaaivm.com"
   - "modelbest.cn"
   - "monica.im"
-  - "muse.ai"
   - "n8n.io"
   - "napkin.ai"
   - "notta.ai"
