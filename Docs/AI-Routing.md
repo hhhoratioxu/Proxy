@@ -1,8 +1,8 @@
 # AI 分流覆盖与订阅
 
-当前规则复核：**2026-11-13**，六端 AI 各 **961 条**。保留既有分类、订阅地址和策略；移除无边界动态关键词、缺少 AI 专属依据的平台范围与同组完整覆盖的冗余，当前不含 DOMAIN-KEYWORD / HOST-KEYWORD。详细依据与全库优先级见[官方优化报告](./Official-Optimization-2026-11-13.md)。
+当前规则复核：**2026-11-25**，六端 AI 各 **958 条**。保留既有分类、订阅地址和策略；移除无边界动态关键词、缺少 AI 专属依据的平台范围与同组完整覆盖的冗余，当前不含 DOMAIN-KEYWORD / HOST-KEYWORD。详细依据与全库优先级见[官方优化报告](./Official-Optimization-2026-11-13.md)。
 
-下面的公共 main 地址保持不变；本次提交进入 main 后，在客户端更新远程规则即可获取当前规则。SiriAI 独立策略先于 AI，AI 先于一般 Google/Microsoft/GitHub/Meta 等集合。原生导入、真实账号与设备流量仍需按客户端验收。
+下面的公共 main 地址保持不变；本次提交进入 main 后，在客户端更新远程规则即可获取当前规则。SiriAI 独立策略先于 AI，AI 先于一般 Google/Microsoft/GitHub/Meta 等集合。Muse 专属后缀 `muse.ai`、`metaaivm.com` 及共享 API 后缀 `meta.ai` 仅由 Meta 集合匹配（包括 `auth.muse.ai`、`hatch-api.meta.ai`、`hatch.metaaivm.com`）；`shortwave.facebook.com` 已由 Meta 的 `facebook.com` 后缀覆盖。其他 AI 规则与策略顺序保持不变。原生导入、真实账号与设备流量仍需按客户端验收。
 
 ## 2026-10-28 发布记录
 

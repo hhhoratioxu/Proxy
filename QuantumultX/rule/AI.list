@@ -1,16 +1,17 @@
 # NAME: AI
 # AUTHOR: Horatio
 # FORMAT: Quantumult X filter_remote
-# UPDATED: 2026-10-28
+# UPDATED: 2026-11-25
 # FORMAT-VERIFIED: 2026-10-28
-# RULES: 961
+# RULES: 958
 # SOURCE: existing Horatio rules + pinned MIT community sources + official service documentation.
 # SOURCE-REVISIONS: v2fly/domain-list-community@1b81d3cd3409; VPSDance/ai-proxy-rules@ecc2c57b3eef; Repcz/Tool@8e35d49e060b
 # SOURCES-AND-LICENSES: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Docs/AI-Sources.md
 # USE: [filter_remote] with force-policy=<policy>.
 # Coverage includes mainland China and overseas AI services in ONE policy-less set.
 # Put specific per-service overrides before this set, then general Google/Microsoft/GitHub/Meta/Apple sets.
-# Existing 476 conditions are preserved. New shared cloud roots, broad ASNs and generic telemetry are excluded.
+# Original AI coverage is retained except for reviewed exclusions. Shared cloud roots, broad ASNs and generic telemetry are excluded.
+# ROUTING-EXCEPTION: Muse and its shared meta.ai API namespace belong to Meta, not AI.
 # Domain data and static format verification do not establish service availability or device acceptance.
 #
 # The following MIT notice applies to adapted third-party source data.
@@ -330,7 +331,6 @@ HOST-SUFFIX,mcdemo.show
 HOST-SUFFIX,mchost.guru
 HOST-SUFFIX,mcprev.cn
 HOST-SUFFIX,mcpworld.com
-HOST-SUFFIX,meta.ai
 HOST-SUFFIX,meta.law
 HOST-SUFFIX,metaso.cn
 HOST-SUFFIX,miaibox.com
@@ -940,10 +940,8 @@ HOST-SUFFIX,litellm.ai
 HOST-SUFFIX,magnific.com
 HOST-SUFFIX,meshy.ai
 HOST-SUFFIX,metaaiusercontent.com
-HOST-SUFFIX,metaaivm.com
 HOST-SUFFIX,modelbest.cn
 HOST-SUFFIX,monica.im
-HOST-SUFFIX,muse.ai
 HOST-SUFFIX,n8n.io
 HOST-SUFFIX,napkin.ai
 HOST-SUFFIX,notta.ai

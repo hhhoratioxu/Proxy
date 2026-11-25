@@ -7,7 +7,8 @@
     "AI-specific hosts precede general provider groups, including GitHub Copilot, Grok, Gemini, Meta AI and Adobe Firefly.",
     "Apple and Disney named Adobe tenant hosts precede the general Adobe namespace.",
     "GitHub named Azure storage tenants precede the general Microsoft cloud namespaces.",
-    "NTP and Parsec STUN precede their vendor/control-plane fallback groups."
+    "NTP and Parsec STUN precede their vendor/control-plane fallback groups.",
+    "Muse and its shared meta.ai API namespace use Meta, not AI (2026-11-25); other AI-specific host precedence is unchanged."
   ],
   "intersections": [
     {
@@ -1799,63 +1800,6 @@
       "hosts": [
         "makersuite.google.com",
         "probe.makersuite.google.com"
-      ],
-      "expected_group": "AI"
-    },
-    {
-      "matchers": [
-        {
-          "group": "AI",
-          "kind": "DOMAIN-SUFFIX",
-          "value": "meta.ai"
-        },
-        {
-          "group": "Meta",
-          "kind": "DOMAIN-SUFFIX",
-          "value": "meta.ai"
-        }
-      ],
-      "hosts": [
-        "meta.ai",
-        "probe.meta.ai"
-      ],
-      "expected_group": "AI"
-    },
-    {
-      "matchers": [
-        {
-          "group": "AI",
-          "kind": "DOMAIN-SUFFIX",
-          "value": "metaaivm.com"
-        },
-        {
-          "group": "Meta",
-          "kind": "DOMAIN-SUFFIX",
-          "value": "metaaivm.com"
-        }
-      ],
-      "hosts": [
-        "metaaivm.com",
-        "probe.metaaivm.com"
-      ],
-      "expected_group": "AI"
-    },
-    {
-      "matchers": [
-        {
-          "group": "AI",
-          "kind": "DOMAIN-SUFFIX",
-          "value": "muse.ai"
-        },
-        {
-          "group": "Meta",
-          "kind": "DOMAIN-SUFFIX",
-          "value": "muse.ai"
-        }
-      ],
-      "hosts": [
-        "muse.ai",
-        "probe.muse.ai"
       ],
       "expected_group": "AI"
     },

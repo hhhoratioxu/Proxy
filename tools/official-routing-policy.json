@@ -1214,6 +1214,33 @@
       "sources": [
         "https://rdap.apnic.net/autnum/132203"
       ]
+    },
+    {
+      "group": "AI",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "muse.ai",
+      "reason": "User routing policy (2026-11-25): Muse and its shared meta.ai namespace must use Meta exclusively; the existing Meta suffix covers this domain.",
+      "sources": [
+        "muse-meta"
+      ]
+    },
+    {
+      "group": "AI",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "metaaivm.com",
+      "reason": "User routing policy (2026-11-25): Muse and its shared meta.ai namespace must use Meta exclusively; the existing Meta suffix covers this domain.",
+      "sources": [
+        "muse-meta"
+      ]
+    },
+    {
+      "group": "AI",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "meta.ai",
+      "reason": "User routing policy (2026-11-25): Muse and its shared meta.ai namespace must use Meta exclusively; the existing Meta suffix covers this domain.",
+      "sources": [
+        "muse-meta"
+      ]
     }
   ],
   "add_matchers": [

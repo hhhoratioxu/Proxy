@@ -1,16 +1,17 @@
 # NAME: AI
 # AUTHOR: Horatio
 # FORMAT: Surge external RULE-SET (policy-less)
-# UPDATED: 2026-10-28
+# UPDATED: 2026-11-25
 # FORMAT-VERIFIED: 2026-10-28
-# RULES: 961
+# RULES: 958
 # SOURCE: existing Horatio rules + pinned MIT community sources + official service documentation.
 # SOURCE-REVISIONS: v2fly/domain-list-community@1b81d3cd3409; VPSDance/ai-proxy-rules@ecc2c57b3eef; Repcz/Tool@8e35d49e060b
 # SOURCES-AND-LICENSES: https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Docs/AI-Sources.md
 # USE: RULE-SET,<this URL>,POLICY,update-interval=86400.
 # Coverage includes mainland China and overseas AI services in ONE policy-less set.
 # Put specific per-service overrides before this set, then general Google/Microsoft/GitHub/Meta/Apple sets.
-# Existing 476 conditions are preserved. New shared cloud roots, broad ASNs and generic telemetry are excluded.
+# Original AI coverage is retained except for reviewed exclusions. Shared cloud roots, broad ASNs and generic telemetry are excluded.
+# ROUTING-EXCEPTION: Muse and its shared meta.ai API namespace belong to Meta, not AI.
 # Domain data and static format verification do not establish service availability or device acceptance.
 #
 # The following MIT notice applies to adapted third-party source data.
@@ -330,7 +331,6 @@ DOMAIN-SUFFIX,mcdemo.show
 DOMAIN-SUFFIX,mchost.guru
 DOMAIN-SUFFIX,mcprev.cn
 DOMAIN-SUFFIX,mcpworld.com
-DOMAIN-SUFFIX,meta.ai
 DOMAIN-SUFFIX,meta.law
 DOMAIN-SUFFIX,metaso.cn
 DOMAIN-SUFFIX,miaibox.com
@@ -940,10 +940,8 @@ DOMAIN-SUFFIX,litellm.ai
 DOMAIN-SUFFIX,magnific.com
 DOMAIN-SUFFIX,meshy.ai
 DOMAIN-SUFFIX,metaaiusercontent.com
-DOMAIN-SUFFIX,metaaivm.com
 DOMAIN-SUFFIX,modelbest.cn
 DOMAIN-SUFFIX,monica.im
-DOMAIN-SUFFIX,muse.ai
 DOMAIN-SUFFIX,n8n.io
 DOMAIN-SUFFIX,napkin.ai
 DOMAIN-SUFFIX,notta.ai
