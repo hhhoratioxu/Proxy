@@ -39,7 +39,10 @@
     "iana-rdap-ipv4": "https://data.iana.org/rdap/ipv4.json",
     "iana-rdap-ipv6": "https://data.iana.org/rdap/ipv6.json",
     "iana-rdap-asn": "https://data.iana.org/rdap/asn.json",
-    "google-cloud-ipranges": "https://www.gstatic.com/ipranges/cloud.json"
+    "google-cloud-ipranges": "https://www.gstatic.com/ipranges/cloud.json",
+    "meta-model-api": "https://dev.meta.ai/help/about-model-api/llama-and-model-api",
+    "v2fly-meta": "https://github.com/v2fly/domain-list-community/blob/1b81d3cd34096e5d8cac6bca5935e80f30e990f0/data/meta",
+    "vpsdance-meta-ai": "https://github.com/VPSDance/ai-proxy-rules/blob/ecc2c57b3eef1386b70f5b943aba504706969709/data/providers/meta-ai.yaml"
   },
   "remove_domain_keywords": {
     "AI": [
@@ -1241,6 +1244,75 @@
       "sources": [
         "muse-meta"
       ]
+    },
+    {
+      "group": "AI",
+      "kind": "DOMAIN",
+      "value": "ai.developer.meta.com",
+      "reason": "User routing policy (2026-11-25): Meta Platforms service domains belong exclusively to Meta; covered by an existing or added Meta suffix.",
+      "sources": [
+        "vpsdance-meta-ai",
+        "meta-model-api"
+      ]
+    },
+    {
+      "group": "AI",
+      "kind": "DOMAIN",
+      "value": "ai.meta.com",
+      "reason": "User routing policy (2026-11-25): Meta Platforms service domains belong exclusively to Meta; covered by an existing or added Meta suffix.",
+      "sources": [
+        "vpsdance-meta-ai",
+        "meta-model-api"
+      ]
+    },
+    {
+      "group": "AI",
+      "kind": "DOMAIN",
+      "value": "aidemos.meta.com",
+      "reason": "User routing policy (2026-11-25): Meta Platforms service domains belong exclusively to Meta; covered by an existing or added Meta suffix.",
+      "sources": [
+        "vpsdance-meta-ai",
+        "meta-model-api"
+      ]
+    },
+    {
+      "group": "AI",
+      "kind": "DOMAIN",
+      "value": "llama.developer.meta.com",
+      "reason": "User routing policy (2026-11-25): Meta Platforms service domains belong exclusively to Meta; covered by an existing or added Meta suffix.",
+      "sources": [
+        "vpsdance-meta-ai",
+        "meta-model-api"
+      ]
+    },
+    {
+      "group": "AI",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "llama.com",
+      "reason": "User routing policy (2026-11-25): Meta Platforms service domains belong exclusively to Meta; covered by an existing or added Meta suffix.",
+      "sources": [
+        "vpsdance-meta-ai",
+        "meta-model-api"
+      ]
+    },
+    {
+      "group": "AI",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "llamameta.net",
+      "reason": "User routing policy (2026-11-25): Meta Platforms service domains belong exclusively to Meta; covered by an existing or added Meta suffix.",
+      "sources": [
+        "vpsdance-meta-ai",
+        "meta-model-api"
+      ]
+    },
+    {
+      "group": "AI",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "metaaiusercontent.com",
+      "reason": "User routing policy (2026-11-25): Meta Platforms service domains belong exclusively to Meta; covered by an existing or added Meta suffix.",
+      "sources": [
+        "v2fly-meta"
+      ]
     }
   ],
   "add_matchers": [
@@ -1371,6 +1443,24 @@
       "value": "2a0a:f280::/32",
       "sources": [
         "telegram-cidrs"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "llamameta.net",
+      "reason": "Preserve the existing service coverage moved from AI into the exclusive Meta rule set.",
+      "sources": [
+        "vpsdance-meta-ai"
+      ]
+    },
+    {
+      "group": "Meta",
+      "kind": "DOMAIN-SUFFIX",
+      "value": "metaaiusercontent.com",
+      "reason": "Preserve the existing service coverage moved from AI into the exclusive Meta rule set.",
+      "sources": [
+        "v2fly-meta"
       ]
     }
   ],

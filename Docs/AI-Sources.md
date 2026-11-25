@@ -77,7 +77,7 @@ v2fly 展开 `category-ai-!cn`、兼容入口 `category-ai-chat-!cn`、`category
 | Lovart | [lovart](https://github.com/VPSDance/ai-proxy-rules/blob/ecc2c57b3eef1386b70f5b943aba504706969709/data/providers/lovart.yaml) |
 | Luma AI | [luma-ai](https://github.com/VPSDance/ai-proxy-rules/blob/ecc2c57b3eef1386b70f5b943aba504706969709/data/providers/luma-ai.yaml) |
 | Manus | [manus](https://github.com/VPSDance/ai-proxy-rules/blob/ecc2c57b3eef1386b70f5b943aba504706969709/data/providers/manus.yaml) |
-| Meta AI | [meta-ai](https://github.com/VPSDance/ai-proxy-rules/blob/ecc2c57b3eef1386b70f5b943aba504706969709/data/providers/meta-ai.yaml) |
+| Meta AI（自 2026-11-25 起仅归 Meta，以下为历史核对来源） | [meta-ai](https://github.com/VPSDance/ai-proxy-rules/blob/ecc2c57b3eef1386b70f5b943aba504706969709/data/providers/meta-ai.yaml) |
 | Midjourney | [midjourney](https://github.com/VPSDance/ai-proxy-rules/blob/ecc2c57b3eef1386b70f5b943aba504706969709/data/providers/midjourney.yaml) |
 | MiniMax | [minimax](https://github.com/VPSDance/ai-proxy-rules/blob/ecc2c57b3eef1386b70f5b943aba504706969709/data/providers/minimax.yaml) |
 | Mistral AI | [mistral-ai](https://github.com/VPSDance/ai-proxy-rules/blob/ecc2c57b3eef1386b70f5b943aba504706969709/data/providers/mistral-ai.yaml) |

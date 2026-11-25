@@ -13,7 +13,7 @@
 
 ## AI 分流更新
 
-**2026-11-25：六个客户端 AI 各 958 条，全库保留 26 类；Muse 及共享 meta.ai API 归入 Meta。** 按官方资料缩小共享范围、清理冗余及修正规则优先级，保留原订阅地址。[本轮优化与验证](./Docs/Official-Optimization-2026-11-13.md)。[全部订阅、覆盖与边界](./Docs/AI-Routing.md) · [来源、官网与授权](./Docs/AI-Sources.md)。
+**2026-11-25：六个客户端 AI 各 951 条、Meta 各 574 条，全库保留 26 类；所有已收录 Meta 服务（含 Meta AI、Muse、Llama）统一归入 Meta，AI/Meta 无域名交集。** 按官方资料缩小共享范围、清理冗余及修正规则优先级，保留原订阅地址。[本轮优化与验证](./Docs/Official-Optimization-2026-11-13.md)。[全部订阅、覆盖与边界](./Docs/AI-Routing.md) · [来源、官网与授权](./Docs/AI-Sources.md)。
 
 ## 客户端入口
 
@@ -77,7 +77,7 @@ Each client keeps routing lists in `rule/` and current installable resources in 
 
 [Full rule-format compliance audit for six clients (2026-10-25)](./Docs/Rule-Format-Compliance.md). All rule sets were normalized; real-device connectivity remains unverified.
 
-AI routing reviewed on **2026-11-25**: all six clients have **958 AI conditions** and retain the existing 26 categories. Muse and its shared meta.ai API namespace are routed exclusively by Meta. Shared namespaces, redundant matchers and policy precedence were reviewed against official sources. Existing subscription URLs remain unchanged. [Changes and validation](./Docs/Official-Optimization-2026-11-13.md). [Subscriptions and coverage](./Docs/AI-Routing.md) · [Pinned sources and license notices](./Docs/AI-Sources.md).
+AI routing reviewed on **2026-11-25**: all six clients have **951 AI conditions** and **574 Meta conditions** and retain the existing 26 categories. All listed Meta Platforms services, including Meta AI, Muse and Llama, are routed exclusively by Meta, with no domain intersection between AI and Meta. Shared namespaces, redundant matchers and policy precedence were reviewed against official sources. Existing subscription URLs remain unchanged. [Changes and validation](./Docs/Official-Optimization-2026-11-13.md). [Subscriptions and coverage](./Docs/AI-Routing.md) · [Pinned sources and license notices](./Docs/AI-Sources.md).
 
 ## Client directories
 
