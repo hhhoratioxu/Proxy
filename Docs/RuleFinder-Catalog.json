@@ -1,9 +1,9 @@
 {
   "repository": "hhhoratioxu/Proxy",
   "branch": "main",
-  "commit": "7881b213e3bf841e1a3b9b1544d7e4c192d2bef2",
-  "tree": "4eb5583946de3746890efd3bf6ca1ee6f157a47f",
-  "checkedAt": "2026-11-25T15:51:11.964Z",
+  "commit": "bc17fcb222cf0006ab1c00c11ce148908ce5751c",
+  "tree": "2aa86bc9dbbd98eb22787a179f2b454945c3e9b0",
+  "checkedAt": "2026-11-25T15:54:39.465Z",
   "files": [
     {
       "path": "Clash/rule/Adobe.yaml",
@@ -12,8 +12,8 @@
     },
     {
       "path": "Clash/rule/AI.yaml",
-      "sha": "2a39bc870109f849fe59ff22e90af84d1b09ff2d",
-      "size": 41750
+      "sha": "3766572abce9fedc87afd99636bdc8967f87fda5",
+      "size": 41549
     },
     {
       "path": "Clash/rule/Apple.yaml",
@@ -62,8 +62,8 @@
     },
     {
       "path": "Clash/rule/Meta.yaml",
-      "sha": "7ad72e33653baa3843c0a6adbab78a961153c8e0",
-      "size": 21086
+      "sha": "93348366475b4756a4b2fb02ba3777afcffc3b2f",
+      "size": 21253
     },
     {
       "path": "Clash/rule/Microsoft.yaml",
@@ -142,8 +142,8 @@
     },
     {
       "path": "Egern/rule/AI.yaml",
-      "sha": "cf35befd31b35b75962de8ecd287255324de6895",
-      "size": 31026
+      "sha": "e446960720a341c62eca13584968ec5d220db1eb",
+      "size": 30895
     },
     {
       "path": "Egern/rule/Apple.yaml",
@@ -192,8 +192,8 @@
     },
     {
       "path": "Egern/rule/Meta.yaml",
-      "sha": "176859d34d575686704e9e45e99caab78763d74b",
-      "size": 13089
+      "sha": "8412ef60ef237d8b997571dddc8b1ebcf8795754",
+      "size": 13228
     },
     {
       "path": "Egern/rule/Microsoft.yaml",
@@ -272,8 +272,8 @@
     },
     {
       "path": "Loon/rule/AI.lsr",
-      "sha": "db4edea7bb2321ea6fdfe101c67d3caff497424c",
-      "size": 35971
+      "sha": "ef31dea769392f436107bea33b969109a0d639ed",
+      "size": 35812
     },
     {
       "path": "Loon/rule/Apple.lsr",
@@ -322,8 +322,8 @@
     },
     {
       "path": "Loon/rule/Meta.lsr",
-      "sha": "996856d85a1b13ceefe3ab92c523bc11567a66ec",
-      "size": 17644
+      "sha": "73bb75007c32db73abc5e2f59aff747364c05b61",
+      "size": 17799
     },
     {
       "path": "Loon/rule/Microsoft.lsr",
@@ -402,8 +402,8 @@
     },
     {
       "path": "QuantumultX/rule/AI.list",
-      "sha": "9b589abbc8d732dd8575cebac3c7013dfc058f48",
-      "size": 34051
+      "sha": "ee3c83194a9d308559712b3d412c6cf1cef84de1",
+      "size": 33906
     },
     {
       "path": "QuantumultX/rule/Apple.list",
@@ -452,8 +452,8 @@
     },
     {
       "path": "QuantumultX/rule/Meta.list",
-      "sha": "d2f61474a2b6128259518fa1128035100c4264ec",
-      "size": 16331
+      "sha": "a5ad7e214cd768118343e349cbddc0cb6ec696ef",
+      "size": 16482
     },
     {
       "path": "QuantumultX/rule/Microsoft.list",
@@ -532,8 +532,8 @@
     },
     {
       "path": "Shadowrocket/rule/AI.list",
-      "sha": "1ddb6143b2d7239def3bff036f02d81bc903e4bd",
-      "size": 35993
+      "sha": "54ff7e90e56a617a2314dcd6e1981cb348484e72",
+      "size": 35834
     },
     {
       "path": "Shadowrocket/rule/Apple.list",
@@ -582,8 +582,8 @@
     },
     {
       "path": "Shadowrocket/rule/Meta.list",
-      "sha": "f1501e9bb1bc85d8415ef3ac4dfced7747379fe1",
-      "size": 17624
+      "sha": "0e826739cd9a23c9fbe9d6b389753490ea8f597c",
+      "size": 17779
     },
     {
       "path": "Shadowrocket/rule/Microsoft.list",
@@ -662,8 +662,8 @@
     },
     {
       "path": "Surge/rule/AI.list",
-      "sha": "0b8878005f6c87e044abca5f9dbea7aef127e504",
-      "size": 35984
+      "sha": "90535efa34976b28aa4412858b8ca2196c3bbe7d",
+      "size": 35825
     },
     {
       "path": "Surge/rule/Apple.list",
@@ -712,8 +712,8 @@
     },
     {
       "path": "Surge/rule/Meta.list",
-      "sha": "f03b5f2a35354733a402d9f7d03734c7c96d1cdf",
-      "size": 17796
+      "sha": "913e59e193804cbba585549802827a7672fced53",
+      "size": 17951
     },
     {
       "path": "Surge/rule/Microsoft.list",
