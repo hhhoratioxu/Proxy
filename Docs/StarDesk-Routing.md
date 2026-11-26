@@ -36,6 +36,16 @@ Loon：在远程规则中新增链接，策略选 DIRECT，启用并排在通用
 https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/rule/StarDesk.lsr, policy=DIRECT, tag=StarDesk, enabled=true
 ```
 
+### Loon 远程规则显示 0 条时
+
+原订阅包含域名和 macOS 进程规则，GitHub 文件存在且离线校验通过。设备下载及实际解析未验证；不能据此断定故障原因。先使用 [纯域名兼容入口 StarDesk.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/rule/compat/StarDesk.list)，该独立入口只包含 `DOMAIN-SUFFIX,stardesk.net`，不参与默认分类计数。删除或停用旧 StarDesk 订阅后，在远程规则入口添加此 URL，绑定 DIRECT，手动更新。若需在 Mac 匹配完整进程，将以下规则加到本地 [Rule] 区段：
+
+```ini
+PROCESS-NAME,StarDesk,DIRECT
+```
+
+如果纯域名入口也显示 0 条，先在同一台设备的浏览器打开 Raw URL 核对下载响应，再检查规则类型、更新日志和 GitHub Raw 网络可达性。完整规则和兼容入口二选一，避免重复启用。
+
 Surge / Shadowrocket：在已有 [Rule] 中使用 RULE-SET 引用各自链接并指定 DIRECT。
 
 Quantumult X：在已有 [filter_remote] 中引用其 HOST-SUFFIX 列表，设 `force-policy=direct`。

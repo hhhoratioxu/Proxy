@@ -92,6 +92,13 @@ class NativeRules(unittest.TestCase):
                 with self.subTest(text=text), self.assertRaises(ValueError):
                     rules.read_rules(path, "Surge")
 
+    def test_stardesk_loon_domain_only_compatibility_entry(self):
+        root = Path(__file__).resolve().parents[1]
+        compat = rules.read_rules(root / "Loon/rule/compat/StarDesk.list", "Loon")
+        full = rules.read_rules(root / "Loon/rule/StarDesk.lsr", "Loon")
+        self.assertEqual(compat, [r for r in full if r.kind == "DOMAIN-SUFFIX"])
+        self.assertEqual(compat, [rules.Rule("DOMAIN-SUFFIX", "stardesk.net")])
+
     def test_existing_repository_and_service_regressions(self):
         report = rules.audit()
         self.assertEqual(report["files"], 162)

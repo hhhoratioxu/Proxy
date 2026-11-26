@@ -1,6 +1,6 @@
 # Loon
 
-**StarDesk（2026-11-26）：** [直接订阅 StarDesk.lsr](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/rule/StarDesk.lsr) · [使用说明](../Docs/StarDesk-Routing.md)。建议 DIRECT；当前共 27 类，之前带日期的审核统计保留历史范围。
+**StarDesk（2026-11-26）：** [直接订阅 StarDesk.lsr](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/rule/StarDesk.lsr) · [使用说明](../Docs/StarDesk-Routing.md)。建议 DIRECT；当前共 27 类，之前带日期的审核统计保留历史范围。若远程规则显示 0 条，可用 [纯域名兼容入口 StarDesk.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/rule/compat/StarDesk.list) 排查下载或解析问题；不要与完整规则重复启用。
 
 2026-11-13 分流复核：保留 **26 类、5,927 条**默认条件，规则、跨端差异与验证结果见[官方依据优化报告](../Docs/Official-Optimization-2026-11-13.md)。原有订阅地址及安装入口继续使用。
 
