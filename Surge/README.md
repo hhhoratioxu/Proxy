@@ -1,5 +1,7 @@
 # Surge
 
+**StarDesk（2026-11-26）：** [直接订阅 StarDesk.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/StarDesk.list) · [使用说明](../Docs/StarDesk-Routing.md)。建议 DIRECT；当前共 27 类，之前带日期的审核统计保留历史范围。
+
 2026-11-13 分流复核：保留 **26 类、5,927 条**默认条件，规则、跨端差异与验证结果见[官方依据优化报告](../Docs/Official-Optimization-2026-11-13.md)。原有订阅地址及安装入口继续使用。
 
 [分流规则](./rule/) · [可导入插件](./script/) · [共用图标](../Icons/)
@@ -8,7 +10,7 @@
 
 ## 分流规则订阅
 
-本目录现有 **26 组** Surge 原生 `RULE-SET` 分流规则。下表均为可直接订阅的原始地址；策略在 Surge 引用规则集时选择，规则文件内不写入节点或策略组名称。
+本目录现有 **27 组** Surge 原生 `RULE-SET` 分流规则。下表均为可直接订阅的原始地址；策略在 Surge 引用规则集时选择，规则文件内不写入节点或策略组名称。
 
 | 分流规则 | 条目数 | 直接订阅地址 |
 | --- | ---: | --- |
@@ -30,6 +32,7 @@
 | Parsec | 3 | [Parsec.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/Parsec.list) |
 | Parsec P2P | 3 | [ParsecP2P.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/ParsecP2P.list) |
 | Siri AI | 6 | [SiriAI.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/SiriAI.list) |
+| StarDesk | 1 | [StarDesk.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/StarDesk.list) |
 | Spotify | 30 | [Spotify.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/Spotify.list) |
 | Telegram | 52 | [Telegram.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/Telegram.list) |
 | TikTok | 36 | [TikTok.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/TikTok.list) |

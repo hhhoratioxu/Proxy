@@ -94,7 +94,7 @@ class NativeRules(unittest.TestCase):
 
     def test_existing_repository_and_service_regressions(self):
         report = rules.audit()
-        self.assertEqual(report["files"], 156)
+        self.assertEqual(report["files"], 162)
         self.assertGreater(report["fixture_assertions"], 400)
         self.assertEqual(report["problems"], [])
 

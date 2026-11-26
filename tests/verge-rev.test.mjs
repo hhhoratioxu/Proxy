@@ -14,11 +14,11 @@ const profile = () => ({
 });
 const plain = value => JSON.parse(JSON.stringify(value));
 
-test('26 categories retain native provider URLs and existing profile settings', () => {
+test('27 categories retain native provider URLs and existing profile settings', () => {
   const input = profile();
   const saved = structuredClone(input);
   const output = main(input);
-  assert.equal(Object.keys(output['rule-providers']).length, 26);
+  assert.equal(Object.keys(output['rule-providers']).length, 27);
   for (const [key, provider] of Object.entries(output['rule-providers'])) {
     assert.equal(provider.behavior, 'classical');
     assert.equal(provider.format, 'yaml');
@@ -38,6 +38,7 @@ test('SiriAI overrides AI, AI overrides general services, P2P precedes control',
   for (const group of ['Apple', 'Google', 'Microsoft', 'Meta', 'GitHub']) assert.ok(at('AI') < at(group));
   assert.ok(at('ParsecP2P') < at('Parsec'));
   assert.ok(at('NTP') < at('Apple'));
+  assert.ok(at('StarDesk') < at('Google'));
 });
 
 test('repeated application does not grow rules or alter policies', () => {
@@ -66,6 +67,8 @@ test('dedicated service hosts beat general cloud and vendor rule sets', () => {
   assert.equal(firstDomainGroup('aistudio.google.com'), 'AI');
   assert.equal(firstDomainGroup('apple-relay.apple.com'), 'SiriAI');
   assert.equal(firstDomainGroup('stun.parsec.app'), 'ParsecP2P');
+  assert.equal(firstDomainGroup('api.stardesk.net'), 'StarDesk');
+  assert.equal(firstDomainGroup('notstardesk.net'), null);
   assert.equal(firstDomainGroup('www.youtube.com'), 'Google');
   assert.equal(firstDomainGroup('appleworldwidedeveloper.sc.omtrdc.net'), 'Apple');
   assert.equal(firstDomainGroup('disney.demdex.net'), 'Disney');
@@ -126,7 +129,7 @@ test('TAG preferences and DIRECT classifications still work', () => {
   const output = main(input);
   assert.ok(output.rules.includes('RULE-SET,Horatio-Meta,TAG'));
   assert.ok(output.rules.includes('RULE-SET,Horatio-Parsec,TAG'));
-  for (const group of ['LAN', 'ParsecP2P', 'NTP', 'Bilibili', 'Meituan', 'WeChat', 'Xiaohongshu']) {
+  for (const group of ['LAN', 'ParsecP2P', 'StarDesk', 'NTP', 'Bilibili', 'Meituan', 'WeChat', 'Xiaohongshu']) {
     assert.ok(output.rules.includes('RULE-SET,Horatio-' + group + ',DIRECT'));
   }
 });

@@ -1,6 +1,6 @@
 // Horatio Proxy — Clash Verge Rev global/profile Extended Script
 // Source: https://github.com/hhhoratioxu/Proxy/tree/main/Clash
-// Routes LAN / Parsec P2P / NTP / China services DIRECT; Meta and Parsec prefer TAG.
+// Routes LAN / Parsec P2P / StarDesk / NTP / China services DIRECT; Meta and Parsec prefer TAG.
 // Does not replace the original subscription's rules or proxies.
 
 function main(config) {
@@ -8,14 +8,14 @@ function main(config) {
   // Paste into Profiles > Extended Script. Edit POLICY_OVERRIDES if needed.
   const BASE = "https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/";
   const ORDER = [
-    "LAN", "ParsecP2P", "NTP", "SiriAI", "AI", "Parsec", "Meta",
+    "LAN", "ParsecP2P", "StarDesk", "NTP", "SiriAI", "AI", "Parsec", "Meta",
     "GitHub", "Telegram",
     "TikTok", "Twitter", "Spotify", "Netflix", "Disney", "HBOMAX",
     "Weverse", "Wikimedia", "Infuse",
     "Bilibili", "Meituan", "WeChat", "Xiaohongshu",
     "Google", "Apple", "Adobe", "Microsoft"
   ];
-  const DIRECT_RULES = ["LAN", "ParsecP2P", "NTP", "Bilibili", "Meituan", "WeChat", "Xiaohongshu"];
+  const DIRECT_RULES = ["LAN", "ParsecP2P", "StarDesk", "NTP", "Bilibili", "Meituan", "WeChat", "Xiaohongshu"];
   // These are preferred names. If a named policy does not exist, use the main proxy group.
   const POLICY_OVERRIDES = { Meta: "TAG", Parsec: "TAG" };
   const groupNames = (config["proxy-groups"] || []).map((p) => p && p.name).filter((name) => typeof name === "string");

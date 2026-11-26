@@ -1,5 +1,7 @@
 # Clash Verge Rev / Mihomo
 
+**StarDesk（2026-11-26）：** [直接订阅 StarDesk.yaml](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/StarDesk.yaml) · [使用说明](../Docs/StarDesk-Routing.md)。建议 DIRECT；当前共 27 类，之前带日期的审核统计保留历史范围。
+
 2026-11-13 分流复核：保留 **26 类、5,881 条**默认条件，规则、跨端差异与验证结果见[官方依据优化报告](../Docs/Official-Optimization-2026-11-13.md)。原有订阅地址及安装入口继续使用。
 
 [分流规则](./rule/) · [扩展脚本](./script/) · [说明文档](./Docs/)
@@ -12,7 +14,7 @@
 
 共用图标及导入入口：[Icons](../Icons/)。
 
-本目录包含 **26 组** `classical` 格式的远程分流规则。六个客户端的分流规则现按各自格式统一维护，详情见 [全库规则格式审核](../Docs/Rule-Format-Compliance.md)。
+本目录包含 **27 组** `classical` 格式的远程分流规则。六个客户端的分流规则现按各自格式统一维护，详情见 [全库规则格式审核](../Docs/Rule-Format-Compliance.md)。
 
 ## 最方便的方式：扩展脚本
 
@@ -27,7 +29,7 @@
 
 | 策略 | 分类 |
 | --- | --- |
-| DIRECT | LAN、ParsecP2P、NTP、Bilibili、Meituan、WeChat、Xiaohongshu |
+| DIRECT | LAN、ParsecP2P、StarDesk、NTP、Bilibili、Meituan、WeChat、Xiaohongshu |
 | TAG（若存在） | Meta、Parsec |
 | 默认代理组 | 其他规则，包括 Apple、Google、Microsoft、AI、Netflix 等 |
 
@@ -75,6 +77,7 @@ rules:
 | Parsec | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Parsec.yaml) |
 | ParsecP2P | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/ParsecP2P.yaml) |
 | SiriAI | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/SiriAI.yaml) |
+| StarDesk | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/StarDesk.yaml) |
 | Spotify | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Spotify.yaml) |
 | Telegram | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/Telegram.yaml) |
 | TikTok | [Raw](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Clash/rule/TikTok.yaml) |

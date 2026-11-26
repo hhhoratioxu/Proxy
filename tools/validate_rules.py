@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CLIENTS = {"Loon": ".lsr", "Surge": ".list", "Egern": ".yaml",
            "QuantumultX": ".list", "Shadowrocket": ".list", "Clash": ".yaml"}
 GROUPS = tuple("AI Adobe Apple Bilibili Disney GitHub Google HBOMAX Infuse LAN "
-               "Meituan Meta Microsoft NTP Netflix Parsec ParsecP2P SiriAI Spotify "
+               "Meituan Meta Microsoft NTP Netflix Parsec ParsecP2P SiriAI Spotify StarDesk "
                "Telegram TikTok Twitter WeChat Weverse Wikimedia Xiaohongshu".split())
 EG_KEYS = {"domain_set": "DOMAIN", "domain_suffix_set": "DOMAIN-SUFFIX",
            "domain_keyword_set": "DOMAIN-KEYWORD", "user_agent_set": "USER-AGENT",
@@ -212,7 +212,7 @@ def audit(root=ROOT):
         files = sorted(p for p in (root / client / "rule").glob("*") if p.is_file())
         expected = {name + extension for name in GROUPS}
         if {p.name for p in files} != expected:
-            problems.append(client + ": expected exactly the existing 26 categories")
+            problems.append(client + ": expected exactly the declared routing categories")
         for group in GROUPS:
             path = root / client / "rule" / (group + extension)
             label = path.relative_to(root).as_posix()

@@ -2555,5 +2555,87 @@
       "host": "monica.im"
     },
     "match": false
+  },
+  {
+    "name": "StarDesk official root",
+    "group": "StarDesk",
+    "sample": {
+      "host": "stardesk.net"
+    },
+    "match": true
+  },
+  {
+    "name": "StarDesk official website",
+    "group": "StarDesk",
+    "sample": {
+      "host": "www.stardesk.net"
+    },
+    "match": true
+  },
+  {
+    "name": "StarDesk official download API",
+    "group": "StarDesk",
+    "sample": {
+      "host": "api.stardesk.net"
+    },
+    "match": true
+  },
+  {
+    "name": "StarDesk rejects deceptive prefix",
+    "group": "StarDesk",
+    "sample": {
+      "host": "notstardesk.net"
+    },
+    "match": false
+  },
+  {
+    "name": "StarDesk rejects deceptive suffix",
+    "group": "StarDesk",
+    "sample": {
+      "host": "stardesk.net.example.com"
+    },
+    "match": false
+  },
+  {
+    "name": "StarDesk excludes shared infrastructure",
+    "group": "StarDesk",
+    "sample": {
+      "host": "adl.guinfra.com"
+    },
+    "match": false
+  },
+  {
+    "name": "StarDesk excludes GearUP parent service",
+    "group": "StarDesk",
+    "sample": {
+      "host": "gearupglobal.com"
+    },
+    "match": false
+  },
+  {
+    "name": "StarDesk excludes unrelated remote desktop",
+    "group": "StarDesk",
+    "sample": {
+      "host": "parsec.app"
+    },
+    "match": false
+  },
+  {
+    "name": "StarDesk rejects unverified TLD",
+    "group": "StarDesk",
+    "sample": {
+      "host": "stardesk.com"
+    },
+    "match": false
+  },
+  {
+    "name": "StarDesk does not capture arbitrary IP-only UDP",
+    "group": "StarDesk",
+    "sample": {
+      "ip": "192.0.2.5",
+      "network": "udp",
+      "destination_port": 3478
+    },
+    "match": false
   }
 ]
