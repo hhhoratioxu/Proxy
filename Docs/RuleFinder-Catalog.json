@@ -1,9 +1,9 @@
 {
   "repository": "hhhoratioxu/Proxy",
   "branch": "main",
-  "commit": "bc17fcb222cf0006ab1c00c11ce148908ce5751c",
-  "tree": "2aa86bc9dbbd98eb22787a179f2b454945c3e9b0",
-  "checkedAt": "2026-11-25T15:54:39.465Z",
+  "commit": "6ffc75449ec79ef0a11815cd090fa3e080bec55b",
+  "tree": "480e8e813981104de85c4d458244498426dc8ed9",
+  "checkedAt": "2026-11-26T01:14:57.304Z",
   "files": [
     {
       "path": "Clash/rule/Adobe.yaml",
@@ -99,6 +99,11 @@
       "path": "Clash/rule/Spotify.yaml",
       "sha": "c164bfc6e9ce19fcdd42e35a829537a36949a24b",
       "size": 1918
+    },
+    {
+      "path": "Clash/rule/StarDesk.yaml",
+      "sha": "cc7e52b8016a7c0fa0786261c373f8388f794b55",
+      "size": 569
     },
     {
       "path": "Clash/rule/Telegram.yaml",
@@ -231,6 +236,11 @@
       "size": 1542
     },
     {
+      "path": "Egern/rule/StarDesk.yaml",
+      "sha": "19def7ae721edecc86f87febc89de9a18638538f",
+      "size": 549
+    },
+    {
       "path": "Egern/rule/Telegram.yaml",
       "sha": "4bef6cff94ea06130545f9bfa809cc6e43258f0e",
       "size": 1693
@@ -359,6 +369,11 @@
       "path": "Loon/rule/Spotify.lsr",
       "sha": "7ab1b2f3b5c9d4b5c32460bb5aaf5a7e44f68efc",
       "size": 1690
+    },
+    {
+      "path": "Loon/rule/StarDesk.lsr",
+      "sha": "4366d1dc311b1b0f4bea52f997533ad8941ac4a2",
+      "size": 549
     },
     {
       "path": "Loon/rule/Telegram.lsr",
@@ -491,6 +506,11 @@
       "size": 1607
     },
     {
+      "path": "QuantumultX/rule/StarDesk.list",
+      "sha": "947547fdbccd2e86468c8552ac8257542586f54d",
+      "size": 543
+    },
+    {
       "path": "QuantumultX/rule/Telegram.list",
       "sha": "29d030e41d561133c1baaf469411ace182db8003",
       "size": 1765
@@ -621,6 +641,11 @@
       "size": 1681
     },
     {
+      "path": "Shadowrocket/rule/StarDesk.list",
+      "sha": "9023b0a42a084ac7cff5de6f07ef4cf50b404131",
+      "size": 540
+    },
+    {
       "path": "Shadowrocket/rule/Telegram.list",
       "sha": "5f2fffc6af85cf92e1331d0657b8dac4fdb724ec",
       "size": 2010
@@ -749,6 +774,11 @@
       "path": "Surge/rule/Spotify.list",
       "sha": "6011bc1290859d80a7a58ada04a6bca1066ec07f",
       "size": 1661
+    },
+    {
+      "path": "Surge/rule/StarDesk.list",
+      "sha": "bf0ca8316bba6a65e673fa7be39951b80501873e",
+      "size": 540
     },
     {
       "path": "Surge/rule/Telegram.list",
