@@ -1,9 +1,9 @@
 {
   "repository": "hhhoratioxu/Proxy",
   "branch": "main",
-  "commit": "6ffc75449ec79ef0a11815cd090fa3e080bec55b",
-  "tree": "480e8e813981104de85c4d458244498426dc8ed9",
-  "checkedAt": "2026-11-26T01:14:57.304Z",
+  "commit": "c1a6bdb6369c55b558c36791d282eb9246151597",
+  "tree": "16de01242bf57ec7f642fa18349eb145f6491910",
+  "checkedAt": "2026-11-26T01:17:46.909Z",
   "files": [
     {
       "path": "Clash/rule/Adobe.yaml",
@@ -102,8 +102,8 @@
     },
     {
       "path": "Clash/rule/StarDesk.yaml",
-      "sha": "cc7e52b8016a7c0fa0786261c373f8388f794b55",
-      "size": 569
+      "sha": "9d8bf63d9601ff2dfc6a4e291fabd2292bfbfb41",
+      "size": 1017
     },
     {
       "path": "Clash/rule/Telegram.yaml",
@@ -372,8 +372,8 @@
     },
     {
       "path": "Loon/rule/StarDesk.lsr",
-      "sha": "4366d1dc311b1b0f4bea52f997533ad8941ac4a2",
-      "size": 549
+      "sha": "ec9fbd765bb93b37ffab2b8b23d206ed6793661f",
+      "size": 770
     },
     {
       "path": "Loon/rule/Telegram.lsr",
@@ -777,8 +777,8 @@
     },
     {
       "path": "Surge/rule/StarDesk.list",
-      "sha": "bf0ca8316bba6a65e673fa7be39951b80501873e",
-      "size": 540
+      "sha": "731417fca3af4f6b16cb8e513fc1313a5d5fd43f",
+      "size": 764
     },
     {
       "path": "Surge/rule/Telegram.list",
