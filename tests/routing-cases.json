@@ -2637,5 +2637,115 @@
       "destination_port": 3478
     },
     "match": false
+  },
+  {
+    "name": "StarDesk macOS executable captures IP-only UDP",
+    "group": "StarDesk",
+    "clients": [
+      "Loon",
+      "Surge",
+      "Clash"
+    ],
+    "sample": {
+      "platform": "macos",
+      "process": "StarDesk",
+      "ip": "192.0.2.5",
+      "network": "udp"
+    },
+    "match": true
+  },
+  {
+    "name": "StarDesk macOS executable captures IP-only TCP",
+    "group": "StarDesk",
+    "clients": [
+      "Loon",
+      "Surge",
+      "Clash"
+    ],
+    "sample": {
+      "platform": "macos",
+      "process": "StarDesk",
+      "ip": "192.0.2.5",
+      "network": "tcp"
+    },
+    "match": true
+  },
+  {
+    "name": "StarDesk Windows executable in Mihomo",
+    "group": "StarDesk",
+    "clients": [
+      "Clash"
+    ],
+    "sample": {
+      "platform": "windows",
+      "process": "StarDesk.exe",
+      "ip": "192.0.2.5",
+      "network": "udp"
+    },
+    "match": true
+  },
+  {
+    "name": "StarDesk Windows executable TCP in Mihomo",
+    "group": "StarDesk",
+    "clients": [
+      "Clash"
+    ],
+    "sample": {
+      "platform": "windows",
+      "process": "StarDesk.exe",
+      "ip": "192.0.2.5",
+      "network": "tcp"
+    },
+    "match": true
+  },
+  {
+    "name": "StarDesk process does not match unrelated executable",
+    "group": "StarDesk",
+    "clients": [
+      "Loon",
+      "Surge",
+      "Clash"
+    ],
+    "sample": {
+      "platform": "macos",
+      "process": "NotStarDesk",
+      "ip": "192.0.2.5",
+      "network": "udp"
+    },
+    "match": false
+  },
+  {
+    "name": "StarDesk mobile process match not assumed",
+    "group": "StarDesk",
+    "clients": [
+      "Loon",
+      "Surge",
+      "Egern",
+      "QuantumultX",
+      "Shadowrocket"
+    ],
+    "sample": {
+      "platform": "ios",
+      "process": "StarDesk",
+      "ip": "192.0.2.5",
+      "network": "udp"
+    },
+    "match": false
+  },
+  {
+    "name": "StarDesk process unavailable on domain-only sets",
+    "group": "StarDesk",
+    "clients": [
+      "Egern",
+      "QuantumultX",
+      "Shadowrocket"
+    ],
+    "sample": {
+      "platform": "macos",
+      "process": "StarDesk",
+      "ip": "192.0.2.5",
+      "network": "udp"
+    },
+    "match": false
   }
 ]

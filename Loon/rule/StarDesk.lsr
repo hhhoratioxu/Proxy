@@ -1,14 +1,18 @@
 # NAME: StarDesk
 # AUTHOR: Horatio
 # FORMAT: Loon remote .lsr (policy-less)
-# RULES: 1
-# VERSION: 1.0.0
+# RULES: 2
+# VERSION: 1.1.0
 # UPDATED: 2026-11-26
 # SOURCE: https://www.stardesk.net/
 # SOURCE: https://www.stardesk.net/lp/main/
 # USE: Assign DIRECT when subscribing; choose another policy if login requires it.
 # SCOPE: Official service domain and subdomains, including the public download API.
-# LIMIT: Domain matching cannot identify all IP-only P2P or relay traffic.
+# PROCESS-SOURCE: https://nsloon.app/docs/Rule/process_rule/
+# PROCESS: StarDesk is the observed macOS executable name.
+# COMPAT: Process matching is macOS only; mobile clients use the domain rule.
+# LIMIT: Helper processes and unidentifiable IP-only traffic may not match.
 # No guessed domains, shared cloud IP ranges, or generic UDP port rules.
 
 DOMAIN-SUFFIX,stardesk.net
+PROCESS-NAME,StarDesk

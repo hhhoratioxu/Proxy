@@ -17,7 +17,7 @@
 
 ## StarDesk 远程桌面
 
-**2026-11-26：新增独立 StarDesk 分流，六端各 1 条规则，共 27 类。** 建议 DIRECT，已核实 `stardesk.net` 官方域名；IP-only P2P 与 Relay 流量不保证被域名规则识别。[六端订阅与使用说明](./Docs/StarDesk-Routing.md)。
+**2026-11-26：StarDesk 分流 1.1.0，共 27 类。** Loon/Surge 各 2 条，Clash 3 条，其余三端各 1 条。建议 DIRECT；支持进程匹配的桌面端补充 IP-only 流量，不能保证所有辅助进程或 NAT 穿透。[六端订阅与使用说明](./Docs/StarDesk-Routing.md)。
 
 ## 客户端入口
 
@@ -85,7 +85,7 @@ AI routing reviewed on **2026-11-25**: all six clients have **951 AI conditions*
 
 ## StarDesk remote desktop
 
-**2026-11-26:** Added a dedicated StarDesk category (one condition per client, 27 categories total). DIRECT is recommended for the verified official domain; IP-only P2P and relay traffic may require additional device-specific configuration. [Subscriptions and guide](./Docs/StarDesk-Routing.md).
+**2026-11-26:** StarDesk routing 1.1.0 (27 categories total). Loon/Surge have two conditions each, Clash three, other clients one each. DIRECT is recommended; desktop process matching supplements domain coverage, but helper processes and NAT traversal remain unverified. [Subscriptions and guide](./Docs/StarDesk-Routing.md).
 
 ## Client directories
 

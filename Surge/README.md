@@ -32,7 +32,7 @@
 | Parsec | 3 | [Parsec.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/Parsec.list) |
 | Parsec P2P | 3 | [ParsecP2P.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/ParsecP2P.list) |
 | Siri AI | 6 | [SiriAI.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/SiriAI.list) |
-| StarDesk | 1 | [StarDesk.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/StarDesk.list) |
+| StarDesk | 2 | [StarDesk.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/StarDesk.list) |
 | Spotify | 30 | [Spotify.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/Spotify.list) |
 | Telegram | 52 | [Telegram.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/Telegram.list) |
 | TikTok | 36 | [TikTok.list](https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Surge/rule/TikTok.list) |

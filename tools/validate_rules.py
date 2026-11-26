@@ -252,12 +252,19 @@ def audit(root=ROOT):
             if group == "ParsecP2P" or (client, group) not in parsed or ("Loon", group) not in parsed:
                 continue
             source = parsed["Loon", group]
-            expected = {r.matcher() for r in source if client != "Clash" or r.kind != "USER-AGENT"}
+            expected_rules = [r for r in source if client != "Clash" or r.kind != "USER-AGENT"]
+            if group == "StarDesk":
+                # Process rules are documented for Loon/Surge macOS and Mihomo.
+                # The other three native rule-set formats retain the domain only.
+                if client in {"Egern", "QuantumultX", "Shadowrocket"}:
+                    expected_rules = [r for r in expected_rules if r.kind != "PROCESS-NAME"]
+                elif client == "Clash":
+                    expected_rules.append(Rule("PROCESS-NAME", "StarDesk.exe"))
+            expected = {r.matcher() for r in expected_rules}
             if {r.matcher() for r in parsed[client, group]} != expected:
                 problems.append(client + "/" + group + ": match objects differ from Loon (after documented capability omissions)")
             # Order is retained in line/classical formats; Egern fields are OR sets.
             if client not in {"Egern", "Loon"}:
-                expected_rules = [r for r in source if client != "Clash" or r.kind != "USER-AGENT"]
                 if client == "QuantumultX":
                     expected_rules = [replace(r, flags=()) for r in expected_rules]
                 elif client == "Shadowrocket":

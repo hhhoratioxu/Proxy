@@ -1,6 +1,6 @@
 # StarDesk 跨客户端分流
 
-更新：2026-11-26。独立分类，六端各 1 条条件。保留原有 26 类，当前共 27 类。
+更新：2026-11-26，版本 1.1.0。独立分类，Loon/Surge 各 2 条，Clash 3 条，其余三端各 1 条。保留原有分类，共 27 类；原订阅 URL 不变。
 
 ## 直接订阅
 
@@ -20,6 +20,13 @@
 - 官网还引用共享 CDN 和第三方服务。未将 `adl.guinfra.com`、整个 GearUP 域名、共享云地址、通用 STUN/UDP 端口或猜测的域名加入规则。
 - 官方依据：[StarDesk 官网](https://www.stardesk.net/) · [连接与安全说明](https://www.stardesk.net/lp/main/) · [登录说明](https://www.stardesk.net/help/step-2.html)。
 
+## 桌面进程匹配
+
+- Loon for Mac / Surge Mac：`PROCESS-NAME,StarDesk`，macOS 已观察到的应用进程名；匹配该进程可识别的 TCP 与 UDP，不限定端口。iOS 不使用进程规则。
+- Mihomo：`PROCESS-NAME,StarDesk` 与 `PROCESS-NAME,StarDesk.exe`。Windows 名称有第三方[启动项数据库记录](https://www.glarysoft.com/startups/stardesk/stardeskexe/641483)，尚未核对实际安装版本的可执行文件和辅助进程。需启用适当的流量接管及进程识别，不能保证路由器转发流量有进程信息。
+- Egern、Quantumult X、Shadowrocket：保留已验证的域名格式，不猜测进程规则字段。
+- 规则依据：[Loon 进程规则](https://nsloon.app/docs/Rule/process_rule/) · [Surge 进程规则](https://manual.nssurge.com/rules/process.html) · [Mihomo 路由规则](https://wiki.metacubex.one/en/config/rules/) · [Egern 规则字段](https://egernapp.com/docs/configuration/rules/)。
+
 ## 使用方法
 
 Loon：在远程规则中新增链接，策略选 DIRECT，启用并排在通用代理/兜底规则之前。规则文件不写死策略。
@@ -27,7 +34,7 @@ Loon：在远程规则中新增链接，策略选 DIRECT，启用并排在通用
 ```ini
 [Remote Rule]
 https://raw.githubusercontent.com/hhhoratioxu/Proxy/main/Loon/rule/StarDesk.lsr, policy=DIRECT, tag=StarDesk, enabled=true
-````
+```
 
 Surge / Shadowrocket：在已有 [Rule] 中使用 RULE-SET 引用各自链接并指定 DIRECT。
 
@@ -39,6 +46,6 @@ Mihomo：使用 classical YAML provider，RULE-SET 指向 DIRECT；仓库 Clash 
 
 ## P2P 排查及限制
 
-域名直连只影响客户端能识别并匹配的域名请求，不会自动识别原始 IP 上的点对点媒体流或保证 NAT 穿透。使用 StarDesk 时检查两端连接日志和实际 P2P/Relay 状态；若登录或控制连接无法直连，可自行改为可用代理策略。若媒体流仍被错误代理，在支持进程匹配的桌面客户端核实 StarDesk 及其辅助进程名称后，按实际进程配置 DIRECT；移动端不假设具备进程匹配能力。不要将全部 UDP、共享 IP、Tailscale 出口节点或其他服务统一改为直连作为此规则的一部分。
+域名直连只影响客户端能识别并匹配的域名请求，不会自动识别原始 IP 上的点对点媒体流或保证 NAT 穿透。使用 StarDesk 时检查两端连接日志和实际 P2P/Relay 状态；若登录或控制连接无法直连，可自行改为可用代理策略。桌面主进程规则已加入；若媒体流仍被错误代理，核对日志中的实际辅助进程及其流量归属后再扩充，不假定所有流量都来自主进程。不要将全部 UDP、共享 IP、Tailscale 出口节点或其他服务统一改为直连作为此规则的一部分。
 
-此次仅验证公开域名来源、六端格式及域名匹配边界；未完成真实设备抓包、客户端导入和 NAT 穿透测试。
+本次添加离线进程匹配正反例、平台限制和 TCP/UDP 用例；未完成真实设备抓包、客户端导入和 NAT 穿透测试。
