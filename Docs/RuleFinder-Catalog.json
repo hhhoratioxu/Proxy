@@ -1,9 +1,9 @@
 {
   "repository": "hhhoratioxu/Proxy",
   "branch": "main",
-  "commit": "c1a6bdb6369c55b558c36791d282eb9246151597",
-  "tree": "16de01242bf57ec7f642fa18349eb145f6491910",
-  "checkedAt": "2026-11-26T01:17:46.909Z",
+  "commit": "e486d18fc10d1cf33119a17983895e35b99dc870",
+  "tree": "47dc4d1bde5afe6ff8d42fa9b707e40699288276",
+  "checkedAt": "2026-11-26T01:21:25.938Z",
   "files": [
     {
       "path": "Clash/rule/Adobe.yaml",
